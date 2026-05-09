@@ -108,7 +108,7 @@ test.describe('Admin dashboard', () => {
   test('Sponsor approval flow via admin', async ({ page, context }) => {
     // First submit a sponsor inquiry from the public page
     await page.goto('/sponsor.html');
-    await page.locator('[data-add="single-night"]').click();
+    await page.locator('[data-add="newsletter-slot"]').click();
     await page.locator('#contactForm').scrollIntoViewIfNeeded();
     await page.locator('input[name="name"]').fill('Approver Test');
     await page.locator('input[name="company"]').fill('Approve Co');

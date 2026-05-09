@@ -37,7 +37,7 @@
 
 <nav class="nmw-nav px-4 sm:px-8">
   <a href="index.html" class="nmw-logo-block">
-    <img src="images/nmw-logo.png" alt="New Music Wednesday" class="nmw-logo-img" />
+    <img src="images/digiwaxx-logo.png" alt="New Music Wednesday" class="nmw-logo-img" />
   </a>
   <div class="hidden md:flex space-x-5 items-center text-sm font-bold tracking-wide text-gray-600">
     <a href="mission.html" class="hover:text-black">MISSION</a>
@@ -50,19 +50,15 @@
   </div>
 </nav>
 
-<header class="bg-black text-white py-16 md:py-24 relative overflow-hidden">
-  <div class="absolute inset-0 -z-0 opacity-40">
-    <img src="images/audience.avif" alt="" class="w-full h-full object-cover opacity-50" />
-    <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black"></div>
-  </div>
+<header class="bg-[#FDF2F8] text-gray-900 py-16 md:py-24 relative overflow-hidden border-b border-[#FBCFE8]">
   <div class="relative max-w-4xl mx-auto px-4 text-center">
-    <span class="inline-block text-yellow-400 font-black tracking-widest text-xs mb-5 px-3 py-1 border border-yellow-400/40 rounded-full">[ Sponsorship Store ]</span>
+    <span class="inline-block text-[#8A1558] font-black tracking-widest text-xs mb-5 px-3 py-1 border border-[#FBCFE8] rounded-full bg-white">[ Sponsorship Store ]</span>
     <h1 class="text-4xl md:text-7xl font-black tracking-tighter leading-[0.95] mb-5">
-      Build your sponsorship.<br>
-      <span class="italic font-serif font-normal text-[#FBCFE8]">Add the pieces you want.</span>
+      Micro products<br>
+      <span class="italic font-serif font-normal text-[#8A1558]">that macro.</span>
     </h1>
-    <p class="text-lg md:text-xl text-white/80 max-w-2xl mx-auto font-serif leading-relaxed">
-      Pick the strategic options below. Stack them. We'll come back with a custom proposal that fits your goals and scale.
+    <p class="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto font-serif leading-relaxed">
+      Small, weekly placements priced to start. Stack them and they compound — into samples handed out, codes redeemed, posts shared, DJs reached. You pay for results, not impressions.
     </p>
   </div>
 </header>
@@ -73,8 +69,9 @@
     <!-- PRODUCTS -->
     <section class="lg:col-span-2">
       <div class="mb-8">
-        <span class="text-[#8A1558] font-black tracking-widest text-xs mb-2 block">[ Strategic Partnership Options ]</span>
-        <h2 class="text-3xl md:text-4xl font-black tracking-tighter">Pick what you want to activate.</h2>
+        <span class="text-[#8A1558] font-black tracking-widest text-xs mb-2 block">[ Weekly Recurring Placements ]</span>
+        <h2 class="text-3xl md:text-4xl font-black tracking-tighter">Pick what produces results.</h2>
+        <p class="text-gray-600 mt-2">Each placement renews automatically every Wednesday. Cancel any time.</p>
       </div>
 
       <!-- Featured bundles -->
@@ -214,9 +211,9 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
     <div>
       <div class="flex items-center gap-3 justify-center md:justify-start mb-4">
-        <img src="images/nmw-logo.png" alt="New Music Wednesday" class="footer-logo" />
+        <img src="images/digiwaxx-logo-white.png" alt="New Music Wednesday" class="footer-logo" />
       </div>
-      <p class="text-gray-400 font-serif text-sm italic max-w-sm">Build with the room.</p>
+      <p class="text-gray-500 font-serif text-sm italic max-w-sm">Build with the room.</p>
     </div>
     <div class="flex flex-wrap gap-6 text-sm font-bold text-gray-400 uppercase tracking-widest justify-center">
       <a href="mission.html" class="hover:text-white">Mission</a>
@@ -232,37 +229,84 @@
 
 <script src="assets/nmw.js"></script>
 <script>
+// Each item is a recurring weekly placement that delivers a concrete outcome —
+// not vague "brand visibility." Sponsors pay for the result.
 const PRODUCTS = [
-  { id: 'product-placement', name: 'Product Placement & On-Site Integration', icon: 'package',
-    blurb: 'Organically showcase your brand throughout the live production, set design, and venue environment.',
-    price: 'From $5K', priceMin: 5000 },
-  { id: 'branded-segment', name: 'Branded Segment Sponsorship', icon: 'film',
-    blurb: 'Align with key moments within the formatted show and broadcast for premium, lasting visibility.',
-    price: 'From $7.5K', priceMin: 7500 },
-  { id: 'on-screen', name: 'On-Screen Branding · Live Stream', icon: 'tv',
-    blurb: 'Lower thirds, segment frames, or rolling graphics within the live stream — reaching in-room and digital audiences in real time.',
-    price: 'From $10K', priceMin: 10000 },
-  { id: 'social', name: 'Social Media Amplification', icon: 'megaphone',
-    blurb: 'Integrated branding across our entire digital ecosystem — pre-event promo, live content, and post-event recaps.',
-    price: 'From $3K', priceMin: 3000 },
-  { id: 'influencer', name: 'Influencer & Talent Alignment', icon: 'users-round',
-    blurb: 'Connect your brand with artists, media platforms, and tastemakers who bring real reach and credibility.',
-    price: 'From $5K / talent', priceMin: 5000 },
-  { id: 'experiential', name: 'Experiential Touchpoints', icon: 'sparkles',
-    blurb: 'Curated activations, VIP experiences, and networking opportunities with industry pros and cultural leaders.',
-    price: 'Custom', priceMin: 0 },
+  // ——— In-room activations: real things that happen in the venue ———
+  { id: 'step-and-repeat', name: 'Step & Repeat Banner', icon: 'image',
+    blurb: 'Branded photo-op backdrop in the lobby. Every guest poses, every photo travels through their socials.',
+    outcome: '~150 guests · ~40 IG/TikTok posts',
+    price: '$350 / Wednesday', priceMin: 350 },
+  { id: 'live-demo', name: 'Live Product Demo', icon: 'box',
+    blurb: 'Demo your product on stage between sets at The Penthouse. Real artists try it, real fans see it work.',
+    outcome: '~150 in-room attendees · live demo',
+    price: '$250 / Wednesday', priceMin: 250 },
+  { id: 'sampling-table', name: 'Sampling Table at Door', icon: 'package',
+    blurb: 'Branded sampling table at the door — every guest passes it on entry and exit.',
+    outcome: '~150 guests sampled / Wednesday',
+    price: '$300 / Wednesday', priceMin: 300 },
+  { id: 'gift-bag-insert', name: 'Artist Gift Bag Insert', icon: 'gift',
+    blurb: 'Drop product or sample into the artist swag bag handed to every performing act.',
+    outcome: '5–8 performers / Wednesday',
+    price: '$175 / Wednesday', priceMin: 175 },
+  { id: 'free-ticket-giveaway', name: 'Free Ticket Giveaway', icon: 'ticket',
+    blurb: 'Sponsor 10 free tickets given away via The Blast newsletter — code branded with your name.',
+    outcome: '10 free tickets · ~600 entries',
+    price: '$200 / week', priceMin: 200 },
+  { id: 'artist-product-prize', name: 'Artist Prize Drop', icon: 'award',
+    blurb: 'Your product becomes the prize for the night\'s standout performance — picked by the room.',
+    outcome: '1 winning artist / Wednesday + IG share',
+    price: '$300 / Wednesday', priceMin: 300 },
+
+  // ——— Distribution: ongoing weekly placements ———
+  { id: 'newsletter-slot', name: 'Newsletter Slot', icon: 'mail',
+    blurb: 'One sponsored block in The Blast every Wednesday — pushed to ~3K openers.',
+    outcome: 'Avg 850 opens · 120 clicks / week',
+    price: '$150 / week', priceMin: 600 },
+  { id: 'recap-clip-sponsor', name: 'Recap Clip Tag', icon: 'film',
+    blurb: 'Your handle on every Wednesday recap clip the artists themselves share to their followers.',
+    outcome: 'Avg 5–12K organic views / week',
+    price: '$200 / week', priceMin: 800 },
+  { id: 'dj-call-mention', name: 'DJ Call Mention', icon: 'headphones',
+    blurb: 'Spoken brand mention on the Wednesday DJ Call — straight to the ~30K DJ network.',
+    outcome: '30K DJs · weekly drop',
+    price: '$100 / week', priceMin: 400 },
+  { id: 'subscriber-drop', name: 'Subscriber-Only Drop', icon: 'tag',
+    blurb: 'Exclusive code or first-look pushed to The Blast list. Drives orders directly back to your store.',
+    outcome: 'Avg 60–180 redemptions / drop',
+    price: '$120 / week', priceMin: 480 },
+  { id: 'story-cobrand', name: 'Story Frame Co-Brand', icon: 'instagram',
+    blurb: 'Co-branded Instagram Story frame in every artist share-pack we ship that week.',
+    outcome: 'Avg 8–15 artist Stories / week',
+    price: '$80 / week', priceMin: 320 },
+  { id: 'event-listing-banner', name: 'Event Page Banner', icon: 'calendar-days',
+    blurb: 'Banner on /events while users decide to RSVP — hot-intent traffic.',
+    outcome: 'Avg 1.4K weekly impressions',
+    price: '$90 / week', priceMin: 360 },
+  { id: 'audience-list-rental', name: 'Co-Send to The Blast', icon: 'send',
+    blurb: 'Once a month, dedicated co-send to The Blast list. We co-write so the offer fits the room.',
+    outcome: 'Avg 1.1K opens · 90 clicks',
+    price: '$400 / month', priceMin: 400 },
+  { id: 'referral-share', name: 'Referral Reward Sponsor', icon: 'star',
+    blurb: 'Sponsor the artist referral unlocks (free ticket, priority, feature). Your brand becomes the prize.',
+    outcome: '~40 referral chains / month',
+    price: '$300 / month', priceMin: 300 },
 ];
 
+// Stacks: recurring bundles for brands that want compounding presence
 const BUNDLES = [
-  { id: 'single-night', name: 'Single Wednesday Sponsor', icon: 'calendar-days',
-    blurb: 'Own one full Wednesday at The Penthouse — flyer co-branding, on-stage shoutout, branded segment, social amplification, recap.',
-    price: '$15K', priceMin: 15000, featured: false },
-  { id: 'series-quarterly', name: 'Series Partner · Quarterly', icon: 'star',
-    blurb: '12 Wednesdays of full integration. Series branding across every Wednesday + live stream + content drop.',
-    price: '$50K / quarter', priceMin: 50000, featured: true },
-  { id: 'annual-partner', name: 'Annual Title Partner', icon: 'crown',
-    blurb: 'Year-round title position across the entire NMW ecosystem — 52 Wednesdays, all surfaces, custom co-developed activation.',
-    price: '$150K+', priceMin: 150000, featured: false },
+  { id: 'starter-stack', name: 'Starter Stack', icon: 'layers',
+    blurb: 'Newsletter Slot + Story Co-Brand + DJ Call Mention — three placements, every Wednesday.',
+    outcome: 'Open + reach + DJ network · all 3, every week',
+    price: '$1,200 / month', priceMin: 1200, featured: false },
+  { id: 'growth-stack', name: 'Growth Stack', icon: 'trending-up',
+    blurb: 'Starter Stack + Recap Clip Tag + Subscriber Drop + Event Banner — five recurring placements.',
+    outcome: 'Five surfaces · every Wednesday · with measurable redemptions',
+    price: '$2,400 / month', priceMin: 2400, featured: true },
+  { id: 'always-on', name: 'Always-On', icon: 'infinity',
+    blurb: 'Every placement above, every Wednesday, for a full quarter. For brands that want compounding presence.',
+    outcome: '13 weeks of every surface',
+    price: '$6,000 / quarter', priceMin: 6000, featured: false },
 ];
 
 const cart = new Set();
@@ -284,12 +328,18 @@ function renderProducts() {
 
 function productCard(p, isBundle = false) {
   const sel = cart.has(p.id);
-  return `<div class="product-card section-card flex flex-col ${sel ? 'selected' : ''} ${p.featured ? 'border-2 border-yellow-400' : ''}">
-    ${p.featured ? '<div class="text-[10px] font-black uppercase tracking-widest text-yellow-600 mb-2">Most Popular</div>' : ''}
+  const outcomeBlock = p.outcome
+    ? `<div class="text-[11px] font-bold uppercase tracking-widest text-[#8A1558] mb-3 flex items-center gap-1.5">
+         <i data-lucide="trending-up" class="w-3.5 h-3.5"></i> ${p.outcome}
+       </div>`
+    : '';
+  return `<div class="product-card section-card flex flex-col ${sel ? 'selected' : ''} ${p.featured ? 'border-2 border-[#8A1558]' : ''}">
+    ${p.featured ? '<div class="text-[10px] font-black uppercase tracking-widest text-[#8A1558] mb-2">Most Popular</div>' : ''}
     <div class="w-12 h-12 rounded-lg bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center mb-3"><i data-lucide="${p.icon}" class="w-6 h-6"></i></div>
     <h3 class="text-lg font-black tracking-tight mb-2">${p.name}</h3>
-    <p class="text-sm text-gray-700 font-serif flex-1 mb-4">${p.blurb}</p>
-    <div class="flex items-center justify-between mt-auto">
+    <p class="text-sm text-gray-700 font-serif mb-3">${p.blurb}</p>
+    ${outcomeBlock}
+    <div class="flex items-center justify-between mt-auto pt-3 border-t border-gray-100">
       <span class="font-black text-[#8A1558]">${p.price}</span>
       <button data-add="${p.id}" class="add-btn inline-flex items-center gap-1.5 border-2 border-[#8A1558] text-[#8A1558] hover:bg-[#8A1558] hover:text-white px-3 py-1.5 rounded-lg text-xs font-black tracking-widest uppercase transition-all">
         <span class="add-text"><i data-lucide="plus" class="w-3.5 h-3.5 inline"></i> Add</span>
@@ -307,7 +357,7 @@ function renderCart() {
   const items = [...cart].map(findProduct).filter(Boolean);
   const cartList = document.getElementById('cartList');
   if (!items.length) {
-    cartList.innerHTML = '<p class="text-sm text-gray-400 italic">Pick at least one option to start your inquiry.</p>';
+    cartList.innerHTML = '<p class="text-sm text-gray-500 italic">Pick at least one option to start your inquiry.</p>';
   } else {
     cartList.innerHTML = items.map(p => `
       <div class="flex items-start justify-between gap-2 py-2 border-b border-gray-100 last:border-0">

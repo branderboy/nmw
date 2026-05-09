@@ -36,9 +36,19 @@ test.describe('Mobile viewport', () => {
 
   test('apply funnel works on mobile (tap-only interactions)', async ({ page }) => {
     await page.goto('/apply.html');
-    await page.locator('[data-pkg="media-ready"]').click();
-    await page.locator('[data-step="1"] button[data-next="1"]').click();
-    await expect(page.locator('[data-step="2"]')).toBeVisible();
+    const tile = page.locator('[data-pkg="media-ready"]');
+    await tile.scrollIntoViewIfNeeded();
+    await tile.click({ force: true });
+    // Mobile-tap fill the required fields
+    await page.locator('input[name="name"]').fill('Mobile Tester');
+    await page.locator('input[name="email"]').fill('m@t.co');
+    await page.locator('input[name="artistName"]').fill('Mob');
+    await page.locator('select[name="genre"]').selectOption('R&B');
+    const cont = page.locator('[data-step="1"] button[data-next="1"]');
+    await cont.scrollIntoViewIfNeeded();
+    await cont.click({ force: true });
+    // Entry tier skips date — should land on enhance
+    await expect(page.locator('[data-step="enhance"]')).toBeVisible();
   });
 
   test('events page list renders on mobile', async ({ page }) => {

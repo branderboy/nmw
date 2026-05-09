@@ -67,37 +67,181 @@ body {
 }
 .nmw-logo-block { display: inline-flex; align-items: center; text-decoration: none; }
 .nmw-logo-img {
-  height: 64px;
+  height: 96px;
   width: auto;
   display: block;
   background: transparent;
   object-fit: contain;
 }
 @media (min-width: 768px) {
-  .nmw-logo-img { height: 80px; }
+  .nmw-logo-img { height: 128px; }
 }
-/* Footer logo: also transparent, just slightly smaller than the nav lockup */
+/* Allow nav row to grow with the bigger logo */
+.nmw-nav { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+
+/* Footer logo: also transparent, sized to match the new lockup */
 .footer-logo {
-  height: 56px;
+  height: 88px;
   width: auto;
   display: block;
   background: transparent;
   object-fit: contain;
 }
 
-/* Light footer (replaces previous black footer) */
+/* Clean light footer with brand top accent */
 .nmw-footer {
   background: #fff;
-  color: #4b5563;
+  color: #6b7280;
   padding: 3rem 0;
   border-top: 4px solid var(--brand-500);
 }
-.nmw-footer .text-gray-400 { color: #6b7280; }
 .nmw-footer p { color: #6b7280; }
 .nmw-footer a { color: #4b5563; transition: color .15s; }
 .nmw-footer a:hover { color: var(--brand-500); }
 .nmw-footer .text-white,
 .nmw-footer span[class*="text-white"] { color: #111827; }
+.nmw-footer .text-gray-400 { color: #9ca3af; }
+.nmw-footer .text-gray-500 { color: #6b7280; }
+
+/* ============ Onboarding funnel components ============ */
+.onboarding-dot {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 2px solid;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 900; font-size: 0.85rem;
+  transition: all 0.2s;
+}
+.onboarding-step-label {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  margin-top: 0.5rem;
+  white-space: nowrap;
+}
+
+.onboarding-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #4b5563;
+  margin-bottom: 0.4rem;
+}
+.onboarding-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 0.5rem;
+  font-size: 0.95rem;
+  background: #fff;
+  transition: all 0.15s;
+}
+.onboarding-input:focus {
+  outline: none;
+  border-color: var(--brand-500);
+  box-shadow: 0 0 0 3px rgba(138,21,88,0.12);
+}
+
+.onboarding-cta {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.85rem 1.75rem;
+  background: #e5e7eb;
+  color: #6b7280;
+  border-radius: 9999px;
+  font-weight: 800;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  cursor: not-allowed;
+  border: none;
+  transition: all 0.15s;
+}
+.onboarding-cta:not(:disabled) {
+  background: #111827;
+  color: #fff;
+  cursor: pointer;
+}
+.onboarding-cta:not(:disabled):hover { background: var(--brand-500); }
+.onboarding-cta--brand:not(:disabled) { background: var(--brand-500); }
+.onboarding-cta--brand:not(:disabled):hover { background: var(--brand-600); }
+
+.onboarding-back {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.85rem 1.5rem;
+  background: transparent;
+  color: #6b7280;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 9999px;
+  font-weight: 800;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.onboarding-back:hover { border-color: #9ca3af; color: #111827; }
+
+/* Package tile (compact) */
+.pkg-tile {
+  background: #fff;
+  border: 2px solid #e5e7eb;
+  border-radius: 0.85rem;
+  padding: 1.25rem 1rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.pkg-tile:hover { border-color: #9ca3af; }
+.pkg-tile.is-selected { border-color: var(--brand-500); box-shadow: 0 0 0 1px var(--brand-500); }
+.pkg-tile .pkg-name { font-weight: 800; font-size: 0.9rem; color: #111827; line-height: 1.3; }
+.pkg-tile .pkg-price { font-weight: 900; font-size: 1.75rem; color: #111827; margin-top: 0.5rem; letter-spacing: -0.03em; }
+
+/* Date tile */
+.date-tile {
+  background: #fff;
+  border: 2px solid #e5e7eb;
+  border-radius: 0.85rem;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: left;
+}
+.date-tile:hover:not(.is-disabled) { border-color: #9ca3af; }
+.date-tile.is-selected { border-color: var(--brand-500); box-shadow: 0 0 0 1px var(--brand-500); }
+.date-tile.is-disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* Goal chip */
+.goal-chip {
+  display: inline-block;
+  padding: 0.5rem 0.95rem;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 9999px;
+  background: #fff;
+  font-weight: 600;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.goal-chip:hover { border-color: var(--brand-500); }
+.goal-chip.is-selected { background: var(--brand-500); color: #fff; border-color: var(--brand-500); }
+
+/* Upsell row */
+.upsell-row {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 1rem;
+  background: #fff;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 0.85rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.upsell-row:hover { border-color: #9ca3af; }
+.upsell-row.is-selected { border-color: var(--brand-500); background: var(--brand-50); }
+.upsell-row input[type="checkbox"] {
+  width: 1.25rem; height: 1.25rem;
+  accent-color: var(--brand-500);
+  flex-shrink: 0;
+}
 
 /* ============ Urgency Bar ============ */
 .urgency-bar {

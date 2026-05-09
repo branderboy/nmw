@@ -69,22 +69,22 @@ test.describe('Sponsor store form', () => {
     // Cart starts empty
     await expect(page.locator('#cartCount')).toHaveText('0');
 
-    // Add a bundle
-    await page.locator('[data-add="single-night"]').click();
+    // Add the Growth Stack bundle ($2,400)
+    await page.locator('[data-add="growth-stack"]').click();
     await expect(page.locator('#cartCount')).toHaveText('1');
-    await expect(page.locator('#cartTotal')).toContainText('$15,000');
+    await expect(page.locator('#cartTotal')).toContainText('$2,400');
 
-    // Add à la carte item
-    await page.locator('[data-add="branded-segment"]').click();
+    // Add an in-room product
+    await page.locator('[data-add="step-and-repeat"]').click();
     await expect(page.locator('#cartCount')).toHaveText('2');
-    await expect(page.locator('#cartTotal')).toContainText('$22,500');
+    await expect(page.locator('#cartTotal')).toContainText('$2,750');
   });
 
   test('submit sponsor inquiry saves to store with pending_approval', async ({ page }) => {
     const errors = collectConsoleErrors(page);
     await page.goto('/sponsor.html');
 
-    await page.locator('[data-add="branded-segment"]').click();
+    await page.locator('[data-add="newsletter-slot"]').click();
 
     // Scroll into form
     await page.locator('#contactForm').scrollIntoViewIfNeeded();
@@ -95,8 +95,8 @@ test.describe('Sponsor store form', () => {
     await page.locator('input[name="phone"]').fill('5551234567');
     await page.locator('input[name="website"]').fill('https://acme.com');
     await page.locator('select[name="orgType"]').selectOption('Brand');
-    await page.locator('select[name="budget"]').selectOption('$15K – $50K');
-    await page.locator('textarea[name="goal"]').fill('Q4 brand activation around live music');
+    await page.locator('select[name="budget"]').selectOption('$5K – $15K');
+    await page.locator('textarea[name="goal"]').fill('Test weekly placements for our launch');
 
     // Pick contact prefs
     await page.locator('[data-val="Email"]').click();
@@ -113,7 +113,7 @@ test.describe('Sponsor store form', () => {
     expect(sponsors).not.toBeNull();
     expect(sponsors.length).toBe(1);
     expect(sponsors[0].status).toBe('pending_approval');
-    expect(sponsors[0].interests).toContain('Branded Segment Sponsorship');
+    expect(sponsors[0].interests).toContain('Newsletter Slot');
     expect(sponsors[0].preferredContact).toBe('Email');
     expect(sponsors[0].bestTime).toBe('12pm–3pm');
 
