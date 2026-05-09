@@ -56,7 +56,6 @@ body {
 .nmw-nav {
   background: #fff;
   border-bottom: 1px solid #f3f4f6;
-  padding: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -64,20 +63,20 @@ body {
   top: 0;
   z-index: 50;
   box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  /* Full-width bar with content centered + capped at 80rem (matches max-w-7xl page sections) */
+  padding: 0.5rem max(1rem, calc((100% - 80rem) / 2));
 }
 .nmw-logo-block { display: inline-flex; align-items: center; text-decoration: none; }
 .nmw-logo-img {
-  height: 48px;
+  height: 96px;
   width: auto;
   display: block;
   background: transparent;
   object-fit: contain;
 }
 @media (min-width: 768px) {
-  .nmw-logo-img { height: 64px; }
+  .nmw-logo-img { height: 128px; }
 }
-/* Keep nav row compact */
-.nmw-nav { padding-top: 0.5rem; padding-bottom: 0.5rem; }
 
 /* Footer logo */
 .footer-logo {
