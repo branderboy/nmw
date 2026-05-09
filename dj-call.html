@@ -78,7 +78,7 @@
 
 <div class="urgency-bar">
   <span class="urgency-pulse"></span>
-  Digiwaxx DJ Call · Every Wednesday · 3-7 PM ET on Zoom
+  Digiwaxx DJ Call, Every Wednesday, 3-7 PM ET on Zoom
 </div>
 
 <nav class="nmw-nav px-4 sm:px-8">
@@ -118,8 +118,8 @@
     </div>
     <div class="bg-white/5 backdrop-blur border border-gray-200 rounded-2xl p-6">
       <div class="text-xs uppercase tracking-widest text-gray-500 mb-3">Next Call</div>
-      <div class="text-3xl md:text-4xl font-black tracking-tighter mb-1" id="nextDate">—</div>
-      <div class="text-gray-600 font-serif">3:00 PM – 7:00 PM ET · Zoom</div>
+      <div class="text-3xl md:text-4xl font-black tracking-tighter mb-1" id="nextDate">, </div>
+      <div class="text-gray-600 font-serif">3:00 PM - 7:00 PM ET, Zoom</div>
       <div class="border-t border-gray-200 my-5"></div>
       <ul class="space-y-2 text-sm">
         <li class="flex items-center gap-2"><i data-lucide="disc-3" class="w-4 h-4 text-yellow-400"></i> New record listening rounds</li>
@@ -189,7 +189,7 @@
     <div class="text-center mb-10">
       <span class="text-[#8A1558] font-black tracking-widest text-xs mb-3 block">[ Get On The Call List ]</span>
       <h2 class="text-3xl md:text-5xl font-black tracking-tighter mb-3">Join the DJ Call.</h2>
-      <p class="text-gray-600 font-serif text-lg">If you spin and want in the room — fill this out. We'll confirm within 24 hours.</p>
+      <p class="text-gray-600 font-serif text-lg">If you spin and want in the room, fill this out. We'll confirm within 24 hours.</p>
     </div>
 
     <form id="djForm" class="section-card">
@@ -260,9 +260,9 @@
 
 <footer class="nmw-footer">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 py-2">
-      <div class="col-span-2">
-        <img src="images/nmw-logo-light.png" alt="New Music Wednesdays · Digiwaxx" class="footer-logo mb-4" />
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-8 py-2">
+      <div class="col-span-2 md:col-span-2">
+        <img src="images/nmw-logo-light.png" alt="New Music Wednesdays, Digiwaxx" class="footer-logo mb-4" />
         <p class="text-sm leading-relaxed">Live performance and rollout infrastructure for rising artists. Every Wednesday at The Penthouse NYC, presented by <a href="https://www.digiwaxx.com" target="_blank" rel="noopener noreferrer" class="text-[#8A1558] hover:underline">Digiwaxx</a>.</p>
       </div>
       <div>
@@ -279,7 +279,7 @@
         </ul>
       </div>
       <div>
-        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Partners</h4>
+        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Distribution</h4>
         <ul class="space-y-2 text-sm">
           <li><a href="https://www.digiwaxx.com" target="_blank" rel="noopener">Digiwaxx</a></li>
           <li><a href="https://www.newmusicwednesdayslive.com" target="_blank" rel="noopener">NewMusicWednesdaysLive</a></li>
@@ -288,13 +288,22 @@
           <li><a href="https://www.songkick.com" target="_blank" rel="noopener">Songkick</a></li>
           <li><a href="https://www.eventbrite.com" target="_blank" rel="noopener">Eventbrite</a></li>
           <li><a href="https://lu.ma" target="_blank" rel="noopener">Luma</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Listings</h4>
+        <ul class="space-y-2 text-sm">
           <li><a href="https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z" target="_blank" rel="noopener">Google Maps</a></li>
-          <li><a href="https://www.tripadvisor.com/Search?q=The+Penthouse+NYC" target="_blank" rel="noopener">TripAdvisor</a></li>
+          <li><a href="https://www.tripadvisor.com" target="_blank" rel="noopener">TripAdvisor</a></li>
+          <li><a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.youtube.com" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://www.tiktok.com" target="_blank" rel="noopener">TikTok</a></li>
+          <li><a href="https://x.com" target="_blank" rel="noopener">X / Twitter</a></li>
         </ul>
       </div>
     </div>
     <div class="border-t border-gray-700 pt-6 mt-6 text-center text-xs">
-      &copy; 2026 New Music Wednesdays · By Digiwaxx · All rights reserved.
+      &copy; 2026 New Music Wednesdays. By Digiwaxx. All rights reserved.
     </div>
   </div>
 </footer>
@@ -317,7 +326,7 @@
     const day = d.getDate();
     const start = new Date(d); start.setHours(15, 0, 0, 0);
     const link = NMW.buildCalendarLink({
-      title: 'Digiwaxx DJ Call · NMW',
+      title: 'Digiwaxx DJ Call, NMW',
       start, durationHours: 4,
       details: 'Weekly DJ Call on Zoom. Records, roundtable, Wednesday-night prep.',
       location: 'Zoom',
@@ -329,20 +338,20 @@
         <div class="text-xs text-gray-400 mt-1">WED</div>
       </div>
       <div class="flex-1 min-w-0">
-        <div class="font-black text-base">${d.toLocaleDateString(undefined, { weekday: 'long' })} · 3-7 PM ET</div>
-        <div class="text-xs text-gray-500 font-serif mt-0.5">Zoom · Link sent the night before</div>
+        <div class="font-black text-base">${d.toLocaleDateString(undefined, { weekday: 'long' })}, 3-7 PM ET</div>
+        <div class="text-xs text-gray-500 font-serif mt-0.5">Zoom, Link sent the night before</div>
       </div>
       <a href="${link}" target="_blank" class="text-xs font-bold uppercase tracking-widest text-[#8A1558] hover:underline whitespace-nowrap"><i data-lucide="calendar-plus" class="w-3.5 h-3.5 inline"></i> Add</a>
     </div>`;
   }).join('');
 
-  // Archive (mock data — past 6 calls)
+  // Archive (mock data, past 6 calls)
   const ARCHIVE = [
     { date: 'April 30, 2026', title: 'East Coast Soul Roundtable', recordsSpun: 14, note: 'Two records pulled into rotation Wednesday night.' },
     { date: 'April 23, 2026', title: 'Afro / Amapiano Crossover', recordsSpun: 18, note: 'Heavy international drop. New rotation residency picked.' },
     { date: 'April 16, 2026', title: 'Hip Hop Listening Session', recordsSpun: 11, note: 'Featured artist clip pulled 38K views post-Wednesday.' },
     { date: 'April 9, 2026', title: 'New Voices Showcase', recordsSpun: 16, note: 'Three records added to Penthouse Wednesday rotation.' },
-    { date: 'April 2, 2026', title: 'Producer Spotlight', recordsSpun: 9, note: 'Producer roundtable — new EP pulled across DJ network.' },
+    { date: 'April 2, 2026', title: 'Producer Spotlight', recordsSpun: 9, note: 'Producer roundtable, new EP pulled across DJ network.' },
     { date: 'March 26, 2026', title: 'R&B Deep Cuts', recordsSpun: 13, note: 'Two records picked up by morning radio mix.' },
   ];
   document.getElementById('archiveList').innerHTML = ARCHIVE.map(a => `

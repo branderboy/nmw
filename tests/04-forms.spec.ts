@@ -95,12 +95,12 @@ test.describe('Sponsor store form', () => {
     await page.locator('input[name="phone"]').fill('5551234567');
     await page.locator('input[name="website"]').fill('https://acme.com');
     await page.locator('select[name="orgType"]').selectOption('Brand');
-    await page.locator('select[name="budget"]').selectOption('$5K – $15K');
+    await page.locator('select[name="budget"]').selectOption('$5K - $15K');
     await page.locator('textarea[name="goal"]').fill('Test weekly placements for our launch');
 
     // Pick contact prefs
     await page.locator('[data-val="Email"]').click();
-    await page.locator('[data-val="12pm–3pm"]').click();
+    await page.locator('[data-val="12pm-3pm"]').click();
 
     await page.getByRole('button', { name: /Submit For Approval/i }).click();
 
@@ -115,7 +115,7 @@ test.describe('Sponsor store form', () => {
     expect(sponsors[0].status).toBe('pending_approval');
     expect(sponsors[0].interests).toContain('Newsletter Slot');
     expect(sponsors[0].preferredContact).toBe('Email');
-    expect(sponsors[0].bestTime).toBe('12pm–3pm');
+    expect(sponsors[0].bestTime).toBe('12pm-3pm');
 
     expect(filterAppErrors(errors())).toEqual([]);
   });

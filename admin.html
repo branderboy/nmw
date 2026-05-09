@@ -104,7 +104,7 @@ if (typeof tailwind !== "undefined") tailwind.config = { theme: { extend: {
             <select class="field-input" name="date" required id="manualDateSel"></select>
           </div>
           <div><label class="field-label">Artist Name *</label><input class="field-input" name="artistName" required></div>
-          <div><label class="field-label">Tier / Notes</label><input class="field-input" name="tier" placeholder="e.g. Premiere Package · contra-deal · headline"></div>
+          <div><label class="field-label">Tier / Notes</label><input class="field-input" name="tier" placeholder="e.g. Premiere Package, contra-deal, headline"></div>
           <div><label class="field-label">Internal note</label><textarea class="field-input" name="notes" rows="2" placeholder="How was this booked? Contact?"></textarea></div>
           <button type="submit" class="btn-primary w-full justify-center"><i data-lucide="check" class="w-4 h-4"></i> Add booking</button>
         </form>
@@ -121,7 +121,7 @@ if (typeof tailwind !== "undefined") tailwind.config = { theme: { extend: {
   <section data-pane="events" class="pane hidden">
     <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden">
       <div class="p-4 flex items-center justify-between gap-3 border-b border-gray-200">
-        <h3 class="font-bold text-sm uppercase tracking-widest">Event Feed · Distribution Status</h3>
+        <h3 class="font-bold text-sm uppercase tracking-widest">Event Feed, Distribution Status</h3>
         <div class="text-xs text-gray-500">Toggle each surface as you push the event live.</div>
       </div>
       <div class="overflow-x-auto">
@@ -192,7 +192,7 @@ if (typeof tailwind !== "undefined") tailwind.config = { theme: { extend: {
           </div>
           <div><label class="field-label">Message</label><textarea class="field-input" rows="5"></textarea></div>
           <button class="btn-primary w-full justify-center"><i data-lucide="send" class="w-4 h-4"></i> Send</button>
-          <div class="text-xs text-gray-500">Demo only — wire to ESP/SMS provider in production.</div>
+          <div class="text-xs text-gray-500">Demo only, wire to ESP/SMS provider in production.</div>
         </div>
       </aside>
     </div>
@@ -513,8 +513,8 @@ function renderArtists(filter = '') {
                  : '<span class="tag tag-pending">Pending</span>';
     return `<tr class="border-t border-gray-100 hover:bg-gray-50">
       <td class="px-4 py-3"><div class="font-bold">${a.artistName || a.name}</div><div class="text-xs text-gray-500">${a.email}</div></td>
-      <td class="px-4 py-3">${a.package?.name || '—'}</td>
-      <td class="px-4 py-3">${a.genre || '—'}</td>
+      <td class="px-4 py-3">${a.package?.name || ', '}</td>
+      <td class="px-4 py-3">${a.genre || ', '}</td>
       <td class="px-4 py-3 text-xs text-gray-600 max-w-xs truncate" title="${(a.goals||[]).join(', ')}">${(a.goals||[]).slice(0,2).join(', ')}${a.goals?.length > 2 ? '…' : ''}</td>
       <td class="px-4 py-3 font-bold">$${a.total || 0}</td>
       <td class="px-4 py-3">${status}</td>
@@ -551,7 +551,7 @@ function renderVerifications() {
       <div class="flex items-center justify-between mb-4 flex-wrap gap-2">
         <div>
           <div class="font-bold">${a.artistName || a.name}</div>
-          <div class="text-xs text-gray-500">${a.email} · ${a.package?.name}</div>
+          <div class="text-xs text-gray-500">${a.email}, ${a.package?.name}</div>
         </div>
         <div>
           ${a.verification.approved ? '<span class="tag tag-approved">Approved</span>' : '<span class="tag tag-pending">Pending</span>'}
@@ -628,7 +628,7 @@ function renderEvents() {
     return `<tr class="border-t border-gray-100 hover:bg-gray-50">
       <td class="px-4 py-3"><div class="font-bold">${e.title}</div><div class="text-xs text-gray-500">${e.venue || 'The Penthouse NYC'}</div></td>
       <td class="px-4 py-3">${fmt(e.date)}</td>
-      <td class="px-4 py-3"><span class="tag tag-perf">${e.tier || '—'}</span></td>
+      <td class="px-4 py-3"><span class="tag tag-perf">${e.tier || ', '}</span></td>
       ${cell('feed', 'Events Page', true)}
       ${cell('eventbrite', 'Eventbrite')}
       ${cell('luma', 'Luma')}
@@ -656,12 +656,12 @@ function renderDJs() {
   const tbody = document.getElementById('djRows');
   if (!all.length) { tbody.innerHTML = '<tr><td colspan="8" class="px-4 py-10 text-center text-gray-400">No DJ applications yet.</td></tr>'; return; }
   tbody.innerHTML = all.map(dj => `<tr class="border-t border-gray-100 hover:bg-gray-50">
-    <td class="px-4 py-3"><div class="font-bold">${dj.djName || '—'}</div><div class="text-xs text-gray-500">${dj.name || ''}</div></td>
-    <td class="px-4 py-3 text-gray-600">${dj.email || '—'}</td>
-    <td class="px-4 py-3 text-gray-600">${dj.city || '—'}</td>
-    <td class="px-4 py-3"><span class="tag tag-perf">${dj.genre || '—'}</span></td>
-    <td class="px-4 py-3 text-xs text-gray-600 max-w-xs truncate" title="${dj.venues || ''}">${dj.venues || '—'}</td>
-    <td class="px-4 py-3">${dj.penthouse ? '<span class="tag tag-approved">Yes</span>' : '<span class="tag tag-na">—</span>'}</td>
+    <td class="px-4 py-3"><div class="font-bold">${dj.djName || ', '}</div><div class="text-xs text-gray-500">${dj.name || ''}</div></td>
+    <td class="px-4 py-3 text-gray-600">${dj.email || ', '}</td>
+    <td class="px-4 py-3 text-gray-600">${dj.city || ', '}</td>
+    <td class="px-4 py-3"><span class="tag tag-perf">${dj.genre || ', '}</span></td>
+    <td class="px-4 py-3 text-xs text-gray-600 max-w-xs truncate" title="${dj.venues || ''}">${dj.venues || ', '}</td>
+    <td class="px-4 py-3">${dj.penthouse ? '<span class="tag tag-approved">Yes</span>' : '<span class="tag tag-na">, </span>'}</td>
     <td class="px-4 py-3 text-xs text-gray-500">${fmt(dj.submittedAt)}</td>
     <td class="px-4 py-3">${dj.links && /^https?:\/\//i.test(dj.links) ? `<a href="${dj.links}" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-brand-500 hover:underline">Link</a>` : (dj.links ? `<span class="text-xs text-gray-500">${dj.links}</span>` : '')}</td>
   </tr>`).join('');
@@ -676,11 +676,11 @@ function renderRefs() {
     const conv = r.invites ? Math.round(((r.registrations||0) / r.invites) * 100) : 0;
     return `<tr class="border-t border-gray-100 hover:bg-gray-50">
       <td class="px-4 py-3 font-bold">${a.artistName || a.name}</td>
-      <td class="px-4 py-3 font-mono text-xs">${r.code || '—'}</td>
+      <td class="px-4 py-3 font-mono text-xs">${r.code || ', '}</td>
       <td class="px-4 py-3">${r.invites || 0}</td>
       <td class="px-4 py-3">${r.registrations || 0}</td>
       <td class="px-4 py-3">${conv}%</td>
-      <td class="px-4 py-3 text-xs">${(r.unlocked||[]).join(' · ') || '—'}</td>
+      <td class="px-4 py-3 text-xs">${(r.unlocked||[]).join(', ') || ', '}</td>
     </tr>`;
   }).join('');
 }
@@ -690,9 +690,9 @@ function renderBlast() {
   const tbody = document.getElementById('blastRows');
   if (!all.length) { tbody.innerHTML = '<tr><td colspan="3" class="px-4 py-10 text-center text-gray-400">No subscribers yet.</td></tr>'; return; }
   tbody.innerHTML = all.map(b => `<tr class="border-t border-gray-100">
-    <td class="px-4 py-3">${b.email || '—'}</td>
-    <td class="px-4 py-3 text-gray-600">${b.phone || '—'}</td>
-    <td class="px-4 py-3 text-gray-600">${b.genre || '—'}</td>
+    <td class="px-4 py-3">${b.email || ', '}</td>
+    <td class="px-4 py-3 text-gray-600">${b.phone || ', '}</td>
+    <td class="px-4 py-3 text-gray-600">${b.genre || ', '}</td>
   </tr>`).join('');
 }
 
@@ -715,14 +715,14 @@ function renderSponsors() {
     return;
   }
   tbody.innerHTML = all.map(s => {
-    const items = (s.interests || []).join(', ') || '—';
-    const totalLabel = s.estimatedFrom ? `From $${(s.estimatedFrom).toLocaleString()}` : (s.budget || '—');
+    const items = (s.interests || []).join(', ') || ', ';
+    const totalLabel = s.estimatedFrom ? `From $${(s.estimatedFrom).toLocaleString()}` : (s.budget || ', ');
     const S = NMW.SPONSOR_STATUS;
     const status = s.status || S.PENDING;
     return `<tr class="border-t border-gray-100 hover:bg-gray-50">
-      <td class="px-4 py-3"><div class="font-bold">${s.company || '—'}</div><div class="text-xs text-gray-500">${s.website || ''}</div></td>
-      <td class="px-4 py-3"><div>${s.name || '—'}</div><div class="text-xs text-gray-500">${s.email || ''}</div></td>
-      <td class="px-4 py-3 text-gray-600">${s.orgType || s.industry || '—'}</td>
+      <td class="px-4 py-3"><div class="font-bold">${s.company || ', '}</div><div class="text-xs text-gray-500">${s.website || ''}</div></td>
+      <td class="px-4 py-3"><div>${s.name || ', '}</div><div class="text-xs text-gray-500">${s.email || ''}</div></td>
+      <td class="px-4 py-3 text-gray-600">${s.orgType || s.industry || ', '}</td>
       <td class="px-4 py-3 text-xs text-gray-600 max-w-xs truncate" title="${items}">${items}</td>
       <td class="px-4 py-3 font-bold">${totalLabel}</td>
       <td class="px-4 py-3">${statusTag(status)}</td>
@@ -750,23 +750,23 @@ function renderSponsors() {
 function showSponsor(id) {
   const s = (NMW.getSponsors() || []).find(x => x.id === id);
   if (!s) return;
-  document.getElementById('sdCompany').textContent = s.company || '—';
-  document.getElementById('sdContact').textContent = `${s.name || ''} · ${s.email || ''}${s.phone ? ' · ' + s.phone : ''}`;
-  const totalLabel = s.estimatedFrom ? `From $${s.estimatedFrom.toLocaleString()}` : (s.budget || '—');
+  document.getElementById('sdCompany').textContent = s.company || ', ';
+  document.getElementById('sdContact').textContent = `${s.name || ''}, ${s.email || ''}${s.phone ? ', ' + s.phone : ''}`;
+  const totalLabel = s.estimatedFrom ? `From $${s.estimatedFrom.toLocaleString()}` : (s.budget || ', ');
   const meta = [
     ['Status', statusTag(s.status || 'pending_approval')],
-    ['Type', s.orgType || s.industry || '—'],
+    ['Type', s.orgType || s.industry || ', '],
     ['Estimated Investment', totalLabel],
-    ['Budget Range', s.budget || '—'],
-    ['Preferred Contact', s.preferredContact || '—'],
-    ['Best Time', s.bestTime || '—'],
-    ['Website', s.website || '—'],
-    ['Source', s.source || '—'],
-    ['Selected Assets', (s.interests || []).map(i => `<span class="tag tag-perf mr-1">${i}</span>`).join('') || '—'],
+    ['Budget Range', s.budget || ', '],
+    ['Preferred Contact', s.preferredContact || ', '],
+    ['Best Time', s.bestTime || ', '],
+    ['Website', s.website || ', '],
+    ['Source', s.source || ', '],
+    ['Selected Assets', (s.interests || []).map(i => `<span class="tag tag-perf mr-1">${i}</span>`).join('') || ', '],
     ['Submitted', fmt(s.submittedAt)],
   ];
   document.getElementById('sdMeta').innerHTML = meta.map(([k, v]) => `<div><div class="text-xs font-bold uppercase tracking-widest text-gray-500">${k}</div><div class="mt-1">${v}</div></div>`).join('');
-  document.getElementById('sdGoal').textContent = s.goal || '—';
+  document.getElementById('sdGoal').textContent = s.goal || ', ';
   document.getElementById('sponsorDetail').classList.remove('hidden');
   document.getElementById('sponsorDetail').scrollIntoView({ behavior: 'smooth' });
   (typeof lucide !== "undefined" && lucide.createIcons());
@@ -834,7 +834,7 @@ function renderSlots() {
         <div>
           <div class="text-xs font-black uppercase tracking-widest text-brand-500">${d.toLocaleDateString(undefined, { month: 'short' })} ${d.getDate()}</div>
           <div class="font-bold text-lg">${NMW.fmtDate(d)}</div>
-          <div class="text-xs text-gray-500">${taken} / ${cap} booked · The Penthouse NYC</div>
+          <div class="text-xs text-gray-500">${taken} / ${cap} booked, The Penthouse NYC</div>
         </div>
         <div class="flex items-center gap-2">
           ${tag}
@@ -842,12 +842,12 @@ function renderSlots() {
         </div>
       </div>
       ${slot.bookings.length === 0
-        ? '<div class="text-sm text-gray-400 italic">No bookings yet — open stage.</div>'
+        ? '<div class="text-sm text-gray-400 italic">No bookings yet, open stage.</div>'
         : `<div class="space-y-2">${slot.bookings.map((b, i) => `
             <div class="flex items-center justify-between gap-2 border border-gray-100 rounded-lg px-3 py-2">
               <div class="min-w-0">
                 <div class="font-bold truncate">${b.artistName}${b.manual ? ' <span class="tag tag-submitted ml-1">Manual</span>' : ''}</div>
-                <div class="text-xs text-gray-500 truncate">${b.tier || '—'}${b.notes ? ' · ' + b.notes : ''}</div>
+                <div class="text-xs text-gray-500 truncate">${b.tier || ', '}${b.notes ? ', ' + b.notes : ''}</div>
               </div>
               <button class="text-xs font-bold text-red-600 hover:underline" data-rmbook="${k}|${i}">Remove</button>
             </div>`).join('')}</div>`}
@@ -908,9 +908,9 @@ function renderFlows() {
     return `<div class="bg-white border border-gray-200 rounded-xl p-5">
       <div class="flex items-start justify-between gap-3 flex-wrap">
         <div class="min-w-0 flex-1">
-          <div class="flex items-center gap-2 mb-1">${statusBadge}<span class="text-xs font-bold uppercase tracking-widest text-gray-500">${audienceLabel(f.audience)} · ${cnt}</span></div>
+          <div class="flex items-center gap-2 mb-1">${statusBadge}<span class="text-xs font-bold uppercase tracking-widest text-gray-500">${audienceLabel(f.audience)}, ${cnt}</span></div>
           <h3 class="font-black text-base mb-0.5 truncate">${f.name}</h3>
-          <p class="text-xs text-gray-500">Trigger: ${f.trigger || '—'}</p>
+          <p class="text-xs text-gray-500">Trigger: ${f.trigger || ', '}</p>
           <p class="text-sm text-gray-700 mt-2 truncate"><b>Subject:</b> ${f.subject}</p>
         </div>
         <div class="flex flex-col gap-1">
@@ -1034,7 +1034,7 @@ document.getElementById('manualForm').addEventListener('submit', (e) => {
     notes: data.get('notes')?.toString().trim() || '',
     manual: true,
   });
-  if (!ok) { alert('That date is full — bump the capacity or pick another.'); return; }
+  if (!ok) { alert('That date is full, bump the capacity or pick another.'); return; }
   e.target.reset();
   renderAll();
   document.querySelector('[data-tab="slots"]').click();

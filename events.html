@@ -99,7 +99,7 @@
 <!-- Eventbrite-style page header -->
 <header class="border-b border-gray-200 bg-white">
   <div class="max-w-5xl mx-auto px-4 py-10 md:py-14">
-    <div class="text-xs font-bold uppercase tracking-widest text-[#8A1558] mb-2">Every Wednesday · The Penthouse NYC</div>
+    <div class="text-xs font-bold uppercase tracking-widest text-[#8A1558] mb-2">Every Wednesday, The Penthouse NYC</div>
     <h1 class="text-3xl md:text-5xl font-black tracking-tight text-gray-900">Upcoming Events</h1>
     <p class="text-base md:text-lg text-gray-600 mt-3 max-w-2xl">Live performances, DJ Calls, and media coverage every Wednesday night. RSVP, add the series to your calendar, and bring your team.</p>
 
@@ -137,7 +137,7 @@
       <div>
         <h2 class="text-2xl font-black tracking-tight text-gray-900 mb-2">Where to find us</h2>
         <p class="text-base font-bold text-gray-900">The Penthouse NYC</p>
-        <p class="text-sm text-gray-600 mt-1">Manhattan, NY · Wednesdays · Doors 3 PM · Live 7–9:30 PM</p>
+        <p class="text-sm text-gray-600 mt-1">Manhattan, NY, Wednesdays, Doors 3 PM, Live 7-9:30 PM</p>
 
         <div class="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm font-bold">
           <a href="https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-[#8A1558]">Google Maps</a>
@@ -179,9 +179,9 @@
 
 <footer class="nmw-footer">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 py-2">
-      <div class="col-span-2">
-        <img src="images/nmw-logo-light.png" alt="New Music Wednesdays · Digiwaxx" class="footer-logo mb-4" />
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-8 py-2">
+      <div class="col-span-2 md:col-span-2">
+        <img src="images/nmw-logo-light.png" alt="New Music Wednesdays, Digiwaxx" class="footer-logo mb-4" />
         <p class="text-sm leading-relaxed">Live performance and rollout infrastructure for rising artists. Every Wednesday at The Penthouse NYC, presented by <a href="https://www.digiwaxx.com" target="_blank" rel="noopener noreferrer" class="text-[#8A1558] hover:underline">Digiwaxx</a>.</p>
       </div>
       <div>
@@ -198,7 +198,7 @@
         </ul>
       </div>
       <div>
-        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Partners</h4>
+        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Distribution</h4>
         <ul class="space-y-2 text-sm">
           <li><a href="https://www.digiwaxx.com" target="_blank" rel="noopener">Digiwaxx</a></li>
           <li><a href="https://www.newmusicwednesdayslive.com" target="_blank" rel="noopener">NewMusicWednesdaysLive</a></li>
@@ -207,13 +207,22 @@
           <li><a href="https://www.songkick.com" target="_blank" rel="noopener">Songkick</a></li>
           <li><a href="https://www.eventbrite.com" target="_blank" rel="noopener">Eventbrite</a></li>
           <li><a href="https://lu.ma" target="_blank" rel="noopener">Luma</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Listings</h4>
+        <ul class="space-y-2 text-sm">
           <li><a href="https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z" target="_blank" rel="noopener">Google Maps</a></li>
-          <li><a href="https://www.tripadvisor.com/Search?q=The+Penthouse+NYC" target="_blank" rel="noopener">TripAdvisor</a></li>
+          <li><a href="https://www.tripadvisor.com" target="_blank" rel="noopener">TripAdvisor</a></li>
+          <li><a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.youtube.com" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://www.tiktok.com" target="_blank" rel="noopener">TikTok</a></li>
+          <li><a href="https://x.com" target="_blank" rel="noopener">X / Twitter</a></li>
         </ul>
       </div>
     </div>
     <div class="border-t border-gray-700 pt-6 mt-6 text-center text-xs">
-      &copy; 2026 New Music Wednesdays · By Digiwaxx · All rights reserved.
+      &copy; 2026 New Music Wednesdays. By Digiwaxx. All rights reserved.
     </div>
   </div>
 </footer>
@@ -234,7 +243,7 @@ function buildEventModel(d) {
   const bookings = slot.bookings || [];
   const lineup = bookings.map(b => b.artistName).filter(Boolean);
   const left = Math.max(0, slot.capacity - bookings.length);
-  const title = `New Music Wednesdays at The Penthouse NYC | ${lineup.length ? lineup.join(' · ') : 'Live Showcase'}`;
+  const title = `New Music Wednesdays at The Penthouse NYC | ${lineup.length ? lineup.join(', ') : 'Live Showcase'}`;
   return { date: d, lineup, slot, capacity: slot.capacity, booked: bookings.length, left, full: left === 0, title };
 }
 
@@ -249,7 +258,7 @@ function renderFeatured() {
   const d = NMW.upcomingWednesdays(1)[0];
   const ev = buildEventModel(d);
   const cal = NMW.buildCalendarLink({ title: ev.title, start: d });
-  const shareText = `Catch the lineup live at New Music Wednesdays · ${NMW.fmtDate(d)} · The Penthouse NYC`;
+  const shareText = `Catch the lineup live at New Music Wednesdays, ${NMW.fmtDate(d)}, The Penthouse NYC`;
   const shareUrl = location.origin + location.pathname;
 
   const lineupHTML = ev.lineup.length
@@ -270,8 +279,8 @@ function renderFeatured() {
         <div class="md:col-span-2 p-6 md:p-8">
           <div class="flex items-start justify-between gap-3 flex-wrap">
             <div>
-              <h2 class="text-2xl md:text-3xl font-black tracking-tight text-gray-900 mb-1">${ev.lineup.length ? ev.lineup.join(' · ') : 'Live Showcase'}</h2>
-              <p class="text-sm text-gray-600">The Penthouse NYC · Doors 3 PM · DJ Call 3–7 PM · Live 7–9:30 PM</p>
+              <h2 class="text-2xl md:text-3xl font-black tracking-tight text-gray-900 mb-1">${ev.lineup.length ? ev.lineup.join(', ') : 'Live Showcase'}</h2>
+              <p class="text-sm text-gray-600">The Penthouse NYC, Doors 3 PM, DJ Call 3-7 PM, Live 7-9:30 PM</p>
               <p class="text-xs text-gray-500 mt-1">${ev.booked} of ${ev.capacity} performance slots booked</p>
             </div>
             ${availabilityTag(ev)}
@@ -305,7 +314,7 @@ function renderList() {
     const cal = NMW.buildCalendarLink({ title: ev.title, start: d });
     const month = d.toLocaleDateString(undefined, { month: 'short' }).toUpperCase();
     const day = d.getDate();
-    const lineupLine = ev.lineup.length ? ev.lineup.join(' · ') : 'Lineup TBA';
+    const lineupLine = ev.lineup.length ? ev.lineup.join(', ') : 'Lineup TBA';
 
     return `<article class="flex items-center gap-5 py-5 hover:bg-gray-50 px-2 -mx-2 rounded-md transition-colors">
       <div class="flex-shrink-0 w-14 text-center">
@@ -315,7 +324,7 @@ function renderList() {
       </div>
       <div class="flex-1 min-w-0">
         <h3 class="font-bold text-base text-gray-900 truncate">${lineupLine}</h3>
-        <p class="text-xs text-gray-500 mt-0.5">The Penthouse NYC · 7–9:30 PM · ${ev.booked}/${ev.capacity} slots</p>
+        <p class="text-xs text-gray-500 mt-0.5">The Penthouse NYC, 7-9:30 PM, ${ev.booked}/${ev.capacity} slots</p>
       </div>
       <div class="flex items-center gap-3 flex-shrink-0">
         ${availabilityTag(ev)}
