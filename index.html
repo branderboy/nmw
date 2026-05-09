@@ -101,38 +101,59 @@
 </nav>
 
 <!-- Hero -->
-<header class="relative pt-16 pb-28 md:pt-20 md:pb-32 overflow-hidden bg-black text-white border-b-4 border-[#8A1558] hero-bg">
-  <!-- left-side gradient overlay keeps text legible while letting the speakers on the right of the bg image show -->
-  <div class="absolute inset-0 -z-0 pointer-events-none hero-bg__overlay"></div>
-  <div class="max-w-7xl mx-auto px-4 relative z-10">
-    <div class="max-w-xl text-left">
-      <!-- The Next Up Experience program logo (white variant for dark hero) -->
-      <img src="images/next-up-logo-light.png" alt="The Next Up Experience" class="mb-6 h-20 md:h-24 w-auto drop-shadow-lg" />
-      <h2 class="text-[#FBCFE8] font-black tracking-widest text-sm md:text-base mb-6" data-cms="heroEyebrow">[ Official Artist Registration ]</h2>
+<header class="relative min-h-screen overflow-hidden bg-black text-white hero-bg flex items-center">
 
-      <!-- Hero CTA -->
-      <button onclick="scrollToPackages()" class="cta cta--yellow group mb-4">
-        <div class="cta__shadow"></div>
-        <div class="cta__face">
-          <div class="flex items-center justify-center gap-2 text-2xl md:text-3xl font-black tracking-tighter">
-            <span data-cms="primaryCta">Yes! Start My Rollout Now</span> <i data-lucide="chevrons-right" class="w-8 h-8 animate-pulse hidden sm:block"></i>
-          </div>
-          <span class="cta__sub text-gray-800" data-cms="primaryCtaSub">Click Here To See Package Options &amp; Secure Your Spot</span>
-        </div>
-      </button>
-      <div class="flex items-center gap-3 text-xs font-bold text-white/70 mt-2">
-        <i data-lucide="lock" class="w-3 h-3"></i> 256-bit secure checkout
-        <span class="text-white/40">|</span>
-        <i data-lucide="shield-check" class="w-3 h-3"></i> Stripe-powered
+  <!-- Dark overlay -->
+  <div class="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent z-0"></div>
+
+  <!-- Hero Content -->
+  <div class="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-10">
+    
+    <!-- LEFT CONTENT -->
+    <div class="max-w-2xl pt-24 pb-24">
+
+      <!-- Eyebrow -->
+      <div class="mb-5">
+        <span class="text-[#F9A8D4] uppercase tracking-[0.35em] text-xs md:text-sm font-black">
+          Digiwaxx Presents
+        </span>
       </div>
+
+      <!-- Main Heading -->
+      <h1 class="text-5xl md:text-7xl leading-[0.92] tracking-tight font-black mb-8">
+        The Next Up Experience
+      </h1>
+
+      <!-- Description -->
+      <p class="text-lg md:text-2xl leading-relaxed text-white/80 max-w-xl mb-8">
+        Perform live in Manhattan.  
+        Get press coverage, industry exposure, and real rollout support for your next release.
+      </p>
+
+      <!-- Supporting Text -->
+      <p class="uppercase tracking-[0.25em] text-xs md:text-sm text-white/50 font-bold mb-10">
+        Built For Artists Ready To Level Up
+      </p>
+
+      <!-- Buttons -->
+      <div class="flex flex-wrap gap-4">
+
+        <a href="#packages"
+          class="bg-[#8A1558] hover:bg-[#680D3E] transition-all duration-300 px-8 py-4 rounded-md text-sm md:text-base font-black uppercase tracking-widest inline-flex items-center justify-center">
+          Apply Now
+        </a>
+
+        <a href="events.html"
+          class="border border-white/20 hover:border-white/50 hover:bg-white/5 transition-all duration-300 px-8 py-4 rounded-md text-sm md:text-base font-black uppercase tracking-widest text-white/80 hover:text-white inline-flex items-center justify-center">
+          View Events
+        </a>
+
+      </div>
+
     </div>
+
   </div>
 
-  <!-- Scroll-down arrow pointing to lead capture form -->
-  <a href="#packages" class="hero-scroll-arrow" aria-label="Apply to perform">
-    <span class="hero-scroll-arrow__label">Apply Below</span>
-    <span class="hero-scroll-arrow__chevron"><i data-lucide="chevron-down" class="w-7 h-7"></i></span>
-  </a>
 </header>
 
 <!-- Social Proof Bar -->
