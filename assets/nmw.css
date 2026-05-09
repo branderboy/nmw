@@ -88,20 +88,21 @@ body {
   object-fit: contain;
 }
 
-/* Clean light footer with brand top accent */
+/* Dark-grey footer with brand top accent */
 .nmw-footer {
-  background: #fff;
-  color: #6b7280;
+  background: #1f2937; /* slate-800 / soft dark grey, not pure black */
+  color: #9ca3af;
   padding: 3rem 0;
   border-top: 4px solid var(--brand-500);
 }
-.nmw-footer p { color: #6b7280; }
-.nmw-footer a { color: #4b5563; transition: color .15s; }
-.nmw-footer a:hover { color: var(--brand-500); }
-.nmw-footer .text-white,
-.nmw-footer span[class*="text-white"] { color: #111827; }
+.nmw-footer p { color: #9ca3af; }
+.nmw-footer a { color: #d1d5db; transition: color .15s; }
+.nmw-footer a:hover { color: #fff; }
+.nmw-footer h4 { color: #fff; }
+.nmw-footer .text-white { color: #fff; }
 .nmw-footer .text-gray-400 { color: #9ca3af; }
-.nmw-footer .text-gray-500 { color: #6b7280; }
+.nmw-footer .text-gray-500 { color: #d1d5db; }
+.nmw-footer .border-gray-200 { border-color: #374151 !important; }
 
 /* ============ Onboarding funnel components ============ */
 .onboarding-dot {
