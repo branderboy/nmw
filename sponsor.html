@@ -9,7 +9,7 @@
 <script src="https://unpkg.com/lucide@latest"></script>
 <link rel="stylesheet" href="assets/nmw.css">
 <script>
-  tailwind.config = { theme: { extend: {
+  if (typeof tailwind !== "undefined") tailwind.config = { theme: { extend: {
     fontFamily: { sans: ['Inter','sans-serif'], serif: ['Merriweather','serif'] },
     colors: { brand: { 500:'#8A1558', 600:'#680D3E' } }
   }}}
@@ -287,7 +287,7 @@ function renderProducts() {
     renderProducts();
     renderCart();
   }));
-  lucide.createIcons();
+  (typeof lucide !== "undefined" && lucide.createIcons());
 }
 
 function productCard(p, isBundle = false) {
@@ -348,7 +348,7 @@ function renderCart() {
       <ul class="space-y-1 text-sm">${items.map(p => `<li class="flex justify-between"><span class="font-bold">${p.name}</span><span class="text-gray-500">${p.price}</span></li>`).join('')}</ul>
     `;
   }
-  lucide.createIcons();
+  (typeof lucide !== "undefined" && lucide.createIcons());
 }
 
 // Contact preference chips
@@ -390,7 +390,8 @@ document.getElementById('sponsorForm').addEventListener('submit', (e) => {
     preferredContact: [...contacts][0] || '',
     bestTime: [...times][0] || '',
     source: (data.get('source') || '').trim(),
-    status: 'new',
+    // status is intentionally omitted — addSponsor() applies the
+    // canonical SPONSOR_STATUS.PENDING default. Setting it here would override.
   };
   if (!entry.company || !entry.email || !entry.preferredContact || !entry.bestTime) {
     alert('Please complete required fields including preferred contact method and best time.');
@@ -402,13 +403,13 @@ document.getElementById('sponsorForm').addEventListener('submit', (e) => {
   NMW.addSponsor(entry);
   document.getElementById('sponsorForm').classList.add('hidden');
   document.getElementById('successCard').classList.remove('hidden');
-  lucide.createIcons();
+  (typeof lucide !== "undefined" && lucide.createIcons());
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
 renderProducts();
 renderCart();
-lucide.createIcons();
+(typeof lucide !== "undefined" && lucide.createIcons());
 </script>
 </body>
 </html>

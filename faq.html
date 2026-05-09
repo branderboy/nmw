@@ -9,7 +9,7 @@
 <script src="https://unpkg.com/lucide@latest"></script>
 <link rel="stylesheet" href="assets/nmw.css">
 <script>
-  tailwind.config = { theme: { extend: {
+  if (typeof tailwind !== "undefined") tailwind.config = { theme: { extend: {
     fontFamily: { sans: ['Inter','sans-serif'], serif: ['Merriweather','serif'] },
     colors: { brand: { 500:'#8A1558', 600:'#680D3E' } }
   }}}
@@ -223,11 +223,11 @@ function renderProduct(prodId) {
       </div>
     </div>
   `;
-  lucide.createIcons();
+  (typeof lucide !== "undefined" && lucide.createIcons());
 }
 
 renderProduct('events');
-lucide.createIcons();
+(typeof lucide !== "undefined" && lucide.createIcons());
 </script>
 </body>
 </html>

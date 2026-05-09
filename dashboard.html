@@ -9,7 +9,7 @@
 <script src="https://unpkg.com/lucide@latest"></script>
 <link rel="stylesheet" href="assets/nmw.css">
 <script>
-tailwind.config = { theme: { extend: {
+if (typeof tailwind !== "undefined") tailwind.config = { theme: { extend: {
   fontFamily: { sans: ['Inter','sans-serif'] },
   colors: { brand: { 50:'#FDF2F8', 200:'#FBCFE8', 500:'#8A1558', 600:'#680D3E' } }
 }}}
@@ -189,7 +189,7 @@ tailwind.config = { theme: { extend: {
 const artist = NMW.getArtist();
 const empty = document.getElementById('empty');
 const dash = document.getElementById('dash');
-if (!artist) { empty.classList.remove('hidden'); lucide.createIcons(); }
+if (!artist) { empty.classList.remove('hidden'); (typeof lucide !== "undefined" && lucide.createIcons()); }
 else { dash.classList.remove('hidden'); render(); }
 
 function render() {
@@ -310,7 +310,7 @@ function render() {
   // Calendar duplicate
   document.getElementById('calBtn2').href = NMW.googleCalendarLink(a.artistName || a.name);
 
-  lucide.createIcons();
+  (typeof lucide !== "undefined" && lucide.createIcons());
 }
 
 // Actions
@@ -334,8 +334,8 @@ function flash(id, icon) {
   const btn = document.getElementById(id);
   const orig = btn.innerHTML;
   btn.innerHTML = `<i data-lucide="${icon}" class="w-4 h-4"></i> Copied`;
-  lucide.createIcons();
-  setTimeout(() => { btn.innerHTML = orig; lucide.createIcons(); }, 1600);
+  (typeof lucide !== "undefined" && lucide.createIcons());
+  setTimeout(() => { btn.innerHTML = orig; (typeof lucide !== "undefined" && lucide.createIcons()); }, 1600);
 }
 
 document.querySelectorAll('.teamBtn').forEach(btn => {

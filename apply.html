@@ -9,7 +9,7 @@
 <script src="https://unpkg.com/lucide@latest"></script>
 <link rel="stylesheet" href="assets/nmw.css">
 <script>
-tailwind.config = { theme: { extend: {
+if (typeof tailwind !== "undefined") tailwind.config = { theme: { extend: {
   fontFamily: { sans: ['Inter','sans-serif'] },
   colors: { brand: { 50:'#FDF2F8', 200:'#FBCFE8', 500:'#8A1558', 600:'#680D3E' } }
 }}}
@@ -292,7 +292,7 @@ function showStep(id) {
   if (currentStep === 'date') renderDates();
   renderSteps();
   window.scrollTo({ top: 0, behavior: 'smooth' });
-  lucide.createIcons();
+  (typeof lucide !== "undefined" && lucide.createIcons());
 }
 
 function nextStep() {
@@ -339,7 +339,7 @@ function renderPackages() {
     });
   });
   document.querySelector('[data-next="1"]').disabled = !funnel.package;
-  lucide.createIcons();
+  (typeof lucide !== "undefined" && lucide.createIcons());
 }
 
 // --- step 2: goals ---
@@ -465,7 +465,7 @@ function renderOrder() {
   `;
   document.getElementById('totalAmount').textContent = '$' + total;
   document.getElementById('totalSub').textContent = pkg ? `${pkg.name}${ups.length ? ` + ${ups.length} upgrade${ups.length>1?'s':''}` : ''}` : '';
-  lucide.createIcons();
+  (typeof lucide !== "undefined" && lucide.createIcons());
 }
 
 // --- date step ---
