@@ -1,0 +1,34 @@
+PERFORMANCE TIER TRIGGER ONLY ($395 Performance Ready, $650 Full, $899 Premiere)
+
+GOAL: Performance slots → Bandsintown/Songkick registration → DICE copy → Event feed.
+
+TRIGGER: Stripe payment for $395+ tier → System flags "PERFORMANCE SLOT".
+
+NON-PERFORMANCE TIERS ($200/$250): Media/Visual only → No platform automation → Manual handling.
+
+STEP 1: Performance Confirmation (Immediate Post-Payment)
+Auto-email: 
+"You've booked a performance slot! Complete these 2 steps within 24hrs:
+1. Claim Bandsintown: artists.bandsintown.com [screenshot required]
+2. Claim Songkick/Tourbox: support.songkick.com [screenshot required]"
+
+STEP 2: Verification Gate (24hr Hold)
+Artist uploads screenshots → System verifies both pages claimed → Unlocks event creation.
+
+STEP 3: AUTO-GENERATE & POST
+**Event Template (Performance Slots Only):**
+Title: New Music Wednesdays at The Penthouse NYC | [Artist Name] LIVE
+Date/Time: Wednesday [DATE] | Doors 3PM | DJ Call 3-7PM | Live 7-9:30PM
+Venue: The Penthouse NYC
+Tier/Slot: [Performance Ready | Full Experience | Premiere Package]
+Description: [Artist Name] takes the stage at NMW. Soul/R&B/Hip Hop showcase. Digiwaxx DJ Call 3-7PM. Hosted by Anna Nyakana, CL, Chrys Childs.
+
+**Auto-Actions:**
+1. Eventbrite RSVP (API)
+2. Luma RSVP (API)  
+3. **DICE COPY GENERATED** → Formatted for manual paste
+4. **EVENT FEED ROW** → Master sheet/JSON
+5. Bandsintown prompt sent to artist
+6. Songkick prompt sent to artist
+
+STEP 4: DICE Copy-Paste Output (Auto-Generated)
