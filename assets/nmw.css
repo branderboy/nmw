@@ -182,25 +182,45 @@ body {
 }
 .onboarding-back:hover { border-color: #9ca3af; color: #111827; }
 
-/* Package tile — compact, radio-style */
+/* Package tile — compact, radio-style with brand accents */
 .pkg-tile {
   background: #fff;
   border: 1.5px solid #e5e7eb;
   border-radius: 0.75rem;
-  padding: 0.75rem 0.85rem;
+  padding: 0.85rem 0.95rem;
   text-align: left;
   cursor: pointer;
   transition: all 0.15s;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 86px;
+  min-height: 92px;
+  position: relative;
+  text-decoration: none;
 }
-.pkg-tile:hover { border-color: #9ca3af; }
+.pkg-tile::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand-500), #FBCFE8);
+  border-radius: 0.75rem 0.75rem 0 0;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.pkg-tile:hover { border-color: var(--brand-200); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(138,21,88,0.06); }
+.pkg-tile:hover::before { opacity: 0.6; }
 .pkg-tile.is-selected { border-color: var(--brand-500); background: var(--brand-50); }
-.pkg-tile .pkg-name { font-weight: 700; font-size: 0.78rem; color: #111827; line-height: 1.25; letter-spacing: 0.01em; }
-.pkg-tile .pkg-price { font-weight: 900; font-size: 1.15rem; color: #111827; margin-top: 0.35rem; letter-spacing: -0.02em; }
-.pkg-tile.is-selected .pkg-price { color: var(--brand-500); }
+.pkg-tile.is-selected::before { opacity: 1; }
+.pkg-tile .pkg-name { font-weight: 700; font-size: 0.8rem; color: #111827; line-height: 1.25; letter-spacing: 0.01em; }
+.pkg-tile .pkg-price { font-weight: 900; font-size: 1.25rem; color: var(--brand-500); margin-top: 0.4rem; letter-spacing: -0.02em; }
+.pkg-tile.is-selected .pkg-price { color: var(--brand-600); }
+
+/* Step content card (apply page) — keep white but warm with brand accent shadow */
+.step.bg-white { box-shadow: 0 1px 3px rgba(138, 21, 88, 0.04), 0 4px 12px rgba(0, 0, 0, 0.04) !important; }
+
+/* Order summary card brand accent */
+aside .lg\:sticky { border-top: 3px solid var(--brand-500) !important; }
 
 /* Date tile */
 .date-tile {
