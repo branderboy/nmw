@@ -24,7 +24,7 @@
 
 <nav class="nmw-nav px-4 sm:px-8">
   <a href="index.html" class="nmw-logo-block">
-    <img src="images/digiwaxx-logo.png" alt="New Music Wednesday" class="nmw-logo-img" />
+    <img src="images/next-up-logo.png" alt="New Music Wednesday" class="nmw-logo-img" />
   </a>
   <div class="hidden md:flex space-x-6 items-center text-sm font-bold tracking-wide text-gray-600">
     <a href="mission.html" class="hover:text-black">MISSION</a>
@@ -82,13 +82,13 @@
       <p class="text-gray-500 font-serif text-sm italic max-w-sm">Artist Onboarding & Distribution Infrastructure.</p>
     </div>
     <div class="flex flex-wrap gap-6 text-sm font-bold text-gray-400 uppercase tracking-widest justify-center">
-      <a href="mission.html" class="hover:text-white">Mission</a>
-      <a href="events.html" class="hover:text-white">Events</a>
-      <a href="dj-call.html" class="hover:text-white">DJ Call</a>
-      <a href="apply.html" class="hover:text-white">Artist Access</a>
-      <a href="faq.html" class="hover:text-white">FAQ</a>
-      <a href="alerts.html" class="hover:text-white">Get Alerts</a>
-      <a href="sponsor.html" class="hover:text-white">Sponsor</a>
+      <a href="mission.html" class="hover:text-[#8A1558]">Mission</a>
+      <a href="events.html" class="hover:text-[#8A1558]">Events</a>
+      <a href="dj-call.html" class="hover:text-[#8A1558]">DJ Call</a>
+      <a href="apply.html" class="hover:text-[#8A1558]">Artist Access</a>
+      <a href="faq.html" class="hover:text-[#8A1558]">FAQ</a>
+      <a href="alerts.html" class="hover:text-[#8A1558]">Get Alerts</a>
+      <a href="sponsor.html" class="hover:text-[#8A1558]">Sponsor</a>
     </div>
   </div>
 </footer>
@@ -145,8 +145,8 @@ function renderFeatured() {
           <p class="text-gray-500 mt-1 text-sm">${ev.booked} of ${ev.capacity} performance slots booked</p>
           <div class="mt-6 flex flex-wrap gap-3">
             <a href="${rsvpUrl(d)}" target="_blank" class="inline-flex items-center gap-2 bg-yellow-400 text-black px-5 py-3 rounded-lg text-xs font-bold tracking-widest uppercase hover:bg-yellow-300 transition-colors shadow"><i data-lucide="ticket" class="w-4 h-4"></i> RSVP</a>
-            <a href="${cal}" target="_blank" class="inline-flex items-center gap-2 bg-white/10 backdrop-blur border border-gray-200 text-white px-5 py-3 rounded-lg text-xs font-bold tracking-widest uppercase hover:bg-white/20 transition-colors"><i data-lucide="calendar-plus" class="w-4 h-4"></i> Add to Calendar</a>
-            <button class="inline-flex items-center gap-2 bg-white/10 backdrop-blur border border-gray-200 text-white px-5 py-3 rounded-lg text-xs font-bold tracking-widest uppercase hover:bg-white/20 transition-colors" data-share='${JSON.stringify({text: shareText, url: shareUrl}).replace(/'/g, "&#39;")}'><i data-lucide="share-2" class="w-4 h-4"></i> Share</button>
+            <a href="${cal}" target="_blank" class="inline-flex items-center gap-2 bg-white border border-gray-200 text-gray-700 px-5 py-3 rounded-lg text-xs font-bold tracking-widest uppercase hover:bg-gray-50 transition-colors"><i data-lucide="calendar-plus" class="w-4 h-4"></i> Add to Calendar</a>
+            <button class="inline-flex items-center gap-2 bg-white border border-gray-200 text-gray-700 px-5 py-3 rounded-lg text-xs font-bold tracking-widest uppercase hover:bg-gray-50 transition-colors" data-share='${JSON.stringify({text: shareText, url: shareUrl}).replace(/'/g, "&#39;")}'><i data-lucide="share-2" class="w-4 h-4"></i> Share</button>
             ${ev.full
               ? '<span class="text-gray-500 text-xs font-bold uppercase tracking-wider self-center">Stage full this week</span>'
               : '<a href="apply.html" class="text-gray-700 hover:text-white text-xs font-bold uppercase tracking-wider self-center">Perform here →</a>'}
