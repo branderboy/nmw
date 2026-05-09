@@ -101,31 +101,16 @@
 </nav>
 
 <!-- Hero -->
-<header class="relative pt-12 pb-24 overflow-hidden bg-black text-white border-b-4 border-[#8A1558] hero-bg">
-  <!-- background image + readability overlay -->
-  <div class="absolute inset-0 -z-0 pointer-events-none bg-black/55"></div>
-  <div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
-    <!-- The Next Up Experience program logo (white variant for dark hero) -->
-    <img src="images/next-up-logo-light.png" alt="The Next Up Experience" class="mx-auto mb-6 h-20 md:h-24 w-auto drop-shadow-lg" />
-    <h2 class="text-[#FBCFE8] font-black tracking-widest text-sm md:text-base mb-4" data-cms="heroEyebrow">[ Official Artist Registration ]</h2>
-    <h1 class="text-4xl md:text-6xl font-black tracking-tighter leading-[1] text-white mb-6 drop-shadow-lg" data-cms="heroHeadline">Secure Your Live Performance &amp; Press Package At Manhattan's Top Destination For New Music.</h1>
-    <p class="text-lg md:text-2xl text-white/80 max-w-3xl mx-auto font-medium leading-relaxed mb-8" data-cms="heroSubhead">Perform live at The Penthouse NYC, secure guaranteed press coverage, capture high-end visual assets, and ignite your rollout in The Next Up Experience.</p>
+<header class="relative pt-16 pb-28 md:pt-20 md:pb-32 overflow-hidden bg-black text-white border-b-4 border-[#8A1558] hero-bg">
+  <!-- left-side gradient overlay keeps text legible while letting the speakers on the right of the bg image show -->
+  <div class="absolute inset-0 -z-0 pointer-events-none hero-bg__overlay"></div>
+  <div class="max-w-7xl mx-auto px-4 relative z-10">
+    <div class="max-w-xl text-left">
+      <!-- The Next Up Experience program logo (white variant for dark hero) -->
+      <img src="images/next-up-logo-light.png" alt="The Next Up Experience" class="mb-6 h-20 md:h-24 w-auto drop-shadow-lg" />
+      <h2 class="text-[#FBCFE8] font-black tracking-widest text-sm md:text-base mb-6" data-cms="heroEyebrow">[ Official Artist Registration ]</h2>
 
-    <!-- Hero video thumbnail -->
-    <div class="relative w-full aspect-video bg-black rounded-xl overflow-hidden shadow-2xl border-4 border-white mx-auto mb-10 max-w-3xl cursor-pointer group">
-      <img src="images/video_thumbnail.png" alt="NMW promo video" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity" />
-      <div class="absolute inset-0 flex items-center justify-center">
-        <div class="w-20 h-20 bg-[#8A1558] rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(138,21,88,0.6)] group-hover:scale-110 transition-transform">
-          <i data-lucide="play" class="w-10 h-10 text-white ml-2"></i>
-        </div>
-      </div>
-      <div class="absolute top-4 right-4 bg-black/50 backdrop-blur px-3 py-1 rounded text-white text-xs font-bold flex items-center gap-2">
-        <span class="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></span> Click To Watch
-      </div>
-    </div>
-
-    <!-- Hero CTA -->
-    <div class="flex flex-col items-center justify-center px-4 w-full max-w-2xl mx-auto">
+      <!-- Hero CTA -->
       <button onclick="scrollToPackages()" class="cta cta--yellow group mb-4">
         <div class="cta__shadow"></div>
         <div class="cta__face">
@@ -135,7 +120,7 @@
           <span class="cta__sub text-gray-800" data-cms="primaryCtaSub">Click Here To See Package Options &amp; Secure Your Spot</span>
         </div>
       </button>
-      <div class="flex items-center gap-3 text-xs font-bold text-white/60 mt-2">
+      <div class="flex items-center gap-3 text-xs font-bold text-white/70 mt-2">
         <i data-lucide="lock" class="w-3 h-3"></i> 256-bit secure checkout
         <span class="text-white/40">|</span>
         <i data-lucide="shield-check" class="w-3 h-3"></i> Stripe-powered

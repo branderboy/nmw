@@ -302,10 +302,23 @@ aside .lg\:sticky { border-top: 3px solid var(--brand-500) !important; }
 
 /* ============ Homepage hero background image ============ */
 .hero-bg {
+  background-color: #000;
   background-image: url('../images/landingbg.png');
-  background-size: cover;
-  background-position: center right;
+  background-size: auto 100%;
+  background-position: right center;
   background-repeat: no-repeat;
+}
+.hero-bg__overlay {
+  background: linear-gradient(to right, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.7) 35%, rgba(0,0,0,0) 60%);
+}
+@media (max-width: 768px) {
+  .hero-bg {
+    background-size: cover;
+    background-position: 70% center;
+  }
+  .hero-bg__overlay {
+    background: rgba(0, 0, 0, 0.55);
+  }
 }
 
 /* ============ Hero scroll-down arrow ============ */
