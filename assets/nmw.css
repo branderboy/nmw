@@ -67,16 +67,16 @@ body {
 }
 .nmw-logo-block { display: inline-flex; align-items: center; text-decoration: none; }
 .nmw-logo-img {
-  height: 96px;
+  height: 48px;
   width: auto;
   display: block;
   background: transparent;
   object-fit: contain;
 }
 @media (min-width: 768px) {
-  .nmw-logo-img { height: 128px; }
+  .nmw-logo-img { height: 64px; }
 }
-/* Allow nav row to grow with the bigger logo */
+/* Keep nav row compact */
 .nmw-nav { padding-top: 0.5rem; padding-bottom: 0.5rem; }
 
 /* Footer logo */
