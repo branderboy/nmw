@@ -300,6 +300,14 @@ aside .lg\:sticky { border-top: 3px solid var(--brand-500) !important; }
 }
 @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 
+/* ============ Homepage hero background image ============ */
+.hero-bg {
+  background-image: url('../images/landingbg.png');
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
+}
+
 /* ============ Hero scroll-down arrow ============ */
 .hero-scroll-arrow {
   position: absolute;
