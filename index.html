@@ -16,6 +16,65 @@
     }}
   }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.newmusicwednesdayslive.com/#org",
+      "name": "New Music Wednesdays",
+      "alternateName": "NMW",
+      "url": "https://www.newmusicwednesdayslive.com/",
+      "logo": "https://www.newmusicwednesdayslive.com/images/nmw-logo.png",
+      "parentOrganization": {
+        "@type": "Organization",
+        "name": "Digiwaxx",
+        "url": "https://www.digiwaxx.com"
+      },
+      "sameAs": [
+        "https://www.digiwaxx.com",
+        "https://www.newmusicwednesdayslive.com",
+        "https://dice.fm",
+        "https://www.bandsintown.com",
+        "https://www.songkick.com",
+        "https://www.eventbrite.com",
+        "https://lu.ma",
+        "https://www.tripadvisor.com/Search?q=The+Penthouse+NYC",
+        "https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z"
+      ]
+    },
+    {
+      "@type": "MusicVenue",
+      "@id": "https://www.newmusicwednesdayslive.com/#venue",
+      "name": "The Penthouse NYC",
+      "addressLocality": "Manhattan",
+      "addressRegion": "NY",
+      "addressCountry": "US",
+      "geo": { "@type": "GeoCoordinates", "latitude": 40.7538703, "longitude": -73.9493586 },
+      "sameAs": [
+        "https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z",
+        "https://www.tripadvisor.com/Search?q=The+Penthouse+NYC"
+      ]
+    },
+    {
+      "@type": "Event",
+      "name": "New Music Wednesdays",
+      "eventSchedule": {
+        "@type": "Schedule",
+        "byDay": "Wednesday",
+        "startTime": "19:00",
+        "endTime": "21:30",
+        "scheduleTimezone": "America/New_York",
+        "repeatFrequency": "P1W"
+      },
+      "location": { "@id": "https://www.newmusicwednesdayslive.com/#venue" },
+      "organizer": { "@id": "https://www.newmusicwednesdayslive.com/#org" },
+      "url": "https://www.newmusicwednesdayslive.com/"
+    }
+  ]
+}
+</script>
 </head>
 <body class="bg-gray-50 text-gray-900 selection:bg-[#8A1558] selection:text-white">
 
@@ -163,47 +222,41 @@
   </div>
 </section>
 
-<!-- What's Included — structured editorial, not a pricing grid -->
-<section id="packages" class="py-24 bg-white border-t border-gray-200">
-  <div class="max-w-5xl mx-auto px-4">
-    <div class="mb-12">
-      <span class="text-[#8A1558] font-bold tracking-widest text-xs uppercase mb-2 block">[ The Experience ]</span>
-      <h2 class="text-3xl md:text-5xl font-black tracking-tight text-gray-900">A live stage, a press kit, and a distribution rollout — in one Wednesday.</h2>
+<!-- Pricing tiers — clean row, no chunky cards -->
+<section id="packages" class="py-20 md:py-24 bg-white border-t border-gray-200">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="flex items-end justify-between flex-wrap gap-4 mb-10">
+      <div>
+        <span class="text-[#8A1558] font-bold tracking-widest text-xs uppercase mb-3 block">[ Pick a tier ]</span>
+        <h2 class="text-3xl md:text-5xl font-black tracking-tighter text-gray-900">Five tiers · starts at $200</h2>
+      </div>
+      <a href="apply.html" class="text-sm font-black tracking-widest uppercase text-[#8A1558] hover:underline">See full details →</a>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-5 border-t border-gray-200 pt-10">
-      <div class="bg-[#FDF2F8] border border-[#FBCFE8] rounded-2xl p-6 relative overflow-hidden">
-        <div class="absolute top-0 left-0 right-0 h-1 bg-[#8A1558]"></div>
-        <div class="w-12 h-12 rounded-xl bg-white text-[#8A1558] flex items-center justify-center mb-4 shadow-sm border border-[#FBCFE8]"><i data-lucide="newspaper" class="w-5 h-5"></i></div>
-        <div class="text-xs font-bold uppercase tracking-widest text-[#8A1558] mb-2">Press</div>
-        <h3 class="text-lg font-black text-gray-900 mb-2">Editorial &amp; media coverage</h3>
-        <p class="text-sm text-gray-700 leading-relaxed">Guaranteed write-up, photo coverage, on-site interview opportunities. The kind of receipts that work for months after.</p>
-      </div>
-      <div class="bg-yellow-50 border border-yellow-200 rounded-2xl p-6 relative overflow-hidden">
-        <div class="absolute top-0 left-0 right-0 h-1 bg-yellow-400"></div>
-        <div class="w-12 h-12 rounded-xl bg-white text-yellow-700 flex items-center justify-center mb-4 shadow-sm border border-yellow-200"><i data-lucide="mic" class="w-5 h-5"></i></div>
-        <div class="text-xs font-bold uppercase tracking-widest text-yellow-700 mb-2">Performance</div>
-        <h3 class="text-lg font-black text-gray-900 mb-2">Live slot at The Penthouse NYC</h3>
-        <p class="text-sm text-gray-700 leading-relaxed">Real audience, real DJ Call, real industry in the room. Doors 3 PM · Live 7–9:30 PM.</p>
-      </div>
-      <div class="bg-blue-50 border border-blue-200 rounded-2xl p-6 relative overflow-hidden">
-        <div class="absolute top-0 left-0 right-0 h-1 bg-blue-500"></div>
-        <div class="w-12 h-12 rounded-xl bg-white text-blue-700 flex items-center justify-center mb-4 shadow-sm border border-blue-200"><i data-lucide="radio" class="w-5 h-5"></i></div>
-        <div class="text-xs font-bold uppercase tracking-widest text-blue-700 mb-2">Distribution</div>
-        <h3 class="text-lg font-black text-gray-900 mb-2">Auto-pushed across the network</h3>
-        <p class="text-sm text-gray-700 leading-relaxed">DICE, Bandsintown, Songkick, Eventbrite, Luma. Plus DJ-network drops and a custom share package for your audience.</p>
-      </div>
-    </div>
-
-    <!-- Single CTA — pricing lives on the apply page, not here -->
-    <div class="mt-14 border-t border-gray-200 pt-10 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-      <p class="text-base text-gray-700 flex-1">Ready when you are. Pick your tier and lock in your Wednesday.</p>
-      <a href="apply.html" class="inline-flex items-center gap-2 bg-[#8A1558] text-white px-6 py-3 rounded-md text-sm font-bold tracking-widest uppercase hover:bg-[#680D3E] transition-colors flex-shrink-0">
-        Start My Application <i data-lucide="arrow-right" class="w-4 h-4"></i>
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+      <a href="apply.html?pkg=media-ready" class="pkg-tile pkg-tile--lg">
+        <div class="pkg-name">Media Ready</div>
+        <div class="pkg-price">$200</div>
+      </a>
+      <a href="apply.html?pkg=one-mic" class="pkg-tile pkg-tile--lg">
+        <div class="pkg-name">One Mic Visual</div>
+        <div class="pkg-price">$250</div>
+      </a>
+      <a href="apply.html?pkg=performance-ready" class="pkg-tile pkg-tile--lg">
+        <div class="pkg-name">Performance Ready</div>
+        <div class="pkg-price">$395</div>
+      </a>
+      <a href="apply.html?pkg=full-experience" class="pkg-tile pkg-tile--lg">
+        <div class="pkg-name">Full Experience</div>
+        <div class="pkg-price">$650</div>
+      </a>
+      <a href="apply.html?pkg=premiere" class="pkg-tile pkg-tile--lg col-span-2 md:col-span-1">
+        <div class="pkg-name">Premiere</div>
+        <div class="pkg-price">$899</div>
       </a>
     </div>
 
-    <div class="mt-6">
+    <div class="mt-10 text-center">
       <a href="events.html" class="text-[#8A1558] font-bold tracking-widest text-xs uppercase hover:underline">See upcoming events at The Penthouse →</a>
     </div>
   </div>
@@ -213,9 +266,9 @@
 <footer class="nmw-footer">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-8 py-2">
-      <div class="col-span-2 md:col-span-1">
-        <img src="images/nmw-logo-light.png" alt="New Music Wednesday" class="footer-logo mb-4" />
-        <p class="text-sm">Live performance + rollout infrastructure for rising artists. Every Wednesday at The Penthouse NYC.</p>
+      <div class="col-span-2">
+        <img src="images/nmw-logo-light.png" alt="New Music Wednesdays · Digiwaxx" class="footer-logo mb-4" />
+        <p class="text-sm leading-relaxed">Live performance and rollout infrastructure for rising artists. Every Wednesday at The Penthouse NYC, presented by <a href="https://www.digiwaxx.com" target="_blank" rel="noopener noreferrer" class="text-[#8A1558] hover:underline">Digiwaxx</a>.</p>
       </div>
       <div>
         <h4 class="text-xs font-black uppercase tracking-widest mb-4">Funnel</h4>
@@ -224,31 +277,29 @@
           <li><a href="mission.html">Mission</a></li>
           <li><a href="events.html">Events</a></li>
           <li><a href="dj-call.html">DJ Call</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Onboarding</h4>
-        <ul class="space-y-2 text-sm">
           <li><a href="apply.html">Artist Access</a></li>
           <li><a href="faq.html">FAQ</a></li>
           <li><a href="alerts.html">Get Alerts</a></li>
-          <li><a href="sponsor.html">Sponsor</a></li>
+          <li><a href="sponsor.html">Sponsor NMW</a></li>
         </ul>
       </div>
       <div>
-        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Find Us</h4>
+        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Partners</h4>
         <ul class="space-y-2 text-sm">
-          <li><a href="https://www.digiwaxx.com" target="_blank" rel="noopener noreferrer">Digiwaxx.com</a></li>
-          <li><a href="https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z" target="_blank" rel="noopener noreferrer">Google Maps</a></li>
-          <li><a href="https://www.tripadvisor.com/Search?q=The+Penthouse+NYC" target="_blank" rel="noopener noreferrer">TripAdvisor</a></li>
-          <li><a href="https://dice.fm" target="_blank" rel="noopener noreferrer">DICE</a></li>
-          <li><a href="https://www.bandsintown.com" target="_blank" rel="noopener noreferrer">Bandsintown</a></li>
-          <li><a href="https://www.songkick.com" target="_blank" rel="noopener noreferrer">Songkick</a></li>
+          <li><a href="https://www.digiwaxx.com" target="_blank" rel="noopener">Digiwaxx</a></li>
+          <li><a href="https://www.newmusicwednesdayslive.com" target="_blank" rel="noopener">NewMusicWednesdaysLive</a></li>
+          <li><a href="https://dice.fm" target="_blank" rel="noopener">DICE</a></li>
+          <li><a href="https://www.bandsintown.com" target="_blank" rel="noopener">Bandsintown</a></li>
+          <li><a href="https://www.songkick.com" target="_blank" rel="noopener">Songkick</a></li>
+          <li><a href="https://www.eventbrite.com" target="_blank" rel="noopener">Eventbrite</a></li>
+          <li><a href="https://lu.ma" target="_blank" rel="noopener">Luma</a></li>
+          <li><a href="https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z" target="_blank" rel="noopener">Google Maps</a></li>
+          <li><a href="https://www.tripadvisor.com/Search?q=The+Penthouse+NYC" target="_blank" rel="noopener">TripAdvisor</a></li>
         </ul>
       </div>
     </div>
     <div class="border-t border-gray-700 pt-6 mt-6 text-center text-xs">
-      © 2026 New Music Wednesdays · By Digiwaxx · All rights reserved.
+      &copy; 2026 New Music Wednesdays · By Digiwaxx · All rights reserved.
     </div>
   </div>
 </footer>

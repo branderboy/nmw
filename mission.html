@@ -46,6 +46,65 @@
   }
   .signature-line { letter-spacing: 0.05em; }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.newmusicwednesdayslive.com/#org",
+      "name": "New Music Wednesdays",
+      "alternateName": "NMW",
+      "url": "https://www.newmusicwednesdayslive.com/",
+      "logo": "https://www.newmusicwednesdayslive.com/images/nmw-logo.png",
+      "parentOrganization": {
+        "@type": "Organization",
+        "name": "Digiwaxx",
+        "url": "https://www.digiwaxx.com"
+      },
+      "sameAs": [
+        "https://www.digiwaxx.com",
+        "https://www.newmusicwednesdayslive.com",
+        "https://dice.fm",
+        "https://www.bandsintown.com",
+        "https://www.songkick.com",
+        "https://www.eventbrite.com",
+        "https://lu.ma",
+        "https://www.tripadvisor.com/Search?q=The+Penthouse+NYC",
+        "https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z"
+      ]
+    },
+    {
+      "@type": "MusicVenue",
+      "@id": "https://www.newmusicwednesdayslive.com/#venue",
+      "name": "The Penthouse NYC",
+      "addressLocality": "Manhattan",
+      "addressRegion": "NY",
+      "addressCountry": "US",
+      "geo": { "@type": "GeoCoordinates", "latitude": 40.7538703, "longitude": -73.9493586 },
+      "sameAs": [
+        "https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z",
+        "https://www.tripadvisor.com/Search?q=The+Penthouse+NYC"
+      ]
+    },
+    {
+      "@type": "Event",
+      "name": "New Music Wednesdays",
+      "eventSchedule": {
+        "@type": "Schedule",
+        "byDay": "Wednesday",
+        "startTime": "19:00",
+        "endTime": "21:30",
+        "scheduleTimezone": "America/New_York",
+        "repeatFrequency": "P1W"
+      },
+      "location": { "@id": "https://www.newmusicwednesdayslive.com/#venue" },
+      "organizer": { "@id": "https://www.newmusicwednesdayslive.com/#org" },
+      "url": "https://www.newmusicwednesdayslive.com/"
+    }
+  ]
+}
+</script>
 </head>
 <body class="bg-gray-50 text-gray-900 selection:bg-[#8A1558] selection:text-white">
 
@@ -322,9 +381,9 @@
 <footer class="nmw-footer">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-8 py-2">
-      <div class="col-span-2 md:col-span-1">
-        <img src="images/nmw-logo-light.png" alt="New Music Wednesday" class="footer-logo mb-4" />
-        <p class="text-sm">Live performance + rollout infrastructure for rising artists. Every Wednesday at The Penthouse NYC.</p>
+      <div class="col-span-2">
+        <img src="images/nmw-logo-light.png" alt="New Music Wednesdays · Digiwaxx" class="footer-logo mb-4" />
+        <p class="text-sm leading-relaxed">Live performance and rollout infrastructure for rising artists. Every Wednesday at The Penthouse NYC, presented by <a href="https://www.digiwaxx.com" target="_blank" rel="noopener noreferrer" class="text-[#8A1558] hover:underline">Digiwaxx</a>.</p>
       </div>
       <div>
         <h4 class="text-xs font-black uppercase tracking-widest mb-4">Funnel</h4>
@@ -333,31 +392,29 @@
           <li><a href="mission.html">Mission</a></li>
           <li><a href="events.html">Events</a></li>
           <li><a href="dj-call.html">DJ Call</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Onboarding</h4>
-        <ul class="space-y-2 text-sm">
           <li><a href="apply.html">Artist Access</a></li>
           <li><a href="faq.html">FAQ</a></li>
           <li><a href="alerts.html">Get Alerts</a></li>
-          <li><a href="sponsor.html">Sponsor</a></li>
+          <li><a href="sponsor.html">Sponsor NMW</a></li>
         </ul>
       </div>
       <div>
-        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Find Us</h4>
+        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Partners</h4>
         <ul class="space-y-2 text-sm">
-          <li><a href="https://www.digiwaxx.com" target="_blank" rel="noopener noreferrer">Digiwaxx.com</a></li>
-          <li><a href="https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z" target="_blank" rel="noopener noreferrer">Google Maps</a></li>
-          <li><a href="https://www.tripadvisor.com/Search?q=The+Penthouse+NYC" target="_blank" rel="noopener noreferrer">TripAdvisor</a></li>
-          <li><a href="https://dice.fm" target="_blank" rel="noopener noreferrer">DICE</a></li>
-          <li><a href="https://www.bandsintown.com" target="_blank" rel="noopener noreferrer">Bandsintown</a></li>
-          <li><a href="https://www.songkick.com" target="_blank" rel="noopener noreferrer">Songkick</a></li>
+          <li><a href="https://www.digiwaxx.com" target="_blank" rel="noopener">Digiwaxx</a></li>
+          <li><a href="https://www.newmusicwednesdayslive.com" target="_blank" rel="noopener">NewMusicWednesdaysLive</a></li>
+          <li><a href="https://dice.fm" target="_blank" rel="noopener">DICE</a></li>
+          <li><a href="https://www.bandsintown.com" target="_blank" rel="noopener">Bandsintown</a></li>
+          <li><a href="https://www.songkick.com" target="_blank" rel="noopener">Songkick</a></li>
+          <li><a href="https://www.eventbrite.com" target="_blank" rel="noopener">Eventbrite</a></li>
+          <li><a href="https://lu.ma" target="_blank" rel="noopener">Luma</a></li>
+          <li><a href="https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z" target="_blank" rel="noopener">Google Maps</a></li>
+          <li><a href="https://www.tripadvisor.com/Search?q=The+Penthouse+NYC" target="_blank" rel="noopener">TripAdvisor</a></li>
         </ul>
       </div>
     </div>
     <div class="border-t border-gray-700 pt-6 mt-6 text-center text-xs">
-      © 2026 New Music Wednesdays · By Digiwaxx · All rights reserved.
+      &copy; 2026 New Music Wednesdays · By Digiwaxx · All rights reserved.
     </div>
   </div>
 </footer>
