@@ -3,244 +3,307 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Apply | New Music Wednesdays</title>
+<title>Artist Onboarding | New Music Wednesdays</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest"></script>
 <link rel="stylesheet" href="assets/nmw.css">
 <script>
-if (typeof tailwind !== "undefined") tailwind.config = { theme: { extend: {
-  fontFamily: { sans: ['Inter','sans-serif'] },
-  colors: { brand: { 50:'#FDF2F8', 200:'#FBCFE8', 500:'#8A1558', 600:'#680D3E' } }
-}}}
+  if (typeof tailwind !== "undefined") tailwind.config = { theme: { extend: {
+    fontFamily: { sans: ['Inter','sans-serif'] },
+    colors: { brand: { 50:'#FDF2F8', 200:'#FBCFE8', 500:'#8A1558', 600:'#680D3E' } }
+  }}}
 </script>
 </head>
-<body class="font-sans antialiased bg-gray-50 min-h-screen">
+<body class="bg-gray-50 text-gray-900 selection:bg-[#8A1558] selection:text-white">
 
-<div class="urgency-bar">
-  <span class="urgency-pulse"></span>
-  Your slot is held for 15 minutes — complete checkout to lock it in.
-</div>
-
-<nav class="nmw-nav px-4 sm:px-8">
-  <a href="index.html" class="nmw-logo-block">
-    <img src="images/digiwaxx-logo.png" alt="New Music Wednesday" class="nmw-logo-img" />
-  </a>
-  <a href="index.html" class="text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-black flex items-center gap-1">
-    <i data-lucide="x" class="w-4 h-4"></i> Exit
-  </a>
-</nav>
-
-<!-- Step indicator -->
-<div class="bg-white border-b border-gray-200 sticky top-0 z-40">
-  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-    <div class="flex items-center" id="stepIndicator"></div>
+<!-- LIGHT HEADER -->
+<header class="bg-white border-b border-gray-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
+    <a href="index.html" class="flex items-center">
+      <img src="images/digiwaxx-logo.png" alt="New Music Wednesday" class="h-12 md:h-14 w-auto" />
+    </a>
+    <nav class="hidden md:flex space-x-7 items-center text-xs font-bold tracking-widest uppercase text-gray-600">
+      <a href="index.html" class="hover:text-[#8A1558]">Home</a>
+      <a href="events.html" class="hover:text-[#8A1558]">Events</a>
+      <a href="faq.html" class="hover:text-[#8A1558]">FAQ</a>
+      <a href="alerts.html" class="hover:text-[#8A1558]">Get Alerts</a>
+      <a href="dashboard.html" class="hover:text-[#8A1558]">Dashboard</a>
+    </nav>
+    <div class="hidden sm:flex items-center gap-2 text-[#8A1558] text-xs font-bold tracking-widest uppercase">
+      <i data-lucide="lock" class="w-4 h-4"></i> Secure Checkout
+    </div>
   </div>
-</div>
+</header>
 
-<main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-
-  <!-- STEP 1: PACKAGE SELECTION -->
-  <section data-step="1" class="step">
-    <div class="mb-8">
-      <span class="text-xs font-black tracking-widest uppercase text-brand-500">Step 1 of 5</span>
-      <h1 class="text-3xl md:text-4xl font-black tracking-tight mt-2">Pick your package</h1>
-      <p class="text-gray-600 mt-2">Performance tiers ($395+) activate full event distribution and verification.</p>
+<!-- PAGE TITLE -->
+<section class="bg-gray-50 pt-12 pb-6">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h1 class="text-4xl md:text-6xl font-black tracking-tighter mb-2">ARTIST ONBOARDING</h1>
+    <p class="text-gray-500 text-lg">Complete the steps to secure your spot at New Music Wednesday.</p>
+    <div class="mt-3 text-xs font-bold tracking-widest uppercase text-gray-500 flex flex-wrap gap-3 items-center">
+      <a href="index.html" class="hover:text-[#8A1558]">← All Packages</a>
+      <span class="text-gray-300">·</span>
+      <a href="faq.html" class="hover:text-[#8A1558]">FAQ</a>
     </div>
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4" id="pkgGrid"></div>
-    <div class="mt-8 flex justify-end">
-      <button class="btn-primary" data-next="1" disabled>Continue <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
-    </div>
-  </section>
+  </div>
+</section>
 
-  <!-- STEP 1.5: DATE SELECTION (performance tier only, dynamically shown) -->
-  <section data-step="date" class="step hidden">
-    <div class="mb-8">
-      <span class="text-xs font-black tracking-widest uppercase text-brand-500">Pick your date</span>
-      <h1 class="text-3xl md:text-4xl font-black tracking-tight mt-2">Which Wednesday do you want to perform?</h1>
-      <p class="text-gray-600 mt-2">Each Wednesday at The Penthouse has limited slots. Pick an open one — we'll lock it in at checkout.</p>
-    </div>
-    <div id="dateGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3"></div>
-    <div class="mt-8 flex justify-between">
-      <button class="btn-outline" data-back="date"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back</button>
-      <button class="btn-primary" data-next="date" disabled>Continue <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
-    </div>
-  </section>
+<!-- STEP INDICATOR -->
+<section class="bg-gray-50 pb-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-start" id="stepIndicator"></div>
+  </div>
+</section>
 
-  <!-- STEP 2: GOALS -->
-  <section data-step="2" class="step hidden">
-    <div class="mb-8">
-      <span class="text-xs font-black tracking-widest uppercase text-brand-500">Step 2 of 5</span>
-      <h1 class="text-3xl md:text-4xl font-black tracking-tight mt-2">What's your main goal right now?</h1>
-      <p class="text-gray-600 mt-2">Pick one or more — we'll tune your rollout to match.</p>
-    </div>
-    <div class="flex flex-wrap gap-2" id="goalsGrid"></div>
-    <div class="mt-8 flex justify-between">
-      <button class="btn-outline" data-back="2"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back</button>
-      <button class="btn-primary" data-next="2" disabled>Continue <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
-    </div>
-  </section>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+  <div class="grid lg:grid-cols-3 gap-6">
 
-  <!-- STEP 3: RECOMMENDATIONS -->
-  <section data-step="3" class="step hidden">
-    <div class="mb-8">
-      <span class="text-xs font-black tracking-widest uppercase text-brand-500">Step 3 of 5</span>
-      <h1 class="text-3xl md:text-4xl font-black tracking-tight mt-2">Recommended for you</h1>
-      <p class="text-gray-600 mt-2">Based on your goals — add what makes sense, skip what doesn't.</p>
-    </div>
-    <div id="recsGrid" class="space-y-3"></div>
-    <div class="mt-6 text-sm text-gray-500" id="noRecsNote"></div>
-    <div class="mt-8 flex justify-between">
-      <button class="btn-outline" data-back="3"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back</button>
-      <button class="btn-primary" data-next="3">Continue <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
-    </div>
-  </section>
+    <!-- MAIN COLUMN -->
+    <div class="lg:col-span-2">
 
-  <!-- STEP 4: CHECKOUT INFO -->
-  <section data-step="4" class="step hidden">
-    <div class="mb-8">
-      <span class="text-xs font-black tracking-widest uppercase text-brand-500">Step 4 of 5</span>
-      <h1 class="text-3xl md:text-4xl font-black tracking-tight mt-2">Tell us about you</h1>
-      <p class="text-gray-600 mt-2">We use this to set up your event and contact you about your slot.</p>
-    </div>
-    <form id="infoForm" class="grid md:grid-cols-2 gap-5 bg-white border border-gray-200 rounded-2xl p-6">
-      <div><label class="field-label">Your Name *</label><input class="field-input" name="name" required></div>
-      <div><label class="field-label">Email *</label><input class="field-input" name="email" type="email" required></div>
-      <div><label class="field-label">Phone</label><input class="field-input" name="phone" type="tel"></div>
-      <div><label class="field-label">Artist Name *</label><input class="field-input" name="artistName" required></div>
-      <div><label class="field-label">Genre *</label>
-        <select class="field-input" name="genre" required>
-          <option value="">Select…</option>
-          <option>R&B</option><option>Soul</option><option>Hip Hop</option>
-          <option>Afro-Pop</option><option>Pop</option><option>Latin</option>
-          <option>Electronic</option><option>Other</option>
-        </select>
-      </div>
-      <div><label class="field-label">Instagram</label><input class="field-input" name="instagram" placeholder="@yourhandle"></div>
+      <!-- STEP 1: PACKAGE + YOUR DETAILS -->
+      <section data-step="1" class="step bg-white rounded-2xl shadow-sm p-6 md:p-10">
+        <h2 class="text-2xl md:text-3xl font-black tracking-tight mb-1">CHOOSE YOUR PACKAGE</h2>
+        <p class="text-gray-500 mb-8">Select the package that fits your rollout.</p>
 
-      <div class="md:col-span-2 mt-2 border-t border-gray-200 pt-5">
-        <label class="flex items-start gap-3 cursor-pointer">
-          <input type="checkbox" name="blast" class="mt-1 w-5 h-5 rounded border-gray-300 text-brand-500 focus:ring-brand-500">
-          <div>
-            <div class="font-bold">Join The Blast</div>
-            <div class="text-sm text-gray-600">New music releases · event announcements · artist opportunities · DJ updates · media opportunities · performance alerts.</div>
-          </div>
-        </label>
-      </div>
-    </form>
-    <div class="mt-8 flex justify-between">
-      <button class="btn-outline" data-back="4"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back</button>
-      <button class="btn-primary" data-next="4">Continue to Payment <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
-    </div>
-  </section>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-3" id="pkgGrid"></div>
 
-  <!-- STEP 5: PAYMENT -->
-  <section data-step="5" class="step hidden">
-    <div class="mb-8">
-      <span class="text-xs font-black tracking-widest uppercase text-brand-500">Step 5 of 5</span>
-      <h1 class="text-3xl md:text-4xl font-black tracking-tight mt-2">Review + Pay</h1>
-      <p class="text-gray-600 mt-2">Stripe checkout · secure payment.</p>
-    </div>
-
-    <div class="grid lg:grid-cols-3 gap-6">
-      <div class="lg:col-span-2 space-y-3">
-        <div id="orderSummary" class="bg-white border border-gray-200 rounded-2xl p-6"></div>
-
-        <div class="bg-white border border-gray-200 rounded-2xl p-6">
-          <h3 class="font-bold text-lg mb-4 flex items-center gap-2"><i data-lucide="credit-card" class="w-5 h-5 text-brand-500"></i> Payment</h3>
-          <div class="grid sm:grid-cols-2 gap-4">
-            <div class="sm:col-span-2"><label class="field-label">Card Number</label><input class="field-input" placeholder="4242 4242 4242 4242" value="4242 4242 4242 4242"></div>
-            <div><label class="field-label">Expiry</label><input class="field-input" placeholder="MM/YY" value="12/29"></div>
-            <div><label class="field-label">CVC</label><input class="field-input" placeholder="123" value="123"></div>
-          </div>
-          <div class="mt-3 text-xs text-gray-500 flex items-center gap-2"><i data-lucide="lock" class="w-3 h-3"></i> Demo · Stripe integration goes here in production.</div>
-        </div>
-      </div>
-
-      <aside class="bg-black text-white rounded-2xl p-6 self-start sticky top-28">
-        <div class="text-xs font-black uppercase tracking-widest text-yellow-400 mb-2">Total</div>
-        <div class="text-5xl font-black tracking-tight" id="totalAmount">$0</div>
-        <div class="text-sm text-gray-400 mt-1" id="totalSub"></div>
-        <button class="btn-yellow w-full mt-6 justify-center" id="payBtn"><i data-lucide="zap" class="w-4 h-4"></i> Complete Booking</button>
-        <div class="text-xs text-gray-400 mt-3 text-center">By continuing you agree to NMW terms.</div>
-      </aside>
-    </div>
-
-    <div class="mt-8 flex justify-between">
-      <button class="btn-outline" data-back="5"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back</button>
-    </div>
-  </section>
-
-  <!-- STEP 6: SUCCESS -->
-  <section data-step="6" class="step hidden">
-    <div class="bg-white border border-gray-200 rounded-2xl p-10 text-center">
-      <div class="w-20 h-20 bg-brand-50 rounded-full flex items-center justify-center mx-auto mb-6">
-        <i data-lucide="check" class="w-10 h-10 text-brand-500"></i>
-      </div>
-      <h1 class="text-4xl md:text-5xl font-black tracking-tight mb-3">You're booked.</h1>
-      <p class="text-lg text-gray-600 mb-8" id="successSub"></p>
-
-      <!-- Welcome / next-steps email preview (performance tier only) -->
-      <div id="performanceNext" class="hidden text-left max-w-2xl mx-auto mb-8">
-        <div class="bg-yellow-50 border-2 border-yellow-300 rounded-xl p-5 mb-4 flex items-start gap-3">
-          <i data-lucide="alert-triangle" class="w-6 h-6 text-yellow-700 flex-shrink-0"></i>
-          <div>
-            <h3 class="font-black text-yellow-900">Action required within 24 hours</h3>
-            <p class="text-sm text-yellow-800 mt-0.5">Performance slots only activate after we can verify your artist profiles on the three platforms below. Sign up for each, screenshot proof, and upload at the Verification Portal.</p>
-          </div>
+        <div class="mt-6 bg-pink-50 border border-pink-200 rounded-lg p-4 flex items-start gap-3">
+          <i data-lucide="alert-triangle" class="w-5 h-5 text-pink-600 flex-shrink-0 mt-0.5"></i>
+          <p class="text-sm font-bold text-pink-700">Performance tier packages ($395+) require Bandsintown / Songkick / DICE verification within 24 hours.</p>
         </div>
 
-        <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-          <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-500 mb-1"><i data-lucide="mail" class="w-4 h-4"></i> Welcome to NMW · Confirmation</div>
-          <p class="text-sm text-gray-700 mb-5">Hi <span id="welcomeName" class="font-bold">artist</span>, your <span id="welcomePkg" class="font-bold"></span> is confirmed for <span id="welcomeDate" class="font-bold text-brand-500"></span>. Complete these <b>3 steps within 24 hours</b> so we can put your event into distribution.</p>
+        <div class="border-t border-gray-100 mt-10 pt-8">
+          <h2 class="text-2xl md:text-3xl font-black tracking-tight mb-1">YOUR DETAILS</h2>
+          <p class="text-gray-500 mb-6">Where should we send your event details?</p>
+          <form id="step1Form" class="grid sm:grid-cols-2 gap-5">
+            <div><label class="onboarding-label">Full Name *</label><input class="onboarding-input" name="name" placeholder="Your name" required></div>
+            <div><label class="onboarding-label">Email Address *</label><input class="onboarding-input" name="email" type="email" placeholder="you@email.com" required></div>
+            <div><label class="onboarding-label">Artist / Stage Name *</label><input class="onboarding-input" name="artistName" placeholder="Stage name" required></div>
+            <div><label class="onboarding-label">Phone (Optional)</label><input class="onboarding-input" name="phone" type="tel" placeholder="(555) 000-0000"></div>
+            <div><label class="onboarding-label">Primary Genre *</label>
+              <select class="onboarding-input" name="genre" required>
+                <option value="">Select…</option>
+                <option>R&B</option><option>Soul</option><option>Hip Hop</option>
+                <option>Afro-Pop</option><option>Pop</option><option>Latin</option>
+                <option>Electronic</option><option>Other</option>
+              </select>
+            </div>
+            <div><label class="onboarding-label">Instagram</label><input class="onboarding-input" name="instagram" placeholder="@yourhandle"></div>
+            <div class="sm:col-span-2"><label class="onboarding-label">How did you hear about NMW?</label>
+              <select class="onboarding-input" name="source">
+                <option value="">Select an option</option>
+                <option>Referral</option>
+                <option>Social media</option>
+                <option>An NMW artist</option>
+                <option>Google search</option>
+                <option>Industry contact</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </form>
+        </div>
 
-          <ol class="space-y-3">
-            <li class="flex items-start gap-3 p-3 border border-gray-200 rounded-lg">
-              <span class="flex-shrink-0 w-8 h-8 rounded-full bg-brand-50 text-brand-500 flex items-center justify-center font-black">1</span>
-              <div class="flex-1">
-                <div class="font-bold">Sign up &amp; claim Bandsintown</div>
-                <div class="text-xs text-gray-500">Lets us push your event to the Bandsintown discovery feed.</div>
-              </div>
-              <a href="https://artists.bandsintown.com" target="_blank" class="inline-flex items-center gap-1 text-xs font-black uppercase tracking-widest bg-brand-500 text-white px-3 py-2 rounded hover:bg-brand-600 whitespace-nowrap">Sign up <i data-lucide="external-link" class="w-3 h-3"></i></a>
-            </li>
-            <li class="flex items-start gap-3 p-3 border border-gray-200 rounded-lg">
-              <span class="flex-shrink-0 w-8 h-8 rounded-full bg-brand-50 text-brand-500 flex items-center justify-center font-black">2</span>
-              <div class="flex-1">
-                <div class="font-bold">Sign up &amp; claim Songkick / Tourbox</div>
-                <div class="text-xs text-gray-500">Adds you to Songkick artist feeds for fan notifications.</div>
-              </div>
-              <a href="https://www.songkick.com/tourbox" target="_blank" class="inline-flex items-center gap-1 text-xs font-black uppercase tracking-widest bg-brand-500 text-white px-3 py-2 rounded hover:bg-brand-600 whitespace-nowrap">Sign up <i data-lucide="external-link" class="w-3 h-3"></i></a>
-            </li>
-            <li class="flex items-start gap-3 p-3 border border-gray-200 rounded-lg">
-              <span class="flex-shrink-0 w-8 h-8 rounded-full bg-brand-50 text-brand-500 flex items-center justify-center font-black">3</span>
-              <div class="flex-1">
-                <div class="font-bold">Sign up for DICE artist account</div>
-                <div class="text-xs text-gray-500">DICE event copy gets generated once we see your account is live.</div>
-              </div>
-              <a href="https://dice.fm" target="_blank" class="inline-flex items-center gap-1 text-xs font-black uppercase tracking-widest bg-brand-500 text-white px-3 py-2 rounded hover:bg-brand-600 whitespace-nowrap">Sign up <i data-lucide="external-link" class="w-3 h-3"></i></a>
-            </li>
-          </ol>
+        <div class="flex justify-end mt-8">
+          <button class="onboarding-cta" data-next="1" disabled>Continue <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+        </div>
+      </section>
 
-          <div class="mt-5 pt-5 border-t border-gray-100">
-            <p class="text-sm text-gray-600 mb-3">After you've signed up for all three, take screenshots of your claimed pages and upload them in the Verification Portal:</p>
-            <a href="verify.html" class="cta cta--brand">
-              <div class="cta__shadow"></div>
-              <div class="cta__face"><span class="cta__label flex items-center gap-2"><i data-lucide="upload" class="w-4 h-4"></i> Open Verification Portal</span></div>
-            </a>
+      <!-- STEP 2: DATE (performance only) -->
+      <section data-step="date" class="step bg-white rounded-2xl shadow-sm p-6 md:p-10 hidden">
+        <h2 class="text-2xl md:text-3xl font-black tracking-tight mb-1">PICK YOUR WEDNESDAY</h2>
+        <p class="text-gray-500 mb-8">Each Wednesday at The Penthouse has limited slots. Pick an open one.</p>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3" id="dateGrid"></div>
+        <div class="flex justify-between mt-8">
+          <button class="onboarding-back" data-back="date"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back</button>
+          <button class="onboarding-cta" data-next="date" disabled>Continue <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+        </div>
+      </section>
+
+      <!-- STEP 3: ENHANCE (upsells + goals) -->
+      <section data-step="enhance" class="step bg-white rounded-2xl shadow-sm p-6 md:p-10 hidden">
+        <h2 class="text-2xl md:text-3xl font-black tracking-tight mb-1">ENHANCE YOUR ROLLOUT</h2>
+        <p class="text-gray-500 mb-2">First — what's your main goal?</p>
+        <div class="flex flex-wrap gap-2 mb-8" id="goalsGrid"></div>
+
+        <p class="text-gray-500 mb-2">Recommended distribution upgrades for your goal:</p>
+        <div id="recsGrid" class="space-y-3"></div>
+        <p id="noRecsNote" class="text-sm text-gray-400 italic mt-3"></p>
+
+        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mt-6 flex items-start gap-3">
+          <i data-lucide="zap" class="w-5 h-5 text-yellow-700 flex-shrink-0 mt-0.5"></i>
+          <p class="text-sm font-bold text-yellow-900">These upgrades trigger direct DJ-network distribution and email blasts. Add now or skip — you can layer them on later.</p>
+        </div>
+
+        <div class="flex justify-between mt-8">
+          <button class="onboarding-back" data-back="enhance"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back</button>
+          <button class="onboarding-cta" data-next="enhance">Continue <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+        </div>
+      </section>
+
+      <!-- STEP 4: PAYMENT -->
+      <section data-step="payment" class="step bg-white rounded-2xl shadow-sm p-6 md:p-10 hidden">
+        <h2 class="text-2xl md:text-3xl font-black tracking-tight mb-1">SECURE PAYMENT</h2>
+        <p class="text-gray-500 mb-8">Stripe-encrypted checkout. Cards charged once verification clears.</p>
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div class="sm:col-span-2"><label class="onboarding-label">Card Number</label><input class="onboarding-input" placeholder="4242 4242 4242 4242" value="4242 4242 4242 4242"></div>
+          <div><label class="onboarding-label">Expiry</label><input class="onboarding-input" placeholder="MM/YY" value="12/29"></div>
+          <div><label class="onboarding-label">CVC</label><input class="onboarding-input" placeholder="123" value="123"></div>
+          <div class="sm:col-span-2"><label class="onboarding-label">Cardholder Name</label><input class="onboarding-input" placeholder="Name on card"></div>
+        </div>
+        <div class="text-xs text-gray-400 flex items-center gap-2 mt-3"><i data-lucide="lock" class="w-3 h-3"></i> 256-bit SSL · Stripe-powered · Demo only</div>
+        <div class="flex justify-between mt-8">
+          <button class="onboarding-back" data-back="payment"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back</button>
+          <button class="onboarding-cta onboarding-cta--brand" data-next="payment"><i data-lucide="zap" class="w-4 h-4"></i> Complete Booking</button>
+        </div>
+      </section>
+
+      <!-- STEP 5: AGREEMENT (success) -->
+      <section data-step="success" class="step bg-white rounded-2xl shadow-sm p-6 md:p-10 hidden">
+        <div class="text-center mb-8">
+          <div class="w-20 h-20 bg-[#FDF2F8] rounded-full flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="check" class="w-10 h-10 text-[#8A1558]"></i>
+          </div>
+          <h2 class="text-3xl md:text-4xl font-black tracking-tighter mb-2">YOU'RE BOOKED.</h2>
+          <p class="text-gray-600 text-lg" id="successSub"></p>
+        </div>
+
+        <div id="performanceNext" class="hidden">
+          <div class="bg-yellow-50 border-2 border-yellow-300 rounded-xl p-5 mb-5 flex items-start gap-3">
+            <i data-lucide="alert-triangle" class="w-6 h-6 text-yellow-700 flex-shrink-0"></i>
+            <div>
+              <h3 class="font-black text-yellow-900">Action required within 24 hours</h3>
+              <p class="text-sm text-yellow-800 mt-0.5">Your distribution unlocks once we can verify your artist profiles on the three platforms below.</p>
+            </div>
           </div>
 
-          <p class="text-xs text-gray-400 mt-4 text-center">A copy of these instructions has been emailed to your inbox.</p>
+          <div class="bg-gray-50 rounded-xl p-5 border border-gray-200">
+            <p class="text-sm text-gray-700 mb-4">Hi <span id="welcomeName" class="font-bold">artist</span>, your <span id="welcomePkg" class="font-bold"></span> is confirmed for <span id="welcomeDate" class="font-bold text-[#8A1558]"></span>. Sign up at each platform, screenshot proof, and upload at the Verification Portal.</p>
+            <ol class="space-y-3">
+              <li class="flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-lg">
+                <span class="flex-shrink-0 w-8 h-8 rounded-full bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center font-black">1</span>
+                <div class="flex-1"><div class="font-bold">Bandsintown</div></div>
+                <a href="https://artists.bandsintown.com" target="_blank" rel="noopener" class="text-xs font-black uppercase tracking-widest bg-[#8A1558] text-white px-3 py-2 rounded hover:bg-[#680D3E]">Sign up <i data-lucide="external-link" class="w-3 h-3 inline"></i></a>
+              </li>
+              <li class="flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-lg">
+                <span class="flex-shrink-0 w-8 h-8 rounded-full bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center font-black">2</span>
+                <div class="flex-1"><div class="font-bold">Songkick / Tourbox</div></div>
+                <a href="https://www.songkick.com/tourbox" target="_blank" rel="noopener" class="text-xs font-black uppercase tracking-widest bg-[#8A1558] text-white px-3 py-2 rounded hover:bg-[#680D3E]">Sign up <i data-lucide="external-link" class="w-3 h-3 inline"></i></a>
+              </li>
+              <li class="flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-lg">
+                <span class="flex-shrink-0 w-8 h-8 rounded-full bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center font-black">3</span>
+                <div class="flex-1"><div class="font-bold">DICE</div></div>
+                <a href="https://dice.fm" target="_blank" rel="noopener" class="text-xs font-black uppercase tracking-widest bg-[#8A1558] text-white px-3 py-2 rounded hover:bg-[#680D3E]">Sign up <i data-lucide="external-link" class="w-3 h-3 inline"></i></a>
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- Viral Loop block — share, add to calendar, invite 5 + IG follow -->
+        <div class="mt-8 grid md:grid-cols-3 gap-4" id="loopsBlock">
+          <!-- Share with team -->
+          <div class="bg-[#FDF2F8] border border-[#FBCFE8] rounded-xl p-5">
+            <div class="w-10 h-10 rounded-lg bg-white text-[#8A1558] flex items-center justify-center mb-3"><i data-lucide="users" class="w-5 h-5"></i></div>
+            <h4 class="font-black mb-1">Share with your team</h4>
+            <p class="text-xs text-gray-600 mb-3">Manager, DJ, videographer, friends — bring the room with you.</p>
+            <button id="shareTeamBtn" class="text-xs font-black uppercase tracking-widest bg-[#8A1558] text-white px-3 py-2 rounded hover:bg-[#680D3E] flex items-center gap-1.5"><i data-lucide="share-2" class="w-3.5 h-3.5"></i> Share Link</button>
+          </div>
+
+          <!-- Add to Calendar -->
+          <div class="bg-[#FDF2F8] border border-[#FBCFE8] rounded-xl p-5">
+            <div class="w-10 h-10 rounded-lg bg-white text-[#8A1558] flex items-center justify-center mb-3"><i data-lucide="calendar-plus" class="w-5 h-5"></i></div>
+            <h4 class="font-black mb-1">Add to your calendar</h4>
+            <p class="text-xs text-gray-600 mb-3">Drop the date so you don't miss anything.</p>
+            <a id="addCalBtn" target="_blank" rel="noopener" class="text-xs font-black uppercase tracking-widest bg-[#8A1558] text-white px-3 py-2 rounded hover:bg-[#680D3E] inline-flex items-center gap-1.5"><i data-lucide="calendar-plus" class="w-3.5 h-3.5"></i> Add</a>
+          </div>
+
+          <!-- Invite 5 friends → free ticket -->
+          <div class="bg-yellow-50 border-2 border-yellow-300 rounded-xl p-5">
+            <div class="w-10 h-10 rounded-lg bg-white text-yellow-700 flex items-center justify-center mb-3"><i data-lucide="gift" class="w-5 h-5"></i></div>
+            <h4 class="font-black mb-1">Invite 5 friends → free ticket</h4>
+            <p class="text-xs text-yellow-900 mb-3">Share with 5 friends. They follow <a href="https://instagram.com/digiwaxx" target="_blank" rel="noopener" class="font-bold underline">@digiwaxx</a> on IG. You get a free ticket.</p>
+            <div class="flex gap-2">
+              <button id="inviteFriendsBtn" class="text-xs font-black uppercase tracking-widest bg-yellow-400 border border-yellow-500 text-black px-3 py-2 rounded hover:bg-yellow-300 flex items-center gap-1.5"><i data-lucide="share-2" class="w-3.5 h-3.5"></i> Share Invite</button>
+              <a href="https://instagram.com/digiwaxx" target="_blank" rel="noopener" class="text-xs font-black uppercase tracking-widest bg-white border border-yellow-500 text-yellow-900 px-3 py-2 rounded hover:bg-yellow-100 flex items-center gap-1.5"><i data-lucide="instagram" class="w-3.5 h-3.5"></i> Follow</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-3 justify-center mt-8">
+          <a href="dashboard.html" class="onboarding-cta onboarding-cta--brand">Open Dashboard <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+          <a href="verify.html" id="verifyBtn" class="onboarding-back hidden">Verify Now</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- ORDER SUMMARY (sticky) -->
+    <aside class="lg:col-span-1">
+      <div class="bg-white rounded-2xl shadow-sm p-6 lg:sticky lg:top-6">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-lg font-black tracking-tight">ORDER SUMMARY</h3>
+          <i data-lucide="receipt" class="w-5 h-5 text-gray-400"></i>
+        </div>
+        <div id="summaryEmpty" class="text-center text-gray-400 text-sm py-8">Pick a package to see your total.</div>
+        <div id="summaryFilled" class="hidden">
+          <div id="summaryItems" class="space-y-3 text-sm"></div>
+          <div class="border-t border-gray-200 mt-4 pt-4">
+            <div class="flex justify-between items-baseline">
+              <span class="text-xs font-bold uppercase tracking-widest text-gray-500">Total</span>
+              <span class="text-2xl font-black" id="summaryTotal">$0</span>
+            </div>
+            <div id="summaryDate" class="text-xs text-[#8A1558] font-bold mt-2 hidden"></div>
+          </div>
+        </div>
+        <div class="mt-5 pt-5 border-t border-gray-100 text-xs text-gray-400 space-y-1">
+          <div class="flex items-center gap-2"><i data-lucide="lock" class="w-3 h-3"></i> 256-bit SSL secure</div>
+          <div class="flex items-center gap-2"><i data-lucide="shield-check" class="w-3 h-3"></i> Stripe-powered</div>
+          <div class="flex items-center gap-2"><i data-lucide="rotate-ccw" class="w-3 h-3"></i> Refundable until verification</div>
         </div>
       </div>
-
-      <div class="flex flex-wrap gap-3 justify-center">
-        <a href="dashboard.html" class="btn-primary">Open Dashboard <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
-        <a href="verify.html" id="verifyBtn" class="btn-outline hidden">Verify Now</a>
-      </div>
-    </div>
-  </section>
-
+    </aside>
+  </div>
 </main>
+
+<!-- LIGHT FOOTER -->
+<footer class="nmw-footer mt-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+      <div class="col-span-2 md:col-span-1">
+        <img src="images/digiwaxx-logo.png" alt="New Music Wednesday" class="h-12 w-auto mb-3" />
+        <p class="text-sm">Live performance and rollout infrastructure for rising artists. Every Wednesday at The Penthouse NYC.</p>
+      </div>
+      <div>
+        <h4 class="text-xs font-black uppercase tracking-widest text-gray-900 mb-4">Onboarding</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="apply.html">Artist Access</a></li>
+          <li><a href="verify.html">Verification</a></li>
+          <li><a href="dashboard.html">Dashboard</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-xs font-black uppercase tracking-widest text-gray-900 mb-4">Funnel</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="mission.html">Mission</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="dj-call.html">DJ Call</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-xs font-black uppercase tracking-widest text-gray-900 mb-4">Resources</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="alerts.html">Get Alerts</a></li>
+          <li><a href="sponsor.html">Sponsor NMW</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-gray-200 pt-6 text-center text-xs text-gray-500">
+      © 2026 New Music Wednesdays · By Digiwaxx · All rights reserved.
+    </div>
+  </div>
+</footer>
 
 <script src="assets/nmw.js"></script>
 <script>
@@ -250,17 +313,15 @@ const presetPkg = params.get('pkg');
 if (presetPkg) funnel.package = presetPkg;
 NMW.setFunnel(funnel);
 
-// Step ids in order. 'date' inserts after package only when performance tier.
 function stepSequence() {
   const seq = ['1'];
   if (NMW.isPerformanceTier(funnel.package)) seq.push('date');
-  seq.push('2', '3', '4', '5');
+  seq.push('enhance', 'payment');
   return seq;
 }
 function stepLabel(id) {
-  return { '1': 'Package', 'date': 'Date', '2': 'Goals', '3': 'Upgrades', '4': 'Info', '5': 'Pay', '6': 'Done' }[id];
+  return { '1': 'Package', 'date': 'Date', 'enhance': 'Enhance', 'payment': 'Payment', 'success': 'Done' }[id];
 }
-
 let currentStep = '1';
 
 function renderSteps() {
@@ -268,16 +329,15 @@ function renderSteps() {
   const idx = seq.indexOf(currentStep);
   const ind = document.getElementById('stepIndicator');
   ind.innerHTML = seq.map((id, i) => {
-    const cls = i < idx ? 'done' : i === idx ? 'active' : '';
-    const lineCls = i < idx ? 'done' : '';
-    return `
-      <div class="flex items-center">
-        <div class="step-dot ${cls}">${i < idx ? '✓' : i + 1}</div>
-        <span class="ml-2 text-xs font-bold uppercase tracking-wider hidden sm:inline ${i === idx ? 'text-black' : 'text-gray-400'}">${stepLabel(id)}</span>
-      </div>
-      ${i < seq.length - 1 ? `<div class="step-line ${lineCls}"></div>` : ''}
-    `;
+    const isActive = i === idx;
+    const isDone = i < idx;
+    const dotCls = isActive ? 'bg-black text-white border-black' : isDone ? 'bg-[#8A1558] text-white border-[#8A1558]' : 'bg-white text-gray-400 border-gray-200';
+    const dot = `<div class="onboarding-dot ${dotCls}">${isDone ? '<i data-lucide=\"check\" class=\"w-4 h-4\"></i>' : (i + 1)}</div>`;
+    const label = `<div class="onboarding-step-label ${isActive ? 'text-gray-900' : 'text-gray-400'}">${stepLabel(id).toUpperCase()}</div>`;
+    const line = i < seq.length - 1 ? `<div class="flex-1 h-0.5 mt-4 ${isDone || isActive ? 'bg-[#8A1558]' : 'bg-gray-200'}"></div>` : '';
+    return `<div class="flex flex-col items-center text-center"><div>${dot}</div>${label}</div>${line}`;
   }).join('');
+  if (typeof lucide !== 'undefined') lucide.createIcons();
 }
 
 function showStep(id) {
@@ -286,16 +346,17 @@ function showStep(id) {
   const el = document.querySelector(`[data-step="${currentStep}"]`);
   if (el) el.classList.remove('hidden');
   if (currentStep === 'date') renderDates();
+  if (currentStep === 'enhance') renderRecs();
   renderSteps();
+  renderSummary();
   window.scrollTo({ top: 0, behavior: 'smooth' });
-  (typeof lucide !== "undefined" && lucide.createIcons());
+  if (typeof lucide !== 'undefined') lucide.createIcons();
 }
 
 function nextStep() {
   const seq = stepSequence();
   const i = seq.indexOf(currentStep);
   if (i < seq.length - 1) showStep(seq[i + 1]);
-  else showStep('6');
 }
 function prevStep() {
   const seq = stepSequence();
@@ -303,49 +364,65 @@ function prevStep() {
   if (i > 0) showStep(seq[i - 1]);
 }
 
-// --- step 1: packages ---
 function renderPackages() {
   const grid = document.getElementById('pkgGrid');
-  grid.innerHTML = '';
-  NMW.PACKAGES.forEach(p => {
-    const sel = funnel.package === p.id ? 'selected' : '';
-    const tag = p.tier === 'performance' ? '<span class="tag tag-perf">Performance</span>' : '<span class="tag tag-entry">Entry</span>';
-    grid.insertAdjacentHTML('beforeend', `
-      <div class="card cursor-pointer ${sel}" data-pkg="${p.id}">
-        <div class="flex items-start justify-between mb-2">
-          <div class="text-xs font-black uppercase tracking-widest text-gray-400">${p.tier === 'performance' ? 'Performance' : 'Entry'}</div>
-          ${tag}
-        </div>
-        <h3 class="font-black text-xl">${p.name}</h3>
-        <div class="text-2xl font-black text-brand-500 my-2">$${p.price}</div>
-        <p class="text-sm text-gray-600 mb-3">${p.blurb}</p>
-        <ul class="space-y-1 text-xs text-gray-700">
-          ${p.perks.map(x => `<li class="flex gap-1.5"><i data-lucide="check" class="w-3 h-3 text-brand-500 mt-0.5"></i>${x}</li>`).join('')}
-        </ul>
-      </div>
-    `);
-  });
+  grid.innerHTML = NMW.PACKAGES.map(p => {
+    const sel = funnel.package === p.id ? 'is-selected' : '';
+    return `<button type="button" class="pkg-tile ${sel}" data-pkg="${p.id}">
+      <div class="pkg-name">${p.name}</div>
+      <div class="pkg-price">$${p.price}</div>
+    </button>`;
+  }).join('');
   grid.querySelectorAll('[data-pkg]').forEach(el => {
     el.addEventListener('click', () => {
       funnel.package = el.dataset.pkg;
       if (!NMW.isPerformanceTier(funnel.package)) funnel.eventDate = null;
       NMW.setFunnel(funnel);
       renderPackages();
-      document.querySelector('[data-next="1"]').disabled = false;
+      validateStep1();
+      renderSummary();
     });
   });
-  document.querySelector('[data-next="1"]').disabled = !funnel.package;
-  (typeof lucide !== "undefined" && lucide.createIcons());
 }
 
-// --- step 2: goals ---
+function renderDates() {
+  const grid = document.getElementById('dateGrid');
+  const dates = NMW.upcomingWednesdays(8);
+  grid.innerHTML = dates.map(d => {
+    const k = NMW.dateKey(d);
+    const slot = NMW.getSlot(k);
+    const left = Math.max(0, slot.capacity - slot.bookings.length);
+    const full = left === 0;
+    const sel = funnel.eventDate === d.toISOString();
+    const tag = full
+      ? '<span class="text-xs font-bold text-gray-400">Sold out</span>'
+      : (left <= 1 ? `<span class="text-xs font-bold text-yellow-700">${left} slot left</span>` : `<span class="text-xs font-bold text-green-700">${left} of ${slot.capacity} open</span>`);
+    return `<button type="button" class="date-tile ${sel ? 'is-selected' : ''} ${full ? 'is-disabled' : ''}" ${full ? 'disabled' : ''} data-date="${d.toISOString()}">
+      <div class="text-xs font-black uppercase tracking-widest text-gray-400">${d.toLocaleDateString(undefined, { month: 'short' })}</div>
+      <div class="text-3xl font-black leading-none mt-1">${d.getDate()}</div>
+      <div class="text-xs text-gray-500 mt-1">Wednesday</div>
+      <div class="mt-2">${tag}</div>
+    </button>`;
+  }).join('');
+  grid.querySelectorAll('[data-date]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (btn.disabled) return;
+      funnel.eventDate = btn.dataset.date;
+      NMW.setFunnel(funnel);
+      renderDates();
+      document.querySelector('[data-next="date"]').disabled = false;
+      renderSummary();
+    });
+  });
+  document.querySelector('[data-next="date"]').disabled = !funnel.eventDate;
+}
+
 function renderGoals() {
   const grid = document.getElementById('goalsGrid');
-  grid.innerHTML = '';
-  NMW.GOALS.forEach(g => {
-    const sel = funnel.goals.includes(g) ? 'selected' : '';
-    grid.insertAdjacentHTML('beforeend', `<button type="button" class="chip ${sel}" data-goal="${g}">${g}</button>`);
-  });
+  grid.innerHTML = NMW.GOALS.map(g => {
+    const sel = funnel.goals.includes(g) ? 'is-selected' : '';
+    return `<button type="button" class="goal-chip ${sel}" data-goal="${g}">${g}</button>`;
+  }).join('');
   grid.querySelectorAll('[data-goal]').forEach(el => {
     el.addEventListener('click', () => {
       const g = el.dataset.goal;
@@ -353,40 +430,34 @@ function renderGoals() {
       if (i >= 0) funnel.goals.splice(i, 1); else funnel.goals.push(g);
       NMW.setFunnel(funnel);
       renderGoals();
-      document.querySelector('[data-next="2"]').disabled = funnel.goals.length === 0;
+      renderRecsList();
     });
   });
-  document.querySelector('[data-next="2"]').disabled = funnel.goals.length === 0;
 }
 
-// --- step 3: recommendations ---
-function renderRecs() {
+function renderRecsList() {
   const recs = NMW.recommendUpsells(funnel.goals);
   const grid = document.getElementById('recsGrid');
   const note = document.getElementById('noRecsNote');
   if (recs.length === 0) {
     grid.innerHTML = '';
-    note.textContent = 'No upgrade recommendations for your goals — your package already covers what you need.';
+    note.textContent = funnel.goals.length === 0
+      ? 'Pick a goal above to see tailored upgrades.'
+      : 'No upgrade recommendations for these goals — your package already covers them.';
     return;
   }
   note.textContent = '';
-  grid.innerHTML = '';
-  recs.forEach(r => {
+  grid.innerHTML = recs.map(r => {
     const sel = funnel.upsells.includes(r.id);
-    grid.insertAdjacentHTML('beforeend', `
-      <label class="card flex items-center gap-4 cursor-pointer ${sel ? 'selected' : ''}">
-        <input type="checkbox" data-up="${r.id}" ${sel ? 'checked' : ''} class="w-5 h-5 rounded border-gray-300 text-brand-500 focus:ring-brand-500">
-        <div class="flex-1">
-          <div class="flex items-center gap-2">
-            <h3 class="font-bold">${r.name}</h3>
-            <span class="tag tag-perf">Recommended</span>
-          </div>
-          <p class="text-sm text-gray-600">${r.blurb}</p>
-        </div>
-        <div class="text-xl font-black text-brand-500">+$${r.price}</div>
-      </label>
-    `);
-  });
+    return `<label class="upsell-row ${sel ? 'is-selected' : ''}">
+      <input type="checkbox" data-up="${r.id}" ${sel ? 'checked' : ''}>
+      <div class="flex-1">
+        <div class="font-bold">${r.name} <span class="text-xs font-black uppercase tracking-widest text-[#8A1558] ml-1">Recommended</span></div>
+        <div class="text-sm text-gray-500">${r.blurb}</div>
+      </div>
+      <div class="text-lg font-black text-[#8A1558]">+$${r.price}</div>
+    </label>`;
+  }).join('');
   grid.querySelectorAll('[data-up]').forEach(el => {
     el.addEventListener('change', () => {
       const id = el.dataset.up;
@@ -396,167 +467,157 @@ function renderRecs() {
         funnel.upsells = funnel.upsells.filter(x => x !== id);
       }
       NMW.setFunnel(funnel);
-      renderRecs();
+      renderRecsList();
+      renderSummary();
     });
   });
 }
 
-// --- step 4: info form prefill ---
-function hydrateInfo() {
-  const form = document.getElementById('infoForm');
-  Object.entries(funnel.info || {}).forEach(([k, v]) => {
-    const f = form.elements[k];
-    if (f && f.type !== 'checkbox') f.value = v;
-  });
-  if (funnel.blast) form.elements['blast'].checked = true;
+function renderRecs() {
+  renderGoals();
+  renderRecsList();
 }
 
-function captureInfo() {
-  const form = document.getElementById('infoForm');
+function renderSummary() {
+  const empty = document.getElementById('summaryEmpty');
+  const filled = document.getElementById('summaryFilled');
+  if (!funnel.package) {
+    empty.classList.remove('hidden');
+    filled.classList.add('hidden');
+    return;
+  }
+  empty.classList.add('hidden');
+  filled.classList.remove('hidden');
+  const pkg = NMW.PACKAGES.find(p => p.id === funnel.package);
+  const ups = (funnel.upsells || []).map(id => NMW.UPSELLS[id]).filter(Boolean);
+  const total = NMW.totalPrice(funnel);
+  document.getElementById('summaryItems').innerHTML = `
+    <div class="flex justify-between"><span class="font-bold">${pkg.name}</span><span class="font-bold">$${pkg.price}</span></div>
+    ${ups.map(u => `<div class="flex justify-between text-sm"><span>${u.name}</span><span>+$${u.price}</span></div>`).join('')}
+  `;
+  document.getElementById('summaryTotal').textContent = '$' + total;
+  const dateEl = document.getElementById('summaryDate');
+  if (funnel.eventDate) {
+    dateEl.classList.remove('hidden');
+    dateEl.textContent = 'Performing ' + NMW.fmtDate(new Date(funnel.eventDate));
+  } else {
+    dateEl.classList.add('hidden');
+  }
+}
+
+function captureStep1() {
+  const form = document.getElementById('step1Form');
   const data = new FormData(form);
   const info = {};
-  ['name','email','phone','artistName','genre','instagram'].forEach(k => info[k] = data.get(k) || '');
+  ['name','email','phone','artistName','genre','instagram','source'].forEach(k => info[k] = (data.get(k) || '').toString().trim());
   funnel.info = info;
-  funnel.blast = !!data.get('blast');
   NMW.setFunnel(funnel);
   return info;
 }
 
-function validateInfo() {
-  const form = document.getElementById('infoForm');
+function validateStep1() {
+  const form = document.getElementById('step1Form');
   const required = ['name','email','artistName','genre'];
-  for (const k of required) if (!form.elements[k].value.trim()) { form.elements[k].focus(); return false; }
-  return true;
+  const allFilled = required.every(k => form.elements[k].value.trim().length > 0);
+  const ok = !!funnel.package && allFilled;
+  document.querySelector('[data-next="1"]').disabled = !ok;
+  return ok;
 }
+document.getElementById('step1Form').addEventListener('input', () => {
+  captureStep1();
+  validateStep1();
+});
 
-// --- step 5: order summary ---
-function renderOrder() {
-  const pkg = NMW.PACKAGES.find(p => p.id === funnel.package);
-  const ups = (funnel.upsells || []).map(id => NMW.UPSELLS[id]).filter(Boolean);
-  const total = NMW.totalPrice(funnel);
-  const evDate = funnel.eventDate ? new Date(funnel.eventDate) : null;
-  document.getElementById('orderSummary').innerHTML = `
-    <h3 class="font-bold text-lg mb-4 flex items-center gap-2"><i data-lucide="package" class="w-5 h-5 text-brand-500"></i> Order Summary</h3>
-    <div class="space-y-3">
-      ${pkg ? `<div class="flex justify-between border-b border-gray-100 pb-3">
-        <div>
-          <div class="font-bold">${pkg.name}</div>
-          <div class="text-xs text-gray-500">${pkg.blurb}</div>
-          ${evDate ? `<div class="text-xs text-brand-500 font-bold mt-1">Performing ${NMW.fmtDate(evDate)}</div>` : ''}
-        </div>
-        <div class="font-bold">$${pkg.price}</div>
-      </div>` : ''}
-      ${ups.map(u => `<div class="flex justify-between border-b border-gray-100 pb-3">
-        <div>
-          <div class="font-bold">${u.name}</div>
-          <div class="text-xs text-gray-500">${u.blurb}</div>
-        </div>
-        <div class="font-bold">+$${u.price}</div>
-      </div>`).join('')}
-      <div class="flex justify-between pt-2">
-        <div class="font-black uppercase tracking-wider text-sm">Total</div>
-        <div class="font-black text-xl">$${total}</div>
-      </div>
-    </div>
-  `;
-  document.getElementById('totalAmount').textContent = '$' + total;
-  document.getElementById('totalSub').textContent = pkg ? `${pkg.name}${ups.length ? ` + ${ups.length} upgrade${ups.length>1?'s':''}` : ''}` : '';
-  (typeof lucide !== "undefined" && lucide.createIcons());
-}
-
-// --- date step ---
-function renderDates() {
-  const grid = document.getElementById('dateGrid');
-  const dates = NMW.upcomingWednesdays(8);
-  grid.innerHTML = dates.map(d => {
-    const k = NMW.dateKey(d);
-    const slot = NMW.getSlot(k);
-    const taken = slot.bookings.length;
-    const cap = slot.capacity;
-    const left = Math.max(0, cap - taken);
-    const full = left === 0;
-    const sel = funnel.eventDate === d.toISOString();
-    const tag = full
-      ? '<span class="tag tag-na">Sold out</span>'
-      : (left <= 1 ? `<span class="tag tag-pending">${left} slot left</span>` : `<span class="tag tag-approved">${left} of ${cap} open</span>`);
-    return `<button type="button" class="card text-left ${sel ? 'selected' : ''} ${full ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}" ${full ? 'disabled' : ''} data-date="${d.toISOString()}">
-      <div class="flex items-start justify-between mb-2">
-        <div>
-          <div class="text-xs font-black uppercase tracking-widest text-gray-400">${d.toLocaleDateString(undefined, { month: 'short' })}</div>
-          <div class="text-3xl font-black leading-none mt-1">${d.getDate()}</div>
-          <div class="text-xs text-gray-500 mt-1">Wednesday</div>
-        </div>
-        ${tag}
-      </div>
-      <div class="text-xs text-gray-500 mt-3">${taken} / ${cap} booked</div>
-    </button>`;
-  }).join('');
-
-  grid.querySelectorAll('[data-date]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      if (btn.disabled) return;
-      funnel.eventDate = btn.dataset.date;
-      NMW.setFunnel(funnel);
-      renderDates();
-      document.querySelector('[data-next="date"]').disabled = false;
-    });
-  });
-  document.querySelector('[data-next="date"]').disabled = !funnel.eventDate;
-}
-
-// --- nav ---
 document.querySelectorAll('[data-next]').forEach(btn => {
   btn.addEventListener('click', () => {
-    const from = btn.dataset.next;
-    if (from === '4') { if (!validateInfo()) return; captureInfo(); }
+    if (btn.dataset.next === '1') {
+      captureStep1();
+      if (!validateStep1()) return;
+    }
+    if (btn.dataset.next === 'payment') {
+      const ref = sessionStorage.getItem('nmw.referrer');
+      if (ref) {
+        const all = NMW.getArtists();
+        const owner = all.find(a => a.referral?.code === ref);
+        if (owner) {
+          owner.referral.registrations = (owner.referral.registrations || 0) + 1;
+          NMW.REFERRAL_TIERS.forEach(t => {
+            if (owner.referral.registrations >= t.count && !owner.referral.unlocked.includes(t.reward)) {
+              owner.referral.unlocked.push(t.reward);
+            }
+          });
+          NMW.saveArtist(owner);
+        }
+        sessionStorage.removeItem('nmw.referrer');
+      }
+      const artist = NMW.completeCheckout();
+      document.getElementById('successSub').textContent = `${artist.artistName || artist.name}, your spot at New Music Wednesday is locked in.`;
+      if (artist.performanceSlot) {
+        document.getElementById('performanceNext').classList.remove('hidden');
+        document.getElementById('verifyBtn').classList.remove('hidden');
+        document.getElementById('welcomeName').textContent = artist.artistName || artist.name;
+        document.getElementById('welcomePkg').textContent = artist.package?.name || 'package';
+        if (artist.event?.date) {
+          document.getElementById('welcomeDate').textContent = NMW.fmtDate(new Date(artist.event.date));
+        }
+      }
+      wireLoops(artist);
+      showStep('success');
+      return;
+    }
     nextStep();
-    if (currentStep === '5') renderOrder();
   });
 });
 document.querySelectorAll('[data-back]').forEach(btn => {
   btn.addEventListener('click', () => prevStep());
 });
 
-// --- pay ---
-document.getElementById('payBtn').addEventListener('click', () => {
-  // mark referrer credit if present
-  const ref = sessionStorage.getItem('nmw.referrer');
-  if (ref) {
-    const all = NMW.getArtists();
-    const owner = all.find(a => a.referral?.code === ref);
-    if (owner) {
-      owner.referral.registrations = (owner.referral.registrations || 0) + 1;
-      // unlock rewards
-      NMW.REFERRAL_TIERS.forEach(t => {
-        if (owner.referral.registrations >= t.count && !owner.referral.unlocked.includes(t.reward)) {
-          owner.referral.unlocked.push(t.reward);
-        }
-      });
-      NMW.saveArtist(owner);
-    }
-    sessionStorage.removeItem('nmw.referrer');
-  }
+function wireLoops(artist) {
+  const refUrl = NMW.referralLink(artist.referral.code);
+  const eventDate = artist.event?.date ? new Date(artist.event.date) : NMW.nextWednesday();
+  const dateLabel = NMW.fmtDate(eventDate);
 
-  const artist = NMW.completeCheckout();
-  document.getElementById('successSub').textContent = `${artist.artistName || artist.name}, your spot at New Music Wednesdays is locked in.`;
-  if (artist.performanceSlot) {
-    document.getElementById('performanceNext').classList.remove('hidden');
-    document.getElementById('verifyBtn').classList.remove('hidden');
-    document.getElementById('welcomeName').textContent = artist.artistName || artist.name;
-    document.getElementById('welcomePkg').textContent = artist.package?.name || 'package';
-    if (artist.event?.date) {
-      const d = new Date(artist.event.date);
-      document.getElementById('welcomeDate').textContent = NMW.fmtDate(d);
-    }
-  }
-  showStep(6);
-});
+  // Add to Calendar — uses the artist's actual event date (or next Wednesday)
+  const cal = NMW.buildCalendarLink({
+    title: `New Music Wednesdays | ${artist.artistName || 'NMW'} LIVE`,
+    start: eventDate,
+  });
+  const calBtn = document.getElementById('addCalBtn');
+  if (calBtn) calBtn.href = cal;
 
-// init
+  // Share with team
+  const shareBtn = document.getElementById('shareTeamBtn');
+  if (shareBtn) shareBtn.addEventListener('click', async () => {
+    const text = `Pull up to my NMW set · ${dateLabel} · The Penthouse NYC. ${refUrl}`;
+    if (navigator.share) {
+      try { await navigator.share({ title: 'New Music Wednesdays', text, url: refUrl }); return; } catch(_){}
+    }
+    try { await navigator.clipboard.writeText(text); shareBtn.innerHTML = '<i data-lucide="check" class="w-3.5 h-3.5"></i> Copied'; if (typeof lucide !== 'undefined') lucide.createIcons(); } catch(_) {}
+  });
+
+  // Invite 5 friends — same share, but track count
+  const inviteBtn = document.getElementById('inviteFriendsBtn');
+  if (inviteBtn) inviteBtn.addEventListener('click', async () => {
+    const text = `Come through to NMW with me · follow @digiwaxx on IG · ${refUrl}`;
+    if (navigator.share) {
+      try { await navigator.share({ title: 'NMW · Free ticket invite', text, url: refUrl }); } catch(_){}
+    } else {
+      try { await navigator.clipboard.writeText(text); } catch(_){}
+    }
+    NMW.updateCurrentArtist(a => { a.referral.invites = (a.referral.invites || 0) + 1; });
+    inviteBtn.innerHTML = '<i data-lucide="check" class="w-3.5 h-3.5"></i> Sent';
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+  });
+}
+
 renderPackages();
 renderGoals();
-renderRecs();
-hydrateInfo();
+renderSummary();
+const f = document.getElementById('step1Form');
+if (funnel.info) {
+  Object.entries(funnel.info).forEach(([k, v]) => { if (f.elements[k] && v) f.elements[k].value = v; });
+}
+validateStep1();
 showStep('1');
 </script>
 </body>

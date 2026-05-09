@@ -1,6 +1,14 @@
 import { test, expect } from '@playwright/test';
 import { collectConsoleErrors, filterAppErrors, resetAppState } from './helpers';
 
+// Helper: fill the step-1 details form
+async function fillStep1Details(page: any, opts: { artistName?: string } = {}) {
+  await page.locator('input[name="name"]').fill('Test Artist');
+  await page.locator('input[name="email"]').fill('test@example.com');
+  await page.locator('input[name="artistName"]').fill(opts.artistName ?? 'Stage Name');
+  await page.locator('select[name="genre"]').selectOption('R&B');
+}
+
 test.describe('Artist Access apply funnel (apply.html)', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/apply.html');
@@ -8,9 +16,9 @@ test.describe('Artist Access apply funnel (apply.html)', () => {
     await page.reload();
   });
 
-  test('package preselected from query string is selected', async ({ page }) => {
+  test('package preselected from query string + filled details enables continue', async ({ page }) => {
     await page.goto('/apply.html?pkg=performance-ready');
-    // Continue button should be enabled with preselected package
+    await fillStep1Details(page);
     const continueBtn = page.locator('[data-step="1"] button[data-next="1"]');
     await expect(continueBtn).toBeEnabled();
   });
@@ -19,55 +27,35 @@ test.describe('Artist Access apply funnel (apply.html)', () => {
     const errors = collectConsoleErrors(page);
     await page.goto('/apply.html');
 
-    // STEP 1: Pick performance-ready package
+    // STEP 1: pick package + fill required details (now combined)
     await page.locator('[data-pkg="performance-ready"]').click();
+    await fillStep1Details(page);
     await page.locator('[data-step="1"] button[data-next="1"]').click();
 
-    // STEP "date": Pick the first available Wednesday
+    // STEP date: pick the first available Wednesday (performance tier only)
     await expect(page.locator('[data-step="date"]')).toBeVisible();
     const firstAvailableDate = page.locator('[data-step="date"] [data-date]:not([disabled])').first();
-    await expect(firstAvailableDate).toBeVisible();
     await firstAvailableDate.click();
     await page.locator('button[data-next="date"]').click();
 
-    // STEP 2: Goals — pick 2 chips
-    await expect(page.locator('[data-step="2"]')).toBeVisible();
-    await page.getByRole('button', { name: 'Build awareness' }).click();
+    // STEP enhance: pick a goal (recommendations populate)
+    await expect(page.locator('[data-step="enhance"]')).toBeVisible();
     await page.getByRole('button', { name: 'Push a new release' }).click();
-    await page.locator('button[data-next="2"]').click();
+    await page.locator('button[data-next="enhance"]').click();
 
-    // STEP 3: Recommendations (skipping picks ok)
-    await expect(page.locator('[data-step="3"]')).toBeVisible();
-    await page.locator('button[data-next="3"]').click();
+    // STEP payment: order summary in right rail, click Complete Booking
+    await expect(page.locator('[data-step="payment"]')).toBeVisible();
+    await expect(page.locator('#summaryTotal')).toContainText('$');
+    await page.locator('button[data-next="payment"]').click();
 
-    // STEP 4: Info form — fill required fields
-    await expect(page.locator('[data-step="4"]')).toBeVisible();
-    await page.locator('input[name="name"]').fill('Test Artist');
-    await page.locator('input[name="email"]').fill('test@example.com');
-    await page.locator('input[name="artistName"]').fill('Stage Name');
-    await page.locator('select[name="genre"]').selectOption('R&B');
-    await page.locator('input[name="instagram"]').fill('@stagename');
-    await page.locator('button[data-next="4"]').click();
-
-    // STEP 5: Payment — order summary visible, click Complete Booking
-    await expect(page.locator('[data-step="5"]')).toBeVisible();
-    await expect(page.locator('#totalAmount')).toContainText('$');
-    await page.locator('#payBtn').click();
-
-    // STEP 6: Success — performance verification panel shown
-    await expect(page.locator('[data-step="6"]')).toBeVisible();
+    // STEP success
+    await expect(page.locator('[data-step="success"]')).toBeVisible();
     await expect(page.getByRole('heading', { name: /You're booked/i })).toBeVisible();
     await expect(page.locator('#performanceNext')).toBeVisible();
     await expect(page.locator('#welcomeName')).toContainText('Stage Name');
-    await expect(page.locator('#welcomePkg')).toContainText('Performance Ready');
-
-    // Direct sign-up links to all 3 platforms
-    await expect(page.getByRole('link', { name: /Sign up/i }).filter({ has: page.locator('[href*="bandsintown.com"]') })).toHaveCount(0); // matches by href below
 
     const signupLinks = page.locator('#performanceNext a[target="_blank"]');
-    const hrefs = await signupLinks.evaluateAll((els) =>
-      els.map((e) => (e as HTMLAnchorElement).href),
-    );
+    const hrefs = await signupLinks.evaluateAll((els) => els.map((e) => (e as HTMLAnchorElement).href));
     expect(hrefs.some((h) => /artists\.bandsintown\.com/.test(h))).toBe(true);
     expect(hrefs.some((h) => /songkick\.com/.test(h))).toBe(true);
     expect(hrefs.some((h) => /dice\.fm/.test(h))).toBe(true);
@@ -86,50 +74,34 @@ test.describe('Artist Access apply funnel (apply.html)', () => {
     expect(filterAppErrors(errors())).toEqual([]);
   });
 
-  test('entry-tier checkout skips date step and verification panel', async ({ page }) => {
+  test('entry-tier checkout skips the date step', async ({ page }) => {
     await page.goto('/apply.html');
     await page.locator('[data-pkg="media-ready"]').click();
+    await fillStep1Details(page, { artistName: 'EntryName' });
     await page.locator('[data-step="1"] button[data-next="1"]').click();
 
-    // Should skip date and go straight to goals
+    // Should NOT show the date step for entry tier
     await expect(page.locator('[data-step="date"]')).toBeHidden();
-    await expect(page.locator('[data-step="2"]')).toBeVisible();
-    await page.getByRole('button', { name: 'Build awareness' }).click();
-    await page.locator('button[data-next="2"]').click();
+    await expect(page.locator('[data-step="enhance"]')).toBeVisible();
 
-    await page.locator('button[data-next="3"]').click();
+    await page.locator('button[data-next="enhance"]').click();
+    await expect(page.locator('[data-step="payment"]')).toBeVisible();
+    await page.locator('button[data-next="payment"]').click();
 
-    await page.locator('input[name="name"]').fill('Entry Artist');
-    await page.locator('input[name="email"]').fill('e@e.co');
-    await page.locator('input[name="artistName"]').fill('EntryName');
-    await page.locator('select[name="genre"]').selectOption('Soul');
-    await page.locator('button[data-next="4"]').click();
-
-    await page.locator('#payBtn').click();
-
+    await expect(page.locator('[data-step="success"]')).toBeVisible();
     await expect(page.locator('#performanceNext')).toBeHidden();
-    await expect(page.getByRole('heading', { name: /You're booked/i })).toBeVisible();
   });
 
-  test('info form validation: cannot submit with missing required fields', async ({ page }) => {
+  test('cannot continue from step 1 without package + required details', async ({ page }) => {
     await page.goto('/apply.html');
+    const cont = page.locator('[data-step="1"] button[data-next="1"]');
+    // No package, no details
+    await expect(cont).toBeDisabled();
+    // Package only — still missing details
     await page.locator('[data-pkg="media-ready"]').click();
-    await page.locator('[data-step="1"] button[data-next="1"]').click();
-    await page.getByRole('button', { name: 'Build awareness' }).click();
-    await page.locator('button[data-next="2"]').click();
-    await page.locator('button[data-next="3"]').click();
-
-    // Click continue without filling fields → validateInfo returns false, focuses first invalid input
-    const beforeStep = await page.locator('[data-step="4"]').isVisible();
-    expect(beforeStep).toBe(true);
-    await page.locator('button[data-next="4"]').click();
-    // Should still be on step 4
-    await expect(page.locator('[data-step="4"]')).toBeVisible();
-    await expect(page.locator('[data-step="5"]')).toBeHidden();
-  });
-
-  test('cannot continue from step 1 without selecting a package', async ({ page }) => {
-    await page.goto('/apply.html');
-    await expect(page.locator('[data-step="1"] button[data-next="1"]')).toBeDisabled();
+    await expect(cont).toBeDisabled();
+    // Now fill details — should enable
+    await fillStep1Details(page);
+    await expect(cont).toBeEnabled();
   });
 });
