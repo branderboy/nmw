@@ -222,42 +222,52 @@
   </div>
 </section>
 
-<!-- Pricing tiers, clean row, no chunky cards -->
+<!-- Lead capture / intake form -->
 <section id="packages" class="py-20 md:py-24 bg-white border-t border-gray-200">
-  <div class="max-w-6xl mx-auto px-4">
-    <div class="flex items-end justify-between flex-wrap gap-4 mb-10">
-      <div>
-        <span class="text-[#8A1558] font-bold tracking-widest text-xs uppercase mb-3 block">[ Pick a tier ]</span>
-        <h2 class="text-3xl md:text-5xl font-black tracking-tighter text-gray-900">Five tiers, starts at $200</h2>
+  <div class="max-w-3xl mx-auto px-4">
+    <div class="mb-10 text-center">
+      <span class="text-[#8A1558] font-bold tracking-widest text-xs uppercase mb-3 block">[ Tell us about you ]</span>
+      <h2 class="text-3xl md:text-5xl font-black tracking-tighter text-gray-900 mb-3">Let's see if your Wednesday is ready.</h2>
+      <p class="text-base md:text-lg text-gray-600">Quick intro. Then we line up the rollout.</p>
+    </div>
+
+    <form id="leadForm" class="grid sm:grid-cols-2 gap-5 bg-white border border-gray-200 rounded-2xl p-6 md:p-8 shadow-sm">
+      <div class="sm:col-span-2"><label class="onboarding-label">Artist Name *</label><input class="onboarding-input" name="artistName" required placeholder="Your stage name"></div>
+      <div><label class="onboarding-label">Location *</label><input class="onboarding-input" name="location" required placeholder="City, State"></div>
+      <div><label class="onboarding-label">Email *</label><input class="onboarding-input" name="email" type="email" required placeholder="you@email.com"></div>
+      <div class="sm:col-span-2"><label class="onboarding-label">What kind of music do you make? *</label>
+        <select class="onboarding-input" name="genre" required>
+          <option value="">Select a genre</option>
+          <option>R&amp;B</option><option>Soul</option><option>Hip Hop</option>
+          <option>Afro-Pop</option><option>Pop</option><option>Latin</option>
+          <option>Electronic</option><option>Other</option>
+        </select>
       </div>
-      <a href="apply.html" class="text-sm font-black tracking-widest uppercase text-[#8A1558] hover:underline">See full details →</a>
-    </div>
+      <div class="sm:col-span-2"><label class="onboarding-label">Manager / Team contact (optional)</label>
+        <input class="onboarding-input" name="manager" placeholder="Name and email or phone (if applicable)">
+      </div>
 
-    <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
-      <a href="apply.html?pkg=media-ready" class="pkg-tile pkg-tile--lg">
-        <div class="pkg-name">Media Ready</div>
-        <div class="pkg-price">$200</div>
-      </a>
-      <a href="apply.html?pkg=one-mic" class="pkg-tile pkg-tile--lg">
-        <div class="pkg-name">One Mic Visual</div>
-        <div class="pkg-price">$250</div>
-      </a>
-      <a href="apply.html?pkg=performance-ready" class="pkg-tile pkg-tile--lg">
-        <div class="pkg-name">Performance Ready</div>
-        <div class="pkg-price">$395</div>
-      </a>
-      <a href="apply.html?pkg=full-experience" class="pkg-tile pkg-tile--lg">
-        <div class="pkg-name">Full Experience</div>
-        <div class="pkg-price">$650</div>
-      </a>
-      <a href="apply.html?pkg=premiere" class="pkg-tile pkg-tile--lg col-span-2 md:col-span-1">
-        <div class="pkg-name">Premiere</div>
-        <div class="pkg-price">$899</div>
+      <div class="sm:col-span-2 flex justify-end pt-2">
+        <button type="submit" class="inline-flex items-center gap-2 bg-[#8A1558] text-white px-8 py-3 rounded-md text-sm font-bold tracking-widest uppercase hover:bg-[#680D3E] transition-colors">
+          Submit <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </form>
+
+    <!-- Personalized response + Continue -->
+    <div id="leadResponse" class="hidden mt-6 bg-[#FDF2F8] border border-[#FBCFE8] rounded-2xl p-6 md:p-8 text-center">
+      <div class="w-14 h-14 mx-auto bg-white rounded-full flex items-center justify-center mb-4 border border-[#FBCFE8]">
+        <i data-lucide="check" class="w-7 h-7 text-[#8A1558]"></i>
+      </div>
+      <h3 class="text-xl md:text-2xl font-black tracking-tighter mb-2" id="leadGreeting">Got it.</h3>
+      <p class="text-gray-700 leading-relaxed" id="leadMessage"></p>
+      <a href="apply.html" id="leadContinue" class="inline-flex items-center gap-2 bg-[#8A1558] text-white px-6 py-3 rounded-md text-sm font-bold tracking-widest uppercase hover:bg-[#680D3E] mt-5">
+        Continue <i data-lucide="arrow-right" class="w-4 h-4"></i>
       </a>
     </div>
 
-    <div class="mt-10 text-center">
-      <a href="events.html" class="text-[#8A1558] font-bold tracking-widest text-xs uppercase hover:underline">See upcoming events at The Penthouse →</a>
+    <div class="mt-8 text-center">
+      <a href="events.html" class="text-[#8A1558] font-bold tracking-widest text-xs uppercase hover:underline">See upcoming events at The Penthouse</a>
     </div>
   </div>
 </section>
@@ -330,6 +340,46 @@
       NMW.saveArtist(ow);
     }
   }
+
+  // Lead capture: save to localStorage and prefill apply.html funnel info
+  document.getElementById('leadForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(e.target);
+    const lead = {
+      artistName: (data.get('artistName') || '').trim(),
+      location: (data.get('location') || '').trim(),
+      email: (data.get('email') || '').trim(),
+      genre: data.get('genre') || '',
+      manager: (data.get('manager') || '').trim(),
+      submittedAt: new Date().toISOString(),
+    };
+    if (!lead.artistName || !lead.email) return;
+
+    // Append to leads list
+    const leads = JSON.parse(localStorage.getItem('nmw.leads') || '[]');
+    leads.push(lead);
+    localStorage.setItem('nmw.leads', JSON.stringify(leads));
+
+    // Prefill the apply funnel so the user doesn't re-type
+    const funnel = NMW.getFunnel();
+    funnel.info = Object.assign({}, funnel.info || {}, {
+      name: lead.artistName,
+      artistName: lead.artistName,
+      email: lead.email,
+      genre: lead.genre,
+    });
+    NMW.setFunnel(funnel);
+
+    // Personalized response
+    document.getElementById('leadGreeting').textContent = `Welcome, ${lead.artistName}.`;
+    document.getElementById('leadMessage').innerHTML =
+      `We hear ${lead.genre ? '<b>' + lead.genre + '</b> ' : ''}from <b>${lead.location || 'wherever you are'}</b>. ` +
+      `Tap continue and pick the package that fits your rollout. We've already saved your details.`;
+    document.getElementById('leadForm').classList.add('hidden');
+    document.getElementById('leadResponse').classList.remove('hidden');
+    (typeof lucide !== "undefined" && lucide.createIcons());
+    document.getElementById('leadResponse').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
 </script>
 </body>
 </html>

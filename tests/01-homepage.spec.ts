@@ -21,15 +21,42 @@ test.describe('Homepage / sales funnel (index.html)', () => {
     const thumb = page.locator('img[src="images/video_thumbnail.png"]');
     await expect(thumb).toBeVisible();
 
-    // 5 pricing tiles linking into apply.html
-    const pkgTiles = page.locator('#packages a[href^="apply.html?pkg="]');
-    await expect(pkgTiles).toHaveCount(5);
-    await expect(page.getByText('$200', { exact: true })).toBeVisible();
-    await expect(page.getByText('$899', { exact: true })).toBeVisible();
+    // Lead capture form (no pricing on the homepage)
+    await expect(page.locator('#leadForm input[name="artistName"]')).toBeVisible();
+    await expect(page.locator('#leadForm input[name="location"]')).toBeVisible();
+    await expect(page.locator('#leadForm input[name="email"]')).toBeVisible();
+    await expect(page.locator('#leadForm select[name="genre"]')).toBeVisible();
 
     // No app console errors
     const appErrors = filterAppErrors(errors());
     expect(appErrors, `unexpected console errors: ${appErrors.join('\n')}`).toEqual([]);
+  });
+
+  test('lead capture saves to localStorage and prefills apply funnel', async ({ page }) => {
+    await page.goto('/');
+    await page.evaluate(() => Object.keys(localStorage).filter(k => k.startsWith('nmw.')).forEach(k => localStorage.removeItem(k)));
+    await page.reload();
+
+    await page.locator('#leadForm input[name="artistName"]').fill('Lead Tester');
+    await page.locator('#leadForm input[name="location"]').fill('Brooklyn, NY');
+    await page.locator('#leadForm input[name="email"]').fill('lead@example.com');
+    await page.locator('#leadForm select[name="genre"]').selectOption('R&B');
+    await page.locator('#leadForm button[type="submit"]').click();
+
+    // Personalized response shown
+    await expect(page.locator('#leadResponse')).toBeVisible();
+    await expect(page.locator('#leadGreeting')).toContainText('Lead Tester');
+    await expect(page.getByRole('link', { name: /Continue/i })).toBeVisible();
+
+    // Lead persisted + funnel info prefilled
+    const state = await page.evaluate(() => ({
+      leads: JSON.parse(localStorage.getItem('nmw.leads') || '[]'),
+      funnel: JSON.parse(localStorage.getItem('nmw.funnel') || '{}'),
+    }));
+    expect(state.leads).toHaveLength(1);
+    expect(state.leads[0].email).toBe('lead@example.com');
+    expect(state.funnel.info.artistName).toBe('Lead Tester');
+    expect(state.funnel.info.email).toBe('lead@example.com');
   });
 
   test('CTA scrolls to packages section', async ({ page }) => {
