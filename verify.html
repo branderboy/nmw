@@ -9,7 +9,7 @@
 <script src="https://unpkg.com/lucide@latest"></script>
 <link rel="stylesheet" href="assets/nmw.css">
 <script>
-tailwind.config = { theme: { extend: {
+if (typeof tailwind !== "undefined") tailwind.config = { theme: { extend: {
   fontFamily: { sans: ['Inter','sans-serif'] },
   colors: { brand: { 50:'#FDF2F8', 200:'#FBCFE8', 500:'#8A1558', 600:'#680D3E' } }
 }}}
@@ -131,7 +131,7 @@ function render() {
       </div>
     `);
   });
-  lucide.createIcons();
+  (typeof lucide !== "undefined" && lucide.createIcons());
 
   wrap.querySelectorAll('[data-slot]').forEach(el => {
     const k = el.dataset.slot;

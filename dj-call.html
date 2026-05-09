@@ -9,7 +9,7 @@
 <script src="https://unpkg.com/lucide@latest"></script>
 <link rel="stylesheet" href="assets/nmw.css">
 <script>
-  tailwind.config = { theme: { extend: {
+  if (typeof tailwind !== "undefined") tailwind.config = { theme: { extend: {
     fontFamily: { sans: ['Inter','sans-serif'], serif: ['Merriweather','serif'] },
     colors: { brand: { 500:'#8A1558', 600:'#680D3E' } }
   }}}
@@ -306,11 +306,11 @@
     NMW.addDJ(entry);
     document.getElementById('djForm').classList.add('hidden');
     document.getElementById('successCard').classList.remove('hidden');
-    lucide.createIcons();
+    (typeof lucide !== "undefined" && lucide.createIcons());
     document.getElementById('successCard').scrollIntoView({ behavior: 'smooth' });
   });
 
-  lucide.createIcons();
+  (typeof lucide !== "undefined" && lucide.createIcons());
 </script>
 </body>
 </html>

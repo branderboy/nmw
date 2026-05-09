@@ -9,7 +9,7 @@
 <script src="https://unpkg.com/lucide@latest"></script>
 <link rel="stylesheet" href="assets/nmw.css">
 <script>
-tailwind.config = { theme: { extend: {
+if (typeof tailwind !== "undefined") tailwind.config = { theme: { extend: {
   fontFamily: { sans: ['Inter','sans-serif'] },
   colors: { brand: { 50:'#FDF2F8', 200:'#FBCFE8', 500:'#8A1558', 600:'#680D3E' } }
 }}}
@@ -474,7 +474,7 @@ document.querySelectorAll('.tab').forEach(t => {
     t.classList.add('active');
     document.querySelectorAll('.pane').forEach(p => p.classList.add('hidden'));
     document.querySelector(`[data-pane="${t.dataset.tab}"]`).classList.remove('hidden');
-    lucide.createIcons();
+    (typeof lucide !== "undefined" && lucide.createIcons());
   });
 });
 
@@ -769,7 +769,7 @@ function showSponsor(id) {
   document.getElementById('sdGoal').textContent = s.goal || '—';
   document.getElementById('sponsorDetail').classList.remove('hidden');
   document.getElementById('sponsorDetail').scrollIntoView({ behavior: 'smooth' });
-  lucide.createIcons();
+  (typeof lucide !== "undefined" && lucide.createIcons());
 }
 
 document.getElementById('sdClose')?.addEventListener('click', () => {
@@ -1017,7 +1017,7 @@ function renderAll() {
   renderFlows();
   renderFlowRuns();
   renderAnalytics();
-  lucide.createIcons();
+  (typeof lucide !== "undefined" && lucide.createIcons());
 }
 
 document.getElementById('artistSearch').addEventListener('input', e => renderArtists(e.target.value));

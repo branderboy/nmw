@@ -9,7 +9,7 @@
 <script src="https://unpkg.com/lucide@latest"></script>
 <link rel="stylesheet" href="assets/nmw.css">
 <script>
-  tailwind.config = {
+  if (typeof tailwind !== "undefined") tailwind.config = {
     theme: { extend: {
       fontFamily: { sans: ['Inter','sans-serif'], serif: ['Merriweather','serif'] },
       colors: { brand: { 500: '#8A1558', 600: '#680D3E' } }
@@ -308,7 +308,7 @@
 
 <script src="assets/nmw.js"></script>
 <script>
-  lucide.createIcons();
+  (typeof lucide !== "undefined" && lucide.createIcons());
   function scrollToPackages() { document.getElementById('packages').scrollIntoView({ behavior: 'smooth' }); }
 
   // Capture referral code from URL if present

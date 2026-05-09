@@ -1,4 +1,41 @@
 /* NMW shared styles — built around the sales-funnel design system */
+
+/* ============ Tailwind fallback utilities ============
+   Production: Tailwind CDN provides these. We re-declare the most critical
+   visibility/layout utilities locally so the app still works if the CDN is
+   unreachable. This is a thin safety net, not a Tailwind replacement. */
+.hidden { display: none !important; }
+[hidden] { display: none !important; }
+.block { display: block; }
+.inline-block { display: inline-block; }
+.flex { display: flex; }
+.inline-flex { display: inline-flex; }
+.grid { display: grid; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+/* Responsive display fallbacks so the "hidden md:flex" pattern works without Tailwind */
+@media (min-width: 640px) {
+  .sm\:flex   { display: flex !important; }
+  .sm\:inline { display: inline !important; }
+  .sm\:block  { display: block !important; }
+  .sm\:grid   { display: grid !important; }
+  .sm\:hidden { display: none !important; }
+}
+@media (min-width: 768px) {
+  .md\:flex   { display: flex !important; }
+  .md\:inline { display: inline !important; }
+  .md\:block  { display: block !important; }
+  .md\:grid   { display: grid !important; }
+  .md\:hidden { display: none !important; }
+}
+@media (min-width: 1024px) {
+  .lg\:flex   { display: flex !important; }
+  .lg\:inline { display: inline !important; }
+  .lg\:block  { display: block !important; }
+  .lg\:grid   { display: grid !important; }
+  .lg\:hidden { display: none !important; }
+}
+
 :root {
   --brand-50: #FDF2F8;
   --brand-100: #FBE5F0;
