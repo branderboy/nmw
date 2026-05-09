@@ -14,6 +14,38 @@
     colors: { brand: { 500:'#8A1558', 600:'#680D3E' } }
   }}}
 </script>
+<style>
+  .editorial-dropcap::first-letter {
+    font-size: 5rem;
+    float: left;
+    margin: 0.4rem 0.75rem 0 0;
+    line-height: 0.9;
+    font-weight: 900;
+    color: #8A1558;
+    font-family: 'Merriweather', serif;
+  }
+  .pull-quote {
+    font-family: 'Merriweather', serif;
+    font-style: italic;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    line-height: 1.3;
+    color: #111827;
+    border-left: 4px solid #8A1558;
+    padding: 0.5rem 0 0.5rem 2rem;
+  }
+  .grain {
+    position: relative;
+  }
+  .grain::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 4px 4px;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+  }
+  .signature-line { letter-spacing: 0.05em; }
+</style>
 </head>
 <body class="bg-gray-50 text-gray-900 selection:bg-[#8A1558] selection:text-white">
 
@@ -39,140 +71,253 @@
   </div>
 </nav>
 
-<header class="bg-white border-b border-gray-200 py-16 md:py-24 relative overflow-hidden">
-  <div class="absolute inset-0 -z-10 opacity-10 pointer-events-none">
-    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-[#8A1558] rounded-full blur-[160px]"></div>
+<!-- HERO: emotional pull -->
+<header class="bg-black text-white relative overflow-hidden grain">
+  <div class="absolute inset-0 -z-0 opacity-50 pointer-events-none">
+    <img src="images/audience.avif" alt="" class="w-full h-full object-cover opacity-40" />
+    <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black"></div>
   </div>
-  <div class="max-w-4xl mx-auto px-4 text-center">
-    <span class="text-[#8A1558] font-black tracking-widest text-sm mb-3 block">[ Our Mission ]</span>
-    <h1 class="text-4xl md:text-7xl font-black tracking-tighter leading-[1] text-gray-900 mb-6">
-      We don't book stages.<br><span class="text-[#8A1558]">We build rollouts.</span>
+  <div class="relative max-w-4xl mx-auto px-4 py-24 md:py-36 text-center">
+    <span class="inline-block text-yellow-400 font-black tracking-widest text-xs mb-6 px-3 py-1 border border-yellow-400/40 rounded-full">[ Why We Exist ]</span>
+    <h1 class="text-5xl md:text-8xl font-black tracking-tighter leading-[0.95] mb-6">
+      We exist<br>
+      because <span class="italic font-serif font-normal text-[#FBCFE8]">somebody</span><br>
+      had to.
     </h1>
-    <p class="text-lg md:text-2xl text-gray-700 font-serif max-w-3xl mx-auto leading-relaxed">
-      New Music Wednesdays exists to make sure every rising artist who steps on our stage walks off with a real audience, real coverage, and infrastructure that compounds beyond the night.
+    <p class="text-xl md:text-2xl text-white/80 max-w-2xl mx-auto font-serif italic leading-relaxed">
+      Too many real artists kept walking off real stages with nothing in their hands. We couldn't keep watching it happen. So we built the room.
     </p>
   </div>
 </header>
 
-<!-- The Why -->
-<section class="py-20 bg-white">
-  <div class="max-w-4xl mx-auto px-4">
-    <div class="prose prose-lg max-w-none font-serif text-gray-700 leading-relaxed space-y-6">
-      <p class="editorial-dropcap">
-        New Music Wednesdays started inside Digiwaxx — the DJ network that has quietly broken records for over two decades. We saw what was missing: artists with real talent kept getting one-night spotlights and zero rollout. The clip went up. The momentum didn't last. The audience never showed up to the next show.
-      </p>
-      <p>
-        So we built a different kind of stage. One where the performance is just the trigger — and what happens after is the actual product. Press write-ups. Distribution. DICE relationships. DJ exposure. Promo assets you can use for months. The kind of infrastructure that turns a Wednesday night into a real career inflection point.
-      </p>
-      <p>
-        That's the mission: <b class="text-[#8A1558]">turn culture into compounding visibility for the artists who deserve it.</b>
-      </p>
+<!-- WHY WE EXIST: THE THESIS -->
+<section class="bg-gradient-to-b from-black to-gray-900 text-white py-20 md:py-28 relative overflow-hidden">
+  <div class="absolute top-1/2 left-1/2 w-[700px] h-[700px] bg-[#8A1558] rounded-full blur-[180px] opacity-20 -translate-x-1/2 -translate-y-1/2"></div>
+  <div class="relative max-w-4xl mx-auto px-4">
+    <div class="grid md:grid-cols-3 gap-8 items-start">
+      <div class="md:col-span-1">
+        <span class="text-yellow-400 font-black tracking-widest text-xs block mb-2">[ Our Reason ]</span>
+        <h2 class="text-3xl md:text-4xl font-black tracking-tighter leading-tight">Why we exist.</h2>
+      </div>
+      <div class="md:col-span-2 space-y-5 font-serif text-lg md:text-xl leading-relaxed text-white/85">
+        <p>Because talent without infrastructure dies quiet.</p>
+        <p>Because the artists who deserve a real shot keep getting one-night spotlights and zero rollout.</p>
+        <p>Because the gap between <em>"that was a great set"</em> and <em>"that changed my career"</em> is built — it doesn't just happen.</p>
+        <p class="text-yellow-400 not-italic font-sans font-bold tracking-wide pt-3 border-t border-white/10">We exist to close that gap. Every Wednesday. On purpose.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- Pillars -->
+<!-- THE LETTER -->
+<section class="py-20 md:py-28 bg-white">
+  <div class="max-w-3xl mx-auto px-4">
+    <div class="text-sm font-black tracking-widest uppercase text-[#8A1558] mb-6">From the founders &amp; the hosts</div>
+
+    <article class="text-gray-800 font-serif text-lg md:text-xl leading-[1.9] space-y-6">
+      <p class="editorial-dropcap">
+        We have stood in too many rooms where real talent didn't get seen. Rooms where the lights went up and the people who needed to hear it were already on their phones. Rooms where the artist gave everything and walked out with nothing — no clip, no contact, no next thing. We built this stage because we couldn't keep watching that happen.
+      </p>
+
+      <p>
+        New Music Wednesdays isn't a showcase. It's not a try-out. It's a <em>commitment</em>. The commitment is this: if you walk on our stage, we will not let your night disappear into the air. We will catch it on camera. We will write you up. We will push you to the people who matter — DJs, media, the audience that becomes your audience.
+      </p>
+
+      <p>
+        We know what it costs you to keep showing up. The DM that didn't get answered. The flyer that didn't move tickets. The session that didn't lead anywhere. The voice that says <em>maybe this isn't for me.</em> We hear that voice too. And we are telling you, on the record:
+      </p>
+
+      <div class="my-12">
+        <blockquote class="pull-quote">
+          "It's for you. We made the room for you."
+        </blockquote>
+      </div>
+
+      <p>
+        Every Wednesday at The Penthouse, the lights come up at 7. The DJ Call has been running since 3. The hosts — Anna, CL, Chrys — are warming up the crowd that came specifically to find someone new. The cameras are on. The press is in the pit. There is a real audience in front of you, the kind that came because they trust this room to show them what's next.
+      </p>
+
+      <p>
+        That's the room you walk into. That's what we're protecting. That's what this whole thing is for.
+      </p>
+
+      <p class="pt-6 signature-line">
+        We see you. We're ready when you are.
+      </p>
+
+      <div class="pt-2">
+        <p class="text-[#8A1558] font-black text-2xl tracking-tight font-sans leading-tight">— CL Llewellyn</p>
+        <p class="text-sm font-bold tracking-widest uppercase text-gray-500 font-sans mt-1">New Music Wednesday</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- WHAT WE PROMISE -->
 <section class="py-20 bg-gray-50 border-y border-gray-200">
-  <div class="max-w-6xl mx-auto px-4">
-    <div class="text-center mb-12">
-      <span class="text-[#8A1558] font-black tracking-widest text-sm mb-2 block">[ What we believe ]</span>
-      <h2 class="text-3xl md:text-5xl font-black tracking-tight">Four pillars hold the whole platform up.</h2>
+  <div class="max-w-5xl mx-auto px-4">
+    <div class="text-center mb-14">
+      <span class="text-[#8A1558] font-black tracking-widest text-xs mb-3 block">[ Our Promise ]</span>
+      <h2 class="text-4xl md:text-6xl font-black tracking-tighter">When you step on this stage,<br><span class="text-[#8A1558]">we owe you something.</span></h2>
     </div>
 
-    <div class="grid md:grid-cols-2 gap-6">
-      <div class="section-card">
-        <div class="w-12 h-12 rounded-lg bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center mb-4"><i data-lucide="megaphone" class="w-6 h-6"></i></div>
-        <h3 class="text-xl font-black tracking-tight mb-2">Amplification</h3>
-        <p class="text-gray-600 font-serif">Performances should produce moments — clips, interviews, photos, recap content — that spread far beyond the room they happened in.</p>
+    <div class="space-y-6">
+      <div class="section-card flex gap-5 items-start">
+        <div class="flex-shrink-0 w-14 h-14 rounded-full bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center text-2xl font-black">1</div>
+        <div>
+          <h3 class="text-xl md:text-2xl font-black tracking-tight mb-2">We owe you a real audience.</h3>
+          <p class="text-gray-700 font-serif text-lg leading-relaxed">Not your friends. Not the bartender. The kind of crowd that came to the room because they trust the room. People who will follow you home.</p>
+        </div>
       </div>
-      <div class="section-card">
-        <div class="w-12 h-12 rounded-lg bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center mb-4"><i data-lucide="radio" class="w-6 h-6"></i></div>
-        <h3 class="text-xl font-black tracking-tight mb-2">Distribution</h3>
-        <p class="text-gray-600 font-serif">Every show should ship into the systems where fans actually find music: DICE, Bandsintown, Songkick, the Digiwaxx DJ network, and your own audience.</p>
+
+      <div class="section-card flex gap-5 items-start">
+        <div class="flex-shrink-0 w-14 h-14 rounded-full bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center text-2xl font-black">2</div>
+        <div>
+          <h3 class="text-xl md:text-2xl font-black tracking-tight mb-2">We owe you the moment in HD.</h3>
+          <p class="text-gray-700 font-serif text-lg leading-relaxed">The clip. The photo. The interview. Assets you can carry into next week, next month, next year — the kind of receipts that turn a Wednesday into a year of momentum.</p>
+        </div>
       </div>
+
+      <div class="section-card flex gap-5 items-start">
+        <div class="flex-shrink-0 w-14 h-14 rounded-full bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center text-2xl font-black">3</div>
+        <div>
+          <h3 class="text-xl md:text-2xl font-black tracking-tight mb-2">We owe you the rooms after this one.</h3>
+          <p class="text-gray-700 font-serif text-lg leading-relaxed">Your show ships into DICE, Bandsintown, Songkick, and the New Music Wednesday DJ network. Your performance becomes searchable. People who weren't there get to find you on purpose.</p>
+        </div>
+      </div>
+
+      <div class="section-card flex gap-5 items-start">
+        <div class="flex-shrink-0 w-14 h-14 rounded-full bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center text-2xl font-black">4</div>
+        <div>
+          <h3 class="text-xl md:text-2xl font-black tracking-tight mb-2">We owe you the truth.</h3>
+          <p class="text-gray-700 font-serif text-lg leading-relaxed">We will tell you what worked. We will tell you what didn't. We are not in the business of selling anybody dreams. The room is real, the press is real, the relationships are real, and we will only sell you what we can deliver.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO WE ARE -->
+<section class="py-20 md:py-28 bg-white">
+  <div class="max-w-5xl mx-auto px-4">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <span class="text-[#8A1558] font-black tracking-widest text-xs mb-3 block">[ Who We Are ]</span>
+        <h2 class="text-3xl md:text-5xl font-black tracking-tighter mb-6">New Music Wednesday is a relationship.</h2>
+        <div class="text-gray-700 font-serif text-lg leading-relaxed space-y-4">
+          <p>Not a venue. Not a showcase. Not a brand on a flyer.</p>
+          <p>It's the people who actually pick up the phone when a record needs to move. The DJs, the promoters, the tastemakers we built this with — and the artists we built it for.</p>
+          <p>When we say we'll walk your music into the rooms that matter, we mean we will personally walk it there. The way it's always been done. The way it should be done.</p>
+        </div>
+      </div>
+      <div class="image-card-rotate"><img src="images/performance.avif" alt="The room" /></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE DO -->
+<section class="py-20 bg-gray-50 border-y border-gray-200">
+  <div class="max-w-5xl mx-auto px-4">
+    <div class="text-center mb-14">
+      <span class="text-[#8A1558] font-black tracking-widest text-xs mb-3 block">[ What We Do ]</span>
+      <h2 class="text-3xl md:text-5xl font-black tracking-tighter">We connect the dots <span class="italic font-serif font-normal">between your music,<br>your audience,</span> and the rooms that matter.</h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-5">
       <div class="section-card">
-        <div class="w-12 h-12 rounded-lg bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center mb-4"><i data-lucide="badge-check" class="w-6 h-6"></i></div>
-        <h3 class="text-xl font-black tracking-tight mb-2">Validation</h3>
-        <p class="text-gray-600 font-serif">A media pit, a DJ Call, hosts who actually move culture — proof that an artist is taken seriously when they walk in the room.</p>
+        <div class="w-12 h-12 rounded-lg bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center mb-4"><i data-lucide="mic" class="w-6 h-6"></i></div>
+        <h3 class="text-xl font-black tracking-tight mb-2">We give you a stage that ships.</h3>
+        <p class="text-gray-700 font-serif">A live performance every Wednesday at The Penthouse NYC. We capture it, write it up, and push it into DICE, Bandsintown, and Songkick — so the night keeps working long after the lights go down.</p>
       </div>
       <div class="section-card">
         <div class="w-12 h-12 rounded-lg bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center mb-4"><i data-lucide="users-round" class="w-6 h-6"></i></div>
-        <h3 class="text-xl font-black tracking-tight mb-2">Relationships</h3>
-        <p class="text-gray-600 font-serif">DJs, videographers, producers, label reps, legends of the culture — the room is built so connections happen naturally, not forced.</p>
+        <h3 class="text-xl font-black tracking-tight mb-2">We put you in front of tastemakers.</h3>
+        <p class="text-gray-700 font-serif">DJs, promoters, programmers, journalists — real names in the room, not a vendor list. The kind of relationships that took years to build, used in your favor on a Wednesday night.</p>
       </div>
+      <div class="section-card">
+        <div class="w-12 h-12 rounded-lg bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center mb-4"><i data-lucide="radio" class="w-6 h-6"></i></div>
+        <h3 class="text-xl font-black tracking-tight mb-2">We get your record heard.</h3>
+        <p class="text-gray-700 font-serif">DJ rotations. Playlist placement. Direct-to-tastemaker outreach. We point the network at your name — and we don't stop after one spin.</p>
+      </div>
+      <div class="section-card">
+        <div class="w-12 h-12 rounded-lg bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center mb-4"><i data-lucide="globe-2" class="w-6 h-6"></i></div>
+        <h3 class="text-xl font-black tracking-tight mb-2">We work local. We reach global.</h3>
+        <p class="text-gray-700 font-serif">A Wednesday at The Penthouse becomes content that travels. A New York moment that ends up in a DJ set in Atlanta, a playlist in Manchester, a Story in Accra.</p>
+      </div>
+    </div>
+
+    <div class="mt-12 text-center">
+      <p class="text-xl md:text-2xl font-serif italic text-gray-700 max-w-2xl mx-auto leading-relaxed">"We don't sell marketing. We share the network we built with our own hands."</p>
     </div>
   </div>
 </section>
 
-<!-- Numbers / proof -->
-<section class="py-20 bg-gray-900 text-white relative overflow-hidden">
-  <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-[#8A1558] rounded-full blur-[160px] opacity-30 -translate-y-1/2 translate-x-1/2"></div>
-  <div class="max-w-6xl mx-auto px-4 relative">
-    <div class="text-center mb-12">
-      <span class="text-yellow-400 font-black tracking-widest text-xs mb-2 block">[ Built on real infrastructure ]</span>
-      <h2 class="text-3xl md:text-5xl font-black tracking-tight">Every Wednesday compounds.</h2>
-    </div>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <div class="text-center bg-white/5 backdrop-blur border border-white/10 rounded-xl p-6">
-        <div class="text-4xl md:text-5xl font-black tracking-tighter">30K+</div>
-        <div class="text-xs uppercase tracking-widest text-white/60 mt-2">Digiwaxx DJ network</div>
-      </div>
-      <div class="text-center bg-white/5 backdrop-blur border border-white/10 rounded-xl p-6">
-        <div class="text-4xl md:text-5xl font-black tracking-tighter">52</div>
-        <div class="text-xs uppercase tracking-widest text-white/60 mt-2">Weekly rollouts/yr</div>
-      </div>
-      <div class="text-center bg-white/5 backdrop-blur border border-white/10 rounded-xl p-6">
-        <div class="text-4xl md:text-5xl font-black tracking-tighter">3+</div>
-        <div class="text-xs uppercase tracking-widest text-white/60 mt-2">Performance slots / night</div>
-      </div>
-      <div class="text-center bg-white/5 backdrop-blur border border-white/10 rounded-xl p-6">
-        <div class="text-4xl md:text-5xl font-black tracking-tighter">6</div>
-        <div class="text-xs uppercase tracking-widest text-white/60 mt-2">Distribution surfaces</div>
-      </div>
+<!-- THE ROOM (sensory) -->
+<section class="py-20 bg-black text-white relative overflow-hidden grain">
+  <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-[#8A1558] rounded-full blur-[180px] opacity-30 -translate-y-1/3 translate-x-1/3"></div>
+  <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-yellow-400 rounded-full blur-[180px] opacity-10"></div>
+  <div class="relative max-w-4xl mx-auto px-4 text-center">
+    <span class="text-yellow-400 font-black tracking-widest text-xs mb-3 block">[ Inside The Penthouse ]</span>
+    <h2 class="text-4xl md:text-6xl font-black tracking-tighter mb-8">Wednesday, 7 PM.</h2>
+    <div class="text-lg md:text-xl text-white/80 font-serif leading-[1.9] space-y-5 max-w-2xl mx-auto">
+      <p>The DJ has been holding the floor for four hours. The cameras find their angle. The crowd shifts forward.</p>
+      <p>Someone you don't know yet is about to step on stage. The mic is hot. The press is in the pit. The hosts are watching the door.</p>
+      <p class="text-yellow-400 font-bold not-italic font-sans tracking-wide">This is the night the room changes for somebody.</p>
+      <p>That somebody is the artist we built this for.</p>
     </div>
   </div>
 </section>
 
-<!-- Hosts / lineage -->
+<!-- HOSTS -->
 <section class="py-20 bg-white">
-  <div class="max-w-4xl mx-auto px-4 text-center">
-    <span class="text-[#8A1558] font-black tracking-widest text-sm mb-2 block">[ The room ]</span>
-    <h2 class="text-3xl md:text-5xl font-black tracking-tight mb-4">Hosted by people who built the culture.</h2>
-    <p class="text-gray-600 font-serif text-lg max-w-2xl mx-auto mb-10">Anna Nyakana, CL, and Chrys Childs — three voices who shaped how we got here, holding the room every Wednesday at The Penthouse NYC.</p>
-    <div class="grid sm:grid-cols-3 gap-4 text-left">
-      <div class="section-card">
-        <div class="text-xs font-black uppercase tracking-widest text-[#8A1558] mb-1">Host</div>
-        <div class="font-bold text-lg">Anna Nyakana</div>
-        <p class="text-sm text-gray-600 font-serif mt-2">Author, founder, longtime cultural curator.</p>
+  <div class="max-w-5xl mx-auto px-4">
+    <div class="text-center mb-12">
+      <span class="text-[#8A1558] font-black tracking-widest text-xs mb-3 block">[ The People In The Room ]</span>
+      <h2 class="text-3xl md:text-5xl font-black tracking-tighter">Held down by people who built the culture.</h2>
+    </div>
+    <div class="grid sm:grid-cols-3 gap-5">
+      <div class="section-card text-center">
+        <div class="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-[#8A1558] to-[#680D3E] flex items-center justify-center text-white font-black text-2xl mb-4">A</div>
+        <div class="text-xs font-black uppercase tracking-widest text-[#8A1558]">Host</div>
+        <div class="font-bold text-xl mt-1">Anna Nyakana</div>
+        <p class="text-sm text-gray-600 font-serif italic mt-3">"I host because someone hosted me first."</p>
       </div>
-      <div class="section-card">
-        <div class="text-xs font-black uppercase tracking-widest text-[#8A1558] mb-1">Host</div>
-        <div class="font-bold text-lg">CL</div>
-        <p class="text-sm text-gray-600 font-serif mt-2">Veteran tastemaker connecting artists to opportunity.</p>
+      <div class="section-card text-center">
+        <div class="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-[#8A1558] to-[#680D3E] flex items-center justify-center text-white font-black text-2xl mb-4">CL</div>
+        <div class="text-xs font-black uppercase tracking-widest text-[#8A1558]">Host</div>
+        <div class="font-bold text-xl mt-1">CL</div>
+        <p class="text-sm text-gray-600 font-serif italic mt-3">"The artists already won. We just turn the lights on."</p>
       </div>
-      <div class="section-card">
-        <div class="text-xs font-black uppercase tracking-widest text-[#8A1558] mb-1">Host</div>
-        <div class="font-bold text-lg">Chrys Childs</div>
-        <p class="text-sm text-gray-600 font-serif mt-2">DJ, programmer, voice of the room.</p>
+      <div class="section-card text-center">
+        <div class="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-[#8A1558] to-[#680D3E] flex items-center justify-center text-white font-black text-2xl mb-4">CC</div>
+        <div class="text-xs font-black uppercase tracking-widest text-[#8A1558]">Host</div>
+        <div class="font-bold text-xl mt-1">Chrys Childs</div>
+        <p class="text-sm text-gray-600 font-serif italic mt-3">"This room remembers everything. Make it count."</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Closing CTA -->
-<section class="py-20 bg-[#8A1558] text-white">
-  <div class="max-w-4xl mx-auto px-4 text-center">
-    <h2 class="text-3xl md:text-5xl font-black tracking-tighter mb-4">If this is your moment, we're built for it.</h2>
-    <p class="text-white/80 font-serif text-lg mb-8 max-w-2xl mx-auto">Apply for Wednesday. Pick the package that matches your rollout. We'll handle the infrastructure.</p>
+<!-- CLOSING CTA -->
+<section class="py-24 bg-[#8A1558] text-white relative overflow-hidden grain">
+  <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 20% 30%, rgba(250,204,21,0.4), transparent 40%), radial-gradient(circle at 80% 70%, rgba(255,255,255,0.2), transparent 40%);"></div>
+  <div class="relative max-w-3xl mx-auto px-4 text-center">
+    <h2 class="text-4xl md:text-7xl font-black tracking-tighter leading-[0.95] mb-6">
+      If this is your<br>moment —
+    </h2>
+    <p class="text-xl md:text-2xl text-white/90 font-serif italic mb-10 max-w-2xl mx-auto">
+      We are ready. The mic is hot. The room is yours.
+    </p>
     <div class="max-w-sm mx-auto">
       <a href="apply.html" class="cta cta--yellow">
         <div class="cta__shadow"></div>
         <div class="cta__face">
-          <span class="cta__label">Apply for Artist Access</span>
-          <span class="cta__sub text-gray-800">Limited Wednesday Slots</span>
+          <span class="cta__label">Take The Stage</span>
+          <span class="cta__sub text-gray-800">Apply For Artist Access</span>
         </div>
       </a>
     </div>
+    <a href="events.html" class="inline-block mt-6 text-white/70 hover:text-white text-sm font-bold tracking-widest uppercase underline underline-offset-4">Or come watch first →</a>
   </div>
 </section>
 
@@ -186,7 +331,7 @@
           <span class="font-medium text-[#FBCFE8] text-xs tracking-widest uppercase mt-1">by Digiwaxx</span>
         </div>
       </div>
-      <p class="text-gray-400 font-serif text-sm italic max-w-sm">Artist Onboarding & Distribution Infrastructure.</p>
+      <p class="text-gray-400 font-serif text-sm italic max-w-sm">For the artists who were told no.</p>
     </div>
     <div class="flex flex-wrap gap-6 text-sm font-bold text-gray-400 uppercase tracking-widest justify-center">
       <a href="mission.html" class="hover:text-white">Mission</a>
@@ -197,18 +342,6 @@
     </div>
   </div>
 </footer>
-
-<style>
-.editorial-dropcap::first-letter {
-  font-size: 3.5rem;
-  float: left;
-  margin-right: 0.5rem;
-  line-height: 1;
-  font-weight: 700;
-  color: #8A1558;
-  font-family: 'Merriweather', serif;
-}
-</style>
 
 <script>lucide.createIcons();</script>
 </body>
