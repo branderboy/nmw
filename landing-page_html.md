@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NMW Artist Funnel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            500: '#8A1558',
+                            600: '#680D3E'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .view-section { display: none; }
+        .view-section.active { display: block; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 selection:bg-[#8A1558] selection:text-white">
+
+    <!-- Floating Admin Toggle -->
+    <button onclick="toggleAdmin()" id="floating-toggle" class="fixed bottom-4 right-4 z-50 bg-black text-white px-4 py-2 rounded-full font-bold text-xs uppercase tracking-widest shadow-2xl border border-white/20 hover:scale-105 transition-transform">
+        Admin Dashboard
+    </button>
+
+    <!-- ============================================== -->
+    <!-- VIEW 1: SALES FUNNEL                           -->
+    <!-- ============================================== -->
+    <div id="view-sales-funnel" class="view-section active bg-white">
+        <!-- ClickFunnels Urgency Bar -->
+        <div class="bg-[#8A1558] text-white text-center py-2 px-4 text-sm font-bold tracking-widest flex items-center justify-center gap-2">
+            <span class="animate-pulse w-2 h-2 bg-yellow-400 rounded-full"></span>
+            Attention Artists: Only 5 Event & Press Packages Left For Next Wednesday!
+        </div>
+
+        <!-- Navigation -->
+        <nav class="border-b border-gray-100 py-4 px-4 sm:px-8 flex justify-between items-center bg-white sticky top-0 z-50 shadow-sm">
+            <div class="flex items-center gap-3 mx-auto md:mx-0">
+                <div class="w-10 h-10 bg-[#8A1558] rounded flex items-center justify-center text-white font-black text-xl tracking-tighter shadow-md">NMW</div>
+                <div class="flex flex-col justify-center">
+                    <span class="font-bold text-xl tracking-tight leading-none text-gray-900">New Music Wednesday</span>
+                    <span class="font-medium text-[#8A1558] text-[10px] tracking-widest uppercase mt-1">by Digiwaxx</span>
+                </div>
+            </div>
+            <div class="hidden md:flex space-x-8 items-center text-sm font-bold tracking-wide text-gray-600">
+                <span class="text-gray-400 flex items-center gap-1"><i data-lucide="lock" class="w-4 h-4"></i> 100% Secure</span>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <header class="relative pt-12 pb-16 overflow-hidden bg-gray-50 border-b border-gray-200">
+            <div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
+                <h2 class="text-[#8A1558] font-black tracking-widest text-sm md:text-base mb-4">
+                    [ Official Artist Registration ]
+                </h2>
+                <h1 class="text-4xl md:text-6xl font-black tracking-tighter leading-[1] text-gray-900 mb-6 drop-shadow-sm">
+                    Secure Your Live Performance & Press Package At Manhattan's Top Destination For New Music.
+                </h1>
+                <p class="text-lg md:text-2xl text-gray-700 max-w-3xl mx-auto font-medium leading-relaxed mb-8">
+                    Perform live at The Penthouse NYC, secure guaranteed press coverage, capture high-end visual assets, and ignite your rollout in The Next Up Experience.
+                </p>
+                
+                <!-- VSL Video Placeholder -->
+                <div class="relative w-full aspect-video bg-black rounded-xl overflow-hidden shadow-2xl border-4 border-white mx-auto mb-10 max-w-3xl cursor-pointer group">
+                    <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Video Placeholder" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity" />
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-20 h-20 bg-[#8A1558] rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(138,21,88,0.6)] group-hover:scale-110 transition-transform">
+                            <i data-lucide="play" class="w-10 h-10 text-white ml-2"></i>
+                        </div>
+                    </div>
+                    <div class="absolute top-4 right-4 bg-black/50 backdrop-blur px-3 py-1 rounded text-white text-xs font-bold flex items-center gap-2">
+                        <div class="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div> Click To Watch
+                    </div>
+                </div>
+                
+                <!-- Main Hero CTA -->
+                <div class="flex flex-col items-center justify-center px-4 w-full max-w-2xl mx-auto">
+                    <button onclick="scrollToPackages()" class="relative w-full group block mb-4">
+                        <div class="absolute inset-0 bg-yellow-600 rounded-xl translate-y-2"></div>
+                        <div class="relative bg-yellow-400 border-2 border-yellow-300 text-black px-4 py-6 rounded-xl flex flex-col items-center justify-center transform group-hover:translate-y-1 transition-transform shadow-2xl">
+                            <div class="flex items-center justify-center gap-2 text-2xl md:text-3xl font-black tracking-tighter w-full text-center">
+                                Yes! Start My Rollout Now <i data-lucide="chevrons-right" class="w-8 h-8 animate-pulse hidden sm:block"></i>
+                            </div>
+                            <span class="text-sm font-bold opacity-80 mt-2 text-center text-gray-800">
+                                Click Here To See Package Options & Secure Your Spot
+                            </span>
+                        </div>
+                    </button>
+                    <img src="https://trustlock.co/wp-content/uploads/2019/01/guaranteed-safe-checkout-12.png" alt="Secure Checkout" class="h-10 opacity-70 grayscale hover:grayscale-0 transition-all" />
+                </div>
+            </div>
+        </header>
+
+        <!-- Social Proof Bar -->
+        <div class="bg-white border-b border-gray-200 py-6">
+            <div class="max-w-5xl mx-auto px-4 text-center flex flex-wrap justify-center gap-8 md:gap-16 items-center opacity-60 grayscale font-black text-xl tracking-widest text-gray-400">
+                <span>DIGIWAXX</span>
+                <span>DICE</span>
+                <span>BANDSINTOWN</span>
+                <span>SONGKICK</span>
+            </div>
+        </div>
+
+        <!-- Value Stack -->
+        <section id="how-it-works" class="py-24 bg-white relative overflow-hidden">
+            <div class="max-w-6xl mx-auto px-4 relative z-10">
+                <h2 class="text-3xl md:text-5xl font-black tracking-tight text-center mb-20 max-w-4xl mx-auto">
+                    Here Is Exactly What You Get When You Join <span class="text-[#8A1558]">The Next Up Experience</span> Today:
+                </h2>
+                
+                <div class="space-y-24">
+                    <!-- Block 1 -->
+                    <div class="flex flex-col md:flex-row items-center gap-12">
+                        <div class="w-full md:w-1/2 md:pr-8">
+                            <div class="inline-flex items-center gap-2 px-3 py-1 bg-[#FDF2F8] text-[#8A1558] rounded-full text-xs font-bold tracking-widest uppercase mb-4 border border-[#FBCFE8]">
+                                <i data-lucide="mic" class="w-4 h-4"></i> Step 1
+                            </div>
+                            <h3 class="text-3xl md:text-4xl font-black tracking-tight text-gray-900 mb-4">Live Showcase Performance</h3>
+                            <p class="text-gray-600 font-serif text-lg leading-relaxed mb-6">
+                                Perform live on Manhattan's top stage at The Penthouse NYC. We don't just give you a slot; we put you directly in front of real crowds, industry tastemakers, and verified fans.
+                            </p>
+                            <ul class="space-y-3">
+                                <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558]"></i> Prime Timeslot Guarantee</li>
+                                <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558]"></i> VIP Industry Guestlist Access</li>
+                            </ul>
+                        </div>
+                        <div class="w-full md:w-1/2">
+                            <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white transform rotate-2 hover:rotate-0 transition-transform duration-500">
+                                <img src="https://images.unsplash.com/photo-1493225457124-a1a2a5f272bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Live Performance" class="w-full aspect-[4/3] object-cover" />
+                                <div class="absolute inset-0 bg-[#8A1558]/10 mix-blend-multiply"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Block 2 -->
+                    <div class="flex flex-col md:flex-row items-center gap-12">
+                        <div class="w-full md:w-1/2 md:order-2 md:pl-8">
+                            <div class="inline-flex items-center gap-2 px-3 py-1 bg-[#FDF2F8] text-[#8A1558] rounded-full text-xs font-bold tracking-widest uppercase mb-4 border border-[#FBCFE8]">
+                                <i data-lucide="video" class="w-4 h-4"></i> Step 2
+                            </div>
+                            <h3 class="text-3xl md:text-4xl font-black tracking-tight text-gray-900 mb-4">Guaranteed Press & Media Coverage</h3>
+                            <p class="text-gray-600 font-serif text-lg leading-relaxed mb-6">
+                                You aren't just performing; you are building a professional press kit. Get high-end visual capture, live media interviews, and full editorial write-ups on the NMW platform to use for your PR rollout.
+                            </p>
+                            <ul class="space-y-3">
+                                <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558]"></i> 4K Performance Visuals</li>
+                                <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558]"></i> NMW Editorial Blog Placement</li>
+                            </ul>
+                        </div>
+                        <div class="w-full md:w-1/2 md:order-1">
+                            <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white transform -rotate-2 hover:rotate-0 transition-transform duration-500">
+                                <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Press and Media" class="w-full aspect-[4/3] object-cover" />
+                                <div class="absolute inset-0 bg-[#8A1558]/10 mix-blend-multiply"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Block 3 -->
+                    <div class="flex flex-col md:flex-row items-center gap-12">
+                        <div class="w-full md:w-1/2 md:pr-8">
+                            <div class="inline-flex items-center gap-2 px-3 py-1 bg-[#FDF2F8] text-[#8A1558] rounded-full text-xs font-bold tracking-widest uppercase mb-4 border border-[#FBCFE8]">
+                                <i data-lucide="zap" class="w-4 h-4"></i> Step 3
+                            </div>
+                            <h3 class="text-3xl md:text-4xl font-black tracking-tight text-gray-900 mb-4">Massive Audience & DJ Distribution</h3>
+                            <p class="text-gray-600 font-serif text-lg leading-relaxed mb-6">
+                                We automatically syndicate your music to the 30,000+ Digiwaxx DJ network, while instantly pushing your event data to DICE, Bandsintown, and Songkick to build a real, trackable audience.
+                            </p>
+                            <ul class="space-y-3">
+                                <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558]"></i> Direct-to-DJ Record Pool Drop</li>
+                                <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558]"></i> Automated DICE & Songkick Syndication</li>
+                            </ul>
+                        </div>
+                        <div class="w-full md:w-1/2">
+                            <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white transform rotate-2 hover:rotate-0 transition-transform duration-500">
+                                <img src="https://images.unsplash.com/photo-1470229722913-7c090be42337?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Live Audience" class="w-full aspect-[4/3] object-cover" />
+                                <div class="absolute inset-0 bg-[#8A1558]/10 mix-blend-multiply"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Packages Section -->
+        <section id="packages" class="py-24 bg-gray-900 border-y border-gray-800 relative">
+            <div class="absolute top-0 right-0 w-full h-full bg-[#8A1558]/5 pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 relative z-10">
+                <div class="text-center mb-16">
+                    <span class="text-yellow-400 font-bold tracking-widest text-sm mb-4 block animate-bounce">↓ Choose Your Event & Press Package Below ↓</span>
+                    <h2 class="text-4xl md:text-5xl font-black tracking-tight text-white mb-4">Secure Your Distribution Spot Now</h2>
+                    <p class="text-gray-400 font-serif max-w-2xl mx-auto text-lg">Select the rollout package that fits your strategy. Slots are extremely limited and close Tuesdays at Midnight.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+                    
+                    <!-- Card 1 -->
+                    <div class="flex flex-col p-8 rounded-2xl border-4 transition-all duration-300 border-gray-200 bg-white hover:border-gray-300">
+                        <div class="w-16 h-16 rounded-xl flex items-center justify-center mb-6 mx-auto bg-[#FDF2F8] text-[#8A1558]">
+                            <i data-lucide="mic" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-3xl font-black tracking-tight text-gray-900 mb-2 text-center">Media Ready</h3>
+                        <p class="text-gray-500 font-serif text-sm h-10 mb-6 text-center">Manual media placement and interview positioning.</p>
+                        <div class="flex items-center justify-center gap-1 mb-8 border-b-2 border-gray-100 pb-8">
+                            <span class="text-5xl font-black tracking-tighter text-gray-900">$200</span>
+                        </div>
+                        <ul class="space-y-4 mb-8 flex-1">
+                            <li class="flex items-start gap-3 text-sm font-bold text-gray-700"><i data-lucide="check-circle" class="w-5 h-5 shrink-0 text-gray-400"></i><span>Guaranteed Blog Placement</span></li>
+                            <li class="flex items-start gap-3 text-sm font-bold text-gray-700"><i data-lucide="check-circle" class="w-5 h-5 shrink-0 text-gray-400"></i><span>Live Media Interview</span></li>
+                            <li class="flex items-start gap-3 text-sm font-bold text-gray-700"><i data-lucide="check-circle" class="w-5 h-5 shrink-0 text-gray-400"></i><span>Artist Visibility Network</span></li>
+                            <li class="flex items-start gap-3 text-sm font-bold text-gray-700"><i data-lucide="check-circle" class="w-5 h-5 shrink-0 text-gray-400"></i><span>Press Content Moments</span></li>
+                        </ul>
+                        <button onclick="selectPackage('Media Ready', 200, false)" class="relative w-full group block mt-auto">
+                            <div class="absolute inset-0 rounded-xl translate-y-1.5 group-hover:translate-y-1 transition-transform bg-gray-300"></div>
+                            <div class="relative px-6 py-5 rounded-xl flex flex-col items-center justify-center transform group-hover:translate-y-1 transition-transform border-2 bg-gray-100 border-gray-200 text-gray-900">
+                                <span class="font-black tracking-widest text-lg text-center leading-none">Select This Package</span>
+                            </div>
+                        </button>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="flex flex-col p-8 rounded-2xl border-4 transition-all duration-300 border-gray-200 bg-white hover:border-gray-300">
+                        <div class="w-16 h-16 rounded-xl flex items-center justify-center mb-6 mx-auto bg-[#FDF2F8] text-[#8A1558]">
+                            <i data-lucide="video" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-3xl font-black tracking-tight text-gray-900 mb-2 text-center">One Mic Visual</h3>
+                        <p class="text-gray-500 font-serif text-sm h-10 mb-6 text-center">High-end visual capture for your social rollout.</p>
+                        <div class="flex items-center justify-center gap-1 mb-8 border-b-2 border-gray-100 pb-8">
+                            <span class="text-5xl font-black tracking-tighter text-gray-900">$250</span>
+                        </div>
+                        <ul class="space-y-4 mb-8 flex-1">
+                            <li class="flex items-start gap-3 text-sm font-bold text-gray-700"><i data-lucide="check-circle" class="w-5 h-5 shrink-0 text-gray-400"></i><span>Visual Capture Session</span></li>
+                            <li class="flex items-start gap-3 text-sm font-bold text-gray-700"><i data-lucide="check-circle" class="w-5 h-5 shrink-0 text-gray-400"></i><span>Branded Content Assets</span></li>
+                            <li class="flex items-start gap-3 text-sm font-bold text-gray-700"><i data-lucide="check-circle" class="w-5 h-5 shrink-0 text-gray-400"></i><span>Short-Form Social Ready</span></li>
+                            <li class="flex items-start gap-3 text-sm font-bold text-gray-700"><i data-lucide="check-circle" class="w-5 h-5 shrink-0 text-gray-400"></i><span>Performance Visuals</span></li>
+                        </ul>
+                        <button onclick="selectPackage('One Mic Visual', 250, false)" class="relative w-full group block mt-auto">
+                            <div class="absolute inset-0 rounded-xl translate-y-1.5 group-hover:translate-y-1 transition-transform bg-gray-300"></div>
+                            <div class="relative px-6 py-5 rounded-xl flex flex-col items-center justify-center transform group-hover:translate-y-1 transition-transform border-2 bg-gray-100 border-gray-200 text-gray-900">
+                                <span class="font-black tracking-widest text-lg text-center leading-none">Select This Package</span>
+                            </div>
+                        </button>
+                    </div>
+
+                    <!-- Card 3 (Featured) -->
+                    <div class="flex flex-col p-8 rounded-2xl border-4 transition-all duration-300 border-yellow-400 shadow-[0_0_50px_rgba(250,204,21,0.15)] relative scale-105 bg-white z-10">
+                        <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-yellow-400 text-black px-6 py-1.5 rounded-full text-xs font-black uppercase tracking-widest shadow-md">Most Popular Choice</div>
+                        <div class="w-16 h-16 rounded-xl flex items-center justify-center mb-6 mx-auto bg-yellow-400 text-black shadow-lg">
+                            <i data-lucide="zap" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-3xl font-black tracking-tight text-gray-900 mb-2 text-center">Performance Ready</h3>
+                        <p class="text-gray-500 font-serif text-sm h-10 mb-6 text-center">Activates the NMW live distribution system.</p>
+                        <div class="flex items-center justify-center gap-1 mb-8 border-b-2 border-gray-100 pb-8">
+                            <span class="text-5xl font-black tracking-tighter text-gray-900">$395</span>
+                        </div>
+                        <ul class="space-y-4 mb-8 flex-1">
+                            <li class="flex items-start gap-3 text-sm font-bold text-gray-700"><i data-lucide="check-circle" class="w-5 h-5 shrink-0 text-green-500"></i><span>Live Performance Slot</span></li>
+                            <li class="flex items-start gap-3 text-sm font-bold text-gray-700"><i data-lucide="check-circle" class="w-5 h-5 shrink-0 text-green-500"></i><span>Guaranteed Press Write-Up</span></li>
+                            <li class="flex items-start gap-3 text-sm font-bold text-gray-700"><i data-lucide="check-circle" class="w-5 h-5 shrink-0 text-green-500"></i><span>Event Distribution Setup</span></li>
+                            <li class="flex items-start gap-3 text-sm font-bold text-gray-700"><i data-lucide="check-circle" class="w-5 h-5 shrink-0 text-green-500"></i><span>Promo Asset Generation</span></li>
+                            <li class="flex items-start gap-3 text-sm font-bold text-gray-700"><i data-lucide="check-circle" class="w-5 h-5 shrink-0 text-green-500"></i><span>Media & Press Exposure</span></li>
+                        </ul>
+                        <button onclick="selectPackage('Performance Ready', 395, true)" class="relative w-full group block mt-auto">
+                            <div class="absolute inset-0 rounded-xl translate-y-1.5 group-hover:translate-y-1 transition-transform bg-yellow-600"></div>
+                            <div class="relative px-6 py-5 rounded-xl flex flex-col items-center justify-center transform group-hover:translate-y-1 transition-transform border-2 bg-yellow-400 border-yellow-300 text-black">
+                                <span class="font-black tracking-widest text-lg text-center leading-none">Select This Package</span>
+                                <span class="text-[10px] font-bold mt-1 opacity-80 uppercase tracking-widest">Act Fast • Limited Spots</span>
+                            </div>
+                        </button>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="flex flex-col p-8 rounded-2xl border-4 transition-all duration-300 border-gray-200 bg-white hover:border-gray-300 xl:col-start-1 xl:col-end-2 xl:translate-x-1/2">
+                        <div class="w-16 h-16 rounded-xl flex items-center justify-center mb-6 mx-auto bg-[#FDF2F8] text-[#8A1558]">
+                            <i data-lucide="star" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-3xl font-black tracking-tight text-gray-900 mb-2 text-center">Full Experience</h3>
+                        <p class="text-gray-500 font-serif text-sm h-10 mb-6 text-center">Amplified press placement + full performance stack.</p>
+                        <div class="flex items-center justify-center gap-1 mb-8 border-b-2 border-gray-100 pb-8">
+                            <span class="text-5xl font-black tracking-tighter text-gray-900">$650</span>
+                        </div>
+                        <ul class="space-y-4 mb-8 flex-1">
+                            <li class="flex items-start gap-3 text-sm font-bold text-gray-700"><i data-lucide="check-circle" class="w-5 h-5 shrink-0 text-gray-400"></i><span>Everything in Performance Ready</span></li>
+                            <li class="flex items-start gap-3 text-sm font-bold text-gray-700"><i data-lucide="check-circle" class="w-5 h-5 shrink-0 text-gray-400"></i><span>Amplified Press Positioning</span></li>
+                            <li class="flex items-start gap-3 text-sm font-bold text-gray-700"><i data-lucide="check-circle" class="w-5 h-5 shrink-0 text-gray-400"></i><span>Premium Content Placement</span></li>
+                            <li class="flex items-start gap-3 text-sm font-bold text-gray-700"><i data-lucide="check-circle" class="w-5 h-5 shrink-0 text-gray-400"></i><span>Extended Visibility</span></li>
+                            <li class="flex items-start gap-3 text-sm font-bold text-gray-700"><i data-lucide="check-circle" class="w-5 h-5 shrink-0 text-gray-400"></i><span>Interview Prioritization</span></li>
+                        </ul>
+                        <button onclick="selectPackage('Full Experience', 650, true)" class="relative w-full group block mt-auto">
+                            <div class="absolute inset-0 rounded-xl translate-y-1.5 group-hover:translate-y-1 transition-transform bg-gray-300"></div>
+                            <div class="relative px-6 py-5 rounded-xl flex flex-col items-center justify-center transform group-hover:translate-y-1 transition-transform border-2 bg-gray-100 border-gray-200 text-gray-900">
+                                <span class="font-black tracking-widest text-lg text-center leading-none">Select This Package</span>
+                            </div>
+                        </button>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="flex flex-col p-8 rounded-2xl border-4 transition-all duration-300 border-gray-200 bg-white hover:border-gray-300 xl:col-start-2 xl:col-end-4 xl:translate-x-1/2 xl:w-2/3">
+                        <div class="w-16 h-16 rounded-xl flex items-center justify-center mb-6 mx-auto bg-[#FDF2F8] text-[#8A1558]">
+                            <i data-lucide="crown" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-3xl font-black tracking-tight text-gray-900 mb-2 text-center">Premiere Package</h3>
+                        <p class="text-gray-500 font-serif text-sm h-10 mb-6 text-center">The ultimate rollout and amplification positioning.</p>
+                        <div class="flex items-center justify-center gap-1 mb-8 border-b-2 border-gray-100 pb-8">
+                            <span class="text-5xl font-black tracking-tighter text-gray-900">$899</span>
+                        </div>
+                        <ul class="space-y-4 mb-8 flex-1">
+                            <li class="flex items-start gap-3 text-sm font-bold text-gray-700"><i data-lucide="check-circle" class="w-5 h-5 shrink-0 text-gray-400"></i><span>Everything in Full Experience</span></li>
+                            <li class="flex items-start gap-3 text-sm font-bold text-gray-700"><i data-lucide="check-circle" class="w-5 h-5 shrink-0 text-gray-400"></i><span>Premiere-Level Press Placement</span></li>
+                            <li class="flex items-start gap-3 text-sm font-bold text-gray-700"><i data-lucide="check-circle" class="w-5 h-5 shrink-0 text-gray-400"></i><span>Advanced Media Visibility</span></li>
+                            <li class="flex items-start gap-3 text-sm font-bold text-gray-700"><i data-lucide="check-circle" class="w-5 h-5 shrink-0 text-gray-400"></i><span>Priority Platform Features</span></li>
+                            <li class="flex items-start gap-3 text-sm font-bold text-gray-700"><i data-lucide="check-circle" class="w-5 h-5 shrink-0 text-gray-400"></i><span>Maximum NMW Amplification</span></li>
+                        </ul>
+                        <button onclick="selectPackage('Premiere Package', 899, true)" class="relative w-full group block mt-auto">
+                            <div class="absolute inset-0 rounded-xl translate-y-1.5 group-hover:translate-y-1 transition-transform bg-gray-300"></div>
+                            <div class="relative px-6 py-5 rounded-xl flex flex-col items-center justify-center transform group-hover:translate-y-1 transition-transform border-2 bg-gray-100 border-gray-200 text-gray-900">
+                                <span class="font-black tracking-widest text-lg text-center leading-none">Select This Package</span>
+                            </div>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-black py-12 text-white border-t-4 border-[#8A1558]">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
+                <div>
+                    <div class="flex items-center gap-3 justify-center md:justify-start mb-4">
+                        <div class="w-8 h-8 bg-[#8A1558] rounded flex items-center justify-center text-white font-black text-sm tracking-tighter">NMW</div>
+                        <div class="flex flex-col justify-center text-left">
+                            <span class="font-bold text-lg tracking-tight leading-none text-white">New Music Wednesday</span>
+                            <span class="font-medium text-[#FBCFE8] text-xs tracking-widest uppercase mt-1">by Digiwaxx</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 font-serif text-sm italic max-w-sm">Artist Onboarding & Distribution Infrastructure.</p>
+                </div>
+                <div class="flex gap-6 text-sm font-bold text-gray-400 uppercase tracking-widest">
+                    <a href="#" class="hover:text-white transition-colors">Support</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms</a>
+                    <a href="#" class="hover:text-white transition-colors">Login</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+    <!-- ============================================== -->
+    <!-- VIEW 2: CHECKOUT                               -->
+    <!-- ============================================== -->
+    <div id="view-checkout" class="view-section min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+        <div class="sm:mx-auto sm:w-full sm:max-w-md text-center mb-8">
+            <div class="w-12 h-12 bg-[#8A1558] rounded mx-auto flex items-center justify-center text-white font-black text-2xl tracking-tighter mb-4 shadow-md">NMW</div>
+            <h2 class="text-3xl font-black tracking-tighter text-gray-900">Secure Checkout</h2>
+        </div>
+
+        <div class="sm:mx-auto sm:w-full sm:max-w-xl flex gap-8">
+            <div class="bg-white py-8 px-4 shadow-xl sm:rounded-2xl sm:px-10 flex-1 border border-gray-200">
+                <h3 class="text-sm font-bold uppercase tracking-widest text-gray-400 border-b border-gray-100 pb-4 mb-4">Order Summary</h3>
+                <div class="flex justify-between items-center mb-2">
+                    <span id="checkout-pkg-name" class="font-bold text-lg">Package Name</span>
+                    <span id="checkout-pkg-price" class="font-black text-xl">$0</span>
+                </div>
+                
+                <div id="checkout-distro-box" class="hidden bg-yellow-50 border border-yellow-200 text-yellow-800 text-xs font-bold p-3 rounded mt-4 gap-2">
+                    <i data-lucide="zap" class="w-4 h-4 shrink-0 text-yellow-600"></i>
+                    This package includes full distribution & verification onboarding.
+                </div>
+                
+                <form id="form-checkout" class="mt-8 space-y-6 border-t border-gray-100 pt-8">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Card Information</label>
+                        <div class="border border-gray-300 rounded-lg p-3 bg-gray-50 flex items-center gap-3">
+                            <i data-lucide="lock" class="w-4 h-4 text-gray-400"></i>
+                            <span class="text-gray-400 text-sm font-mono flex-1">**** **** **** 4242</span>
+                            <span class="text-gray-400 text-sm font-mono">12/28</span>
+                            <span class="text-gray-400 text-sm font-mono">CVC</span>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="relative w-full group block mt-6">
+                        <div class="absolute inset-0 bg-gray-900 rounded-lg translate-y-1.5 group-hover:translate-y-0.5 transition-transform"></div>
+                        <div class="relative bg-black text-white px-6 py-4 rounded-lg flex items-center justify-center transform group-hover:translate-y-1 transition-transform border border-gray-800 shadow-xl">
+                            <span id="checkout-btn-text" class="font-black tracking-widest text-sm text-center">
+                                Pay $0.00
+                            </span>
+                        </div>
+                    </button>
+                    
+                    <p class="text-center text-xs text-gray-400 mt-4 flex items-center justify-center gap-1">
+                        <i data-lucide="lock" class="w-3 h-3"></i> Secured by Stripe
+                    </p>
+                </form>
+
+                <div class="mt-6 text-center">
+                    <button onclick="navigate('sales-funnel')" class="text-sm font-bold text-[#8A1558] underline">Go Back</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ============================================== -->
+    <!-- VIEW 3: ONBOARDING                             -->
+    <!-- ============================================== -->
+    <div id="view-onboarding" class="view-section min-h-screen bg-white">
+        <div class="h-2 bg-gray-100 w-full"><div class="h-full bg-[#8A1558] w-1/3 transition-all"></div></div>
+        
+        <div class="max-w-3xl mx-auto py-16 px-4">
+            <h1 class="text-4xl font-black tracking-tighter mb-2 text-gray-900">Artist Verification</h1>
+            <p class="text-gray-500 font-serif mb-10 text-lg">To activate the NMW distribution engine and DICE ticketing, we need to verify your platform relationships. You have 24 hours to complete this step.</p>
+
+            <form id="form-onboarding" class="space-y-12">
+                <section class="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-6">1. Artist Profile & Event Details</h2>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="col-span-2">
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Select Your Event</label>
+                            <div class="relative">
+                                <select required class="w-full border-gray-300 rounded-lg p-3 text-sm bg-gray-50 focus:ring-[#8A1558] focus:border-[#8A1558] appearance-none border">
+                                    <option value="">Choose an upcoming date...</option>
+                                    <option>New Music Wednesday - Oct 30 (The Penthouse)</option>
+                                    <option>New Music Wednesday - Nov 06 (The Penthouse)</option>
+                                    <option>New Music Wednesday - Nov 13 (The Penthouse)</option>
+                                    <option>Drop Fest Showcase - Dec 01 (Special Event)</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
+                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-span-2 sm:col-span-1">
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Artist Name</label>
+                            <input required type="text" class="w-full border-gray-300 rounded-lg p-3 text-sm focus:ring-[#8A1558] focus:border-[#8A1558] bg-gray-50 border" placeholder="Stage Name" />
+                        </div>
+                        <div class="col-span-2 sm:col-span-1">
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Primary Genre</label>
+                            <select class="w-full border-gray-300 rounded-lg p-3 text-sm bg-gray-50 focus:ring-[#8A1558] focus:border-[#8A1558] border">
+                                <option>R&B</option><option>Soul</option><option>Hip Hop</option><option>Afrobeats</option>
+                            </select>
+                        </div>
+                        <div class="col-span-2 sm:col-span-1">
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Email</label>
+                            <input required type="email" class="w-full border-gray-300 rounded-lg p-3 text-sm bg-gray-50 focus:ring-[#8A1558] focus:border-[#8A1558] border" placeholder="artist@mgmt.com" />
+                        </div>
+                        <div class="col-span-2 sm:col-span-1">
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Phone (Optional)</label>
+                            <input type="tel" class="w-full border-gray-300 rounded-lg p-3 text-sm bg-gray-50 focus:ring-[#8A1558] focus:border-[#8A1558] border" placeholder="(555) 000-0000" />
+                        </div>
+                    </div>
+                </section>
+
+                <section class="space-y-6">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-6 border-b pb-4">2. Platform Verification Uploads</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Upload 1 -->
+                        <div class="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center hover:bg-gray-50 hover:border-[#8A1558]/50 transition-colors cursor-pointer group">
+                            <i data-lucide="upload" class="w-8 h-8 text-gray-400 mx-auto mb-3 group-hover:text-[#8A1558] transition-colors"></i>
+                            <h4 class="font-bold text-gray-900 mb-1">Bandsintown</h4>
+                            <p class="text-xs text-gray-500 mb-4 font-serif">Screenshot of claimed profile</p>
+                            <span class="text-[10px] font-bold uppercase tracking-widest bg-gray-100 text-gray-600 px-3 py-1.5 rounded-full group-hover:bg-[#8A1558] group-hover:text-white transition-colors">Select File</span>
+                        </div>
+                        <!-- Upload 2 -->
+                        <div class="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center hover:bg-gray-50 hover:border-[#8A1558]/50 transition-colors cursor-pointer group">
+                            <i data-lucide="upload" class="w-8 h-8 text-gray-400 mx-auto mb-3 group-hover:text-[#8A1558] transition-colors"></i>
+                            <h4 class="font-bold text-gray-900 mb-1">Songkick</h4>
+                            <p class="text-xs text-gray-500 mb-4 font-serif">Screenshot of Tourbox access</p>
+                            <span class="text-[10px] font-bold uppercase tracking-widest bg-gray-100 text-gray-600 px-3 py-1.5 rounded-full group-hover:bg-[#8A1558] group-hover:text-white transition-colors">Select File</span>
+                        </div>
+                        <!-- Upload 3 -->
+                        <div class="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center hover:bg-gray-50 hover:border-[#8A1558]/50 transition-colors cursor-pointer group">
+                            <i data-lucide="upload" class="w-8 h-8 text-gray-400 mx-auto mb-3 group-hover:text-[#8A1558] transition-colors"></i>
+                            <h4 class="font-bold text-gray-900 mb-1">DICE</h4>
+                            <p class="text-xs text-gray-500 mb-4 font-serif">Screenshot of Artist Dashboard</p>
+                            <span class="text-[10px] font-bold uppercase tracking-widest bg-gray-100 text-gray-600 px-3 py-1.5 rounded-full group-hover:bg-[#8A1558] group-hover:text-white transition-colors">Select File</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="bg-[#8A1558]/5 border border-[#8A1558]/20 p-8 rounded-2xl flex items-start gap-4">
+                    <input type="checkbox" id="blast" checked class="mt-1 w-5 h-5 text-[#8A1558] rounded border-gray-300 focus:ring-[#8A1558]" />
+                    <div>
+                        <label for="blast" class="font-bold text-gray-900 block mb-1">Join The Blast</label>
+                        <p class="text-sm text-gray-600 font-serif">Get exclusive access to new music drops, DJ updates, media opportunities, and performance alerts. NMW's inner circle.</p>
+                    </div>
+                </section>
+
+                <button type="submit" class="relative w-full group block mt-6">
+                    <div class="absolute inset-0 bg-[#680D3E] rounded-xl translate-y-1.5 group-hover:translate-y-0.5 transition-transform"></div>
+                    <div class="relative bg-[#8A1558] text-white px-6 py-5 rounded-xl flex items-center justify-center transform group-hover:translate-y-1 transition-transform border border-[#680D3E] shadow-xl">
+                        <span class="font-black tracking-widest text-sm text-center flex items-center gap-2">
+                            Submit For Verification <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </span>
+                    </div>
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- ============================================== -->
+    <!-- VIEW 4: UPSELL                                 -->
+    <!-- ============================================== -->
+    <div id="view-upsell" class="view-section min-h-screen bg-gray-900 text-white py-20 px-4 relative overflow-hidden">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full z-0 opacity-20 pointer-events-none">
+            <div class="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-yellow-500 rounded-full mix-blend-screen filter blur-[150px]"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-[#8A1558] rounded-full mix-blend-screen filter blur-[150px]"></div>
+        </div>
+
+        <div class="max-w-6xl mx-auto relative z-10">
+            <div class="text-center mb-16">
+                <span class="text-yellow-400 font-bold uppercase tracking-widest text-xs mb-4 block">Optional Upgrade</span>
+                <h1 class="text-4xl md:text-6xl font-black tracking-tighter mb-4 text-white drop-shadow-md">Supercharge Your Distribution</h1>
+                <p class="text-gray-400 font-serif max-w-2xl mx-auto text-lg">Your basic verification is complete. Do you want to add guaranteed DJ record pool access and email blast distribution to your rollout?</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                <!-- Upsell 1 -->
+                <div onclick="toggleUpsell(this)" class="upsell-card relative p-8 rounded-2xl cursor-pointer transition-all duration-300 border-2 border-gray-800 bg-black/50 backdrop-blur-md hover:border-gray-700">
+                    <div class="upsell-check absolute top-4 right-4 text-yellow-400 hidden"><i data-lucide="check-circle" class="w-6 h-6"></i></div>
+                    <h3 class="text-xl font-black tracking-tight mb-2 text-white">Regular</h3>
+                    <div class="text-4xl font-black text-white mb-4 tracking-tighter">$150</div>
+                    <p class="text-sm text-gray-400 font-serif leading-relaxed mb-8">Basic music submission + Social posting + Visibility support</p>
+                    <div class="upsell-btn w-full py-3 text-center text-xs font-bold tracking-widest rounded-lg transition-colors bg-gray-800 text-white">Select Tier</div>
+                </div>
+
+                <!-- Upsell 2 (Recommended) -->
+                <div onclick="toggleUpsell(this)" class="upsell-card relative p-8 rounded-2xl cursor-pointer transition-all duration-300 border-2 border-gray-800 bg-black/50 backdrop-blur-md hover:border-gray-700">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-yellow-400 text-black px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">Recommended</div>
+                    <div class="upsell-check absolute top-4 right-4 text-yellow-400 hidden"><i data-lucide="check-circle" class="w-6 h-6"></i></div>
+                    <h3 class="text-xl font-black tracking-tight mb-2 text-white">Regular Plus</h3>
+                    <div class="text-4xl font-black text-white mb-4 tracking-tighter">$250</div>
+                    <p class="text-sm text-gray-400 font-serif leading-relaxed mb-8">Record pool access + Email distribution + Expanded reach</p>
+                    <div class="upsell-btn w-full py-3 text-center text-xs font-bold tracking-widest rounded-lg transition-colors bg-gray-800 text-white">Select Tier</div>
+                </div>
+
+                <!-- Upsell 3 -->
+                <div onclick="toggleUpsell(this)" class="upsell-card relative p-8 rounded-2xl cursor-pointer transition-all duration-300 border-2 border-gray-800 bg-black/50 backdrop-blur-md hover:border-gray-700">
+                    <div class="upsell-check absolute top-4 right-4 text-yellow-400 hidden"><i data-lucide="check-circle" class="w-6 h-6"></i></div>
+                    <h3 class="text-xl font-black tracking-tight mb-2 text-white">Advance</h3>
+                    <div class="text-4xl font-black text-white mb-4 tracking-tighter">$350</div>
+                    <p class="text-sm text-gray-400 font-serif leading-relaxed mb-8">DJ feedback loop + Analytics + Audience insights</p>
+                    <div class="upsell-btn w-full py-3 text-center text-xs font-bold tracking-widest rounded-lg transition-colors bg-gray-800 text-white">Select Tier</div>
+                </div>
+
+                <!-- Upsell 4 -->
+                <div onclick="toggleUpsell(this)" class="upsell-card relative p-8 rounded-2xl cursor-pointer transition-all duration-300 border-2 border-gray-800 bg-black/50 backdrop-blur-md hover:border-gray-700">
+                    <div class="upsell-check absolute top-4 right-4 text-yellow-400 hidden"><i data-lucide="check-circle" class="w-6 h-6"></i></div>
+                    <h3 class="text-xl font-black tracking-tight mb-2 text-white">Advance Plus</h3>
+                    <div class="text-4xl font-black text-white mb-4 tracking-tighter">$600</div>
+                    <p class="text-sm text-gray-400 font-serif leading-relaxed mb-8">Multiple blasts + Highest campaign reach + Maximum visibility</p>
+                    <div class="upsell-btn w-full py-3 text-center text-xs font-bold tracking-widest rounded-lg transition-colors bg-gray-800 text-white">Select Tier</div>
+                </div>
+            </div>
+
+            <div class="flex flex-col items-center gap-6">
+                <button onclick="navigate('success')" class="relative w-full max-w-sm group block">
+                    <div class="absolute inset-0 bg-yellow-600 rounded-xl translate-y-1.5 group-hover:translate-y-0.5 transition-transform"></div>
+                    <div class="relative bg-yellow-400 text-black px-6 py-5 rounded-xl flex items-center justify-center transform group-hover:translate-y-1 transition-transform border border-yellow-500 shadow-[0_0_40px_rgba(250,204,21,0.2)]">
+                        <span class="font-black tracking-widest text-lg text-center flex items-center gap-2">Add To Rollout</span>
+                    </div>
+                </button>
+                <button onclick="navigate('success')" class="text-gray-500 hover:text-white text-sm font-bold tracking-wider transition-colors underline">
+                    Skip for now, continue to dashboard
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ============================================== -->
+    <!-- VIEW 5: SUCCESS & REFERRAL                     -->
+    <!-- ============================================== -->
+    <div id="view-success" class="view-section min-h-screen bg-gray-50 flex items-center justify-center p-4">
+        <div class="max-w-2xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
+            <div class="bg-[#8A1558] p-12 text-center text-white relative overflow-hidden">
+                <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at center, #fff 1px, transparent 1px); background-size: 20px 20px;"></div>
+                <i data-lucide="check-circle" class="w-20 h-20 mx-auto mb-6 text-yellow-400 relative z-10"></i>
+                <h1 class="text-4xl font-black tracking-tighter mb-2 relative z-10">System Activated</h1>
+                <p class="text-[#FBCFE8] font-serif relative z-10 text-lg">Your verification is under review. Event metadata is generating.</p>
+            </div>
+            
+            <div class="p-12 text-center">
+                <span class="inline-block px-4 py-1.5 bg-yellow-100 text-yellow-800 font-bold uppercase tracking-widest text-xs mb-6 rounded-full border border-yellow-200 shadow-sm">Unlock Free Entry</span>
+                <h2 class="text-3xl font-black tracking-tight text-gray-900 mb-4">Invite 5 Artists. Play For Free.</h2>
+                <p class="text-gray-500 font-serif mb-8 max-w-md mx-auto text-sm leading-relaxed">
+                    Share your custom tracking link. When 5 artists verify and register for a slot, your next performance is completely free + priority placement.
+                </p>
+
+                <div class="flex items-center justify-between bg-gray-50 border-2 border-gray-100 p-4 rounded-xl mb-10">
+                    <span class="font-mono text-sm text-gray-600 truncate mr-4">itsnewmusicwednesday.com/apply?ref=ART-8892</span>
+                    <button class="relative group block shrink-0">
+                        <div class="absolute inset-0 bg-gray-900 rounded-lg translate-y-1 group-hover:translate-y-0.5 transition-transform"></div>
+                        <div class="relative bg-black text-white px-4 py-2 rounded-lg flex items-center justify-center transform group-hover:translate-y-0.5 transition-transform border border-gray-800">
+                            <span class="font-bold tracking-widest text-xs flex items-center gap-2">
+                                <i data-lucide="link" class="w-3 h-3"></i> Copy Link
+                            </span>
+                        </div>
+                    </button>
+                </div>
+
+                <button onclick="navigate('sales-funnel')" class="text-gray-400 hover:text-gray-900 font-bold text-xs tracking-widest transition-colors underline">
+                    Return To Homepage
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ============================================== -->
+    <!-- VIEW 6: ADMIN DASHBOARD                        -->
+    <!-- ============================================== -->
+    <div id="view-admin" class="view-section min-h-screen bg-gray-100 flex font-sans">
+        <!-- Sidebar -->
+        <div class="w-72 bg-black border-r-8 border-[#8A1558] flex flex-col min-h-screen relative z-10 shadow-2xl">
+            <div class="p-8 border-b-2 border-gray-800">
+                <div class="text-white font-black text-3xl tracking-tighter leading-none mb-1">NMW Admin</div>
+                <div class="text-[#8A1558] font-bold text-[10px] tracking-widest uppercase font-mono">Rollout Engine v2.0</div>
+            </div>
+            
+            <div class="flex-1 py-6 px-4 space-y-2 overflow-y-auto">
+                <button onclick="switchAdminTab('Artists', this)" class="admin-nav-btn w-full flex items-center justify-between p-4 font-bold tracking-wider text-xs transition-all text-gray-400 hover:text-white hover:bg-gray-900">
+                    <div class="flex items-center gap-3"><i data-lucide="users" class="w-5 h-5"></i> Artists</div>
+                </button>
+                <button onclick="switchAdminTab('Verifications', this)" class="admin-nav-btn w-full flex items-center justify-between p-4 font-bold tracking-wider text-xs transition-all bg-[#8A1558] text-white translate-x-2">
+                    <div class="flex items-center gap-3"><i data-lucide="user-check" class="w-5 h-5"></i> Verifications</div>
+                    <span class="bg-yellow-400 text-black px-2 py-0.5 rounded text-[10px] font-black">3</span>
+                </button>
+                <button onclick="switchAdminTab('Events', this)" class="admin-nav-btn w-full flex items-center justify-between p-4 font-bold tracking-wider text-xs transition-all text-gray-400 hover:text-white hover:bg-gray-900">
+                    <div class="flex items-center gap-3"><i data-lucide="calendar" class="w-5 h-5"></i> Events</div>
+                </button>
+                <button onclick="switchAdminTab('Distribution', this)" class="admin-nav-btn w-full flex items-center justify-between p-4 font-bold tracking-wider text-xs transition-all text-gray-400 hover:text-white hover:bg-gray-900">
+                    <div class="flex items-center gap-3"><i data-lucide="zap" class="w-5 h-5"></i> Distribution</div>
+                </button>
+                <button onclick="switchAdminTab('Referrals', this)" class="admin-nav-btn w-full flex items-center justify-between p-4 font-bold tracking-wider text-xs transition-all text-gray-400 hover:text-white hover:bg-gray-900">
+                    <div class="flex items-center gap-3"><i data-lucide="share-2" class="w-5 h-5"></i> Referrals</div>
+                </button>
+                <button onclick="switchAdminTab('Blast Subscribers', this)" class="admin-nav-btn w-full flex items-center justify-between p-4 font-bold tracking-wider text-xs transition-all text-gray-400 hover:text-white hover:bg-gray-900">
+                    <div class="flex items-center gap-3"><i data-lucide="mail" class="w-5 h-5"></i> Blast Subscribers</div>
+                </button>
+                <button onclick="switchAdminTab('Analytics', this)" class="admin-nav-btn w-full flex items-center justify-between p-4 font-bold tracking-wider text-xs transition-all text-gray-400 hover:text-white hover:bg-gray-900">
+                    <div class="flex items-center gap-3"><i data-lucide="bar-chart" class="w-5 h-5"></i> Analytics</div>
+                </button>
+                <button onclick="switchAdminTab('Settings', this)" class="admin-nav-btn w-full flex items-center justify-between p-4 font-bold tracking-wider text-xs transition-all text-gray-400 hover:text-white hover:bg-gray-900">
+                    <div class="flex items-center gap-3"><i data-lucide="settings" class="w-5 h-5"></i> Settings</div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="flex-1 bg-gray-50 h-screen overflow-y-auto">
+            <header class="bg-white border-b border-gray-200 px-10 py-6 flex justify-between items-center sticky top-0 z-0">
+                <h1 id="admin-tab-title" class="text-2xl font-black tracking-tight text-gray-900 capitalize">Verifications</h1>
+                <div class="flex items-center gap-4">
+                    <span class="text-xs font-bold text-gray-400 tracking-widest bg-gray-100 px-3 py-1 rounded-full">Status: Online</span>
+                    <div class="w-10 h-10 bg-black rounded-full border-2 border-gray-200"></div>
+                </div>
+            </header>
+
+            <main class="p-10">
+                <!-- Verifications Table -->
+                <div id="admin-table" class="bg-white border-2 border-gray-900 rounded-xl overflow-hidden shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+                    <div class="bg-gray-900 text-white px-6 py-4 flex justify-between items-center">
+                        <h3 class="font-bold tracking-widest text-sm">Pending Verifications</h3>
+                        <button class="bg-[#8A1558] text-white px-4 py-1.5 rounded text-xs font-bold tracking-wider hover:bg-[#680D3E] transition-colors">Auto-Verify All</button>
+                    </div>
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="border-b-2 border-gray-900 bg-gray-50 text-xs tracking-widest text-gray-500 font-bold">
+                                <th class="p-4 border-r border-gray-200">Artist</th>
+                                <th class="p-4 border-r border-gray-200">Package</th>
+                                <th class="p-4 border-r border-gray-200">DICE/Songkick</th>
+                                <th class="p-4 border-r border-gray-200">Time</th>
+                                <th class="p-4 text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Row 1: Pending -->
+                            <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                                <td class="p-4 border-r border-gray-100">
+                                    <div class="font-black text-gray-900">Marcus Vance</div>
+                                    <div class="text-xs text-gray-500 font-mono mt-1">ART-992</div>
+                                </td>
+                                <td class="p-4 border-r border-gray-100">
+                                    <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs font-bold">Performance Ready</span>
+                                </td>
+                                <td class="p-4 border-r border-gray-100">
+                                    <div class="flex gap-2">
+                                        <div class="w-6 h-6 bg-gray-200 rounded flex items-center justify-center text-[10px] text-gray-500 font-bold hover:bg-[#8A1558] hover:text-white cursor-pointer transition-colors" title="View DICE">D</div>
+                                        <div class="w-6 h-6 bg-gray-200 rounded flex items-center justify-center text-[10px] text-gray-500 font-bold hover:bg-[#8A1558] hover:text-white cursor-pointer transition-colors" title="View Songkick">S</div>
+                                        <div class="w-6 h-6 bg-gray-200 rounded flex items-center justify-center text-[10px] text-gray-500 font-bold hover:bg-[#8A1558] hover:text-white cursor-pointer transition-colors" title="View Bandsintown">B</div>
+                                    </div>
+                                </td>
+                                <td class="p-4 border-r border-gray-100 text-sm text-gray-500 font-medium">10 min ago</td>
+                                <td class="p-4 text-center">
+                                    <div class="flex justify-center gap-2">
+                                        <button class="bg-[#8A1558] text-white px-3 py-1.5 rounded text-xs font-bold tracking-wider hover:bg-[#680D3E] transition-colors">Approve</button>
+                                        <button class="bg-gray-200 text-gray-600 px-3 py-1.5 rounded text-xs font-bold tracking-wider hover:bg-gray-300 transition-colors">Reject</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            <!-- Row 2: Pending -->
+                            <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                                <td class="p-4 border-r border-gray-100">
+                                    <div class="font-black text-gray-900">Elena Cruz</div>
+                                    <div class="text-xs text-gray-500 font-mono mt-1">ART-993</div>
+                                </td>
+                                <td class="p-4 border-r border-gray-100">
+                                    <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs font-bold">Premiere</span>
+                                </td>
+                                <td class="p-4 border-r border-gray-100">
+                                    <div class="flex gap-2">
+                                        <div class="w-6 h-6 bg-gray-200 rounded flex items-center justify-center text-[10px] text-gray-500 font-bold hover:bg-[#8A1558] hover:text-white cursor-pointer transition-colors" title="View DICE">D</div>
+                                        <div class="w-6 h-6 bg-gray-200 rounded flex items-center justify-center text-[10px] text-gray-500 font-bold hover:bg-[#8A1558] hover:text-white cursor-pointer transition-colors" title="View Songkick">S</div>
+                                        <div class="w-6 h-6 bg-gray-200 rounded flex items-center justify-center text-[10px] text-gray-500 font-bold hover:bg-[#8A1558] hover:text-white cursor-pointer transition-colors" title="View Bandsintown">B</div>
+                                    </div>
+                                </td>
+                                <td class="p-4 border-r border-gray-100 text-sm text-gray-500 font-medium">1 hr ago</td>
+                                <td class="p-4 text-center">
+                                    <div class="flex justify-center gap-2">
+                                        <button class="bg-[#8A1558] text-white px-3 py-1.5 rounded text-xs font-bold tracking-wider hover:bg-[#680D3E] transition-colors">Approve</button>
+                                        <button class="bg-gray-200 text-gray-600 px-3 py-1.5 rounded text-xs font-bold tracking-wider hover:bg-gray-300 transition-colors">Reject</button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- Row 3: Verified -->
+                            <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors opacity-50">
+                                <td class="p-4 border-r border-gray-100">
+                                    <div class="font-black text-gray-900">The Collective</div>
+                                    <div class="text-xs text-gray-500 font-mono mt-1">ART-994</div>
+                                </td>
+                                <td class="p-4 border-r border-gray-100">
+                                    <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs font-bold">Full Experience</span>
+                                </td>
+                                <td class="p-4 border-r border-gray-100">
+                                    <div class="flex gap-2">
+                                        <div class="w-6 h-6 bg-gray-200 rounded flex items-center justify-center text-[10px] text-gray-500 font-bold hover:bg-[#8A1558] hover:text-white cursor-pointer transition-colors" title="View DICE">D</div>
+                                        <div class="w-6 h-6 bg-gray-200 rounded flex items-center justify-center text-[10px] text-gray-500 font-bold hover:bg-[#8A1558] hover:text-white cursor-pointer transition-colors" title="View Songkick">S</div>
+                                        <div class="w-6 h-6 bg-gray-200 rounded flex items-center justify-center text-[10px] text-gray-500 font-bold hover:bg-[#8A1558] hover:text-white cursor-pointer transition-colors" title="View Bandsintown">B</div>
+                                    </div>
+                                </td>
+                                <td class="p-4 border-r border-gray-100 text-sm text-gray-500 font-medium">Yesterday</td>
+                                <td class="p-4 text-center">
+                                    <span class="text-[#8A1558] font-bold text-xs tracking-widest flex items-center justify-center gap-1">
+                                        <i data-lucide="check-circle" class="w-4 h-4"></i> Verified
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Placeholder for other tabs -->
+                <div id="admin-loading" class="hidden border-4 border-dashed border-gray-200 rounded-2xl h-96 flex items-center justify-center text-gray-400 font-bold tracking-widest uppercase">
+                    <span id="admin-loading-text">Module Loading...</span>
+                </div>
+            </main>
+        </div>
+    </div>
+
+
+    <!-- ============================================== -->
+    <!-- LOGIC / JAVASCRIPT                             -->
+    <!-- ============================================== -->
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // State Management
+        let currentPath = 'sales-funnel';
+        let selectedPackage = null;
+
+        // Navigation
+        function navigate(path) {
+            document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+            document.getElementById(`view-${path}`).classList.add('active');
+            window.scrollTo(0, 0);
+            currentPath = path;
+
+            // Update floating button
+            const floatBtn = document.getElementById('floating-toggle');
+            if (path === 'admin') {
+                floatBtn.innerText = 'View Frontend';
+            } else {
+                floatBtn.innerText = 'Admin Dashboard';
+            }
+
+            lucide.createIcons(); // Re-render icons if needed
+        }
+
+        // Toggle Admin View
+        function toggleAdmin() {
+            if (currentPath === 'admin') {
+                navigate('sales-funnel');
+            } else {
+                navigate('admin');
+            }
+        }
+
+        function scrollToPackages() {
+            document.getElementById('packages').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Package Selection -> Checkout
+        function selectPackage(name, price, triggersDistro) {
+            selectedPackage = { name, price, triggersDistro };
+            
+            // Populate Checkout View
+            document.getElementById('checkout-pkg-name').innerText = name;
+            document.getElementById('checkout-pkg-price').innerText = `$${price}`;
+            document.getElementById('checkout-btn-text').innerText = `Pay $${price}.00`;
+            
+            const distroBox = document.getElementById('checkout-distro-box');
+            if (triggersDistro) {
+                distroBox.classList.remove('hidden');
+                distroBox.classList.add('flex');
+            } else {
+                distroBox.classList.add('hidden');
+                distroBox.classList.remove('flex');
+            }
+            
+            navigate('checkout');
+        }
+
+        // Checkout Submission -> Onboarding
+        document.getElementById('form-checkout').addEventListener('submit', function(e) {
+            e.preventDefault();
+            navigate('onboarding');
+        });
+
+        // Onboarding Submission -> Upsell
+        document.getElementById('form-onboarding').addEventListener('submit', function(e) {
+            e.preventDefault();
+            navigate('upsell');
+        });
+
+        // Toggle Upsell Selection
+        function toggleUpsell(element) {
+            const isSelected = element.classList.contains('border-yellow-400');
+            const check = element.querySelector('.upsell-check');
+            const btn = element.querySelector('.upsell-btn');
+
+            if (isSelected) {
+                // Deselect
+                element.classList.remove('border-yellow-400', 'bg-yellow-400/10', 'scale-105', 'shadow-2xl', 'shadow-yellow-400/10');
+                element.classList.add('border-gray-800', 'bg-black/50');
+                check.classList.add('hidden');
+                btn.classList.replace('bg-yellow-400', 'bg-gray-800');
+                btn.classList.replace('text-black', 'text-white');
+                btn.innerText = 'Select Tier';
+            } else {
+                // Select
+                element.classList.add('border-yellow-400', 'bg-yellow-400/10', 'scale-105', 'shadow-2xl', 'shadow-yellow-400/10');
+                element.classList.remove('border-gray-800', 'bg-black/50');
+                check.classList.remove('hidden');
+                btn.classList.replace('bg-gray-800', 'bg-yellow-400');
+                btn.classList.replace('text-white', 'text-black');
+                btn.innerText = 'Selected';
+            }
+        }
+
+        // Admin Tab Switching
+        function switchAdminTab(tabId, element) {
+            // Reset nav buttons
+            document.querySelectorAll('.admin-nav-btn').forEach(btn => {
+                btn.classList.remove('bg-[#8A1558]', 'text-white', 'translate-x-2');
+                btn.classList.add('text-gray-400', 'hover:text-white', 'hover:bg-gray-900');
+            });
+            
+            // Set active button
+            element.classList.add('bg-[#8A1558]', 'text-white', 'translate-x-2');
+            element.classList.remove('text-gray-400', 'hover:text-white', 'hover:bg-gray-900');
+            
+            // Update Title
+            document.getElementById('admin-tab-title').innerText = tabId;
+            
+            // Toggle Views
+            if (tabId === 'Verifications') {
+                document.getElementById('admin-table').classList.remove('hidden');
+                document.getElementById('admin-loading').classList.add('hidden');
+            } else {
+                document.getElementById('admin-table').classList.add('hidden');
+                document.getElementById('admin-loading').classList.remove('hidden');
+                document.getElementById('admin-loading').classList.add('flex');
+                document.getElementById('admin-loading-text').innerText = tabId + ' Module Loading...';
+            }
+        }
+    </script>
+</body>
+</html>
