@@ -140,12 +140,23 @@ function render() {
     input.addEventListener('change', (e) => {
       const file = e.target.files[0];
       if (!file) return;
+      // Guard against oversize files — base64 dataURLs in localStorage hit the ~5MB quota fast
+      const MAX_BYTES = 1.5 * 1024 * 1024; // 1.5MB raw → ~2MB base64
+      if (file.size > MAX_BYTES) {
+        alert(`That file is ${(file.size / 1024 / 1024).toFixed(1)}MB. Please use a screenshot under 1.5MB.`);
+        e.target.value = '';
+        return;
+      }
       const reader = new FileReader();
       reader.onload = () => {
         NMW.updateCurrentArtist(a => {
           a.verification[k] = { status: 'submitted', url: reader.result, fileName: file.name, uploadedAt: new Date().toISOString() };
         });
         render();
+      };
+      reader.onerror = () => {
+        alert('Could not read that file. Try a different screenshot.');
+        e.target.value = '';
       };
       reader.readAsDataURL(file);
     });

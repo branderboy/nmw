@@ -19,6 +19,13 @@ const NMW = (() => {
 
   const DEFAULT_SLOT_CAPACITY = 3;
 
+  const SPONSOR_STATUS = Object.freeze({
+    PENDING: 'pending_approval',
+    IN_REVIEW: 'in_review',
+    APPROVED: 'approved',
+    REJECTED: 'rejected',
+  });
+
   const PACKAGES = [
     { id: 'media-ready', name: 'Media Ready', price: 200, tier: 'entry',
       blurb: 'Press-ready coverage and editorial visibility.',
@@ -88,7 +95,21 @@ const NMW = (() => {
     try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : fallback; }
     catch (_) { return fallback; }
   };
-  const set = (k, v) => localStorage.setItem(k, JSON.stringify(v));
+  const set = (k, v) => {
+    try {
+      localStorage.setItem(k, JSON.stringify(v));
+      return true;
+    } catch (err) {
+      // Quota exceeded is the realistic failure (large image dataURLs in screenshots)
+      const msg = err && err.name === 'QuotaExceededError'
+        ? 'Browser storage is full. Try a smaller screenshot or clear old data.'
+        : 'Could not save: ' + (err && err.message ? err.message : 'unknown error');
+      // Surface to user; admins are the ones who hit this most often
+      if (typeof console !== 'undefined') console.warn('[NMW] localStorage write failed for', k, err);
+      if (typeof window !== 'undefined' && typeof window.alert === 'function') window.alert(msg);
+      return false;
+    }
+  };
 
   const getFunnel = () => get(KEYS.funnel, { package: null, goals: [], upsells: [], info: {}, blast: false });
   const setFunnel = (f) => set(KEYS.funnel, f);
@@ -109,6 +130,7 @@ const NMW = (() => {
 
   const getEvents = () => get(KEYS.events, []);
   const saveEvent = (e) => { const all = getEvents(); all.push(e); set(KEYS.events, all); };
+  const setEvents = (all) => set(KEYS.events, all);
 
   const getSponsors = () => get(KEYS.sponsors, []);
   const addSponsor = (entry) => {
@@ -116,7 +138,7 @@ const NMW = (() => {
     all.push({
       id: 'sp_' + Math.random().toString(36).slice(2, 10),
       submittedAt: new Date().toISOString(),
-      status: 'pending_approval',
+      status: SPONSOR_STATUS.PENDING,
       ...entry,
     });
     set(KEYS.sponsors, all);
@@ -164,7 +186,9 @@ const NMW = (() => {
 
   const getFlows = () => {
     const stored = get(KEYS.flows);
-    if (stored && stored.length) return stored;
+    // Only seed defaults on first ever read (null = never written).
+    // An empty array means the user explicitly removed everything — respect that.
+    if (stored !== null) return stored;
     set(KEYS.flows, DEFAULT_FLOWS);
     return DEFAULT_FLOWS;
   };
@@ -211,19 +235,18 @@ const NMW = (() => {
   };
   const resetSiteContent = () => localStorage.removeItem(KEYS.siteContent);
 
-  // Apply editable site content on page load
+  // Apply editable site content on page load.
+  // Pages opt-in by tagging elements with data-cms="<key>".
+  // Idempotent: always writes the current value, so resetting to default works.
+  const CMS_KEYS = ['urgencyBar', 'heroEyebrow', 'heroHeadline', 'heroSubhead', 'primaryCta', 'primaryCtaSub'];
   const applySiteContent = () => {
+    if (typeof document === 'undefined') return;
     const c = getSiteContent();
-    document.querySelectorAll('[data-cms="urgencyBar"]').forEach(el => el.textContent = c.urgencyBar);
-    // Update any urgency-bar text node automatically if it has the default
-    document.querySelectorAll('.urgency-bar').forEach(el => {
-      // Replace the text node (last child) only when a custom value exists
-      if (c.urgencyBar !== DEFAULT_SITE_CONTENT.urgencyBar) {
-        // Find the trailing text node to replace
-        for (let n of el.childNodes) {
-          if (n.nodeType === 3 && n.textContent.trim().length > 0) { n.textContent = ' ' + c.urgencyBar; break; }
-        }
-      }
+    CMS_KEYS.forEach(key => {
+      document.querySelectorAll(`[data-cms="${key}"]`).forEach(el => {
+        // textContent is safe; never use innerHTML for CMS values to avoid XSS
+        el.textContent = c[key] != null ? c[key] : '';
+      });
     });
   };
 
@@ -509,8 +532,8 @@ const NMW = (() => {
     PACKAGES, GOALS, UPSELLS, REFERRAL_TIERS,
     getFunnel, setFunnel,
     getArtist, setArtist, getArtists, saveArtist,
-    getBlast, addBlast, getEvents, saveEvent,
-    getSponsors, addSponsor, updateSponsor,
+    getBlast, addBlast, getEvents, saveEvent, setEvents,
+    getSponsors, addSponsor, updateSponsor, SPONSOR_STATUS,
     getDJs, addDJ, djCallCalendarLink,
     getFlows, saveFlow, deleteFlow, getFlowRuns, recordFlowRun,
     getSiteContent, saveSiteContent, resetSiteContent, applySiteContent,
