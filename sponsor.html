@@ -27,6 +27,65 @@
     .cart-collapsible.collapsed { max-height: 80px; overflow: hidden; }
   }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.newmusicwednesdayslive.com/#org",
+      "name": "New Music Wednesdays",
+      "alternateName": "NMW",
+      "url": "https://www.newmusicwednesdayslive.com/",
+      "logo": "https://www.newmusicwednesdayslive.com/images/nmw-logo.png",
+      "parentOrganization": {
+        "@type": "Organization",
+        "name": "Digiwaxx",
+        "url": "https://www.digiwaxx.com"
+      },
+      "sameAs": [
+        "https://www.digiwaxx.com",
+        "https://www.newmusicwednesdayslive.com",
+        "https://dice.fm",
+        "https://www.bandsintown.com",
+        "https://www.songkick.com",
+        "https://www.eventbrite.com",
+        "https://lu.ma",
+        "https://www.tripadvisor.com/Search?q=The+Penthouse+NYC",
+        "https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z"
+      ]
+    },
+    {
+      "@type": "MusicVenue",
+      "@id": "https://www.newmusicwednesdayslive.com/#venue",
+      "name": "The Penthouse NYC",
+      "addressLocality": "Manhattan",
+      "addressRegion": "NY",
+      "addressCountry": "US",
+      "geo": { "@type": "GeoCoordinates", "latitude": 40.7538703, "longitude": -73.9493586 },
+      "sameAs": [
+        "https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z",
+        "https://www.tripadvisor.com/Search?q=The+Penthouse+NYC"
+      ]
+    },
+    {
+      "@type": "Event",
+      "name": "New Music Wednesdays",
+      "eventSchedule": {
+        "@type": "Schedule",
+        "byDay": "Wednesday",
+        "startTime": "19:00",
+        "endTime": "21:30",
+        "scheduleTimezone": "America/New_York",
+        "repeatFrequency": "P1W"
+      },
+      "location": { "@id": "https://www.newmusicwednesdayslive.com/#venue" },
+      "organizer": { "@id": "https://www.newmusicwednesdayslive.com/#org" },
+      "url": "https://www.newmusicwednesdayslive.com/"
+    }
+  ]
+}
+</script>
 </head>
 <body class="bg-gray-50 text-gray-900 selection:bg-[#8A1558] selection:text-white">
 
@@ -58,7 +117,7 @@
       <span class="italic font-serif font-normal text-[#8A1558]">that macro.</span>
     </h1>
     <p class="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto font-serif leading-relaxed">
-      Small, weekly placements priced to start. Stack them and they compound — into samples handed out, codes redeemed, posts shared, DJs reached. You pay for results, not impressions.
+      Small, weekly placements priced to start. Stack them and they compound, into samples handed out, codes redeemed, posts shared, DJs reached. You pay for results, not impressions.
     </p>
   </div>
 </header>
@@ -96,7 +155,7 @@
         </div>
         <div id="cartList" class="space-y-2 mb-5 min-h-[120px]"></div>
         <div class="border-t border-gray-100 pt-4">
-          <div class="flex justify-between text-sm mb-1"><span class="text-gray-500">Estimated investment</span><span class="font-black" id="cartTotal">—</span></div>
+          <div class="flex justify-between text-sm mb-1"><span class="text-gray-500">Estimated investment</span><span class="font-black" id="cartTotal">, </span></div>
           <p class="text-xs text-gray-400 mt-1">Final pricing customized in your proposal.</p>
         </div>
         <a href="#contactForm" class="cta cta--brand mt-5">
@@ -121,7 +180,7 @@
   <!-- INQUIRY FORM -->
   <section id="contactForm" class="mt-16 lg:mt-24 max-w-3xl mx-auto">
     <div class="text-center mb-10">
-      <span class="text-[#8A1558] font-black tracking-widest text-xs mb-3 block">[ Step 2 · Tell Us About You ]</span>
+      <span class="text-[#8A1558] font-black tracking-widest text-xs mb-3 block">[ Step 2, Tell Us About You ]</span>
       <h2 class="text-3xl md:text-5xl font-black tracking-tighter mb-3">Let's Build Something Impactful.</h2>
       <p class="text-gray-600 font-serif text-lg">We collaborate with brands, agencies, and partners to create strategic, high-visibility sponsorships that resonate authentically.</p>
     </div>
@@ -135,7 +194,7 @@
         <div><label class="field-label">Company / Brand Name *</label><input class="field-input" name="company" required placeholder="Acme Beverage Co."></div>
         <div><label class="field-label">Email *</label><input class="field-input" name="email" type="email" required placeholder="you@brand.com"></div>
         <div><label class="field-label">Phone</label><input class="field-input" name="phone" type="tel" placeholder="(555) 000-0000"></div>
-        <div class="sm:col-span-2"><label class="field-label">Website / Social Links</label><input class="field-input" name="website" placeholder="https://yourbrand.com · @brand"></div>
+        <div class="sm:col-span-2"><label class="field-label">Website / Social Links</label><input class="field-input" name="website" placeholder="https://yourbrand.com, @brand"></div>
 
         <div class="sm:col-span-2"><label class="field-label">Type of Organization</label>
           <select class="field-input" name="orgType">
@@ -154,10 +213,10 @@
           <select class="field-input" name="budget">
             <option value="">Open to exploring</option>
             <option>Under $5K</option>
-            <option>$5K – $15K</option>
-            <option>$15K – $50K</option>
-            <option>$50K – $150K</option>
-            <option>$150K – $500K</option>
+            <option>$5K - $15K</option>
+            <option>$15K - $50K</option>
+            <option>$50K - $150K</option>
+            <option>$150K - $500K</option>
             <option>$500K+</option>
             <option>Open to exploring</option>
           </select>
@@ -198,7 +257,7 @@
         <i data-lucide="clock" class="w-8 h-8 text-[#8A1558]"></i>
       </div>
       <h2 class="text-2xl font-black tracking-tighter mb-2">Submitted for approval.</h2>
-      <p class="text-gray-700 font-serif max-w-md mx-auto">Our partnerships team will review your selections and reply within two business days with a tailored proposal — or follow-up questions if we need more context.</p>
+      <p class="text-gray-700 font-serif max-w-md mx-auto">Our partnerships team will review your selections and reply within two business days with a tailored proposal, or follow-up questions if we need more context.</p>
       <div class="mt-6 flex flex-wrap gap-3 justify-center">
         <a href="events.html" class="inline-flex items-center gap-2 bg-[#8A1558] text-white px-5 py-3 rounded-lg text-xs font-bold tracking-widest uppercase hover:bg-[#680D3E]"><i data-lucide="calendar-days" class="w-4 h-4"></i> See upcoming events</a>
         <a href="mission.html" class="inline-flex items-center gap-2 bg-white border-2 border-gray-200 text-gray-900 px-5 py-3 rounded-lg text-xs font-bold tracking-widest uppercase hover:border-gray-400">Read the mission</a>
@@ -209,10 +268,10 @@
 
 <footer class="nmw-footer">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 py-2">
-      <div class="col-span-2 md:col-span-1">
-        <img src="images/nmw-logo-light.png" alt="New Music Wednesday" class="footer-logo mb-4" />
-        <p class="text-sm">Live performance + rollout infrastructure for rising artists. Every Wednesday at The Penthouse NYC.</p>
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-8 py-2">
+      <div class="col-span-2 md:col-span-2">
+        <img src="images/nmw-logo-light.png" alt="New Music Wednesdays, Digiwaxx" class="footer-logo mb-4" />
+        <p class="text-sm leading-relaxed">Live performance and rollout infrastructure for rising artists. Every Wednesday at The Penthouse NYC, presented by <a href="https://www.digiwaxx.com" target="_blank" rel="noopener noreferrer" class="text-[#8A1558] hover:underline">Digiwaxx</a>.</p>
       </div>
       <div>
         <h4 class="text-xs font-black uppercase tracking-widest mb-4">Funnel</h4>
@@ -221,94 +280,101 @@
           <li><a href="mission.html">Mission</a></li>
           <li><a href="events.html">Events</a></li>
           <li><a href="dj-call.html">DJ Call</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Onboarding</h4>
-        <ul class="space-y-2 text-sm">
           <li><a href="apply.html">Artist Access</a></li>
           <li><a href="faq.html">FAQ</a></li>
           <li><a href="alerts.html">Get Alerts</a></li>
-          <li><a href="sponsor.html">Sponsor</a></li>
+          <li><a href="sponsor.html">Sponsor NMW</a></li>
         </ul>
       </div>
       <div>
-        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Find Us</h4>
+        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Distribution</h4>
         <ul class="space-y-2 text-sm">
-          <li><a href="https://www.digiwaxx.com" target="_blank" rel="noopener noreferrer">Digiwaxx.com</a></li>
-          <li><a href="https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z" target="_blank" rel="noopener noreferrer">Google Maps</a></li>
-          <li><a href="https://www.tripadvisor.com/Search?q=The+Penthouse+NYC" target="_blank" rel="noopener noreferrer">TripAdvisor</a></li>
-          <li><a href="https://dice.fm" target="_blank" rel="noopener noreferrer">DICE</a></li>
-          <li><a href="https://www.bandsintown.com" target="_blank" rel="noopener noreferrer">Bandsintown</a></li>
-          <li><a href="https://www.songkick.com" target="_blank" rel="noopener noreferrer">Songkick</a></li>
+          <li><a href="https://www.digiwaxx.com" target="_blank" rel="noopener">Digiwaxx</a></li>
+          <li><a href="https://www.newmusicwednesdayslive.com" target="_blank" rel="noopener">NewMusicWednesdaysLive</a></li>
+          <li><a href="https://dice.fm" target="_blank" rel="noopener">DICE</a></li>
+          <li><a href="https://www.bandsintown.com" target="_blank" rel="noopener">Bandsintown</a></li>
+          <li><a href="https://www.songkick.com" target="_blank" rel="noopener">Songkick</a></li>
+          <li><a href="https://www.eventbrite.com" target="_blank" rel="noopener">Eventbrite</a></li>
+          <li><a href="https://lu.ma" target="_blank" rel="noopener">Luma</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Listings</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z" target="_blank" rel="noopener">Google Maps</a></li>
+          <li><a href="https://www.tripadvisor.com" target="_blank" rel="noopener">TripAdvisor</a></li>
+          <li><a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.youtube.com" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://www.tiktok.com" target="_blank" rel="noopener">TikTok</a></li>
+          <li><a href="https://x.com" target="_blank" rel="noopener">X / Twitter</a></li>
         </ul>
       </div>
     </div>
     <div class="border-t border-gray-700 pt-6 mt-6 text-center text-xs">
-      © 2026 New Music Wednesdays · By Digiwaxx · All rights reserved.
+      &copy; 2026 New Music Wednesdays. By Digiwaxx. All rights reserved.
     </div>
   </div>
 </footer>
 
 <script src="assets/nmw.js"></script>
 <script>
-// Each item is a recurring weekly placement that delivers a concrete outcome —
-// not vague "brand visibility." Sponsors pay for the result.
+// Each item is a recurring weekly placement that delivers a concrete outcome.
+// Sponsors pay for the result, not vague "brand visibility".
 const PRODUCTS = [
-  // ——— In-room activations: real things that happen in the venue ———
+  // In-room activations: real things that happen in the venue
   { id: 'step-and-repeat', name: 'Step & Repeat Banner', icon: 'image',
     blurb: 'Branded photo-op backdrop in the lobby. Every guest poses, every photo travels through their socials.',
-    outcome: '~150 guests · ~40 IG/TikTok posts',
+    outcome: '~150 guests, ~40 IG/TikTok posts',
     price: '$350 / Wednesday', priceMin: 350 },
   { id: 'live-demo', name: 'Live Product Demo', icon: 'box',
     blurb: 'Demo your product on stage between sets at The Penthouse. Real artists try it, real fans see it work.',
-    outcome: '~150 in-room attendees · live demo',
+    outcome: '~150 in-room attendees, live demo',
     price: '$250 / Wednesday', priceMin: 250 },
   { id: 'sampling-table', name: 'Sampling Table at Door', icon: 'package',
-    blurb: 'Branded sampling table at the door — every guest passes it on entry and exit.',
+    blurb: 'Branded sampling table at the door, every guest passes it on entry and exit.',
     outcome: '~150 guests sampled / Wednesday',
     price: '$300 / Wednesday', priceMin: 300 },
   { id: 'gift-bag-insert', name: 'Artist Gift Bag Insert', icon: 'gift',
     blurb: 'Drop product or sample into the artist swag bag handed to every performing act.',
-    outcome: '5–8 performers / Wednesday',
+    outcome: '5-8 performers / Wednesday',
     price: '$175 / Wednesday', priceMin: 175 },
   { id: 'free-ticket-giveaway', name: 'Free Ticket Giveaway', icon: 'ticket',
-    blurb: 'Sponsor 10 free tickets given away via The Blast newsletter — code branded with your name.',
-    outcome: '10 free tickets · ~600 entries',
+    blurb: 'Sponsor 10 free tickets given away via The Blast newsletter, code branded with your name.',
+    outcome: '10 free tickets, ~600 entries',
     price: '$200 / week', priceMin: 200 },
   { id: 'artist-product-prize', name: 'Artist Prize Drop', icon: 'award',
-    blurb: 'Your product becomes the prize for the night\'s standout performance — picked by the room.',
+    blurb: 'Your product becomes the prize for the night\'s standout performance, picked by the room.',
     outcome: '1 winning artist / Wednesday + IG share',
     price: '$300 / Wednesday', priceMin: 300 },
 
-  // ——— Distribution: ongoing weekly placements ———
+  // Distribution: ongoing weekly placements
   { id: 'newsletter-slot', name: 'Newsletter Slot', icon: 'mail',
-    blurb: 'One sponsored block in The Blast every Wednesday — pushed to ~3K openers.',
-    outcome: 'Avg 850 opens · 120 clicks / week',
+    blurb: 'One sponsored block in The Blast every Wednesday, pushed to ~3K openers.',
+    outcome: 'Avg 850 opens, 120 clicks / week',
     price: '$150 / week', priceMin: 600 },
   { id: 'recap-clip-sponsor', name: 'Recap Clip Tag', icon: 'film',
     blurb: 'Your handle on every Wednesday recap clip the artists themselves share to their followers.',
-    outcome: 'Avg 5–12K organic views / week',
+    outcome: 'Avg 5-12K organic views / week',
     price: '$200 / week', priceMin: 800 },
   { id: 'dj-call-mention', name: 'DJ Call Mention', icon: 'headphones',
-    blurb: 'Spoken brand mention on the Wednesday DJ Call — straight to the ~30K DJ network.',
-    outcome: '30K DJs · weekly drop',
+    blurb: 'Spoken brand mention on the Wednesday DJ Call, straight to the ~30K DJ network.',
+    outcome: '30K DJs, weekly drop',
     price: '$100 / week', priceMin: 400 },
   { id: 'subscriber-drop', name: 'Subscriber-Only Drop', icon: 'tag',
     blurb: 'Exclusive code or first-look pushed to The Blast list. Drives orders directly back to your store.',
-    outcome: 'Avg 60–180 redemptions / drop',
+    outcome: 'Avg 60-180 redemptions / drop',
     price: '$120 / week', priceMin: 480 },
   { id: 'story-cobrand', name: 'Story Frame Co-Brand', icon: 'instagram',
     blurb: 'Co-branded Instagram Story frame in every artist share-pack we ship that week.',
-    outcome: 'Avg 8–15 artist Stories / week',
+    outcome: 'Avg 8-15 artist Stories / week',
     price: '$80 / week', priceMin: 320 },
   { id: 'event-listing-banner', name: 'Event Page Banner', icon: 'calendar-days',
-    blurb: 'Banner on /events while users decide to RSVP — hot-intent traffic.',
+    blurb: 'Banner on /events while users decide to RSVP, hot-intent traffic.',
     outcome: 'Avg 1.4K weekly impressions',
     price: '$90 / week', priceMin: 360 },
   { id: 'audience-list-rental', name: 'Co-Send to The Blast', icon: 'send',
     blurb: 'Once a month, dedicated co-send to The Blast list. We co-write so the offer fits the room.',
-    outcome: 'Avg 1.1K opens · 90 clicks',
+    outcome: 'Avg 1.1K opens, 90 clicks',
     price: '$400 / month', priceMin: 400 },
   { id: 'referral-share', name: 'Referral Reward Sponsor', icon: 'star',
     blurb: 'Sponsor the artist referral unlocks (free ticket, priority, feature). Your brand becomes the prize.',
@@ -319,12 +385,12 @@ const PRODUCTS = [
 // Stacks: recurring bundles for brands that want compounding presence
 const BUNDLES = [
   { id: 'starter-stack', name: 'Starter Stack', icon: 'layers',
-    blurb: 'Newsletter Slot + Story Co-Brand + DJ Call Mention — three placements, every Wednesday.',
-    outcome: 'Open + reach + DJ network · all 3, every week',
+    blurb: 'Newsletter Slot + Story Co-Brand + DJ Call Mention, three placements, every Wednesday.',
+    outcome: 'Open + reach + DJ network, all 3, every week',
     price: '$1,200 / month', priceMin: 1200, featured: false },
   { id: 'growth-stack', name: 'Growth Stack', icon: 'trending-up',
-    blurb: 'Starter Stack + Recap Clip Tag + Subscriber Drop + Event Banner — five recurring placements.',
-    outcome: 'Five surfaces · every Wednesday · with measurable redemptions',
+    blurb: 'Starter Stack + Recap Clip Tag + Subscriber Drop + Event Banner, five recurring placements.',
+    outcome: 'Five surfaces, every Wednesday, with measurable redemptions',
     price: '$2,400 / month', priceMin: 2400, featured: true },
   { id: 'always-on', name: 'Always-On', icon: 'infinity',
     blurb: 'Every placement above, every Wednesday, for a full quarter. For brands that want compounding presence.',
@@ -401,12 +467,12 @@ function renderCart() {
   // total estimate
   const totalMin = items.reduce((s, p) => s + (p.priceMin || 0), 0);
   document.getElementById('cartTotal').textContent = totalMin > 0 ? `From $${totalMin.toLocaleString()}` : 'Custom';
-  document.getElementById('cartTotalMobile').textContent = items.length === 0 ? '0 items' : `${items.length} item${items.length>1?'s':''} · From $${totalMin.toLocaleString()}`;
+  document.getElementById('cartTotalMobile').textContent = items.length === 0 ? '0 items' : `${items.length} item${items.length>1?'s':''}, From $${totalMin.toLocaleString()}`;
 
   // form preview
   const formCart = document.getElementById('formCart');
   if (!items.length) {
-    formCart.innerHTML = '<div class="flex items-center gap-2 text-sm text-[#8A1558]"><i data-lucide="info" class="w-4 h-4"></i> No options selected yet — pick what you want above, then come back to submit.</div>';
+    formCart.innerHTML = '<div class="flex items-center gap-2 text-sm text-[#8A1558]"><i data-lucide="info" class="w-4 h-4"></i> No options selected yet, pick what you want above, then come back to submit.</div>';
   } else {
     formCart.innerHTML = `
       <div class="text-xs font-black uppercase tracking-widest text-[#8A1558] mb-2">Your Selections (${items.length})</div>
@@ -432,7 +498,7 @@ function chipGroup(elId, options, selectedSet) {
 const contacts = new Set();
 const times = new Set();
 chipGroup('contactChips', ['Email', 'Call', 'Text'], contacts);
-chipGroup('timeChips', ['9am–11am', '12pm–3pm', '5pm–9pm', 'Other'], times);
+chipGroup('timeChips', ['9am-11am', '12pm-3pm', '5pm-9pm', 'Other'], times);
 
 // Submit
 document.getElementById('sponsorForm').addEventListener('submit', (e) => {
@@ -455,7 +521,7 @@ document.getElementById('sponsorForm').addEventListener('submit', (e) => {
     preferredContact: [...contacts][0] || '',
     bestTime: [...times][0] || '',
     source: (data.get('source') || '').trim(),
-    // status is intentionally omitted — addSponsor() applies the
+    // status is intentionally omitted, addSponsor() applies the
     // canonical SPONSOR_STATUS.PENDING default. Setting it here would override.
   };
   if (!entry.company || !entry.email || !entry.preferredContact || !entry.bestTime) {

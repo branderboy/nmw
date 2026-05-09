@@ -115,7 +115,7 @@ test.describe('Admin dashboard', () => {
     await page.locator('input[name="email"]').fill('approve@test.co');
     await page.locator('textarea[name="goal"]').fill('Test approve flow');
     await page.locator('[data-val="Email"]').click();
-    await page.locator('[data-val="9am–11am"]').click();
+    await page.locator('[data-val="9am-11am"]').click();
     await page.getByRole('button', { name: /Submit For Approval/i }).click();
     await expect(page.locator('#successCard')).toBeVisible();
 

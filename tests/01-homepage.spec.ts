@@ -21,12 +21,11 @@ test.describe('Homepage / sales funnel (index.html)', () => {
     const thumb = page.locator('img[src="images/video_thumbnail.png"]');
     await expect(thumb).toBeVisible();
 
-    // 5 compact pricing tiles linking into apply.html
+    // 5 pricing tiles linking into apply.html
     const pkgTiles = page.locator('#packages a[href^="apply.html?pkg="]');
     await expect(pkgTiles).toHaveCount(5);
-    await expect(page.getByText('Media Ready', { exact: true })).toBeVisible();
-    await expect(page.getByText('Performance Ready', { exact: true })).toBeVisible();
-    await expect(page.getByText('Premiere', { exact: true })).toBeVisible();
+    await expect(page.getByText('$200', { exact: true })).toBeVisible();
+    await expect(page.getByText('$899', { exact: true })).toBeVisible();
 
     // No app console errors
     const appErrors = filterAppErrors(errors());
