@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verification Portal | NMW</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<link rel="stylesheet" href="assets/nmw.css">
+<script>
+tailwind.config = { theme: { extend: {
+  fontFamily: { sans: ['Inter','sans-serif'] },
+  colors: { brand: { 50:'#FDF2F8', 200:'#FBCFE8', 500:'#8A1558', 600:'#680D3E' } }
+}}}
+</script>
+</head>
+<body class="font-sans antialiased bg-gray-50 min-h-screen">
+
+<nav class="bg-white border-b border-gray-200">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16 items-center">
+      <a href="landing.html" class="flex items-center gap-3">
+        <div class="w-9 h-9 bg-brand-500 rounded-sm flex items-center justify-center text-white font-black text-lg">NMW</div>
+        <span class="hidden md:inline font-bold tracking-tight">VERIFICATION PORTAL</span>
+      </a>
+      <a href="dashboard.html" class="text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-black flex items-center gap-1"><i data-lucide="arrow-left" class="w-4 h-4"></i> Dashboard</a>
+    </div>
+  </div>
+</nav>
+
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+  <div id="noArtist" class="hidden bg-white border border-gray-200 rounded-2xl p-10 text-center">
+    <i data-lucide="alert-circle" class="w-12 h-12 text-gray-400 mx-auto mb-4"></i>
+    <h2 class="text-2xl font-black mb-2">No active booking found</h2>
+    <p class="text-gray-600 mb-6">Apply to perform first to access verification.</p>
+    <a href="apply.html" class="btn-primary">Apply Now</a>
+  </div>
+
+  <div id="notPerf" class="hidden bg-white border border-gray-200 rounded-2xl p-10 text-center">
+    <i data-lucide="info" class="w-12 h-12 text-gray-400 mx-auto mb-4"></i>
+    <h2 class="text-2xl font-black mb-2">No verification needed</h2>
+    <p class="text-gray-600 mb-6">Your package is media/visual only — our team will reach out directly.</p>
+    <a href="dashboard.html" class="btn-primary">Open Dashboard</a>
+  </div>
+
+  <div id="portal" class="hidden">
+    <div class="mb-8">
+      <span class="text-xs font-black tracking-widest uppercase text-brand-500">Performance Verification</span>
+      <h1 class="text-3xl md:text-4xl font-black tracking-tight mt-2">Verify your artist profiles</h1>
+      <p class="text-gray-600 mt-2">Claim your profiles on each platform, screenshot proof, and upload below. Once approved, your event distribution unlocks.</p>
+    </div>
+
+    <div id="approvedBanner" class="hidden bg-green-50 border border-green-200 rounded-xl p-5 mb-6 flex items-start gap-3">
+      <i data-lucide="check-circle-2" class="w-6 h-6 text-green-600 flex-shrink-0"></i>
+      <div>
+        <h3 class="font-bold text-green-900">All verified — distribution unlocked</h3>
+        <p class="text-sm text-green-800">Your event has been generated and pushed to Eventbrite, Luma, and DICE. Check your dashboard.</p>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-4" id="slots"></div>
+
+    <div class="mt-8 bg-white border border-gray-200 rounded-2xl p-6">
+      <h3 class="font-bold mb-3">Where to claim:</h3>
+      <ul class="text-sm space-y-2">
+        <li class="flex items-center gap-2"><i data-lucide="external-link" class="w-4 h-4 text-brand-500"></i><a href="https://artists.bandsintown.com" target="_blank" class="hover:text-brand-500">artists.bandsintown.com</a></li>
+        <li class="flex items-center gap-2"><i data-lucide="external-link" class="w-4 h-4 text-brand-500"></i><a href="https://www.songkick.com/tourbox" target="_blank" class="hover:text-brand-500">songkick.com/tourbox</a></li>
+        <li class="flex items-center gap-2"><i data-lucide="external-link" class="w-4 h-4 text-brand-500"></i><a href="https://dice.fm" target="_blank" class="hover:text-brand-500">dice.fm</a></li>
+      </ul>
+    </div>
+  </div>
+
+</main>
+
+<script src="assets/nmw.js"></script>
+<script>
+const artist = NMW.getArtist();
+const noArtist = document.getElementById('noArtist');
+const notPerf = document.getElementById('notPerf');
+const portal = document.getElementById('portal');
+
+if (!artist) { noArtist.classList.remove('hidden'); }
+else if (!artist.performanceSlot) { notPerf.classList.remove('hidden'); }
+else { portal.classList.remove('hidden'); render(); }
+
+function render() {
+  const slots = [
+    { key: 'bandsintown', label: 'Bandsintown', desc: 'Screenshot of your claimed artist page.', icon: 'music' },
+    { key: 'songkick',    label: 'Songkick / Tourbox', desc: 'Screenshot of verified Tourbox account.', icon: 'globe' },
+    { key: 'dice',        label: 'DICE', desc: 'Screenshot of your DICE artist/event account.', icon: 'ticket' },
+  ];
+  const wrap = document.getElementById('slots');
+  wrap.innerHTML = '';
+  slots.forEach(s => {
+    const v = artist.verification[s.key];
+    const uploaded = !!v.url;
+    const status = v.status;
+    const badge = status === 'approved' ? '<span class="tag tag-approved">Approved</span>'
+              : status === 'submitted' ? '<span class="tag tag-submitted">Under review</span>'
+              : '<span class="tag tag-pending">Pending</span>';
+    wrap.insertAdjacentHTML('beforeend', `
+      <div class="bg-white border border-gray-200 rounded-2xl p-5">
+        <div class="flex items-start justify-between mb-3">
+          <div class="flex items-center gap-2"><i data-lucide="${s.icon}" class="w-5 h-5 text-brand-500"></i><h3 class="font-bold">${s.label}</h3></div>
+          ${badge}
+        </div>
+        <p class="text-xs text-gray-500 mb-3">${s.desc}</p>
+        <label class="upload-slot block ${uploaded ? 'uploaded' : ''}" data-slot="${s.key}">
+          ${uploaded
+            ? `<div class="text-sm font-bold text-brand-500 flex items-center justify-center gap-2"><i data-lucide="check" class="w-4 h-4"></i>${v.fileName || 'Uploaded'}</div>`
+            : `<i data-lucide="upload" class="w-6 h-6 mx-auto text-gray-400 mb-2"></i><div class="text-sm font-bold">Upload screenshot</div><div class="text-xs text-gray-500 mt-1">PNG / JPG</div>`
+          }
+          <input type="file" accept="image/*" class="hidden" data-input="${s.key}">
+        </label>
+      </div>
+    `);
+  });
+  lucide.createIcons();
+
+  wrap.querySelectorAll('[data-slot]').forEach(el => {
+    const k = el.dataset.slot;
+    const input = wrap.querySelector(`[data-input="${k}"]`);
+    el.addEventListener('click', (e) => { if (e.target !== input) input.click(); });
+    input.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        NMW.updateCurrentArtist(a => {
+          a.verification[k] = { status: 'submitted', url: reader.result, fileName: file.name, uploadedAt: new Date().toISOString() };
+        });
+        render();
+      };
+      reader.readAsDataURL(file);
+    });
+  });
+
+  if (artist.verification.approved) document.getElementById('approvedBanner').classList.remove('hidden');
+}
+</script>
+</body>
+</html>
