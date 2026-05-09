@@ -67,37 +67,37 @@ body {
 }
 .nmw-logo-block { display: inline-flex; align-items: center; text-decoration: none; }
 .nmw-logo-img {
-  height: 64px;
+  height: 96px;
   width: auto;
   display: block;
   background: transparent;
   object-fit: contain;
 }
 @media (min-width: 768px) {
-  .nmw-logo-img { height: 80px; }
+  .nmw-logo-img { height: 128px; }
 }
-/* Footer logo: also transparent, just slightly smaller than the nav lockup */
+/* Allow nav row to grow with the bigger logo */
+.nmw-nav { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+
+/* Footer logo: also transparent, sized to match the new lockup */
 .footer-logo {
-  height: 56px;
+  height: 88px;
   width: auto;
   display: block;
   background: transparent;
   object-fit: contain;
 }
 
-/* Light footer (replaces previous black footer) */
+/* Dark footer with brand top accent */
 .nmw-footer {
-  background: #fff;
-  color: #4b5563;
+  background: #000;
+  color: #9ca3af;
   padding: 3rem 0;
   border-top: 4px solid var(--brand-500);
 }
-.nmw-footer .text-gray-400 { color: #6b7280; }
-.nmw-footer p { color: #6b7280; }
-.nmw-footer a { color: #4b5563; transition: color .15s; }
-.nmw-footer a:hover { color: var(--brand-500); }
-.nmw-footer .text-white,
-.nmw-footer span[class*="text-white"] { color: #111827; }
+.nmw-footer p { color: #9ca3af; }
+.nmw-footer a { color: #9ca3af; transition: color .15s; }
+.nmw-footer a:hover { color: #fff; }
 
 /* ============ Urgency Bar ============ */
 .urgency-bar {
