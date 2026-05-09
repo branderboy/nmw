@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin | NMW</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<link rel="stylesheet" href="assets/nmw.css">
+<script>
+tailwind.config = { theme: { extend: {
+  fontFamily: { sans: ['Inter','sans-serif'] },
+  colors: { brand: { 50:'#FDF2F8', 200:'#FBCFE8', 500:'#8A1558', 600:'#680D3E' } }
+}}}
+</script>
+</head>
+<body class="font-sans antialiased bg-gray-50 min-h-screen">
+
+<nav class="bg-black text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16 items-center">
+      <a href="landing.html" class="flex items-center gap-3">
+        <div class="w-9 h-9 bg-brand-500 rounded-sm flex items-center justify-center text-white font-black text-lg">NMW</div>
+        <span class="font-bold tracking-tight">ADMIN</span>
+        <span class="text-xs uppercase tracking-widest text-yellow-400 hidden md:inline">Internal</span>
+      </a>
+      <div class="flex items-center gap-3">
+        <button id="seedBtn" class="text-xs font-bold uppercase tracking-wider text-white/60 hover:text-white hidden sm:flex items-center gap-1"><i data-lucide="database" class="w-4 h-4"></i> Seed demo</button>
+        <button id="resetBtn" class="text-xs font-bold uppercase tracking-wider text-white/60 hover:text-red-400 flex items-center gap-1"><i data-lucide="refresh-cw" class="w-4 h-4"></i> Reset</button>
+        <a href="landing.html" class="text-xs font-bold uppercase tracking-wider text-white/60 hover:text-white">Site</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+  <header class="mb-6">
+    <h1 class="text-3xl md:text-4xl font-black tracking-tight">NMW Admin</h1>
+    <p class="text-gray-600 mt-1">Manage artists, verifications, events, referrals, blast, distribution.</p>
+  </header>
+
+  <!-- KPIs -->
+  <section class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-6" id="kpis"></section>
+
+  <!-- Tabs -->
+  <div class="border-b border-gray-200 mb-6 overflow-x-auto">
+    <div class="flex gap-1 min-w-max">
+      <button class="tab active" data-tab="artists">Artists</button>
+      <button class="tab" data-tab="verifications">Verifications</button>
+      <button class="tab" data-tab="events">Events</button>
+      <button class="tab" data-tab="referrals">Referrals</button>
+      <button class="tab" data-tab="blast">The Blast</button>
+      <button class="tab" data-tab="distribution">Distribution</button>
+      <button class="tab" data-tab="analytics">Analytics</button>
+    </div>
+  </div>
+
+  <!-- ARTISTS -->
+  <section data-pane="artists" class="pane">
+    <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden">
+      <div class="p-4 flex items-center justify-between gap-3 border-b border-gray-200">
+        <input id="artistSearch" placeholder="Search artists…" class="field-input max-w-sm">
+        <div class="text-xs text-gray-500" id="artistCount"></div>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="min-w-full text-sm">
+          <thead class="bg-gray-50 text-xs uppercase tracking-wider text-gray-500">
+            <tr>
+              <th class="text-left px-4 py-3">Artist</th>
+              <th class="text-left px-4 py-3">Package</th>
+              <th class="text-left px-4 py-3">Genre</th>
+              <th class="text-left px-4 py-3">Goals</th>
+              <th class="text-left px-4 py-3">Total</th>
+              <th class="text-left px-4 py-3">Status</th>
+              <th class="text-left px-4 py-3">Created</th>
+              <th class="text-left px-4 py-3"></th>
+            </tr>
+          </thead>
+          <tbody id="artistRows"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- VERIFICATIONS -->
+  <section data-pane="verifications" class="pane hidden">
+    <div id="verifList" class="space-y-4"></div>
+  </section>
+
+  <!-- EVENTS -->
+  <section data-pane="events" class="pane hidden">
+    <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden">
+      <table class="min-w-full text-sm">
+        <thead class="bg-gray-50 text-xs uppercase tracking-wider text-gray-500">
+          <tr>
+            <th class="text-left px-4 py-3">Event</th>
+            <th class="text-left px-4 py-3">Date</th>
+            <th class="text-left px-4 py-3">Venue</th>
+            <th class="text-left px-4 py-3">Tier</th>
+            <th class="text-left px-4 py-3"></th>
+          </tr>
+        </thead>
+        <tbody id="eventRows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- REFERRALS -->
+  <section data-pane="referrals" class="pane hidden">
+    <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden">
+      <table class="min-w-full text-sm">
+        <thead class="bg-gray-50 text-xs uppercase tracking-wider text-gray-500">
+          <tr>
+            <th class="text-left px-4 py-3">Artist</th>
+            <th class="text-left px-4 py-3">Code</th>
+            <th class="text-left px-4 py-3">Invites</th>
+            <th class="text-left px-4 py-3">Registrations</th>
+            <th class="text-left px-4 py-3">Conversion</th>
+            <th class="text-left px-4 py-3">Unlocked</th>
+          </tr>
+        </thead>
+        <tbody id="refRows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- BLAST -->
+  <section data-pane="blast" class="pane hidden">
+    <div class="grid lg:grid-cols-3 gap-6">
+      <div class="lg:col-span-2 bg-white border border-gray-200 rounded-2xl overflow-hidden">
+        <table class="min-w-full text-sm">
+          <thead class="bg-gray-50 text-xs uppercase tracking-wider text-gray-500">
+            <tr>
+              <th class="text-left px-4 py-3">Email</th>
+              <th class="text-left px-4 py-3">Phone</th>
+              <th class="text-left px-4 py-3">Genre</th>
+            </tr>
+          </thead>
+          <tbody id="blastRows"></tbody>
+        </table>
+      </div>
+      <aside class="bg-white border border-gray-200 rounded-2xl p-6">
+        <h3 class="font-bold mb-3 flex items-center gap-2"><i data-lucide="send" class="w-5 h-5 text-brand-500"></i> Send a Blast</h3>
+        <div class="space-y-3">
+          <div><label class="field-label">Subject</label><input class="field-input" placeholder="This Wednesday at NMW…"></div>
+          <div><label class="field-label">Filter by genre</label>
+            <select class="field-input">
+              <option value="">All subscribers</option>
+              <option>R&B</option><option>Soul</option><option>Hip Hop</option>
+              <option>Afro-Pop</option><option>Pop</option><option>Latin</option>
+            </select>
+          </div>
+          <div><label class="field-label">Message</label><textarea class="field-input" rows="5"></textarea></div>
+          <button class="btn-primary w-full justify-center"><i data-lucide="send" class="w-4 h-4"></i> Send</button>
+          <div class="text-xs text-gray-500">Demo only — wire to ESP/SMS provider in production.</div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- DISTRIBUTION -->
+  <section data-pane="distribution" class="pane hidden">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="card">
+        <h3 class="font-bold flex items-center gap-2 mb-2"><i data-lucide="ticket" class="w-5 h-5 text-brand-500"></i> Eventbrite</h3>
+        <p class="text-sm text-gray-600 mb-3">Auto-create RSVPs for verified performance slots.</p>
+        <div class="text-xs text-gray-500 mb-3">Status: <span class="tag tag-approved">Connected</span></div>
+        <button class="btn-outline text-xs w-full justify-center">Push pending events</button>
+      </div>
+      <div class="card">
+        <h3 class="font-bold flex items-center gap-2 mb-2"><i data-lucide="globe" class="w-5 h-5 text-brand-500"></i> Luma</h3>
+        <p class="text-sm text-gray-600 mb-3">Auto-create RSVPs and event pages.</p>
+        <div class="text-xs text-gray-500 mb-3">Status: <span class="tag tag-approved">Connected</span></div>
+        <button class="btn-outline text-xs w-full justify-center">Push pending events</button>
+      </div>
+      <div class="card">
+        <h3 class="font-bold flex items-center gap-2 mb-2"><i data-lucide="disc-3" class="w-5 h-5 text-brand-500"></i> DICE</h3>
+        <p class="text-sm text-gray-600 mb-3">Generate event copy for manual paste.</p>
+        <div class="text-xs text-gray-500 mb-3">Status: <span class="tag tag-submitted">Manual paste</span></div>
+        <button class="btn-outline text-xs w-full justify-center" id="genDiceBtn">Generate copy for next event</button>
+      </div>
+      <div class="card md:col-span-2 lg:col-span-3 hidden" id="dicePreview">
+        <div class="flex items-center justify-between mb-2">
+          <h3 class="font-bold">DICE event copy</h3>
+          <button id="copyDice" class="btn-outline text-xs"><i data-lucide="copy" class="w-4 h-4"></i> Copy</button>
+        </div>
+        <pre class="text-xs bg-gray-50 border border-gray-200 rounded-lg p-4 whitespace-pre-wrap" id="diceOut"></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANALYTICS -->
+  <section data-pane="analytics" class="pane hidden">
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="card">
+        <h3 class="font-bold mb-3">Package mix</h3>
+        <div id="pkgMix" class="space-y-2"></div>
+      </div>
+      <div class="card">
+        <h3 class="font-bold mb-3">Goal frequency</h3>
+        <div id="goalMix" class="space-y-2"></div>
+      </div>
+      <div class="card">
+        <h3 class="font-bold mb-3">Verification funnel</h3>
+        <div id="verifMix" class="space-y-2"></div>
+      </div>
+      <div class="card">
+        <h3 class="font-bold mb-3">Viral loop</h3>
+        <div id="loopStats" class="space-y-2 text-sm"></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="assets/nmw.js"></script>
+<script>
+NMW.seedDemoIfEmpty();
+
+// tabs
+document.querySelectorAll('.tab').forEach(t => {
+  t.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+    document.querySelectorAll('.pane').forEach(p => p.classList.add('hidden'));
+    document.querySelector(`[data-pane="${t.dataset.tab}"]`).classList.remove('hidden');
+    lucide.createIcons();
+  });
+});
+
+function fmt(d) { return new Date(d).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' }); }
+
+function renderKPIs() {
+  const all = NMW.getArtists();
+  const perf = all.filter(a => a.performanceSlot);
+  const pending = perf.filter(a => !a.verification.approved).length;
+  const revenue = all.reduce((s, a) => s + (a.total || 0), 0);
+  const blast = NMW.getBlast().length;
+  const refs = all.reduce((s, a) => s + (a.referral?.registrations || 0), 0);
+
+  document.getElementById('kpis').innerHTML = `
+    <div class="kpi"><div class="kpi-value">${all.length}</div><div class="kpi-label">Total Artists</div></div>
+    <div class="kpi"><div class="kpi-value">${perf.length}</div><div class="kpi-label">Performance Slots</div></div>
+    <div class="kpi"><div class="kpi-value">${pending}</div><div class="kpi-label">Pending Verifications</div></div>
+    <div class="kpi"><div class="kpi-value">$${revenue.toLocaleString()}</div><div class="kpi-label">Gross Revenue</div></div>
+    <div class="kpi"><div class="kpi-value">${blast}</div><div class="kpi-label">Blast Subscribers</div></div>
+  `;
+}
+
+function renderArtists(filter = '') {
+  const all = NMW.getArtists().filter(a => {
+    if (!filter) return true;
+    const f = filter.toLowerCase();
+    return (a.artistName||'').toLowerCase().includes(f) || (a.email||'').toLowerCase().includes(f) || (a.name||'').toLowerCase().includes(f);
+  }).sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+  document.getElementById('artistCount').textContent = `${all.length} artist${all.length !== 1 ? 's' : ''}`;
+  const tbody = document.getElementById('artistRows');
+  if (!all.length) { tbody.innerHTML = '<tr><td colspan="8" class="px-4 py-10 text-center text-gray-400">No artists yet.</td></tr>'; return; }
+  tbody.innerHTML = all.map(a => {
+    const status = !a.performanceSlot ? '<span class="tag tag-na">N/A</span>'
+                 : a.verification.approved ? '<span class="tag tag-approved">Verified</span>'
+                 : '<span class="tag tag-pending">Pending</span>';
+    return `<tr class="border-t border-gray-100 hover:bg-gray-50">
+      <td class="px-4 py-3"><div class="font-bold">${a.artistName || a.name}</div><div class="text-xs text-gray-500">${a.email}</div></td>
+      <td class="px-4 py-3">${a.package?.name || '—'}</td>
+      <td class="px-4 py-3">${a.genre || '—'}</td>
+      <td class="px-4 py-3 text-xs text-gray-600 max-w-xs truncate" title="${(a.goals||[]).join(', ')}">${(a.goals||[]).slice(0,2).join(', ')}${a.goals?.length > 2 ? '…' : ''}</td>
+      <td class="px-4 py-3 font-bold">$${a.total || 0}</td>
+      <td class="px-4 py-3">${status}</td>
+      <td class="px-4 py-3 text-xs text-gray-500">${fmt(a.createdAt)}</td>
+      <td class="px-4 py-3 text-right">
+        ${a.performanceSlot && !a.verification.approved
+          ? `<button class="text-brand-500 text-xs font-bold hover:underline" data-approve="${a.id}">Approve</button>`
+          : ''}
+      </td>
+    </tr>`;
+  }).join('');
+  tbody.querySelectorAll('[data-approve]').forEach(btn => {
+    btn.addEventListener('click', () => approveArtist(btn.dataset.approve));
+  });
+}
+
+function approveArtist(id) {
+  const all = NMW.getArtists();
+  const a = all.find(x => x.id === id);
+  if (!a) return;
+  ['bandsintown','songkick','dice'].forEach(k => a.verification[k].status = 'approved');
+  a.verification.approved = true;
+  NMW.saveArtist(a);
+  renderAll();
+}
+
+function renderVerifications() {
+  const all = NMW.getArtists().filter(a => a.performanceSlot);
+  const wrap = document.getElementById('verifList');
+  if (!all.length) { wrap.innerHTML = '<div class="bg-white border border-gray-200 rounded-2xl p-10 text-center text-gray-400">No performance slots yet.</div>'; return; }
+  wrap.innerHTML = all.map(a => {
+    const slots = ['bandsintown','songkick','dice'];
+    return `<div class="bg-white border border-gray-200 rounded-2xl p-5">
+      <div class="flex items-center justify-between mb-4 flex-wrap gap-2">
+        <div>
+          <div class="font-bold">${a.artistName || a.name}</div>
+          <div class="text-xs text-gray-500">${a.email} · ${a.package?.name}</div>
+        </div>
+        <div>
+          ${a.verification.approved ? '<span class="tag tag-approved">Approved</span>' : '<span class="tag tag-pending">Pending</span>'}
+        </div>
+      </div>
+      <div class="grid sm:grid-cols-3 gap-3">
+        ${slots.map(k => {
+          const v = a.verification[k];
+          const tag = v.status === 'approved' ? 'tag-approved' : v.status === 'submitted' ? 'tag-submitted' : 'tag-pending';
+          const label = v.status === 'approved' ? 'Approved' : v.status === 'submitted' ? 'Submitted' : 'Pending';
+          return `<div class="border border-gray-200 rounded-xl p-3">
+            <div class="flex items-center justify-between mb-2">
+              <div class="text-xs font-bold uppercase tracking-wider text-gray-500">${k}</div>
+              <span class="tag ${tag}">${label}</span>
+            </div>
+            ${v.url && v.url !== '#'
+              ? `<img src="${v.url}" class="w-full h-24 object-cover rounded-md border border-gray-200">`
+              : `<div class="h-24 bg-gray-50 rounded-md border border-dashed border-gray-200 flex items-center justify-center text-xs text-gray-400">${v.url === '#' ? 'Demo screenshot' : 'No upload'}</div>`}
+            <div class="flex gap-2 mt-2">
+              <button class="text-xs font-bold text-green-700 hover:underline" data-vapprove="${a.id}|${k}">Approve</button>
+              <button class="text-xs font-bold text-red-600 hover:underline" data-vreject="${a.id}|${k}">Reject</button>
+            </div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>`;
+  }).join('');
+
+  wrap.querySelectorAll('[data-vapprove]').forEach(b => b.addEventListener('click', () => {
+    const [id, k] = b.dataset.vapprove.split('|');
+    const all = NMW.getArtists();
+    const a = all.find(x => x.id === id);
+    a.verification[k].status = 'approved';
+    a.verification.approved = ['bandsintown','songkick','dice'].every(x => a.verification[x].status === 'approved');
+    NMW.saveArtist(a);
+    renderAll();
+  }));
+  wrap.querySelectorAll('[data-vreject]').forEach(b => b.addEventListener('click', () => {
+    const [id, k] = b.dataset.vreject.split('|');
+    const all = NMW.getArtists();
+    const a = all.find(x => x.id === id);
+    a.verification[k].status = 'pending';
+    a.verification.approved = false;
+    NMW.saveArtist(a);
+    renderAll();
+  }));
+}
+
+function renderEvents() {
+  const all = NMW.getEvents();
+  const tbody = document.getElementById('eventRows');
+  if (!all.length) { tbody.innerHTML = '<tr><td colspan="5" class="px-4 py-10 text-center text-gray-400">No events yet.</td></tr>'; return; }
+  tbody.innerHTML = all.map(e => `<tr class="border-t border-gray-100 hover:bg-gray-50">
+    <td class="px-4 py-3 font-bold">${e.title}</td>
+    <td class="px-4 py-3">${fmt(e.date)}</td>
+    <td class="px-4 py-3">${e.venue}</td>
+    <td class="px-4 py-3"><span class="tag tag-perf">${e.tier}</span></td>
+    <td class="px-4 py-3 text-right text-xs text-gray-500">Auto-distributed</td>
+  </tr>`).join('');
+}
+
+function renderRefs() {
+  const all = NMW.getArtists();
+  const tbody = document.getElementById('refRows');
+  if (!all.length) { tbody.innerHTML = '<tr><td colspan="6" class="px-4 py-10 text-center text-gray-400">No referrals yet.</td></tr>'; return; }
+  tbody.innerHTML = all.map(a => {
+    const r = a.referral || {};
+    const conv = r.invites ? Math.round(((r.registrations||0) / r.invites) * 100) : 0;
+    return `<tr class="border-t border-gray-100 hover:bg-gray-50">
+      <td class="px-4 py-3 font-bold">${a.artistName || a.name}</td>
+      <td class="px-4 py-3 font-mono text-xs">${r.code || '—'}</td>
+      <td class="px-4 py-3">${r.invites || 0}</td>
+      <td class="px-4 py-3">${r.registrations || 0}</td>
+      <td class="px-4 py-3">${conv}%</td>
+      <td class="px-4 py-3 text-xs">${(r.unlocked||[]).join(' · ') || '—'}</td>
+    </tr>`;
+  }).join('');
+}
+
+function renderBlast() {
+  const all = NMW.getBlast();
+  const tbody = document.getElementById('blastRows');
+  if (!all.length) { tbody.innerHTML = '<tr><td colspan="3" class="px-4 py-10 text-center text-gray-400">No subscribers yet.</td></tr>'; return; }
+  tbody.innerHTML = all.map(b => `<tr class="border-t border-gray-100">
+    <td class="px-4 py-3">${b.email || '—'}</td>
+    <td class="px-4 py-3 text-gray-600">${b.phone || '—'}</td>
+    <td class="px-4 py-3 text-gray-600">${b.genre || '—'}</td>
+  </tr>`).join('');
+}
+
+function renderAnalytics() {
+  const all = NMW.getArtists();
+  // Package mix
+  const pkgCounts = {};
+  all.forEach(a => { const k = a.package?.name || 'Unknown'; pkgCounts[k] = (pkgCounts[k] || 0) + 1; });
+  document.getElementById('pkgMix').innerHTML = barRows(pkgCounts);
+  // Goals
+  const goalCounts = {};
+  all.forEach(a => (a.goals||[]).forEach(g => goalCounts[g] = (goalCounts[g] || 0) + 1));
+  document.getElementById('goalMix').innerHTML = barRows(goalCounts);
+  // Verification funnel
+  const perf = all.filter(a => a.performanceSlot);
+  const verif = {
+    'Performance bookings': perf.length,
+    'Submitted any screenshot': perf.filter(a => Object.values(a.verification).some(v => v?.status === 'submitted' || v?.status === 'approved')).length,
+    'Fully approved': perf.filter(a => a.verification.approved).length,
+  };
+  document.getElementById('verifMix').innerHTML = barRows(verif);
+  // Loop stats
+  const totalInvites = all.reduce((s,a) => s + (a.referral?.invites||0), 0);
+  const totalRegs = all.reduce((s,a) => s + (a.referral?.registrations||0), 0);
+  const conv = totalInvites ? Math.round((totalRegs/totalInvites)*100) : 0;
+  document.getElementById('loopStats').innerHTML = `
+    <div class="flex justify-between"><span>Total invites sent</span><b>${totalInvites}</b></div>
+    <div class="flex justify-between"><span>Referred registrations</span><b>${totalRegs}</b></div>
+    <div class="flex justify-between"><span>Loop conversion rate</span><b>${conv}%</b></div>
+    <div class="flex justify-between"><span>Blast subscribers</span><b>${NMW.getBlast().length}</b></div>
+    <div class="flex justify-between"><span>Avg invites / artist</span><b>${all.length ? (totalInvites/all.length).toFixed(1) : 0}</b></div>
+  `;
+}
+
+function barRows(obj) {
+  const max = Math.max(1, ...Object.values(obj));
+  return Object.entries(obj).sort((a,b) => b[1]-a[1]).map(([k, v]) => `
+    <div>
+      <div class="flex justify-between text-sm mb-1"><span>${k}</span><b>${v}</b></div>
+      <div class="h-1.5 bg-gray-200 rounded-full overflow-hidden"><div class="h-full bg-brand-500" style="width:${(v/max)*100}%"></div></div>
+    </div>
+  `).join('') || '<div class="text-sm text-gray-400">No data.</div>';
+}
+
+function renderAll() {
+  renderKPIs();
+  renderArtists(document.getElementById('artistSearch').value);
+  renderVerifications();
+  renderEvents();
+  renderRefs();
+  renderBlast();
+  renderAnalytics();
+  lucide.createIcons();
+}
+
+document.getElementById('artistSearch').addEventListener('input', e => renderArtists(e.target.value));
+document.getElementById('seedBtn').addEventListener('click', () => { NMW.seedDemoIfEmpty(); renderAll(); });
+document.getElementById('resetBtn').addEventListener('click', () => {
+  if (confirm('Wipe all NMW data from this browser? (artists, events, referrals, blast)')) {
+    NMW.reset();
+    NMW.seedDemoIfEmpty();
+    renderAll();
+  }
+});
+
+// DICE generator
+document.getElementById('genDiceBtn').addEventListener('click', () => {
+  const events = NMW.getEvents();
+  const e = events[events.length - 1];
+  if (!e) { alert('No events yet.'); return; }
+  const d = new Date(e.date);
+  const out = `Title: ${e.title}
+Date: ${d.toLocaleDateString(undefined,{weekday:'long', month:'long', day:'numeric', year:'numeric'})}
+Doors: 3:00 PM
+DJ Call: 3:00 - 7:00 PM
+Live: 7:00 - 9:30 PM
+Venue: ${e.venue}
+Tier: ${e.tier}
+
+Description:
+New Music Wednesdays at The Penthouse NYC. Soul / R&B / Hip Hop showcase.
+Digiwaxx DJ Call 3-7PM. Hosted by Anna Nyakana, CL, Chrys Childs.
+
+Artist Headline: ${e.title.split('|')[1]?.trim() || ''}
+`;
+  document.getElementById('diceOut').textContent = out;
+  document.getElementById('dicePreview').classList.remove('hidden');
+});
+document.getElementById('copyDice').addEventListener('click', async () => {
+  const txt = document.getElementById('diceOut').textContent;
+  try { await navigator.clipboard.writeText(txt); } catch(_){}
+});
+
+renderAll();
+</script>
+</body>
+</html>

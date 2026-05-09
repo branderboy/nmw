@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apply to Perform | New Music Wednesdays</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<link rel="stylesheet" href="assets/nmw.css">
+<script>
+tailwind.config = { theme: { extend: {
+  fontFamily: { sans: ['Inter','sans-serif'], serif: ['Merriweather','serif'] },
+  colors: { brand: { 50:'#FDF2F8', 200:'#FBCFE8', 500:'#8A1558', 600:'#680D3E' } }
+}}}
+</script>
+</head>
+<body class="font-sans antialiased">
+
+<nav class="fixed w-full z-50 glass-nav top-0">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-20 items-center">
+      <a href="landing.html" class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-brand-500 rounded-sm flex items-center justify-center text-white font-black text-xl tracking-tighter">NMW</div>
+        <div class="hidden md:flex flex-col justify-center">
+          <span class="font-bold text-xl tracking-tight leading-none">NEW MUSIC WEDNESDAY</span>
+          <span class="font-medium text-brand-500 text-xs tracking-widest uppercase mt-1">by Digiwaxx</span>
+        </div>
+      </a>
+      <div class="hidden md:flex space-x-8 items-center text-sm font-bold tracking-wide text-gray-600">
+        <a href="#packages" class="hover:text-black">PACKAGES</a>
+        <a href="#how" class="hover:text-black">HOW IT WORKS</a>
+        <a href="#loops" class="hover:text-black">DISTRIBUTION</a>
+        <a href="dashboard.html" class="hover:text-black">DASHBOARD</a>
+        <a href="apply.html" class="btn-yellow">APPLY NOW <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+      </div>
+      <div class="md:hidden"><a href="apply.html" class="btn-yellow text-xs">APPLY</a></div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="relative pt-36 pb-24 lg:pt-48 lg:pb-32 overflow-hidden">
+  <div class="absolute inset-0 -z-10 opacity-15 pointer-events-none">
+    <div class="absolute top-20 left-1/4 w-[500px] h-[500px] bg-brand-500 rounded-full blur-[140px]"></div>
+    <div class="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-yellow-400 rounded-full blur-[140px]"></div>
+  </div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl">
+      <div class="inline-flex items-center gap-2 mb-6 bg-brand-50 border border-brand-200 px-4 py-1.5 rounded-full">
+        <span class="w-2 h-2 bg-brand-500 rounded-full animate-pulse"></span>
+        <span class="text-xs font-bold tracking-widest uppercase text-brand-500">Now booking · Wednesdays · The Penthouse NYC</span>
+      </div>
+      <h1 class="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.95] mb-8">
+        Perform live.<br>
+        Get covered.<br>
+        <span class="text-brand-500">Get heard.</span>
+      </h1>
+      <p class="text-xl md:text-2xl text-gray-600 max-w-2xl leading-relaxed mb-10">
+        New Music Wednesdays is a live performance and rollout platform built to amplify rising artists — through media coverage, DJ exposure, and event distribution that actually reaches people.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="apply.html" class="btn-yellow text-base">APPLY NOW <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+        <a href="#packages" class="btn-outline text-base">SEE PACKAGES</a>
+      </div>
+
+      <div class="mt-16 grid grid-cols-2 md:grid-cols-3 gap-6 text-sm">
+        <div class="flex items-start gap-3"><i data-lucide="mic" class="w-5 h-5 text-brand-500 mt-0.5"></i><span><b>Perform live</b> — real stage, real crowd</span></div>
+        <div class="flex items-start gap-3"><i data-lucide="newspaper" class="w-5 h-5 text-brand-500 mt-0.5"></i><span><b>Get media coverage</b> — interviews + clips</span></div>
+        <div class="flex items-start gap-3"><i data-lucide="disc-3" class="w-5 h-5 text-brand-500 mt-0.5"></i><span><b>Connect with DJs</b> — Digiwaxx DJ Call</span></div>
+        <div class="flex items-start gap-3"><i data-lucide="megaphone" class="w-5 h-5 text-brand-500 mt-0.5"></i><span><b>Amplify your music</b> — distribution engine</span></div>
+        <div class="flex items-start gap-3"><i data-lucide="search" class="w-5 h-5 text-brand-500 mt-0.5"></i><span><b>Build discoverability</b> — DICE + event feeds</span></div>
+        <div class="flex items-start gap-3"><i data-lucide="users" class="w-5 h-5 text-brand-500 mt-0.5"></i><span><b>Real relationships</b> — DJs, media, label reps</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- PACKAGES -->
+<section id="packages" class="py-24 bg-gray-50 border-y border-gray-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mb-12">
+      <span class="text-xs font-black tracking-widest uppercase text-brand-500">Packages</span>
+      <h2 class="text-4xl md:text-5xl font-black tracking-tight mt-3 mb-4">Pick how you show up.</h2>
+      <p class="text-lg text-gray-600">Performance tiers ($395+) activate full distribution: artist verification, event creation, and the DICE relationship system.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5" id="packageGrid"></div>
+
+    <div class="mt-10 text-center">
+      <a href="apply.html" class="btn-primary">START APPLICATION <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mb-12">
+      <span class="text-xs font-black tracking-widest uppercase text-brand-500">The Flow</span>
+      <h2 class="text-4xl md:text-5xl font-black tracking-tight mt-3 mb-4">Apply once. Distribute everywhere.</h2>
+      <p class="text-lg text-gray-600">Every performance booking triggers a full rollout — automated event creation, ticketing, social distribution, and post-event content.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div class="card">
+        <div class="w-10 h-10 rounded-lg bg-brand-50 flex items-center justify-center text-brand-500 mb-4"><i data-lucide="clipboard-check" class="w-5 h-5"></i></div>
+        <div class="text-xs font-black text-gray-400 mb-1">01</div>
+        <h3 class="font-bold text-lg mb-2">Apply + Pay</h3>
+        <p class="text-sm text-gray-600">Pick your package, share your goals, get smart upgrade recommendations, check out via Stripe.</p>
+      </div>
+      <div class="card">
+        <div class="w-10 h-10 rounded-lg bg-brand-50 flex items-center justify-center text-brand-500 mb-4"><i data-lucide="badge-check" class="w-5 h-5"></i></div>
+        <div class="text-xs font-black text-gray-400 mb-1">02</div>
+        <h3 class="font-bold text-lg mb-2">Verify</h3>
+        <p class="text-sm text-gray-600">Claim Bandsintown, Songkick, and DICE. Upload screenshots — verification unlocks distribution.</p>
+      </div>
+      <div class="card">
+        <div class="w-10 h-10 rounded-lg bg-brand-50 flex items-center justify-center text-brand-500 mb-4"><i data-lucide="radio" class="w-5 h-5"></i></div>
+        <div class="text-xs font-black text-gray-400 mb-1">03</div>
+        <h3 class="font-bold text-lg mb-2">Distribute</h3>
+        <p class="text-sm text-gray-600">Auto-generated event listings on Eventbrite, Luma, DICE, plus flyers, share assets, and a custom event link.</p>
+      </div>
+      <div class="card">
+        <div class="w-10 h-10 rounded-lg bg-brand-50 flex items-center justify-center text-brand-500 mb-4"><i data-lucide="zap" class="w-5 h-5"></i></div>
+        <div class="text-xs font-black text-gray-400 mb-1">04</div>
+        <h3 class="font-bold text-lg mb-2">Perform + Spread</h3>
+        <p class="text-sm text-gray-600">Live performance, media pit, post-event clips. Share with your network — invite 5 artists, unlock free entry.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIRAL LOOPS -->
+<section id="loops" class="py-24 bg-black text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mb-12">
+      <span class="text-xs font-black tracking-widest uppercase text-yellow-400">Built-In Loops</span>
+      <h2 class="text-4xl md:text-5xl font-black tracking-tight mt-3 mb-4">The system grows with you.</h2>
+      <p class="text-lg text-gray-300">Every artist who joins triggers distribution loops — referrals, calendar adds, content drops, and team invites that compound week over week.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-5">
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur">
+        <div class="flex items-center gap-3 mb-4"><i data-lucide="users-round" class="w-6 h-6 text-yellow-400"></i><h3 class="font-bold text-xl">Team Invite Loop</h3></div>
+        <p class="text-gray-300">Bring your manager, DJ, producer, videographer, and street team. Each invite ties back to your event and builds your room.</p>
+      </div>
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur">
+        <div class="flex items-center gap-3 mb-4"><i data-lucide="share-2" class="w-6 h-6 text-yellow-400"></i><h3 class="font-bold text-xl">Promo Funnel Loop</h3></div>
+        <p class="text-gray-300">Auto-generated flyer, story asset, and personalized event link. You market the event through your own audience.</p>
+      </div>
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur">
+        <div class="flex items-center gap-3 mb-4"><i data-lucide="calendar-days" class="w-6 h-6 text-yellow-400"></i><h3 class="font-bold text-xl">Calendar Loop</h3></div>
+        <p class="text-gray-300">One-tap add to Google Calendar — recurring every Wednesday — keeps NMW in front of your audience week after week.</p>
+      </div>
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur">
+        <div class="flex items-center gap-3 mb-4"><i data-lucide="gift" class="w-6 h-6 text-yellow-400"></i><h3 class="font-bold text-xl">Invite 5 Artists Loop</h3></div>
+        <p class="text-gray-300">Refer 3 → priority line. Refer 5 → free ticket. Refer 10 → interview consideration + featured placement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POSITIONING -->
+<section class="py-24">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <span class="text-xs font-black tracking-widest uppercase text-brand-500">What NMW Actually Sells</span>
+    <h2 class="text-4xl md:text-6xl font-black tracking-tight mt-4 mb-8 leading-tight">
+      We're not selling stage time.<br>
+      <span class="text-brand-500">We sell rollout infrastructure.</span>
+    </h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm font-bold uppercase tracking-wider text-gray-700 mt-12">
+      <div class="bg-gray-50 border border-gray-200 py-4 rounded-lg">Amplification</div>
+      <div class="bg-gray-50 border border-gray-200 py-4 rounded-lg">Discoverability</div>
+      <div class="bg-gray-50 border border-gray-200 py-4 rounded-lg">Event Distribution</div>
+      <div class="bg-gray-50 border border-gray-200 py-4 rounded-lg">Media Visibility</div>
+      <div class="bg-gray-50 border border-gray-200 py-4 rounded-lg">Artist Positioning</div>
+      <div class="bg-gray-50 border border-gray-200 py-4 rounded-lg">Audience Growth</div>
+      <div class="bg-gray-50 border border-gray-200 py-4 rounded-lg">Culture Access</div>
+      <div class="bg-gray-50 border border-gray-200 py-4 rounded-lg">Rollout Engine</div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="py-24 bg-brand-500 text-white">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2 class="text-4xl md:text-6xl font-black tracking-tight mb-6">Your stage. Your story. Your next move.</h2>
+    <p class="text-xl text-white/80 mb-10 max-w-2xl mx-auto">Apply now. Performance slots are limited each Wednesday.</p>
+    <div class="flex flex-wrap gap-4 justify-center">
+      <a href="apply.html" class="btn-yellow text-base">APPLY NOW <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+      <a href="#packages" class="text-white border-2 border-white/40 px-6 py-3 rounded-full font-black uppercase tracking-wider text-xs hover:bg-white hover:text-brand-500 transition">SEE PACKAGES</a>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-black text-gray-400 py-10 text-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between gap-4">
+    <div>© NMW · New Music Wednesdays · by Digiwaxx</div>
+    <div class="flex gap-6">
+      <a href="apply.html" class="hover:text-white">Apply</a>
+      <a href="dashboard.html" class="hover:text-white">Artist Dashboard</a>
+      <a href="admin.html" class="hover:text-white">Admin</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/nmw.js"></script>
+<script>
+  lucide.createIcons();
+
+  // Capture referral code from URL if present
+  const params = new URLSearchParams(location.search);
+  const ref = params.get('ref');
+  if (ref) {
+    sessionStorage.setItem('nmw.referrer', ref);
+    // bump referrer's invite count for the demo
+    const all = NMW.getArtists();
+    const ow = all.find(a => a.referral?.code === ref);
+    if (ow) {
+      ow.referral.invites = (ow.referral.invites || 0) + 1;
+      NMW.saveArtist(ow);
+    }
+  }
+
+  // render packages
+  const grid = document.getElementById('packageGrid');
+  NMW.PACKAGES.forEach(p => {
+    const tag = p.tier === 'performance' ? '<span class="tag tag-perf">Performance</span>' : '<span class="tag tag-entry">Entry</span>';
+    grid.insertAdjacentHTML('beforeend', `
+      <div class="card flex flex-col">
+        <div class="flex items-start justify-between mb-2">
+          <div class="text-xs font-black uppercase tracking-widest text-gray-400">${p.tier === 'performance' ? 'Performance Tier' : 'Entry Tier'}</div>
+          ${tag}
+        </div>
+        <h3 class="font-black text-2xl tracking-tight">${p.name}</h3>
+        <div class="text-3xl font-black text-brand-500 my-3">$${p.price}</div>
+        <p class="text-sm text-gray-600 mb-4">${p.blurb}</p>
+        <ul class="space-y-2 text-sm mb-6 flex-1">
+          ${p.perks.map(perk => `<li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-500 mt-0.5 flex-shrink-0"></i><span>${perk}</span></li>`).join('')}
+        </ul>
+        <a href="apply.html?pkg=${p.id}" class="btn-primary w-full justify-center">Select <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+      </div>
+    `);
+  });
+  lucide.createIcons();
+</script>
+</body>
+</html>
