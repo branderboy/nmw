@@ -55,6 +55,7 @@ tailwind.config = { theme: { extend: {
       <button class="tab" data-tab="events">Events</button>
       <button class="tab" data-tab="referrals">Referrals</button>
       <button class="tab" data-tab="blast">The Blast</button>
+      <button class="tab" data-tab="djs">DJs</button>
       <button class="tab" data-tab="sponsors">Sponsors</button>
       <button class="tab" data-tab="distribution">Distribution</button>
       <button class="tab" data-tab="analytics">Analytics</button>
@@ -117,18 +118,28 @@ tailwind.config = { theme: { extend: {
   <!-- EVENTS -->
   <section data-pane="events" class="pane hidden">
     <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden">
-      <table class="min-w-full text-sm">
-        <thead class="bg-gray-50 text-xs uppercase tracking-wider text-gray-500">
-          <tr>
-            <th class="text-left px-4 py-3">Event</th>
-            <th class="text-left px-4 py-3">Date</th>
-            <th class="text-left px-4 py-3">Venue</th>
-            <th class="text-left px-4 py-3">Tier</th>
-            <th class="text-left px-4 py-3"></th>
-          </tr>
-        </thead>
-        <tbody id="eventRows"></tbody>
-      </table>
+      <div class="p-4 flex items-center justify-between gap-3 border-b border-gray-200">
+        <h3 class="font-bold text-sm uppercase tracking-widest">Event Feed · Distribution Status</h3>
+        <div class="text-xs text-gray-500">Toggle each surface as you push the event live.</div>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="min-w-full text-sm">
+          <thead class="bg-gray-50 text-xs uppercase tracking-wider text-gray-500">
+            <tr>
+              <th class="text-left px-4 py-3">Event</th>
+              <th class="text-left px-4 py-3">Date</th>
+              <th class="text-left px-4 py-3">Tier</th>
+              <th class="text-center px-3 py-3">Events Page</th>
+              <th class="text-center px-3 py-3">Eventbrite</th>
+              <th class="text-center px-3 py-3">Luma</th>
+              <th class="text-center px-3 py-3">DICE</th>
+              <th class="text-center px-3 py-3">Bandsintown</th>
+              <th class="text-center px-3 py-3">Songkick</th>
+            </tr>
+          </thead>
+          <tbody id="eventRows"></tbody>
+        </table>
+      </div>
     </div>
   </section>
 
@@ -185,6 +196,33 @@ tailwind.config = { theme: { extend: {
     </div>
   </section>
 
+  <!-- DJs -->
+  <section data-pane="djs" class="pane hidden">
+    <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden">
+      <div class="p-4 flex items-center justify-between gap-3 border-b border-gray-200">
+        <h3 class="font-bold text-sm uppercase tracking-widest">DJ Call Applications</h3>
+        <div class="text-xs text-gray-500" id="djCount"></div>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="min-w-full text-sm">
+          <thead class="bg-gray-50 text-xs uppercase tracking-wider text-gray-500">
+            <tr>
+              <th class="text-left px-4 py-3">DJ</th>
+              <th class="text-left px-4 py-3">Email</th>
+              <th class="text-left px-4 py-3">City</th>
+              <th class="text-left px-4 py-3">Genre</th>
+              <th class="text-left px-4 py-3">Venues</th>
+              <th class="text-left px-4 py-3">Penthouse?</th>
+              <th class="text-left px-4 py-3">Submitted</th>
+              <th class="text-left px-4 py-3"></th>
+            </tr>
+          </thead>
+          <tbody id="djRows"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
   <!-- SPONSORS -->
   <section data-pane="sponsors" class="pane hidden">
     <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden">
@@ -198,12 +236,12 @@ tailwind.config = { theme: { extend: {
             <tr>
               <th class="text-left px-4 py-3">Company</th>
               <th class="text-left px-4 py-3">Contact</th>
-              <th class="text-left px-4 py-3">Industry</th>
-              <th class="text-left px-4 py-3">Interests</th>
-              <th class="text-left px-4 py-3">Budget</th>
-              <th class="text-left px-4 py-3">Timing</th>
+              <th class="text-left px-4 py-3">Type</th>
+              <th class="text-left px-4 py-3">Selected Assets</th>
+              <th class="text-left px-4 py-3">Estimate</th>
+              <th class="text-left px-4 py-3">Status</th>
               <th class="text-left px-4 py-3">Submitted</th>
-              <th class="text-left px-4 py-3"></th>
+              <th class="text-right px-4 py-3">Actions</th>
             </tr>
           </thead>
           <tbody id="sponsorRows"></tbody>
@@ -420,16 +458,71 @@ function renderVerifications() {
   }));
 }
 
+const DISTRO_SURFACES = ['feed', 'eventbrite', 'luma', 'dice', 'bandsintown', 'songkick'];
+
+function eventDistroState(e) {
+  // events page (feed) is automatic for any saved event
+  return Object.assign(
+    { feed: true, eventbrite: false, luma: false, dice: false, bandsintown: false, songkick: false },
+    e.distribution || {}
+  );
+}
+
 function renderEvents() {
   const all = NMW.getEvents();
   const tbody = document.getElementById('eventRows');
-  if (!all.length) { tbody.innerHTML = '<tr><td colspan="5" class="px-4 py-10 text-center text-gray-400">No events yet.</td></tr>'; return; }
-  tbody.innerHTML = all.map(e => `<tr class="border-t border-gray-100 hover:bg-gray-50">
-    <td class="px-4 py-3 font-bold">${e.title}</td>
-    <td class="px-4 py-3">${fmt(e.date)}</td>
-    <td class="px-4 py-3">${e.venue}</td>
-    <td class="px-4 py-3"><span class="tag tag-perf">${e.tier}</span></td>
-    <td class="px-4 py-3 text-right text-xs text-gray-500">Auto-distributed</td>
+  if (!all.length) { tbody.innerHTML = '<tr><td colspan="9" class="px-4 py-10 text-center text-gray-400">No events yet.</td></tr>'; return; }
+  tbody.innerHTML = all.map((e, idx) => {
+    const d = eventDistroState(e);
+    const cell = (key, label, locked = false) => {
+      const checked = d[key] ? 'checked' : '';
+      const dis = locked ? 'disabled' : '';
+      return `<td class="px-3 py-3 text-center">
+        <label class="inline-flex items-center justify-center cursor-pointer ${locked ? 'opacity-70 cursor-not-allowed' : ''}">
+          <input type="checkbox" ${checked} ${dis} data-distro="${idx}|${key}" class="w-4 h-4 rounded border-gray-300 text-brand-500 focus:ring-brand-500">
+        </label>
+      </td>`;
+    };
+    return `<tr class="border-t border-gray-100 hover:bg-gray-50">
+      <td class="px-4 py-3"><div class="font-bold">${e.title}</div><div class="text-xs text-gray-500">${e.venue || 'The Penthouse NYC'}</div></td>
+      <td class="px-4 py-3">${fmt(e.date)}</td>
+      <td class="px-4 py-3"><span class="tag tag-perf">${e.tier || '—'}</span></td>
+      ${cell('feed', 'Events Page', true)}
+      ${cell('eventbrite', 'Eventbrite')}
+      ${cell('luma', 'Luma')}
+      ${cell('dice', 'DICE')}
+      ${cell('bandsintown', 'Bandsintown')}
+      ${cell('songkick', 'Songkick')}
+    </tr>`;
+  }).join('');
+
+  tbody.querySelectorAll('[data-distro]').forEach(inp => {
+    inp.addEventListener('change', () => {
+      const [idx, key] = inp.dataset.distro.split('|');
+      const events = NMW.getEvents();
+      const ev = events[+idx];
+      if (!ev) return;
+      ev.distribution = Object.assign(eventDistroState(ev), { [key]: inp.checked });
+      // persist back via raw localStorage write (no setEvents helper)
+      localStorage.setItem('nmw.events', JSON.stringify(events));
+    });
+  });
+}
+
+function renderDJs() {
+  const all = (NMW.getDJs() || []).sort((a, b) => new Date(b.submittedAt) - new Date(a.submittedAt));
+  document.getElementById('djCount').textContent = `${all.length} ${all.length === 1 ? 'application' : 'applications'}`;
+  const tbody = document.getElementById('djRows');
+  if (!all.length) { tbody.innerHTML = '<tr><td colspan="8" class="px-4 py-10 text-center text-gray-400">No DJ applications yet.</td></tr>'; return; }
+  tbody.innerHTML = all.map(dj => `<tr class="border-t border-gray-100 hover:bg-gray-50">
+    <td class="px-4 py-3"><div class="font-bold">${dj.djName || '—'}</div><div class="text-xs text-gray-500">${dj.name || ''}</div></td>
+    <td class="px-4 py-3 text-gray-600">${dj.email || '—'}</td>
+    <td class="px-4 py-3 text-gray-600">${dj.city || '—'}</td>
+    <td class="px-4 py-3"><span class="tag tag-perf">${dj.genre || '—'}</span></td>
+    <td class="px-4 py-3 text-xs text-gray-600 max-w-xs truncate" title="${dj.venues || ''}">${dj.venues || '—'}</td>
+    <td class="px-4 py-3">${dj.penthouse ? '<span class="tag tag-approved">Yes</span>' : '<span class="tag tag-na">—</span>'}</td>
+    <td class="px-4 py-3 text-xs text-gray-500">${fmt(dj.submittedAt)}</td>
+    <td class="px-4 py-3">${dj.links ? `<a href="${dj.links.startsWith('http') ? dj.links : '#'}" target="_blank" class="text-xs font-bold text-brand-500 hover:underline">Link</a>` : ''}</td>
   </tr>`).join('');
 }
 
@@ -462,6 +555,15 @@ function renderBlast() {
   </tr>`).join('');
 }
 
+function statusTag(status) {
+  switch (status) {
+    case 'approved': return '<span class="tag tag-approved">Approved</span>';
+    case 'rejected': return '<span class="tag" style="background:#fee2e2;color:#991b1b">Rejected</span>';
+    case 'in_review': return '<span class="tag tag-submitted">In Review</span>';
+    default: return '<span class="tag tag-pending">Pending Approval</span>';
+  }
+}
+
 function renderSponsors() {
   const all = (NMW.getSponsors() || []).sort((a, b) => new Date(b.submittedAt) - new Date(a.submittedAt));
   document.getElementById('sponsorCount').textContent = `${all.length} ${all.length === 1 ? 'inquiry' : 'inquiries'}`;
@@ -470,32 +572,53 @@ function renderSponsors() {
     tbody.innerHTML = '<tr><td colspan="8" class="px-4 py-10 text-center text-gray-400">No sponsorship inquiries yet.</td></tr>';
     return;
   }
-  tbody.innerHTML = all.map(s => `<tr class="border-t border-gray-100 hover:bg-gray-50 cursor-pointer" data-sid="${s.id}">
-    <td class="px-4 py-3"><div class="font-bold">${s.company || '—'}</div><div class="text-xs text-gray-500">${s.website || ''}</div></td>
-    <td class="px-4 py-3"><div>${s.name || '—'}</div><div class="text-xs text-gray-500">${s.email || ''}</div></td>
-    <td class="px-4 py-3 text-gray-600">${s.industry || '—'}</td>
-    <td class="px-4 py-3 text-xs text-gray-600 max-w-xs truncate" title="${(s.interests||[]).join(', ')}">${(s.interests||[]).join(', ') || '—'}</td>
-    <td class="px-4 py-3 font-bold">${s.budget || '—'}</td>
-    <td class="px-4 py-3 text-gray-600">${s.timing || '—'}</td>
-    <td class="px-4 py-3 text-xs text-gray-500">${fmt(s.submittedAt)}</td>
-    <td class="px-4 py-3 text-right"><button class="text-brand-500 text-xs font-bold hover:underline" data-sid="${s.id}">View</button></td>
-  </tr>`).join('');
-  tbody.querySelectorAll('[data-sid]').forEach(el => {
-    el.addEventListener('click', () => showSponsor(el.dataset.sid));
-  });
+  tbody.innerHTML = all.map(s => {
+    const items = (s.interests || []).join(', ') || '—';
+    const totalLabel = s.estimatedFrom ? `From $${(s.estimatedFrom).toLocaleString()}` : (s.budget || '—');
+    return `<tr class="border-t border-gray-100 hover:bg-gray-50">
+      <td class="px-4 py-3"><div class="font-bold">${s.company || '—'}</div><div class="text-xs text-gray-500">${s.website || ''}</div></td>
+      <td class="px-4 py-3"><div>${s.name || '—'}</div><div class="text-xs text-gray-500">${s.email || ''}</div></td>
+      <td class="px-4 py-3 text-gray-600">${s.orgType || s.industry || '—'}</td>
+      <td class="px-4 py-3 text-xs text-gray-600 max-w-xs truncate" title="${items}">${items}</td>
+      <td class="px-4 py-3 font-bold">${totalLabel}</td>
+      <td class="px-4 py-3">${statusTag(s.status || 'pending_approval')}</td>
+      <td class="px-4 py-3 text-xs text-gray-500">${fmt(s.submittedAt)}</td>
+      <td class="px-4 py-3">
+        <div class="flex gap-2 justify-end">
+          <button class="text-xs font-bold text-gray-600 hover:underline" data-sview="${s.id}">View</button>
+          ${s.status !== 'approved' ? `<button class="text-xs font-bold text-green-700 hover:underline" data-sapprove="${s.id}">Approve</button>` : ''}
+          ${s.status !== 'rejected' ? `<button class="text-xs font-bold text-red-600 hover:underline" data-sreject="${s.id}">Reject</button>` : ''}
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+  tbody.querySelectorAll('[data-sview]').forEach(el => el.addEventListener('click', () => showSponsor(el.dataset.sview)));
+  tbody.querySelectorAll('[data-sapprove]').forEach(el => el.addEventListener('click', () => {
+    NMW.updateSponsor(el.dataset.sapprove, { status: 'approved' });
+    renderAll();
+  }));
+  tbody.querySelectorAll('[data-sreject]').forEach(el => el.addEventListener('click', () => {
+    NMW.updateSponsor(el.dataset.sreject, { status: 'rejected' });
+    renderAll();
+  }));
 }
 
 function showSponsor(id) {
   const s = (NMW.getSponsors() || []).find(x => x.id === id);
   if (!s) return;
   document.getElementById('sdCompany').textContent = s.company || '—';
-  document.getElementById('sdContact').textContent = `${s.name || ''}${s.title ? ' · ' + s.title : ''} · ${s.email}${s.phone ? ' · ' + s.phone : ''}`;
+  document.getElementById('sdContact').textContent = `${s.name || ''} · ${s.email || ''}${s.phone ? ' · ' + s.phone : ''}`;
+  const totalLabel = s.estimatedFrom ? `From $${s.estimatedFrom.toLocaleString()}` : (s.budget || '—');
   const meta = [
-    ['Industry', s.industry || '—'],
-    ['Budget', s.budget || '—'],
-    ['Timing', s.timing || '—'],
+    ['Status', statusTag(s.status || 'pending_approval')],
+    ['Type', s.orgType || s.industry || '—'],
+    ['Estimated Investment', totalLabel],
+    ['Budget Range', s.budget || '—'],
+    ['Preferred Contact', s.preferredContact || '—'],
+    ['Best Time', s.bestTime || '—'],
     ['Website', s.website || '—'],
-    ['Interests', (s.interests || []).join(', ') || '—'],
+    ['Source', s.source || '—'],
+    ['Selected Assets', (s.interests || []).map(i => `<span class="tag tag-perf mr-1">${i}</span>`).join('') || '—'],
     ['Submitted', fmt(s.submittedAt)],
   ];
   document.getElementById('sdMeta').innerHTML = meta.map(([k, v]) => `<div><div class="text-xs font-bold uppercase tracking-widest text-gray-500">${k}</div><div class="mt-1">${v}</div></div>`).join('');
@@ -622,6 +745,7 @@ function renderAll() {
   renderEvents();
   renderRefs();
   renderBlast();
+  renderDJs();
   renderSponsors();
   renderAnalytics();
   lucide.createIcons();

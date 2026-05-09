@@ -11,6 +11,7 @@ const NMW = (() => {
     events: 'nmw.events',
     slots: 'nmw.slots',
     sponsors: 'nmw.sponsors',
+    djs: 'nmw.djs',
   };
 
   const DEFAULT_SLOT_CAPACITY = 3;
@@ -109,8 +110,42 @@ const NMW = (() => {
   const getSponsors = () => get(KEYS.sponsors, []);
   const addSponsor = (entry) => {
     const all = getSponsors();
-    all.push({ id: 'sp_' + Math.random().toString(36).slice(2, 10), submittedAt: new Date().toISOString(), ...entry });
+    all.push({
+      id: 'sp_' + Math.random().toString(36).slice(2, 10),
+      submittedAt: new Date().toISOString(),
+      status: 'pending_approval',
+      ...entry,
+    });
     set(KEYS.sponsors, all);
+  };
+  const updateSponsor = (id, patch) => {
+    const all = getSponsors();
+    const idx = all.findIndex(s => s.id === id);
+    if (idx < 0) return null;
+    all[idx] = { ...all[idx], ...patch, updatedAt: new Date().toISOString() };
+    set(KEYS.sponsors, all);
+    return all[idx];
+  };
+
+  const getDJs = () => get(KEYS.djs, []);
+  const addDJ = (entry) => {
+    const all = getDJs();
+    all.push({ id: 'dj_' + Math.random().toString(36).slice(2, 10), submittedAt: new Date().toISOString(), ...entry });
+    set(KEYS.djs, all);
+  };
+
+  // Recurring weekly DJ Call calendar link (Wednesdays 3-7PM)
+  const djCallCalendarLink = () => {
+    const start = nextWednesday();
+    start.setHours(15, 0, 0, 0); // 3PM
+    return buildCalendarLink({
+      title: 'Digiwaxx DJ Call · NMW',
+      start,
+      durationHours: 4,
+      details: 'Weekly Digiwaxx DJ Call — every Wednesday 3-7PM ET. Zoom link sent to confirmed DJs. New records, network roundtable, Wednesday-night prep.',
+      location: 'Zoom (link sent to confirmed DJs)',
+      recurring: true,
+    });
   };
 
   // ---- domain logic ----
@@ -375,7 +410,8 @@ const NMW = (() => {
     getFunnel, setFunnel,
     getArtist, setArtist, getArtists, saveArtist,
     getBlast, addBlast, getEvents, saveEvent,
-    getSponsors, addSponsor,
+    getSponsors, addSponsor, updateSponsor,
+    getDJs, addDJ, djCallCalendarLink,
     recommendUpsells, generateReferralCode, referralLink,
     isPerformanceTier, totalPrice, nextWednesday, fmtDate,
     googleCalendarLink, buildCalendarLink, upcomingWednesdays,

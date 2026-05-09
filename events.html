@@ -33,6 +33,7 @@
   <div class="hidden md:flex space-x-6 items-center text-sm font-bold tracking-wide text-gray-600">
     <a href="mission.html" class="hover:text-black">MISSION</a>
     <a href="events.html" class="text-black">EVENTS</a>
+    <a href="dj-call.html" class="hover:text-black">DJ CALL</a>
     <a href="apply.html" class="hover:text-black">ARTIST ACCESS</a>
     <a href="faq.html" class="hover:text-black">FAQ</a>
     <a href="alerts.html" class="hover:text-black">GET ALERTS</a>
@@ -91,6 +92,7 @@
     <div class="flex flex-wrap gap-6 text-sm font-bold text-gray-400 uppercase tracking-widest justify-center">
       <a href="mission.html" class="hover:text-white">Mission</a>
       <a href="events.html" class="hover:text-white">Events</a>
+      <a href="dj-call.html" class="hover:text-white">DJ Call</a>
       <a href="apply.html" class="hover:text-white">Artist Access</a>
       <a href="faq.html" class="hover:text-white">FAQ</a>
       <a href="alerts.html" class="hover:text-white">Get Alerts</a>
@@ -102,6 +104,13 @@
 <script src="assets/nmw.js"></script>
 <script>
 NMW.seedDemoIfEmpty();
+
+function rsvpUrl(d) {
+  const yyyy = d.getFullYear();
+  const mm = String(d.getMonth() + 1).padStart(2, '0');
+  const dd = String(d.getDate()).padStart(2, '0');
+  return `https://www.newmusicwednesdayslive.com/event-details/new-music-wednesdays-x-the-next-up-experience-${yyyy}-${mm}-${dd}-19-00`;
+}
 
 function buildEventModel(d) {
   const slot = NMW.getSlot(NMW.dateKey(d));
@@ -143,8 +152,9 @@ function renderFeatured() {
           <p class="text-white/70 mt-3 text-lg font-serif">${NMW.fmtDate(d)} · The Penthouse NYC · Doors 3PM · Live 7-9:30PM</p>
           <p class="text-white/60 mt-1 text-sm">${ev.booked} of ${ev.capacity} performance slots booked</p>
           <div class="mt-6 flex flex-wrap gap-3">
-            <a href="${cal}" target="_blank" class="inline-flex items-center gap-2 bg-yellow-400 text-black px-5 py-3 rounded-lg text-xs font-bold tracking-widest uppercase hover:bg-yellow-300 transition-colors shadow"><i data-lucide="calendar-plus" class="w-4 h-4"></i> Add to Calendar</a>
-            <button class="inline-flex items-center gap-2 bg-white/10 backdrop-blur border border-white/20 text-white px-5 py-3 rounded-lg text-xs font-bold tracking-widest uppercase hover:bg-white/20 transition-colors" data-share='${JSON.stringify({text: shareText, url: shareUrl}).replace(/'/g, "&#39;")}'><i data-lucide="share-2" class="w-4 h-4"></i> Share with team</button>
+            <a href="${rsvpUrl(d)}" target="_blank" class="inline-flex items-center gap-2 bg-yellow-400 text-black px-5 py-3 rounded-lg text-xs font-bold tracking-widest uppercase hover:bg-yellow-300 transition-colors shadow"><i data-lucide="ticket" class="w-4 h-4"></i> RSVP</a>
+            <a href="${cal}" target="_blank" class="inline-flex items-center gap-2 bg-white/10 backdrop-blur border border-white/20 text-white px-5 py-3 rounded-lg text-xs font-bold tracking-widest uppercase hover:bg-white/20 transition-colors"><i data-lucide="calendar-plus" class="w-4 h-4"></i> Add to Calendar</a>
+            <button class="inline-flex items-center gap-2 bg-white/10 backdrop-blur border border-white/20 text-white px-5 py-3 rounded-lg text-xs font-bold tracking-widest uppercase hover:bg-white/20 transition-colors" data-share='${JSON.stringify({text: shareText, url: shareUrl}).replace(/'/g, "&#39;")}'><i data-lucide="share-2" class="w-4 h-4"></i> Share</button>
             ${ev.full
               ? '<span class="text-white/60 text-xs font-bold uppercase tracking-wider self-center">Stage full this week</span>'
               : '<a href="apply.html" class="text-white/80 hover:text-white text-xs font-bold uppercase tracking-wider self-center">Perform here →</a>'}

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sponsor NMW | New Music Wednesdays</title>
+<title>Sponsorship Store | New Music Wednesdays</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest"></script>
@@ -14,6 +14,19 @@
     colors: { brand: { 500:'#8A1558', 600:'#680D3E' } }
   }}}
 </script>
+<style>
+  .product-card { transition: all 0.2s; }
+  .product-card.selected { border-color: #8A1558; box-shadow: 0 8px 24px rgba(138,21,88,0.15); }
+  .product-card.selected .add-btn { background: #8A1558; color: #fff; }
+  .product-card.selected .add-btn .add-text { display: none; }
+  .product-card.selected .add-btn .added-text { display: inline-flex; }
+  .add-btn .added-text { display: none; }
+  .cart-sticky { position: sticky; top: 1rem; }
+  @media (max-width: 1023px) {
+    .cart-sticky { position: fixed; bottom: 0; left: 0; right: 0; top: auto; z-index: 40; border-radius: 1rem 1rem 0 0; box-shadow: 0 -8px 24px rgba(0,0,0,0.12); }
+    .cart-collapsible.collapsed { max-height: 80px; overflow: hidden; }
+  }
+</style>
 </head>
 <body class="bg-gray-50 text-gray-900 selection:bg-[#8A1558] selection:text-white">
 
@@ -30,209 +43,176 @@
       <span class="secondary">by Digiwaxx</span>
     </div>
   </a>
-  <div class="hidden md:flex space-x-6 items-center text-sm font-bold tracking-wide text-gray-600">
+  <div class="hidden md:flex space-x-5 items-center text-sm font-bold tracking-wide text-gray-600">
     <a href="mission.html" class="hover:text-black">MISSION</a>
     <a href="events.html" class="hover:text-black">EVENTS</a>
+    <a href="dj-call.html" class="hover:text-black">DJ CALL</a>
     <a href="apply.html" class="hover:text-black">ARTIST ACCESS</a>
     <a href="faq.html" class="hover:text-black">FAQ</a>
     <a href="alerts.html" class="hover:text-black">GET ALERTS</a>
-    <a href="sponsor.html" class="text-black">SPONSOR NMW</a>
+    <a href="sponsor.html" class="text-black">SPONSOR</a>
   </div>
 </nav>
 
-<header class="bg-black text-white py-20 md:py-28 relative overflow-hidden">
+<header class="bg-black text-white py-16 md:py-24 relative overflow-hidden">
   <div class="absolute inset-0 -z-0 opacity-40">
     <img src="images/audience.avif" alt="" class="w-full h-full object-cover opacity-50" />
     <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black"></div>
   </div>
   <div class="relative max-w-4xl mx-auto px-4 text-center">
-    <span class="inline-block text-yellow-400 font-black tracking-widest text-xs mb-5 px-3 py-1 border border-yellow-400/40 rounded-full">[ Brand &amp; Sponsor Partnerships ]</span>
+    <span class="inline-block text-yellow-400 font-black tracking-widest text-xs mb-5 px-3 py-1 border border-yellow-400/40 rounded-full">[ Sponsorship Store ]</span>
     <h1 class="text-4xl md:text-7xl font-black tracking-tighter leading-[0.95] mb-5">
-      Put your brand inside<br>
-      <span class="italic font-serif font-normal text-[#FBCFE8]">the room</span> where culture starts.
+      Build your sponsorship.<br>
+      <span class="italic font-serif font-normal text-[#FBCFE8]">Add the pieces you want.</span>
     </h1>
-    <p class="text-lg md:text-2xl text-white/80 max-w-2xl mx-auto font-serif italic leading-relaxed">
-      Every Wednesday, NMW brings together the artists, DJs, media, and tastemakers shaping the next era of music. Build with us.
+    <p class="text-lg md:text-xl text-white/80 max-w-2xl mx-auto font-serif leading-relaxed">
+      Pick the strategic options below. Stack them. We'll come back with a custom proposal that fits your goals and scale.
     </p>
   </div>
 </header>
 
-<!-- Why sponsor -->
-<section class="py-20 bg-white border-b border-gray-200">
-  <div class="max-w-6xl mx-auto px-4">
-    <div class="text-center mb-12">
-      <span class="text-[#8A1558] font-black tracking-widest text-xs mb-3 block">[ Why Sponsor NMW ]</span>
-      <h2 class="text-3xl md:text-5xl font-black tracking-tighter">A live audience. Real culture. Content that travels.</h2>
-    </div>
+<main class="max-w-7xl mx-auto px-4 py-12 md:py-16">
+  <div class="grid lg:grid-cols-3 gap-6 lg:gap-8 mb-32 lg:mb-0">
 
-    <div class="grid md:grid-cols-3 gap-5">
-      <div class="section-card">
-        <div class="w-12 h-12 rounded-lg bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center mb-4"><i data-lucide="users-round" class="w-6 h-6"></i></div>
-        <h3 class="text-xl font-black tracking-tight mb-2">A live, qualified audience</h3>
-        <p class="text-gray-700 font-serif">Artists, label reps, DJs, journalists, and fans who came on purpose. Not foot traffic — people who follow the culture.</p>
+    <!-- PRODUCTS -->
+    <section class="lg:col-span-2">
+      <div class="mb-8">
+        <span class="text-[#8A1558] font-black tracking-widest text-xs mb-2 block">[ Strategic Partnership Options ]</span>
+        <h2 class="text-3xl md:text-4xl font-black tracking-tighter">Pick what you want to activate.</h2>
       </div>
-      <div class="section-card">
-        <div class="w-12 h-12 rounded-lg bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center mb-4"><i data-lucide="film" class="w-6 h-6"></i></div>
-        <h3 class="text-xl font-black tracking-tight mb-2">Content that ships every week</h3>
-        <p class="text-gray-700 font-serif">Performance clips, interviews, recap reels — your brand gets woven into assets that the artists themselves will share to their audiences.</p>
-      </div>
-      <div class="section-card">
-        <div class="w-12 h-12 rounded-lg bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center mb-4"><i data-lucide="sparkles" class="w-6 h-6"></i></div>
-        <h3 class="text-xl font-black tracking-tight mb-2">Real cultural alignment</h3>
-        <p class="text-gray-700 font-serif">This isn't a sponsorship logo on a slide. We co-build activations that make sense in the room — so your brand is part of the night, not bolted onto it.</p>
-      </div>
-      <div class="section-card">
-        <div class="w-12 h-12 rounded-lg bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center mb-4"><i data-lucide="map-pin" class="w-6 h-6"></i></div>
-        <h3 class="text-xl font-black tracking-tight mb-2">Manhattan, weekly, on schedule</h3>
-        <p class="text-gray-700 font-serif">The Penthouse NYC. Every Wednesday. A reliable cultural drumbeat you can plan a campaign around.</p>
-      </div>
-      <div class="section-card">
-        <div class="w-12 h-12 rounded-lg bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center mb-4"><i data-lucide="globe-2" class="w-6 h-6"></i></div>
-        <h3 class="text-xl font-black tracking-tight mb-2">Local room, global reach</h3>
-        <p class="text-gray-700 font-serif">A New York night becomes content in DJ sets in Atlanta, playlists in Manchester, Stories in Accra. The network carries it.</p>
-      </div>
-      <div class="section-card">
-        <div class="w-12 h-12 rounded-lg bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center mb-4"><i data-lucide="handshake" class="w-6 h-6"></i></div>
-        <h3 class="text-xl font-black tracking-tight mb-2">Direct artist relationships</h3>
-        <p class="text-gray-700 font-serif">Want to put product, gear, or opportunities in artists' hands? You're in the same room. We make introductions that turn into real partnerships.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- Sponsorship Tiers -->
-<section class="py-20 bg-gray-900 text-white relative overflow-hidden">
-  <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-[#8A1558] rounded-full blur-[160px] opacity-30 -translate-y-1/2 translate-x-1/2"></div>
-  <div class="relative max-w-6xl mx-auto px-4">
-    <div class="text-center mb-12">
-      <span class="text-yellow-400 font-black tracking-widest text-xs mb-3 block">[ Ways To Build With Us ]</span>
-      <h2 class="text-3xl md:text-5xl font-black tracking-tighter">Pick the partnership that fits.</h2>
-    </div>
+      <!-- Featured bundles -->
+      <div class="mb-8">
+        <h3 class="text-xs font-black uppercase tracking-widest text-gray-500 mb-3">Bundled Packages</h3>
+        <div class="grid sm:grid-cols-2 gap-4" id="bundleGrid"></div>
+      </div>
 
-    <div class="grid md:grid-cols-3 gap-5">
-      <div class="bg-white/5 backdrop-blur border border-white/10 rounded-2xl p-7">
-        <div class="text-xs font-black uppercase tracking-widest text-yellow-400 mb-2">Wednesday Night</div>
-        <h3 class="text-2xl font-black tracking-tight mb-3">Single Night Sponsor</h3>
-        <p class="text-white/70 font-serif text-sm leading-relaxed mb-5">Your brand owns one Wednesday — flyers, on-stage mention, branded content moments, and post-event recap.</p>
-        <ul class="space-y-2 text-sm text-white/80">
-          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-yellow-400 mt-0.5"></i> One full Wednesday at The Penthouse</li>
-          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-yellow-400 mt-0.5"></i> Co-branded flyer + share assets</li>
-          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-yellow-400 mt-0.5"></i> Host mention + on-stage shoutout</li>
-        </ul>
+      <!-- À la carte -->
+      <div>
+        <h3 class="text-xs font-black uppercase tracking-widest text-gray-500 mb-3">À la carte</h3>
+        <div class="grid sm:grid-cols-2 gap-4" id="productGrid"></div>
       </div>
-      <div class="bg-[#8A1558]/20 backdrop-blur border-2 border-yellow-400 rounded-2xl p-7 relative">
-        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-yellow-400 text-black px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">Most Popular</div>
-        <div class="text-xs font-black uppercase tracking-widest text-yellow-400 mb-2">Series Partner</div>
-        <h3 class="text-2xl font-black tracking-tight mb-3">Quarterly / Annual</h3>
-        <p class="text-white/70 font-serif text-sm leading-relaxed mb-5">Full integration into the NMW ecosystem — every Wednesday, every recap, every content drop. The cultural drumbeat carries your brand all year.</p>
-        <ul class="space-y-2 text-sm text-white/80">
-          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-yellow-400 mt-0.5"></i> Recurring on-site presence</li>
-          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-yellow-400 mt-0.5"></i> Series branding across all assets</li>
-          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-yellow-400 mt-0.5"></i> Direct artist + DJ network access</li>
-          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-yellow-400 mt-0.5"></i> Custom content series</li>
-        </ul>
+    </section>
+
+    <!-- CART -->
+    <aside class="hidden lg:block">
+      <div class="cart-sticky bg-white border border-gray-200 rounded-2xl p-6">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="font-black text-lg flex items-center gap-2"><i data-lucide="shopping-bag" class="w-5 h-5 text-[#8A1558]"></i> Your Inquiry</h3>
+          <span class="pill" id="cartCount">0</span>
+        </div>
+        <div id="cartList" class="space-y-2 mb-5 min-h-[120px]"></div>
+        <div class="border-t border-gray-100 pt-4">
+          <div class="flex justify-between text-sm mb-1"><span class="text-gray-500">Estimated investment</span><span class="font-black" id="cartTotal">—</span></div>
+          <p class="text-xs text-gray-400 mt-1">Final pricing customized in your proposal.</p>
+        </div>
+        <a href="#contactForm" class="cta cta--brand mt-5">
+          <div class="cta__shadow"></div>
+          <div class="cta__face"><span class="cta__label">Continue to Inquiry →</span></div>
+        </a>
       </div>
-      <div class="bg-white/5 backdrop-blur border border-white/10 rounded-2xl p-7">
-        <div class="text-xs font-black uppercase tracking-widest text-yellow-400 mb-2">Custom</div>
-        <h3 class="text-2xl font-black tracking-tight mb-3">Brand Activation</h3>
-        <p class="text-white/70 font-serif text-sm leading-relaxed mb-5">Product launches, sponsored stages, custom showcases, content shoots, special events. Tell us what you're trying to do — we'll build it with you.</p>
-        <ul class="space-y-2 text-sm text-white/80">
-          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-yellow-400 mt-0.5"></i> Co-developed activation</li>
-          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-yellow-400 mt-0.5"></i> Talent + DJ booking on request</li>
-          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-yellow-400 mt-0.5"></i> Full content production</li>
-        </ul>
+    </aside>
+
+    <!-- Mobile cart -->
+    <div class="lg:hidden cart-sticky bg-white border-t border-gray-200 p-4">
+      <div class="flex items-center justify-between gap-3">
+        <div>
+          <div class="text-xs font-bold uppercase tracking-widest text-gray-500">Your Inquiry</div>
+          <div class="font-black text-lg" id="cartTotalMobile">0 items</div>
+        </div>
+        <a href="#contactForm" class="bg-[#8A1558] text-white px-5 py-3 rounded-lg text-xs font-black tracking-widest uppercase hover:bg-[#680D3E]">Continue →</a>
       </div>
     </div>
   </div>
-</section>
 
-<!-- Form -->
-<section class="py-20 bg-gray-50">
-  <div class="max-w-3xl mx-auto px-4">
+  <!-- INQUIRY FORM -->
+  <section id="contactForm" class="mt-16 lg:mt-24 max-w-3xl mx-auto">
     <div class="text-center mb-10">
-      <span class="text-[#8A1558] font-black tracking-widest text-xs mb-3 block">[ Start The Conversation ]</span>
-      <h2 class="text-3xl md:text-5xl font-black tracking-tighter mb-3">Tell us what you're building.</h2>
-      <p class="text-gray-600 font-serif text-lg">We'll come back to you within two business days.</p>
+      <span class="text-[#8A1558] font-black tracking-widest text-xs mb-3 block">[ Step 2 · Tell Us About You ]</span>
+      <h2 class="text-3xl md:text-5xl font-black tracking-tighter mb-3">Let's Build Something Impactful.</h2>
+      <p class="text-gray-600 font-serif text-lg">We collaborate with brands, agencies, and partners to create strategic, high-visibility sponsorships that resonate authentically.</p>
     </div>
 
     <form id="sponsorForm" class="section-card">
+      <!-- Selected products preview -->
+      <div id="formCart" class="mb-6 p-4 bg-[#FDF2F8] border border-[#FBCFE8] rounded-xl"></div>
+
       <div class="grid sm:grid-cols-2 gap-5">
-        <div class="sm:col-span-2"><label class="field-label">Company / Brand *</label><input class="field-input" name="company" required placeholder="Acme Beverage Co."></div>
-        <div><label class="field-label">Your Name *</label><input class="field-input" name="name" required placeholder="Full name"></div>
-        <div><label class="field-label">Title / Role</label><input class="field-input" name="title" placeholder="Marketing Director"></div>
-        <div><label class="field-label">Work Email *</label><input class="field-input" name="email" type="email" required placeholder="you@brand.com"></div>
-        <div><label class="field-label">Phone (optional)</label><input class="field-input" name="phone" type="tel" placeholder="(555) 000-0000"></div>
-        <div><label class="field-label">Website</label><input class="field-input" name="website" placeholder="https://"></div>
-        <div><label class="field-label">Industry</label>
-          <select class="field-input" name="industry">
+        <div><label class="field-label">Full Name *</label><input class="field-input" name="name" required placeholder="Full name"></div>
+        <div><label class="field-label">Company / Brand Name *</label><input class="field-input" name="company" required placeholder="Acme Beverage Co."></div>
+        <div><label class="field-label">Email *</label><input class="field-input" name="email" type="email" required placeholder="you@brand.com"></div>
+        <div><label class="field-label">Phone</label><input class="field-input" name="phone" type="tel" placeholder="(555) 000-0000"></div>
+        <div class="sm:col-span-2"><label class="field-label">Website / Social Links</label><input class="field-input" name="website" placeholder="https://yourbrand.com · @brand"></div>
+
+        <div class="sm:col-span-2"><label class="field-label">Type of Organization</label>
+          <select class="field-input" name="orgType">
             <option value="">Select…</option>
-            <option>Beverage / Spirits</option>
-            <option>Fashion / Apparel</option>
-            <option>Tech / Software</option>
-            <option>Music / Audio Hardware</option>
-            <option>Streaming / Media</option>
-            <option>Beauty / CPG</option>
-            <option>Automotive</option>
-            <option>Financial / Fintech</option>
+            <option>Brand</option>
+            <option>Agency</option>
+            <option>Label / Distributor</option>
+            <option>Media / Publisher</option>
+            <option>Tech / Platform</option>
+            <option>Non-profit / Foundation</option>
             <option>Other</option>
           </select>
         </div>
 
-        <div class="sm:col-span-2 mt-2">
-          <div class="field-label">I'm interested in (pick any)</div>
-          <div class="flex flex-wrap gap-2 mt-1" id="interestChips"></div>
-        </div>
-
-        <div class="sm:col-span-2">
-          <label class="field-label">Approximate Budget</label>
+        <div class="sm:col-span-2"><label class="field-label">Estimated Budget Range</label>
           <select class="field-input" name="budget">
-            <option value="">Select range…</option>
+            <option value="">Open to exploring</option>
             <option>Under $5K</option>
             <option>$5K – $15K</option>
             <option>$15K – $50K</option>
             <option>$50K – $150K</option>
-            <option>$150K+</option>
-            <option>Open / Discuss</option>
+            <option>$150K – $500K</option>
+            <option>$500K+</option>
+            <option>Open to exploring</option>
           </select>
+          <p class="text-xs text-gray-500 mt-1">This helps us tailor partnership opportunities to fit your goals and scale.</p>
         </div>
 
-        <div class="sm:col-span-2"><label class="field-label">Timing</label>
-          <select class="field-input" name="timing">
-            <option value="">When do you want to activate?</option>
-            <option>Next 30 days</option>
-            <option>Next 60–90 days</option>
-            <option>Q-by-Q planning</option>
-            <option>Annual / ongoing</option>
-            <option>Just exploring</option>
-          </select>
-        </div>
-
-        <div class="sm:col-span-2"><label class="field-label">What are you trying to accomplish? *</label>
+        <div class="sm:col-span-2"><label class="field-label">Tell us a bit about your goals for this partnership *</label>
           <textarea class="field-input" name="goal" rows="5" required placeholder="Brand goals, campaign context, audience you're trying to reach, any creative ideas already in motion."></textarea>
+        </div>
+
+        <div class="sm:col-span-2 pt-3 border-t border-gray-200">
+          <h3 class="text-sm font-black uppercase tracking-widest text-[#8A1558] mt-2 mb-3">Contact Preferences</h3>
+        </div>
+
+        <div>
+          <div class="field-label">Preferred Contact Method *</div>
+          <div class="flex flex-wrap gap-2 mt-1" id="contactChips"></div>
+        </div>
+        <div>
+          <div class="field-label">Best Time to Contact *</div>
+          <div class="flex flex-wrap gap-2 mt-1" id="timeChips"></div>
+        </div>
+
+        <div class="sm:col-span-2"><label class="field-label">How did you hear about New Music Wednesdays?</label>
+          <input class="field-input" name="source" placeholder="Referral, social, search, event, other…">
         </div>
       </div>
 
       <button type="submit" class="cta cta--brand mt-6">
         <div class="cta__shadow"></div>
-        <div class="cta__face"><span class="cta__label flex items-center gap-2"><i data-lucide="send" class="w-4 h-4"></i> Submit Sponsorship Inquiry</span></div>
+        <div class="cta__face"><span class="cta__label flex items-center gap-2"><i data-lucide="send" class="w-4 h-4"></i> Submit For Approval</span></div>
       </button>
-      <p class="text-xs text-gray-400 mt-3 text-center">We respond within 2 business days. All inquiries reviewed by the partnerships team.</p>
+      <p class="text-xs text-gray-500 mt-3 text-center"><i data-lucide="shield-check" class="w-3 h-3 inline"></i> All sponsorships are reviewed for fit. Our partnerships team responds within 2 business days.</p>
     </form>
 
-    <!-- Success -->
     <div id="successCard" class="hidden bg-[#FDF2F8] border border-[#FBCFE8] rounded-2xl p-8 text-center mt-4">
       <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 border border-[#FBCFE8]">
-        <i data-lucide="check" class="w-8 h-8 text-[#8A1558]"></i>
+        <i data-lucide="clock" class="w-8 h-8 text-[#8A1558]"></i>
       </div>
-      <h2 class="text-2xl font-black tracking-tighter mb-2">Got it. We'll be in touch.</h2>
-      <p class="text-gray-700 font-serif max-w-md mx-auto">Our partnerships team will reply within two business days. In the meantime — see what's coming up.</p>
+      <h2 class="text-2xl font-black tracking-tighter mb-2">Submitted for approval.</h2>
+      <p class="text-gray-700 font-serif max-w-md mx-auto">Our partnerships team will review your selections and reply within two business days with a tailored proposal — or follow-up questions if we need more context.</p>
       <div class="mt-6 flex flex-wrap gap-3 justify-center">
         <a href="events.html" class="inline-flex items-center gap-2 bg-[#8A1558] text-white px-5 py-3 rounded-lg text-xs font-bold tracking-widest uppercase hover:bg-[#680D3E]"><i data-lucide="calendar-days" class="w-4 h-4"></i> See upcoming events</a>
         <a href="mission.html" class="inline-flex items-center gap-2 bg-white border-2 border-gray-200 text-gray-900 px-5 py-3 rounded-lg text-xs font-bold tracking-widest uppercase hover:border-gray-400">Read the mission</a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+</main>
 
 <footer class="bg-black py-12 text-white border-t-4 border-[#8A1558]">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
@@ -249,6 +229,7 @@
     <div class="flex flex-wrap gap-6 text-sm font-bold text-gray-400 uppercase tracking-widest justify-center">
       <a href="mission.html" class="hover:text-white">Mission</a>
       <a href="events.html" class="hover:text-white">Events</a>
+      <a href="dj-call.html" class="hover:text-white">DJ Call</a>
       <a href="apply.html" class="hover:text-white">Artist Access</a>
       <a href="faq.html" class="hover:text-white">FAQ</a>
       <a href="alerts.html" class="hover:text-white">Get Alerts</a>
@@ -259,37 +240,165 @@
 
 <script src="assets/nmw.js"></script>
 <script>
-const INTERESTS = ['Single Night', 'Series Partner', 'Brand Activation', 'Product Drop', 'Content Series', 'Talent Booking'];
-const selected = new Set();
-const chipsEl = document.getElementById('interestChips');
-function renderChips() {
-  chipsEl.innerHTML = INTERESTS.map(t => `<button type="button" class="chip ${selected.has(t) ? 'selected' : ''}" data-interest="${t}">${t}</button>`).join('');
-  chipsEl.querySelectorAll('[data-interest]').forEach(b => b.addEventListener('click', () => {
-    const t = b.dataset.interest;
-    if (selected.has(t)) selected.delete(t); else selected.add(t);
-    renderChips();
-  }));
-}
-renderChips();
+const PRODUCTS = [
+  { id: 'product-placement', name: 'Product Placement & On-Site Integration', icon: 'package',
+    blurb: 'Organically showcase your brand throughout the live production, set design, and venue environment.',
+    price: 'From $5K', priceMin: 5000 },
+  { id: 'branded-segment', name: 'Branded Segment Sponsorship', icon: 'film',
+    blurb: 'Align with key moments within the formatted show and broadcast for premium, lasting visibility.',
+    price: 'From $7.5K', priceMin: 7500 },
+  { id: 'on-screen', name: 'On-Screen Branding · Live Stream', icon: 'tv',
+    blurb: 'Lower thirds, segment frames, or rolling graphics within the live stream — reaching in-room and digital audiences in real time.',
+    price: 'From $10K', priceMin: 10000 },
+  { id: 'social', name: 'Social Media Amplification', icon: 'megaphone',
+    blurb: 'Integrated branding across our entire digital ecosystem — pre-event promo, live content, and post-event recaps.',
+    price: 'From $3K', priceMin: 3000 },
+  { id: 'influencer', name: 'Influencer & Talent Alignment', icon: 'users-round',
+    blurb: 'Connect your brand with artists, media platforms, and tastemakers who bring real reach and credibility.',
+    price: 'From $5K / talent', priceMin: 5000 },
+  { id: 'experiential', name: 'Experiential Touchpoints', icon: 'sparkles',
+    blurb: 'Curated activations, VIP experiences, and networking opportunities with industry pros and cultural leaders.',
+    price: 'Custom', priceMin: 0 },
+];
 
+const BUNDLES = [
+  { id: 'single-night', name: 'Single Wednesday Sponsor', icon: 'calendar-days',
+    blurb: 'Own one full Wednesday at The Penthouse — flyer co-branding, on-stage shoutout, branded segment, social amplification, recap.',
+    price: '$15K', priceMin: 15000, featured: false },
+  { id: 'series-quarterly', name: 'Series Partner · Quarterly', icon: 'star',
+    blurb: '12 Wednesdays of full integration. Series branding across every Wednesday + live stream + content drop.',
+    price: '$50K / quarter', priceMin: 50000, featured: true },
+  { id: 'annual-partner', name: 'Annual Title Partner', icon: 'crown',
+    blurb: 'Year-round title position across the entire NMW ecosystem — 52 Wednesdays, all surfaces, custom co-developed activation.',
+    price: '$150K+', priceMin: 150000, featured: false },
+];
+
+const cart = new Set();
+
+function renderProducts() {
+  const productGrid = document.getElementById('productGrid');
+  productGrid.innerHTML = PRODUCTS.map(p => productCard(p)).join('');
+  const bundleGrid = document.getElementById('bundleGrid');
+  bundleGrid.innerHTML = BUNDLES.map(p => productCard(p, true)).join('');
+  document.querySelectorAll('[data-add]').forEach(b => b.addEventListener('click', (e) => {
+    e.preventDefault();
+    const id = b.dataset.add;
+    if (cart.has(id)) cart.delete(id); else cart.add(id);
+    renderProducts();
+    renderCart();
+  }));
+  lucide.createIcons();
+}
+
+function productCard(p, isBundle = false) {
+  const sel = cart.has(p.id);
+  return `<div class="product-card section-card flex flex-col ${sel ? 'selected' : ''} ${p.featured ? 'border-2 border-yellow-400' : ''}">
+    ${p.featured ? '<div class="text-[10px] font-black uppercase tracking-widest text-yellow-600 mb-2">Most Popular</div>' : ''}
+    <div class="w-12 h-12 rounded-lg bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center mb-3"><i data-lucide="${p.icon}" class="w-6 h-6"></i></div>
+    <h3 class="text-lg font-black tracking-tight mb-2">${p.name}</h3>
+    <p class="text-sm text-gray-700 font-serif flex-1 mb-4">${p.blurb}</p>
+    <div class="flex items-center justify-between mt-auto">
+      <span class="font-black text-[#8A1558]">${p.price}</span>
+      <button data-add="${p.id}" class="add-btn inline-flex items-center gap-1.5 border-2 border-[#8A1558] text-[#8A1558] hover:bg-[#8A1558] hover:text-white px-3 py-1.5 rounded-lg text-xs font-black tracking-widest uppercase transition-all">
+        <span class="add-text"><i data-lucide="plus" class="w-3.5 h-3.5 inline"></i> Add</span>
+        <span class="added-text"><i data-lucide="check" class="w-3.5 h-3.5 inline"></i> Added</span>
+      </button>
+    </div>
+  </div>`;
+}
+
+function findProduct(id) {
+  return PRODUCTS.find(p => p.id === id) || BUNDLES.find(p => p.id === id);
+}
+
+function renderCart() {
+  const items = [...cart].map(findProduct).filter(Boolean);
+  const cartList = document.getElementById('cartList');
+  if (!items.length) {
+    cartList.innerHTML = '<p class="text-sm text-gray-400 italic">Pick at least one option to start your inquiry.</p>';
+  } else {
+    cartList.innerHTML = items.map(p => `
+      <div class="flex items-start justify-between gap-2 py-2 border-b border-gray-100 last:border-0">
+        <div class="min-w-0 flex-1">
+          <div class="font-bold text-sm truncate">${p.name}</div>
+          <div class="text-xs text-gray-500">${p.price}</div>
+        </div>
+        <button data-remove="${p.id}" class="text-xs text-red-600 hover:underline font-bold flex-shrink-0">Remove</button>
+      </div>
+    `).join('');
+    cartList.querySelectorAll('[data-remove]').forEach(b => b.addEventListener('click', () => {
+      cart.delete(b.dataset.remove);
+      renderProducts(); renderCart();
+    }));
+  }
+  document.getElementById('cartCount').textContent = items.length;
+
+  // total estimate
+  const totalMin = items.reduce((s, p) => s + (p.priceMin || 0), 0);
+  document.getElementById('cartTotal').textContent = totalMin > 0 ? `From $${totalMin.toLocaleString()}` : 'Custom';
+  document.getElementById('cartTotalMobile').textContent = items.length === 0 ? '0 items' : `${items.length} item${items.length>1?'s':''} · From $${totalMin.toLocaleString()}`;
+
+  // form preview
+  const formCart = document.getElementById('formCart');
+  if (!items.length) {
+    formCart.innerHTML = '<div class="flex items-center gap-2 text-sm text-[#8A1558]"><i data-lucide="info" class="w-4 h-4"></i> No options selected yet — pick what you want above, then come back to submit.</div>';
+  } else {
+    formCart.innerHTML = `
+      <div class="text-xs font-black uppercase tracking-widest text-[#8A1558] mb-2">Your Selections (${items.length})</div>
+      <ul class="space-y-1 text-sm">${items.map(p => `<li class="flex justify-between"><span class="font-bold">${p.name}</span><span class="text-gray-500">${p.price}</span></li>`).join('')}</ul>
+    `;
+  }
+  lucide.createIcons();
+}
+
+// Contact preference chips
+function chipGroup(elId, options, selectedSet) {
+  const el = document.getElementById(elId);
+  function render() {
+    el.innerHTML = options.map(o => `<button type="button" class="chip ${selectedSet.has(o) ? 'selected' : ''}" data-val="${o}">${o}</button>`).join('');
+    el.querySelectorAll('[data-val]').forEach(b => b.addEventListener('click', () => {
+      const v = b.dataset.val;
+      selectedSet.clear(); selectedSet.add(v);
+      render();
+    }));
+  }
+  render();
+}
+const contacts = new Set();
+const times = new Set();
+chipGroup('contactChips', ['Email', 'Call', 'Text'], contacts);
+chipGroup('timeChips', ['9am–11am', '12pm–3pm', '5pm–9pm', 'Other'], times);
+
+// Submit
 document.getElementById('sponsorForm').addEventListener('submit', (e) => {
   e.preventDefault();
   const data = new FormData(e.target);
+  const items = [...cart].map(findProduct).filter(Boolean);
+  const totalMin = items.reduce((s, p) => s + (p.priceMin || 0), 0);
   const entry = {
-    company: (data.get('company') || '').trim(),
     name: (data.get('name') || '').trim(),
-    title: (data.get('title') || '').trim(),
+    company: (data.get('company') || '').trim(),
     email: (data.get('email') || '').trim(),
     phone: (data.get('phone') || '').trim(),
     website: (data.get('website') || '').trim(),
-    industry: data.get('industry') || '',
-    interests: [...selected],
+    orgType: data.get('orgType') || '',
+    interests: items.map(p => p.name),
+    productIds: items.map(p => p.id),
+    estimatedFrom: totalMin,
     budget: data.get('budget') || '',
-    timing: data.get('timing') || '',
     goal: (data.get('goal') || '').trim(),
+    preferredContact: [...contacts][0] || '',
+    bestTime: [...times][0] || '',
+    source: (data.get('source') || '').trim(),
     status: 'new',
   };
-  if (!entry.company || !entry.email) return;
+  if (!entry.company || !entry.email || !entry.preferredContact || !entry.bestTime) {
+    alert('Please complete required fields including preferred contact method and best time.');
+    return;
+  }
+  if (!items.length) {
+    if (!confirm('You haven\'t selected any sponsorship options. Submit anyway?')) return;
+  }
   NMW.addSponsor(entry);
   document.getElementById('sponsorForm').classList.add('hidden');
   document.getElementById('successCard').classList.remove('hidden');
@@ -297,6 +406,8 @@ document.getElementById('sponsorForm').addEventListener('submit', (e) => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
+renderProducts();
+renderCart();
 lucide.createIcons();
 </script>
 </body>
