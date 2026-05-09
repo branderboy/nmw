@@ -96,40 +96,17 @@
   </div>
 </nav>
 
-<header class="bg-[#FDF2F8] text-gray-900 py-20 md:py-28 relative overflow-hidden">
-  <div class="absolute inset-0 -z-0">
-    <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-[#8A1558] rounded-full blur-[180px] opacity-30 -translate-y-1/3 translate-x-1/3"></div>
-    <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-yellow-400 rounded-full blur-[180px] opacity-15"></div>
-  </div>
-  <div class="relative max-w-5xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
-    <div>
-      <span class="inline-block text-[#8A1558] font-black tracking-widest text-xs mb-5 px-3 py-1 border border-[#FBCFE8] rounded-full">[ Digiwaxx DJ Call ]</span>
-      <h1 class="text-4xl md:text-7xl font-black tracking-tighter leading-[0.95] mb-5">
-        The DJ Call.<br>
-        <span class="italic font-serif font-normal text-[#8A1558]">Every Wednesday.</span>
-      </h1>
-      <p class="text-lg md:text-xl text-gray-700 font-serif leading-relaxed">
-        4 hours, every Wednesday from 3 to 7 PM ET. The DJs in the network log on, hear new records, lock in their Wednesday-night sets, and decide what's about to move.
-      </p>
-      <div class="mt-7 flex flex-wrap gap-3">
-        <a href="#join" class="inline-flex items-center gap-2 bg-yellow-400 text-black px-5 py-3 rounded-lg text-xs font-bold tracking-widest uppercase hover:bg-yellow-300 transition-colors shadow"><i data-lucide="video" class="w-4 h-4"></i> Join This Wednesday</a>
-        <a id="calBtn" target="_blank" class="inline-flex items-center gap-2 bg-white border border-gray-200 text-gray-700 px-5 py-3 rounded-lg text-xs font-bold tracking-widest uppercase hover:bg-gray-50 transition-colors"><i data-lucide="calendar-plus" class="w-4 h-4"></i> Add to Calendar</a>
-      </div>
-    </div>
-    <div class="bg-white/5 backdrop-blur border border-gray-200 rounded-2xl p-6">
-      <div class="text-xs uppercase tracking-widest text-gray-500 mb-3">Next Call</div>
-      <div class="text-3xl md:text-4xl font-black tracking-tighter mb-1" id="nextDate">Loading…</div>
-      <div class="text-gray-600 font-serif">3:00 PM - 7:00 PM ET, Zoom</div>
-      <div class="border-t border-gray-200 my-5"></div>
-      <ul class="space-y-2 text-sm">
-        <li class="flex items-center gap-2"><i data-lucide="disc-3" class="w-4 h-4 text-[#8A1558]"></i> New record listening rounds</li>
-        <li class="flex items-center gap-2"><i data-lucide="users" class="w-4 h-4 text-[#8A1558]"></i> DJ network roundtable</li>
-        <li class="flex items-center gap-2"><i data-lucide="mic" class="w-4 h-4 text-[#8A1558]"></i> Wednesday-night set planning</li>
-        <li class="flex items-center gap-2"><i data-lucide="zap" class="w-4 h-4 text-[#8A1558]"></i> Ends right when doors open at The Penthouse</li>
-      </ul>
+<section class="bg-black text-white py-10 md:py-14 border-b-4 border-[#8A1558]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-xs font-bold uppercase tracking-widest text-[#FBCFE8] mb-2">[ DJ Network ]</div>
+    <h1 class="text-3xl md:text-5xl font-black tracking-tight">The DJ Call</h1>
+    <p class="text-white/70 mt-2 max-w-2xl text-base md:text-lg">Every Wednesday, 3 to 7 PM ET on Zoom.</p>
+    <div class="mt-5 flex flex-wrap gap-2">
+      <a href="#join" class="inline-flex items-center gap-2 bg-[#8A1558] text-white px-4 py-2.5 rounded-md text-sm font-bold hover:bg-[#680D3E] transition-colors"><i data-lucide="video" class="w-4 h-4"></i> Join This Wednesday</a>
+      <a id="calBtn" target="_blank" class="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white px-4 py-2.5 rounded-md text-sm font-bold hover:bg-white/20 transition-colors"><i data-lucide="calendar-plus" class="w-4 h-4"></i> Add to Calendar</a>
     </div>
   </div>
-</header>
+</section>
 
 <!-- HOW TO SIGN IN -->
 <section id="join" class="py-20 bg-white border-b border-gray-200">
@@ -252,8 +229,7 @@
   document.getElementById('calBtn2').href = cal;
 
   // Next call date
-  const next = NMW.nextWednesday();
-  document.getElementById('nextDate').textContent = next.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' });
+  // (Next Call sidebar was removed when the hero was replaced with the unified black header)
 
   // Upcoming list
   const upcoming = NMW.upcomingWednesdays(6);

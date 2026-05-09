@@ -33,8 +33,8 @@ test.describe('Top navigation across funnel pages', () => {
     await expect(sponsorLink).toBeVisible();
     await sponsorLink.click();
     await expect(page).toHaveURL(/sponsor\.html/);
-    // Hero headline reads "Reach The Room Every Wednesday."
-    await expect(page.getByRole('heading', { name: /Reach The Room/i })).toBeVisible();
+    // Black subpage header has the page title
+    await expect(page.getByRole('heading', { level: 1, name: /Sponsorship Store/i })).toBeVisible();
   });
 
   test('logo always returns to index.html', async ({ page }) => {
