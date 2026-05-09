@@ -144,19 +144,37 @@ const NMW = (() => {
 
   const fmtDate = (d) => d.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' });
 
-  const googleCalendarLink = (artistName) => {
-    const start = nextWednesday();
-    const end = new Date(start.getTime() + 2.5 * 60 * 60 * 1000);
+  const googleCalendarLink = (artistName) => buildCalendarLink({
+    title: `New Music Wednesdays | ${artistName || 'NMW'} LIVE`,
+    start: nextWednesday(),
+    recurring: true,
+  });
+
+  const buildCalendarLink = ({ title, start, durationHours = 2.5, details, location = 'The Penthouse NYC', recurring = false }) => {
+    const end = new Date(start.getTime() + durationHours * 60 * 60 * 1000);
     const fmt = (d) => d.toISOString().replace(/[-:]|\.\d{3}/g, '');
     const params = new URLSearchParams({
       action: 'TEMPLATE',
-      text: `New Music Wednesdays | ${artistName || 'NMW'} LIVE`,
+      text: title,
       dates: `${fmt(start)}/${fmt(end)}`,
-      details: 'New Music Wednesdays at The Penthouse NYC. Doors 3PM | DJ Call 3-7PM | Live 7-9:30PM. Hosted by Anna Nyakana, CL, Chrys Childs.',
-      location: 'The Penthouse NYC',
-      recur: 'RRULE:FREQ=WEEKLY;BYDAY=WE',
+      details: details || 'New Music Wednesdays at The Penthouse NYC. Doors 3PM | DJ Call 3-7PM | Live 7-9:30PM. Hosted by Anna Nyakana, CL, Chrys Childs.',
+      location,
     });
+    if (recurring) params.append('recur', 'RRULE:FREQ=WEEKLY;BYDAY=WE');
     return `https://calendar.google.com/calendar/render?${params.toString()}`;
+  };
+
+  // Generate the next N weekly Wednesday events (lineup + headliner)
+  const upcomingWednesdays = (count = 8) => {
+    const out = [];
+    const first = nextWednesday();
+    for (let i = 0; i < count; i++) {
+      const d = new Date(first);
+      d.setDate(first.getDate() + i * 7);
+      d.setHours(19, 0, 0, 0);
+      out.push(d);
+    }
+    return out;
   };
 
   // create artist record from funnel + payment
@@ -265,7 +283,8 @@ const NMW = (() => {
     getBlast, addBlast, getEvents, saveEvent,
     recommendUpsells, generateReferralCode, referralLink,
     isPerformanceTier, totalPrice, nextWednesday, fmtDate,
-    googleCalendarLink, completeCheckout, updateCurrentArtist,
+    googleCalendarLink, buildCalendarLink, upcomingWednesdays,
+    completeCheckout, updateCurrentArtist,
     reset, seedDemoIfEmpty,
   };
 })();

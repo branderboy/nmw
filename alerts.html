@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get Alerts | The Blast — New Music Wednesdays</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<link rel="stylesheet" href="assets/nmw.css">
+<script>
+tailwind.config = { theme: { extend: {
+  fontFamily: { sans: ['Inter','sans-serif'] },
+  colors: { brand: { 50:'#FDF2F8', 200:'#FBCFE8', 500:'#8A1558', 600:'#680D3E' } }
+}}}
+</script>
+</head>
+<body class="font-sans antialiased bg-white">
+
+<nav class="bg-white border-b border-gray-200 sticky top-0 z-40">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16 items-center">
+      <a href="landing.html" class="flex items-center gap-3">
+        <div class="w-9 h-9 bg-brand-500 rounded-sm flex items-center justify-center text-white font-black text-lg">NMW</div>
+        <span class="hidden md:inline font-bold tracking-tight">NEW MUSIC WEDNESDAY</span>
+      </a>
+      <div class="flex items-center gap-4 text-sm font-bold tracking-wide text-gray-600">
+        <a href="events.html" class="hover:text-black hidden sm:inline">EVENTS</a>
+        <a href="alerts.html" class="text-black">GET ALERTS</a>
+        <a href="apply.html" class="btn-yellow text-xs">APPLY</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="border-b border-gray-200 py-12 md:py-16 relative overflow-hidden">
+  <div class="absolute inset-0 -z-10 opacity-10 pointer-events-none">
+    <div class="absolute top-10 left-1/4 w-[400px] h-[400px] bg-brand-500 rounded-full blur-[140px]"></div>
+  </div>
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <span class="text-xs font-black tracking-widest uppercase text-brand-500">The Blast · Weekly Newsletter</span>
+    <h1 class="text-4xl md:text-6xl font-black tracking-tight mt-3">Stay on top of the culture.</h1>
+    <p class="text-lg text-gray-600 mt-4 max-w-2xl mx-auto">Get The Blast every week — the only newsletter that drops events, special offers, free giveaways, and new music straight to your inbox.</p>
+  </div>
+</header>
+
+<main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-14">
+
+  <div class="grid lg:grid-cols-5 gap-8">
+    <!-- Benefits -->
+    <aside class="lg:col-span-2 order-2 lg:order-1">
+      <h2 class="text-xs font-black tracking-widest uppercase text-brand-500 mb-4">Inside every drop</h2>
+      <ul class="space-y-4">
+        <li class="flex gap-3">
+          <div class="w-10 h-10 rounded-lg bg-brand-50 flex items-center justify-center text-brand-500 flex-shrink-0"><i data-lucide="calendar-days" class="w-5 h-5"></i></div>
+          <div><h3 class="font-bold">Weekly Events</h3><p class="text-sm text-gray-600">Every Wednesday's lineup at The Penthouse NYC, before anyone else.</p></div>
+        </li>
+        <li class="flex gap-3">
+          <div class="w-10 h-10 rounded-lg bg-brand-50 flex items-center justify-center text-brand-500 flex-shrink-0"><i data-lucide="tag" class="w-5 h-5"></i></div>
+          <div><h3 class="font-bold">Special Offers</h3><p class="text-sm text-gray-600">Subscriber-only discounts on packages, RSVPs, and upgrades.</p></div>
+        </li>
+        <li class="flex gap-3">
+          <div class="w-10 h-10 rounded-lg bg-brand-50 flex items-center justify-center text-brand-500 flex-shrink-0"><i data-lucide="gift" class="w-5 h-5"></i></div>
+          <div><h3 class="font-bold">Free Giveaways</h3><p class="text-sm text-gray-600">Free tickets, merch, studio time, and surprise drops every month.</p></div>
+        </li>
+        <li class="flex gap-3">
+          <div class="w-10 h-10 rounded-lg bg-brand-50 flex items-center justify-center text-brand-500 flex-shrink-0"><i data-lucide="music" class="w-5 h-5"></i></div>
+          <div><h3 class="font-bold">New Music</h3><p class="text-sm text-gray-600">First listens, DJ picks, artist spotlights — curated weekly.</p></div>
+        </li>
+        <li class="flex gap-3">
+          <div class="w-10 h-10 rounded-lg bg-brand-50 flex items-center justify-center text-brand-500 flex-shrink-0"><i data-lucide="megaphone" class="w-5 h-5"></i></div>
+          <div><h3 class="font-bold">Artist Opportunities</h3><p class="text-sm text-gray-600">Open calls, performance slots, sync briefs, media coverage tips.</p></div>
+        </li>
+      </ul>
+
+      <div class="mt-8 p-4 bg-gray-50 border border-gray-200 rounded-xl text-sm text-gray-600">
+        <b class="text-black">No spam.</b> One email a week. Unsubscribe in one click.
+      </div>
+    </aside>
+
+    <!-- Form -->
+    <section class="lg:col-span-3 order-1 lg:order-2">
+      <form id="blastForm" class="bg-white border border-gray-200 rounded-2xl p-6 md:p-8 shadow-sm">
+        <h2 class="text-2xl md:text-3xl font-black tracking-tight">Subscribe to The Blast</h2>
+        <p class="text-sm text-gray-500 mt-1 mb-6">It takes 15 seconds.</p>
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div class="sm:col-span-2"><label class="field-label">Email *</label><input class="field-input" name="email" type="email" required placeholder="you@email.com"></div>
+          <div><label class="field-label">First name</label><input class="field-input" name="name" placeholder="Your name"></div>
+          <div><label class="field-label">Phone (optional)</label><input class="field-input" name="phone" type="tel" placeholder="For SMS drops"></div>
+          <div class="sm:col-span-2"><label class="field-label">Genre / Interest</label>
+            <select class="field-input" name="genre">
+              <option value="">All — send me everything</option>
+              <option>R&B</option><option>Soul</option><option>Hip Hop</option>
+              <option>Afro-Pop</option><option>Pop</option><option>Latin</option>
+              <option>Electronic</option><option>Other</option>
+            </select>
+          </div>
+
+          <div class="sm:col-span-2 mt-2">
+            <div class="field-label">I want to hear about</div>
+            <div class="flex flex-wrap gap-2 mt-1" id="topicChips"></div>
+          </div>
+
+          <div class="sm:col-span-2 mt-2">
+            <label class="flex items-start gap-3 cursor-pointer">
+              <input type="checkbox" name="iAmArtist" class="mt-1 w-5 h-5 rounded border-gray-300 text-brand-500 focus:ring-brand-500">
+              <div>
+                <div class="font-bold text-sm">I'm an artist</div>
+                <div class="text-xs text-gray-600">Get artist-only opportunities, open calls, and rollout playbooks.</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary w-full justify-center mt-6"><i data-lucide="send" class="w-4 h-4"></i> Subscribe to The Blast</button>
+        <p class="text-xs text-gray-400 mt-3 text-center">By subscribing you agree to receive emails from NMW. Unsubscribe anytime.</p>
+      </form>
+
+      <!-- Success -->
+      <div id="successCard" class="hidden bg-brand-50 border border-brand-200 rounded-2xl p-8 text-center mt-4">
+        <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 border border-brand-200">
+          <i data-lucide="check" class="w-8 h-8 text-brand-500"></i>
+        </div>
+        <h2 class="text-2xl font-black tracking-tight mb-2">You're on the list.</h2>
+        <p class="text-gray-700 max-w-md mx-auto">First Blast lands this week. While you wait — see what's coming up at The Penthouse.</p>
+        <div class="mt-6 flex flex-wrap gap-3 justify-center">
+          <a href="events.html" class="btn-primary text-xs"><i data-lucide="calendar-days" class="w-4 h-4"></i> See upcoming events</a>
+          <a href="apply.html" class="btn-outline text-xs">Apply to perform</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Recent drops preview -->
+  <section class="mt-16 border-t border-gray-200 pt-12">
+    <h2 class="text-2xl font-black tracking-tight mb-1">Recent Blasts</h2>
+    <p class="text-sm text-gray-500 mb-6">A taste of what lands in your inbox.</p>
+    <div class="grid md:grid-cols-3 gap-4">
+      <article class="card">
+        <div class="text-xs font-black uppercase tracking-widest text-brand-500">Issue 042</div>
+        <h3 class="font-bold mt-2 mb-1">This week: 3 artists you need to hear</h3>
+        <p class="text-sm text-gray-600">Lineup, free RSVP codes, and a giveaway from Digiwaxx.</p>
+      </article>
+      <article class="card">
+        <div class="text-xs font-black uppercase tracking-widest text-brand-500">Issue 041</div>
+        <h3 class="font-bold mt-2 mb-1">DJ Call rotation + open submission window</h3>
+        <p class="text-sm text-gray-600">Behind the scenes, plus how to get on the next DJ Call.</p>
+      </article>
+      <article class="card">
+        <div class="text-xs font-black uppercase tracking-widest text-brand-500">Issue 040</div>
+        <h3 class="font-bold mt-2 mb-1">5 artists who broke out of NMW this year</h3>
+        <p class="text-sm text-gray-600">Recap, clips, and a free month of Bandsintown Plus for subscribers.</p>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer class="bg-black text-gray-400 py-10 text-sm mt-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between gap-4">
+    <div>© NMW · New Music Wednesdays · by Digiwaxx</div>
+    <div class="flex gap-6">
+      <a href="landing.html" class="hover:text-white">Home</a>
+      <a href="events.html" class="hover:text-white">Events</a>
+      <a href="alerts.html" class="hover:text-white">Get Alerts</a>
+      <a href="apply.html" class="hover:text-white">Apply</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/nmw.js"></script>
+<script>
+const TOPICS = ['Events', 'Special Offers', 'Free Giveaways', 'New Music', 'Artist Opportunities', 'DJ Updates'];
+const selected = new Set(['Events', 'New Music']);
+const chips = document.getElementById('topicChips');
+function renderChips() {
+  chips.innerHTML = TOPICS.map(t => `<button type="button" class="chip ${selected.has(t) ? 'selected' : ''}" data-topic="${t}">${t}</button>`).join('');
+  chips.querySelectorAll('[data-topic]').forEach(b => b.addEventListener('click', () => {
+    const t = b.dataset.topic;
+    if (selected.has(t)) selected.delete(t); else selected.add(t);
+    renderChips();
+  }));
+}
+renderChips();
+
+document.getElementById('blastForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const data = new FormData(e.target);
+  const entry = {
+    email: (data.get('email') || '').trim(),
+    name: (data.get('name') || '').trim(),
+    phone: (data.get('phone') || '').trim(),
+    genre: data.get('genre') || '',
+    topics: [...selected],
+    iAmArtist: !!data.get('iAmArtist'),
+    subscribedAt: new Date().toISOString(),
+    source: 'alerts-page',
+  };
+  if (!entry.email) return;
+  NMW.addBlast(entry);
+  document.getElementById('blastForm').classList.add('hidden');
+  document.getElementById('successCard').classList.remove('hidden');
+  lucide.createIcons();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+lucide.createIcons();
+</script>
+</body>
+</html>
