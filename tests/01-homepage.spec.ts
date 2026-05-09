@@ -21,12 +21,12 @@ test.describe('Homepage / sales funnel (index.html)', () => {
     const thumb = page.locator('img[src="images/video_thumbnail.png"]');
     await expect(thumb).toBeVisible();
 
-    // 5 compact pricing tiles linking into apply.html
-    const pkgTiles = page.locator('#packages a[href^="apply.html?pkg="]');
-    await expect(pkgTiles).toHaveCount(5);
-    await expect(page.getByText('Media Ready', { exact: true })).toBeVisible();
-    await expect(page.getByText('Performance Ready', { exact: true })).toBeVisible();
-    await expect(page.getByText('Premiere', { exact: true })).toBeVisible();
+    // Three colored category cards (Press / Performance / Distribution) — no pricing on the homepage
+    await expect(page.locator('#packages').getByText('Press', { exact: true })).toBeVisible();
+    await expect(page.locator('#packages').getByText('Performance', { exact: true })).toBeVisible();
+    await expect(page.locator('#packages').getByText('Distribution', { exact: true })).toBeVisible();
+    // Single CTA into the apply page (pricing lives there)
+    await expect(page.getByRole('link', { name: /Start My Application/i })).toBeVisible();
 
     // No app console errors
     const appErrors = filterAppErrors(errors());
