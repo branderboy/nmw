@@ -15,7 +15,7 @@
   }}}
 </script>
 </head>
-<body class="bg-gray-50 text-gray-900 selection:bg-[#8A1558] selection:text-white">
+<body class="bg-white text-gray-900 selection:bg-[#8A1558] selection:text-white">
 
 <div class="urgency-bar">
   <span class="urgency-pulse"></span>
@@ -37,58 +37,130 @@
   </div>
 </nav>
 
-<header class="bg-white border-b border-gray-200 py-12 md:py-16">
-  <div class="max-w-7xl mx-auto px-4">
-    <div class="text-center md:text-left">
-      <span class="text-[#8A1558] font-black tracking-widest text-sm mb-3 block">[ Every Wednesday · The Penthouse NYC ]</span>
-      <h1 class="text-4xl md:text-6xl font-black tracking-tighter leading-[1] text-gray-900 mb-4">Upcoming Events</h1>
-      <p class="text-lg md:text-xl text-gray-600 max-w-2xl font-serif">Live performances, DJ Calls, and media coverage every Wednesday night. RSVP, add the series to your calendar, and bring your team.</p>
-    </div>
+<!-- Eventbrite-style page header -->
+<header class="border-b border-gray-200 bg-white">
+  <div class="max-w-5xl mx-auto px-4 py-10 md:py-14">
+    <div class="text-xs font-bold uppercase tracking-widest text-[#8A1558] mb-2">Every Wednesday · The Penthouse NYC</div>
+    <h1 class="text-3xl md:text-5xl font-black tracking-tight text-gray-900">Upcoming Events</h1>
+    <p class="text-base md:text-lg text-gray-600 mt-3 max-w-2xl">Live performances, DJ Calls, and media coverage every Wednesday night. RSVP, add the series to your calendar, and bring your team.</p>
 
-    <div class="mt-8 flex flex-wrap gap-3 justify-center md:justify-start">
-      <a id="recurringCal" target="_blank" class="inline-flex items-center gap-2 bg-[#8A1558] text-white px-5 py-3 rounded-lg text-sm font-bold tracking-widest uppercase hover:bg-[#680D3E] transition-colors shadow"><i data-lucide="calendar-plus" class="w-4 h-4"></i> Add weekly to Calendar</a>
-      <a href="alerts.html" class="inline-flex items-center gap-2 bg-white border-2 border-gray-200 text-gray-900 px-5 py-3 rounded-lg text-sm font-bold tracking-widest uppercase hover:border-gray-400 transition-colors"><i data-lucide="mail" class="w-4 h-4"></i> Get weekly alerts</a>
+    <div class="mt-6 flex flex-wrap gap-2">
+      <a id="recurringCal" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-[#8A1558] text-white px-4 py-2.5 rounded-md text-sm font-bold hover:bg-[#680D3E] transition-colors"><i data-lucide="calendar-plus" class="w-4 h-4"></i> Add weekly to calendar</a>
+      <a href="alerts.html" class="inline-flex items-center gap-2 bg-white border border-gray-300 text-gray-900 px-4 py-2.5 rounded-md text-sm font-bold hover:border-gray-500 transition-colors"><i data-lucide="mail" class="w-4 h-4"></i> Get alerts</a>
     </div>
   </div>
 </header>
 
-<main class="max-w-7xl mx-auto px-4 py-10">
+<main class="max-w-5xl mx-auto px-4 py-10">
 
-  <!-- Featured next event -->
+  <!-- Featured next event (Eventbrite-style: simple hero card) -->
   <section id="featuredWrap" class="mb-12"></section>
 
-  <!-- Filter -->
-  <div class="flex items-center justify-between mb-6 flex-wrap gap-3">
-    <h2 class="text-2xl md:text-3xl font-black tracking-tight">All upcoming</h2>
-    <div class="flex items-center gap-2 text-sm">
-      <label class="text-xs font-bold uppercase tracking-wider text-gray-500">Show:</label>
-      <select id="rangeSel" class="field-input text-sm py-2 max-w-[180px]">
-        <option value="4">Next 4 weeks</option>
-        <option value="8" selected>Next 8 weeks</option>
-        <option value="12">Next 12 weeks</option>
-      </select>
+  <!-- Upcoming events list -->
+  <section class="mb-12">
+    <div class="flex items-end justify-between flex-wrap gap-3 mb-5">
+      <h2 class="text-2xl font-black tracking-tight text-gray-900">More events</h2>
+      <div class="flex items-center gap-2 text-sm">
+        <label for="rangeSel" class="text-xs font-bold uppercase tracking-wider text-gray-500">Show:</label>
+        <select id="rangeSel" class="border border-gray-300 rounded-md px-3 py-1.5 text-sm bg-white">
+          <option value="4">Next 4 weeks</option>
+          <option value="8" selected>Next 8 weeks</option>
+          <option value="12">Next 12 weeks</option>
+        </select>
+      </div>
     </div>
-  </div>
+    <div id="eventList" class="divide-y divide-gray-200 border-t border-gray-200"></div>
+  </section>
 
-  <div id="eventList" class="grid md:grid-cols-2 gap-4"></div>
+  <!-- Where to find us -->
+  <section class="mb-12 border-t border-gray-200 pt-12">
+    <div class="grid md:grid-cols-2 gap-8">
+      <div>
+        <h2 class="text-2xl font-black tracking-tight text-gray-900 mb-2">Where to find us</h2>
+        <p class="text-base font-bold text-gray-900">The Penthouse NYC</p>
+        <p class="text-sm text-gray-600 mt-1">Manhattan, NY · Wednesdays · Doors 3 PM · Live 7–9:30 PM</p>
+
+        <div class="mt-5 space-y-2 text-sm">
+          <a href="https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-gray-700 hover:text-[#8A1558]">
+            <i data-lucide="map-pin" class="w-4 h-4"></i> Open in Google Maps
+            <i data-lucide="external-link" class="w-3 h-3 text-gray-400"></i>
+          </a>
+          <a href="https://www.tripadvisor.com/Search?q=The+Penthouse+NYC" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-gray-700 hover:text-[#8A1558]">
+            <i data-lucide="star" class="w-4 h-4"></i> Read reviews on TripAdvisor
+            <i data-lucide="external-link" class="w-3 h-3 text-gray-400"></i>
+          </a>
+          <a href="https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-gray-700 hover:text-[#8A1558]">
+            <i data-lucide="message-square" class="w-4 h-4"></i> Reviews on Google
+            <i data-lucide="external-link" class="w-3 h-3 text-gray-400"></i>
+          </a>
+        </div>
+      </div>
+      <div class="rounded-lg overflow-hidden border border-gray-200">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.370721274705!2d-73.9493586!3d40.75387029999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259d05c173b8d%3A0x7d35ee407fd7eebf!2sThe%20Penthouse!5e0!3m2!1sen!2sus!4v1778362039916!5m2!1sen!2sus"
+          width="100%" height="320" style="border:0;" allowfullscreen=""
+          loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          title="The Penthouse NYC on Google Maps"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners row -->
+  <section class="border-t border-gray-200 pt-10">
+    <div class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3">Distribution &amp; Discovery Partners</div>
+    <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm font-bold tracking-widest text-gray-600">
+      <a href="https://www.digiwaxx.com" target="_blank" rel="noopener noreferrer" class="hover:text-[#8A1558]">DIGIWAXX</a>
+      <a href="https://dice.fm" target="_blank" rel="noopener noreferrer" class="hover:text-[#8A1558]">DICE</a>
+      <a href="https://www.bandsintown.com" target="_blank" rel="noopener noreferrer" class="hover:text-[#8A1558]">BANDSINTOWN</a>
+      <a href="https://www.songkick.com" target="_blank" rel="noopener noreferrer" class="hover:text-[#8A1558]">SONGKICK</a>
+      <a href="https://www.eventbrite.com" target="_blank" rel="noopener noreferrer" class="hover:text-[#8A1558]">EVENTBRITE</a>
+      <a href="https://lu.ma" target="_blank" rel="noopener noreferrer" class="hover:text-[#8A1558]">LUMA</a>
+      <a href="https://www.tripadvisor.com/Search?q=The+Penthouse+NYC" target="_blank" rel="noopener noreferrer" class="hover:text-[#8A1558]">TRIPADVISOR</a>
+      <a href="https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z" target="_blank" rel="noopener noreferrer" class="hover:text-[#8A1558]">GOOGLE MAPS</a>
+    </div>
+  </section>
+
 </main>
 
-<footer class="nmw-footer mt-10">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
-    <div>
-      <div class="flex items-center gap-3 justify-center md:justify-start mb-4">
-        <img src="images/nmw-logo-light.png" alt="New Music Wednesday" class="footer-logo" />
+<footer class="nmw-footer">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 py-2">
+      <div class="col-span-2 md:col-span-1">
+        <img src="images/nmw-logo-light.png" alt="New Music Wednesday" class="footer-logo mb-4" />
+        <p class="text-sm">Live performance + rollout infrastructure for rising artists. Every Wednesday at The Penthouse NYC.</p>
       </div>
-      <p class="text-gray-500 font-serif text-sm italic max-w-sm">Artist Onboarding & Distribution Infrastructure.</p>
+      <div>
+        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Funnel</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="mission.html">Mission</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="dj-call.html">DJ Call</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Onboarding</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="apply.html">Artist Access</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="alerts.html">Get Alerts</a></li>
+          <li><a href="sponsor.html">Sponsor</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Find Us</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="https://www.digiwaxx.com" target="_blank" rel="noopener noreferrer">Digiwaxx.com</a></li>
+          <li><a href="https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z" target="_blank" rel="noopener noreferrer">Google Maps</a></li>
+          <li><a href="https://www.tripadvisor.com/Search?q=The+Penthouse+NYC" target="_blank" rel="noopener noreferrer">TripAdvisor</a></li>
+          <li><a href="https://dice.fm" target="_blank" rel="noopener noreferrer">DICE</a></li>
+          <li><a href="https://www.bandsintown.com" target="_blank" rel="noopener noreferrer">Bandsintown</a></li>
+          <li><a href="https://www.songkick.com" target="_blank" rel="noopener noreferrer">Songkick</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="flex flex-wrap gap-6 text-sm font-bold text-gray-400 uppercase tracking-widest justify-center">
-      <a href="mission.html" class="hover:text-[#8A1558]">Mission</a>
-      <a href="events.html" class="hover:text-[#8A1558]">Events</a>
-      <a href="dj-call.html" class="hover:text-[#8A1558]">DJ Call</a>
-      <a href="apply.html" class="hover:text-[#8A1558]">Artist Access</a>
-      <a href="faq.html" class="hover:text-[#8A1558]">FAQ</a>
-      <a href="alerts.html" class="hover:text-[#8A1558]">Get Alerts</a>
-      <a href="sponsor.html" class="hover:text-[#8A1558]">Sponsor</a>
+    <div class="border-t border-gray-700 pt-6 mt-6 text-center text-xs">
+      © 2026 New Music Wednesdays · By Digiwaxx · All rights reserved.
     </div>
   </div>
 </footer>
@@ -114,10 +186,10 @@ function buildEventModel(d) {
 }
 
 function availabilityTag(ev) {
-  if (ev.full) return '<span class="pill pill-gray">Sold out</span>';
-  if (ev.left <= 1) return `<span class="pill pill--yellow">${ev.left} slot left</span>`;
-  if (ev.booked === 0) return '<span class="pill pill--green">Open · book now</span>';
-  return `<span class="pill pill--blue">${ev.left} of ${ev.capacity} open</span>`;
+  if (ev.full) return '<span class="inline-flex items-center gap-1 text-xs font-bold text-gray-500 bg-gray-100 px-2 py-1 rounded">Sold out</span>';
+  if (ev.left <= 1) return `<span class="inline-flex items-center gap-1 text-xs font-bold text-yellow-700 bg-yellow-50 px-2 py-1 rounded">${ev.left} slot left</span>`;
+  if (ev.booked === 0) return '<span class="inline-flex items-center gap-1 text-xs font-bold text-green-700 bg-green-50 px-2 py-1 rounded">Open</span>';
+  return `<span class="inline-flex items-center gap-1 text-xs font-bold text-blue-700 bg-blue-50 px-2 py-1 rounded">${ev.left} of ${ev.capacity} open</span>`;
 }
 
 function renderFeatured() {
@@ -128,42 +200,44 @@ function renderFeatured() {
   const shareUrl = location.origin + location.pathname;
 
   const lineupHTML = ev.lineup.length
-    ? ev.lineup.map(n => `<li class="flex items-center gap-2"><i data-lucide="mic" class="w-4 h-4 text-yellow-400"></i> ${n}</li>`).join('')
-    : '<li class="flex items-center gap-2 text-gray-500"><i data-lucide="hourglass" class="w-4 h-4"></i> Lineup announcing soon</li>';
+    ? ev.lineup.map(n => `<li class="text-base font-bold text-gray-900">${n}</li>`).join('')
+    : '<li class="text-sm text-gray-500 italic">Lineup announcing soon</li>';
 
   document.getElementById('featuredWrap').innerHTML = `
-    <div class="bg-white border border-gray-200 text-gray-900 rounded-2xl p-6 md:p-10 relative overflow-hidden border border-gray-800">
-      <div class="absolute top-0 right-0 w-96 h-96 bg-[#8A1558] rounded-full blur-[140px] opacity-30 -translate-y-1/2 translate-x-1/2"></div>
-      <div class="relative grid md:grid-cols-2 gap-6 items-center">
-        <div>
-          <div class="flex items-center gap-3 mb-2 flex-wrap">
-            <div class="text-xs font-black uppercase tracking-widest text-yellow-400">This Wednesday</div>
+    <article class="bg-white border border-gray-200 rounded-lg overflow-hidden">
+      <div class="grid md:grid-cols-3 gap-0">
+        <!-- Date stripe -->
+        <div class="bg-gray-900 text-white p-6 md:p-8 flex flex-col justify-center text-center md:text-left">
+          <div class="text-xs font-bold uppercase tracking-widest text-[#FBCFE8] mb-1">This Wednesday</div>
+          <div class="text-5xl md:text-6xl font-black tracking-tighter leading-none">${d.getDate()}</div>
+          <div class="text-sm font-bold uppercase tracking-widest mt-2">${d.toLocaleDateString(undefined, { month: 'long', year: 'numeric' })}</div>
+          <div class="text-sm text-white/70 mt-1">${d.toLocaleDateString(undefined, { weekday: 'long' })}</div>
+        </div>
+        <!-- Body -->
+        <div class="md:col-span-2 p-6 md:p-8">
+          <div class="flex items-start justify-between gap-3 flex-wrap">
+            <div>
+              <h2 class="text-2xl md:text-3xl font-black tracking-tight text-gray-900 mb-1">${ev.lineup.length ? ev.lineup.join(' · ') : 'Live Showcase'}</h2>
+              <p class="text-sm text-gray-600">The Penthouse NYC · Doors 3 PM · DJ Call 3–7 PM · Live 7–9:30 PM</p>
+              <p class="text-xs text-gray-500 mt-1">${ev.booked} of ${ev.capacity} performance slots booked</p>
+            </div>
             ${availabilityTag(ev)}
           </div>
-          <h2 class="text-3xl md:text-5xl font-black tracking-tighter leading-tight">${ev.lineup.length ? ev.lineup.join(' · ') : 'Live Showcase'}</h2>
-          <p class="text-gray-600 mt-3 text-lg font-serif">${NMW.fmtDate(d)} · The Penthouse NYC · Doors 3PM · Live 7-9:30PM</p>
-          <p class="text-gray-500 mt-1 text-sm">${ev.booked} of ${ev.capacity} performance slots booked</p>
-          <div class="mt-6 flex flex-wrap gap-3">
-            <a href="${rsvpUrl(d)}" target="_blank" class="inline-flex items-center gap-2 bg-yellow-400 text-black px-5 py-3 rounded-lg text-xs font-bold tracking-widest uppercase hover:bg-yellow-300 transition-colors shadow"><i data-lucide="ticket" class="w-4 h-4"></i> RSVP</a>
-            <a href="${cal}" target="_blank" class="inline-flex items-center gap-2 bg-white border border-gray-200 text-gray-700 px-5 py-3 rounded-lg text-xs font-bold tracking-widest uppercase hover:bg-gray-50 transition-colors"><i data-lucide="calendar-plus" class="w-4 h-4"></i> Add to Calendar</a>
-            <button class="inline-flex items-center gap-2 bg-white border border-gray-200 text-gray-700 px-5 py-3 rounded-lg text-xs font-bold tracking-widest uppercase hover:bg-gray-50 transition-colors" data-share='${JSON.stringify({text: shareText, url: shareUrl}).replace(/'/g, "&#39;")}'><i data-lucide="share-2" class="w-4 h-4"></i> Share</button>
-            ${ev.full
-              ? '<span class="text-gray-500 text-xs font-bold uppercase tracking-wider self-center">Stage full this week</span>'
-              : '<a href="apply.html" class="text-gray-700 hover:text-white text-xs font-bold uppercase tracking-wider self-center">Perform here →</a>'}
+
+          <div class="mt-4">
+            <div class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Lineup</div>
+            <ul class="space-y-1">${lineupHTML}</ul>
+          </div>
+
+          <div class="mt-6 flex flex-wrap gap-2">
+            <a href="${rsvpUrl(d)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-[#8A1558] text-white px-5 py-2.5 rounded-md text-sm font-bold hover:bg-[#680D3E] transition-colors"><i data-lucide="ticket" class="w-4 h-4"></i> RSVP</a>
+            <a href="${cal}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-white border border-gray-300 text-gray-900 px-4 py-2.5 rounded-md text-sm font-bold hover:border-gray-500 transition-colors"><i data-lucide="calendar-plus" class="w-4 h-4"></i> Add to Calendar</a>
+            <button class="inline-flex items-center gap-2 bg-white border border-gray-300 text-gray-900 px-4 py-2.5 rounded-md text-sm font-bold hover:border-gray-500 transition-colors" data-share='${JSON.stringify({text: shareText, url: shareUrl}).replace(/'/g, "&#39;")}'><i data-lucide="share-2" class="w-4 h-4"></i> Share</button>
+            ${ev.full ? '' : '<a href="apply.html" class="inline-flex items-center gap-2 text-[#8A1558] px-2 py-2.5 text-sm font-bold hover:underline self-center">Perform here →</a>'}
           </div>
         </div>
-        <div class="bg-white/5 backdrop-blur border border-gray-200 rounded-xl p-5">
-          <div class="text-xs uppercase tracking-widest text-gray-500 mb-3">Lineup</div>
-          <ul class="space-y-2 text-sm mb-4">${lineupHTML}</ul>
-          <div class="text-xs uppercase tracking-widest text-gray-500 mb-2 mt-4 pt-4 border-t border-gray-200">Inside the night</div>
-          <ul class="space-y-2 text-sm">
-            <li class="flex items-center gap-2"><i data-lucide="disc-3" class="w-4 h-4 text-yellow-400"></i> Digiwaxx DJ Call · 3-7PM</li>
-            <li class="flex items-center gap-2"><i data-lucide="newspaper" class="w-4 h-4 text-yellow-400"></i> Media pit + interviews</li>
-            <li class="flex items-center gap-2"><i data-lucide="users" class="w-4 h-4 text-yellow-400"></i> Hosted by Anna · CL · Chrys Childs</li>
-          </ul>
-        </div>
       </div>
-    </div>
+    </article>
   `;
   bindShareButtons();
   (typeof lucide !== "undefined" && lucide.createIcons());
@@ -176,35 +250,23 @@ function renderList() {
   wrap.innerHTML = dates.map(d => {
     const ev = buildEventModel(d);
     const cal = NMW.buildCalendarLink({ title: ev.title, start: d });
-    const shareText = `Pull up to NMW · ${NMW.fmtDate(d)} · The Penthouse NYC${ev.lineup.length ? ' · ' + ev.lineup.join(' · ') : ''}`;
-    const shareUrl = location.origin + location.pathname;
     const month = d.toLocaleDateString(undefined, { month: 'short' }).toUpperCase();
     const day = d.getDate();
     const lineupLine = ev.lineup.length ? ev.lineup.join(' · ') : 'Lineup TBA';
-    const performCTA = ev.full
-      ? '<span class="text-xs text-gray-400 font-bold uppercase tracking-wider ml-auto">Slots full</span>'
-      : '<a href="apply.html" class="text-xs text-[#8A1558] hover:underline font-bold uppercase tracking-wider ml-auto">Perform this week →</a>';
 
-    return `<article class="section-card flex gap-5">
-      <div class="flex-shrink-0 w-16 text-center">
-        <div class="text-xs font-black tracking-widest text-[#8A1558]">${month}</div>
-        <div class="text-3xl font-black leading-none mt-1">${day}</div>
-        <div class="text-xs text-gray-400 mt-1">WED</div>
+    return `<article class="flex items-center gap-5 py-5 hover:bg-gray-50 px-2 -mx-2 rounded-md transition-colors">
+      <div class="flex-shrink-0 w-14 text-center">
+        <div class="text-[10px] font-bold tracking-widest text-[#8A1558]">${month}</div>
+        <div class="text-2xl font-black leading-none mt-1 text-gray-900">${day}</div>
+        <div class="text-[10px] text-gray-400 mt-1 font-bold tracking-widest">WED</div>
       </div>
       <div class="flex-1 min-w-0">
-        <div class="flex items-start justify-between gap-3 flex-wrap">
-          <div class="min-w-0">
-            <h3 class="font-black text-lg tracking-tight truncate">${lineupLine}</h3>
-            <p class="text-sm text-gray-500 font-serif">The Penthouse NYC · ${ev.booked} of ${ev.capacity} slots booked</p>
-            <p class="text-xs text-gray-400 mt-1">Doors 3PM · DJ Call 3-7PM · Live 7-9:30PM</p>
-          </div>
-          ${availabilityTag(ev)}
-        </div>
-        <div class="flex flex-wrap items-center gap-2 mt-4">
-          <a href="${cal}" target="_blank" class="inline-flex items-center gap-2 bg-white border-2 border-gray-200 text-gray-900 px-3 py-2 rounded-lg text-xs font-bold tracking-widest uppercase hover:border-[#8A1558] transition-colors"><i data-lucide="calendar-plus" class="w-3.5 h-3.5"></i> Add to Calendar</a>
-          <button class="inline-flex items-center gap-2 bg-white border-2 border-gray-200 text-gray-900 px-3 py-2 rounded-lg text-xs font-bold tracking-widest uppercase hover:border-[#8A1558] transition-colors" data-share='${JSON.stringify({text: shareText, url: shareUrl}).replace(/'/g, "&#39;")}'><i data-lucide="share-2" class="w-3.5 h-3.5"></i> Share</button>
-          ${performCTA}
-        </div>
+        <h3 class="font-bold text-base text-gray-900 truncate">${lineupLine}</h3>
+        <p class="text-xs text-gray-500 mt-0.5">The Penthouse NYC · 7–9:30 PM · ${ev.booked}/${ev.capacity} slots</p>
+      </div>
+      <div class="flex items-center gap-3 flex-shrink-0">
+        ${availabilityTag(ev)}
+        <a href="${rsvpUrl(d)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-white border border-gray-300 text-gray-900 px-3 py-1.5 rounded-md text-xs font-bold hover:border-[#8A1558] hover:text-[#8A1558] transition-colors">RSVP <i data-lucide="arrow-right" class="w-3 h-3"></i></a>
       </div>
     </article>`;
   }).join('');

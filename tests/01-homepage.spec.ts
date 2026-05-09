@@ -21,14 +21,12 @@ test.describe('Homepage / sales funnel (index.html)', () => {
     const thumb = page.locator('img[src="images/video_thumbnail.png"]');
     await expect(thumb).toBeVisible();
 
-    // 5 packages exist (Media Ready, One Mic Visual, Performance Ready, Full Experience, Premiere)
-    await expect(page.getByRole('heading', { name: /Media Ready/i })).toBeVisible();
-    await expect(page.getByRole('heading', { name: /Performance Ready/i })).toBeVisible();
-    await expect(page.getByRole('heading', { name: /Premiere Package/i })).toBeVisible();
-
-    // 5 "Select This Package" CTAs
-    const selectButtons = page.getByRole('link', { name: /Select This Package/i });
-    await expect(selectButtons).toHaveCount(5);
+    // 5 compact pricing tiles linking into apply.html
+    const pkgTiles = page.locator('#packages a[href^="apply.html?pkg="]');
+    await expect(pkgTiles).toHaveCount(5);
+    await expect(page.getByText('Media Ready', { exact: true })).toBeVisible();
+    await expect(page.getByText('Performance Ready', { exact: true })).toBeVisible();
+    await expect(page.getByText('Premiere', { exact: true })).toBeVisible();
 
     // No app console errors
     const appErrors = filterAppErrors(errors());
