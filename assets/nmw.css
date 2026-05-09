@@ -300,6 +300,11 @@ aside .lg\:sticky { border-top: 3px solid var(--brand-500) !important; }
 }
 @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 
+/* ============ Lead capture section soft gradient ============ */
+.lead-bg {
+  background: linear-gradient(120deg, #ffffff 0%, #fbf6f8 55%, #f3e1ea 100%);
+}
+
 /* ============ Homepage hero background image ============ */
 .hero-bg {
   background-color: #000;
