@@ -18,7 +18,7 @@ tailwind.config = { theme: { extend: {
 <body class="font-sans antialiased bg-gray-50 min-h-screen">
 
 <nav class="nmw-nav px-4 sm:px-8">
-  <a href="landing.html" class="nmw-logo-block">
+  <a href="index.html" class="nmw-logo-block">
     <img src="images/nmw logo.avif" alt="New Music Wednesday" class="nmw-logo-img" />
     <div class="nmw-logo-name hidden sm:flex">
       <span class="primary">Artist Dashboard</span>
@@ -297,7 +297,7 @@ document.getElementById('logoutBtn')?.addEventListener('click', () => {
   if (confirm('Sign out of this artist profile? (data stays in storage)')) {
     localStorage.removeItem('nmw.artist');
     localStorage.removeItem('nmw.funnel');
-    location.href = 'landing.html';
+    location.href = 'index.html';
   }
 });
 

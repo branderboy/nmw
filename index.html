@@ -1,693 +1,330 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Music Wednesday | The Drop</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        serif: ['Merriweather', 'serif'],
-                    },
-                    colors: {
-                        brand: {
-                            50: '#FDF2F8',  // Light magenta background
-                            200: '#FBCFE8', // Light magenta border
-                            500: '#8A1558', // Digiwaxx Deep Magenta-Purple
-                            600: '#680D3E', // Darker shade for hovers
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body { background-color: #ffffff; color: #111827; }
-        .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.05); }
-        .editorial-dropcap::first-letter { font-size: 3.5rem; float: left; margin-right: 0.5rem; line-height: 1; font-weight: 700; color: #8A1558; }
-        
-        /* Custom range slider for voting - Light Mode */
-        input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
-        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 16px; width: 16px; border-radius: 50%; background: #8A1558; cursor: pointer; margin-top: -6px; box-shadow: 0 1px 3px rgba(0,0,0,0.3); }
-        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 4px; cursor: pointer; background: #e5e7eb; border-radius: 2px; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NMW Artist Funnel | New Music Wednesdays</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<link rel="stylesheet" href="assets/nmw.css">
+<script>
+  tailwind.config = {
+    theme: { extend: {
+      fontFamily: { sans: ['Inter','sans-serif'], serif: ['Merriweather','serif'] },
+      colors: { brand: { 500: '#8A1558', 600: '#680D3E' } }
+    }}
+  }
+</script>
 </head>
-<body class="font-sans antialiased selection:bg-brand-500 selection:text-white bg-white text-gray-900">
+<body class="bg-gray-50 text-gray-900 selection:bg-[#8A1558] selection:text-white">
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 glass-nav top-0 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-brand-500 rounded-sm flex items-center justify-center text-white font-black text-xl tracking-tighter">NMW</div>
-                    <div class="hidden md:flex flex-col justify-center">
-                        <span class="font-bold text-xl tracking-tight leading-none">NEW MUSIC WEDNESDAY</span>
-                        <span class="font-medium text-brand-500 text-xs tracking-widest uppercase mt-1">by Digiwaxx</span>
-                    </div>
-                </div>
-                <div class="hidden md:flex space-x-8 items-center text-sm font-bold tracking-wide text-gray-600">
-                    <a href="#thedrop" class="hover:text-black transition-colors">THE DROP</a>
-                    <a href="#artist" class="hover:text-black transition-colors">ARTIST</a>
-                    <a href="#tools" class="hover:text-black transition-colors">TOOLS</a>
-                    <a href="#blog" class="hover:text-black transition-colors">BLOG</a>
-                    <a href="#events" class="hover:text-black transition-colors">EVENTS</a>
-                    <a href="#submit" class="bg-yellow-400 text-black px-6 py-2.5 rounded-full font-black uppercase tracking-wider text-xs hover:bg-yellow-500 hover:scale-105 transition-all shadow-md flex items-center gap-2 border border-yellow-500">
-                        <i data-lucide="upload" class="w-4 h-4"></i> Submit Music
-                    </a>
-                </div>
-                <div class="md:hidden flex items-center">
-                    <button class="text-black focus:outline-none"><i data-lucide="menu" class="w-6 h-6"></i></button>
-                </div>
-            </div>
+<!-- Urgency Bar -->
+<div class="urgency-bar">
+  <span class="urgency-pulse"></span>
+  Attention Artists: Only 5 Event &amp; Press Packages Left For Next Wednesday!
+</div>
+
+<!-- Navigation -->
+<nav class="nmw-nav px-4 sm:px-8">
+  <a href="index.html" class="nmw-logo-block">
+    <img src="images/nmw logo.avif" alt="New Music Wednesday" class="nmw-logo-img" />
+    <div class="nmw-logo-name hidden sm:flex">
+      <span class="primary">New Music Wednesday</span>
+      <span class="secondary">by Digiwaxx</span>
+    </div>
+  </a>
+  <div class="hidden md:flex space-x-6 items-center text-sm font-bold tracking-wide text-gray-600">
+    <a href="mission.html" class="hover:text-black">MISSION</a>
+    <a href="events.html" class="hover:text-black">EVENTS</a>
+    <a href="apply.html" class="hover:text-black">ARTIST ACCESS</a>
+    <a href="faq.html" class="hover:text-black">FAQ</a>
+    <a href="alerts.html" class="hover:text-black">GET ALERTS</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="relative pt-12 pb-16 overflow-hidden bg-gray-50 border-b border-gray-200">
+  <div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
+    <!-- Next Up program logo -->
+    <img src="images/NEXT_UP_LOGO_copy[1].avif" alt="The Next Up Experience" class="mx-auto mb-6 h-20 md:h-24 w-auto drop-shadow-md" />
+    <h2 class="text-[#8A1558] font-black tracking-widest text-sm md:text-base mb-4">
+      [ Official Artist Registration ]
+    </h2>
+    <h1 class="text-4xl md:text-6xl font-black tracking-tighter leading-[1] text-gray-900 mb-6 drop-shadow-sm">
+      Secure Your Live Performance &amp; Press Package At Manhattan's Top Destination For New Music.
+    </h1>
+    <p class="text-lg md:text-2xl text-gray-700 max-w-3xl mx-auto font-medium leading-relaxed mb-8">
+      Perform live at The Penthouse NYC, secure guaranteed press coverage, capture high-end visual assets, and ignite your rollout in The Next Up Experience.
+    </p>
+
+    <!-- Hero video thumbnail -->
+    <div class="relative w-full aspect-video bg-black rounded-xl overflow-hidden shadow-2xl border-4 border-white mx-auto mb-10 max-w-3xl cursor-pointer group">
+      <img src="images/video_thumbnail.png" alt="NMW promo video" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity" />
+      <div class="absolute inset-0 flex items-center justify-center">
+        <div class="w-20 h-20 bg-[#8A1558] rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(138,21,88,0.6)] group-hover:scale-110 transition-transform">
+          <i data-lucide="play" class="w-10 h-10 text-white ml-2"></i>
         </div>
-    </nav>
+      </div>
+      <div class="absolute top-4 right-4 bg-black/50 backdrop-blur px-3 py-1 rounded text-white text-xs font-bold flex items-center gap-2">
+        <span class="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></span> Click To Watch
+      </div>
+    </div>
 
-    <!-- HERO: LiveMixtape meets Medium -->
-    <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden border-b border-gray-200 bg-white">
-        <div class="absolute top-0 left-1/2 w-full -translate-x-1/2 h-full z-0 opacity-10 pointer-events-none">
-            <div class="absolute top-20 left-1/4 w-96 h-96 bg-brand-500 rounded-full mix-blend-multiply filter blur-[128px]"></div>
+    <!-- Hero CTA -->
+    <div class="flex flex-col items-center justify-center px-4 w-full max-w-2xl mx-auto">
+      <button onclick="scrollToPackages()" class="cta cta--yellow group mb-4">
+        <div class="cta__shadow"></div>
+        <div class="cta__face">
+          <div class="flex items-center justify-center gap-2 text-2xl md:text-3xl font-black tracking-tighter">
+            Yes! Start My Rollout Now <i data-lucide="chevrons-right" class="w-8 h-8 animate-pulse hidden sm:block"></i>
+          </div>
+          <span class="cta__sub text-gray-800">Click Here To See Package Options &amp; Secure Your Spot</span>
         </div>
+      </button>
+      <div class="flex items-center gap-3 text-xs font-bold text-gray-500 mt-2">
+        <i data-lucide="lock" class="w-3 h-3"></i> 256-bit secure checkout
+        <span class="text-gray-300">|</span>
+        <i data-lucide="shield-check" class="w-3 h-3"></i> Stripe-powered
+      </div>
+    </div>
+  </div>
+</header>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="flex flex-col lg:flex-row gap-12 items-center">
-                
-                <!-- Left: The Mixtape -->
-                <div class="w-full lg:w-1/2 group">
-                    <div class="relative w-full aspect-square bg-white rounded-lg overflow-hidden shadow-xl border border-gray-200">
-                        <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Featured Artist" class="object-cover w-full h-full opacity-90 group-hover:opacity-100 transition-opacity duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                        
-                        <!-- Play Overlay -->
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <button class="w-20 h-20 bg-brand-500 rounded-full flex items-center justify-center text-white hover:scale-105 transition-transform shadow-lg">
-                                <i data-lucide="play" class="w-8 h-8 ml-1"></i>
-                            </button>
-                        </div>
+<!-- Social Proof Bar -->
+<div class="bg-white border-b border-gray-200 py-8">
+  <div class="max-w-6xl mx-auto px-4 text-center flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12">
+    <img src="images/DIGIWAXX_PRESENTS_PURPLE_copy[1].avif" alt="Digiwaxx Presents" class="h-12 md:h-14 w-auto" />
+    <div class="hidden md:block w-px h-10 bg-gray-200"></div>
+    <div class="flex flex-wrap justify-center gap-6 md:gap-10 items-center opacity-60 grayscale font-black text-lg tracking-widest text-gray-400">
+      <span>DICE</span>
+      <span>BANDSINTOWN</span>
+      <span>SONGKICK</span>
+    </div>
+  </div>
+</div>
 
-                        <!-- Labels -->
-                        <div class="absolute top-6 left-6 flex gap-2">
-                            <span class="bg-brand-500 text-white text-xs font-bold px-3 py-1 uppercase tracking-wider shadow-sm">Editorial Pick</span>
-                            <span class="bg-white/90 backdrop-blur text-black text-xs font-bold px-3 py-1 uppercase tracking-wider shadow-sm">This Wednesday</span>
-                        </div>
-                        
-                        <div class="absolute bottom-6 left-6 right-6 text-white">
-                            <h1 class="text-4xl md:text-5xl font-black tracking-tight mb-1">Midnight in Brooklyn</h1>
-                            <p class="text-xl font-serif italic text-gray-200">by Marcus Vance</p>
-                        </div>
-                    </div>
-                </div>
+<!-- Value Stack -->
+<section id="how-it-works" class="py-24 bg-white relative overflow-hidden">
+  <div class="max-w-6xl mx-auto px-4 relative z-10">
+    <h2 class="text-3xl md:text-5xl font-black tracking-tight text-center mb-20 max-w-4xl mx-auto">
+      Here Is Exactly What You Get When You Join <span class="text-[#8A1558]">The Next Up Experience</span> Today:
+    </h2>
 
-                <!-- Right: The Medium -->
-                <div class="w-full lg:w-1/2">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="flex space-x-4 text-sm font-bold text-brand-500 uppercase tracking-widest bg-brand-50 px-4 py-2 rounded border border-brand-200">
-                            <span><i data-lucide="clock" class="w-4 h-4 inline mr-1 -mt-1 text-brand-600"></i> Next Drop in:</span>
-                            <span id="countdown" class="text-black">Loading...</span>
-                        </div>
-                    </div>
-                    
-                    <h2 class="text-3xl font-bold mb-6 font-serif leading-tight text-gray-900">New Music Wednesday: Manhattan's Ultimate Live Music Destination</h2>
-                    
-                    <div class="font-serif text-lg text-gray-600 leading-relaxed mb-8 space-y-6">
-                        <p class="editorial-dropcap">Located in the heart of Manhattan, New Music Wednesday has become an undeniable addiction for tourists and area residents alike. The Penthouse is officially the top destination for the most authentic new music experience in NYC.</p>
-                        <p>This is exactly why Digiwaxx built this platform. Out of hundreds of submissions this week, the public voted and the DJs tested them live in New York City. We give the ultimate standouts the full editorial treatment because the culture deserves a permanent record.</p>
-                    </div>
-
-                    <div class="flex items-center gap-4 border-t border-gray-200 pt-6 mt-8">
-                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=100&h=100&q=80" alt="Editor" class="w-12 h-12 rounded-full grayscale border border-gray-300">
-                        <div>
-                            <p class="text-sm font-bold uppercase tracking-wider text-gray-900">Review by Digiwaxx Editorial</p>
-                            <p class="text-sm text-gray-500">Live from The Penthouse NYC</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+    <div class="space-y-24">
+      <!-- Block 1 -->
+      <div class="flex flex-col md:flex-row items-center gap-12">
+        <div class="w-full md:w-1/2 md:pr-8">
+          <div class="step-badge"><i data-lucide="mic" class="w-4 h-4"></i> Step 1</div>
+          <h3 class="text-3xl md:text-4xl font-black tracking-tight text-gray-900 mb-4">Live Showcase Performance</h3>
+          <p class="text-gray-600 font-serif text-lg leading-relaxed mb-6">
+            Perform live on Manhattan's top stage at The Penthouse NYC. We don't just give you a slot; we put you directly in front of real crowds, industry tastemakers, and verified fans.
+          </p>
+          <ul class="space-y-3">
+            <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558]"></i> Prime Timeslot Guarantee</li>
+            <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558]"></i> VIP Industry Guestlist Access</li>
+          </ul>
         </div>
-    </header>
-
-    <!-- THE DROP: LiveMixtape Rating Engine -->
-    <section id="thedrop" class="py-24 bg-gray-50 border-b border-gray-200">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-end mb-12">
-                <div>
-                    <h2 class="text-3xl font-black uppercase tracking-tight mb-2 text-black">This Week's Mixtape</h2>
-                    <p class="text-gray-600 font-serif">The culture votes. The best get reviewed.</p>
-                </div>
-                <div class="hidden sm:block text-right">
-                    <span class="text-xs text-gray-500 uppercase tracking-widest font-bold">Vol. 42 / Week of Oct 24</span>
-                </div>
-            </div>
-
-            <!-- Tracklist / Voting UI -->
-            <div class="space-y-4">
-                
-                <!-- Track Item 1 -->
-                <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm transition-all hover:border-brand-500 hover:shadow-md">
-                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                        <div class="flex items-center gap-4 flex-1 w-full">
-                            <button class="w-12 h-12 bg-gray-100 hover:bg-brand-500 hover:text-white text-black rounded flex items-center justify-center transition-colors flex-shrink-0" onclick="togglePlay(this)">
-                                <i data-lucide="play" class="w-5 h-5 ml-0.5"></i>
-                            </button>
-                            <div>
-                                <h3 class="font-bold text-lg text-gray-900">Fade Away</h3>
-                                <p class="text-sm text-gray-500 font-serif italic">Elena Cruz</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-3 w-full sm:w-auto">
-                            <span class="text-xs font-bold text-brand-600 bg-brand-50 px-2 py-1 rounded border border-brand-200">R&B</span>
-                            <button onclick="toggleRating('rate-1')" class="flex-1 sm:flex-none px-6 py-2 bg-black text-white font-bold text-sm uppercase rounded hover:bg-gray-800 transition-colors">
-                                Rate Track
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- Expandable Rating Engine -->
-                    <div id="rate-1" class="hidden mt-6 pt-6 border-t border-gray-100">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 max-w-3xl">
-                            <div>
-                                <div class="flex justify-between text-xs font-bold uppercase mb-2 text-gray-700"><label>Production</label><span class="text-brand-600">8.5</span></div>
-                                <input type="range" min="1" max="10" step="0.1" value="8.5">
-                            </div>
-                            <div>
-                                <div class="flex justify-between text-xs font-bold uppercase mb-2 text-gray-700"><label>Vocals</label><span class="text-brand-600">9.0</span></div>
-                                <input type="range" min="1" max="10" step="0.1" value="9.0">
-                            </div>
-                            <div>
-                                <div class="flex justify-between text-xs font-bold uppercase mb-2 text-gray-700"><label>Lyricism</label><span class="text-brand-600">7.5</span></div>
-                                <input type="range" min="1" max="10" step="0.1" value="7.5">
-                            </div>
-                            <div>
-                                <div class="flex justify-between text-xs font-bold uppercase mb-2 text-gray-700"><label>Cohesion</label><span class="text-brand-600">8.0</span></div>
-                                <input type="range" min="1" max="10" step="0.1" value="8.0">
-                            </div>
-                            <div>
-                                <div class="flex justify-between text-xs font-bold uppercase mb-2 text-gray-700"><label>Replay Value</label><span class="text-brand-600">9.5</span></div>
-                                <input type="range" min="1" max="10" step="0.1" value="9.5">
-                            </div>
-                            <div>
-                                <div class="flex justify-between text-xs font-bold uppercase mb-2 text-gray-700"><label>Cultural Impact</label><span class="text-brand-600">8.5</span></div>
-                                <input type="range" min="1" max="10" step="0.1" value="8.5">
-                            </div>
-                        </div>
-                        <div class="mt-6 flex justify-end">
-                            <button class="bg-brand-500 text-black px-6 py-2 rounded font-bold text-sm uppercase hover:bg-brand-600 transition-colors shadow-sm" onclick="submitVote(this, 'rate-1')">Submit Vote</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Track Item 2 -->
-                <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm transition-all hover:border-brand-500 hover:shadow-md">
-                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                        <div class="flex items-center gap-4 flex-1 w-full">
-                            <button class="w-12 h-12 bg-gray-100 hover:bg-brand-500 hover:text-white text-black rounded flex items-center justify-center transition-colors flex-shrink-0" onclick="togglePlay(this)">
-                                <i data-lucide="play" class="w-5 h-5 ml-0.5"></i>
-                            </button>
-                            <div>
-                                <h3 class="font-bold text-lg text-gray-900">Southside Story</h3>
-                                <p class="text-sm text-gray-500 font-serif italic">Killa & The Band</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-3 w-full sm:w-auto">
-                            <span class="text-xs font-bold text-brand-600 bg-brand-50 px-2 py-1 rounded border border-brand-200">Hip Hop</span>
-                            <button onclick="toggleRating('rate-2')" class="flex-1 sm:flex-none px-6 py-2 bg-gray-100 text-black font-bold text-sm uppercase rounded hover:bg-gray-200 border border-gray-300 transition-colors">
-                                Rate Track
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- Expandable Rating Engine -->
-                    <div id="rate-2" class="hidden mt-6 pt-6 border-t border-gray-100">
-                        <p class="text-center text-sm text-gray-500 italic mb-4 font-serif">Rate this submission to help determine next week's editorial pick.</p>
-                        <div class="flex justify-center">
-                             <button class="text-brand-600 text-sm font-bold uppercase underline" onclick="toggleRating('rate-2')">Close</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Track Item 3 -->
-                <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm transition-all hover:border-brand-500 hover:shadow-md">
-                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                        <div class="flex items-center gap-4 flex-1 w-full">
-                            <button class="w-12 h-12 bg-gray-100 hover:bg-brand-500 hover:text-white text-black rounded flex items-center justify-center transition-colors flex-shrink-0" onclick="togglePlay(this)">
-                                <i data-lucide="play" class="w-5 h-5 ml-0.5"></i>
-                            </button>
-                            <div>
-                                <h3 class="font-bold text-lg text-gray-900">Late Night Drive</h3>
-                                <p class="text-sm text-gray-500 font-serif italic">J. Reese</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-3 w-full sm:w-auto">
-                            <span class="text-xs font-bold text-brand-600 bg-brand-50 px-2 py-1 rounded border border-brand-200">Soul</span>
-                            <button onclick="toggleRating('rate-3')" class="flex-1 sm:flex-none px-6 py-2 bg-gray-100 text-black font-bold text-sm uppercase rounded hover:bg-gray-200 border border-gray-300 transition-colors">
-                                Rate Track
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- Expandable Rating Engine -->
-                    <div id="rate-3" class="hidden mt-6 pt-6 border-t border-gray-100">
-                        <p class="text-center text-sm text-gray-500 italic mb-4 font-serif">Rate this submission to help determine next week's editorial pick.</p>
-                        <div class="flex justify-center">
-                             <button class="text-brand-600 text-sm font-bold uppercase underline" onclick="toggleRating('rate-3')">Close</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Track Item 4 -->
-                <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm transition-all hover:border-brand-500 hover:shadow-md">
-                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                        <div class="flex items-center gap-4 flex-1 w-full">
-                            <button class="w-12 h-12 bg-gray-100 hover:bg-brand-500 hover:text-white text-black rounded flex items-center justify-center transition-colors flex-shrink-0" onclick="togglePlay(this)">
-                                <i data-lucide="play" class="w-5 h-5 ml-0.5"></i>
-                            </button>
-                            <div>
-                                <h3 class="font-bold text-lg text-gray-900">Vibrations</h3>
-                                <p class="text-sm text-gray-500 font-serif italic">The Collective</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-3 w-full sm:w-auto">
-                            <span class="text-xs font-bold text-brand-600 bg-brand-50 px-2 py-1 rounded border border-brand-200">R&B</span>
-                            <button onclick="toggleRating('rate-4')" class="flex-1 sm:flex-none px-6 py-2 bg-gray-100 text-black font-bold text-sm uppercase rounded hover:bg-gray-200 border border-gray-300 transition-colors">
-                                Rate Track
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- Expandable Rating Engine -->
-                    <div id="rate-4" class="hidden mt-6 pt-6 border-t border-gray-100">
-                        <p class="text-center text-sm text-gray-500 italic mb-4 font-serif">Rate this submission to help determine next week's editorial pick.</p>
-                        <div class="flex justify-center">
-                             <button class="text-brand-600 text-sm font-bold uppercase underline" onclick="toggleRating('rate-4')">Close</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Track Item 5 (Locked/Teaser) -->
-                <div class="bg-gray-50 border border-dashed border-gray-300 rounded-lg p-4">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 bg-gray-100 rounded flex items-center justify-center border border-gray-200">
-                                <i data-lucide="lock" class="w-4 h-4 text-gray-400"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-gray-400 text-lg">Hidden Track</h3>
-                                <p class="text-sm text-gray-500 font-serif italic">Unlocks at 5,000 votes</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+        <div class="w-full md:w-1/2">
+          <div class="image-card-rotate"><img src="images/performance.avif" alt="Live Performance" /></div>
         </div>
-    </section>
+      </div>
 
-    <!-- SUBMIT / DEPLOY CTA -->
-    <section id="submit" class="py-24 bg-brand-500 text-white relative overflow-hidden">
-        <!-- Abstract BG patterns -->
-        <div class="absolute inset-0 opacity-10">
-            <svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <pattern id="grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
-                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" stroke-width="1"/>
-                    </pattern>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#grid-pattern)" />
-            </svg>
+      <!-- Block 2 -->
+      <div class="flex flex-col md:flex-row items-center gap-12">
+        <div class="w-full md:w-1/2 md:order-2 md:pl-8">
+          <div class="step-badge"><i data-lucide="video" class="w-4 h-4"></i> Step 2</div>
+          <h3 class="text-3xl md:text-4xl font-black tracking-tight text-gray-900 mb-4">Guaranteed Press &amp; Media Coverage</h3>
+          <p class="text-gray-600 font-serif text-lg leading-relaxed mb-6">
+            You aren't just performing; you are building a professional press kit. Get high-end visual capture, live media interviews, and full editorial write-ups on the NMW platform to use for your PR rollout.
+          </p>
+          <ul class="space-y-3">
+            <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558]"></i> 4K Performance Visuals</li>
+            <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558]"></i> NMW Editorial Blog Placement</li>
+          </ul>
         </div>
-
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            <span class="inline-block px-4 py-1 border-2 border-white font-black uppercase tracking-widest text-sm mb-6 bg-white text-brand-600">The Rollout Platform</span>
-            <h2 class="text-5xl md:text-6xl font-black uppercase tracking-tighter mb-6 leading-none">Drop Your Music.<br>We Deploy the Rollout.</h2>
-            <p class="text-xl font-serif max-w-2xl mx-auto mb-10 opacity-90 leading-relaxed font-medium">
-                Submit your track to be featured on next Wednesday's Digiwaxx drop. If our editorial team selects you, we don't just post a link—we treat you like a priority release.
-            </p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12 text-left">
-                <div class="border border-gray-200 p-8 rounded-xl bg-white text-gray-900 shadow-2xl">
-                    <i data-lucide="pen-tool" class="w-8 h-8 mb-4 text-brand-500"></i>
-                    <h3 class="font-bold text-lg mb-2">Editorial Review</h3>
-                    <p class="text-sm text-gray-600 font-serif leading-relaxed">Full Medium-style write-up establishing your cultural context and why the streets need to hear you.</p>
-                </div>
-                <div class="border border-gray-200 p-8 rounded-xl bg-white text-gray-900 shadow-2xl">
-                    <i data-lucide="radio" class="w-8 h-8 mb-4 text-brand-500"></i>
-                    <h3 class="font-bold text-lg mb-2">The LiveMixtape</h3>
-                    <p class="text-sm text-gray-600 font-serif leading-relaxed">Your track goes into the public rating engine. Let the 30,000 DJs and fans grade your 6 metrics.</p>
-                </div>
-                <div class="border border-gray-200 p-8 rounded-xl bg-white text-gray-900 shadow-2xl">
-                    <i data-lucide="send" class="w-8 h-8 mb-4 text-brand-500"></i>
-                    <h3 class="font-bold text-lg mb-2">Full Deployment</h3>
-                    <p class="text-sm text-gray-600 font-serif leading-relaxed">Pushed to our 25K DJ newsletter. Featured on our canonical AI-indexed platform. Real distribution.</p>
-                </div>
-            </div>
-
-            <!-- Clickfunnels Style 3D Button for Drop Application (Resized) -->
-            <div class="mt-12 flex justify-center px-4 w-full">
-                <button class="relative w-full md:w-auto group block">
-                    <!-- 3D Shadow Layer -->
-                    <div class="absolute inset-0 bg-yellow-600 rounded-xl translate-y-1.5 group-hover:translate-y-0.5 transition-transform"></div>
-                    
-                    <!-- Main Button Layer -->
-                    <div class="relative bg-yellow-400 border-2 border-yellow-300 text-black px-6 py-4 md:px-10 md:py-4 rounded-xl flex flex-col items-center justify-center transform group-hover:translate-y-1 transition-transform shadow-xl">
-                        <div class="flex items-center justify-center gap-3 text-xl md:text-2xl font-black uppercase tracking-tighter w-full text-center">
-                            Apply For Next Wednesday Drop <i data-lucide="chevrons-right" class="w-6 h-6 md:w-8 md:h-8 animate-pulse hidden sm:block"></i>
-                        </div>
-                        <span class="text-[10px] md:text-xs font-bold opacity-80 mt-2 bg-yellow-500/30 px-3 py-1 rounded-full uppercase tracking-widest text-center">
-                            Guaranteed Editorial Review • Closes Tuesday Midnight
-                        </span>
-                    </div>
-                </button>
-            </div>
-            
+        <div class="w-full md:w-1/2 md:order-1">
+          <div class="image-card-rotate rotate-neg"><img src="images/pr slots.png" alt="Press and Media" /></div>
         </div>
-    </section>
+      </div>
 
-    <!-- BLOG / MEDIUM SECTION -->
-    <section id="blog" class="py-24 bg-white relative overflow-hidden">
-        <!-- Abstract background blur matching the hero -->
-        <div class="absolute top-0 right-0 w-96 h-96 bg-brand-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-10 pointer-events-none"></div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="border-b border-gray-200 pb-4 mb-12 flex justify-between items-end">
-                <h2 class="text-3xl font-serif italic text-gray-900">The Record of the Culture</h2>
-                <a href="#" class="text-brand-600 font-bold uppercase text-sm hover:underline">View All Articles</a>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                <!-- Main Article (1) -->
-                <article class="lg:col-span-2 group cursor-pointer flex flex-col">
-                    <div class="relative w-full aspect-video bg-white rounded-lg overflow-hidden shadow-xl border border-gray-200 mb-6">
-                        <!-- Background Image -->
-                        <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Industry Secrets" class="object-cover w-full h-full opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
-                        <!-- Dark Gradient Overlay (Same as Hero) -->
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-                        
-                        <!-- Tags (Same as Hero) -->
-                        <div class="absolute top-6 left-6 flex gap-2">
-                            <span class="bg-brand-500 text-white text-xs font-bold px-3 py-1 uppercase tracking-wider shadow-sm">Industry Secrets</span>
-                            <span class="bg-white/90 backdrop-blur text-black text-xs font-bold px-3 py-1 uppercase tracking-wider shadow-sm flex items-center gap-1">
-                                <i data-lucide="mic-off" class="w-3 h-3"></i> Editorial
-                            </span>
-                        </div>
-                        
-                        <!-- Typography (Same as Hero) -->
-                        <div class="absolute bottom-6 left-6 right-6 text-white">
-                            <h4 class="text-4xl md:text-5xl font-black uppercase tracking-tighter leading-[0.9] mb-2 drop-shadow-md">
-                                Things The Industry
-                            </h4>
-                            <div class="flex items-center gap-3">
-                                <div class="h-[2px] w-10 bg-brand-500 shadow-sm"></div>
-                                <span class="text-brand-200 font-serif italic text-2xl md:text-3xl tracking-tight drop-shadow-md">Don't Talk About</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-center gap-3 mb-3 text-xs font-bold uppercase tracking-widest text-brand-600">
-                        <span>Industry Secrets</span>
-                        <span class="text-gray-300">•</span>
-                        <span class="text-gray-500">10 min read</span>
-                    </div>
-                    <h3 class="text-4xl font-bold font-serif mb-4 leading-tight text-gray-900 group-hover:text-brand-600 transition-colors">What Labels Don't Want You To Know About Streaming Payouts</h3>
-                    <p class="text-gray-600 font-serif text-lg leading-relaxed mb-6">We talked to 30 DJs and independent artists. The math isn't mathing. Here is the exact breakdown of how the major label system is still exploiting R&B artists in 2026, and why the algorithm is rigged against you.</p>
-                    
-                    <!-- Author & Engagement Bar (Medium Style) -->
-                    <div class="mt-auto">
-                        <div class="flex items-center gap-3 mb-4">
-                            <div class="w-8 h-8 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center text-xs font-bold text-gray-700">CL</div>
-                            <span class="text-sm text-gray-600 font-medium">By CL's Vault</span>
-                        </div>
-                        <div class="flex items-center justify-between border-t border-gray-100 pt-4">
-                            <div class="flex items-center gap-5 text-gray-500">
-                                <button class="flex items-center gap-1.5 hover:text-brand-600 transition-colors group">
-                                    <i data-lucide="heart" class="w-5 h-5 group-hover:fill-brand-100"></i>
-                                    <span class="text-sm font-bold">4.2K</span>
-                                </button>
-                                <button class="flex items-center gap-1.5 hover:text-brand-600 transition-colors">
-                                    <i data-lucide="message-circle" class="w-5 h-5"></i>
-                                    <span class="text-sm font-bold">128</span>
-                                </button>
-                            </div>
-                            <div class="flex items-center gap-3 text-gray-400">
-                                <button class="hover:text-gray-900 transition-colors" title="Share on Twitter"><i data-lucide="twitter" class="w-5 h-5"></i></button>
-                                <button class="hover:text-gray-900 transition-colors" title="Share on Facebook"><i data-lucide="facebook" class="w-5 h-5"></i></button>
-                                <button class="hover:text-gray-900 transition-colors" title="Copy Link"><i data-lucide="link" class="w-5 h-5"></i></button>
-                                <button class="hover:text-gray-900 transition-colors" title="Save Article"><i data-lucide="bookmark" class="w-5 h-5"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Sidebar Articles (2 & 3) -->
-                <div class="space-y-10">
-                    <article class="group cursor-pointer">
-                        <div class="flex items-center gap-3 mb-2 text-xs font-bold uppercase tracking-widest text-brand-600">
-                            <span>Era Wars</span>
-                        </div>
-                        <h3 class="text-xl font-bold font-serif mb-2 leading-snug text-gray-900 group-hover:text-brand-600 transition-colors">Today's Rappers Couldn't Last A Verse In A Lyrical Battle. Discuss.</h3>
-                        <p class="text-gray-600 font-serif text-sm line-clamp-3 mb-3">Stop lying to yourselves. The vibe era is cool, but if we're talking pure pen game, this generation would get completely washed. Here's the proof.</p>
-                        
-                        <div class="flex justify-between items-center mt-3 pt-3 border-t border-gray-50">
-                            <span class="text-xs text-gray-500">Oct 20 • Opinion</span>
-                            <div class="flex items-center gap-3 text-gray-400">
-                                <span class="flex items-center gap-1 text-xs font-medium"><i data-lucide="heart" class="w-3.5 h-3.5"></i> 2.1K</span>
-                                <span class="flex items-center gap-1 text-xs font-medium"><i data-lucide="message-circle" class="w-3.5 h-3.5"></i> 342</span>
-                                <button class="ml-1 hover:text-gray-800"><i data-lucide="bookmark" class="w-3.5 h-3.5"></i></button>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="group cursor-pointer">
-                        <div class="flex items-center gap-3 mb-2 text-xs font-bold uppercase tracking-widest text-brand-600">
-                            <span>The Charts</span>
-                        </div>
-                        <h3 class="text-xl font-bold font-serif mb-2 leading-snug text-gray-900 group-hover:text-brand-600 transition-colors">The Streaming Charts Are Lying. We Talked To 30,000 DJs.</h3>
-                        <p class="text-gray-600 font-serif text-sm line-clamp-3 mb-3">Spotify says one thing, but the clubs in Atlanta, DC, and NY are playing something completely different. The disconnect is disrespectful.</p>
-                        
-                        <div class="flex justify-between items-center mt-3 pt-3 border-t border-gray-50">
-                            <span class="text-xs text-gray-500">Oct 19 • NMW Data</span>
-                            <div class="flex items-center gap-3 text-gray-400">
-                                <span class="flex items-center gap-1 text-xs font-medium"><i data-lucide="heart" class="w-3.5 h-3.5"></i> 1.8K</span>
-                                <span class="flex items-center gap-1 text-xs font-medium"><i data-lucide="message-circle" class="w-3.5 h-3.5"></i> 210</span>
-                                <button class="ml-1 hover:text-gray-800"><i data-lucide="bookmark" class="w-3.5 h-3.5"></i></button>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Clickfunnels Style Newsletter Squeeze Box -->
-                    <div class="p-8 bg-white rounded-xl border-2 border-brand-200 mt-8 shadow-[0_10px_30px_rgba(138,21,88,0.15)] text-center relative overflow-hidden">
-                        <!-- Abstract Background Accent -->
-                        <div class="absolute top-0 right-0 w-32 h-32 bg-brand-50 rounded-bl-full -z-10"></div>
-                        
-                        <div class="w-14 h-14 bg-brand-50 text-brand-600 rounded-full flex items-center justify-center mx-auto mb-4 border border-brand-100 shadow-inner">
-                            <i data-lucide="mail" class="w-7 h-7"></i>
-                        </div>
-                        <h4 class="font-black uppercase tracking-tight text-2xl text-gray-900 mb-2">Don't Miss The Drop</h4>
-                        <p class="text-gray-600 text-sm font-serif mb-6 leading-relaxed">Get the official NMW editorial picks and industry truth-telling sent directly to your inbox every Wednesday morning.</p>
-                        
-                        <div class="space-y-4">
-                            <input type="email" placeholder="Enter your best email address..." class="w-full bg-gray-50 border-2 border-gray-200 rounded-lg px-4 py-4 text-center text-sm font-bold text-gray-900 focus:outline-none focus:border-brand-500 focus:bg-white transition-colors placeholder:font-medium">
-                            
-                            <!-- 3D Newsletter Button -->
-                            <button class="relative w-full group block">
-                                <div class="absolute inset-0 bg-brand-600 rounded-lg translate-y-1.5 group-hover:translate-y-0.5 transition-transform"></div>
-                                <div class="relative bg-brand-500 text-white px-4 py-4 rounded-lg flex flex-col items-center justify-center transform group-hover:translate-y-1 transition-transform border border-brand-400">
-                                    <div class="flex items-center justify-center gap-2 text-xl font-black uppercase tracking-tight w-full drop-shadow-md">
-                                        Join The Newsletter <i data-lucide="mouse-pointer-click" class="w-5 h-5 ml-1 animate-pulse"></i>
-                                    </div>
-                                    <span class="text-[11px] font-bold text-brand-100 mt-1 uppercase tracking-widest">Join 25,000+ Industry DJs</span>
-                                </div>
-                            </button>
-                        </div>
-                        
-                        <p class="text-[10px] text-gray-400 mt-5 uppercase font-bold tracking-widest flex justify-center items-center gap-1.5">
-                            <i data-lucide="lock" class="w-3 h-3 text-gray-400"></i> 100% Free & Secure
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Lower Grid for Industry Truth-Telling Posts -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16 pt-16 border-t border-gray-200">
-                <article class="group cursor-pointer flex flex-col h-full">
-                    <div>
-                        <span class="text-[10px] font-bold uppercase tracking-widest text-brand-600 mb-2 block">Industry Secrets</span>
-                        <h3 class="font-bold font-serif text-lg mb-2 text-gray-900 group-hover:text-brand-600 transition-colors leading-snug">The Real Reason Your Favorite Artist Hasn't Dropped In 3 Years</h3>
-                        <p class="text-gray-500 font-serif text-sm line-clamp-2 mb-4">It's not perfectionism. It's sample clearances, frozen budgets, and backdoor label politics holding up the culture.</p>
-                    </div>
-                    <div class="mt-auto flex justify-between items-center text-gray-400 pt-3 border-t border-gray-100">
-                        <span class="text-xs text-gray-500">Oct 18</span>
-                        <div class="flex items-center gap-3">
-                            <span class="flex items-center gap-1 text-xs font-medium"><i data-lucide="heart" class="w-3.5 h-3.5"></i> 954</span>
-                            <span class="flex items-center gap-1 text-xs font-medium"><i data-lucide="message-circle" class="w-3.5 h-3.5"></i> 82</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="group cursor-pointer flex flex-col h-full">
-                    <div>
-                        <span class="text-[10px] font-bold uppercase tracking-widest text-brand-600 mb-2 block">Label Politics</span>
-                        <h3 class="font-bold font-serif text-lg mb-2 text-gray-900 group-hover:text-brand-600 transition-colors leading-snug">How Major Labels Are Still Killing Indie R&B in 2026</h3>
-                        <p class="text-gray-500 font-serif text-sm line-clamp-2 mb-4">Fake independent imprints and playlist monopolization. Here is how the majors adapted to keep the indie guys boxed out.</p>
-                    </div>
-                    <div class="mt-auto flex justify-between items-center text-gray-400 pt-3 border-t border-gray-100">
-                        <span class="text-xs text-gray-500">Oct 16</span>
-                        <div class="flex items-center gap-3">
-                            <span class="flex items-center gap-1 text-xs font-medium"><i data-lucide="heart" class="w-3.5 h-3.5"></i> 1.2K</span>
-                            <span class="flex items-center gap-1 text-xs font-medium"><i data-lucide="message-circle" class="w-3.5 h-3.5"></i> 145</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="group cursor-pointer flex flex-col h-full">
-                    <div>
-                        <span class="text-[10px] font-bold uppercase tracking-widest text-brand-600 mb-2 block">The Money</span>
-                        <h3 class="font-bold font-serif text-lg mb-2 text-gray-900 group-hover:text-brand-600 transition-colors leading-snug">The Producer Pay Crisis Nobody In R&B Is Discussing</h3>
-                        <p class="text-gray-500 font-serif text-sm line-clamp-2 mb-4">Advances are down, back-end points are practically nonexistent, and the beatmakers building the sound are being starved out.</p>
-                    </div>
-                    <div class="mt-auto flex justify-between items-center text-gray-400 pt-3 border-t border-gray-100">
-                        <span class="text-xs text-gray-500">Oct 15</span>
-                        <div class="flex items-center gap-3">
-                            <span class="flex items-center gap-1 text-xs font-medium"><i data-lucide="heart" class="w-3.5 h-3.5"></i> 3.4K</span>
-                            <span class="flex items-center gap-1 text-xs font-medium"><i data-lucide="message-circle" class="w-3.5 h-3.5"></i> 512</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="group cursor-pointer flex flex-col h-full">
-                    <div>
-                        <span class="text-[10px] font-bold uppercase tracking-widest text-brand-600 mb-2 block">Data Pulse</span>
-                        <h3 class="font-bold font-serif text-lg mb-2 text-gray-900 group-hover:text-brand-600 transition-colors leading-snug">Why So Many R&B Albums Sound The Same (It's The Algorithm)</h3>
-                        <p class="text-gray-500 font-serif text-sm line-clamp-2 mb-4">A&Rs aren't looking for soul; they are looking for 2-minute loop retention. We break down the data ruining the genre.</p>
-                    </div>
-                    <div class="mt-auto flex justify-between items-center text-gray-400 pt-3 border-t border-gray-100">
-                        <span class="text-xs text-gray-500">Oct 14</span>
-                        <div class="flex items-center gap-3">
-                            <span class="flex items-center gap-1 text-xs font-medium"><i data-lucide="heart" class="w-3.5 h-3.5"></i> 2.8K</span>
-                            <span class="flex items-center gap-1 text-xs font-medium"><i data-lucide="message-circle" class="w-3.5 h-3.5"></i> 390</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="group cursor-pointer flex flex-col h-full">
-                    <div>
-                        <span class="text-[10px] font-bold uppercase tracking-widest text-brand-600 mb-2 block">Publishing</span>
-                        <h3 class="font-bold font-serif text-lg mb-2 text-gray-900 group-hover:text-brand-600 transition-colors leading-snug">The Sync Licensing Game: Who's Making Money And Who Isn't</h3>
-                        <p class="text-gray-500 font-serif text-sm line-clamp-2 mb-4">TV and film placements used to be the golden ticket. Now, it's a race to the bottom. Here's who's actually cashing those checks.</p>
-                    </div>
-                    <div class="mt-auto flex justify-between items-center text-gray-400 pt-3 border-t border-gray-100">
-                        <span class="text-xs text-gray-500">Oct 12</span>
-                        <div class="flex items-center gap-3">
-                            <span class="flex items-center gap-1 text-xs font-medium"><i data-lucide="heart" class="w-3.5 h-3.5"></i> 845</span>
-                            <span class="flex items-center gap-1 text-xs font-medium"><i data-lucide="message-circle" class="w-3.5 h-3.5"></i> 43</span>
-                        </div>
-                    </div>
-                </article>
-            </div>
+      <!-- Block 3 -->
+      <div class="flex flex-col md:flex-row items-center gap-12">
+        <div class="w-full md:w-1/2 md:pr-8">
+          <div class="step-badge"><i data-lucide="zap" class="w-4 h-4"></i> Step 3</div>
+          <h3 class="text-3xl md:text-4xl font-black tracking-tight text-gray-900 mb-4">Massive Audience &amp; DJ Distribution</h3>
+          <p class="text-gray-600 font-serif text-lg leading-relaxed mb-6">
+            We automatically syndicate your music to the 30,000+ Digiwaxx DJ network, while instantly pushing your event data to DICE, Bandsintown, and Songkick to build a real, trackable audience.
+          </p>
+          <ul class="space-y-3">
+            <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558]"></i> Direct-to-DJ Record Pool Drop</li>
+            <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558]"></i> Automated DICE &amp; Songkick Syndication</li>
+          </ul>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-100 py-16 border-t border-gray-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
-            <div>
-                <div class="flex items-center gap-3 justify-center md:justify-start mb-4">
-                    <div class="w-8 h-8 bg-brand-500 rounded-sm flex items-center justify-center text-white font-black text-sm tracking-tighter">NMW</div>
-                    <div class="flex flex-col justify-center text-left">
-                        <span class="font-bold text-lg tracking-tight text-gray-900 leading-none">NEW MUSIC WEDNESDAY</span>
-                        <span class="font-medium text-brand-500 text-xs tracking-widest uppercase mt-1">by Digiwaxx</span>
-                    </div>
-                </div>
-                <p class="text-gray-500 font-serif text-sm italic max-w-sm">
-                    Past meets present. The documented record of urban music culture. Soul, R&B, and Hip Hop.
-                </p>
-            </div>
-            
-            <div class="flex gap-6">
-                <a href="#" class="text-gray-400 hover:text-gray-900 transition-colors"><i data-lucide="instagram" class="w-5 h-5"></i></a>
-                <a href="#" class="text-gray-400 hover:text-gray-900 transition-colors"><i data-lucide="youtube" class="w-5 h-5"></i></a>
-                <a href="#" class="text-gray-400 hover:text-gray-900 transition-colors"><i data-lucide="facebook" class="w-5 h-5"></i></a>
-            </div>
+        <div class="w-full md:w-1/2">
+          <div class="image-card-rotate"><img src="images/audience.avif" alt="Live Audience" /></div>
         </div>
-    </footer>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- JavaScript logic -->
-    <script>
-        // Initialize Lucide Icons
-        lucide.createIcons();
+<!-- Packages Section -->
+<section id="packages" class="py-24 bg-gray-900 border-y border-gray-800 relative">
+  <div class="absolute top-0 right-0 w-full h-full bg-[#8A1558]/5 pointer-events-none"></div>
+  <div class="max-w-7xl mx-auto px-4 relative z-10">
+    <div class="text-center mb-16">
+      <span class="text-yellow-400 font-bold tracking-widest text-sm mb-4 block animate-bounce">↓ Choose Your Event &amp; Press Package Below ↓</span>
+      <h2 class="text-4xl md:text-5xl font-black tracking-tight text-white mb-4">Secure Your Distribution Spot Now</h2>
+      <p class="text-gray-400 font-serif max-w-2xl mx-auto text-lg">Select the rollout package that fits your strategy. Slots are extremely limited and close Tuesdays at Midnight.</p>
+    </div>
 
-        // Calculate next Wednesday Countdown
-        function updateCountdown() {
-            const now = new Date();
-            const dayOfWeek = now.getDay();
-            // Target is Wednesday (3). If today is Wed (and past noon, or just generally to next), we aim for next Wed.
-            let daysUntilWednesday = (3 - dayOfWeek + 7) % 7;
-            if (daysUntilWednesday === 0) daysUntilWednesday = 7; // Always point to NEXT Wednesday if today is Wednesday (adjust based on actual drop time rules)
-            
-            const nextWednesday = new Date(now.getFullYear(), now.getMonth(), now.getDate() + daysUntilWednesday);
-            nextWednesday.setHours(12, 0, 0, 0); // Assuming noon drop
+    <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
 
-            const diff = nextWednesday - now;
-            
-            if (diff > 0) {
-                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-                const mins = Math.floor((diff / 1000 / 60) % 60);
-                document.getElementById('countdown').innerText = `${days}d ${hours}h ${mins}m`;
-            } else {
-                document.getElementById('countdown').innerText = "THE DROP IS LIVE";
-            }
-        }
-        
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
+      <!-- Card 1: Media Ready -->
+      <div class="pkg-card">
+        <div class="icon-block"><i data-lucide="mic" class="w-6 h-6"></i></div>
+        <h3 class="pkg-title">Media Ready</h3>
+        <p class="pkg-blurb">Manual media placement and interview positioning.</p>
+        <div class="pkg-price-wrap"><span class="pkg-price">$200</span></div>
+        <ul class="pkg-features">
+          <li class="pkg-feature"><i data-lucide="check-circle" class="w-5 h-5 check"></i><span>Guaranteed Blog Placement</span></li>
+          <li class="pkg-feature"><i data-lucide="check-circle" class="w-5 h-5 check"></i><span>Live Media Interview</span></li>
+          <li class="pkg-feature"><i data-lucide="check-circle" class="w-5 h-5 check"></i><span>Artist Visibility Network</span></li>
+          <li class="pkg-feature"><i data-lucide="check-circle" class="w-5 h-5 check"></i><span>Press Content Moments</span></li>
+        </ul>
+        <a href="apply.html?pkg=media-ready" class="cta cta--ghost mt-auto">
+          <div class="cta__shadow"></div>
+          <div class="cta__face"><span class="cta__label">Select This Package</span></div>
+        </a>
+      </div>
 
-        // UI Interactions
-        function togglePlay(btn) {
-            const icon = btn.querySelector('i');
-            const isPlaying = icon.getAttribute('data-lucide') === 'pause';
-            
-            // Reset all other buttons
-            document.querySelectorAll('#thedrop button i').forEach(i => {
-                if(i.getAttribute('data-lucide') === 'pause' || i.getAttribute('data-lucide') === 'play') {
-                    i.setAttribute('data-lucide', 'play');
-                }
-            });
+      <!-- Card 2: One Mic Visual -->
+      <div class="pkg-card">
+        <div class="icon-block"><i data-lucide="video" class="w-6 h-6"></i></div>
+        <h3 class="pkg-title">One Mic Visual</h3>
+        <p class="pkg-blurb">High-end visual capture for your social rollout.</p>
+        <div class="pkg-price-wrap"><span class="pkg-price">$250</span></div>
+        <ul class="pkg-features">
+          <li class="pkg-feature"><i data-lucide="check-circle" class="w-5 h-5 check"></i><span>Visual Capture Session</span></li>
+          <li class="pkg-feature"><i data-lucide="check-circle" class="w-5 h-5 check"></i><span>Branded Content Assets</span></li>
+          <li class="pkg-feature"><i data-lucide="check-circle" class="w-5 h-5 check"></i><span>Short-Form Social Ready</span></li>
+          <li class="pkg-feature"><i data-lucide="check-circle" class="w-5 h-5 check"></i><span>Performance Visuals</span></li>
+        </ul>
+        <a href="apply.html?pkg=one-mic" class="cta cta--ghost mt-auto">
+          <div class="cta__shadow"></div>
+          <div class="cta__face"><span class="cta__label">Select This Package</span></div>
+        </a>
+      </div>
 
-            // Toggle current
-            if (!isPlaying) {
-                icon.setAttribute('data-lucide', 'pause');
-            }
-            lucide.createIcons();
-        }
+      <!-- Card 3: Performance Ready (FEATURED) -->
+      <div class="pkg-card is-featured">
+        <div class="pkg-featured-badge">Most Popular Choice</div>
+        <div class="icon-block"><i data-lucide="zap" class="w-6 h-6"></i></div>
+        <h3 class="pkg-title">Performance Ready</h3>
+        <p class="pkg-blurb">Activates the NMW live distribution system.</p>
+        <div class="pkg-price-wrap"><span class="pkg-price">$395</span></div>
+        <ul class="pkg-features">
+          <li class="pkg-feature"><i data-lucide="check-circle" class="w-5 h-5 check"></i><span>Live Performance Slot</span></li>
+          <li class="pkg-feature"><i data-lucide="check-circle" class="w-5 h-5 check"></i><span>Guaranteed Press Write-Up</span></li>
+          <li class="pkg-feature"><i data-lucide="check-circle" class="w-5 h-5 check"></i><span>Event Distribution Setup</span></li>
+          <li class="pkg-feature"><i data-lucide="check-circle" class="w-5 h-5 check"></i><span>Promo Asset Generation</span></li>
+          <li class="pkg-feature"><i data-lucide="check-circle" class="w-5 h-5 check"></i><span>Media &amp; Press Exposure</span></li>
+        </ul>
+        <a href="apply.html?pkg=performance-ready" class="cta cta--yellow mt-auto">
+          <div class="cta__shadow"></div>
+          <div class="cta__face">
+            <span class="cta__label">Select This Package</span>
+            <span class="cta__sub">Act Fast • Limited Spots</span>
+          </div>
+        </a>
+      </div>
 
-        function toggleRating(id) {
-            const el = document.getElementById(id);
-            if (el.classList.contains('hidden')) {
-                el.classList.remove('hidden');
-                // scroll slightly
-                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            } else {
-                el.classList.add('hidden');
-            }
-        }
+      <!-- Card 4: Full Experience -->
+      <div class="pkg-card xl:col-start-1 xl:col-end-2 xl:translate-x-1/2">
+        <div class="icon-block"><i data-lucide="star" class="w-6 h-6"></i></div>
+        <h3 class="pkg-title">Full Experience</h3>
+        <p class="pkg-blurb">Amplified press placement + full performance stack.</p>
+        <div class="pkg-price-wrap"><span class="pkg-price">$650</span></div>
+        <ul class="pkg-features">
+          <li class="pkg-feature"><i data-lucide="check-circle" class="w-5 h-5 check"></i><span>Everything in Performance Ready</span></li>
+          <li class="pkg-feature"><i data-lucide="check-circle" class="w-5 h-5 check"></i><span>Amplified Press Positioning</span></li>
+          <li class="pkg-feature"><i data-lucide="check-circle" class="w-5 h-5 check"></i><span>Premium Content Placement</span></li>
+          <li class="pkg-feature"><i data-lucide="check-circle" class="w-5 h-5 check"></i><span>Extended Visibility</span></li>
+          <li class="pkg-feature"><i data-lucide="check-circle" class="w-5 h-5 check"></i><span>Interview Prioritization</span></li>
+        </ul>
+        <a href="apply.html?pkg=full-experience" class="cta cta--ghost mt-auto">
+          <div class="cta__shadow"></div>
+          <div class="cta__face"><span class="cta__label">Select This Package</span></div>
+        </a>
+      </div>
 
-        function submitVote(btn, containerId) {
-            btn.innerText = "Vote Recorded ✓";
-            btn.classList.replace('bg-brand-500', 'bg-green-500');
-            btn.classList.replace('hover:bg-brand-600', 'hover:bg-green-600');
-            setTimeout(() => {
-                document.getElementById(containerId).classList.add('hidden');
-                btn.innerText = "Submit Vote";
-                btn.classList.replace('bg-green-500', 'bg-brand-500');
-                btn.classList.replace('hover:bg-green-600', 'hover:bg-brand-600');
-            }, 1500);
-        }
-    </script>
+      <!-- Card 5: Premiere -->
+      <div class="pkg-card xl:col-start-2 xl:col-end-4 xl:translate-x-1/2 xl:w-2/3">
+        <div class="icon-block"><i data-lucide="crown" class="w-6 h-6"></i></div>
+        <h3 class="pkg-title">Premiere Package</h3>
+        <p class="pkg-blurb">The ultimate rollout and amplification positioning.</p>
+        <div class="pkg-price-wrap"><span class="pkg-price">$899</span></div>
+        <ul class="pkg-features">
+          <li class="pkg-feature"><i data-lucide="check-circle" class="w-5 h-5 check"></i><span>Everything in Full Experience</span></li>
+          <li class="pkg-feature"><i data-lucide="check-circle" class="w-5 h-5 check"></i><span>Premiere-Level Press Placement</span></li>
+          <li class="pkg-feature"><i data-lucide="check-circle" class="w-5 h-5 check"></i><span>Advanced Media Visibility</span></li>
+          <li class="pkg-feature"><i data-lucide="check-circle" class="w-5 h-5 check"></i><span>Priority Platform Features</span></li>
+          <li class="pkg-feature"><i data-lucide="check-circle" class="w-5 h-5 check"></i><span>Maximum NMW Amplification</span></li>
+        </ul>
+        <a href="apply.html?pkg=premiere" class="cta cta--ghost mt-auto">
+          <div class="cta__shadow"></div>
+          <div class="cta__face"><span class="cta__label">Select This Package</span></div>
+        </a>
+      </div>
+    </div>
+
+    <div class="text-center mt-12">
+      <a href="events.html" class="text-yellow-400 font-bold tracking-widest text-xs uppercase hover:text-yellow-300">See Upcoming Events at The Penthouse →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-black py-12 text-white border-t-4 border-[#8A1558]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
+    <div>
+      <div class="flex items-center gap-3 justify-center md:justify-start mb-4">
+        <img src="images/nmw logo.avif" alt="New Music Wednesday" class="h-10 w-auto bg-white/10 rounded p-1" />
+        <div class="flex flex-col justify-center text-left">
+          <span class="font-bold text-lg tracking-tight leading-none text-white">New Music Wednesday</span>
+          <span class="font-medium text-[#FBCFE8] text-xs tracking-widest uppercase mt-1">by Digiwaxx</span>
+        </div>
+      </div>
+      <p class="text-gray-400 font-serif text-sm italic max-w-sm">Artist Onboarding & Distribution Infrastructure.</p>
+    </div>
+    <div class="flex flex-wrap gap-6 text-sm font-bold text-gray-400 uppercase tracking-widest justify-center">
+      <a href="mission.html" class="hover:text-white transition-colors">Mission</a>
+      <a href="events.html" class="hover:text-white transition-colors">Events</a>
+      <a href="apply.html" class="hover:text-white transition-colors">Artist Access</a>
+      <a href="faq.html" class="hover:text-white transition-colors">FAQ</a>
+      <a href="alerts.html" class="hover:text-white transition-colors">Get Alerts</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/nmw.js"></script>
+<script>
+  lucide.createIcons();
+  function scrollToPackages() { document.getElementById('packages').scrollIntoView({ behavior: 'smooth' }); }
+
+  // Capture referral code from URL if present
+  const params = new URLSearchParams(location.search);
+  const ref = params.get('ref');
+  if (ref) {
+    sessionStorage.setItem('nmw.referrer', ref);
+    const all = NMW.getArtists();
+    const ow = all.find(a => a.referral?.code === ref);
+    if (ow) {
+      ow.referral.invites = (ow.referral.invites || 0) + 1;
+      NMW.saveArtist(ow);
+    }
+  }
+</script>
 </body>
 </html>
