@@ -10,6 +10,7 @@ const NMW = (() => {
     referrals: 'nmw.referrals',
     events: 'nmw.events',
     slots: 'nmw.slots',
+    sponsors: 'nmw.sponsors',
   };
 
   const DEFAULT_SLOT_CAPACITY = 3;
@@ -104,6 +105,13 @@ const NMW = (() => {
 
   const getEvents = () => get(KEYS.events, []);
   const saveEvent = (e) => { const all = getEvents(); all.push(e); set(KEYS.events, all); };
+
+  const getSponsors = () => get(KEYS.sponsors, []);
+  const addSponsor = (entry) => {
+    const all = getSponsors();
+    all.push({ id: 'sp_' + Math.random().toString(36).slice(2, 10), submittedAt: new Date().toISOString(), ...entry });
+    set(KEYS.sponsors, all);
+  };
 
   // ---- domain logic ----
   const recommendUpsells = (goals) => {
@@ -367,6 +375,7 @@ const NMW = (() => {
     getFunnel, setFunnel,
     getArtist, setArtist, getArtists, saveArtist,
     getBlast, addBlast, getEvents, saveEvent,
+    getSponsors, addSponsor,
     recommendUpsells, generateReferralCode, referralLink,
     isPerformanceTier, totalPrice, nextWednesday, fmtDate,
     googleCalendarLink, buildCalendarLink, upcomingWednesdays,
