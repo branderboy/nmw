@@ -98,29 +98,24 @@
   <a href="index.html" class="nmw-logo-block">
     <img src="images/nmw-logo.png" alt="New Music Wednesday" class="nmw-logo-img" />
   </a>
-  <div class="hidden md:flex space-x-5 items-center text-sm font-bold tracking-wide text-gray-600">
+  <div class="hidden md:flex space-x-6 items-center text-sm font-bold tracking-wide text-gray-600">
     <a href="mission.html" class="hover:text-black">MISSION</a>
     <a href="events.html" class="hover:text-black">EVENTS</a>
     <a href="dj-call.html" class="hover:text-black">DJ CALL</a>
     <a href="apply.html" class="hover:text-black">ARTIST ACCESS</a>
     <a href="faq.html" class="hover:text-black">FAQ</a>
     <a href="alerts.html" class="hover:text-black">GET ALERTS</a>
-    <a href="sponsor.html" class="text-black">SPONSOR</a>
+    <a href="sponsor.html" class="text-black">SPONSORSHIP STORE</a>
   </div>
 </nav>
 
-<header class="bg-[#FDF2F8] text-gray-900 py-16 md:py-24 relative overflow-hidden border-b border-[#FBCFE8]">
-  <div class="relative max-w-4xl mx-auto px-4 text-center">
-    <span class="inline-block text-[#8A1558] font-black tracking-widest text-xs mb-5 px-3 py-1 border border-[#FBCFE8] rounded-full bg-white">[ Sponsorship Store ]</span>
-    <h1 class="text-4xl md:text-7xl font-black tracking-tighter leading-[0.95] mb-5">
-      Micro products<br>
-      <span class="italic font-serif font-normal text-[#8A1558]">that macro.</span>
-    </h1>
-    <p class="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto font-serif leading-relaxed">
-      Small, weekly placements priced to start. Stack them and they compound, into samples handed out, codes redeemed, posts shared, DJs reached. You pay for results, not impressions.
-    </p>
+<section class="bg-black text-white py-10 md:py-14 border-b-4 border-[#8A1558]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-xs font-bold uppercase tracking-widest text-[#FBCFE8] mb-2">[ For Brands ]</div>
+    <h1 class="text-3xl md:text-5xl font-black tracking-tight">Sponsorship Store</h1>
+    <p class="text-white/70 mt-2 max-w-2xl text-base md:text-lg">Reach the room every Wednesday.</p>
   </div>
-</header>
+</section>
 
 <main class="max-w-7xl mx-auto px-4 py-12 md:py-16">
   <div class="grid lg:grid-cols-3 gap-6 lg:gap-8 mb-32 lg:mb-0">
@@ -133,15 +128,8 @@
         <p class="text-gray-600 mt-2">Each placement renews automatically every Wednesday. Cancel any time.</p>
       </div>
 
-      <!-- Featured bundles -->
-      <div class="mb-8">
-        <h3 class="text-xs font-black uppercase tracking-widest text-gray-500 mb-3">Bundled Packages</h3>
-        <div class="grid sm:grid-cols-2 gap-4" id="bundleGrid"></div>
-      </div>
-
-      <!-- À la carte -->
+      <!-- Placements -->
       <div>
-        <h3 class="text-xs font-black uppercase tracking-widest text-gray-500 mb-3">À la carte</h3>
         <div class="grid sm:grid-cols-2 gap-4" id="productGrid"></div>
       </div>
     </section>
@@ -155,7 +143,7 @@
         </div>
         <div id="cartList" class="space-y-2 mb-5 min-h-[120px]"></div>
         <div class="border-t border-gray-100 pt-4">
-          <div class="flex justify-between text-sm mb-1"><span class="text-gray-500">Estimated investment</span><span class="font-black" id="cartTotal">, </span></div>
+          <div class="flex justify-between text-sm mb-1"><span class="text-gray-500">Estimated investment</span><span class="font-black" id="cartTotal">$0</span></div>
           <p class="text-xs text-gray-400 mt-1">Final pricing customized in your proposal.</p>
         </div>
         <a href="#contactForm" class="cta cta--brand mt-5">
@@ -403,8 +391,6 @@ const cart = new Set();
 function renderProducts() {
   const productGrid = document.getElementById('productGrid');
   productGrid.innerHTML = PRODUCTS.map(p => productCard(p)).join('');
-  const bundleGrid = document.getElementById('bundleGrid');
-  bundleGrid.innerHTML = BUNDLES.map(p => productCard(p, true)).join('');
   document.querySelectorAll('[data-add]').forEach(b => b.addEventListener('click', (e) => {
     e.preventDefault();
     const id = b.dataset.add;

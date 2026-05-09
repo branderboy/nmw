@@ -75,7 +75,7 @@ test.describe('Events page', () => {
 test.describe('Mission page', () => {
   test('renders and links to apply', async ({ page }) => {
     await page.goto('/mission.html');
-    await expect(page.getByRole('heading', { level: 1, name: /We exist/i })).toBeVisible();
+    await expect(page.getByRole('heading', { level: 1, name: /Mission/i })).toBeVisible();
     await expect(page.getByText(/CL Llewellyn/)).toBeVisible();
     const cta = page.getByRole('link', { name: /Take The Stage/i });
     await expect(cta).toBeVisible();

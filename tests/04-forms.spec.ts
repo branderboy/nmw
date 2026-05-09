@@ -69,15 +69,14 @@ test.describe('Sponsor store form', () => {
     // Cart starts empty
     await expect(page.locator('#cartCount')).toHaveText('0');
 
-    // Add the Growth Stack bundle ($2,400)
-    await page.locator('[data-add="growth-stack"]').click();
-    await expect(page.locator('#cartCount')).toHaveText('1');
-    await expect(page.locator('#cartTotal')).toContainText('$2,400');
-
-    // Add an in-room product
+    // Add Step & Repeat Banner ($350) and Newsletter Slot ($600)
     await page.locator('[data-add="step-and-repeat"]').click();
+    await expect(page.locator('#cartCount')).toHaveText('1');
+    await expect(page.locator('#cartTotal')).toContainText('$350');
+
+    await page.locator('[data-add="newsletter-slot"]').click();
     await expect(page.locator('#cartCount')).toHaveText('2');
-    await expect(page.locator('#cartTotal')).toContainText('$2,750');
+    await expect(page.locator('#cartTotal')).toContainText('$950');
   });
 
   test('submit sponsor inquiry saves to store with pending_approval', async ({ page }) => {
@@ -133,35 +132,15 @@ test.describe('Sponsor store form', () => {
   });
 });
 
-test.describe('DJ Call form', () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto('/dj-call.html');
-    await resetAppState(page);
-    await page.reload();
-  });
-
-  test('submits DJ application and persists', async ({ page }) => {
-    await page.goto('/dj-call.html');
-    await page.locator('input[name="djName"]').fill('DJ Test');
-    await page.locator('input[name="email"]').fill('dj@test.co');
-    await page.locator('input[name="city"]').fill('Brooklyn');
-    await page.locator('select[name="genre"]').selectOption('R&B');
-
-    await page.getByRole('button', { name: /Submit DJ Application/i }).click();
-
-    await expect(page.locator('#successCard')).toBeVisible();
-
-    const djs = await page.evaluate(() => JSON.parse(localStorage.getItem('nmw.djs') || '[]'));
-    expect(djs).toHaveLength(1);
-    expect(djs[0].djName).toBe('DJ Test');
-  });
-
-  test('shows next call date and add-to-calendar link', async ({ page }) => {
+test.describe('DJ Call page', () => {
+  test('shows next call date and add-to-calendar link (no application form)', async ({ page }) => {
     await page.goto('/dj-call.html');
     const calLink = page.locator('#calBtn');
     await expect(calLink).toBeVisible();
     const href = await calLink.getAttribute('href');
     expect(href).toContain('calendar.google.com');
     expect(href).toContain('RRULE');
+    // No application form — DJs join via the recurring Zoom link, no signup gate
+    await expect(page.locator('#djForm')).toHaveCount(0);
   });
 });

@@ -96,18 +96,23 @@
     <a href="apply.html" class="hover:text-black">ARTIST ACCESS</a>
     <a href="faq.html" class="hover:text-black">FAQ</a>
     <a href="alerts.html" class="hover:text-black">GET ALERTS</a>
-    <a href="sponsor.html" class="hover:text-black">SPONSOR NMW</a>
+    <a href="sponsor.html" class="hover:text-black">SPONSORSHIP STORE</a>
   </div>
 </nav>
 
 <!-- Hero -->
-<header class="relative pt-12 pb-16 overflow-hidden bg-gray-50 border-b border-gray-200">
+<header class="relative pt-12 pb-24 overflow-hidden bg-gray-900 text-white border-b-4 border-[#8A1558]">
+  <!-- magenta + warm color blurs over a deep base for contrast against the white logo -->
+  <div class="absolute inset-0 -z-0 pointer-events-none">
+    <div class="absolute top-0 right-0 w-[520px] h-[520px] bg-[#8A1558] rounded-full blur-[160px] opacity-50 -translate-y-1/4 translate-x-1/4"></div>
+    <div class="absolute bottom-0 left-0 w-[420px] h-[420px] bg-yellow-500 rounded-full blur-[160px] opacity-25"></div>
+  </div>
   <div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
-    <!-- The Next Up Experience program logo -->
-    <img src="images/next-up-logo.png" alt="The Next Up Experience" class="mx-auto mb-6 h-20 md:h-24 w-auto drop-shadow-md" />
-    <h2 class="text-[#8A1558] font-black tracking-widest text-sm md:text-base mb-4" data-cms="heroEyebrow">[ Official Artist Registration ]</h2>
-    <h1 class="text-4xl md:text-6xl font-black tracking-tighter leading-[1] text-gray-900 mb-6 drop-shadow-sm" data-cms="heroHeadline">Secure Your Live Performance &amp; Press Package At Manhattan's Top Destination For New Music.</h1>
-    <p class="text-lg md:text-2xl text-gray-700 max-w-3xl mx-auto font-medium leading-relaxed mb-8" data-cms="heroSubhead">Perform live at The Penthouse NYC, secure guaranteed press coverage, capture high-end visual assets, and ignite your rollout in The Next Up Experience.</p>
+    <!-- The Next Up Experience program logo (white variant for dark hero) -->
+    <img src="images/next-up-logo-light.png" alt="The Next Up Experience" class="mx-auto mb-6 h-20 md:h-24 w-auto drop-shadow-lg" />
+    <h2 class="text-[#FBCFE8] font-black tracking-widest text-sm md:text-base mb-4" data-cms="heroEyebrow">[ Official Artist Registration ]</h2>
+    <h1 class="text-4xl md:text-6xl font-black tracking-tighter leading-[1] text-white mb-6 drop-shadow-lg" data-cms="heroHeadline">Secure Your Live Performance &amp; Press Package At Manhattan's Top Destination For New Music.</h1>
+    <p class="text-lg md:text-2xl text-white/80 max-w-3xl mx-auto font-medium leading-relaxed mb-8" data-cms="heroSubhead">Perform live at The Penthouse NYC, secure guaranteed press coverage, capture high-end visual assets, and ignite your rollout in The Next Up Experience.</p>
 
     <!-- Hero video thumbnail -->
     <div class="relative w-full aspect-video bg-black rounded-xl overflow-hidden shadow-2xl border-4 border-white mx-auto mb-10 max-w-3xl cursor-pointer group">
@@ -133,13 +138,19 @@
           <span class="cta__sub text-gray-800" data-cms="primaryCtaSub">Click Here To See Package Options &amp; Secure Your Spot</span>
         </div>
       </button>
-      <div class="flex items-center gap-3 text-xs font-bold text-gray-500 mt-2">
+      <div class="flex items-center gap-3 text-xs font-bold text-white/60 mt-2">
         <i data-lucide="lock" class="w-3 h-3"></i> 256-bit secure checkout
-        <span class="text-gray-600">|</span>
+        <span class="text-white/40">|</span>
         <i data-lucide="shield-check" class="w-3 h-3"></i> Stripe-powered
       </div>
     </div>
   </div>
+
+  <!-- Scroll-down arrow pointing to lead capture form -->
+  <a href="#packages" class="hero-scroll-arrow" aria-label="Apply to perform">
+    <span class="hero-scroll-arrow__label">Apply Below</span>
+    <span class="hero-scroll-arrow__chevron"><i data-lucide="chevron-down" class="w-7 h-7"></i></span>
+  </a>
 </header>
 
 <!-- Social Proof Bar -->
@@ -226,9 +237,8 @@
 <section id="packages" class="py-20 md:py-24 bg-white border-t border-gray-200">
   <div class="max-w-3xl mx-auto px-4">
     <div class="mb-10 text-center">
-      <span class="text-[#8A1558] font-bold tracking-widest text-xs uppercase mb-3 block">[ Tell us about you ]</span>
-      <h2 class="text-3xl md:text-5xl font-black tracking-tighter text-gray-900 mb-3">Let's see if your Wednesday is ready.</h2>
-      <p class="text-base md:text-lg text-gray-600">Quick intro. Then we line up the rollout.</p>
+      <h2 class="text-3xl md:text-5xl font-black tracking-tighter text-gray-900 mb-3">Apply To Perform At New Music Wednesdays</h2>
+      <p class="text-base md:text-lg text-gray-600">Performance slots at The Penthouse NYC. Every Wednesday.</p>
     </div>
 
     <form id="leadForm" class="grid sm:grid-cols-2 gap-5 bg-white border border-gray-200 rounded-2xl p-6 md:p-8 shadow-sm">

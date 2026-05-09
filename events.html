@@ -92,23 +92,22 @@
     <a href="apply.html" class="hover:text-black">ARTIST ACCESS</a>
     <a href="faq.html" class="hover:text-black">FAQ</a>
     <a href="alerts.html" class="hover:text-black">GET ALERTS</a>
-    <a href="sponsor.html" class="hover:text-black">SPONSOR NMW</a>
+    <a href="sponsor.html" class="hover:text-black">SPONSORSHIP STORE</a>
   </div>
 </nav>
 
 <!-- Eventbrite-style page header -->
-<header class="border-b border-gray-200 bg-white">
-  <div class="max-w-5xl mx-auto px-4 py-10 md:py-14">
-    <div class="text-xs font-bold uppercase tracking-widest text-[#8A1558] mb-2">Every Wednesday, The Penthouse NYC</div>
-    <h1 class="text-3xl md:text-5xl font-black tracking-tight text-gray-900">Upcoming Events</h1>
-    <p class="text-base md:text-lg text-gray-600 mt-3 max-w-2xl">Live performances, DJ Calls, and media coverage every Wednesday night. RSVP, add the series to your calendar, and bring your team.</p>
-
-    <div class="mt-6 flex flex-wrap gap-2">
+<section class="bg-black text-white py-10 md:py-14 border-b-4 border-[#8A1558]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-xs font-bold uppercase tracking-widest text-[#FBCFE8] mb-2">[ Events ]</div>
+    <h1 class="text-3xl md:text-5xl font-black tracking-tight">Upcoming Events</h1>
+    <p class="text-white/70 mt-2 max-w-2xl text-base md:text-lg">Live performances every Wednesday at The Penthouse NYC.</p>
+    <div class="mt-5 flex flex-wrap gap-2">
       <a id="recurringCal" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-[#8A1558] text-white px-4 py-2.5 rounded-md text-sm font-bold hover:bg-[#680D3E] transition-colors"><i data-lucide="calendar-plus" class="w-4 h-4"></i> Add weekly to calendar</a>
-      <a href="alerts.html" class="inline-flex items-center gap-2 bg-white border border-gray-300 text-gray-900 px-4 py-2.5 rounded-md text-sm font-bold hover:border-gray-500 transition-colors"><i data-lucide="mail" class="w-4 h-4"></i> Get alerts</a>
+      <a href="alerts.html" class="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white px-4 py-2.5 rounded-md text-sm font-bold hover:bg-white/20 transition-colors"><i data-lucide="mail" class="w-4 h-4"></i> Get alerts</a>
     </div>
   </div>
-</header>
+</section>
 
 <main class="max-w-5xl mx-auto px-4 py-10">
 
@@ -268,12 +267,16 @@ function renderFeatured() {
   document.getElementById('featuredWrap').innerHTML = `
     <article class="bg-white border border-gray-200 rounded-lg overflow-hidden">
       <div class="grid md:grid-cols-3 gap-0">
-        <!-- Date stripe -->
-        <div class="bg-gray-900 text-white p-6 md:p-8 flex flex-col justify-center text-center md:text-left">
-          <div class="text-xs font-bold uppercase tracking-widest text-[#FBCFE8] mb-1">This Wednesday</div>
-          <div class="text-5xl md:text-6xl font-black tracking-tighter leading-none">${d.getDate()}</div>
-          <div class="text-sm font-bold uppercase tracking-widest mt-2">${d.toLocaleDateString(undefined, { month: 'long', year: 'numeric' })}</div>
-          <div class="text-sm text-white/70 mt-1">${d.toLocaleDateString(undefined, { weekday: 'long' })}</div>
+        <!-- Image with date overlay -->
+        <div class="relative h-48 md:h-auto">
+          <img src="images/performance.avif" alt="New Music Wednesdays at The Penthouse NYC" class="absolute inset-0 w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/20"></div>
+          <div class="relative h-full p-6 md:p-8 flex flex-col justify-end text-white">
+            <div class="text-xs font-bold uppercase tracking-widest text-[#FBCFE8] mb-1">This Wednesday</div>
+            <div class="text-5xl md:text-6xl font-black tracking-tighter leading-none">${d.getDate()}</div>
+            <div class="text-sm font-bold uppercase tracking-widest mt-2">${d.toLocaleDateString(undefined, { month: 'long', year: 'numeric' })}</div>
+            <div class="text-sm text-white/80 mt-1">${d.toLocaleDateString(undefined, { weekday: 'long' })}</div>
+          </div>
         </div>
         <!-- Body -->
         <div class="md:col-span-2 p-6 md:p-8">
