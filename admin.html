@@ -55,8 +55,11 @@ tailwind.config = { theme: { extend: {
       <button class="tab" data-tab="events">Events</button>
       <button class="tab" data-tab="referrals">Referrals</button>
       <button class="tab" data-tab="blast">The Blast</button>
+      <button class="tab" data-tab="djs">DJs</button>
       <button class="tab" data-tab="sponsors">Sponsors</button>
       <button class="tab" data-tab="distribution">Distribution</button>
+      <button class="tab" data-tab="flows">Email Flows</button>
+      <button class="tab" data-tab="pages">Pages</button>
       <button class="tab" data-tab="analytics">Analytics</button>
     </div>
   </div>
@@ -117,18 +120,28 @@ tailwind.config = { theme: { extend: {
   <!-- EVENTS -->
   <section data-pane="events" class="pane hidden">
     <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden">
-      <table class="min-w-full text-sm">
-        <thead class="bg-gray-50 text-xs uppercase tracking-wider text-gray-500">
-          <tr>
-            <th class="text-left px-4 py-3">Event</th>
-            <th class="text-left px-4 py-3">Date</th>
-            <th class="text-left px-4 py-3">Venue</th>
-            <th class="text-left px-4 py-3">Tier</th>
-            <th class="text-left px-4 py-3"></th>
-          </tr>
-        </thead>
-        <tbody id="eventRows"></tbody>
-      </table>
+      <div class="p-4 flex items-center justify-between gap-3 border-b border-gray-200">
+        <h3 class="font-bold text-sm uppercase tracking-widest">Event Feed · Distribution Status</h3>
+        <div class="text-xs text-gray-500">Toggle each surface as you push the event live.</div>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="min-w-full text-sm">
+          <thead class="bg-gray-50 text-xs uppercase tracking-wider text-gray-500">
+            <tr>
+              <th class="text-left px-4 py-3">Event</th>
+              <th class="text-left px-4 py-3">Date</th>
+              <th class="text-left px-4 py-3">Tier</th>
+              <th class="text-center px-3 py-3">Events Page</th>
+              <th class="text-center px-3 py-3">Eventbrite</th>
+              <th class="text-center px-3 py-3">Luma</th>
+              <th class="text-center px-3 py-3">DICE</th>
+              <th class="text-center px-3 py-3">Bandsintown</th>
+              <th class="text-center px-3 py-3">Songkick</th>
+            </tr>
+          </thead>
+          <tbody id="eventRows"></tbody>
+        </table>
+      </div>
     </div>
   </section>
 
@@ -185,6 +198,33 @@ tailwind.config = { theme: { extend: {
     </div>
   </section>
 
+  <!-- DJs -->
+  <section data-pane="djs" class="pane hidden">
+    <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden">
+      <div class="p-4 flex items-center justify-between gap-3 border-b border-gray-200">
+        <h3 class="font-bold text-sm uppercase tracking-widest">DJ Call Applications</h3>
+        <div class="text-xs text-gray-500" id="djCount"></div>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="min-w-full text-sm">
+          <thead class="bg-gray-50 text-xs uppercase tracking-wider text-gray-500">
+            <tr>
+              <th class="text-left px-4 py-3">DJ</th>
+              <th class="text-left px-4 py-3">Email</th>
+              <th class="text-left px-4 py-3">City</th>
+              <th class="text-left px-4 py-3">Genre</th>
+              <th class="text-left px-4 py-3">Venues</th>
+              <th class="text-left px-4 py-3">Penthouse?</th>
+              <th class="text-left px-4 py-3">Submitted</th>
+              <th class="text-left px-4 py-3"></th>
+            </tr>
+          </thead>
+          <tbody id="djRows"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
   <!-- SPONSORS -->
   <section data-pane="sponsors" class="pane hidden">
     <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden">
@@ -198,12 +238,12 @@ tailwind.config = { theme: { extend: {
             <tr>
               <th class="text-left px-4 py-3">Company</th>
               <th class="text-left px-4 py-3">Contact</th>
-              <th class="text-left px-4 py-3">Industry</th>
-              <th class="text-left px-4 py-3">Interests</th>
-              <th class="text-left px-4 py-3">Budget</th>
-              <th class="text-left px-4 py-3">Timing</th>
+              <th class="text-left px-4 py-3">Type</th>
+              <th class="text-left px-4 py-3">Selected Assets</th>
+              <th class="text-left px-4 py-3">Estimate</th>
+              <th class="text-left px-4 py-3">Status</th>
               <th class="text-left px-4 py-3">Submitted</th>
-              <th class="text-left px-4 py-3"></th>
+              <th class="text-right px-4 py-3">Actions</th>
             </tr>
           </thead>
           <tbody id="sponsorRows"></tbody>
@@ -256,6 +296,146 @@ tailwind.config = { theme: { extend: {
         </div>
         <pre class="text-xs bg-gray-50 border border-gray-200 rounded-lg p-4 whitespace-pre-wrap" id="diceOut"></pre>
       </div>
+    </div>
+  </section>
+
+  <!-- EMAIL FLOWS -->
+  <section data-pane="flows" class="pane hidden">
+    <div class="grid lg:grid-cols-3 gap-6">
+      <!-- Flows list -->
+      <div class="lg:col-span-2 space-y-4">
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <h2 class="text-lg font-black tracking-tight">Automation Flows</h2>
+          <button id="newFlowBtn" class="bg-[#8A1558] text-white px-4 py-2 rounded-lg text-xs font-black uppercase tracking-widest hover:bg-[#680D3E] flex items-center gap-1"><i data-lucide="plus" class="w-3.5 h-3.5"></i> Create Flow</button>
+        </div>
+        <div id="flowsList" class="space-y-3"></div>
+      </div>
+
+      <!-- Compose / edit drawer -->
+      <aside class="bg-white border border-gray-200 rounded-2xl p-6 self-start sticky top-4">
+        <h3 class="font-bold mb-3 flex items-center gap-2"><i data-lucide="mail" class="w-5 h-5 text-brand-500"></i> <span id="composeTitle">Compose</span></h3>
+        <p class="text-sm text-gray-500 mb-4" id="composeHint">Send a one-off blast or edit a flow.</p>
+        <form id="composeForm" class="space-y-3">
+          <input type="hidden" name="flowId" />
+          <div><label class="field-label">Flow Name</label><input class="field-input" name="name" required placeholder="e.g. Welcome series step 2"></div>
+          <div><label class="field-label">Trigger</label><input class="field-input" name="trigger" placeholder="e.g. 24h after signup"></div>
+          <div><label class="field-label">Audience</label>
+            <select class="field-input" name="audience" required>
+              <option value="artists">Artists</option>
+              <option value="blast">Blast subscribers</option>
+              <option value="djs">DJs</option>
+              <option value="sponsors">Sponsors</option>
+              <option value="all">Everyone</option>
+            </select>
+          </div>
+          <div><label class="field-label">Subject *</label><input class="field-input" name="subject" required placeholder="Subject line"></div>
+          <div><label class="field-label">Body *</label><textarea class="field-input" name="body" rows="8" required placeholder="Use {{tokens}} like {{artistName}}, {{eventDate}}, {{verifyLink}}, {{rsvpLink}}"></textarea></div>
+          <div class="flex items-center gap-2"><input type="checkbox" name="active" id="flowActive" class="w-4 h-4 rounded text-brand-500 focus:ring-brand-500"><label for="flowActive" class="text-sm font-bold">Active</label></div>
+          <div class="flex gap-2 pt-2">
+            <button type="submit" class="flex-1 bg-[#8A1558] text-white px-4 py-2 rounded-lg text-xs font-black uppercase tracking-widest hover:bg-[#680D3E]"><i data-lucide="save" class="w-3.5 h-3.5 inline"></i> Save</button>
+            <button type="button" id="runFlowBtn" class="flex-1 bg-yellow-400 text-black px-4 py-2 rounded-lg text-xs font-black uppercase tracking-widest hover:bg-yellow-300 border border-yellow-500"><i data-lucide="send" class="w-3.5 h-3.5 inline"></i> Run Now</button>
+          </div>
+          <button type="button" id="cancelEdit" class="w-full text-xs font-bold text-gray-400 hover:text-black mt-1">Cancel / clear</button>
+        </form>
+        <p class="text-xs text-gray-400 mt-3 text-center">Demo: "Run Now" simulates a send + records mock open/click metrics.</p>
+      </aside>
+    </div>
+
+    <!-- Flow runs / analytics -->
+    <div class="mt-8">
+      <h2 class="text-lg font-black tracking-tight mb-3">Recent Sends</h2>
+      <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden">
+        <table class="min-w-full text-sm">
+          <thead class="bg-gray-50 text-xs uppercase tracking-wider text-gray-500">
+            <tr>
+              <th class="text-left px-4 py-3">Flow</th>
+              <th class="text-left px-4 py-3">Sent</th>
+              <th class="text-left px-4 py-3">Opens</th>
+              <th class="text-left px-4 py-3">Open Rate</th>
+              <th class="text-left px-4 py-3">Clicks</th>
+              <th class="text-left px-4 py-3">Click Rate</th>
+              <th class="text-left px-4 py-3">When</th>
+            </tr>
+          </thead>
+          <tbody id="flowRunsRows"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGES (CMS) -->
+  <section data-pane="pages" class="pane hidden">
+    <div class="grid lg:grid-cols-3 gap-6">
+      <div class="lg:col-span-2 space-y-4">
+        <h2 class="text-lg font-black tracking-tight">Site Content</h2>
+        <p class="text-sm text-gray-500">Edit the copy that appears across the funnel pages. Changes save instantly to the live site.</p>
+
+        <form id="pagesForm" class="bg-white border border-gray-200 rounded-2xl p-6 space-y-5">
+          <div>
+            <label class="field-label">Urgency Bar (top of every page)</label>
+            <input class="field-input" name="urgencyBar" />
+            <p class="text-xs text-gray-400 mt-1">Live preview at the top of the public site.</p>
+          </div>
+          <div>
+            <label class="field-label">Hero Eyebrow (sales page)</label>
+            <input class="field-input" name="heroEyebrow" />
+          </div>
+          <div>
+            <label class="field-label">Hero Headline (sales page)</label>
+            <textarea class="field-input" name="heroHeadline" rows="2"></textarea>
+          </div>
+          <div>
+            <label class="field-label">Hero Subhead (sales page)</label>
+            <textarea class="field-input" name="heroSubhead" rows="3"></textarea>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="field-label">Primary CTA Label</label>
+              <input class="field-input" name="primaryCta" />
+            </div>
+            <div>
+              <label class="field-label">Primary CTA Sub-label</label>
+              <input class="field-input" name="primaryCtaSub" />
+            </div>
+          </div>
+
+          <div class="flex gap-2 pt-3 border-t border-gray-100">
+            <button type="submit" class="bg-[#8A1558] text-white px-5 py-2.5 rounded-lg text-xs font-black uppercase tracking-widest hover:bg-[#680D3E]"><i data-lucide="save" class="w-3.5 h-3.5 inline"></i> Save Changes</button>
+            <button type="button" id="resetContentBtn" class="bg-gray-200 text-gray-800 px-5 py-2.5 rounded-lg text-xs font-black uppercase tracking-widest hover:bg-gray-300"><i data-lucide="refresh-cw" class="w-3.5 h-3.5 inline"></i> Reset Defaults</button>
+          </div>
+          <p id="pagesSaved" class="hidden text-sm text-green-700 font-bold">✓ Saved. Refresh public pages to see updates.</p>
+        </form>
+      </div>
+
+      <aside class="space-y-4">
+        <div class="bg-white border border-gray-200 rounded-2xl p-6">
+          <h3 class="font-bold mb-3 flex items-center gap-2"><i data-lucide="layout" class="w-5 h-5 text-brand-500"></i> Pages</h3>
+          <ul class="space-y-2 text-sm">
+            <li><a href="index.html" target="_blank" class="flex justify-between hover:text-brand-500"><span>Sales / Funnel</span><i data-lucide="external-link" class="w-3.5 h-3.5"></i></a></li>
+            <li><a href="mission.html" target="_blank" class="flex justify-between hover:text-brand-500"><span>Mission</span><i data-lucide="external-link" class="w-3.5 h-3.5"></i></a></li>
+            <li><a href="events.html" target="_blank" class="flex justify-between hover:text-brand-500"><span>Events</span><i data-lucide="external-link" class="w-3.5 h-3.5"></i></a></li>
+            <li><a href="dj-call.html" target="_blank" class="flex justify-between hover:text-brand-500"><span>DJ Call</span><i data-lucide="external-link" class="w-3.5 h-3.5"></i></a></li>
+            <li><a href="apply.html" target="_blank" class="flex justify-between hover:text-brand-500"><span>Artist Access (Apply)</span><i data-lucide="external-link" class="w-3.5 h-3.5"></i></a></li>
+            <li><a href="faq.html" target="_blank" class="flex justify-between hover:text-brand-500"><span>FAQ</span><i data-lucide="external-link" class="w-3.5 h-3.5"></i></a></li>
+            <li><a href="alerts.html" target="_blank" class="flex justify-between hover:text-brand-500"><span>Get Alerts</span><i data-lucide="external-link" class="w-3.5 h-3.5"></i></a></li>
+            <li><a href="sponsor.html" target="_blank" class="flex justify-between hover:text-brand-500"><span>Sponsor Store</span><i data-lucide="external-link" class="w-3.5 h-3.5"></i></a></li>
+          </ul>
+        </div>
+
+        <div class="bg-white border border-gray-200 rounded-2xl p-6 text-sm text-gray-600">
+          <h4 class="font-bold text-black mb-2">Tokens you can use</h4>
+          <p class="text-xs">Add to email flow body / page CTA tokens:</p>
+          <ul class="text-xs font-mono mt-2 space-y-0.5 text-gray-700">
+            <li>{{artistName}}</li>
+            <li>{{packageName}}</li>
+            <li>{{eventDate}}</li>
+            <li>{{verifyLink}}</li>
+            <li>{{rsvpLink}}</li>
+            <li>{{shareLink}}</li>
+            <li>{{zoomLink}}</li>
+          </ul>
+        </div>
+      </aside>
     </div>
   </section>
 
@@ -420,16 +600,70 @@ function renderVerifications() {
   }));
 }
 
+const DISTRO_SURFACES = ['feed', 'eventbrite', 'luma', 'dice', 'bandsintown', 'songkick'];
+
+function eventDistroState(e) {
+  // events page (feed) is automatic for any saved event
+  return Object.assign(
+    { feed: true, eventbrite: false, luma: false, dice: false, bandsintown: false, songkick: false },
+    e.distribution || {}
+  );
+}
+
 function renderEvents() {
   const all = NMW.getEvents();
   const tbody = document.getElementById('eventRows');
-  if (!all.length) { tbody.innerHTML = '<tr><td colspan="5" class="px-4 py-10 text-center text-gray-400">No events yet.</td></tr>'; return; }
-  tbody.innerHTML = all.map(e => `<tr class="border-t border-gray-100 hover:bg-gray-50">
-    <td class="px-4 py-3 font-bold">${e.title}</td>
-    <td class="px-4 py-3">${fmt(e.date)}</td>
-    <td class="px-4 py-3">${e.venue}</td>
-    <td class="px-4 py-3"><span class="tag tag-perf">${e.tier}</span></td>
-    <td class="px-4 py-3 text-right text-xs text-gray-500">Auto-distributed</td>
+  if (!all.length) { tbody.innerHTML = '<tr><td colspan="9" class="px-4 py-10 text-center text-gray-400">No events yet.</td></tr>'; return; }
+  tbody.innerHTML = all.map((e, idx) => {
+    const d = eventDistroState(e);
+    const cell = (key, label, locked = false) => {
+      const checked = d[key] ? 'checked' : '';
+      const dis = locked ? 'disabled' : '';
+      return `<td class="px-3 py-3 text-center">
+        <label class="inline-flex items-center justify-center cursor-pointer ${locked ? 'opacity-70 cursor-not-allowed' : ''}">
+          <input type="checkbox" ${checked} ${dis} data-distro="${idx}|${key}" class="w-4 h-4 rounded border-gray-300 text-brand-500 focus:ring-brand-500">
+        </label>
+      </td>`;
+    };
+    return `<tr class="border-t border-gray-100 hover:bg-gray-50">
+      <td class="px-4 py-3"><div class="font-bold">${e.title}</div><div class="text-xs text-gray-500">${e.venue || 'The Penthouse NYC'}</div></td>
+      <td class="px-4 py-3">${fmt(e.date)}</td>
+      <td class="px-4 py-3"><span class="tag tag-perf">${e.tier || '—'}</span></td>
+      ${cell('feed', 'Events Page', true)}
+      ${cell('eventbrite', 'Eventbrite')}
+      ${cell('luma', 'Luma')}
+      ${cell('dice', 'DICE')}
+      ${cell('bandsintown', 'Bandsintown')}
+      ${cell('songkick', 'Songkick')}
+    </tr>`;
+  }).join('');
+
+  tbody.querySelectorAll('[data-distro]').forEach(inp => {
+    inp.addEventListener('change', () => {
+      const [idx, key] = inp.dataset.distro.split('|');
+      const events = NMW.getEvents();
+      const ev = events[+idx];
+      if (!ev) return;
+      ev.distribution = Object.assign(eventDistroState(ev), { [key]: inp.checked });
+      NMW.setEvents(events);
+    });
+  });
+}
+
+function renderDJs() {
+  const all = (NMW.getDJs() || []).sort((a, b) => new Date(b.submittedAt) - new Date(a.submittedAt));
+  document.getElementById('djCount').textContent = `${all.length} ${all.length === 1 ? 'application' : 'applications'}`;
+  const tbody = document.getElementById('djRows');
+  if (!all.length) { tbody.innerHTML = '<tr><td colspan="8" class="px-4 py-10 text-center text-gray-400">No DJ applications yet.</td></tr>'; return; }
+  tbody.innerHTML = all.map(dj => `<tr class="border-t border-gray-100 hover:bg-gray-50">
+    <td class="px-4 py-3"><div class="font-bold">${dj.djName || '—'}</div><div class="text-xs text-gray-500">${dj.name || ''}</div></td>
+    <td class="px-4 py-3 text-gray-600">${dj.email || '—'}</td>
+    <td class="px-4 py-3 text-gray-600">${dj.city || '—'}</td>
+    <td class="px-4 py-3"><span class="tag tag-perf">${dj.genre || '—'}</span></td>
+    <td class="px-4 py-3 text-xs text-gray-600 max-w-xs truncate" title="${dj.venues || ''}">${dj.venues || '—'}</td>
+    <td class="px-4 py-3">${dj.penthouse ? '<span class="tag tag-approved">Yes</span>' : '<span class="tag tag-na">—</span>'}</td>
+    <td class="px-4 py-3 text-xs text-gray-500">${fmt(dj.submittedAt)}</td>
+    <td class="px-4 py-3">${dj.links && /^https?:\/\//i.test(dj.links) ? `<a href="${dj.links}" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-brand-500 hover:underline">Link</a>` : (dj.links ? `<span class="text-xs text-gray-500">${dj.links}</span>` : '')}</td>
   </tr>`).join('');
 }
 
@@ -462,6 +696,16 @@ function renderBlast() {
   </tr>`).join('');
 }
 
+function statusTag(status) {
+  const S = NMW.SPONSOR_STATUS;
+  switch (status) {
+    case S.APPROVED:  return '<span class="tag tag-approved">Approved</span>';
+    case S.REJECTED:  return '<span class="tag" style="background:#fee2e2;color:#991b1b">Rejected</span>';
+    case S.IN_REVIEW: return '<span class="tag tag-submitted">In Review</span>';
+    default:          return '<span class="tag tag-pending">Pending Approval</span>';
+  }
+}
+
 function renderSponsors() {
   const all = (NMW.getSponsors() || []).sort((a, b) => new Date(b.submittedAt) - new Date(a.submittedAt));
   document.getElementById('sponsorCount').textContent = `${all.length} ${all.length === 1 ? 'inquiry' : 'inquiries'}`;
@@ -470,32 +714,55 @@ function renderSponsors() {
     tbody.innerHTML = '<tr><td colspan="8" class="px-4 py-10 text-center text-gray-400">No sponsorship inquiries yet.</td></tr>';
     return;
   }
-  tbody.innerHTML = all.map(s => `<tr class="border-t border-gray-100 hover:bg-gray-50 cursor-pointer" data-sid="${s.id}">
-    <td class="px-4 py-3"><div class="font-bold">${s.company || '—'}</div><div class="text-xs text-gray-500">${s.website || ''}</div></td>
-    <td class="px-4 py-3"><div>${s.name || '—'}</div><div class="text-xs text-gray-500">${s.email || ''}</div></td>
-    <td class="px-4 py-3 text-gray-600">${s.industry || '—'}</td>
-    <td class="px-4 py-3 text-xs text-gray-600 max-w-xs truncate" title="${(s.interests||[]).join(', ')}">${(s.interests||[]).join(', ') || '—'}</td>
-    <td class="px-4 py-3 font-bold">${s.budget || '—'}</td>
-    <td class="px-4 py-3 text-gray-600">${s.timing || '—'}</td>
-    <td class="px-4 py-3 text-xs text-gray-500">${fmt(s.submittedAt)}</td>
-    <td class="px-4 py-3 text-right"><button class="text-brand-500 text-xs font-bold hover:underline" data-sid="${s.id}">View</button></td>
-  </tr>`).join('');
-  tbody.querySelectorAll('[data-sid]').forEach(el => {
-    el.addEventListener('click', () => showSponsor(el.dataset.sid));
-  });
+  tbody.innerHTML = all.map(s => {
+    const items = (s.interests || []).join(', ') || '—';
+    const totalLabel = s.estimatedFrom ? `From $${(s.estimatedFrom).toLocaleString()}` : (s.budget || '—');
+    const S = NMW.SPONSOR_STATUS;
+    const status = s.status || S.PENDING;
+    return `<tr class="border-t border-gray-100 hover:bg-gray-50">
+      <td class="px-4 py-3"><div class="font-bold">${s.company || '—'}</div><div class="text-xs text-gray-500">${s.website || ''}</div></td>
+      <td class="px-4 py-3"><div>${s.name || '—'}</div><div class="text-xs text-gray-500">${s.email || ''}</div></td>
+      <td class="px-4 py-3 text-gray-600">${s.orgType || s.industry || '—'}</td>
+      <td class="px-4 py-3 text-xs text-gray-600 max-w-xs truncate" title="${items}">${items}</td>
+      <td class="px-4 py-3 font-bold">${totalLabel}</td>
+      <td class="px-4 py-3">${statusTag(status)}</td>
+      <td class="px-4 py-3 text-xs text-gray-500">${fmt(s.submittedAt)}</td>
+      <td class="px-4 py-3">
+        <div class="flex gap-2 justify-end">
+          <button class="text-xs font-bold text-gray-600 hover:underline" data-sview="${s.id}">View</button>
+          ${status !== S.APPROVED ? `<button class="text-xs font-bold text-green-700 hover:underline" data-sapprove="${s.id}">Approve</button>` : ''}
+          ${status !== S.REJECTED ? `<button class="text-xs font-bold text-red-600 hover:underline" data-sreject="${s.id}">Reject</button>` : ''}
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+  tbody.querySelectorAll('[data-sview]').forEach(el => el.addEventListener('click', () => showSponsor(el.dataset.sview)));
+  tbody.querySelectorAll('[data-sapprove]').forEach(el => el.addEventListener('click', () => {
+    NMW.updateSponsor(el.dataset.sapprove, { status: NMW.SPONSOR_STATUS.APPROVED });
+    renderAll();
+  }));
+  tbody.querySelectorAll('[data-sreject]').forEach(el => el.addEventListener('click', () => {
+    NMW.updateSponsor(el.dataset.sreject, { status: NMW.SPONSOR_STATUS.REJECTED });
+    renderAll();
+  }));
 }
 
 function showSponsor(id) {
   const s = (NMW.getSponsors() || []).find(x => x.id === id);
   if (!s) return;
   document.getElementById('sdCompany').textContent = s.company || '—';
-  document.getElementById('sdContact').textContent = `${s.name || ''}${s.title ? ' · ' + s.title : ''} · ${s.email}${s.phone ? ' · ' + s.phone : ''}`;
+  document.getElementById('sdContact').textContent = `${s.name || ''} · ${s.email || ''}${s.phone ? ' · ' + s.phone : ''}`;
+  const totalLabel = s.estimatedFrom ? `From $${s.estimatedFrom.toLocaleString()}` : (s.budget || '—');
   const meta = [
-    ['Industry', s.industry || '—'],
-    ['Budget', s.budget || '—'],
-    ['Timing', s.timing || '—'],
+    ['Status', statusTag(s.status || 'pending_approval')],
+    ['Type', s.orgType || s.industry || '—'],
+    ['Estimated Investment', totalLabel],
+    ['Budget Range', s.budget || '—'],
+    ['Preferred Contact', s.preferredContact || '—'],
+    ['Best Time', s.bestTime || '—'],
     ['Website', s.website || '—'],
-    ['Interests', (s.interests || []).join(', ') || '—'],
+    ['Source', s.source || '—'],
+    ['Selected Assets', (s.interests || []).map(i => `<span class="tag tag-perf mr-1">${i}</span>`).join('') || '—'],
     ['Submitted', fmt(s.submittedAt)],
   ];
   document.getElementById('sdMeta').innerHTML = meta.map(([k, v]) => `<div><div class="text-xs font-bold uppercase tracking-widest text-gray-500">${k}</div><div class="mt-1">${v}</div></div>`).join('');
@@ -614,6 +881,129 @@ function renderSlots() {
   }).join('');
 }
 
+function audienceCount(audience) {
+  switch (audience) {
+    case 'artists':  return NMW.getArtists().length;
+    case 'blast':    return NMW.getBlast().length;
+    case 'djs':      return NMW.getDJs().length;
+    case 'sponsors': return NMW.getSponsors().length;
+    case 'all':      return NMW.getArtists().length + NMW.getBlast().length + NMW.getDJs().length + NMW.getSponsors().length;
+    default:         return 0;
+  }
+}
+
+function audienceLabel(a) {
+  return { artists: 'Artists', blast: 'Blast subscribers', djs: 'DJs', sponsors: 'Sponsors', all: 'Everyone' }[a] || a;
+}
+
+function renderFlows() {
+  const flows = NMW.getFlows();
+  const list = document.getElementById('flowsList');
+  if (!flows.length) { list.innerHTML = '<div class="bg-white border border-gray-200 rounded-2xl p-8 text-center text-gray-400">No flows yet. Click Create Flow.</div>'; return; }
+  list.innerHTML = flows.map(f => {
+    const cnt = audienceCount(f.audience);
+    const statusBadge = f.status === 'active'
+      ? '<span class="tag tag-approved">Active</span>'
+      : '<span class="tag tag-na">Paused</span>';
+    return `<div class="bg-white border border-gray-200 rounded-xl p-5">
+      <div class="flex items-start justify-between gap-3 flex-wrap">
+        <div class="min-w-0 flex-1">
+          <div class="flex items-center gap-2 mb-1">${statusBadge}<span class="text-xs font-bold uppercase tracking-widest text-gray-500">${audienceLabel(f.audience)} · ${cnt}</span></div>
+          <h3 class="font-black text-base mb-0.5 truncate">${f.name}</h3>
+          <p class="text-xs text-gray-500">Trigger: ${f.trigger || '—'}</p>
+          <p class="text-sm text-gray-700 mt-2 truncate"><b>Subject:</b> ${f.subject}</p>
+        </div>
+        <div class="flex flex-col gap-1">
+          <button class="text-xs font-bold text-brand-500 hover:underline" data-edit-flow="${f.id}">Edit</button>
+          <button class="text-xs font-bold text-yellow-700 hover:underline" data-run-flow="${f.id}">Run</button>
+          <button class="text-xs font-bold ${f.status === 'active' ? 'text-gray-500' : 'text-green-700'} hover:underline" data-toggle-flow="${f.id}">${f.status === 'active' ? 'Pause' : 'Activate'}</button>
+          <button class="text-xs font-bold text-red-600 hover:underline" data-del-flow="${f.id}">Delete</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  list.querySelectorAll('[data-edit-flow]').forEach(b => b.addEventListener('click', () => loadFlowToCompose(b.dataset.editFlow)));
+  list.querySelectorAll('[data-run-flow]').forEach(b => b.addEventListener('click', () => runFlow(b.dataset.runFlow)));
+  list.querySelectorAll('[data-toggle-flow]').forEach(b => b.addEventListener('click', () => {
+    const id = b.dataset.toggleFlow;
+    const f = NMW.getFlows().find(x => x.id === id);
+    if (!f) return;
+    f.status = f.status === 'active' ? 'paused' : 'active';
+    NMW.saveFlow(f);
+    renderAll();
+  }));
+  list.querySelectorAll('[data-del-flow]').forEach(b => b.addEventListener('click', () => {
+    if (!confirm('Delete this flow?')) return;
+    NMW.deleteFlow(b.dataset.delFlow);
+    renderAll();
+  }));
+}
+
+function loadFlowToCompose(id) {
+  const f = NMW.getFlows().find(x => x.id === id);
+  if (!f) return;
+  const form = document.getElementById('composeForm');
+  form.elements['flowId'].value = f.id;
+  form.elements['name'].value = f.name;
+  form.elements['trigger'].value = f.trigger || '';
+  form.elements['audience'].value = f.audience;
+  form.elements['subject'].value = f.subject;
+  form.elements['body'].value = f.body;
+  form.elements['active'].checked = f.status === 'active';
+  document.getElementById('composeTitle').textContent = 'Edit Flow';
+  document.getElementById('composeHint').textContent = `Editing "${f.name}".`;
+  form.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function clearCompose() {
+  const form = document.getElementById('composeForm');
+  form.reset();
+  form.elements['flowId'].value = '';
+  document.getElementById('composeTitle').textContent = 'Compose';
+  document.getElementById('composeHint').textContent = 'Send a one-off blast or edit a flow.';
+}
+
+function runFlow(id) {
+  const flow = NMW.getFlows().find(x => x.id === id);
+  if (!flow) return;
+  const cnt = audienceCount(flow.audience);
+  if (cnt === 0) { alert(`No recipients in audience: ${audienceLabel(flow.audience)}`); return; }
+  if (!confirm(`Run "${flow.name}" to ${cnt} ${audienceLabel(flow.audience)}? (Demo: simulated send.)`)) return;
+  NMW.recordFlowRun(flow.id, cnt);
+  renderAll();
+  alert(`Sent to ${cnt} recipients.`);
+}
+
+function renderFlowRuns() {
+  const runs = (NMW.getFlowRuns() || []).slice().sort((a,b) => new Date(b.runAt) - new Date(a.runAt));
+  const flows = NMW.getFlows();
+  const tbody = document.getElementById('flowRunsRows');
+  if (!runs.length) { tbody.innerHTML = '<tr><td colspan="7" class="px-4 py-8 text-center text-gray-400">No sends yet. Run a flow to see metrics.</td></tr>'; return; }
+  tbody.innerHTML = runs.map(r => {
+    const flow = flows.find(f => f.id === r.flowId);
+    const openRate = r.sent ? Math.round((r.opens / r.sent) * 100) : 0;
+    const clickRate = r.sent ? Math.round((r.clicks / r.sent) * 100) : 0;
+    return `<tr class="border-t border-gray-100 hover:bg-gray-50">
+      <td class="px-4 py-3 font-bold">${flow ? flow.name : '(deleted)'}</td>
+      <td class="px-4 py-3">${r.sent}</td>
+      <td class="px-4 py-3">${r.opens}</td>
+      <td class="px-4 py-3">${openRate}%</td>
+      <td class="px-4 py-3">${r.clicks}</td>
+      <td class="px-4 py-3">${clickRate}%</td>
+      <td class="px-4 py-3 text-xs text-gray-500">${fmt(r.runAt)}</td>
+    </tr>`;
+  }).join('');
+}
+
+function loadPageContent() {
+  const c = NMW.getSiteContent();
+  const f = document.getElementById('pagesForm');
+  ['urgencyBar','heroEyebrow','heroHeadline','heroSubhead','primaryCta','primaryCtaSub'].forEach(k => {
+    if (f.elements[k]) f.elements[k].value = c[k] || '';
+  });
+}
+
 function renderAll() {
   renderKPIs();
   renderArtists(document.getElementById('artistSearch').value);
@@ -622,7 +1012,10 @@ function renderAll() {
   renderEvents();
   renderRefs();
   renderBlast();
+  renderDJs();
   renderSponsors();
+  renderFlows();
+  renderFlowRuns();
   renderAnalytics();
   lucide.createIcons();
 }
@@ -683,6 +1076,66 @@ document.getElementById('copyDice').addEventListener('click', async () => {
   try { await navigator.clipboard.writeText(txt); } catch(_){}
 });
 
+// Email Flows: compose form + buttons
+document.getElementById('composeForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const data = new FormData(e.target);
+  const flowId = data.get('flowId') || ('flow_' + Math.random().toString(36).slice(2, 10));
+  const flow = {
+    id: flowId,
+    name: (data.get('name') || '').trim(),
+    trigger: (data.get('trigger') || '').trim(),
+    audience: data.get('audience') || 'artists',
+    subject: (data.get('subject') || '').trim(),
+    body: (data.get('body') || '').trim(),
+    status: data.get('active') ? 'active' : 'paused',
+  };
+  NMW.saveFlow(flow);
+  clearCompose();
+  renderAll();
+});
+
+document.getElementById('newFlowBtn').addEventListener('click', () => {
+  clearCompose();
+  document.getElementById('composeForm').elements['name'].focus();
+});
+
+document.getElementById('cancelEdit').addEventListener('click', clearCompose);
+
+document.getElementById('runFlowBtn').addEventListener('click', () => {
+  const form = document.getElementById('composeForm');
+  const id = form.elements['flowId'].value;
+  if (!id) {
+    alert('Save the flow first, then run it.');
+    return;
+  }
+  runFlow(id);
+});
+
+// Pages: site content form
+document.getElementById('pagesForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const data = new FormData(e.target);
+  NMW.saveSiteContent({
+    urgencyBar:   (data.get('urgencyBar') || '').trim(),
+    heroEyebrow:  (data.get('heroEyebrow') || '').trim(),
+    heroHeadline: (data.get('heroHeadline') || '').trim(),
+    heroSubhead:  (data.get('heroSubhead') || '').trim(),
+    primaryCta:   (data.get('primaryCta') || '').trim(),
+    primaryCtaSub:(data.get('primaryCtaSub') || '').trim(),
+  });
+  const saved = document.getElementById('pagesSaved');
+  saved.classList.remove('hidden');
+  setTimeout(() => saved.classList.add('hidden'), 3000);
+});
+
+document.getElementById('resetContentBtn').addEventListener('click', () => {
+  if (!confirm('Reset all site content to defaults?')) return;
+  NMW.resetSiteContent();
+  loadPageContent();
+});
+
+loadPageContent();
 renderAll();
 </script>
 </body>

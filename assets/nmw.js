@@ -11,9 +11,20 @@ const NMW = (() => {
     events: 'nmw.events',
     slots: 'nmw.slots',
     sponsors: 'nmw.sponsors',
+    djs: 'nmw.djs',
+    flows: 'nmw.flows',
+    flowRuns: 'nmw.flowRuns',
+    siteContent: 'nmw.siteContent',
   };
 
   const DEFAULT_SLOT_CAPACITY = 3;
+
+  const SPONSOR_STATUS = Object.freeze({
+    PENDING: 'pending_approval',
+    IN_REVIEW: 'in_review',
+    APPROVED: 'approved',
+    REJECTED: 'rejected',
+  });
 
   const PACKAGES = [
     { id: 'media-ready', name: 'Media Ready', price: 200, tier: 'entry',
@@ -84,7 +95,21 @@ const NMW = (() => {
     try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : fallback; }
     catch (_) { return fallback; }
   };
-  const set = (k, v) => localStorage.setItem(k, JSON.stringify(v));
+  const set = (k, v) => {
+    try {
+      localStorage.setItem(k, JSON.stringify(v));
+      return true;
+    } catch (err) {
+      // Quota exceeded is the realistic failure (large image dataURLs in screenshots)
+      const msg = err && err.name === 'QuotaExceededError'
+        ? 'Browser storage is full. Try a smaller screenshot or clear old data.'
+        : 'Could not save: ' + (err && err.message ? err.message : 'unknown error');
+      // Surface to user; admins are the ones who hit this most often
+      if (typeof console !== 'undefined') console.warn('[NMW] localStorage write failed for', k, err);
+      if (typeof window !== 'undefined' && typeof window.alert === 'function') window.alert(msg);
+      return false;
+    }
+  };
 
   const getFunnel = () => get(KEYS.funnel, { package: null, goals: [], upsells: [], info: {}, blast: false });
   const setFunnel = (f) => set(KEYS.funnel, f);
@@ -105,12 +130,145 @@ const NMW = (() => {
 
   const getEvents = () => get(KEYS.events, []);
   const saveEvent = (e) => { const all = getEvents(); all.push(e); set(KEYS.events, all); };
+  const setEvents = (all) => set(KEYS.events, all);
 
   const getSponsors = () => get(KEYS.sponsors, []);
   const addSponsor = (entry) => {
     const all = getSponsors();
-    all.push({ id: 'sp_' + Math.random().toString(36).slice(2, 10), submittedAt: new Date().toISOString(), ...entry });
+    all.push({
+      id: 'sp_' + Math.random().toString(36).slice(2, 10),
+      submittedAt: new Date().toISOString(),
+      status: SPONSOR_STATUS.PENDING,
+      ...entry,
+    });
     set(KEYS.sponsors, all);
+  };
+  const updateSponsor = (id, patch) => {
+    const all = getSponsors();
+    const idx = all.findIndex(s => s.id === id);
+    if (idx < 0) return null;
+    all[idx] = { ...all[idx], ...patch, updatedAt: new Date().toISOString() };
+    set(KEYS.sponsors, all);
+    return all[idx];
+  };
+
+  // ---- Email Flows ----
+  const DEFAULT_FLOWS = [
+    { id: 'flow_welcome', name: 'Welcome — Performance Tier', trigger: 'Artist booked performance package', audience: 'artists',
+      subject: "You've booked a performance slot — verify within 24 hours",
+      body: "Hi {{artistName}},\n\nYour {{packageName}} is confirmed for {{eventDate}}.\n\nPlease complete these 3 steps within 24 hours so we can put your event into distribution:\n\n1. Sign up & claim Bandsintown — https://artists.bandsintown.com\n2. Sign up & claim Songkick / Tourbox — https://www.songkick.com/tourbox\n3. Create or claim your DICE artist account — https://dice.fm\n\nUpload screenshot proof at: {{verifyLink}}\n\n— NMW",
+      status: 'active' },
+    { id: 'flow_verify_reminder', name: '24h Verification Reminder', trigger: '24h after checkout if not verified', audience: 'artists',
+      subject: 'Quick reminder: verify your artist profiles',
+      body: "Hey {{artistName}}, your distribution is on hold until we confirm Bandsintown, Songkick, and DICE. Upload your screenshots here: {{verifyLink}}",
+      status: 'active' },
+    { id: 'flow_blast_weekly', name: 'The Blast — Weekly', trigger: 'Every Tuesday 6 AM ET', audience: 'blast',
+      subject: 'This Wednesday at NMW · {{lineupHint}}',
+      body: "What's hitting the stage this Wednesday, plus subscriber-only drops, free giveaways, and new music picks. RSVP: {{rsvpLink}}",
+      status: 'active' },
+    { id: 'flow_dj_call_invite', name: 'DJ Call — Tuesday Reminder', trigger: 'Every Tuesday 8 PM ET', audience: 'djs',
+      subject: 'Tomorrow · DJ Call · 3 PM ET on Zoom',
+      body: "Standing Zoom link: {{zoomLink}}\n\nThis week's spotlight: {{theme}}. See you on the call.",
+      status: 'active' },
+    { id: 'flow_sponsor_received', name: 'Sponsor — Inquiry Received', trigger: 'Sponsor submits inquiry', audience: 'sponsors',
+      subject: 'We received your sponsorship inquiry',
+      body: "Hi {{name}}, we received your inquiry for {{company}}. Our partnerships team will review and follow up within 2 business days.",
+      status: 'active' },
+    { id: 'flow_sponsor_approved', name: 'Sponsor — Approved', trigger: 'Admin approves sponsor inquiry', audience: 'sponsors',
+      subject: 'Your sponsorship has been approved',
+      body: "Hi {{name}}, your selected partnership package has been approved. Our partnerships team will be in touch shortly to lock in scheduling and details.",
+      status: 'active' },
+    { id: 'flow_post_event', name: 'Post-Event Content Drop', trigger: '24h after performance', audience: 'artists',
+      subject: 'Your NMW recap is here',
+      body: "Hi {{artistName}}, your performance clips, photos, and recap content are ready. Share your appearance: {{shareLink}}",
+      status: 'active' },
+  ];
+
+  const getFlows = () => {
+    const stored = get(KEYS.flows);
+    // Only seed defaults on first ever read (null = never written).
+    // An empty array means the user explicitly removed everything — respect that.
+    if (stored !== null) return stored;
+    set(KEYS.flows, DEFAULT_FLOWS);
+    return DEFAULT_FLOWS;
+  };
+  const saveFlow = (flow) => {
+    const all = getFlows();
+    const idx = all.findIndex(f => f.id === flow.id);
+    if (idx >= 0) all[idx] = flow; else all.push(flow);
+    set(KEYS.flows, all);
+  };
+  const deleteFlow = (id) => {
+    const all = getFlows().filter(f => f.id !== id);
+    set(KEYS.flows, all);
+  };
+  const getFlowRuns = () => get(KEYS.flowRuns, []);
+  const recordFlowRun = (flowId, audienceCount) => {
+    const all = getFlowRuns();
+    // mock open + click rates for demo analytics
+    const openRate = 0.28 + Math.random() * 0.25;
+    const clickRate = 0.04 + Math.random() * 0.10;
+    all.push({
+      id: 'run_' + Math.random().toString(36).slice(2, 10),
+      flowId, audienceCount,
+      sent: audienceCount,
+      opens: Math.round(audienceCount * openRate),
+      clicks: Math.round(audienceCount * clickRate),
+      runAt: new Date().toISOString(),
+    });
+    set(KEYS.flowRuns, all);
+  };
+
+  // ---- Page content (CMS) ----
+  const DEFAULT_SITE_CONTENT = {
+    urgencyBar: 'Attention Artists: Only 5 Event & Press Packages Left For Next Wednesday!',
+    heroEyebrow: '[ Official Artist Registration ]',
+    heroHeadline: "Secure Your Live Performance & Press Package At Manhattan's Top Destination For New Music.",
+    heroSubhead: 'Perform live at The Penthouse NYC, secure guaranteed press coverage, capture high-end visual assets, and ignite your rollout in The Next Up Experience.',
+    primaryCta: 'Yes! Start My Rollout Now',
+    primaryCtaSub: 'Click Here To See Package Options & Secure Your Spot',
+  };
+  const getSiteContent = () => Object.assign({}, DEFAULT_SITE_CONTENT, get(KEYS.siteContent, {}));
+  const saveSiteContent = (patch) => {
+    const merged = Object.assign({}, getSiteContent(), patch);
+    set(KEYS.siteContent, merged);
+  };
+  const resetSiteContent = () => localStorage.removeItem(KEYS.siteContent);
+
+  // Apply editable site content on page load.
+  // Pages opt-in by tagging elements with data-cms="<key>".
+  // Idempotent: always writes the current value, so resetting to default works.
+  const CMS_KEYS = ['urgencyBar', 'heroEyebrow', 'heroHeadline', 'heroSubhead', 'primaryCta', 'primaryCtaSub'];
+  const applySiteContent = () => {
+    if (typeof document === 'undefined') return;
+    const c = getSiteContent();
+    CMS_KEYS.forEach(key => {
+      document.querySelectorAll(`[data-cms="${key}"]`).forEach(el => {
+        // textContent is safe; never use innerHTML for CMS values to avoid XSS
+        el.textContent = c[key] != null ? c[key] : '';
+      });
+    });
+  };
+
+  const getDJs = () => get(KEYS.djs, []);
+  const addDJ = (entry) => {
+    const all = getDJs();
+    all.push({ id: 'dj_' + Math.random().toString(36).slice(2, 10), submittedAt: new Date().toISOString(), ...entry });
+    set(KEYS.djs, all);
+  };
+
+  // Recurring weekly DJ Call calendar link (Wednesdays 3-7PM)
+  const djCallCalendarLink = () => {
+    const start = nextWednesday();
+    start.setHours(15, 0, 0, 0); // 3PM
+    return buildCalendarLink({
+      title: 'Digiwaxx DJ Call · NMW',
+      start,
+      durationHours: 4,
+      details: 'Weekly Digiwaxx DJ Call — every Wednesday 3-7PM ET. Zoom link sent to confirmed DJs. New records, network roundtable, Wednesday-night prep.',
+      location: 'Zoom (link sent to confirmed DJs)',
+      recurring: true,
+    });
   };
 
   // ---- domain logic ----
@@ -374,8 +532,11 @@ const NMW = (() => {
     PACKAGES, GOALS, UPSELLS, REFERRAL_TIERS,
     getFunnel, setFunnel,
     getArtist, setArtist, getArtists, saveArtist,
-    getBlast, addBlast, getEvents, saveEvent,
-    getSponsors, addSponsor,
+    getBlast, addBlast, getEvents, saveEvent, setEvents,
+    getSponsors, addSponsor, updateSponsor, SPONSOR_STATUS,
+    getDJs, addDJ, djCallCalendarLink,
+    getFlows, saveFlow, deleteFlow, getFlowRuns, recordFlowRun,
+    getSiteContent, saveSiteContent, resetSiteContent, applySiteContent,
     recommendUpsells, generateReferralCode, referralLink,
     isPerformanceTier, totalPrice, nextWednesday, fmtDate,
     googleCalendarLink, buildCalendarLink, upcomingWednesdays,
@@ -387,4 +548,12 @@ const NMW = (() => {
   };
 })();
 
-if (typeof window !== 'undefined') window.NMW = NMW;
+if (typeof window !== 'undefined') {
+  window.NMW = NMW;
+  // Auto-apply CMS site content (urgency bar etc.) on every page that loads nmw.js
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => NMW.applySiteContent());
+  } else {
+    NMW.applySiteContent();
+  }
+}

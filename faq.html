@@ -19,7 +19,7 @@
 
 <div class="urgency-bar">
   <span class="urgency-pulse"></span>
-  Attention Artists: Only 5 Event &amp; Press Packages Left For Next Wednesday!
+  <span data-cms="urgencyBar">Attention Artists: Only 5 Event &amp; Press Packages Left For Next Wednesday!</span>
 </div>
 
 <nav class="nmw-nav px-4 sm:px-8">
@@ -33,6 +33,7 @@
   <div class="hidden md:flex space-x-6 items-center text-sm font-bold tracking-wide text-gray-600">
     <a href="mission.html" class="hover:text-black">MISSION</a>
     <a href="events.html" class="hover:text-black">EVENTS</a>
+    <a href="dj-call.html" class="hover:text-black">DJ CALL</a>
     <a href="apply.html" class="hover:text-black">ARTIST ACCESS</a>
     <a href="faq.html" class="text-black">FAQ</a>
     <a href="alerts.html" class="hover:text-black">GET ALERTS</a>
@@ -43,10 +44,17 @@
 <header class="bg-white border-b border-gray-200 py-16">
   <div class="max-w-4xl mx-auto px-4 text-center">
     <span class="text-[#8A1558] font-black tracking-widest text-sm mb-3 block">[ Frequently Asked Questions ]</span>
-    <h1 class="text-4xl md:text-6xl font-black tracking-tighter leading-[1] text-gray-900 mb-4">Everything you need to know.</h1>
-    <p class="text-lg md:text-xl text-gray-600 font-serif">Straight answers about packages, performances, distribution, and your rollout — before you apply.</p>
+    <h1 class="text-4xl md:text-6xl font-black tracking-tighter leading-[1] text-gray-900 mb-4">Everything, by product.</h1>
+    <p class="text-lg md:text-xl text-gray-600 font-serif">Five things live under New Music Wednesdays. Pick the one you have questions about.</p>
   </div>
 </header>
+
+<!-- Product tabs -->
+<div class="bg-white sticky top-0 z-30 border-b border-gray-200">
+  <div class="max-w-4xl mx-auto px-4 overflow-x-auto">
+    <div class="flex gap-1 min-w-max py-2" id="productTabs"></div>
+  </div>
+</div>
 
 <main class="py-16">
   <div class="max-w-4xl mx-auto px-4 space-y-4" id="faqList"></div>
@@ -88,6 +96,7 @@
     <div class="flex flex-wrap gap-6 text-sm font-bold text-gray-400 uppercase tracking-widest justify-center">
       <a href="mission.html" class="hover:text-white">Mission</a>
       <a href="events.html" class="hover:text-white">Events</a>
+      <a href="dj-call.html" class="hover:text-white">DJ Call</a>
       <a href="apply.html" class="hover:text-white">Artist Access</a>
       <a href="faq.html" class="hover:text-white">FAQ</a>
       <a href="alerts.html" class="hover:text-white">Get Alerts</a>
@@ -97,50 +106,39 @@
 </footer>
 
 <script>
+const PRODUCTS = [
+  { id: 'events',   label: 'NMW Events',     icon: 'calendar-days' },
+  { id: 'artists',  label: 'NMW for Artists', icon: 'mic' },
+  { id: 'blast',    label: 'The Blast',       icon: 'mail' },
+  { id: 'djcall',   label: 'NMW DJ Call',     icon: 'video' },
+  { id: 'sponsors', label: 'Sponsors',        icon: 'handshake' },
+];
+
 const FAQS = [
-  {
-    cat: 'Booking',
-    q: 'What does a package actually book me for?',
-    a: 'Performance tier packages ($395 / $650 / $899) book a live performance slot at New Music Wednesdays at The Penthouse NYC, plus full event distribution across DICE, Bandsintown, Songkick, Eventbrite, and Luma. Entry tier packages ($200 / $250) cover media coverage and visual capture only — no live performance slot.'
-  },
-  {
-    cat: 'Booking',
-    q: 'Can I pick which Wednesday I perform?',
-    a: 'Yes. After you select a performance package, you\'ll choose from the next eight Wednesdays. Each Wednesday has limited slots — the booking page shows live availability so you know exactly what\'s open.'
-  },
-  {
-    cat: 'Booking',
-    q: 'What if my preferred date is sold out?',
-    a: 'Sold-out dates are disabled in checkout. Pick the next open Wednesday or join The Blast — we send waitlist alerts when slots open up.'
-  },
-  {
-    cat: 'Onboarding',
-    q: 'What happens immediately after I pay?',
-    a: 'You\'ll get a confirmation email with verification steps. For performance tiers, you have 24 hours to claim Bandsintown, Songkick/Tourbox, and DICE artist profiles, then upload screenshots in the Verification Portal. Once approved, your event is auto-distributed.'
-  },
-  {
-    cat: 'Onboarding',
-    q: 'What if I already have a Bandsintown / Songkick / DICE account?',
-    a: 'Even better. Just upload screenshots showing the claimed artist page and you\'re verified instantly. We just need proof you control those profiles before we push event data to them.'
-  },
-  {
-    cat: 'Distribution',
-    q: 'What does "distribution" actually mean?',
-    a: 'Once verified, NMW auto-creates listings for your performance on Eventbrite and Luma, generates DICE event copy for the Penthouse to paste, drops your event into Bandsintown and Songkick, generates a custom event link, and ships you a promo asset bundle (flyer, story graphic, captions). Your appearance gets indexed where real fans look.'
-  },
-  {
-    cat: 'Distribution',
-    q: 'Will my music get to DJs?',
-    a: 'Performance Ready and above include positioning into the Digiwaxx DJ network ecosystem. Add the Regular ($150) or Regular Plus ($250) upgrade for direct record pool drops and email distribution to ~30,000 DJs.'
-  },
-  {
-    cat: 'Media & Press',
-    q: 'What kind of press coverage do I get?',
-    a: 'Performance packages include an editorial write-up on the NMW platform, photo coverage from the media pit, and live interview opportunities. Full Experience and Premiere packages add amplified placement and interview prioritization.'
-  },
-  {
-    cat: 'Media & Press',
-    q: 'Do I get the photos and clips after?',
+  // ============= NMW EVENTS =============
+  { cat: 'events', q: 'What is New Music Wednesdays?',
+    a: 'A live performance and rollout night every Wednesday at The Penthouse NYC. Doors at 3PM, DJ Call 3-7PM, live performances 7-9:30PM. Hosted by Anna Nyakana, CL, and Chrys Childs.' },
+  { cat: 'events', q: 'How do I RSVP to an upcoming Wednesday?',
+    a: 'Pick a Wednesday on the Events page or RSVP directly at <a href="https://www.newmusicwednesdayslive.com/event-details/new-music-wednesdays-x-the-next-up-experience-2026-04-29-19-00" target="_blank" class="text-[#8A1558] underline">newmusicwednesdayslive.com</a>. Add the series to your calendar so you don\'t miss the next one.' },
+  { cat: 'events', q: 'Where is The Penthouse NYC?',
+    a: 'Manhattan. Exact address sent with your RSVP confirmation. Doors 3PM, DJ Call 3-7PM, live performances 7-9:30PM.' },
+  { cat: 'events', q: 'Is there a cover or ticket fee for fans?',
+    a: 'RSVP is required. Some weeks are free with RSVP, others have a cover at the door — the Events page shows what each Wednesday looks like.' },
+
+  // ============= NMW FOR ARTISTS =============
+  { cat: 'artists', q: 'What does an Artist Access package actually book me for?',
+    a: 'Performance tier packages ($395 / $650 / $899) book a live performance slot plus full event distribution across DICE, Bandsintown, Songkick, Eventbrite, and Luma. Entry tier packages ($200 / $250) cover media coverage and visual capture only — no live performance slot.' },
+  { cat: 'artists', q: 'Can I pick which Wednesday I perform?',
+    a: 'Yes. After selecting a performance package, you\'ll choose from the next eight Wednesdays. The booking page shows live availability so you know exactly what\'s open.' },
+  { cat: 'artists', q: 'What if my preferred date is sold out?',
+    a: 'Sold-out dates are disabled at checkout. Pick the next open Wednesday or join The Blast — we send waitlist alerts when slots open up.' },
+  { cat: 'artists', q: 'What happens immediately after I pay?',
+    a: 'You\'ll get a confirmation email with verification steps. For performance tiers, you have 24 hours to claim Bandsintown, Songkick/Tourbox, and DICE artist profiles, then upload screenshots in the Verification Portal. Once approved, your event is auto-distributed.' },
+  { cat: 'artists', q: 'What does "distribution" actually mean?',
+    a: 'Once verified, NMW auto-creates listings for your performance on Eventbrite and Luma, generates DICE event copy, drops your event into Bandsintown and Songkick, generates a custom event link, and ships you a promo asset bundle (flyer, story graphic, captions).' },
+  { cat: 'artists', q: 'Where can I see who from the press is in the room?',
+    a: 'Verified performance artists can view the live media access roster at <a href="https://www.newmusicwednesdayslive.com/mediaaccess" target="_blank" class="text-[#8A1558] underline">newmusicwednesdayslive.com/mediaaccess</a> — that\'s who is in the press pit each Wednesday.' },
+  { cat: 'artists', q: 'Do I get the photos and clips after?',
     a: 'Yes. After your performance you receive your share package: performance clips, photos, recap content, Instagram-story-ready assets, and a personalized share link. The system prompts you to share — that\'s how the loop compounds.'
   },
   {
@@ -154,48 +152,81 @@ const FAQS = [
     a: 'No. The number on the package is what you pay. Optional distribution upgrades (Regular, Regular Plus, Advance, Advance Plus) are clearly priced and only added if you choose them.'
   },
   {
-    cat: 'Pricing',
-    q: 'Can I get a refund?',
+    cat: 'artists', q: 'Can I get a refund?',
     a: 'Slots are limited and we begin distribution work the moment you verify. Once verification is approved and event data is live on third-party platforms, packages are non-refundable. If something goes wrong on our end, we make it right.'
   },
-  {
-    cat: 'Referrals',
-    q: 'How does the "Invite 5 Artists" reward work?',
-    a: 'Every artist gets a unique referral link. Invite 3 → priority line access. Invite 5 → free ticket. Invite 10 → interview consideration plus featured placement. Track your invites and unlocked rewards on your dashboard.'
-  },
-  {
-    cat: 'Other',
-    q: 'What is The Blast?',
-    a: 'Our weekly newsletter — events, special offers, free giveaways, new music, and artist opportunities. One email a week, no spam, unsubscribe anytime. Join at /alerts.'
-  },
-  {
-    cat: 'Other',
-    q: 'Where exactly is The Penthouse NYC?',
-    a: 'Manhattan. Doors at 3PM. DJ Call 3-7PM. Live performances 7-9:30PM. Hosted by Anna Nyakana, CL, and Chrys Childs. Exact address sent to verified artists with their event details.'
-  },
+  { cat: 'artists', q: 'How does the "Invite 5 Artists" reward work?',
+    a: 'Every artist gets a unique referral link. Invite 3 → priority line access. Invite 5 → free ticket. Invite 10 → interview consideration plus featured placement. Track your invites and unlocked rewards on your dashboard.' },
+
+  // ============= THE BLAST =============
+  { cat: 'blast', q: 'What is The Blast?',
+    a: 'Our weekly newsletter — events, special offers, free giveaways, new music drops, DJ updates, media opportunities, and performance alerts. One email a week, no spam, unsubscribe anytime.' },
+  { cat: 'blast', q: 'How do I subscribe?',
+    a: 'Head to <a href="alerts.html" class="text-[#8A1558] underline">Get Alerts</a> and fill out the short form. Pick your topics (events, giveaways, new music, etc.) so we only send what you actually want.' },
+  { cat: 'blast', q: 'Will I get spammed?',
+    a: 'No. One email a week, max — and the occasional drop alert when something time-sensitive lands (free tickets, sudden lineup, special offer). Unsubscribe is one click.' },
+  { cat: 'blast', q: 'What\'s the difference between The Blast and an artist account?',
+    a: 'The Blast is the public newsletter — anyone in the culture can join. An artist account is for performers who\'ve booked through Artist Access — that gives you a dashboard, verification portal, and your own referral system.' },
+
+  // ============= NMW DJ CALL =============
+  { cat: 'djcall', q: 'What is the NMW DJ Call?',
+    a: 'A weekly Zoom session every Wednesday from 3 to 7 PM ET. The DJs in the network log on, hear new records, lock in their Wednesday-night sets, and decide what\'s about to move. Ends right when doors open at The Penthouse.' },
+  { cat: 'djcall', q: 'How do I get on the call list?',
+    a: 'Fill out the short application at <a href="dj-call.html" class="text-[#8A1558] underline">DJ Call</a>. We confirm within 24 hours and add you to the recurring invite.' },
+  { cat: 'djcall', q: 'How do I sign in every Wednesday?',
+    a: 'Confirmed DJs receive a standing Zoom link by email. Same link, every week — save it once. Lost it? Email djcall@newmusicwednesday.com and we resend within the hour.' },
+  { cat: 'djcall', q: 'Can I add the DJ Call to my calendar?',
+    a: 'Yes — there\'s an "Add to Calendar" button on the DJ Call page that drops the recurring weekly Wednesday call into your Google Calendar.' },
+  { cat: 'djcall', q: 'Do I have to be in NYC?',
+    a: 'No. The DJ Call is fully remote on Zoom. We work with DJs across markets — local in NYC, plus regional and international. Penthouse residency is a separate opt-in if you\'re local.' },
+
+  // ============= SPONSORS =============
+  { cat: 'sponsors', q: 'What does sponsoring NMW look like?',
+    a: 'Three options: a Single Night Sponsor (one Wednesday), a Series Partner (quarterly or annual brand integration), or a Custom Brand Activation (product launches, sponsored stages, content shoots). We co-build the activation so it actually fits the room.' },
+  { cat: 'sponsors', q: 'What does a sponsor get in return?',
+    a: 'A live qualified audience of artists, DJs, media, and tastemakers. Co-branded content that ships across our network and the artists\' own audiences. Direct relationships with the artists in the room. And a reliable cultural drumbeat — every Wednesday, on schedule.' },
+  { cat: 'sponsors', q: 'How do I start the conversation?',
+    a: 'Fill out the inquiry form at <a href="sponsor.html" class="text-[#8A1558] underline">Sponsor NMW</a>. Tell us what you\'re trying to accomplish and what your budget looks like. Our partnerships team replies within two business days.' },
+  { cat: 'sponsors', q: 'Are there minimums?',
+    a: 'We work with brands at multiple levels. Tell us your goal and timing on the inquiry form — we\'ll come back with what fits.' },
 ];
 
-const cats = [...new Set(FAQS.map(f => f.cat))];
+const tabsEl = document.getElementById('productTabs');
 const list = document.getElementById('faqList');
-list.innerHTML = cats.map(cat => `
-  <div class="mb-8">
-    <h2 class="text-xs font-black uppercase tracking-widest text-[#8A1558] mb-3">${cat}</h2>
-    <div class="space-y-3">
-      ${FAQS.filter(f => f.cat === cat).map(f => `
-        <details class="section-card group cursor-pointer transition-all">
-          <summary class="flex items-start justify-between gap-4 list-none cursor-pointer">
-            <span class="font-bold text-lg text-gray-900 group-open:text-[#8A1558]">${f.q}</span>
-            <span class="flex-shrink-0 w-8 h-8 rounded-full border-2 border-gray-200 flex items-center justify-center text-gray-400 group-open:bg-[#8A1558] group-open:border-[#8A1558] group-open:text-white transition-colors">
-              <i data-lucide="plus" class="w-4 h-4 group-open:hidden"></i>
-              <i data-lucide="minus" class="w-4 h-4 hidden group-open:block"></i>
-            </span>
-          </summary>
-          <div class="mt-4 pt-4 border-t border-gray-100 text-gray-700 font-serif leading-relaxed">${f.a}</div>
-        </details>
-      `).join('')}
+
+function renderProduct(prodId) {
+  // Tabs
+  tabsEl.innerHTML = PRODUCTS.map(p => `
+    <button data-prod="${p.id}" class="px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest whitespace-nowrap transition ${p.id === prodId ? 'bg-[#8A1558] text-white' : 'bg-white border border-gray-200 text-gray-600 hover:border-gray-400'}">
+      <i data-lucide="${p.icon}" class="w-3.5 h-3.5 inline mr-1"></i>${p.label}
+    </button>`).join('');
+  tabsEl.querySelectorAll('[data-prod]').forEach(b => b.addEventListener('click', () => renderProduct(b.dataset.prod)));
+
+  // FAQs
+  const items = FAQS.filter(f => f.cat === prodId);
+  const prod = PRODUCTS.find(p => p.id === prodId);
+  list.innerHTML = `
+    <div>
+      <h2 class="text-xs font-black uppercase tracking-widest text-[#8A1558] mb-4 flex items-center gap-2"><i data-lucide="${prod.icon}" class="w-4 h-4"></i> ${prod.label}</h2>
+      <div class="space-y-3">
+        ${items.map(f => `
+          <details class="section-card group cursor-pointer transition-all">
+            <summary class="flex items-start justify-between gap-4 list-none cursor-pointer">
+              <span class="font-bold text-lg text-gray-900 group-open:text-[#8A1558]">${f.q}</span>
+              <span class="flex-shrink-0 w-8 h-8 rounded-full border-2 border-gray-200 flex items-center justify-center text-gray-400 group-open:bg-[#8A1558] group-open:border-[#8A1558] group-open:text-white transition-colors">
+                <i data-lucide="plus" class="w-4 h-4 group-open:hidden"></i>
+                <i data-lucide="minus" class="w-4 h-4 hidden group-open:block"></i>
+              </span>
+            </summary>
+            <div class="mt-4 pt-4 border-t border-gray-100 text-gray-700 font-serif leading-relaxed">${f.a}</div>
+          </details>`).join('')}
+      </div>
     </div>
-  </div>
-`).join('');
+  `;
+  lucide.createIcons();
+}
+
+renderProduct('events');
 lucide.createIcons();
 </script>
 </body>

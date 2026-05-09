@@ -91,9 +91,9 @@ else { portal.classList.remove('hidden'); render(); }
 
 function render() {
   const slots = [
-    { key: 'bandsintown', label: 'Bandsintown', desc: 'Screenshot of your claimed artist page.', icon: 'music' },
-    { key: 'songkick',    label: 'Songkick / Tourbox', desc: 'Screenshot of verified Tourbox account.', icon: 'globe' },
-    { key: 'dice',        label: 'DICE', desc: 'Screenshot of your DICE artist/event account.', icon: 'ticket' },
+    { key: 'bandsintown', label: 'Bandsintown',         desc: 'Claim your artist page, then screenshot it.',     icon: 'music',  signupUrl: 'https://artists.bandsintown.com',   signupLabel: 'artists.bandsintown.com' },
+    { key: 'songkick',    label: 'Songkick / Tourbox',  desc: 'Set up Tourbox, then screenshot the dashboard.',  icon: 'globe',  signupUrl: 'https://www.songkick.com/tourbox',  signupLabel: 'songkick.com/tourbox' },
+    { key: 'dice',        label: 'DICE',                desc: 'Create or claim your DICE artist account.',       icon: 'ticket', signupUrl: 'https://dice.fm',                    signupLabel: 'dice.fm' },
   ];
   const wrap = document.getElementById('slots');
   wrap.innerHTML = '';
@@ -103,7 +103,7 @@ function render() {
     const status = v.status;
     const badge = status === 'approved' ? '<span class="tag tag-approved">Approved</span>'
               : status === 'submitted' ? '<span class="tag tag-submitted">Under review</span>'
-              : '<span class="tag tag-pending">Pending</span>';
+              : '<span class="tag tag-pending">Action required</span>';
     wrap.insertAdjacentHTML('beforeend', `
       <div class="bg-white border border-gray-200 rounded-2xl p-5">
         <div class="flex items-start justify-between mb-3">
@@ -111,6 +111,16 @@ function render() {
           ${badge}
         </div>
         <p class="text-xs text-gray-500 mb-3">${s.desc}</p>
+
+        <a href="${s.signupUrl}" target="_blank" class="flex items-center justify-between gap-2 p-3 mb-3 border border-brand-200 bg-brand-50 rounded-lg hover:border-brand-500 transition-colors">
+          <div class="text-left min-w-0">
+            <div class="text-xs font-black uppercase tracking-widest text-brand-500">Step 1 · Sign up here</div>
+            <div class="text-xs text-gray-700 truncate">${s.signupLabel}</div>
+          </div>
+          <i data-lucide="external-link" class="w-4 h-4 text-brand-500 flex-shrink-0"></i>
+        </a>
+
+        <div class="text-xs font-black uppercase tracking-widest text-gray-500 mb-2">Step 2 · Upload proof</div>
         <label class="upload-slot block ${uploaded ? 'uploaded' : ''}" data-slot="${s.key}">
           ${uploaded
             ? `<div class="text-sm font-bold text-brand-500 flex items-center justify-center gap-2"><i data-lucide="check" class="w-4 h-4"></i>${v.fileName || 'Uploaded'}</div>`
@@ -130,12 +140,23 @@ function render() {
     input.addEventListener('change', (e) => {
       const file = e.target.files[0];
       if (!file) return;
+      // Guard against oversize files — base64 dataURLs in localStorage hit the ~5MB quota fast
+      const MAX_BYTES = 1.5 * 1024 * 1024; // 1.5MB raw → ~2MB base64
+      if (file.size > MAX_BYTES) {
+        alert(`That file is ${(file.size / 1024 / 1024).toFixed(1)}MB. Please use a screenshot under 1.5MB.`);
+        e.target.value = '';
+        return;
+      }
       const reader = new FileReader();
       reader.onload = () => {
         NMW.updateCurrentArtist(a => {
           a.verification[k] = { status: 'submitted', url: reader.result, fileName: file.name, uploadedAt: new Date().toISOString() };
         });
         render();
+      };
+      reader.onerror = () => {
+        alert('Could not read that file. Try a different screenshot.');
+        e.target.value = '';
       };
       reader.readAsDataURL(file);
     });
