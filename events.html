@@ -5,58 +5,66 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Events | New Music Wednesdays at The Penthouse NYC</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest"></script>
 <link rel="stylesheet" href="assets/nmw.css">
 <script>
-tailwind.config = { theme: { extend: {
-  fontFamily: { sans: ['Inter','sans-serif'] },
-  colors: { brand: { 50:'#FDF2F8', 200:'#FBCFE8', 500:'#8A1558', 600:'#680D3E' } }
-}}}
+  tailwind.config = { theme: { extend: {
+    fontFamily: { sans: ['Inter','sans-serif'], serif: ['Merriweather','serif'] },
+    colors: { brand: { 500:'#8A1558', 600:'#680D3E' } }
+  }}}
 </script>
 </head>
-<body class="font-sans antialiased bg-white">
+<body class="bg-gray-50 text-gray-900 selection:bg-[#8A1558] selection:text-white">
 
-<nav class="bg-white border-b border-gray-200 sticky top-0 z-40">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between h-16 items-center">
-      <a href="landing.html" class="flex items-center gap-3">
-        <div class="w-9 h-9 bg-brand-500 rounded-sm flex items-center justify-center text-white font-black text-lg">NMW</div>
-        <span class="hidden md:inline font-bold tracking-tight">NEW MUSIC WEDNESDAY</span>
-      </a>
-      <div class="flex items-center gap-4 text-sm font-bold tracking-wide text-gray-600">
-        <a href="events.html" class="text-black">EVENTS</a>
-        <a href="alerts.html" class="hover:text-black hidden sm:inline">GET ALERTS</a>
-        <a href="apply.html" class="btn-yellow text-xs">APPLY</a>
-      </div>
+<div class="urgency-bar">
+  <span class="urgency-pulse"></span>
+  Attention Artists: Only 5 Event &amp; Press Packages Left For Next Wednesday!
+</div>
+
+<nav class="nmw-nav px-4 sm:px-8">
+  <a href="landing.html" class="nmw-logo-block">
+    <img src="images/nmw logo.avif" alt="New Music Wednesday" class="nmw-logo-img" />
+    <div class="nmw-logo-name hidden sm:flex">
+      <span class="primary">New Music Wednesday</span>
+      <span class="secondary">by Digiwaxx</span>
     </div>
+  </a>
+  <div class="hidden md:flex space-x-6 items-center text-sm font-bold tracking-wide text-gray-600">
+    <a href="events.html" class="text-black">EVENTS</a>
+    <a href="faq.html" class="hover:text-black">FAQ</a>
+    <a href="alerts.html" class="hover:text-black">GET ALERTS</a>
+    <a href="dashboard.html" class="hover:text-black">DASHBOARD</a>
+    <a href="apply.html" class="text-[#8A1558] hover:text-[#680D3E]">APPLY</a>
   </div>
 </nav>
 
-<header class="border-b border-gray-200 py-12 md:py-16">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <span class="text-xs font-black tracking-widest uppercase text-brand-500">Every Wednesday · The Penthouse NYC</span>
-    <h1 class="text-4xl md:text-6xl font-black tracking-tight mt-3">Upcoming Events</h1>
-    <p class="text-lg text-gray-600 mt-3 max-w-2xl">Live performances, DJ Calls, and media coverage every Wednesday night. RSVP, add the series to your calendar, and bring your team.</p>
+<header class="bg-white border-b border-gray-200 py-12 md:py-16">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center md:text-left">
+      <span class="text-[#8A1558] font-black tracking-widest text-sm mb-3 block">[ Every Wednesday · The Penthouse NYC ]</span>
+      <h1 class="text-4xl md:text-6xl font-black tracking-tighter leading-[1] text-gray-900 mb-4">Upcoming Events</h1>
+      <p class="text-lg md:text-xl text-gray-600 max-w-2xl font-serif">Live performances, DJ Calls, and media coverage every Wednesday night. RSVP, add the series to your calendar, and bring your team.</p>
+    </div>
 
-    <div class="mt-6 flex flex-wrap gap-3">
-      <a id="recurringCal" target="_blank" class="btn-primary text-xs"><i data-lucide="calendar-plus" class="w-4 h-4"></i> Add weekly to Google Calendar</a>
-      <a href="alerts.html" class="btn-outline text-xs"><i data-lucide="mail" class="w-4 h-4"></i> Get weekly alerts</a>
+    <div class="mt-8 flex flex-wrap gap-3 justify-center md:justify-start">
+      <a id="recurringCal" target="_blank" class="inline-flex items-center gap-2 bg-[#8A1558] text-white px-5 py-3 rounded-lg text-sm font-bold tracking-widest uppercase hover:bg-[#680D3E] transition-colors shadow"><i data-lucide="calendar-plus" class="w-4 h-4"></i> Add weekly to Calendar</a>
+      <a href="alerts.html" class="inline-flex items-center gap-2 bg-white border-2 border-gray-200 text-gray-900 px-5 py-3 rounded-lg text-sm font-bold tracking-widest uppercase hover:border-gray-400 transition-colors"><i data-lucide="mail" class="w-4 h-4"></i> Get weekly alerts</a>
     </div>
   </div>
 </header>
 
-<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+<main class="max-w-7xl mx-auto px-4 py-10">
 
   <!-- Featured next event -->
-  <section id="featuredWrap" class="mb-10"></section>
+  <section id="featuredWrap" class="mb-12"></section>
 
   <!-- Filter -->
-  <div class="flex items-center justify-between mb-4 flex-wrap gap-3">
-    <h2 class="text-2xl font-black tracking-tight">All upcoming</h2>
+  <div class="flex items-center justify-between mb-6 flex-wrap gap-3">
+    <h2 class="text-2xl md:text-3xl font-black tracking-tight">All upcoming</h2>
     <div class="flex items-center gap-2 text-sm">
       <label class="text-xs font-bold uppercase tracking-wider text-gray-500">Show:</label>
-      <select id="rangeSel" class="field-input text-sm py-2">
+      <select id="rangeSel" class="field-input text-sm py-2 max-w-[180px]">
         <option value="4">Next 4 weeks</option>
         <option value="8" selected>Next 8 weeks</option>
         <option value="12">Next 12 weeks</option>
@@ -67,12 +75,22 @@ tailwind.config = { theme: { extend: {
   <div id="eventList" class="grid md:grid-cols-2 gap-4"></div>
 </main>
 
-<footer class="bg-black text-gray-400 py-10 text-sm mt-10">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between gap-4">
-    <div>© NMW · New Music Wednesdays · by Digiwaxx</div>
-    <div class="flex gap-6">
-      <a href="landing.html" class="hover:text-white">Home</a>
+<footer class="bg-black py-12 text-white border-t-4 border-[#8A1558] mt-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
+    <div>
+      <div class="flex items-center gap-3 justify-center md:justify-start mb-4">
+        <img src="images/nmw logo.avif" alt="New Music Wednesday" class="h-10 w-auto bg-white/10 rounded p-1" />
+        <div class="flex flex-col justify-center text-left">
+          <span class="font-bold text-lg tracking-tight leading-none text-white">New Music Wednesday</span>
+          <span class="font-medium text-[#FBCFE8] text-xs tracking-widest uppercase mt-1">by Digiwaxx</span>
+        </div>
+      </div>
+      <p class="text-gray-400 font-serif text-sm italic max-w-sm">Artist Onboarding & Distribution Infrastructure.</p>
+    </div>
+    <div class="flex flex-wrap gap-6 text-sm font-bold text-gray-400 uppercase tracking-widest justify-center">
+      <a href="landing.html" class="hover:text-white">Funnel</a>
       <a href="events.html" class="hover:text-white">Events</a>
+      <a href="faq.html" class="hover:text-white">FAQ</a>
       <a href="alerts.html" class="hover:text-white">Get Alerts</a>
       <a href="apply.html" class="hover:text-white">Apply</a>
     </div>
@@ -87,17 +105,16 @@ function buildEventModel(d) {
   const slot = NMW.getSlot(NMW.dateKey(d));
   const bookings = slot.bookings || [];
   const lineup = bookings.map(b => b.artistName).filter(Boolean);
-  const headliner = lineup[0] || 'Open DJ Call · Featured Lineup TBA';
   const left = Math.max(0, slot.capacity - bookings.length);
   const title = `New Music Wednesdays at The Penthouse NYC | ${lineup.length ? lineup.join(' · ') : 'Live Showcase'}`;
-  return { date: d, headliner, lineup, slot, capacity: slot.capacity, booked: bookings.length, left, full: left === 0, title };
+  return { date: d, lineup, slot, capacity: slot.capacity, booked: bookings.length, left, full: left === 0, title };
 }
 
 function availabilityTag(ev) {
-  if (ev.full) return '<span class="tag tag-na">Sold out</span>';
-  if (ev.left <= 1) return `<span class="tag tag-pending">${ev.left} slot left</span>`;
-  if (ev.booked === 0) return '<span class="tag tag-approved">Open · book now</span>';
-  return `<span class="tag tag-submitted">${ev.left} of ${ev.capacity} open</span>`;
+  if (ev.full) return '<span class="pill pill-gray">Sold out</span>';
+  if (ev.left <= 1) return `<span class="pill pill--yellow">${ev.left} slot left</span>`;
+  if (ev.booked === 0) return '<span class="pill pill--green">Open · book now</span>';
+  return `<span class="pill pill--blue">${ev.left} of ${ev.capacity} open</span>`;
 }
 
 function renderFeatured() {
@@ -112,29 +129,29 @@ function renderFeatured() {
     : '<li class="flex items-center gap-2 text-white/50"><i data-lucide="hourglass" class="w-4 h-4"></i> Lineup announcing soon</li>';
 
   document.getElementById('featuredWrap').innerHTML = `
-    <div class="bg-black text-white rounded-2xl p-6 md:p-10 relative overflow-hidden">
-      <div class="absolute top-0 right-0 w-96 h-96 bg-brand-500 rounded-full blur-[140px] opacity-30 -translate-y-1/2 translate-x-1/2"></div>
+    <div class="bg-gray-900 text-white rounded-2xl p-6 md:p-10 relative overflow-hidden border border-gray-800">
+      <div class="absolute top-0 right-0 w-96 h-96 bg-[#8A1558] rounded-full blur-[140px] opacity-30 -translate-y-1/2 translate-x-1/2"></div>
       <div class="relative grid md:grid-cols-2 gap-6 items-center">
         <div>
-          <div class="flex items-center gap-3 mb-2">
+          <div class="flex items-center gap-3 mb-2 flex-wrap">
             <div class="text-xs font-black uppercase tracking-widest text-yellow-400">This Wednesday</div>
             ${availabilityTag(ev)}
           </div>
-          <h2 class="text-3xl md:text-5xl font-black tracking-tight leading-tight">${ev.lineup.length ? ev.lineup.join(' · ') : 'Live Showcase'}</h2>
-          <p class="text-white/70 mt-3 text-lg">${NMW.fmtDate(d)} · The Penthouse NYC · Doors 3PM · Live 7-9:30PM</p>
+          <h2 class="text-3xl md:text-5xl font-black tracking-tighter leading-tight">${ev.lineup.length ? ev.lineup.join(' · ') : 'Live Showcase'}</h2>
+          <p class="text-white/70 mt-3 text-lg font-serif">${NMW.fmtDate(d)} · The Penthouse NYC · Doors 3PM · Live 7-9:30PM</p>
           <p class="text-white/60 mt-1 text-sm">${ev.booked} of ${ev.capacity} performance slots booked</p>
           <div class="mt-6 flex flex-wrap gap-3">
-            <a href="${cal}" target="_blank" class="btn-yellow text-xs"><i data-lucide="calendar-plus" class="w-4 h-4"></i> Add to Calendar</a>
-            <button class="btn-outline text-xs" style="background:#fff" data-share='${JSON.stringify({text: shareText, url: shareUrl}).replace(/'/g, "&#39;")}'><i data-lucide="share-2" class="w-4 h-4"></i> Share with team</button>
+            <a href="${cal}" target="_blank" class="inline-flex items-center gap-2 bg-yellow-400 text-black px-5 py-3 rounded-lg text-xs font-bold tracking-widest uppercase hover:bg-yellow-300 transition-colors shadow"><i data-lucide="calendar-plus" class="w-4 h-4"></i> Add to Calendar</a>
+            <button class="inline-flex items-center gap-2 bg-white/10 backdrop-blur border border-white/20 text-white px-5 py-3 rounded-lg text-xs font-bold tracking-widest uppercase hover:bg-white/20 transition-colors" data-share='${JSON.stringify({text: shareText, url: shareUrl}).replace(/'/g, "&#39;")}'><i data-lucide="share-2" class="w-4 h-4"></i> Share with team</button>
             ${ev.full
               ? '<span class="text-white/60 text-xs font-bold uppercase tracking-wider self-center">Stage full this week</span>'
               : '<a href="apply.html" class="text-white/80 hover:text-white text-xs font-bold uppercase tracking-wider self-center">Perform here →</a>'}
           </div>
         </div>
-        <div class="bg-white/10 backdrop-blur border border-white/20 rounded-xl p-5">
+        <div class="bg-white/5 backdrop-blur border border-white/10 rounded-xl p-5">
           <div class="text-xs uppercase tracking-widest text-white/60 mb-3">Lineup</div>
           <ul class="space-y-2 text-sm mb-4">${lineupHTML}</ul>
-          <div class="text-xs uppercase tracking-widest text-white/60 mb-2 mt-3">Inside the night</div>
+          <div class="text-xs uppercase tracking-widest text-white/60 mb-2 mt-4 pt-4 border-t border-white/10">Inside the night</div>
           <ul class="space-y-2 text-sm">
             <li class="flex items-center gap-2"><i data-lucide="disc-3" class="w-4 h-4 text-yellow-400"></i> Digiwaxx DJ Call · 3-7PM</li>
             <li class="flex items-center gap-2"><i data-lucide="newspaper" class="w-4 h-4 text-yellow-400"></i> Media pit + interviews</li>
@@ -162,11 +179,11 @@ function renderList() {
     const lineupLine = ev.lineup.length ? ev.lineup.join(' · ') : 'Lineup TBA';
     const performCTA = ev.full
       ? '<span class="text-xs text-gray-400 font-bold uppercase tracking-wider ml-auto">Slots full</span>'
-      : '<a href="apply.html" class="text-xs text-brand-500 hover:underline font-bold uppercase tracking-wider ml-auto">Perform this week →</a>';
+      : '<a href="apply.html" class="text-xs text-[#8A1558] hover:underline font-bold uppercase tracking-wider ml-auto">Perform this week →</a>';
 
-    return `<article class="bg-white border border-gray-200 rounded-2xl p-5 flex gap-5">
+    return `<article class="section-card flex gap-5">
       <div class="flex-shrink-0 w-16 text-center">
-        <div class="text-xs font-black tracking-widest text-brand-500">${month}</div>
+        <div class="text-xs font-black tracking-widest text-[#8A1558]">${month}</div>
         <div class="text-3xl font-black leading-none mt-1">${day}</div>
         <div class="text-xs text-gray-400 mt-1">WED</div>
       </div>
@@ -174,14 +191,14 @@ function renderList() {
         <div class="flex items-start justify-between gap-3 flex-wrap">
           <div class="min-w-0">
             <h3 class="font-black text-lg tracking-tight truncate">${lineupLine}</h3>
-            <p class="text-sm text-gray-500">The Penthouse NYC · ${ev.booked} of ${ev.capacity} slots booked</p>
+            <p class="text-sm text-gray-500 font-serif">The Penthouse NYC · ${ev.booked} of ${ev.capacity} slots booked</p>
             <p class="text-xs text-gray-400 mt-1">Doors 3PM · DJ Call 3-7PM · Live 7-9:30PM</p>
           </div>
           ${availabilityTag(ev)}
         </div>
         <div class="flex flex-wrap items-center gap-2 mt-4">
-          <a href="${cal}" target="_blank" class="btn-outline text-xs"><i data-lucide="calendar-plus" class="w-3.5 h-3.5"></i> Add to Calendar</a>
-          <button class="btn-outline text-xs" data-share='${JSON.stringify({text: shareText, url: shareUrl}).replace(/'/g, "&#39;")}'><i data-lucide="share-2" class="w-3.5 h-3.5"></i> Share</button>
+          <a href="${cal}" target="_blank" class="inline-flex items-center gap-2 bg-white border-2 border-gray-200 text-gray-900 px-3 py-2 rounded-lg text-xs font-bold tracking-widest uppercase hover:border-[#8A1558] transition-colors"><i data-lucide="calendar-plus" class="w-3.5 h-3.5"></i> Add to Calendar</a>
+          <button class="inline-flex items-center gap-2 bg-white border-2 border-gray-200 text-gray-900 px-3 py-2 rounded-lg text-xs font-bold tracking-widest uppercase hover:border-[#8A1558] transition-colors" data-share='${JSON.stringify({text: shareText, url: shareUrl}).replace(/'/g, "&#39;")}'><i data-lucide="share-2" class="w-3.5 h-3.5"></i> Share</button>
           ${performCTA}
         </div>
       </div>
