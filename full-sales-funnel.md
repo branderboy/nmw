@@ -1,168 +1,216 @@
-# NMW Artist Sales & Distribution Funnel
+# FULL NMW ARTIST FLOW
 
-## Core Positioning
+## STEP 1 — LANDING PAGE ENTRY
 
-The Next Up Experience is not just a showcase.
+Artist lands on NMW.
 
-It is a live artist rollout and distribution system designed to:
+Core messaging:
 
-* amplify artists
-* create media moments
-* generate performance visibility
-* distribute music
-* build artist discoverability
-* connect artists to DJs, media, and audiences
+* perform live
+* get media coverage
+* connect with DJs
+* amplify your music
+* build discoverability
+* create real industry relationships
 
-Every tier moves artists deeper into:
-media + performance + distribution + amplification.
+Primary CTA:
+APPLY NOW
 
----
-
-# ENTRY PRODUCTS
-
-## MEDIA READY — $200
-
-For artists focused on visibility and media exposure.
-
-Includes:
-
-* media access
-* interviews
-* networking opportunities
-* content/media moments
-* artist visibility
-
-No performance automation.
-
-Manual workflow only.
+Secondary CTA:
+SEE PACKAGES
 
 ---
 
-## ONE MIC VISUAL SESSION — $250
+# STEP 2 — PACKAGE SELECTION
 
-Visual-first content package.
+Artist selects package.
 
-Includes:
+## Entry Packages
 
-* visual capture
-* branded content
-* social-ready assets
-* performance visuals
-* short-form content opportunities
+* Media Ready — $200
+* One Mic Visual Session — $250
 
-No performance automation.
+## Performance Packages
 
-Manual workflow only.
+* Performance Ready — $395
+* Full Experience — $650
+* The Premiere Package — $899
 
----
-
-# PERFORMANCE PRODUCTS
-
-Performance tiers activate the full distribution system.
-
----
-
-## PERFORMANCE READY — $395
-
-Entry performance package.
-
-Includes:
-
-* live performance slot
-* media exposure
-* event distribution setup
-* artist event placement
-* promotional event assets
-
-Triggers:
+Performance packages activate:
 
 * artist verification
+* event distribution
 * platform onboarding
-* event distribution automation
+* DICE relationship system
 
 ---
 
-## FULL EXPERIENCE — $650
+# STEP 3 — ARTIST GOAL DETECTION
 
-Performance + amplification package.
+Before checkout ask:
 
-Includes everything in Performance Ready plus:
+## “What’s your main goal right now?”
 
-* enhanced media positioning
-* amplified exposure
-* stronger content placement
-* extended visibility opportunities
-* interview/media prioritization
+Options:
 
----
+* Build awareness
+* Push a new release
+* Get DJ feedback
+* Grow locally
+* Build industry relationships
+* Promote an upcoming project
+* Go viral/create content
+* Test a record
+* Build a fanbase
+* Increase streams
+* Improve discoverability
 
-## THE PREMIERE PACKAGE — $899
-
-Highest visibility package.
-
-Includes:
-
-* premium artist placement
-* premiere-level visibility
-* advanced media positioning
-* priority feature consideration
-* strongest promotional rollout
-* maximum event exposure
-
-Designed for artists actively pushing releases and campaigns.
+Store inside:
+artist_goals field.
 
 ---
 
-# PAYMENT TRIGGER
+# STEP 4 — SMART RECOMMENDATION ENGINE
 
-Stripe payment completed →
+System recommends upgrades based on artist goals.
 
-System flags:
-PERFORMANCE_SLOT = TRUE
+Examples:
 
-Immediately starts:
-artist onboarding workflow.
+## Build Awareness
 
-Only applies to:
+Recommend:
+Regular — $150
+
+## Push a New Release
+
+Recommend:
+Regular Plus — $250
+
+## Get DJ Feedback
+
+Recommend:
+Advance — $350
+
+## Increase Streams
+
+Recommend:
+Advance Plus — $600
+
+## Go Viral/Create Content
+
+Recommend:
+Full Experience + Regular Plus
+
+## Test a Record
+
+Recommend:
+Performance Ready + Advance
+
+Show:
+“Recommended For You”
+
+Do not show every upsell immediately.
+
+---
+
+# STEP 5 — CHECKOUT
+
+Artist enters:
+
+* name
+* email
+* phone
+* artist name
+* genre
+* Instagram
+* selected package
+* selected upgrades
+
+Optional:
+Join “The Blast”
+
+The Blast includes:
+
+* new music releases
+* event announcements
+* artist opportunities
+* DJ updates
+* media opportunities
+* performance alerts
+
+Collect:
+
+* email
+* phone optional
+* genre/category
+
+---
+
+# STEP 6 — PAYMENT
+
+Stripe checkout completed.
+
+System creates:
+artist record.
+
+If package is:
 
 * Performance Ready
 * Full Experience
 * Premiere Package
 
+Then:
+PERFORMANCE_SLOT = TRUE
+
+Triggers:
+artist onboarding workflow.
+
 ---
 
-# ARTIST VERIFICATION FLOW
+# STEP 7 — ARTIST VERIFICATION EMAIL
 
-## Auto Email Sent Immediately
+Immediately send onboarding email:
 
 “You've booked a performance slot.
 
 Complete these within 24 hours:
 
-1. Claim your Bandsintown profile
-2. Claim your Songkick/Tourbox profile
-3. Create or verify your DICE artist/event account
+1. Claim Bandsintown profile
+2. Claim Songkick/Tourbox profile
+3. Create or verify DICE artist/event account
 
 Upload screenshots to continue.”
 
 ---
 
-# VERIFICATION GATE
+# STEP 8 — VERIFICATION PORTAL
 
-Artist uploads screenshots.
+Artist uploads:
 
-System verifies:
+* Bandsintown screenshot
+* Songkick screenshot
+* DICE screenshot
 
-* Bandsintown claimed
-* Songkick/Tourbox claimed
-* DICE account verified
+System stores:
 
-Once verified:
+* upload URLs
+* timestamps
+* verification status
+
+Admin reviews submissions.
+
+Admin approves:
+
+* Bandsintown verified
+* Songkick verified
+* DICE verified
+
+Once approved:
 distribution tools unlock.
 
 ---
 
-# EVENT DISTRIBUTION SYSTEM
+# STEP 9 — EVENT GENERATION
 
 System auto-generates:
 
@@ -180,143 +228,186 @@ New Music Wednesdays at The Penthouse NYC | [Artist Name] LIVE
 * event description
 * host information
 
----
-
-# AUTO DISTRIBUTION ACTIONS
-
-System automatically creates:
-
-* Eventbrite RSVP
-* Luma RSVP
-* DICE formatted event copy
-* event feed entry
-* artist performance listing
-* event metadata
-
-Prompts artist to:
-
-* publish to Bandsintown
-* publish to Songkick
+Store inside:
+events table.
 
 ---
 
-# DICE RELATIONSHIP LAYER
+# STEP 10 — DISTRIBUTION ENGINE
 
-DICE handles:
+System automatically:
 
-* attendance
-* audience discovery
-* event visibility
-* recurring engagement
-* ticketing ecosystem
+* creates Eventbrite RSVP
+* creates Luma RSVP
+* generates DICE event copy
+* creates event feed entry
+* creates artist performance listing
+* generates metadata JSON
 
-Each performance creates relationships between:
-artist ↔ NMW ↔ DICE ↔ audience
-
-This transforms every performance into:
-
-* a discoverable event
-* searchable artist appearance
-* audience growth asset
-* distribution object
+Prompt artist:
+“Publish your event to Bandsintown and Songkick.”
 
 ---
 
-# DISTRIBUTION UPSELLS
+# STEP 11 — DICE RELATIONSHIP SYSTEM
 
-After verification, artists unlock optional distribution upgrades.
+DICE becomes:
 
----
+* attendance layer
+* audience discovery layer
+* recurring event layer
+* ticketing relationship layer
 
-## Regular — $150
+Store:
 
-Includes:
+* DICE links
+* attendance references
+* RSVP tracking
+* artist-event relationships
 
-* basic music submission
-* social media posting
-* artist visibility support
+Each performance becomes:
 
----
-
-## Regular Plus — $250
-
-Includes:
-
-* everything in Regular
-* Digiwaxx record pool access
-* email distribution support
-* expanded reach
+* searchable
+* discoverable
+* connected to audience behavior
 
 ---
 
-## Advance — $350
+# STEP 12 — PROMO ASSET GENERATION
 
-Includes:
+After verification generate:
 
-* everything in Regular Plus
-* DJ feedback
-* analytics
-* member contact insights
-* audience response visibility
-
----
-
-## Advance Plus — $600
-
-Includes:
-
-* everything in Advance
-* multiple blasts
-* extended amplification
-* highest campaign reach
-* maximum visibility support
-
-Based on Digiwaxx distribution structure. 
-
----
-
-# THE BLAST OPT-IN
-
-During checkout or onboarding ask:
-
-“Do you want to join The Blast?”
-
-The Blast includes:
-
-* new music releases
-* event announcements
-* artist opportunities
-* live performances
-* DJ call updates
-* media opportunities
-* exclusive NMW updates
-
-Collect:
-
-* email
-* SMS optional
-* artist genre/category
-
----
-
-# REFERRAL LOOP
-
-After registration:
-artist receives:
-
+* artist flyer
+* event promo graphic
 * custom event link
-* promo assets
-* referral tracking link
+* social share assets
+* Instagram story assets
+
+Artist receives:
+share package.
+
+---
+
+# STEP 13 — REFERRAL SYSTEM
+
+Artist receives:
+
+* referral link
+* referral code
+* invite tracker
 
 Prompt:
 “Invite 5 artists and unlock free entry.”
 
-Referral rewards:
+Rewards:
 
-* priority line access
-* free ticket unlocks
+* line priority
+* free ticket
 * feature consideration
-* priority performance opportunities
+* priority placement
+
+Track:
+
+* invites
+* registrations
+* conversions
+* unlocked rewards
+
+---
+
+# STEP 14 — EVENT WEEK AUTOMATION
+
+Automatically send:
+
+* reminder emails
+* performance instructions
+* arrival times
+* media instructions
+* DICE reminders
+* RSVP pushes
+
+Include:
+Add to Google Calendar.
+
+---
+
+# STEP 15 — LIVE EVENT EXECUTION
+
+Artist participates in:
+
+* live performance
+* interviews
+* media pit
+* DJ ecosystem
+* networking
+* visual capture
+
+NMW captures:
+
+* clips
+* photos
+* interviews
+* reactions
+* content moments
+
+---
+
+# STEP 16 — POST EVENT CONTENT FLOW
+
+System sends artist:
+
+* performance clips
+* media assets
+* photos
+* promo moments
+* recap content
+
+Prompt:
+“Share your NMW appearance.”
+
+---
+
+# STEP 17 — CONTENT DISTRIBUTION LOOP
+
+Artist shares:
+
+* clips
+* flyers
+* interviews
+* DICE event
+* recap moments
+
+Fans discover:
+NMW.
+
+New artists register.
+
+Loop repeats.
+
+---
+
+# STEP 18 — ADMIN DASHBOARD
+
+Admin manages:
+
+* artists
+* verifications
+* events
+* referrals
+* Blast subscribers
+* distribution upgrades
+* analytics
+* DICE relationships
+* event feeds
+
+Admin can:
+
+* approve artists
+* verify screenshots
+* trigger distribution
+* send blasts
+* manage campaigns
+* track conversions
 
 ---
 
@@ -325,11 +416,11 @@ Referral rewards:
 Artist signs up →
 gets verified →
 event distributed →
-shares event →
-fans/artists RSVP →
-content created →
+shares appearance →
+fans RSVP →
+content spreads →
 more artists discover NMW →
-more registrations →
+more artist registrations →
 repeat
 
 ---
@@ -340,10 +431,11 @@ NMW is not selling stage time.
 
 It is selling:
 
-* artist amplification
+* amplification
 * discoverability
-* media visibility
 * event distribution
-* cultural positioning
+* media visibility
+* artist positioning
 * audience growth
-* industry ecosystem access
+* culture access
+* rollout infrastructure
