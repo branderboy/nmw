@@ -101,14 +101,12 @@
 </nav>
 
 <!-- Hero -->
-<header class="relative pt-16 pb-28 md:pt-20 md:pb-32 overflow-hidden bg-black text-white border-b-4 border-[#8A1558] hero-bg">
-  <!-- left-side gradient overlay keeps text legible while letting the speakers on the right of the bg image show -->
-  <div class="absolute inset-0 -z-0 pointer-events-none hero-bg__overlay"></div>
+<header class="relative pt-16 pb-28 md:pt-20 md:pb-32 overflow-hidden border-b-4 border-[#8A1558] lead-bg text-gray-900">
   <div class="max-w-7xl mx-auto px-4 relative z-10">
     <div class="max-w-xl text-left">
-      <!-- The Next Up Experience program logo (white variant for dark hero) -->
-      <img src="images/next-up-logo-light.png" alt="The Next Up Experience" class="mb-6 h-20 md:h-24 w-auto drop-shadow-lg" />
-      <h2 class="text-[#FBCFE8] font-black tracking-widest text-sm md:text-base mb-6" data-cms="heroEyebrow">[ Official Artist Registration ]</h2>
+      <!-- The Next Up Experience program logo (dark variant for light hero) -->
+      <img src="images/next-up-logo.png" alt="The Next Up Experience" class="mb-6 h-20 md:h-24 w-auto" />
+      <h2 class="text-[#8A1558] font-black tracking-widest text-sm md:text-base mb-6" data-cms="heroEyebrow">[ Official Artist Registration ]</h2>
 
       <!-- Hero CTA -->
       <button onclick="scrollToPackages()" class="cta cta--yellow group mb-4">
@@ -120,16 +118,16 @@
           <span class="cta__sub text-gray-800" data-cms="primaryCtaSub">Click Here To See Package Options &amp; Secure Your Spot</span>
         </div>
       </button>
-      <div class="flex items-center gap-3 text-xs font-bold text-white/70 mt-2">
+      <div class="flex items-center gap-3 text-xs font-bold text-gray-500 mt-2">
         <i data-lucide="lock" class="w-3 h-3"></i> 256-bit secure checkout
-        <span class="text-white/40">|</span>
+        <span class="text-gray-400">|</span>
         <i data-lucide="shield-check" class="w-3 h-3"></i> Stripe-powered
       </div>
     </div>
   </div>
 
   <!-- Scroll-down arrow pointing to lead capture form -->
-  <a href="#packages" class="hero-scroll-arrow" aria-label="Apply to perform">
+  <a href="#packages" class="hero-scroll-arrow hero-scroll-arrow--dark" aria-label="Apply to perform">
     <span class="hero-scroll-arrow__label">Apply Below</span>
     <span class="hero-scroll-arrow__chevron"><i data-lucide="chevron-down" class="w-7 h-7"></i></span>
   </a>

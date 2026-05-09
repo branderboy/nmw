@@ -346,6 +346,8 @@ aside .lg\:sticky { border-top: 3px solid var(--brand-500) !important; }
   text-transform: uppercase;
   color: #FBCFE8;
 }
+.hero-scroll-arrow--dark { color: #1f2937; }
+.hero-scroll-arrow--dark .hero-scroll-arrow__label { color: #8A1558; }
 .hero-scroll-arrow__chevron {
   width: 2.75rem;
   height: 2.75rem;
