@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ | New Music Wednesdays</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<link rel="stylesheet" href="assets/nmw.css">
+<script>
+  tailwind.config = { theme: { extend: {
+    fontFamily: { sans: ['Inter','sans-serif'], serif: ['Merriweather','serif'] },
+    colors: { brand: { 500:'#8A1558', 600:'#680D3E' } }
+  }}}
+</script>
+</head>
+<body class="bg-gray-50 text-gray-900 selection:bg-[#8A1558] selection:text-white">
+
+<div class="urgency-bar">
+  <span class="urgency-pulse"></span>
+  Attention Artists: Only 5 Event &amp; Press Packages Left For Next Wednesday!
+</div>
+
+<nav class="nmw-nav px-4 sm:px-8">
+  <a href="landing.html" class="nmw-logo-block">
+    <img src="images/nmw logo.avif" alt="New Music Wednesday" class="nmw-logo-img" />
+    <div class="nmw-logo-name hidden sm:flex">
+      <span class="primary">New Music Wednesday</span>
+      <span class="secondary">by Digiwaxx</span>
+    </div>
+  </a>
+  <div class="hidden md:flex space-x-6 items-center text-sm font-bold tracking-wide text-gray-600">
+    <a href="events.html" class="hover:text-black">EVENTS</a>
+    <a href="faq.html" class="text-black">FAQ</a>
+    <a href="alerts.html" class="hover:text-black">GET ALERTS</a>
+    <a href="dashboard.html" class="hover:text-black">DASHBOARD</a>
+    <a href="apply.html" class="text-[#8A1558] hover:text-[#680D3E]">APPLY</a>
+  </div>
+</nav>
+
+<header class="bg-white border-b border-gray-200 py-16">
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <span class="text-[#8A1558] font-black tracking-widest text-sm mb-3 block">[ Frequently Asked Questions ]</span>
+    <h1 class="text-4xl md:text-6xl font-black tracking-tighter leading-[1] text-gray-900 mb-4">Everything you need to know.</h1>
+    <p class="text-lg md:text-xl text-gray-600 font-serif">Straight answers about packages, performances, distribution, and your rollout — before you apply.</p>
+  </div>
+</header>
+
+<main class="py-16">
+  <div class="max-w-4xl mx-auto px-4 space-y-4" id="faqList"></div>
+
+  <!-- Bottom CTA -->
+  <div class="max-w-4xl mx-auto px-4 mt-16">
+    <div class="bg-gray-900 rounded-2xl p-10 md:p-14 text-center relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-64 h-64 bg-[#8A1558] rounded-full blur-[140px] opacity-30"></div>
+      <div class="relative">
+        <span class="text-yellow-400 font-bold tracking-widest text-xs uppercase block mb-3">Still got questions?</span>
+        <h2 class="text-3xl md:text-4xl font-black tracking-tight text-white mb-3">The fastest way to get answers is to apply.</h2>
+        <p class="text-gray-300 font-serif mb-8 max-w-xl mx-auto">Application is free. Pick a package only when you're ready, and our team will follow up directly.</p>
+        <div class="max-w-sm mx-auto">
+          <a href="apply.html" class="cta cta--yellow">
+            <div class="cta__shadow"></div>
+            <div class="cta__face">
+              <span class="cta__label">Start My Rollout</span>
+              <span class="cta__sub text-gray-800">Limited Wednesday Slots</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="bg-black py-12 text-white border-t-4 border-[#8A1558]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
+    <div>
+      <div class="flex items-center gap-3 justify-center md:justify-start mb-4">
+        <img src="images/nmw logo.avif" alt="New Music Wednesday" class="h-10 w-auto bg-white/10 rounded p-1" />
+        <div class="flex flex-col justify-center text-left">
+          <span class="font-bold text-lg tracking-tight leading-none text-white">New Music Wednesday</span>
+          <span class="font-medium text-[#FBCFE8] text-xs tracking-widest uppercase mt-1">by Digiwaxx</span>
+        </div>
+      </div>
+      <p class="text-gray-400 font-serif text-sm italic max-w-sm">Artist Onboarding & Distribution Infrastructure.</p>
+    </div>
+    <div class="flex flex-wrap gap-6 text-sm font-bold text-gray-400 uppercase tracking-widest justify-center">
+      <a href="landing.html" class="hover:text-white">Funnel</a>
+      <a href="events.html" class="hover:text-white">Events</a>
+      <a href="faq.html" class="hover:text-white">FAQ</a>
+      <a href="alerts.html" class="hover:text-white">Get Alerts</a>
+      <a href="apply.html" class="hover:text-white">Apply</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const FAQS = [
+  {
+    cat: 'Booking',
+    q: 'What does a package actually book me for?',
+    a: 'Performance tier packages ($395 / $650 / $899) book a live performance slot at New Music Wednesdays at The Penthouse NYC, plus full event distribution across DICE, Bandsintown, Songkick, Eventbrite, and Luma. Entry tier packages ($200 / $250) cover media coverage and visual capture only — no live performance slot.'
+  },
+  {
+    cat: 'Booking',
+    q: 'Can I pick which Wednesday I perform?',
+    a: 'Yes. After you select a performance package, you\'ll choose from the next eight Wednesdays. Each Wednesday has limited slots — the booking page shows live availability so you know exactly what\'s open.'
+  },
+  {
+    cat: 'Booking',
+    q: 'What if my preferred date is sold out?',
+    a: 'Sold-out dates are disabled in checkout. Pick the next open Wednesday or join The Blast — we send waitlist alerts when slots open up.'
+  },
+  {
+    cat: 'Onboarding',
+    q: 'What happens immediately after I pay?',
+    a: 'You\'ll get a confirmation email with verification steps. For performance tiers, you have 24 hours to claim Bandsintown, Songkick/Tourbox, and DICE artist profiles, then upload screenshots in the Verification Portal. Once approved, your event is auto-distributed.'
+  },
+  {
+    cat: 'Onboarding',
+    q: 'What if I already have a Bandsintown / Songkick / DICE account?',
+    a: 'Even better. Just upload screenshots showing the claimed artist page and you\'re verified instantly. We just need proof you control those profiles before we push event data to them.'
+  },
+  {
+    cat: 'Distribution',
+    q: 'What does "distribution" actually mean?',
+    a: 'Once verified, NMW auto-creates listings for your performance on Eventbrite and Luma, generates DICE event copy for the Penthouse to paste, drops your event into Bandsintown and Songkick, generates a custom event link, and ships you a promo asset bundle (flyer, story graphic, captions). Your appearance gets indexed where real fans look.'
+  },
+  {
+    cat: 'Distribution',
+    q: 'Will my music get to DJs?',
+    a: 'Performance Ready and above include positioning into the Digiwaxx DJ network ecosystem. Add the Regular ($150) or Regular Plus ($250) upgrade for direct record pool drops and email distribution to ~30,000 DJs.'
+  },
+  {
+    cat: 'Media & Press',
+    q: 'What kind of press coverage do I get?',
+    a: 'Performance packages include an editorial write-up on the NMW platform, photo coverage from the media pit, and live interview opportunities. Full Experience and Premiere packages add amplified placement and interview prioritization.'
+  },
+  {
+    cat: 'Media & Press',
+    q: 'Do I get the photos and clips after?',
+    a: 'Yes. After your performance you receive your share package: performance clips, photos, recap content, Instagram-story-ready assets, and a personalized share link. The system prompts you to share — that\'s how the loop compounds.'
+  },
+  {
+    cat: 'Pricing',
+    q: 'Why are there 5 packages?',
+    a: 'Different rollouts need different fuel. Media Ready ($200) and One Mic Visual ($250) are entry-tier press / content products. Performance Ready ($395) is the floor for booking a live slot. Full Experience ($650) and Premiere ($899) layer on premium press positioning and amplification for artists actively rolling out a project.'
+  },
+  {
+    cat: 'Pricing',
+    q: 'Are there hidden fees?',
+    a: 'No. The number on the package is what you pay. Optional distribution upgrades (Regular, Regular Plus, Advance, Advance Plus) are clearly priced and only added if you choose them.'
+  },
+  {
+    cat: 'Pricing',
+    q: 'Can I get a refund?',
+    a: 'Slots are limited and we begin distribution work the moment you verify. Once verification is approved and event data is live on third-party platforms, packages are non-refundable. If something goes wrong on our end, we make it right.'
+  },
+  {
+    cat: 'Referrals',
+    q: 'How does the "Invite 5 Artists" reward work?',
+    a: 'Every artist gets a unique referral link. Invite 3 → priority line access. Invite 5 → free ticket. Invite 10 → interview consideration plus featured placement. Track your invites and unlocked rewards on your dashboard.'
+  },
+  {
+    cat: 'Other',
+    q: 'What is The Blast?',
+    a: 'Our weekly newsletter — events, special offers, free giveaways, new music, and artist opportunities. One email a week, no spam, unsubscribe anytime. Join at /alerts.'
+  },
+  {
+    cat: 'Other',
+    q: 'Where exactly is The Penthouse NYC?',
+    a: 'Manhattan. Doors at 3PM. DJ Call 3-7PM. Live performances 7-9:30PM. Hosted by Anna Nyakana, CL, and Chrys Childs. Exact address sent to verified artists with their event details.'
+  },
+];
+
+const cats = [...new Set(FAQS.map(f => f.cat))];
+const list = document.getElementById('faqList');
+list.innerHTML = cats.map(cat => `
+  <div class="mb-8">
+    <h2 class="text-xs font-black uppercase tracking-widest text-[#8A1558] mb-3">${cat}</h2>
+    <div class="space-y-3">
+      ${FAQS.filter(f => f.cat === cat).map(f => `
+        <details class="section-card group cursor-pointer transition-all">
+          <summary class="flex items-start justify-between gap-4 list-none cursor-pointer">
+            <span class="font-bold text-lg text-gray-900 group-open:text-[#8A1558]">${f.q}</span>
+            <span class="flex-shrink-0 w-8 h-8 rounded-full border-2 border-gray-200 flex items-center justify-center text-gray-400 group-open:bg-[#8A1558] group-open:border-[#8A1558] group-open:text-white transition-colors">
+              <i data-lucide="plus" class="w-4 h-4 group-open:hidden"></i>
+              <i data-lucide="minus" class="w-4 h-4 hidden group-open:block"></i>
+            </span>
+          </summary>
+          <div class="mt-4 pt-4 border-t border-gray-100 text-gray-700 font-serif leading-relaxed">${f.a}</div>
+        </details>
+      `).join('')}
+    </div>
+  </div>
+`).join('');
+lucide.createIcons();
+</script>
+</body>
+</html>

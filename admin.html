@@ -17,13 +17,15 @@ tailwind.config = { theme: { extend: {
 </head>
 <body class="font-sans antialiased bg-gray-50 min-h-screen">
 
-<nav class="bg-black text-white">
+<nav class="bg-black text-white border-b-4 border-[#8A1558]">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between h-16 items-center">
       <a href="landing.html" class="flex items-center gap-3">
-        <div class="w-9 h-9 bg-brand-500 rounded-sm flex items-center justify-center text-white font-black text-lg">NMW</div>
-        <span class="font-bold tracking-tight">ADMIN</span>
-        <span class="text-xs uppercase tracking-widest text-yellow-400 hidden md:inline">Internal</span>
+        <img src="images/nmw logo.avif" alt="New Music Wednesday" class="h-10 w-auto bg-white/10 rounded p-1" />
+        <div class="hidden sm:flex flex-col">
+          <span class="font-bold tracking-tight leading-none">NMW Admin</span>
+          <span class="text-[10px] tracking-widest uppercase text-yellow-400 mt-1">Rollout Engine</span>
+        </div>
       </a>
       <div class="flex items-center gap-3">
         <button id="seedBtn" class="text-xs font-bold uppercase tracking-wider text-white/60 hover:text-white hidden sm:flex items-center gap-1"><i data-lucide="database" class="w-4 h-4"></i> Seed demo</button>
