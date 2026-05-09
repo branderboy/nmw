@@ -191,7 +191,10 @@ function render() {
     document.getElementById('evTitle').textContent = a.event.title;
     const d = new Date(a.event.date);
     document.getElementById('evMeta').textContent = `${NMW.fmtDate(d)} · The Penthouse NYC · Doors 3PM · Live 7-9:30PM`;
-    const cal = NMW.googleCalendarLink(a.artistName || a.name);
+    const cal = NMW.buildCalendarLink({
+      title: a.event.title,
+      start: d,
+    });
     document.getElementById('calBtn').href = cal;
   }
 

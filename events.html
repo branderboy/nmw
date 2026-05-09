@@ -83,59 +83,60 @@ tailwind.config = { theme: { extend: {
 <script>
 NMW.seedDemoIfEmpty();
 
-// Map admin-saved events to date string -> event
-function eventByDate() {
-  const map = {};
-  NMW.getEvents().forEach(e => { map[new Date(e.date).toDateString()] = e; });
-  return map;
-}
-
-// Stable demo headliners for weeks where no booked artist exists
-const FALLBACK_LINEUP = [
-  { artist: 'Open DJ Call', tier: 'DJ Showcase' },
-  { artist: 'Featured Lineup TBA', tier: 'Live Showcase' },
-  { artist: 'Open Stage Night', tier: 'Discovery Night' },
-];
-function fallbackFor(d) {
-  const idx = (Math.floor(d.getTime() / 86400000)) % FALLBACK_LINEUP.length;
-  return FALLBACK_LINEUP[idx];
-}
-
 function buildEventModel(d) {
-  const booked = eventByDate()[d.toDateString()];
-  const fallback = fallbackFor(d);
-  const artist = booked ? (booked.title.split('|')[1]?.trim() || 'NMW LIVE') : fallback.artist;
-  const tier = booked ? booked.tier : fallback.tier;
-  const title = booked ? booked.title : `New Music Wednesdays at The Penthouse NYC | ${artist}`;
-  return { date: d, artist, tier, title, booked: !!booked };
+  const slot = NMW.getSlot(NMW.dateKey(d));
+  const bookings = slot.bookings || [];
+  const lineup = bookings.map(b => b.artistName).filter(Boolean);
+  const headliner = lineup[0] || 'Open DJ Call · Featured Lineup TBA';
+  const left = Math.max(0, slot.capacity - bookings.length);
+  const title = `New Music Wednesdays at The Penthouse NYC | ${lineup.length ? lineup.join(' · ') : 'Live Showcase'}`;
+  return { date: d, headliner, lineup, slot, capacity: slot.capacity, booked: bookings.length, left, full: left === 0, title };
+}
+
+function availabilityTag(ev) {
+  if (ev.full) return '<span class="tag tag-na">Sold out</span>';
+  if (ev.left <= 1) return `<span class="tag tag-pending">${ev.left} slot left</span>`;
+  if (ev.booked === 0) return '<span class="tag tag-approved">Open · book now</span>';
+  return `<span class="tag tag-submitted">${ev.left} of ${ev.capacity} open</span>`;
 }
 
 function renderFeatured() {
   const d = NMW.upcomingWednesdays(1)[0];
   const ev = buildEventModel(d);
   const cal = NMW.buildCalendarLink({ title: ev.title, start: d });
-  const shareText = `Catch ${ev.artist} live at New Music Wednesdays · ${NMW.fmtDate(d)} · The Penthouse NYC`;
+  const shareText = `Catch the lineup live at New Music Wednesdays · ${NMW.fmtDate(d)} · The Penthouse NYC`;
   const shareUrl = location.origin + location.pathname;
+
+  const lineupHTML = ev.lineup.length
+    ? ev.lineup.map(n => `<li class="flex items-center gap-2"><i data-lucide="mic" class="w-4 h-4 text-yellow-400"></i> ${n}</li>`).join('')
+    : '<li class="flex items-center gap-2 text-white/50"><i data-lucide="hourglass" class="w-4 h-4"></i> Lineup announcing soon</li>';
 
   document.getElementById('featuredWrap').innerHTML = `
     <div class="bg-black text-white rounded-2xl p-6 md:p-10 relative overflow-hidden">
       <div class="absolute top-0 right-0 w-96 h-96 bg-brand-500 rounded-full blur-[140px] opacity-30 -translate-y-1/2 translate-x-1/2"></div>
       <div class="relative grid md:grid-cols-2 gap-6 items-center">
         <div>
-          <div class="text-xs font-black uppercase tracking-widest text-yellow-400 mb-2">This Wednesday</div>
-          <h2 class="text-3xl md:text-5xl font-black tracking-tight leading-tight">${ev.artist}</h2>
+          <div class="flex items-center gap-3 mb-2">
+            <div class="text-xs font-black uppercase tracking-widest text-yellow-400">This Wednesday</div>
+            ${availabilityTag(ev)}
+          </div>
+          <h2 class="text-3xl md:text-5xl font-black tracking-tight leading-tight">${ev.lineup.length ? ev.lineup.join(' · ') : 'Live Showcase'}</h2>
           <p class="text-white/70 mt-3 text-lg">${NMW.fmtDate(d)} · The Penthouse NYC · Doors 3PM · Live 7-9:30PM</p>
+          <p class="text-white/60 mt-1 text-sm">${ev.booked} of ${ev.capacity} performance slots booked</p>
           <div class="mt-6 flex flex-wrap gap-3">
             <a href="${cal}" target="_blank" class="btn-yellow text-xs"><i data-lucide="calendar-plus" class="w-4 h-4"></i> Add to Calendar</a>
             <button class="btn-outline text-xs" style="background:#fff" data-share='${JSON.stringify({text: shareText, url: shareUrl}).replace(/'/g, "&#39;")}'><i data-lucide="share-2" class="w-4 h-4"></i> Share with team</button>
-            <a href="apply.html" class="text-white/80 hover:text-white text-xs font-bold uppercase tracking-wider self-center">Perform here →</a>
+            ${ev.full
+              ? '<span class="text-white/60 text-xs font-bold uppercase tracking-wider self-center">Stage full this week</span>'
+              : '<a href="apply.html" class="text-white/80 hover:text-white text-xs font-bold uppercase tracking-wider self-center">Perform here →</a>'}
           </div>
         </div>
         <div class="bg-white/10 backdrop-blur border border-white/20 rounded-xl p-5">
-          <div class="text-xs uppercase tracking-widest text-white/60 mb-3">Inside the night</div>
+          <div class="text-xs uppercase tracking-widest text-white/60 mb-3">Lineup</div>
+          <ul class="space-y-2 text-sm mb-4">${lineupHTML}</ul>
+          <div class="text-xs uppercase tracking-widest text-white/60 mb-2 mt-3">Inside the night</div>
           <ul class="space-y-2 text-sm">
             <li class="flex items-center gap-2"><i data-lucide="disc-3" class="w-4 h-4 text-yellow-400"></i> Digiwaxx DJ Call · 3-7PM</li>
-            <li class="flex items-center gap-2"><i data-lucide="mic" class="w-4 h-4 text-yellow-400"></i> Live performances · 7-9:30PM</li>
             <li class="flex items-center gap-2"><i data-lucide="newspaper" class="w-4 h-4 text-yellow-400"></i> Media pit + interviews</li>
             <li class="flex items-center gap-2"><i data-lucide="users" class="w-4 h-4 text-yellow-400"></i> Hosted by Anna · CL · Chrys Childs</li>
           </ul>
@@ -154,10 +155,14 @@ function renderList() {
   wrap.innerHTML = dates.map(d => {
     const ev = buildEventModel(d);
     const cal = NMW.buildCalendarLink({ title: ev.title, start: d });
-    const shareText = `Pull up to NMW · ${ev.artist} · ${NMW.fmtDate(d)} · The Penthouse NYC`;
+    const shareText = `Pull up to NMW · ${NMW.fmtDate(d)} · The Penthouse NYC${ev.lineup.length ? ' · ' + ev.lineup.join(' · ') : ''}`;
     const shareUrl = location.origin + location.pathname;
     const month = d.toLocaleDateString(undefined, { month: 'short' }).toUpperCase();
     const day = d.getDate();
+    const lineupLine = ev.lineup.length ? ev.lineup.join(' · ') : 'Lineup TBA';
+    const performCTA = ev.full
+      ? '<span class="text-xs text-gray-400 font-bold uppercase tracking-wider ml-auto">Slots full</span>'
+      : '<a href="apply.html" class="text-xs text-brand-500 hover:underline font-bold uppercase tracking-wider ml-auto">Perform this week →</a>';
 
     return `<article class="bg-white border border-gray-200 rounded-2xl p-5 flex gap-5">
       <div class="flex-shrink-0 w-16 text-center">
@@ -168,16 +173,16 @@ function renderList() {
       <div class="flex-1 min-w-0">
         <div class="flex items-start justify-between gap-3 flex-wrap">
           <div class="min-w-0">
-            <h3 class="font-black text-lg tracking-tight truncate">${ev.artist}</h3>
-            <p class="text-sm text-gray-500">${ev.tier} · The Penthouse NYC</p>
+            <h3 class="font-black text-lg tracking-tight truncate">${lineupLine}</h3>
+            <p class="text-sm text-gray-500">The Penthouse NYC · ${ev.booked} of ${ev.capacity} slots booked</p>
             <p class="text-xs text-gray-400 mt-1">Doors 3PM · DJ Call 3-7PM · Live 7-9:30PM</p>
           </div>
-          ${ev.booked ? '<span class="tag tag-perf">Confirmed</span>' : '<span class="tag tag-na">Lineup TBA</span>'}
+          ${availabilityTag(ev)}
         </div>
         <div class="flex flex-wrap items-center gap-2 mt-4">
           <a href="${cal}" target="_blank" class="btn-outline text-xs"><i data-lucide="calendar-plus" class="w-3.5 h-3.5"></i> Add to Calendar</a>
           <button class="btn-outline text-xs" data-share='${JSON.stringify({text: shareText, url: shareUrl}).replace(/'/g, "&#39;")}'><i data-lucide="share-2" class="w-3.5 h-3.5"></i> Share</button>
-          <a href="alerts.html" class="text-xs text-gray-500 hover:text-brand-500 font-bold uppercase tracking-wider ml-auto">Get reminders →</a>
+          ${performCTA}
         </div>
       </div>
     </article>`;

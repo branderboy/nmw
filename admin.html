@@ -48,6 +48,7 @@ tailwind.config = { theme: { extend: {
   <div class="border-b border-gray-200 mb-6 overflow-x-auto">
     <div class="flex gap-1 min-w-max">
       <button class="tab active" data-tab="artists">Artists</button>
+      <button class="tab" data-tab="slots">Slots</button>
       <button class="tab" data-tab="verifications">Verifications</button>
       <button class="tab" data-tab="events">Events</button>
       <button class="tab" data-tab="referrals">Referrals</button>
@@ -81,6 +82,27 @@ tailwind.config = { theme: { extend: {
           <tbody id="artistRows"></tbody>
         </table>
       </div>
+    </div>
+  </section>
+
+  <!-- SLOTS -->
+  <section data-pane="slots" class="pane hidden">
+    <div class="grid lg:grid-cols-3 gap-6">
+      <div class="lg:col-span-2 space-y-3" id="slotList"></div>
+
+      <aside class="bg-white border border-gray-200 rounded-2xl p-6 self-start sticky top-4">
+        <h3 class="font-bold mb-3 flex items-center gap-2"><i data-lucide="plus-circle" class="w-5 h-5 text-brand-500"></i> Manual booking</h3>
+        <p class="text-sm text-gray-500 mb-4">Add an off-platform performer to a Wednesday slot.</p>
+        <form id="manualForm" class="space-y-3">
+          <div><label class="field-label">Wednesday</label>
+            <select class="field-input" name="date" required id="manualDateSel"></select>
+          </div>
+          <div><label class="field-label">Artist Name *</label><input class="field-input" name="artistName" required></div>
+          <div><label class="field-label">Tier / Notes</label><input class="field-input" name="tier" placeholder="e.g. Premiere Package · contra-deal · headline"></div>
+          <div><label class="field-label">Internal note</label><textarea class="field-input" name="notes" rows="2" placeholder="How was this booked? Contact?"></textarea></div>
+          <button type="submit" class="btn-primary w-full justify-center"><i data-lucide="check" class="w-4 h-4"></i> Add booking</button>
+        </form>
+      </aside>
     </div>
   </section>
 
@@ -435,9 +457,74 @@ function barRows(obj) {
   `).join('') || '<div class="text-sm text-gray-400">No data.</div>';
 }
 
+function renderSlots() {
+  const dates = NMW.upcomingWednesdays(12);
+  const list = document.getElementById('slotList');
+  list.innerHTML = dates.map(d => {
+    const k = NMW.dateKey(d);
+    const slot = NMW.getSlot(k);
+    const taken = slot.bookings.length;
+    const cap = slot.capacity;
+    const left = Math.max(0, cap - taken);
+    const tag = left === 0 ? '<span class="tag tag-na">Sold out</span>'
+              : left <= 1 ? `<span class="tag tag-pending">${left} left</span>`
+              : `<span class="tag tag-approved">${left} of ${cap} open</span>`;
+    return `<div class="bg-white border border-gray-200 rounded-2xl p-5">
+      <div class="flex items-start justify-between mb-3 gap-3 flex-wrap">
+        <div>
+          <div class="text-xs font-black uppercase tracking-widest text-brand-500">${d.toLocaleDateString(undefined, { month: 'short' })} ${d.getDate()}</div>
+          <div class="font-bold text-lg">${NMW.fmtDate(d)}</div>
+          <div class="text-xs text-gray-500">${taken} / ${cap} booked · The Penthouse NYC</div>
+        </div>
+        <div class="flex items-center gap-2">
+          ${tag}
+          <input type="number" min="${taken}" value="${cap}" class="w-16 field-input py-1 px-2 text-sm" data-cap="${k}" title="Slot capacity">
+        </div>
+      </div>
+      ${slot.bookings.length === 0
+        ? '<div class="text-sm text-gray-400 italic">No bookings yet — open stage.</div>'
+        : `<div class="space-y-2">${slot.bookings.map((b, i) => `
+            <div class="flex items-center justify-between gap-2 border border-gray-100 rounded-lg px-3 py-2">
+              <div class="min-w-0">
+                <div class="font-bold truncate">${b.artistName}${b.manual ? ' <span class="tag tag-submitted ml-1">Manual</span>' : ''}</div>
+                <div class="text-xs text-gray-500 truncate">${b.tier || '—'}${b.notes ? ' · ' + b.notes : ''}</div>
+              </div>
+              <button class="text-xs font-bold text-red-600 hover:underline" data-rmbook="${k}|${i}">Remove</button>
+            </div>`).join('')}</div>`}
+    </div>`;
+  }).join('');
+
+  list.querySelectorAll('[data-cap]').forEach(inp => {
+    inp.addEventListener('change', () => {
+      const k = inp.dataset.cap;
+      const v = Math.max(1, parseInt(inp.value) || 1);
+      NMW.setSlotCapacity(k, v);
+      renderAll();
+    });
+  });
+  list.querySelectorAll('[data-rmbook]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const [k, i] = btn.dataset.rmbook.split('|');
+      NMW.removeBookingAt(k, +i);
+      renderAll();
+    });
+  });
+
+  // populate manual form date selector
+  const sel = document.getElementById('manualDateSel');
+  sel.innerHTML = dates.map(d => {
+    const k = NMW.dateKey(d);
+    const slot = NMW.getSlot(k);
+    const left = Math.max(0, slot.capacity - slot.bookings.length);
+    const lbl = `${NMW.fmtDate(d)} (${left}/${slot.capacity} open)`;
+    return `<option value="${d.toISOString()}" ${left === 0 ? 'disabled' : ''}>${lbl}</option>`;
+  }).join('');
+}
+
 function renderAll() {
   renderKPIs();
   renderArtists(document.getElementById('artistSearch').value);
+  renderSlots();
   renderVerifications();
   renderEvents();
   renderRefs();
@@ -447,6 +534,24 @@ function renderAll() {
 }
 
 document.getElementById('artistSearch').addEventListener('input', e => renderArtists(e.target.value));
+document.getElementById('manualForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const data = new FormData(e.target);
+  const dateISO = data.get('date');
+  if (!dateISO) return;
+  const k = NMW.dateKey(new Date(dateISO));
+  const ok = NMW.bookSlot(k, {
+    artistId: 'manual_' + Date.now(),
+    artistName: data.get('artistName')?.toString().trim() || 'Unnamed',
+    tier: data.get('tier')?.toString().trim() || 'Manual booking',
+    notes: data.get('notes')?.toString().trim() || '',
+    manual: true,
+  });
+  if (!ok) { alert('That date is full — bump the capacity or pick another.'); return; }
+  e.target.reset();
+  renderAll();
+  document.querySelector('[data-tab="slots"]').click();
+});
 document.getElementById('seedBtn').addEventListener('click', () => { NMW.seedDemoIfEmpty(); renderAll(); });
 document.getElementById('resetBtn').addEventListener('click', () => {
   if (confirm('Wipe all NMW data from this browser? (artists, events, referrals, blast)')) {

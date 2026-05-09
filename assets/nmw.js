@@ -9,7 +9,10 @@ const NMW = (() => {
     blast: 'nmw.blast',
     referrals: 'nmw.referrals',
     events: 'nmw.events',
+    slots: 'nmw.slots',
   };
+
+  const DEFAULT_SLOT_CAPACITY = 3;
 
   const PACKAGES = [
     { id: 'media-ready', name: 'Media Ready', price: 200, tier: 'entry',
@@ -164,6 +167,58 @@ const NMW = (() => {
     return `https://calendar.google.com/calendar/render?${params.toString()}`;
   };
 
+  // ---- slot management ----
+  const dateKey = (d) => new Date(d).toISOString().slice(0, 10);
+
+  const getSlots = () => get(KEYS.slots, {});
+  const setSlots = (obj) => set(KEYS.slots, obj);
+
+  const getSlot = (key) => {
+    const all = getSlots();
+    return all[key] ? { capacity: DEFAULT_SLOT_CAPACITY, bookings: [], ...all[key] }
+                    : { capacity: DEFAULT_SLOT_CAPACITY, bookings: [] };
+  };
+
+  const saveSlot = (key, slot) => {
+    const all = getSlots();
+    all[key] = slot;
+    setSlots(all);
+  };
+
+  const slotAvailable = (key) => {
+    const s = getSlot(key);
+    return Math.max(0, s.capacity - s.bookings.length);
+  };
+
+  const slotIsFull = (key) => slotAvailable(key) === 0;
+
+  const bookSlot = (key, booking) => {
+    const slot = getSlot(key);
+    if (slot.bookings.find(b => b.artistId && b.artistId === booking.artistId)) return true;
+    if (slot.bookings.length >= slot.capacity) return false;
+    slot.bookings.push({ bookedAt: new Date().toISOString(), ...booking });
+    saveSlot(key, slot);
+    return true;
+  };
+
+  const removeBookingByArtist = (key, artistId) => {
+    const slot = getSlot(key);
+    slot.bookings = slot.bookings.filter(b => b.artistId !== artistId);
+    saveSlot(key, slot);
+  };
+
+  const removeBookingAt = (key, index) => {
+    const slot = getSlot(key);
+    slot.bookings.splice(index, 1);
+    saveSlot(key, slot);
+  };
+
+  const setSlotCapacity = (key, capacity) => {
+    const slot = getSlot(key);
+    slot.capacity = Math.max(slot.bookings.length, capacity);
+    saveSlot(key, slot);
+  };
+
   // Generate the next N weekly Wednesday events (lineup + headliner)
   const upcomingWednesdays = (count = 8) => {
     const out = [];
@@ -185,6 +240,9 @@ const NMW = (() => {
     const pkg = PACKAGES.find(p => p.id === funnel.package);
     const performance = isPerformanceTier(funnel.package);
     const refCode = generateReferralCode(info.artistName);
+    const eventDate = performance && funnel.eventDate
+      ? new Date(funnel.eventDate)
+      : (performance ? nextWednesday() : null);
 
     const artist = {
       id,
@@ -215,7 +273,7 @@ const NMW = (() => {
       },
       event: performance ? {
         title: `New Music Wednesdays at The Penthouse NYC | ${info.artistName || 'Artist'} LIVE`,
-        date: nextWednesday().toISOString(),
+        date: eventDate.toISOString(),
         venue: 'The Penthouse NYC',
         tier: pkg?.name,
       } : null,
@@ -223,6 +281,14 @@ const NMW = (() => {
     setArtist(artist);
     saveArtist(artist);
     if (artist.event) saveEvent(artist.event);
+    if (performance && eventDate) {
+      bookSlot(dateKey(eventDate), {
+        artistId: id,
+        artistName: info.artistName || info.name || 'Artist',
+        tier: pkg?.name,
+        manual: false,
+      });
+    }
     if (artist.blast) addBlast({ email: artist.email, phone: artist.phone, genre: artist.genre, artistId: id });
     return artist;
   };
@@ -241,15 +307,19 @@ const NMW = (() => {
   // seed admin demo data once
   const seedDemoIfEmpty = () => {
     if (getArtists().length) return;
+    const weds = upcomingWednesdays(8);
     const demo = [
       { name: 'Jordan Pierce', artistName: 'JP', genre: 'R&B', pkg: 'performance-ready', goals: ['Push a new release'], status: 'pending' },
       { name: 'Maya Cole', artistName: 'Maya C', genre: 'Soul', pkg: 'full-experience', goals: ['Go viral/create content'], status: 'verified' },
       { name: 'Andre Hall', artistName: 'Dre H', genre: 'Hip Hop', pkg: 'media-ready', goals: ['Build awareness'], status: 'na' },
       { name: 'Lila Ortiz', artistName: 'LILA', genre: 'Afro-Pop', pkg: 'premiere', goals: ['Increase streams'], status: 'pending' },
     ];
+    // assign demo artists to different upcoming Wednesdays
+    const dateForIdx = [weds[0], weds[1], null, weds[2]];
     demo.forEach((d, i) => {
       const pkg = PACKAGES.find(p => p.id === d.pkg);
       const performance = pkg.tier === 'performance';
+      const evDate = performance ? (dateForIdx[i] || weds[0]) : null;
       const a = {
         id: 'demo_' + i,
         createdAt: new Date(Date.now() - i * 86400000).toISOString(),
@@ -264,16 +334,32 @@ const NMW = (() => {
           approved: d.status === 'verified',
         },
         referral: { code: generateReferralCode(d.artistName), invites: [3,7,1,5][i], registrations: [2,5,0,3][i], unlocked: [] },
-        event: performance ? {
+        event: performance && evDate ? {
           title: `New Music Wednesdays at The Penthouse NYC | ${d.artistName} LIVE`,
-          date: nextWednesday().toISOString(),
+          date: evDate.toISOString(),
           venue: 'The Penthouse NYC', tier: pkg.name,
         } : null,
       };
       saveArtist(a);
       if (a.event) saveEvent(a.event);
       if (a.blast) addBlast({ email: a.email, phone: a.phone, genre: a.genre, artistId: a.id });
+      if (performance && evDate) {
+        bookSlot(dateKey(evDate), {
+          artistId: a.id, artistName: a.artistName, tier: pkg.name, manual: false,
+        });
+      }
     });
+
+    // demo: a manual booking on the second Wednesday (admin-entered)
+    if (weds[1]) {
+      bookSlot(dateKey(weds[1]), {
+        artistId: 'manual_demo_1',
+        artistName: 'Sienna Rae',
+        tier: 'Manual booking',
+        manual: true,
+        notes: 'Off-platform booking — confirmed via DM',
+      });
+    }
   };
 
   return {
@@ -284,6 +370,9 @@ const NMW = (() => {
     recommendUpsells, generateReferralCode, referralLink,
     isPerformanceTier, totalPrice, nextWednesday, fmtDate,
     googleCalendarLink, buildCalendarLink, upcomingWednesdays,
+    dateKey, getSlots, getSlot, saveSlot, slotAvailable, slotIsFull,
+    bookSlot, removeBookingByArtist, removeBookingAt, setSlotCapacity,
+    DEFAULT_SLOT_CAPACITY,
     completeCheckout, updateCurrentArtist,
     reset, seedDemoIfEmpty,
   };

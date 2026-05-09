@@ -53,6 +53,20 @@ tailwind.config = { theme: { extend: {
     </div>
   </section>
 
+  <!-- STEP 1.5: DATE SELECTION (performance tier only, dynamically shown) -->
+  <section data-step="date" class="step hidden">
+    <div class="mb-8">
+      <span class="text-xs font-black tracking-widest uppercase text-brand-500">Pick your date</span>
+      <h1 class="text-3xl md:text-4xl font-black tracking-tight mt-2">Which Wednesday do you want to perform?</h1>
+      <p class="text-gray-600 mt-2">Each Wednesday at The Penthouse has limited slots. Pick an open one — we'll lock it in at checkout.</p>
+    </div>
+    <div id="dateGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3"></div>
+    <div class="mt-8 flex justify-between">
+      <button class="btn-outline" data-back="date"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back</button>
+      <button class="btn-primary" data-next="date" disabled>Continue <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+    </div>
+  </section>
+
   <!-- STEP 2: GOALS -->
   <section data-step="2" class="step hidden">
     <div class="mb-8">
@@ -193,34 +207,57 @@ const presetPkg = params.get('pkg');
 if (presetPkg) funnel.package = presetPkg;
 NMW.setFunnel(funnel);
 
-let currentStep = 1;
-const TOTAL_STEPS = 5;
+// Step ids in order. 'date' inserts after package only when performance tier.
+function stepSequence() {
+  const seq = ['1'];
+  if (NMW.isPerformanceTier(funnel.package)) seq.push('date');
+  seq.push('2', '3', '4', '5');
+  return seq;
+}
+function stepLabel(id) {
+  return { '1': 'Package', 'date': 'Date', '2': 'Goals', '3': 'Upgrades', '4': 'Info', '5': 'Pay', '6': 'Done' }[id];
+}
 
-// --- step indicator ---
+let currentStep = '1';
+
 function renderSteps() {
-  const labels = ['Package', 'Goals', 'Upgrades', 'Info', 'Pay'];
+  const seq = stepSequence();
+  const idx = seq.indexOf(currentStep);
   const ind = document.getElementById('stepIndicator');
-  ind.innerHTML = labels.map((label, i) => {
-    const n = i + 1;
-    const cls = n < currentStep ? 'done' : n === currentStep ? 'active' : '';
-    const lineCls = n < currentStep ? 'done' : '';
+  ind.innerHTML = seq.map((id, i) => {
+    const cls = i < idx ? 'done' : i === idx ? 'active' : '';
+    const lineCls = i < idx ? 'done' : '';
     return `
       <div class="flex items-center">
-        <div class="step-dot ${cls}">${n < currentStep ? '✓' : n}</div>
-        <span class="ml-2 text-xs font-bold uppercase tracking-wider hidden sm:inline ${n === currentStep ? 'text-black' : 'text-gray-400'}">${label}</span>
+        <div class="step-dot ${cls}">${i < idx ? '✓' : i + 1}</div>
+        <span class="ml-2 text-xs font-bold uppercase tracking-wider hidden sm:inline ${i === idx ? 'text-black' : 'text-gray-400'}">${stepLabel(id)}</span>
       </div>
-      ${n < labels.length ? `<div class="step-line ${lineCls}"></div>` : ''}
+      ${i < seq.length - 1 ? `<div class="step-line ${lineCls}"></div>` : ''}
     `;
   }).join('');
 }
 
-function showStep(n) {
-  currentStep = n;
+function showStep(id) {
+  currentStep = String(id);
   document.querySelectorAll('.step').forEach(el => el.classList.add('hidden'));
-  document.querySelector(`[data-step="${n}"]`).classList.remove('hidden');
+  const el = document.querySelector(`[data-step="${currentStep}"]`);
+  if (el) el.classList.remove('hidden');
+  if (currentStep === 'date') renderDates();
   renderSteps();
   window.scrollTo({ top: 0, behavior: 'smooth' });
   lucide.createIcons();
+}
+
+function nextStep() {
+  const seq = stepSequence();
+  const i = seq.indexOf(currentStep);
+  if (i < seq.length - 1) showStep(seq[i + 1]);
+  else showStep('6');
+}
+function prevStep() {
+  const seq = stepSequence();
+  const i = seq.indexOf(currentStep);
+  if (i > 0) showStep(seq[i - 1]);
 }
 
 // --- step 1: packages ---
@@ -248,6 +285,7 @@ function renderPackages() {
   grid.querySelectorAll('[data-pkg]').forEach(el => {
     el.addEventListener('click', () => {
       funnel.package = el.dataset.pkg;
+      if (!NMW.isPerformanceTier(funnel.package)) funnel.eventDate = null;
       NMW.setFunnel(funnel);
       renderPackages();
       document.querySelector('[data-next="1"]').disabled = false;
@@ -353,6 +391,7 @@ function renderOrder() {
   const pkg = NMW.PACKAGES.find(p => p.id === funnel.package);
   const ups = (funnel.upsells || []).map(id => NMW.UPSELLS[id]).filter(Boolean);
   const total = NMW.totalPrice(funnel);
+  const evDate = funnel.eventDate ? new Date(funnel.eventDate) : null;
   document.getElementById('orderSummary').innerHTML = `
     <h3 class="font-bold text-lg mb-4 flex items-center gap-2"><i data-lucide="package" class="w-5 h-5 text-brand-500"></i> Order Summary</h3>
     <div class="space-y-3">
@@ -360,6 +399,7 @@ function renderOrder() {
         <div>
           <div class="font-bold">${pkg.name}</div>
           <div class="text-xs text-gray-500">${pkg.blurb}</div>
+          ${evDate ? `<div class="text-xs text-brand-500 font-bold mt-1">Performing ${NMW.fmtDate(evDate)}</div>` : ''}
         </div>
         <div class="font-bold">$${pkg.price}</div>
       </div>` : ''}
@@ -381,20 +421,57 @@ function renderOrder() {
   lucide.createIcons();
 }
 
+// --- date step ---
+function renderDates() {
+  const grid = document.getElementById('dateGrid');
+  const dates = NMW.upcomingWednesdays(8);
+  grid.innerHTML = dates.map(d => {
+    const k = NMW.dateKey(d);
+    const slot = NMW.getSlot(k);
+    const taken = slot.bookings.length;
+    const cap = slot.capacity;
+    const left = Math.max(0, cap - taken);
+    const full = left === 0;
+    const sel = funnel.eventDate === d.toISOString();
+    const tag = full
+      ? '<span class="tag tag-na">Sold out</span>'
+      : (left <= 1 ? `<span class="tag tag-pending">${left} slot left</span>` : `<span class="tag tag-approved">${left} of ${cap} open</span>`);
+    return `<button type="button" class="card text-left ${sel ? 'selected' : ''} ${full ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}" ${full ? 'disabled' : ''} data-date="${d.toISOString()}">
+      <div class="flex items-start justify-between mb-2">
+        <div>
+          <div class="text-xs font-black uppercase tracking-widest text-gray-400">${d.toLocaleDateString(undefined, { month: 'short' })}</div>
+          <div class="text-3xl font-black leading-none mt-1">${d.getDate()}</div>
+          <div class="text-xs text-gray-500 mt-1">Wednesday</div>
+        </div>
+        ${tag}
+      </div>
+      <div class="text-xs text-gray-500 mt-3">${taken} / ${cap} booked</div>
+    </button>`;
+  }).join('');
+
+  grid.querySelectorAll('[data-date]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (btn.disabled) return;
+      funnel.eventDate = btn.dataset.date;
+      NMW.setFunnel(funnel);
+      renderDates();
+      document.querySelector('[data-next="date"]').disabled = false;
+    });
+  });
+  document.querySelector('[data-next="date"]').disabled = !funnel.eventDate;
+}
+
 // --- nav ---
 document.querySelectorAll('[data-next]').forEach(btn => {
   btn.addEventListener('click', () => {
-    const from = +btn.dataset.next;
-    if (from === 4) { if (!validateInfo()) return; captureInfo(); }
-    if (from === 4) renderOrder();
-    showStep(from + 1);
+    const from = btn.dataset.next;
+    if (from === '4') { if (!validateInfo()) return; captureInfo(); }
+    nextStep();
+    if (currentStep === '5') renderOrder();
   });
 });
 document.querySelectorAll('[data-back]').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const from = +btn.dataset.back;
-    showStep(from - 1);
-  });
+  btn.addEventListener('click', () => prevStep());
 });
 
 // --- pay ---
@@ -431,7 +508,7 @@ renderPackages();
 renderGoals();
 renderRecs();
 hydrateInfo();
-showStep(funnel.package ? 1 : 1);
+showStep('1');
 </script>
 </body>
 </html>
