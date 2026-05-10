@@ -112,10 +112,10 @@ body {
   .footer-logo { height: 168px; }
 }
 
-/* Dark-grey footer with brand top accent */
+/* Dark purple gradient footer with brand top accent */
 .nmw-footer {
-  background: #1f2937; /* slate-800 / soft dark grey, not pure black */
-  color: #9ca3af;
+  background: linear-gradient(135deg, #1a0418 0%, #3d0a2c 45%, #680D3E 100%);
+  color: #d1d5db;
   padding: 3rem 0;
   border-top: 4px solid var(--brand-500);
 }
