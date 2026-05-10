@@ -404,19 +404,19 @@ function renderProducts() {
 function productCard(p, isBundle = false) {
   const sel = cart.has(p.id);
   const outcomeBlock = p.outcome
-    ? `<div class="text-[11px] font-bold uppercase tracking-widest text-[#8A1558] mb-3 flex items-center gap-1.5">
+    ? `<div class="text-[11px] font-bold uppercase tracking-widest text-[#8A1558] mb-3 flex items-center justify-center gap-1.5">
          <i data-lucide="trending-up" class="w-3.5 h-3.5"></i> ${p.outcome}
        </div>`
     : '';
-  return `<div class="product-card section-card flex flex-col ${sel ? 'selected' : ''} ${p.featured ? 'border-2 border-[#8A1558]' : ''}">
+  return `<div class="product-card section-card flex flex-col text-center items-center ${sel ? 'selected' : ''} ${p.featured ? 'border-2 border-[#8A1558]' : ''}">
     ${p.featured ? '<div class="text-[10px] font-black uppercase tracking-widest text-[#8A1558] mb-2">Most Popular</div>' : ''}
-    <div class="w-20 h-20 rounded-full bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center mb-4 mx-auto"><i data-lucide="${p.icon}" class="w-9 h-9"></i></div>
+    <div class="w-20 h-20 rounded-full bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center mb-4"><i data-lucide="${p.icon}" class="w-9 h-9"></i></div>
     <h3 class="text-lg font-black tracking-tight mb-2">${p.name}</h3>
     <p class="text-sm text-gray-700 font-serif mb-3">${p.blurb}</p>
     ${outcomeBlock}
-    <div class="flex items-center justify-between mt-auto pt-3 border-t border-gray-100">
+    <div class="w-full flex flex-col items-center gap-3 mt-auto pt-3 border-t border-gray-100">
       <span class="font-black text-[#8A1558]">${p.price}</span>
-      <button data-add="${p.id}" class="add-btn inline-flex items-center gap-1.5 border-2 border-[#8A1558] text-[#8A1558] hover:bg-[#8A1558] hover:text-white px-3 py-1.5 rounded-lg text-xs font-black tracking-widest uppercase transition-all">
+      <button data-add="${p.id}" class="add-btn inline-flex items-center gap-1.5 border-2 border-[#8A1558] text-[#8A1558] hover:bg-[#8A1558] hover:text-white px-4 py-1.5 rounded-lg text-xs font-black tracking-widest uppercase transition-all">
         <span class="add-text"><i data-lucide="plus" class="w-3.5 h-3.5 inline"></i> Add</span>
         <span class="added-text"><i data-lucide="check" class="w-3.5 h-3.5 inline"></i> Added</span>
       </button>
