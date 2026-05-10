@@ -307,7 +307,7 @@ aside .lg\:sticky { border-top: 3px solid var(--brand-500) !important; }
 
 /* ============ Urgency Bar (scrolling marquee) ============ */
 .urgency-bar {
-  background: #000;
+  background: var(--brand-600);
   color: #fff;
   padding: 0.5rem 0;
   font-size: 0.875rem;
