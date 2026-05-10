@@ -410,7 +410,7 @@ function productCard(p, isBundle = false) {
     : '';
   return `<div class="product-card section-card flex flex-col ${sel ? 'selected' : ''} ${p.featured ? 'border-2 border-[#8A1558]' : ''}">
     ${p.featured ? '<div class="text-[10px] font-black uppercase tracking-widest text-[#8A1558] mb-2">Most Popular</div>' : ''}
-    <div class="w-12 h-12 rounded-lg bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center mb-3"><i data-lucide="${p.icon}" class="w-6 h-6"></i></div>
+    <div class="w-20 h-20 rounded-full bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center mb-4 mx-auto"><i data-lucide="${p.icon}" class="w-9 h-9"></i></div>
     <h3 class="text-lg font-black tracking-tight mb-2">${p.name}</h3>
     <p class="text-sm text-gray-700 font-serif mb-3">${p.blurb}</p>
     ${outcomeBlock}
