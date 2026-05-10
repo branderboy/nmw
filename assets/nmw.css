@@ -48,17 +48,10 @@ h1, h2, h3 { text-transform: capitalize; }
   --ink: #111827;
 }
 
-/* Base font size for the whole site — scaled up so body copy reads at 18px
-   and every rem-based Tailwind class (text-sm, text-base, text-lg, etc.) inherits the bigger scale */
-html { font-size: 18px; }
-@media (min-width: 768px) { html { font-size: 19px; } }
-@media (min-width: 1280px) { html { font-size: 20px; } }
-
 body {
   font-family: 'Inter', system-ui, sans-serif;
   background: #ffffff;
   color: var(--ink);
-  line-height: 1.55;
 }
 .font-serif { font-family: 'Merriweather', serif; }
 
