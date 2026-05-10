@@ -263,7 +263,7 @@ const list = document.getElementById('faqList');
 function renderProduct(prodId) {
   // Tabs
   tabsEl.innerHTML = PRODUCTS.map(p => `
-    <button data-prod="${p.id}" class="px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest whitespace-nowrap transition bg-white text-gray-900 ${p.id === prodId ? 'border-2 border-gray-900' : 'border border-gray-200 text-gray-600 hover:border-gray-400'}">
+    <button data-prod="${p.id}" class="px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest whitespace-nowrap transition bg-white ${p.id === prodId ? 'border-2 border-[#8A1558] text-[#8A1558]' : 'border border-gray-200 text-gray-600 hover:border-gray-400'}">
       <i data-lucide="${p.icon}" class="w-3.5 h-3.5 inline mr-1"></i>${p.label}
     </button>`).join('');
   tabsEl.querySelectorAll('[data-prod]').forEach(b => b.addEventListener('click', () => renderProduct(b.dataset.prod)));
