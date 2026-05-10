@@ -82,6 +82,7 @@
 </div>
 
 <nav class="nmw-nav">
+  <div class="nmw-nav__inner">
   <a href="index.html" class="nmw-logo-block">
     <img src="images/nmw-logo.png" alt="New Music Wednesday" class="nmw-logo-img" />
   </a>
@@ -94,6 +95,7 @@
     <a href="alerts.html" class="hover:text-black">GET ALERTS</a>
     <a href="sponsor.html" class="hover:text-black">SPONSORSHIP STORE</a>
   </div>
+  </div>
 </nav>
 
 <section class="subpage-header-bg text-white py-10 md:py-14 border-b-4 border-[#8A1558]">
@@ -104,19 +106,16 @@
   </div>
 </section>
 
-<section class="bg-gray-50 border-b border-gray-200 py-6">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap gap-2">
-    <a href="#join" class="inline-flex items-center gap-2 bg-[#8A1558] text-white px-4 py-2.5 rounded-md text-sm font-bold hover:bg-[#680D3E] transition-colors"><i data-lucide="video" class="w-4 h-4"></i> Join This Wednesday</a>
-    <a id="calBtn" target="_blank" class="inline-flex items-center gap-2 bg-white border border-gray-300 text-gray-900 px-4 py-2.5 rounded-md text-sm font-bold hover:bg-gray-100 transition-colors"><i data-lucide="calendar-plus" class="w-4 h-4"></i> Add to Calendar</a>
-  </div>
-</section>
-
 <!-- HOW TO SIGN IN -->
 <section id="join" class="py-20 bg-white border-b border-gray-200">
   <div class="max-w-5xl mx-auto px-4">
     <div class="text-center mb-12">
       <span class="text-[#8A1558] font-black tracking-widest text-xs mb-3 block">[ How To Sign In ]</span>
       <h2 class="text-3xl md:text-5xl font-black tracking-tighter">Three steps. Every Wednesday.</h2>
+      <div class="mt-6 flex flex-wrap gap-2 justify-center">
+        <a href="https://us02web.zoom.us/j/84165879840?pwd=WRC8jjWBihWHaRwwv0gboprCIf9Fht.1" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-[#8A1558] text-white px-4 py-2.5 rounded-md text-sm font-bold hover:bg-[#680D3E] transition-colors"><i data-lucide="video" class="w-4 h-4"></i> Join This Wednesday</a>
+        <a id="calBtn" target="_blank" class="inline-flex items-center gap-2 bg-white border border-gray-300 text-gray-900 px-4 py-2.5 rounded-md text-sm font-bold hover:bg-gray-100 transition-colors"><i data-lucide="calendar-plus" class="w-4 h-4"></i> Add to Calendar</a>
+      </div>
     </div>
 
     <div class="grid md:grid-cols-3 gap-5">
@@ -160,18 +159,6 @@
       </a>
     </div>
     <div id="upcomingList" class="grid md:grid-cols-2 gap-4"></div>
-  </div>
-</section>
-
-<!-- ARCHIVE -->
-<section class="py-20 bg-gray-50 border-t border-gray-200">
-  <div class="max-w-5xl mx-auto px-4">
-    <div class="text-center mb-12">
-      <span class="text-[#8A1558] font-black tracking-widest text-xs mb-3 block">[ The Archive ]</span>
-      <h2 class="text-3xl md:text-5xl font-black tracking-tighter">Past calls.</h2>
-      <p class="text-gray-600 font-serif text-lg mt-3 max-w-xl mx-auto">Recaps, picks, and the records that moved out of the room.</p>
-    </div>
-    <div class="grid md:grid-cols-2 gap-4" id="archiveList"></div>
   </div>
 </section>
 
@@ -259,28 +246,6 @@
       <a href="${link}" target="_blank" class="text-xs font-bold uppercase tracking-widest text-[#8A1558] hover:underline whitespace-nowrap"><i data-lucide="calendar-plus" class="w-3.5 h-3.5 inline"></i> Add</a>
     </div>`;
   }).join('');
-
-  // Archive (mock data, past 6 calls)
-  const ARCHIVE = [
-    { date: 'April 30, 2026', title: 'East Coast Soul Roundtable', recordsSpun: 14, note: 'Two records pulled into rotation Wednesday night.' },
-    { date: 'April 23, 2026', title: 'Afro / Amapiano Crossover', recordsSpun: 18, note: 'Heavy international drop. New rotation residency picked.' },
-    { date: 'April 16, 2026', title: 'Hip Hop Listening Session', recordsSpun: 11, note: 'Featured artist clip pulled 38K views post-Wednesday.' },
-    { date: 'April 9, 2026', title: 'New Voices Showcase', recordsSpun: 16, note: 'Three records added to Penthouse Wednesday rotation.' },
-    { date: 'April 2, 2026', title: 'Producer Spotlight', recordsSpun: 9, note: 'Producer roundtable, new EP pulled across DJ network.' },
-    { date: 'March 26, 2026', title: 'R&B Deep Cuts', recordsSpun: 13, note: 'Two records picked up by morning radio mix.' },
-  ];
-  document.getElementById('archiveList').innerHTML = ARCHIVE.map(a => `
-    <article class="section-card">
-      <div class="flex items-start justify-between gap-3 flex-wrap">
-        <div>
-          <div class="text-xs font-black uppercase tracking-widest text-[#8A1558]">${a.date}</div>
-          <h3 class="font-black text-lg mt-1">${a.title}</h3>
-        </div>
-        <span class="pill pill--gray">${a.recordsSpun} records</span>
-      </div>
-      <p class="text-sm text-gray-700 font-serif mt-3">${a.note}</p>
-    </article>
-  `).join('');
 
   (typeof lucide !== "undefined" && lucide.createIcons());
 </script>

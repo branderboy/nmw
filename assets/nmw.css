@@ -56,15 +56,25 @@ body {
 .nmw-nav {
   background: #fff;
   border-bottom: 1px solid #f3f4f6;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   position: sticky;
   top: 0;
   z-index: 50;
   box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-  /* Full-width bar with content centered + capped at 80rem (matches max-w-7xl page sections) */
-  padding: 0.5rem max(1rem, calc((100% - 80rem) / 2));
+  padding: 0.5rem 0;
+  display: flex;
+  justify-content: center;
+}
+.nmw-nav__inner {
+  width: 100%;
+  max-width: 80rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+@media (min-width: 768px) {
+  .nmw-nav__inner { padding-left: 3rem; padding-right: 3rem; }
 }
 .nmw-logo-block { display: inline-flex; align-items: center; text-decoration: none; }
 .nmw-logo-img {
@@ -299,15 +309,9 @@ aside .lg\:sticky { border-top: 3px solid var(--brand-500) !important; }
 }
 @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 
-/* ============ Subpage header background (banner-shaped speaker image) ============ */
+/* ============ Subpage header (solid black, matches apply.html) ============ */
 .subpage-header-bg {
   background-color: #000;
-  background-image:
-    linear-gradient(to right, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.75) 45%, rgba(0,0,0,0.55) 100%),
-    url('../images/top_header.png');
-  background-size: cover;
-  background-position: center right;
-  background-repeat: no-repeat;
 }
 
 /* ============ Lead capture section soft gradient ============ */

@@ -14,6 +14,7 @@ test.describe('Homepage / sales funnel (index.html)', () => {
 
     // Hero
     await expect(page.locator('[data-cms="heroEyebrow"]')).toBeVisible();
+    await expect(page.locator('[data-cms="heroHeadline"]')).toBeVisible();
     await expect(page.locator('[data-cms="primaryCta"]')).toBeVisible();
 
     // Lead capture form (no pricing on the homepage)
