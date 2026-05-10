@@ -310,6 +310,15 @@ aside .lg\:sticky { border-top: 3px solid var(--brand-500) !important; }
   flex-shrink: 0;
 }
 
+/* Highlighter-marker effect — paint the lower band of the text only */
+.nmw-highlight {
+  background-image: linear-gradient(180deg, transparent 55%, rgba(251, 207, 232, 0.95) 55%);
+  background-repeat: no-repeat;
+  padding: 0 0.15em;
+  -webkit-box-decoration-break: clone;
+          box-decoration-break: clone;
+}
+
 /* Horizontal bounce — for arrows that should nudge right instead of down */
 .animate-bounce-x { animation: bounce-x 1s infinite; }
 @keyframes bounce-x {
