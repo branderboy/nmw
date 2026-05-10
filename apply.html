@@ -160,7 +160,19 @@
       <section data-step="date" class="step bg-white rounded-2xl shadow-sm p-6 md:p-10 hidden">
         <h2 class="text-2xl md:text-3xl font-black tracking-tight mb-1">PICK YOUR WEDNESDAY</h2>
         <p class="text-gray-500 mb-8">Each Wednesday at The Penthouse has limited slots. Pick an open one.</p>
+
+        <div class="text-xs font-black uppercase tracking-widest text-[#8A1558] mb-3">Primary Date *</div>
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3" id="dateGrid"></div>
+
+        <div class="text-xs font-black uppercase tracking-widest text-gray-500 mt-10 mb-2">Rain Date *</div>
+        <p class="text-sm text-gray-500 mb-3">Pick a backup Wednesday in case the primary doesn't work — weather, scheduling conflict, or a sold-out room. Must be different from your primary date.</p>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3" id="rainDateGrid"></div>
+
+        <div class="mt-8 bg-[#FDF2F8] border border-[#FBCFE8] rounded-xl p-4 flex items-start gap-3">
+          <i data-lucide="phone-call" class="w-5 h-5 text-[#8A1558] flex-shrink-0 mt-0.5"></i>
+          <p class="text-sm text-gray-800"><b>Heads up:</b> a New Music Wednesdays assistant will call you within 24 hours to confirm your date and walk through what to bring.</p>
+        </div>
+
         <div class="flex justify-between mt-8">
           <button class="onboarding-back" data-back="date"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back</button>
           <button class="onboarding-cta" data-next="date" disabled>Continue <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
@@ -185,6 +197,58 @@
         <div class="flex justify-between mt-8">
           <button class="onboarding-back" data-back="enhance"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back</button>
           <button class="onboarding-cta" data-next="enhance">Continue <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+        </div>
+      </section>
+
+      <!-- STEP 3.5: HOUSE RULES -->
+      <section data-step="rules" class="step bg-white rounded-2xl shadow-sm p-6 md:p-10 hidden">
+        <h2 class="text-2xl md:text-3xl font-black tracking-tight mb-1">HOUSE RULES</h2>
+        <p class="text-gray-500 mb-8">Quick read before you book. These keep the night running smooth and your distribution unlocked.</p>
+
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start gap-3"><i data-lucide="clock" class="w-5 h-5 text-[#8A1558] flex-shrink-0 mt-0.5"></i><p class="text-sm text-gray-800"><b>Call time is 5:30 PM, sharp.</b> Doors at 3 PM, DJ Call 3-7 PM, live performances 7-9:30 PM. Late = forfeited slot.</p></div>
+          <div class="flex items-start gap-3"><i data-lucide="mic" class="w-5 h-5 text-[#8A1558] flex-shrink-0 mt-0.5"></i><p class="text-sm text-gray-800"><b>Two songs max per artist.</b> Bring clean instrumentals on a USB. No backing-track vocals.</p></div>
+          <div class="flex items-start gap-3"><i data-lucide="users" class="w-5 h-5 text-[#8A1558] flex-shrink-0 mt-0.5"></i><p class="text-sm text-gray-800"><b>+1 guest comp.</b> Anyone beyond that needs to RSVP through your share link.</p></div>
+          <div class="flex items-start gap-3"><i data-lucide="ban" class="w-5 h-5 text-[#8A1558] flex-shrink-0 mt-0.5"></i><p class="text-sm text-gray-800"><b>No no-shows.</b> No-show forfeits the package; the rain date is your safety net.</p></div>
+          <div class="flex items-start gap-3"><i data-lucide="video" class="w-5 h-5 text-[#8A1558] flex-shrink-0 mt-0.5"></i><p class="text-sm text-gray-800"><b>You consent to capture.</b> We record audio + video for your press kit and our editorial / partner distribution (Digiwaxx, DICE, Bandsintown, Songkick, Eventbrite, Luma).</p></div>
+        </div>
+
+        <div class="border-t border-gray-100 pt-6">
+          <h3 class="font-black tracking-tight mb-2">Sign up at these platforms before showtime</h3>
+          <p class="text-sm text-gray-500 mb-4">Distribution unlocks once we verify your artist profiles. Claim them now and upload screenshots in the Verification Portal.</p>
+          <div class="grid sm:grid-cols-3 gap-3">
+            <a href="https://artists.bandsintown.com" target="_blank" rel="noopener" class="flex items-center justify-between gap-2 p-3 border border-gray-200 rounded-lg hover:border-[#8A1558] transition-colors">
+              <div class="text-left min-w-0">
+                <div class="text-xs font-black uppercase tracking-widest text-[#8A1558]">Bandsintown</div>
+                <div class="text-xs text-gray-600 truncate">artists.bandsintown.com</div>
+              </div>
+              <i data-lucide="external-link" class="w-4 h-4 text-gray-400 flex-shrink-0"></i>
+            </a>
+            <a href="https://www.songkick.com/tourbox" target="_blank" rel="noopener" class="flex items-center justify-between gap-2 p-3 border border-gray-200 rounded-lg hover:border-[#8A1558] transition-colors">
+              <div class="text-left min-w-0">
+                <div class="text-xs font-black uppercase tracking-widest text-[#8A1558]">Songkick</div>
+                <div class="text-xs text-gray-600 truncate">songkick.com/tourbox</div>
+              </div>
+              <i data-lucide="external-link" class="w-4 h-4 text-gray-400 flex-shrink-0"></i>
+            </a>
+            <a href="https://dice.fm" target="_blank" rel="noopener" class="flex items-center justify-between gap-2 p-3 border border-gray-200 rounded-lg hover:border-[#8A1558] transition-colors">
+              <div class="text-left min-w-0">
+                <div class="text-xs font-black uppercase tracking-widest text-[#8A1558]">DICE</div>
+                <div class="text-xs text-gray-600 truncate">dice.fm</div>
+              </div>
+              <i data-lucide="external-link" class="w-4 h-4 text-gray-400 flex-shrink-0"></i>
+            </a>
+          </div>
+        </div>
+
+        <label class="mt-8 flex items-start gap-3 cursor-pointer">
+          <input id="rulesAgree" type="checkbox" class="mt-1 w-5 h-5 accent-[#8A1558]">
+          <span class="text-sm text-gray-800">I've read the house rules and I'll claim my Bandsintown, Songkick, and DICE profiles before showtime.</span>
+        </label>
+
+        <div class="flex justify-between mt-8">
+          <button class="onboarding-back" data-back="rules"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back</button>
+          <button class="onboarding-cta" data-next="rules" disabled>Continue <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
         </div>
       </section>
 
@@ -235,6 +299,11 @@
           </div>
           <h2 class="text-3xl md:text-4xl font-black tracking-tighter mb-2">YOU'RE BOOKED.</h2>
           <p class="text-gray-600 text-lg" id="successSub"></p>
+        </div>
+
+        <div class="bg-[#FDF2F8] border border-[#FBCFE8] rounded-xl p-5 mb-6 grid sm:grid-cols-2 gap-4">
+          <div class="flex items-start gap-3"><i data-lucide="mail" class="w-5 h-5 text-[#8A1558] flex-shrink-0 mt-0.5"></i><p class="text-sm text-gray-800"><b>Check your inbox.</b> We just emailed your receipt and your next-steps checklist.</p></div>
+          <div class="flex items-start gap-3"><i data-lucide="phone-call" class="w-5 h-5 text-[#8A1558] flex-shrink-0 mt-0.5"></i><p class="text-sm text-gray-800"><b>An NMW assistant will call</b> within 24 hours to confirm your date and walk through prep.</p></div>
         </div>
 
         <div id="performanceNext" class="hidden">
@@ -400,11 +469,11 @@ NMW.setFunnel(funnel);
 function stepSequence() {
   const seq = ['1'];
   if (NMW.isPerformanceTier(funnel.package)) seq.push('date');
-  seq.push('enhance', 'payment');
+  seq.push('enhance', 'rules', 'payment');
   return seq;
 }
 function stepLabel(id) {
-  return { '1': 'Package', 'date': 'Date', 'enhance': 'Enhance', 'payment': 'Payment', 'success': 'Done' }[id];
+  return { '1': 'Package', 'date': 'Date', 'enhance': 'Enhance', 'rules': 'House Rules', 'payment': 'Payment', 'success': 'Done' }[id];
 }
 let currentStep = '1';
 
@@ -470,35 +539,50 @@ function renderPackages() {
 }
 
 function renderDates() {
-  const grid = document.getElementById('dateGrid');
   const dates = NMW.upcomingWednesdays(8);
-  grid.innerHTML = dates.map(d => {
+  function tileHTML(d, selectedISO, role) {
     const k = NMW.dateKey(d);
     const slot = NMW.getSlot(k);
     const left = Math.max(0, slot.capacity - slot.bookings.length);
     const full = left === 0;
-    const sel = funnel.eventDate === d.toISOString();
+    const sel = selectedISO === d.toISOString();
+    const otherIso = role === 'primary' ? funnel.rainDate : funnel.eventDate;
+    const blocked = otherIso === d.toISOString();
+    const disabled = full || blocked;
     const tag = full
       ? '<span class="text-xs font-bold text-gray-400">Sold out</span>'
-      : (left <= 1 ? `<span class="text-xs font-bold text-yellow-700">${left} slot left</span>` : `<span class="text-xs font-bold text-green-700">${left} of ${slot.capacity} open</span>`);
-    return `<button type="button" class="date-tile ${sel ? 'is-selected' : ''} ${full ? 'is-disabled' : ''}" ${full ? 'disabled' : ''} data-date="${d.toISOString()}">
+      : (blocked ? '<span class="text-xs font-bold text-gray-400">Already picked</span>'
+      : (left <= 1 ? `<span class="text-xs font-bold text-yellow-700">${left} slot left</span>` : `<span class="text-xs font-bold text-green-700">${left} of ${slot.capacity} open</span>`));
+    return `<button type="button" class="date-tile ${sel ? 'is-selected' : ''} ${disabled ? 'is-disabled' : ''}" ${disabled ? 'disabled' : ''} data-date="${d.toISOString()}" data-role="${role}">
       <div class="text-xs font-black uppercase tracking-widest text-gray-400">${d.toLocaleDateString(undefined, { month: 'short' })}</div>
       <div class="text-3xl font-black leading-none mt-1">${d.getDate()}</div>
       <div class="text-xs text-gray-500 mt-1">Wednesday</div>
       <div class="mt-2">${tag}</div>
     </button>`;
-  }).join('');
-  grid.querySelectorAll('[data-date]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      if (btn.disabled) return;
-      funnel.eventDate = btn.dataset.date;
-      NMW.setFunnel(funnel);
-      renderDates();
-      document.querySelector('[data-next="date"]').disabled = false;
-      renderSummary();
+  }
+
+  const primaryGrid = document.getElementById('dateGrid');
+  primaryGrid.innerHTML = dates.map(d => tileHTML(d, funnel.eventDate, 'primary')).join('');
+  const rainGrid = document.getElementById('rainDateGrid');
+  if (rainGrid) rainGrid.innerHTML = dates.map(d => tileHTML(d, funnel.rainDate, 'rain')).join('');
+
+  function bind(grid) {
+    grid.querySelectorAll('[data-date]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (btn.disabled) return;
+        const role = btn.dataset.role;
+        if (role === 'primary') funnel.eventDate = btn.dataset.date;
+        else funnel.rainDate = btn.dataset.date;
+        NMW.setFunnel(funnel);
+        renderDates();
+        renderSummary();
+      });
     });
-  });
-  document.querySelector('[data-next="date"]').disabled = !funnel.eventDate;
+  }
+  bind(primaryGrid);
+  if (rainGrid) bind(rainGrid);
+
+  document.querySelector('[data-next="date"]').disabled = !(funnel.eventDate && funnel.rainDate);
 }
 
 function renderGoals() {
@@ -586,7 +670,8 @@ function renderSummary() {
   const dateEl = document.getElementById('summaryDate');
   if (funnel.eventDate) {
     dateEl.classList.remove('hidden');
-    dateEl.textContent = 'Performing ' + NMW.fmtDate(new Date(funnel.eventDate));
+    const rain = funnel.rainDate ? ` · Rain date ${NMW.fmtDate(new Date(funnel.rainDate))}` : '';
+    dateEl.textContent = 'Performing ' + NMW.fmtDate(new Date(funnel.eventDate)) + rain;
   } else {
     dateEl.classList.add('hidden');
   }
@@ -768,6 +853,21 @@ renderSummary();
     renderSummary();
   });
 })();
+
+// House Rules step: enable Continue only when the user agrees
+(function rulesWiring() {
+  const cb = document.getElementById('rulesAgree');
+  const next = document.querySelector('[data-next="rules"]');
+  if (!cb || !next) return;
+  if (funnel.rulesAgreed) cb.checked = true;
+  next.disabled = !cb.checked;
+  cb.addEventListener('change', () => {
+    funnel.rulesAgreed = cb.checked;
+    NMW.setFunnel(funnel);
+    next.disabled = !cb.checked;
+  });
+})();
+
 const f = document.getElementById('step1Form');
 if (funnel.info) {
   Object.entries(funnel.info).forEach(([k, v]) => { if (f.elements[k] && v) f.elements[k].value = v; });
