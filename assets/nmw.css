@@ -602,17 +602,10 @@ aside .lg\:sticky { border-top: 3px solid var(--brand-500) !important; }
 }
 .chip:hover { border-color: #d1d5db; }
 .chip.selected {
-  background-image: linear-gradient(98deg,
-    rgba(253, 224, 71, 0)    1%,
-    rgba(253, 224, 71, 0.9)  4%,
-    rgba(253, 224, 71, 0.95) 88%,
-    rgba(253, 224, 71, 0)    100%);
-  background-position: 0 50%;
-  background-size: 100% 60%;
-  background-repeat: no-repeat;
-  background-color: #fff;
+  background: #fff;
   color: #111827;
-  border-color: #e5e7eb;
+  border-color: var(--brand-500);
+  box-shadow: 0 0 0 1px var(--brand-500);
   font-weight: 800;
 }
 
