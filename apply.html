@@ -211,6 +211,14 @@
           <div><label class="onboarding-label">Expiry</label><input class="onboarding-input" placeholder="MM/YY" value="12/29"></div>
           <div><label class="onboarding-label">CVC</label><input class="onboarding-input" placeholder="123" value="123"></div>
           <div class="sm:col-span-2"><label class="onboarding-label">Cardholder Name</label><input class="onboarding-input" placeholder="Name on card"></div>
+          <div class="sm:col-span-2 border-t border-gray-100 pt-5">
+            <label class="onboarding-label">Have an offer code?</label>
+            <div class="flex gap-2">
+              <input id="promoInput" class="onboarding-input flex-1 uppercase" placeholder="Enter code" autocomplete="off">
+              <button type="button" id="promoApply" class="onboarding-cta onboarding-cta--brand whitespace-nowrap">Apply</button>
+            </div>
+            <p id="promoStatus" class="text-xs mt-2"></p>
+          </div>
         </div>
         <div class="text-xs text-gray-400 flex items-center gap-2 mt-3"><i data-lucide="lock" class="w-3 h-3"></i> 256-bit SSL, Stripe-powered, Demo only</div>
         <div class="flex justify-between mt-8">
@@ -566,10 +574,13 @@ function renderSummary() {
   filled.classList.remove('hidden');
   const pkg = NMW.PACKAGES.find(p => p.id === funnel.package);
   const ups = (funnel.upsells || []).map(id => NMW.UPSELLS[id]).filter(Boolean);
+  const subtotal = pkg.price + ups.reduce((s, u) => s + u.price, 0);
   const total = NMW.totalPrice(funnel);
+  const discountVal = subtotal - total;
   document.getElementById('summaryItems').innerHTML = `
     <div class="flex justify-between"><span class="font-bold">${pkg.name}</span><span class="font-bold">$${pkg.price}</span></div>
     ${ups.map(u => `<div class="flex justify-between text-sm"><span>${u.name}</span><span>+$${u.price}</span></div>`).join('')}
+    ${funnel.promo && discountVal > 0 ? `<div class="flex justify-between text-sm text-[#8A1558]"><span>Promo (${funnel.promo.code})</span><span>-$${discountVal}</span></div>` : ''}
   `;
   document.getElementById('summaryTotal').textContent = '$' + total;
   const dateEl = document.getElementById('summaryDate');
@@ -729,6 +740,34 @@ function wireLoops(artist) {
 renderPackages();
 renderGoals();
 renderSummary();
+
+// Promo / offer code wiring
+(function promoWiring() {
+  const input = document.getElementById('promoInput');
+  const btn = document.getElementById('promoApply');
+  const status = document.getElementById('promoStatus');
+  if (!input || !btn || !status) return;
+
+  if (funnel.promo) input.value = funnel.promo.code;
+
+  btn.addEventListener('click', () => {
+    const code = (input.value || '').trim();
+    if (!code) { funnel.promo = null; NMW.setFunnel(funnel); status.textContent = ''; renderSummary(); return; }
+    const promo = NMW.findPromoCode(code);
+    if (!promo) {
+      funnel.promo = null; NMW.setFunnel(funnel);
+      status.textContent = "That code isn't valid.";
+      status.className = 'text-xs mt-2 text-red-600 font-bold';
+      renderSummary();
+      return;
+    }
+    funnel.promo = { code: promo.code, type: promo.type, value: promo.value };
+    NMW.setFunnel(funnel);
+    status.textContent = `Applied: ${promo.label || promo.code}`;
+    status.className = 'text-xs mt-2 text-[#8A1558] font-bold';
+    renderSummary();
+  });
+})();
 const f = document.getElementById('step1Form');
 if (funnel.info) {
   Object.entries(funnel.info).forEach(([k, v]) => { if (f.elements[k] && v) f.elements[k].value = v; });

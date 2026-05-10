@@ -15,6 +15,7 @@ const NMW = (() => {
     flows: 'nmw.flows',
     flowRuns: 'nmw.flowRuns',
     siteContent: 'nmw.siteContent',
+    promoCodes: 'nmw.promoCodes',
   };
 
   const DEFAULT_SLOT_CAPACITY = 3;
@@ -299,7 +300,34 @@ const NMW = (() => {
     const pkg = PACKAGES.find(p => p.id === funnel.package);
     const pkgPrice = pkg ? pkg.price : 0;
     const upsellPrice = (funnel.upsells || []).reduce((s, id) => s + (UPSELLS[id]?.price || 0), 0);
-    return pkgPrice + upsellPrice;
+    const subtotal = pkgPrice + upsellPrice;
+    const discount = funnel.promo ? promoDiscount(funnel.promo, subtotal) : 0;
+    return Math.max(0, subtotal - discount);
+  };
+
+  // ---------- Promo / offer codes ----------
+  const DEFAULT_PROMOS = [
+    { code: 'NMW10',   type: 'percent', value: 10, label: '10% off' },
+    { code: 'WELCOME', type: 'amount',  value: 50, label: '$50 off' },
+    { code: 'VIP20',   type: 'percent', value: 20, label: '20% off' },
+  ];
+  const getPromoCodes = () => {
+    const stored = get(KEYS.promoCodes);
+    if (Array.isArray(stored)) return stored;
+    set(KEYS.promoCodes, DEFAULT_PROMOS);
+    return DEFAULT_PROMOS.slice();
+  };
+  const setPromoCodes = (list) => set(KEYS.promoCodes, list);
+  const findPromoCode = (code) => {
+    const c = (code || '').trim().toUpperCase();
+    if (!c) return null;
+    return getPromoCodes().find(p => (p.code || '').toUpperCase() === c) || null;
+  };
+  const promoDiscount = (promo, subtotal) => {
+    if (!promo || !subtotal) return 0;
+    if (promo.type === 'percent') return Math.round(subtotal * (Number(promo.value) || 0) / 100);
+    if (promo.type === 'amount')  return Math.min(subtotal, Number(promo.value) || 0);
+    return 0;
   };
 
   const nextWednesday = () => {
@@ -539,6 +567,7 @@ const NMW = (() => {
     getSiteContent, saveSiteContent, resetSiteContent, applySiteContent,
     recommendUpsells, generateReferralCode, referralLink,
     isPerformanceTier, totalPrice, nextWednesday, fmtDate,
+    getPromoCodes, setPromoCodes, findPromoCode, promoDiscount,
     googleCalendarLink, buildCalendarLink, upcomingWednesdays,
     dateKey, getSlots, getSlot, saveSlot, slotAvailable, slotIsFull,
     bookSlot, removeBookingByArtist, removeBookingAt, setSlotCapacity,
