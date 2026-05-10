@@ -149,10 +149,16 @@
       </a>
     </div>
 
-    <div class="mt-6 flex flex-wrap gap-2 justify-center items-center">
-      <a id="calBtn" target="_blank" class="inline-flex items-center gap-2 bg-white border border-gray-300 text-gray-900 px-4 py-2.5 rounded-md text-sm font-bold hover:bg-gray-100 transition-colors"><i data-lucide="calendar-plus" class="w-4 h-4"></i> Add to Calendar</a>
-      <button id="shareDjBtn" type="button" class="inline-flex items-center gap-2 bg-white border border-gray-300 text-gray-900 px-4 py-2.5 rounded-md text-sm font-bold hover:bg-gray-100 transition-colors"><i data-lucide="share-2" class="w-4 h-4"></i> Share This Page</button>
-      <span id="shareDjToast" class="hidden text-xs font-bold text-[#8A1558]">Link copied</span>
+    <div class="mt-8 flex flex-col items-center gap-3">
+      <div class="flex items-center gap-2 text-[#8A1558] font-black tracking-widest text-xs uppercase">
+        <span>Don't lose the link</span>
+        <i data-lucide="arrow-down" class="w-6 h-6 md:w-8 md:h-8 animate-bounce" style="stroke-width:3"></i>
+      </div>
+      <div class="flex flex-wrap gap-2 justify-center items-center">
+        <a id="calBtn" target="_blank" class="inline-flex items-center gap-2 bg-white border border-gray-300 text-gray-900 px-4 py-2.5 rounded-md text-sm font-bold hover:bg-gray-100 transition-colors"><i data-lucide="calendar-plus" class="w-4 h-4"></i> Add to Calendar</a>
+        <button id="shareDjBtn" type="button" class="inline-flex items-center gap-2 bg-white border border-gray-300 text-gray-900 px-4 py-2.5 rounded-md text-sm font-bold hover:bg-gray-100 transition-colors"><i data-lucide="share-2" class="w-4 h-4"></i> Share This Page</button>
+        <span id="shareDjToast" class="hidden text-xs font-bold text-[#8A1558]">Link copied</span>
+      </div>
     </div>
   </div>
 </section>
