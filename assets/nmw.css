@@ -66,9 +66,9 @@ body {
 }
 .nmw-nav__inner {
   width: 100%;
-  max-width: 64rem;
+  max-width: 80rem;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   gap: 2rem;
   padding-left: 1.5rem;
