@@ -193,6 +193,7 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="mission.html">Mission</a></li>
           <li><a href="events.html">Events</a></li>
+          <li><a href="https://www.newmusicwednesdayslive.com/rsvp" target="_blank" rel="noopener">RSVP</a></li>
           <li><a href="dj-call.html">DJ Call</a></li>
           <li><a href="podcast.html">Podcast</a></li>
           <li><a href="apply.html">Artist Access</a></li>
@@ -240,10 +241,7 @@
 NMW.seedDemoIfEmpty();
 
 function rsvpUrl(d) {
-  const yyyy = d.getFullYear();
-  const mm = String(d.getMonth() + 1).padStart(2, '0');
-  const dd = String(d.getDate()).padStart(2, '0');
-  return `https://www.newmusicwednesdayslive.com/event-details/new-music-wednesdays-x-the-next-up-experience-${yyyy}-${mm}-${dd}-19-00`;
+  return 'https://www.newmusicwednesdayslive.com/rsvp';
 }
 
 function buildEventModel(d) {
