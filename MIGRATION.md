@@ -23,6 +23,51 @@ All free or near-free until the room scales.
 
 ---
 
+## v1 Launch — Aggressive 3-week cut
+
+The 13 phases below are the full production plan. To hit a 3-week launch we
+ship a subset and defer the rest to post-launch iteration.
+
+### In v1 (3 weeks)
+
+| Week | Phases | Deliverable |
+|---|---|---|
+| **1** | 0–1 | Next.js shell on Vercel; all 9 public pages migrated 1:1; domain pointed; QA on staging |
+| **2** | 2–5 | Sanity Studio live + content migrated; Postgres provisioned; `/api/apply` + Stripe Checkout (test mode) functional; Clerk admin gate live |
+| **3** | 6 + polish | Resend wired; receipt + Blast confirmation emails; Stripe to live mode; SEO + favicon + OG-image polish (Phase 10 lite); soft-launch |
+
+### Deferred to post-launch (Weeks 4–8+)
+
+- **Phase 7** — Eventbrite/Luma/DICE/Bandsintown/Songkick distribution APIs
+- **Phase 8** — WhatsApp Business Cloud broadcasts
+- **Phase 9** — Verification file uploads (admin moderation queue)
+- **Phase 11** — SEO content engine (per-event pages, podcast schema, blog)
+- **Phase 12** — Pixels, GA4, Meta/TikTok, Attio CRM sync
+- **Phase 13** — Full event distribution layer (Sanity → all channels)
+
+### Cuts that make 3 weeks possible
+
+- Distribution to external platforms (Eventbrite, Luma, DICE, etc.) remains
+  **manual** for v1 — admin posts events to each platform by hand. Phase 13
+  automates this, but a human can cover 1 event/week without it.
+- Per-event SEO pages launch as a basic template (slug + lineup); the recap
+  hub and JSON-LD expansion come in Phase 11.
+- Sponsor checkout is **inquiry form → email follow-up** (already shipped on
+  static site) rather than full Stripe Checkout for sponsor packages.
+- WhatsApp opt-in field captured but no broadcasts until Phase 8 (template
+  pre-approval alone takes 3–7 days at Meta).
+
+### Risks to the 3-week timeline
+
+1. **Sanity content migration** — manual one-time copy from current HTML to
+   Sanity documents. Budget 1 day for this; can run in parallel during Week 2.
+2. **Stripe live-mode approval** — sometimes takes 24–48 hrs. Start the Stripe
+   account on day 1 of Week 1.
+3. **DNS cutover** — propagation can lag. Cut DNS at start of Week 3 to leave
+   72 hrs of buffer before soft-launch.
+
+---
+
 ## Phase 0 — Repo prep (1 hour)
 
 - [ ] Create `migration/` branch on the existing repo
@@ -377,11 +422,22 @@ The list is intentionally pessimistic — most weeks have buffer.
 
 ## Things that don't migrate
 
-- `landing-page.html`, `blog.html`, `mixtapes.html`, `index2.html` — stale or experimental, drop them
+- `index2.html` — design preview, already `noindex`; drop after Next.js shell ships
+- `elements.html` — internal style guide, already `noindex`; drop or move to `/_internal/elements` behind Clerk
+- `admin.html` / `dashboard.html` / `verify.html` — replaced by Next.js routes (`/admin`, `/dashboard`, `/verify`)
 - `nmw.js` — full rewrite as TypeScript modules in `lib/`
 - `assets/nmw.css` — port to `app/globals.css`, keep brand variables, drop Tailwind fallback shims (Next's Tailwind handles this)
 - The `data-cms` localStorage CMS layer — Sanity replaces it
 - The mobile drawer JS — Next.js component using `useState`
+
+## Files that belong to a separate site (do NOT migrate or delete)
+
+- `landing-page.html`
+- `blog.html`
+- `mixtapes.html`
+
+These are content for a different property that happens to share this repo.
+Leave them in place; they are not part of NMW's production migration.
 
 ---
 
