@@ -99,6 +99,7 @@ body {
 .nmw-nav--dark a { color: #d1d5db; }
 .nmw-nav--dark a:hover { color: #fff; }
 .nmw-nav--dark a.text-black { color: #fff; }
+.nmw-nav--dark .nmw-logo-img { filter: brightness(0) invert(1); }
 
 /* Footer logo */
 .footer-logo {
