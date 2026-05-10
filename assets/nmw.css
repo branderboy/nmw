@@ -604,9 +604,9 @@ aside .lg\:sticky { border-top: 3px solid var(--brand-500) !important; }
 .chip.selected {
   background: #fff;
   color: #111827;
+  border-width: 1px;
   border-color: var(--brand-500);
-  box-shadow: 0 0 0 1px var(--brand-500);
-  font-weight: 800;
+  font-weight: 700;
 }
 
 /* ============ Card (selectable) ============ */
