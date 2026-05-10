@@ -614,10 +614,9 @@ aside .lg\:sticky { border-top: 3px solid var(--brand-500) !important; }
 }
 .chip:hover { border-color: #d1d5db; }
 .chip.selected {
-  background: #fff;
-  color: var(--brand-500);
-  border-width: 2px;
-  border-color: var(--brand-500);
+  background: transparent !important;
+  color: #111827 !important;
+  border: 2px solid #111827 !important;
   font-weight: 700;
 }
 
