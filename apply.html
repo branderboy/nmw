@@ -127,12 +127,18 @@
             <div><label class="onboarding-label">Email Address *</label><input class="onboarding-input" name="email" type="email" placeholder="you@email.com" required></div>
             <div><label class="onboarding-label">Artist / Stage Name *</label><input class="onboarding-input" name="artistName" placeholder="Stage name" required></div>
             <div><label class="onboarding-label">Phone (Optional)</label><input class="onboarding-input" name="phone" type="tel" placeholder="(555) 000-0000"></div>
+            <div><label class="onboarding-label">Location *</label><input class="onboarding-input" name="location" placeholder="City, State" required></div>
             <div><label class="onboarding-label">Primary Genre *</label>
               <select class="onboarding-input" name="genre" required>
                 <option value="">Select…</option>
-                <option>R&B</option><option>Soul</option><option>Hip Hop</option>
-                <option>Afro-Pop</option><option>Pop</option><option>Latin</option>
-                <option>Electronic</option><option>Other</option>
+                <option>Hip Hop</option>
+                <option>R&amp;B</option>
+                <option>Soul</option>
+                <option>Reggae</option>
+                <option>Dancehall</option>
+                <option>Afrobeat</option>
+                <option>Gospel</option>
+                <option>Latin Urban / Dance</option>
               </select>
             </div>
             <div><label class="onboarding-label">Instagram</label><input class="onboarding-input" name="instagram" placeholder="@yourhandle"></div>
@@ -680,7 +686,7 @@ function captureStep1() {
   const form = document.getElementById('step1Form');
   const data = new FormData(form);
   const info = {};
-  ['name','email','phone','artistName','genre','instagram','source'].forEach(k => info[k] = (data.get(k) || '').toString().trim());
+  ['name','email','phone','artistName','location','genre','instagram','source'].forEach(k => info[k] = (data.get(k) || '').toString().trim());
   funnel.info = info;
   NMW.setFunnel(funnel);
   return info;
@@ -688,7 +694,7 @@ function captureStep1() {
 
 function validateStep1() {
   const form = document.getElementById('step1Form');
-  const required = ['name','email','artistName','genre'];
+  const required = ['name','email','artistName','location','genre'];
   const allFilled = required.every(k => form.elements[k].value.trim().length > 0);
   const ok = !!funnel.package && allFilled;
   document.querySelector('[data-next="1"]').disabled = !ok;
