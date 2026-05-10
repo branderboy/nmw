@@ -299,12 +299,12 @@ aside .lg\:sticky { border-top: 3px solid var(--brand-500) !important; }
 }
 @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 
-/* ============ Subpage header background (portion of speaker image) ============ */
+/* ============ Subpage header background (banner-shaped speaker image) ============ */
 .subpage-header-bg {
   background-color: #000;
   background-image:
-    linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 45%, rgba(0,0,0,0.25) 100%),
-    url('../images/landingbg.png');
+    linear-gradient(to right, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.75) 45%, rgba(0,0,0,0.55) 100%),
+    url('../images/top_header.png');
   background-size: cover;
   background-position: center right;
   background-repeat: no-repeat;
