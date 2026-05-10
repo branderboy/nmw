@@ -82,15 +82,83 @@ body {
 }
 .nmw-logo-block { display: inline-flex; align-items: center; text-decoration: none; }
 .nmw-logo-img {
-  height: 96px;
+  height: 60px;
   width: auto;
   display: block;
   background: transparent;
   object-fit: contain;
 }
 @media (min-width: 768px) {
+  .nmw-logo-img { height: 96px; }
+}
+@media (min-width: 1024px) {
   .nmw-logo-img { height: 128px; }
 }
+
+/* Mobile hamburger button (injected by nmw.js) */
+.nmw-mobile-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  background: #fff;
+  cursor: pointer;
+  color: #111;
+}
+.nmw-nav--dark .nmw-mobile-toggle { background: transparent; border-color: rgba(255,255,255,0.3); color: #fff; }
+.nmw-mobile-toggle svg { width: 22px; height: 22px; }
+@media (min-width: 768px) { .nmw-mobile-toggle { display: none; } }
+
+/* Mobile menu drawer */
+.nmw-mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #fff;
+  z-index: 100;
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+.nmw-mobile-menu.is-open { display: block; }
+.nmw-nav--dark ~ .nmw-mobile-menu { background: #000; color: #fff; }
+.nmw-mobile-menu__close {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  width: 44px; height: 44px;
+  border: 1px solid currentColor;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.nmw-mobile-menu__list {
+  list-style: none;
+  margin: 4rem auto 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  max-width: 22rem;
+}
+.nmw-mobile-menu__list a {
+  display: block;
+  padding: 0.85rem 0;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  color: inherit;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+.nmw-nav--dark ~ .nmw-mobile-menu .nmw-mobile-menu__list a { border-bottom-color: rgba(255,255,255,0.12); }
+
+/* Hide the inline desktop nav links container on mobile (it's already hidden via Tailwind .hidden) */
 
 /* Dark navigation variant for secondary pages */
 .nmw-nav--dark {
