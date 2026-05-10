@@ -118,20 +118,6 @@
         <h2 class="text-2xl md:text-3xl font-black tracking-tight mb-1">CHOOSE YOUR PACKAGE</h2>
         <p class="text-gray-500 mb-8">Select the package that fits your rollout.</p>
 
-        <div id="premiereOffer" class="hidden mb-6 rounded-2xl p-5 md:p-6 text-white" style="background:linear-gradient(135deg,#680D3E 0%,#8A1558 100%);box-shadow:0 18px 40px -18px rgba(138,21,88,0.55);">
-          <div class="flex items-start sm:items-center gap-4 flex-col sm:flex-row sm:justify-between">
-            <div>
-              <div class="text-xs font-black uppercase tracking-widest text-[#FBCFE8] mb-1">Limited Time</div>
-              <div class="text-lg md:text-xl font-black tracking-tight">Premiere Package: <span class="line-through opacity-70 mr-1">$899</span> <span>$699</span></div>
-              <div class="text-sm text-white/80 mt-1">Lock in this price before the timer hits zero. Closes the offer for this session.</div>
-            </div>
-            <div class="text-right">
-              <div class="text-[10px] font-black uppercase tracking-widest text-[#FBCFE8]">Expires in</div>
-              <div id="premiereTimer" class="text-3xl md:text-4xl font-black tabular-nums leading-none mt-1">1:00</div>
-            </div>
-          </div>
-        </div>
-
         <div class="grid grid-cols-2 md:grid-cols-4 gap-3" id="pkgGrid"></div>
 
         <div class="border-t border-gray-100 mt-10 pt-8">
@@ -206,6 +192,20 @@
       <section data-step="payment" class="step bg-white rounded-2xl shadow-sm p-6 md:p-10 hidden">
         <h2 class="text-2xl md:text-3xl font-black tracking-tight mb-1">SECURE PAYMENT</h2>
         <p class="text-gray-500 mb-8">Stripe-encrypted checkout. Cards charged once verification clears.</p>
+
+        <div id="premiereOffer" class="hidden mb-6 rounded-2xl p-5 md:p-6 text-white" style="background:linear-gradient(135deg,#680D3E 0%,#8A1558 100%);box-shadow:0 18px 40px -18px rgba(138,21,88,0.55);">
+          <div class="flex items-start sm:items-center gap-4 flex-col sm:flex-row sm:justify-between">
+            <div>
+              <div class="text-xs font-black uppercase tracking-widest text-[#FBCFE8] mb-1">Limited Time</div>
+              <div class="text-lg md:text-xl font-black tracking-tight">Premiere Package: <span class="line-through opacity-70 mr-1">$899</span> <span>$699</span></div>
+              <div class="text-sm text-white/80 mt-1">Close this out before the timer hits zero. Once it expires, the price reverts.</div>
+            </div>
+            <div class="text-right">
+              <div class="text-[10px] font-black uppercase tracking-widest text-[#FBCFE8]">Expires in</div>
+              <div id="premiereTimer" class="text-3xl md:text-4xl font-black tabular-nums leading-none mt-1">1:00</div>
+            </div>
+          </div>
+        </div>
         <div class="grid sm:grid-cols-2 gap-5">
           <div class="sm:col-span-2"><label class="onboarding-label">Card Number</label><input class="onboarding-input" placeholder="4242 4242 4242 4242" value="4242 4242 4242 4242"></div>
           <div><label class="onboarding-label">Expiry</label><input class="onboarding-input" placeholder="MM/YY" value="12/29"></div>
