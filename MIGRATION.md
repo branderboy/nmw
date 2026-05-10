@@ -191,6 +191,123 @@ All free or near-free until the room scales.
 - [ ] Switch sitemap.xml to dynamic (`app/sitemap.ts`)
 - [ ] Switch OG images from logo to per-page generated images via `next/og`
 
+## Phase 11 — SEO content engine (ongoing, kicks off week 4)
+
+Goal: turn every event, podcast episode, and Blast issue into its own indexable page that earns ranking over time.
+
+- [ ] **Per-event pages** (`/events/[slug]`) — single canonical URL covers the entire event lifecycle
+  - Pre-event: lineup, RSVP, share, "apply to perform"
+  - Post-event: recap video, photo gallery, press quotes, social embeds
+  - JSON-LD `Event` schema with `performer`, `location`, `offers`, `image`
+- [ ] **`/events`** is the **recap hub** in the nav: hero next-Wednesday card → upcoming list → recent recaps grid → archive. Each card links to `/events/[slug]`.
+- [ ] **`/podcast/[slug]`** episode pages with `PodcastEpisode` schema, transcript, embedded audio, guest links
+- [ ] **`/the-blast/[slug]`** issue archive pages with `Article` schema
+- [ ] **`/blog`** content engine in Sanity (1–2 posts/week — artist features, recap deep-dives, industry talk)
+- [ ] **Local SEO**: claim Google Business Profile for The Penthouse + NMW; add `LocalBusiness` schema
+- [ ] **Internal linking**: every event recap links to performing artists' pages → links back to `/apply` and `/podcast`
+- [ ] **Backlink push**: pitch Pitchfork / FADER / Hot 97 / Hypebot / Time Out NY / Resident Advisor when recaps land
+- [ ] **Schema enhancements**: `BreadcrumbList`, `FAQPage` on faq route, `VideoObject` per recap
+- [ ] **Performance**: AVIF/WebP via `next/image`, lazy-load below-fold, Lighthouse LCP < 2s on mobile
+
+Target keyword clusters (60-day):
+- "open mic Manhattan", "live music Wednesday NYC"
+- per-event: artist names + "live at The Penthouse"
+- "submit music DJ network", "DJ record pool"
+- "NYC music podcast", "urban music industry podcast"
+
+## Phase 12 — Pixels, analytics, light CRM (½ day)
+
+- [ ] **Google Tag Manager** container in `app/layout.tsx`, gated behind cookie consent
+- [ ] Through GTM, fire:
+  - **GA4** with custom events: `apply_step_1`, `apply_step_4`, `checkout_started`, `purchase`, `subscribe`, `share_clicked`, `rsvp_clicked`
+  - **Meta Pixel** (`PageView`, `Lead`, `Purchase`, custom `Apply`)
+  - **TikTok Pixel** (same events)
+  - **LinkedIn Insight Tag** for sponsor retargeting
+- [ ] **Vercel Web Analytics** (cookieless, page-view rollups) — one toggle in dashboard
+- [ ] **Cookie consent**: Cookiebot (free <100 pages) or Termly; tracking pixels gated until consent
+- [ ] **Light CRM** = **Attio Free** (3 users)
+  - Two pipelines: `Bookings` (artist applications) and `Sales` (sponsor inquiries)
+  - Webhook from `/api/apply` → POST to Attio API → creates a `People` + `Booking` record
+  - Webhook from `/api/sponsor-inquiry` → creates a `Companies` + `Sales` record
+  - Resend syncs email threads back into Attio (native integration)
+- [ ] Add UTM-aware lead capture so source/medium/campaign land in CRM and Postgres
+
+## Phase 13 — Event distribution layer (3 days)
+
+This is the system that fans out **one event published in Sanity** to **every public channel**, automatically.
+
+### Architecture
+
+```
+Sanity event published
+        │
+        ▼
+Sanity Webhook → /api/events/distribute
+                 (validates, enqueues per-channel jobs in event_distributions table)
+                 │
+                 ├──▶ /api/distribute/eventbrite       (POST event via API)
+                 ├──▶ /api/distribute/luma             (POST event via API)
+                 ├──▶ /api/distribute/dice             (POST event via API; fallback: copy-paste kit)
+                 ├──▶ /api/distribute/bandsintown      (per-artist POST for each lineup performer)
+                 ├──▶ /api/distribute/songkick         (Tourbox API per-artist)
+                 ├──▶ /api/distribute/buffer           (queues 7 posts across IG/FB/X/TikTok/Threads)
+                 ├──▶ /api/distribute/gbp              (Google Business Profile post)
+                 ├──▶ /api/distribute/blast            (queues a Blast feature for next Tuesday)
+                 ├──▶ /api/distribute/whatsapp         (T-3hr template send to opt-ins)
+                 └──▶ /api/distribute/dj-call          (adds to next Tuesday DJ Call agenda)
+
+Each writes back to event_distributions:
+  status:  queued | sent | failed
+  remoteUrl, remoteId, sentAt, error
+```
+
+### Postgres schema additions (extend Phase 3)
+
+```ts
+event_distributions    id, eventId, channel, status, remoteId, remoteUrl,
+                       payload (jsonb), error, queuedAt, sentAt, retryCount
+
+distribution_schedule  id, eventId, channel, scheduledFor, payload (jsonb), status
+```
+
+### Buffer cadence per event (auto-queued)
+
+| When | Network | Content |
+|---|---|---|
+| T-7 days | All | Lineup announce post, links to `/events/[slug]` |
+| T-5 days | IG / FB | First artist spotlight (rotating per day) |
+| T-3 days | All | "3 days out" reminder + RSVP link |
+| T-1 day | All | "Tomorrow night" |
+| T-3 hours | WhatsApp + IG Story | Doors-soon ping |
+| T+0 | IG / TikTok Story | Live snaps |
+| T+1 day | All | Recap clip → `/events/[slug]/#recap` |
+| T+3 days | IG / TikTok / X | Best-of compilation |
+| T+7 days | All | Tease for next week's event |
+
+That's ~9 scheduled posts × 5–6 networks per Wednesday, **all from one Buffer queue, all auto-generated from Sanity content.**
+
+### Admin distribution dashboard (`/admin/events/[id]/distribute`)
+
+- Table view of every channel × status (queued / sent / failed)
+- "Re-push" button per row when an API fails
+- "Open in [platform]" link once published
+- Distribution-kit fallback (copy/paste blocks for any channel without an API — DICE, sometimes Luma)
+- Manual override: edit caption per channel before publishing
+
+### Lifecycle invariants
+
+- **One canonical URL per event** = `/events/[slug]`. Every distributed link points there. No `/recap/[slug]` separate page — the same URL transitions from "RSVP" mode to "Recap" mode based on `eventDate < now()`.
+- **JSON-LD on `/events/[slug]`** stays Event-typed before, gains `WorkExample` references (recap video) after.
+- **Old events never delete** — they keep their URL forever (SEO authority + permanent press kit per artist).
+
+### Rollout order
+
+1. Eventbrite + Luma APIs first (highest immediate value)
+2. Buffer next (covers all socials in one connector)
+3. Bandsintown + Songkick per-artist (requires artist consent + token storage)
+4. Google Business Profile (manual fallback works fine until then)
+5. DICE last (heaviest API gate; manual copy-paste fine for v1)
+
 ---
 
 ## Environment variables (`.env.example`)
