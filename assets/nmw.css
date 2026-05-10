@@ -495,7 +495,11 @@ aside .lg\:sticky { border-top: 3px solid var(--brand-500) !important; }
 }
 .section-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 28px 60px -20px rgba(138, 21, 88, 0.35), 0 14px 24px -8px rgba(0, 0, 0, 0.12);
+  animation: nmw-card-pulse 1.6s ease-in-out infinite;
+}
+@keyframes nmw-card-pulse {
+  0%, 100% { box-shadow: 0 18px 40px -18px rgba(138, 21, 88, 0.35), 0 8px 16px -6px rgba(0, 0, 0, 0.10); }
+  50%      { box-shadow: 0 28px 70px -18px rgba(138, 21, 88, 0.55), 0 16px 28px -8px rgba(0, 0, 0, 0.14); }
 }
 
 /* ============ Sharp Card (admin tables) ============ */
