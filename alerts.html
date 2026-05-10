@@ -245,8 +245,8 @@
 
 <script src="assets/nmw.js"></script>
 <script>
-const TOPICS = ['Events', 'Special Offers', 'Free Giveaways', 'New Music', 'Artist Opportunities', 'DJ Updates'];
-const selected = new Set(['Events', 'New Music']);
+const TOPICS = ['NMW Events', 'NMW for Artists', 'The Blast', 'NMW DJ Call', 'Sponsors'];
+const selected = new Set(['NMW Events']);
 const chips = document.getElementById('topicChips');
 function renderChips() {
   chips.innerHTML = TOPICS.map(t => `<button type="button" class="chip ${selected.has(t) ? 'selected' : ''}" data-topic="${t}">${t}</button>`).join('');
