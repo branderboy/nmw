@@ -120,6 +120,78 @@ if (typeof tailwind !== "undefined") tailwind.config = { theme: { extend: {
 
   <!-- EVENTS -->
   <section data-pane="events" class="pane hidden">
+    <div class="card mb-6">
+      <h3 class="font-bold mb-1">Add a new event</h3>
+      <p class="text-sm text-gray-500 mb-4">Saves to the event feed and generates a distribution kit you can paste into Eventbrite, Luma, DICE, Bandsintown, and Songkick.</p>
+      <form id="newEventForm" class="grid sm:grid-cols-4 gap-3">
+        <div class="sm:col-span-1">
+          <label class="text-xs font-bold uppercase tracking-wider text-gray-500">Date *</label>
+          <input class="field-input" name="date" type="date" required>
+        </div>
+        <div class="sm:col-span-1">
+          <label class="text-xs font-bold uppercase tracking-wider text-gray-500">Doors</label>
+          <input class="field-input" name="doors" type="time" value="15:00">
+        </div>
+        <div class="sm:col-span-1">
+          <label class="text-xs font-bold uppercase tracking-wider text-gray-500">Live start</label>
+          <input class="field-input" name="liveStart" type="time" value="19:00">
+        </div>
+        <div class="sm:col-span-1">
+          <label class="text-xs font-bold uppercase tracking-wider text-gray-500">Live end</label>
+          <input class="field-input" name="liveEnd" type="time" value="21:30">
+        </div>
+        <div class="sm:col-span-2">
+          <label class="text-xs font-bold uppercase tracking-wider text-gray-500">Lineup (optional, comma-separated)</label>
+          <input class="field-input" name="lineup" placeholder="JP, Maya C, Sienna Rae">
+        </div>
+        <div class="sm:col-span-2">
+          <label class="text-xs font-bold uppercase tracking-wider text-gray-500">Tier</label>
+          <select class="field-input" name="tier">
+            <option value="performance">Performance</option>
+            <option value="feature">Featured</option>
+          </select>
+        </div>
+        <div class="sm:col-span-4 flex justify-end">
+          <button type="submit" class="btn-primary">Save event &amp; generate distribution kit</button>
+        </div>
+      </form>
+    </div>
+
+    <div id="distroKit" class="card mb-6 hidden">
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="font-bold">Distribution kit</h3>
+        <button type="button" id="distroKitClose" class="text-xs text-gray-400 hover:text-gray-700">Close</button>
+      </div>
+      <p class="text-sm text-gray-500 mb-4">Open each platform, paste the matching block, and check it off in the table below.</p>
+
+      <div class="grid md:grid-cols-2 gap-4 mb-5">
+        <div>
+          <div class="text-xs font-black uppercase tracking-widest text-gray-500 mb-1">Title</div>
+          <div class="flex gap-2"><input id="kitTitle" class="field-input flex-1" readonly><button type="button" class="btn-outline text-xs" data-copy="kitTitle">Copy</button></div>
+        </div>
+        <div>
+          <div class="text-xs font-black uppercase tracking-widest text-gray-500 mb-1">When</div>
+          <div class="flex gap-2"><input id="kitWhen" class="field-input flex-1" readonly><button type="button" class="btn-outline text-xs" data-copy="kitWhen">Copy</button></div>
+        </div>
+        <div class="md:col-span-2">
+          <div class="text-xs font-black uppercase tracking-widest text-gray-500 mb-1">Description</div>
+          <div class="flex gap-2"><textarea id="kitDesc" class="field-input flex-1 min-h-[120px]" readonly></textarea><button type="button" class="btn-outline text-xs self-start" data-copy="kitDesc">Copy</button></div>
+        </div>
+        <div class="md:col-span-2">
+          <div class="text-xs font-black uppercase tracking-widest text-gray-500 mb-1">Public URL</div>
+          <div class="flex gap-2"><input id="kitUrl" class="field-input flex-1" readonly><button type="button" class="btn-outline text-xs" data-copy="kitUrl">Copy</button></div>
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-2">
+        <a id="kitEventbrite" target="_blank" rel="noopener" class="btn-outline text-xs justify-center"><i data-lucide="ticket" class="w-4 h-4"></i> Open Eventbrite</a>
+        <a id="kitLuma" target="_blank" rel="noopener" class="btn-outline text-xs justify-center"><i data-lucide="globe" class="w-4 h-4"></i> Open Luma</a>
+        <a id="kitDice" target="_blank" rel="noopener" class="btn-outline text-xs justify-center"><i data-lucide="disc-3" class="w-4 h-4"></i> Open DICE</a>
+        <a id="kitBandsintown" target="_blank" rel="noopener" class="btn-outline text-xs justify-center"><i data-lucide="music" class="w-4 h-4"></i> Open Bandsintown</a>
+        <a id="kitSongkick" target="_blank" rel="noopener" class="btn-outline text-xs justify-center"><i data-lucide="map" class="w-4 h-4"></i> Open Songkick</a>
+      </div>
+    </div>
+
     <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden">
       <div class="p-4 flex items-center justify-between gap-3 border-b border-gray-200">
         <h3 class="font-bold text-sm uppercase tracking-widest">Event Feed, Distribution Status</h3>
@@ -1088,6 +1160,77 @@ function renderAll() {
   renderAnalytics();
   (typeof lucide !== "undefined" && lucide.createIcons());
 }
+
+// New event creation + distribution kit
+function showDistroKit(ev) {
+  const dt = new Date(ev.date);
+  const venue = ev.venue || 'The Penthouse NYC, Manhattan';
+  const lineup = (ev.lineup || []).join(', ');
+  const dateStr = dt.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+  const whenStr = `${dateStr} · Doors ${ev.doors || '3:00 PM'} · Live ${ev.liveStart || '7:00 PM'}-${ev.liveEnd || '9:30 PM'} ET`;
+  const title = 'New Music Wednesdays at The Penthouse NYC';
+  const url = (location.origin && !location.origin.startsWith('null') ? location.origin : 'https://www.newmusicwednesdayslive.com') + '/events.html';
+  const desc = [
+    'New Music Wednesdays — live performance + rollout for rising urban artists.',
+    `Date: ${whenStr}`,
+    `Venue: ${venue}`,
+    lineup ? `Lineup: ${lineup}` : '',
+    '',
+    'Hip Hop · R&B · Soul · Reggae · Dancehall · Afrobeat · Gospel · Latin Urban / Dance.',
+    'RSVPs are free. Performance slots and DJ-network distribution are managed by Digiwaxx.',
+    '',
+    `RSVP and full lineup: ${url}`,
+  ].filter(Boolean).join('\n');
+
+  document.getElementById('kitTitle').value = title;
+  document.getElementById('kitWhen').value = whenStr;
+  document.getElementById('kitDesc').value = desc;
+  document.getElementById('kitUrl').value = url;
+  document.getElementById('kitEventbrite').href = 'https://www.eventbrite.com/create';
+  document.getElementById('kitLuma').href = 'https://lu.ma/create';
+  document.getElementById('kitDice').href = 'https://dice.fm/partners';
+  document.getElementById('kitBandsintown').href = 'https://artists.bandsintown.com';
+  document.getElementById('kitSongkick').href = 'https://www.songkick.com/tourbox';
+
+  const kit = document.getElementById('distroKit');
+  kit.classList.remove('hidden');
+  kit.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (typeof lucide !== 'undefined') lucide.createIcons();
+}
+
+document.getElementById('newEventForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const data = new FormData(e.target);
+  const lineup = (data.get('lineup') || '').toString().split(',').map(s => s.trim()).filter(Boolean);
+  const ev = {
+    title: 'New Music Wednesdays at The Penthouse NYC',
+    date: new Date(data.get('date')).toISOString(),
+    doors: data.get('doors') || '3:00 PM',
+    liveStart: data.get('liveStart') || '7:00 PM',
+    liveEnd: data.get('liveEnd') || '9:30 PM',
+    venue: 'The Penthouse NYC',
+    tier: data.get('tier') || 'performance',
+    lineup,
+    distribution: { feed: true, eventbrite: false, luma: false, dice: false, bandsintown: false, songkick: false },
+    createdAt: new Date().toISOString(),
+  };
+  NMW.saveEvent(ev);
+  e.target.reset();
+  renderEvents();
+  showDistroKit(ev);
+});
+
+document.getElementById('distroKitClose').addEventListener('click', () => {
+  document.getElementById('distroKit').classList.add('hidden');
+});
+
+document.getElementById('distroKit').addEventListener('click', async (e) => {
+  const btn = e.target.closest('[data-copy]');
+  if (!btn) return;
+  const fld = document.getElementById(btn.dataset.copy);
+  if (!fld) return;
+  try { await navigator.clipboard.writeText(fld.value); btn.textContent = 'Copied'; setTimeout(() => btn.textContent = 'Copy', 1500); } catch(_){}
+});
 
 document.getElementById('promoForm').addEventListener('submit', (e) => {
   e.preventDefault();
