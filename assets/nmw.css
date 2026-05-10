@@ -325,8 +325,8 @@ aside .lg\:sticky { border-top: 3px solid var(--brand-500) !important; }
   display: inline-flex;
   align-items: center;
   gap: 2.5rem;
-  padding-left: 100%;
-  animation: urgency-scroll 22s linear infinite;
+  padding-left: 30%;
+  animation: urgency-scroll 8s linear infinite;
 }
 .urgency-bar__track > span {
   display: inline-flex;
