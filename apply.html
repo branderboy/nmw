@@ -143,6 +143,9 @@
               </select>
             </div>
             <div><label class="onboarding-label">Instagram</label><input class="onboarding-input" name="instagram" placeholder="@yourhandle"></div>
+            <div><label class="onboarding-label">YouTube</label><input class="onboarding-input" name="youtube" type="url" placeholder="youtube.com/@artist"></div>
+            <div><label class="onboarding-label">Spotify</label><input class="onboarding-input" name="spotify" type="url" placeholder="open.spotify.com/artist/..."></div>
+            <div><label class="onboarding-label">Apple Music</label><input class="onboarding-input" name="appleMusic" type="url" placeholder="music.apple.com/artist/..."></div>
             <div class="sm:col-span-2"><label class="onboarding-label">How did you hear about NMW?</label>
               <select class="onboarding-input" name="source">
                 <option value="">Select an option</option>
@@ -687,7 +690,7 @@ function captureStep1() {
   const form = document.getElementById('step1Form');
   const data = new FormData(form);
   const info = {};
-  ['name','email','phone','artistName','location','genre','instagram','source'].forEach(k => info[k] = (data.get(k) || '').toString().trim());
+  ['name','email','phone','artistName','location','genre','instagram','youtube','spotify','appleMusic','source'].forEach(k => info[k] = (data.get(k) || '').toString().trim());
   funnel.info = info;
   NMW.setFunnel(funnel);
   return info;
