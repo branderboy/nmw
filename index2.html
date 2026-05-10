@@ -53,15 +53,15 @@
 </head>
 <body class="text-gray-900 selection:bg-[#8A1558] selection:text-white bg-[linear-gradient(135deg,#f8f8f8_0%,#f5f2f7_30%,#f1e7f2_65%,#ead9ee_100%)]">
 
-<!-- Urgency Bar (scrolling, brand color) -->
-<div class="urgency-bar" aria-label="Announcement">
-  <div class="urgency-bar__track">
-    <span><span class="urgency-pulse"></span><span data-cms="urgencyBar">Attention Artists: Only 5 Event &amp; Press Packages Left For Next Wednesday!</span></span>
+<!-- Urgency Bar (yellow CF style) -->
+<div class="bg-yellow-400 border-b-[3px] border-yellow-500 text-black py-1.5 relative z-50 font-bold tracking-widest shadow-md text-sm md:text-base text-center overflow-hidden" aria-label="Announcement">
+  <div class="animate-pulse">
+    <span>🚨 <span data-cms="urgencyBar">Attention Artists: Only 5 Event &amp; Press Packages Left For Next Wednesday!</span> 🚨</span>
   </div>
 </div>
 
-<!-- Navigation (NMW standard) -->
-<nav class="nmw-nav">
+<!-- Navigation (NMW standard + Apply Now CTA) -->
+<nav class="nmw-nav bg-white/90 backdrop-blur-md">
   <div class="nmw-nav__inner">
   <a href="index.html" class="nmw-logo-block">
     <img src="images/nmw-logo.png" alt="New Music Wednesday" class="nmw-logo-img" />
@@ -71,10 +71,10 @@
     <a href="mission.html" class="hover:text-black">MISSION</a>
     <a href="events.html" class="hover:text-black">EVENTS</a>
     <a href="dj-call.html" class="hover:text-black">DJ CALL</a>
-    <a href="apply.html" class="hover:text-black">ARTIST ACCESS</a>
     <a href="faq.html" class="hover:text-black">FAQ</a>
     <a href="alerts.html" class="hover:text-black">GET ALERTS</a>
     <a href="sponsor.html" class="hover:text-black">SPONSOR</a>
+    <button onclick="scrollToPackages()" class="bg-[#8A1558] text-white px-4 py-2 rounded font-bold tracking-widest text-xs hover:bg-[#680D3E] transition-colors">Apply Now</button>
   </div>
   </div>
 </nav>
