@@ -200,9 +200,9 @@
         </div>
       </section>
 
-      <!-- STEP 3.5: HOUSE RULES -->
+      <!-- STEP 3.5: NEXT STEPS -->
       <section data-step="rules" class="step bg-white rounded-2xl shadow-sm p-6 md:p-10 hidden">
-        <h2 class="text-2xl md:text-3xl font-black tracking-tight mb-1">HOUSE RULES</h2>
+        <h2 class="text-2xl md:text-3xl font-black tracking-tight mb-1">NEXT STEPS</h2>
         <p class="text-gray-500 mb-8">Quick read before you book. These keep the night running smooth and your distribution unlocked.</p>
 
         <div class="space-y-4 mb-8">
@@ -243,7 +243,7 @@
 
         <label class="mt-8 flex items-start gap-3 cursor-pointer">
           <input id="rulesAgree" type="checkbox" class="mt-1 w-5 h-5 accent-[#8A1558]">
-          <span class="text-sm text-gray-800">I've read the house rules and I'll claim my Bandsintown, Songkick, and DICE profiles before showtime.</span>
+          <span class="text-sm text-gray-800">I've read the next steps and I'll claim my Bandsintown, Songkick, and DICE profiles before showtime.</span>
         </label>
 
         <div class="flex justify-between mt-8">
@@ -473,7 +473,7 @@ function stepSequence() {
   return seq;
 }
 function stepLabel(id) {
-  return { '1': 'Package', 'date': 'Date', 'enhance': 'Enhance', 'rules': 'House Rules', 'payment': 'Payment', 'success': 'Done' }[id];
+  return { '1': 'Package', 'date': 'Date', 'enhance': 'Enhance', 'rules': 'Next Steps', 'payment': 'Payment', 'success': 'Done' }[id];
 }
 let currentStep = '1';
 
