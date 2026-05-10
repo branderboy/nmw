@@ -232,18 +232,20 @@
 
     <form id="leadForm" class="relative grid sm:grid-cols-2 gap-5 bg-white border border-gray-100 rounded-2xl p-6 md:p-8" style="box-shadow: 0 30px 60px -15px rgba(138, 21, 88, 0.35), 0 12px 24px -8px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.04);">
       <div class="sm:col-span-2"><label class="onboarding-label">Artist Name *</label><input class="onboarding-input" name="artistName" required placeholder="Your stage name"></div>
-      <div><label class="onboarding-label">Location *</label><input class="onboarding-input" name="location" required placeholder="City, State"></div>
-      <div><label class="onboarding-label">Email *</label><input class="onboarding-input" name="email" type="email" required placeholder="you@email.com"></div>
+      <div class="sm:col-span-2"><label class="onboarding-label">Location *</label><input class="onboarding-input" name="location" required placeholder="City, State"></div>
       <div class="sm:col-span-2"><label class="onboarding-label">What kind of music do you make? *</label>
         <select class="onboarding-input" name="genre" required>
           <option value="">Select a genre</option>
-          <option>R&amp;B</option><option>Soul</option><option>Hip Hop</option>
-          <option>Afro-Pop</option><option>Pop</option><option>Latin</option>
-          <option>Electronic</option><option>Other</option>
+          <option>Hip Hop</option>
+          <option>R&amp;B</option>
+          <option>Soul</option>
+          <option>Reggae</option>
+          <option>Dancehall</option>
+          <option>Afrobeat</option>
+          <option>Gospel</option>
+          <option>Latin Urban / Dance</option>
         </select>
-      </div>
-      <div class="sm:col-span-2"><label class="onboarding-label">Manager / Team contact (optional)</label>
-        <input class="onboarding-input" name="manager" placeholder="Name and email or phone (if applicable)">
+        <p class="text-xs text-gray-500 mt-2">We only book urban: Hip Hop, R&amp;B, Soul, Reggae, Dancehall, Afrobeat, Gospel, and Latin Urban / Dance.</p>
       </div>
 
       <div class="sm:col-span-2 flex justify-end pt-2">
@@ -351,12 +353,10 @@
     const lead = {
       artistName: (data.get('artistName') || '').trim(),
       location: (data.get('location') || '').trim(),
-      email: (data.get('email') || '').trim(),
       genre: data.get('genre') || '',
-      manager: (data.get('manager') || '').trim(),
       submittedAt: new Date().toISOString(),
     };
-    if (!lead.artistName || !lead.email) return;
+    if (!lead.artistName || !lead.location || !lead.genre) return;
 
     // Append to leads list
     const leads = JSON.parse(localStorage.getItem('nmw.leads') || '[]');
@@ -368,7 +368,6 @@
     funnel.info = Object.assign({}, funnel.info || {}, {
       name: lead.artistName,
       artistName: lead.artistName,
-      email: lead.email,
       genre: lead.genre,
     });
     NMW.setFunnel(funnel);
