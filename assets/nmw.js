@@ -585,4 +585,44 @@ if (typeof window !== 'undefined') {
   } else {
     NMW.applySiteContent();
   }
+
+  // Inject mobile hamburger menu into every nav. Reuses the existing desktop link list.
+  const initMobileNav = () => {
+    document.querySelectorAll('.nmw-nav').forEach(nav => {
+      if (nav.dataset.mobileInit) return;
+      nav.dataset.mobileInit = '1';
+      const inner = nav.querySelector('.nmw-nav__inner');
+      if (!inner) return;
+      const linksWrap = inner.querySelector('.hidden.md\\:flex');
+      if (!linksWrap) return;
+      // Hamburger button on the right
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.setAttribute('aria-label', 'Open menu');
+      btn.className = 'nmw-mobile-toggle';
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>';
+      inner.appendChild(btn);
+      // Drawer
+      const drawer = document.createElement('div');
+      drawer.className = 'nmw-mobile-menu';
+      const links = Array.from(linksWrap.querySelectorAll('a')).map(a => `<li><a href="${a.getAttribute('href')}">${a.textContent.trim()}</a></li>`).join('');
+      drawer.innerHTML = `
+        <button type="button" class="nmw-mobile-menu__close" aria-label="Close menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>
+        </button>
+        <ul class="nmw-mobile-menu__list">${links}</ul>`;
+      nav.parentNode.insertBefore(drawer, nav.nextSibling);
+      const open = () => { drawer.classList.add('is-open'); document.body.style.overflow = 'hidden'; };
+      const close = () => { drawer.classList.remove('is-open'); document.body.style.overflow = ''; };
+      btn.addEventListener('click', open);
+      drawer.querySelector('.nmw-mobile-menu__close').addEventListener('click', close);
+      drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+    });
+  };
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMobileNav);
+  } else {
+    initMobileNav();
+  }
 }
