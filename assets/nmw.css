@@ -102,9 +102,13 @@ body {
 .nmw-nav--dark a { color: #fff; }
 .nmw-nav--dark a:hover { color: #fff; opacity: 0.8; }
 .nmw-nav--dark a.text-black { color: #fff; }
-/* Tint the logo to brand deep purple instead of pure white */
-.nmw-nav--dark .nmw-logo-img {
+/* Default (homepage / white nav): tint logo to deep brand purple */
+.nmw-logo-img {
   filter: brightness(0) saturate(100%) invert(11%) sepia(74%) saturate(4500%) hue-rotate(316deg) brightness(95%) contrast(102%);
+}
+/* Secondary pages with black nav: render logo as solid white */
+.nmw-nav--dark .nmw-logo-img {
+  filter: brightness(0) invert(1);
 }
 
 /* Footer logo */
