@@ -1,5 +1,8 @@
 /* NMW shared styles — built around the sales-funnel design system */
 
+/* Title-case every headline so the first letter of each word is capitalized */
+h1, h2, h3 { text-transform: capitalize; }
+
 /* ============ Tailwind fallback utilities ============
    Production: Tailwind CDN provides these. We re-declare the most critical
    visibility/layout utilities locally so the app still works if the CDN is
