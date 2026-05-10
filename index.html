@@ -85,7 +85,7 @@
 </div>
 
 <!-- Navigation -->
-<nav class="nmw-nav px-4 sm:px-8">
+<nav class="nmw-nav">
   <a href="index.html" class="nmw-logo-block">
     <img src="images/nmw-logo.png" alt="New Music Wednesday" class="nmw-logo-img" />
   </a>
@@ -100,37 +100,37 @@
   </div>
 </nav>
 
-<!-- Hero Section -->
-<header class="relative pt-12 pb-16 overflow-hidden bg-gray-50 border-b border-gray-200">
-  <div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
-    
-    <h2 class="text-[#8A1558] font-black tracking-widest text-sm md:text-base mb-4">
-      [ Official Artist Registration ]
-    </h2>
+<!-- Hero -->
+<header class="relative pt-16 pb-28 md:pt-20 md:pb-32 overflow-hidden border-b-4 border-[#8A1558] lead-bg text-gray-900">
+  <div class="max-w-7xl mx-auto px-4 relative z-10">
+    <div class="max-w-xl text-left">
+      <!-- The Next Up Experience program logo (dark variant for light hero) -->
+      <img src="images/next-up-logo.png" alt="The Next Up Experience" class="mb-6 h-20 md:h-24 w-auto" />
+      <h2 class="text-[#8A1558] font-black tracking-widest text-sm md:text-base mb-6" data-cms="heroEyebrow">[ Official Artist Registration ]</h2>
 
-    <h1 class="text-4xl md:text-6xl font-black tracking-tighter leading-[1] text-gray-900 mb-6 drop-shadow-sm">
-      Secure Your Live Performance & Press Package At Manhattan's Top Destination For New Music.
-    </h1>
-
-    <p class="text-lg md:text-2xl text-gray-700 max-w-3xl mx-auto font-medium leading-relaxed mb-8">
-      Perform live at The Penthouse NYC, secure guaranteed press coverage, capture high-end visual assets, and ignite your rollout in The Next Up Experience.
-    </p>
-
-    <!-- Main Hero CTA -->
-    <div class="flex flex-col items-center justify-center px-4 w-full max-w-2xl mx-auto">
-      <button onclick="scrollToPackages()" class="relative w-full group block mb-4">
-        <div class="absolute inset-0 bg-yellow-600 rounded-xl translate-y-2"></div>
-
-        <div class="relative bg-yellow-400 border-2 border-yellow-300 text-black px-4 py-6 rounded-xl flex flex-col items-center justify-center transform group-hover:translate-y-1 transition-transform shadow-2xl">
-          <div class="flex items-center justify-center gap-2 text-2xl md:text-3xl font-black tracking-tighter w-full text-center">
-            Yes! Start My Rollout Now
-            <i data-lucide="chevrons-right" class="w-8 h-8 animate-pulse hidden sm:block"></i>
+      <!-- Hero CTA -->
+      <button onclick="scrollToPackages()" class="cta cta--yellow group mb-4">
+        <div class="cta__shadow"></div>
+        <div class="cta__face">
+          <div class="flex items-center justify-center gap-2 text-2xl md:text-3xl font-black tracking-tighter">
+            <span data-cms="primaryCta">Yes! Start My Rollout Now</span> <i data-lucide="chevrons-right" class="w-8 h-8 animate-pulse hidden sm:block"></i>
           </div>
+          <span class="cta__sub text-gray-800" data-cms="primaryCtaSub">Click Here To See Package Options &amp; Secure Your Spot</span>
         </div>
       </button>
+      <div class="flex items-center gap-3 text-xs font-bold text-gray-500 mt-2">
+        <i data-lucide="lock" class="w-3 h-3"></i> 256-bit secure checkout
+        <span class="text-gray-400">|</span>
+        <i data-lucide="shield-check" class="w-3 h-3"></i> Stripe-powered
+      </div>
     </div>
-
   </div>
+
+  <!-- Scroll-down arrow pointing to lead capture form -->
+  <a href="#packages" class="hero-scroll-arrow hero-scroll-arrow--dark" aria-label="Apply to perform">
+    <span class="hero-scroll-arrow__label">Apply Below</span>
+    <span class="hero-scroll-arrow__chevron"><i data-lucide="chevron-down" class="w-7 h-7"></i></span>
+  </a>
 </header>
 
 <!-- Social Proof Bar -->
@@ -214,10 +214,9 @@
 </section>
 
 <!-- Lead capture / intake form -->
-<section id="packages" class="py-20 md:py-24 bg-white border-t border-gray-200">
+<section id="packages" class="py-20 md:py-24 lead-bg border-t border-gray-200">
   <div class="max-w-3xl mx-auto px-4">
     <div class="mb-10 text-center">
-      <img src="images/next-up-logo.png" alt="The Next Up Experience" class="mx-auto mb-6 h-16 md:h-20 w-auto" />
       <h2 class="text-3xl md:text-5xl font-black tracking-tighter text-gray-900 mb-3">Apply To Perform At New Music Wednesdays</h2>
       <p class="text-base md:text-lg text-gray-600">Performance slots at The Penthouse NYC. Every Wednesday.</p>
     </div>
