@@ -66,15 +66,16 @@ body {
 }
 .nmw-nav__inner {
   width: 100%;
-  max-width: 80rem;
+  max-width: 64rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  gap: 2rem;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
 }
 @media (min-width: 768px) {
-  .nmw-nav__inner { padding-left: 3rem; padding-right: 3rem; }
+  .nmw-nav__inner { padding-left: 2rem; padding-right: 2rem; gap: 2.5rem; }
 }
 .nmw-logo-block { display: inline-flex; align-items: center; text-decoration: none; }
 .nmw-logo-img {
@@ -309,9 +310,15 @@ aside .lg\:sticky { border-top: 3px solid var(--brand-500) !important; }
 }
 @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 
-/* ============ Subpage header (solid black, matches apply.html) ============ */
+/* ============ Subpage header (speaker image visible) ============ */
 .subpage-header-bg {
   background-color: #000;
+  background-image:
+    linear-gradient(to right, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.35) 45%, rgba(0,0,0,0.05) 100%),
+    url('../images/top_header.png');
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
 }
 
 /* ============ Lead capture section soft gradient ============ */
