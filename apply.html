@@ -127,7 +127,7 @@
             </div>
             <div class="text-right">
               <div class="text-[10px] font-black uppercase tracking-widest text-[#FBCFE8]">Expires in</div>
-              <div id="premiereTimer" class="text-3xl md:text-4xl font-black tabular-nums leading-none mt-1">5:00</div>
+              <div id="premiereTimer" class="text-3xl md:text-4xl font-black tabular-nums leading-none mt-1">1:00</div>
             </div>
           </div>
         </div>
@@ -691,13 +691,13 @@ function wireLoops(artist) {
   const KEY = 'nmw.premiereOfferExpiresAt';
   const SALE_PRICE = 699;
   const REGULAR_PRICE = 899;
-  const FIVE_MIN = 5 * 60 * 1000;
+  const ONE_MIN = 60 * 1000;
   const premiere = NMW.PACKAGES.find(p => p.id === 'premiere');
   if (!premiere) return;
 
   let expiresAt = parseInt(sessionStorage.getItem(KEY) || '0', 10);
   if (!expiresAt || expiresAt < Date.now()) {
-    expiresAt = Date.now() + FIVE_MIN;
+    expiresAt = Date.now() + ONE_MIN;
     sessionStorage.setItem(KEY, String(expiresAt));
   }
 
