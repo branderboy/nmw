@@ -224,7 +224,23 @@
       <p class="text-base md:text-lg text-gray-600">Performance slots at The Penthouse NYC. Every Wednesday.</p>
     </div>
 
-    <img src="images/video_thumbnail.png" alt="New Music Wednesdays performance" class="w-full rounded-2xl shadow-lg mb-6" />
+    <button type="button" id="videoThumb" class="group relative block w-full rounded-2xl overflow-hidden shadow-lg mb-6 focus:outline-none">
+      <img src="images/video_thumbnail.png" alt="New Music Wednesdays performance" class="w-full block" />
+      <span class="absolute inset-0 bg-black/20 group-hover:bg-black/35 transition-colors"></span>
+      <span class="absolute inset-0 flex items-center justify-center">
+        <span class="w-20 h-20 md:w-24 md:h-24 rounded-full bg-white/95 flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform" style="box-shadow:0 18px 40px -12px rgba(138,21,88,0.55);">
+          <i data-lucide="play" class="w-9 h-9 md:w-11 md:h-11 text-[#8A1558] ml-1" style="fill:#8A1558"></i>
+        </span>
+      </span>
+      <span class="absolute bottom-3 left-4 text-xs md:text-sm font-black uppercase tracking-widest text-white drop-shadow">Watch the room</span>
+    </button>
+
+    <div id="videoModal" class="hidden fixed inset-0 z-[100] bg-black/85 items-center justify-center p-4" onclick="if(event.target===this)closeVideo()">
+      <div class="relative w-full max-w-4xl aspect-video">
+        <button type="button" onclick="closeVideo()" aria-label="Close" class="absolute -top-10 right-0 text-white/80 hover:text-white text-sm font-bold tracking-widest">CLOSE ✕</button>
+        <iframe id="videoFrame" class="w-full h-full rounded-xl" src="" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
 
     <div class="text-center -mb-2">
       <i data-lucide="arrow-down" class="w-20 h-20 md:w-28 md:h-28 text-[#8A1558] mx-auto animate-bounce" style="stroke-width:3"></i>
@@ -332,6 +348,25 @@
 <script>
   (typeof lucide !== "undefined" && lucide.createIcons());
   function scrollToPackages() { document.getElementById('packages').scrollIntoView({ behavior: 'smooth' }); }
+
+  // Video modal — swap VIDEO_ID with the real upload when available
+  const VIDEO_ID = 'dQw4w9WgXcQ';
+  function openVideo() {
+    const m = document.getElementById('videoModal');
+    document.getElementById('videoFrame').src = `https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&rel=0`;
+    m.classList.remove('hidden');
+    m.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeVideo() {
+    const m = document.getElementById('videoModal');
+    document.getElementById('videoFrame').src = '';
+    m.classList.add('hidden');
+    m.classList.remove('flex');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('videoThumb')?.addEventListener('click', openVideo);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeVideo(); });
 
   // Capture referral code from URL if present
   const params = new URLSearchParams(location.search);
