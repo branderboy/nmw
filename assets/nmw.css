@@ -310,6 +310,13 @@ aside .lg\:sticky { border-top: 3px solid var(--brand-500) !important; }
   flex-shrink: 0;
 }
 
+/* Horizontal bounce — for arrows that should nudge right instead of down */
+.animate-bounce-x { animation: bounce-x 1s infinite; }
+@keyframes bounce-x {
+  0%, 100% { transform: translateX(0); }
+  50%      { transform: translateX(6px); }
+}
+
 /* ============ Urgency Bar (scrolling marquee) ============ */
 .urgency-bar {
   background: var(--brand-600);
