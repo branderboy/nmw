@@ -309,13 +309,31 @@ aside .lg\:sticky { border-top: 3px solid var(--brand-500) !important; }
   flex-shrink: 0;
 }
 
-/* Highlighter-marker effect — paint the lower band of the text only */
+/* Hand-drawn highlighter-marker effect — slightly slanted, uneven edges,
+   darker brand-pink ink so it reads more like a real marker swipe */
 .nmw-highlight {
-  background-image: linear-gradient(180deg, transparent 55%, rgba(251, 207, 232, 0.95) 55%);
+  background-image: linear-gradient(104deg,
+      rgba(248, 165, 211, 0) 0.4%,
+      rgba(248, 165, 211, 0.85) 2.4%,
+      rgba(248, 165, 211, 0.92) 92.4%,
+      rgba(248, 165, 211, 0) 96.4%);
+  background-position: 0 0.55em;
+  background-size: 100% 60%;
   background-repeat: no-repeat;
   padding: 0 0.15em;
+  border-radius: 12.5em 1em 8em 0.4em / 0.6em 1.4em 0.6em 1.6em;
   -webkit-box-decoration-break: clone;
           box-decoration-break: clone;
+}
+
+/* Short brand divider — small pink rule used above section headings */
+.nmw-divider {
+  display: block;
+  width: 2.5rem;
+  height: 3px;
+  background: var(--brand-500);
+  border-radius: 999px;
+  margin: 0 auto 1rem;
 }
 
 /* Horizontal bounce — for arrows that should nudge right instead of down */
