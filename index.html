@@ -218,20 +218,16 @@
 
 <!-- Lead capture / intake form -->
 <section id="packages" class="py-20 md:py-24 lead-bg border-t border-gray-200">
-  <div class="max-w-6xl mx-auto px-4">
-    <div class="mb-10 text-center">
+  <div class="max-w-3xl mx-auto px-4">
+    <div class="mb-8 text-center">
       <h2 class="text-3xl md:text-5xl font-black tracking-tighter text-gray-900 mb-3">Apply To Perform At <span class="text-[#8A1558]">The Next Up Experience</span></h2>
       <p class="text-base md:text-lg text-gray-600">Performance slots at The Penthouse NYC. Every Wednesday.</p>
       <i data-lucide="arrow-down" class="w-20 h-20 md:w-28 md:h-28 text-[#8A1558] mx-auto mt-8 animate-bounce" style="stroke-width:3"></i>
     </div>
 
-    <div class="grid md:grid-cols-2 gap-8 md:gap-10 items-center">
-      <div>
-        <img src="images/video_thumbnail.png" alt="New Music Wednesdays performance" class="w-full rounded-2xl shadow-lg" />
-      </div>
+    <img src="images/video_thumbnail.png" alt="New Music Wednesdays performance" class="w-full rounded-2xl shadow-lg mb-10" />
 
-      <div>
-        <form id="leadForm" class="grid sm:grid-cols-2 gap-5 bg-white border border-gray-200 rounded-2xl p-6 md:p-8 shadow-sm">
+    <form id="leadForm" class="grid sm:grid-cols-2 gap-5 bg-white border border-gray-200 rounded-2xl p-6 md:p-8 shadow-sm">
       <div class="sm:col-span-2"><label class="onboarding-label">Artist Name *</label><input class="onboarding-input" name="artistName" required placeholder="Your stage name"></div>
       <div><label class="onboarding-label">Location *</label><input class="onboarding-input" name="location" required placeholder="City, State"></div>
       <div><label class="onboarding-label">Email *</label><input class="onboarding-input" name="email" type="email" required placeholder="you@email.com"></div>
@@ -254,18 +250,16 @@
       </div>
     </form>
 
-        <!-- Personalized response + Continue -->
-        <div id="leadResponse" class="hidden mt-6 bg-[#FDF2F8] border border-[#FBCFE8] rounded-2xl p-6 md:p-8 text-center">
-          <div class="w-14 h-14 mx-auto bg-white rounded-full flex items-center justify-center mb-4 border border-[#FBCFE8]">
-            <i data-lucide="check" class="w-7 h-7 text-[#8A1558]"></i>
-          </div>
-          <h3 class="text-xl md:text-2xl font-black tracking-tighter mb-2" id="leadGreeting">Got it.</h3>
-          <p class="text-gray-700 leading-relaxed" id="leadMessage"></p>
-          <a href="apply.html" id="leadContinue" class="inline-flex items-center gap-2 bg-[#8A1558] text-white px-6 py-3 rounded-md text-sm font-bold tracking-widest uppercase hover:bg-[#680D3E] mt-5">
-            Continue <i data-lucide="arrow-right" class="w-4 h-4"></i>
-          </a>
-        </div>
+    <!-- Personalized response + Continue -->
+    <div id="leadResponse" class="hidden mt-6 bg-[#FDF2F8] border border-[#FBCFE8] rounded-2xl p-6 md:p-8 text-center">
+      <div class="w-14 h-14 mx-auto bg-white rounded-full flex items-center justify-center mb-4 border border-[#FBCFE8]">
+        <i data-lucide="check" class="w-7 h-7 text-[#8A1558]"></i>
       </div>
+      <h3 class="text-xl md:text-2xl font-black tracking-tighter mb-2" id="leadGreeting">Got it.</h3>
+      <p class="text-gray-700 leading-relaxed" id="leadMessage"></p>
+      <a href="apply.html" id="leadContinue" class="inline-flex items-center gap-2 bg-[#8A1558] text-white px-6 py-3 rounded-md text-sm font-bold tracking-widest uppercase hover:bg-[#680D3E] mt-5">
+        Continue <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
     </div>
 
     <div class="mt-8 text-center">
