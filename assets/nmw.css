@@ -90,6 +90,16 @@ body {
   .nmw-logo-img { height: 96px; max-width: 240px; }
 }
 
+/* Dark navigation variant for secondary pages */
+.nmw-nav--dark {
+  background: #000;
+  border-bottom: 1px solid #000;
+  box-shadow: none;
+}
+.nmw-nav--dark a { color: #d1d5db; }
+.nmw-nav--dark a:hover { color: #fff; }
+.nmw-nav--dark a.text-black { color: #fff; }
+
 /* Footer logo */
 .footer-logo {
   height: 140px;
