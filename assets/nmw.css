@@ -56,15 +56,25 @@ body {
 .nmw-nav {
   background: #fff;
   border-bottom: 1px solid #f3f4f6;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   position: sticky;
   top: 0;
   z-index: 50;
   box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-  /* Full-width bar with content centered + capped at 80rem (matches max-w-7xl page sections) */
-  padding: 0.5rem max(1rem, calc((100% - 80rem) / 2));
+  padding: 0.5rem 0;
+  display: flex;
+  justify-content: center;
+}
+.nmw-nav__inner {
+  width: 100%;
+  max-width: 80rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+@media (min-width: 768px) {
+  .nmw-nav__inner { padding-left: 3rem; padding-right: 3rem; }
 }
 .nmw-logo-block { display: inline-flex; align-items: center; text-decoration: none; }
 .nmw-logo-img {
