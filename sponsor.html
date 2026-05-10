@@ -309,11 +309,13 @@
 // Each item is a recurring weekly placement that delivers a concrete outcome.
 // Sponsors pay for the result, not vague "brand visibility".
 const PRODUCTS = [
+  // Hero placement: highest-impact spoken brand integration
+  { id: 'podcast-mentions', name: '5 Podcast Mentions', icon: 'mic', featured: true,
+    blurb: 'Five spoken brand mentions across The Digiwaxx / NMW podcast slate. Lives forever in the feed and goes out to the regular listenership.',
+    outcome: 'Avg 5K-15K downloads across 5 episodes',
+    price: '$500 / 5 episodes', priceMin: 500 },
+
   // In-room activations: real things that happen in the venue
-  { id: 'step-and-repeat', name: 'Step & Repeat Banner', icon: 'camera',
-    blurb: 'Branded photo-op backdrop in the lobby. Every guest poses, every photo travels through their socials.',
-    outcome: '~150 guests, ~40 IG/TikTok posts',
-    price: '$350 / Wednesday', priceMin: 350 },
   { id: 'live-demo', name: 'Live Product Demo', icon: 'box',
     blurb: 'Demo your product on stage between sets at The Penthouse. Real artists try it, real fans see it work.',
     outcome: '~150 in-room attendees, live demo',
@@ -334,6 +336,10 @@ const PRODUCTS = [
     blurb: 'Your product becomes the prize for the night\'s standout performance, picked by the room.',
     outcome: '1 winning artist / Wednesday + IG share',
     price: '$300 / Wednesday', priceMin: 300 },
+  { id: 'step-and-repeat', name: 'Step & Repeat Banner', icon: 'camera',
+    blurb: 'Branded photo-op backdrop in the lobby. Every guest poses, every photo travels through their socials.',
+    outcome: '~150 guests, ~40 IG/TikTok posts',
+    price: '$350 / Wednesday', priceMin: 350 },
 
   // Distribution: ongoing weekly placements
   { id: 'newsletter-slot', name: 'Newsletter Slot', icon: 'mail',
