@@ -60,6 +60,7 @@ if (typeof tailwind !== "undefined") tailwind.config = { theme: { extend: {
       <button class="tab" data-tab="distribution">Distribution</button>
       <button class="tab" data-tab="flows">Email Flows</button>
       <button class="tab" data-tab="pages">Pages</button>
+      <button class="tab" data-tab="promos">Offer Codes</button>
       <button class="tab" data-tab="analytics">Analytics</button>
     </div>
   </div>
@@ -440,6 +441,45 @@ if (typeof tailwind !== "undefined") tailwind.config = { theme: { extend: {
   </section>
 
   <!-- ANALYTICS -->
+  <section data-pane="promos" class="pane hidden">
+    <div class="card">
+      <h3 class="font-bold mb-3">Offer codes</h3>
+      <p class="text-sm text-gray-500 mb-4">Codes artists can enter at checkout to reduce their total. Saved to localStorage on this device.</p>
+
+      <form id="promoForm" class="grid sm:grid-cols-4 gap-3 mb-6">
+        <div class="sm:col-span-1">
+          <label class="text-xs font-bold uppercase tracking-wider text-gray-500">Code</label>
+          <input class="field-input uppercase" name="code" placeholder="WELCOME" required>
+        </div>
+        <div class="sm:col-span-1">
+          <label class="text-xs font-bold uppercase tracking-wider text-gray-500">Type</label>
+          <select class="field-input" name="type">
+            <option value="percent">Percent off</option>
+            <option value="amount">$ amount off</option>
+          </select>
+        </div>
+        <div class="sm:col-span-1">
+          <label class="text-xs font-bold uppercase tracking-wider text-gray-500">Value</label>
+          <input class="field-input" name="value" type="number" min="1" placeholder="10" required>
+        </div>
+        <div class="sm:col-span-1">
+          <label class="text-xs font-bold uppercase tracking-wider text-gray-500">Label (optional)</label>
+          <input class="field-input" name="label" placeholder="10% off">
+        </div>
+        <div class="sm:col-span-4 flex justify-end">
+          <button type="submit" class="btn-primary">Add code</button>
+        </div>
+      </form>
+
+      <table class="min-w-full text-sm">
+        <thead><tr class="text-left text-xs font-bold uppercase tracking-wider text-gray-500 border-b">
+          <th class="py-2">Code</th><th>Type</th><th>Value</th><th>Label</th><th></th>
+        </tr></thead>
+        <tbody id="promoTable"></tbody>
+      </table>
+    </div>
+  </section>
+
   <section data-pane="analytics" class="pane hidden">
     <div class="grid md:grid-cols-2 gap-4">
       <div class="card">
@@ -1004,6 +1044,34 @@ function loadPageContent() {
   });
 }
 
+function renderPromos() {
+  const tbody = document.getElementById('promoTable');
+  if (!tbody) return;
+  const codes = NMW.getPromoCodes();
+  if (!codes.length) {
+    tbody.innerHTML = `<tr><td colspan="5" class="py-6 text-center text-sm text-gray-400">No codes yet. Add one above.</td></tr>`;
+    return;
+  }
+  tbody.innerHTML = codes.map((c, i) => `
+    <tr class="border-b last:border-b-0">
+      <td class="py-2 font-bold tracking-wider">${c.code}</td>
+      <td>${c.type === 'percent' ? 'Percent off' : '$ amount off'}</td>
+      <td>${c.type === 'percent' ? c.value + '%' : '$' + c.value}</td>
+      <td class="text-gray-500">${c.label || ''}</td>
+      <td class="text-right"><button type="button" class="text-xs text-red-600 font-bold hover:underline" data-promo-del="${i}">Remove</button></td>
+    </tr>
+  `).join('');
+  tbody.querySelectorAll('[data-promo-del]').forEach(b => {
+    b.addEventListener('click', () => {
+      const idx = +b.dataset.promoDel;
+      const list = NMW.getPromoCodes();
+      list.splice(idx, 1);
+      NMW.setPromoCodes(list);
+      renderPromos();
+    });
+  });
+}
+
 function renderAll() {
   renderKPIs();
   renderArtists(document.getElementById('artistSearch').value);
@@ -1016,9 +1084,28 @@ function renderAll() {
   renderSponsors();
   renderFlows();
   renderFlowRuns();
+  renderPromos();
   renderAnalytics();
   (typeof lucide !== "undefined" && lucide.createIcons());
 }
+
+document.getElementById('promoForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const data = new FormData(e.target);
+  const code = (data.get('code') || '').toString().trim().toUpperCase();
+  if (!code) return;
+  const list = NMW.getPromoCodes();
+  if (list.some(c => (c.code || '').toUpperCase() === code)) { alert('That code already exists.'); return; }
+  list.push({
+    code,
+    type: data.get('type') || 'percent',
+    value: Number(data.get('value')) || 0,
+    label: (data.get('label') || '').toString().trim(),
+  });
+  NMW.setPromoCodes(list);
+  e.target.reset();
+  renderPromos();
+});
 
 document.getElementById('artistSearch').addEventListener('input', e => renderArtists(e.target.value));
 document.getElementById('manualForm').addEventListener('submit', (e) => {
