@@ -20,6 +20,43 @@ Stand up a real platform for New Music Wednesdays in **4 weeks** that does, auto
 
 ---
 
+## What this actually is — four engines, one platform
+
+The proposal is not "automate our posts." It's a **system of four compounding engines**, all running off the same Sanity content + Postgres data + admin dashboard:
+
+### 1. Distribution Engine
+One event published in Sanity fires automatically to **Eventbrite, Luma, DICE, Bandsintown, Songkick, Google Business Profile, Buffer (IG / FB / X / TikTok / Threads), WhatsApp opt-ins, The Blast, and the DJ Call agenda**. ~50 distributed touchpoints per Wednesday from one click. Every push tracked, retried, and statused in the admin.
+
+### 2. Sales Funnel
+A measurable path from **stranger → subscriber → applicant → paid artist → returning artist → referrer**, with conversion data captured at every step:
+
+```
+Cold visitor → Mission/Events page → Email + WhatsApp opt-in (The Blast)
+            → Apply form → Stripe Checkout → Receipt + onboarding email
+            → Verified artist → Performs Wednesday → Recap page + clips
+            → Re-targeted for next package + referral code
+```
+
+Every step writes to Postgres. We can finally answer **what does it cost to acquire an artist, what's their LTV, and which channel do they come from**. We cannot answer any of that today.
+
+### 3. Search Demand Engine
+Every event, podcast episode, and Blast issue becomes its **own permanent indexable URL** with structured data (`Event`, `PodcastEpisode`, `Article`, `LocalBusiness` schema). Old events never delete — they keep their URL forever and accumulate authority. After 12 months we have **52 event pages + 50+ podcast episodes + 50+ Blast issues** all indexed and ranking for artist names, neighborhoods, dates, and genre searches. The platform compounds organic demand without ad spend.
+
+Target keyword clusters within 60 days of launch: *"open mic Manhattan," "live music Wednesday NYC," "submit music DJ network," "NYC music podcast,"* plus per-artist long-tail (*"<artist name> live at The Penthouse"*).
+
+### 4. Campaign Manager
+End-to-end campaign control from **one admin** instead of 9 logged-in browser tabs:
+
+- **Plan** in Sanity (event details, lineup, Blast issue, social captions)
+- **Launch** with one click — distribution dashboard fans out across all channels
+- **Track** opens, clicks, RSVPs, applies, conversions in real time
+- **Follow up** automatically — T-3hr WhatsApp ping, T+1 day recap social cycle, post-event upsell email, sponsor pipeline nudges
+- **Retry** any failed channel from the dashboard; "open in [platform]" links surface the live remote URL
+
+CL gets one URL — `/admin` — that shows the entire week's operations and revenue at a glance.
+
+---
+
 ## Why now
 
 Right now, every Wednesday I (one person) repeat the same workflow:
