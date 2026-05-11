@@ -307,35 +307,36 @@
       <p class="text-lg md:text-2xl text-ink/70 max-w-xl mb-8 font-sans">Pick a play. We run it. We send you a report.</p>
     </div>
 
-    <!-- Compact inline filter — single row -->
-    <div class="border-t border-b border-gray-200 py-4 mb-10 -mx-4 px-4 sm:mx-0 sm:px-0">
+    <!-- Filter + search -->
+    <div class="border-t border-b border-ink/15 py-6 mb-10">
+      <!-- Big visible search field -->
+      <div class="relative mb-5 max-w-3xl">
+        <i data-lucide="search" class="w-5 h-5 text-ink/40 absolute left-5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+        <input id="goalSearch" type="text" placeholder="What are you trying to do? (e.g. push a new release, get DJ feedback)" class="w-full pl-14 pr-5 py-4 bg-white border-2 border-ink/20 rounded-md focus:border-ink focus:outline-none text-base font-medium placeholder:text-ink/40 transition-colors" />
+      </div>
+
       <div class="flex flex-wrap items-center gap-x-6 gap-y-3">
         <div class="flex items-center gap-2">
-          <span class="text-[10px] font-black uppercase tracking-widest text-gray-500">Shopping as</span>
+          <span class="mono-eyebrow">Shopping as</span>
           <div class="flex gap-1" id="audienceTabs">
-            <button type="button" data-audience="artist" class="audience-tab text-xs font-black uppercase tracking-wider px-3 py-1.5 rounded-md transition-all">Artist</button>
-            <button type="button" data-audience="label" class="audience-tab text-xs font-black uppercase tracking-wider px-3 py-1.5 rounded-md transition-all">Label</button>
-            <button type="button" data-audience="sponsor" class="audience-tab text-xs font-black uppercase tracking-wider px-3 py-1.5 rounded-md transition-all">Sponsor</button>
+            <button type="button" data-audience="artist" class="audience-tab">Artist</button>
+            <button type="button" data-audience="label" class="audience-tab">Label</button>
+            <button type="button" data-audience="sponsor" class="audience-tab">Sponsor</button>
           </div>
         </div>
 
-        <div class="flex-1 min-w-[220px] flex items-center gap-2">
-          <i data-lucide="search" class="w-4 h-4 text-gray-400 flex-shrink-0"></i>
-          <input id="goalSearch" type="text" placeholder="What are you trying to do?" class="w-full px-2 py-1.5 bg-transparent border-0 border-b border-gray-300 focus:border-gray-900 focus:outline-none focus:ring-0 text-sm font-medium" />
-        </div>
-
-        <div class="flex items-center gap-3 text-xs font-black uppercase tracking-wider">
-          <a href="#group-action" class="text-gray-600 hover:text-gray-900">Group Action</a>
-          <span class="text-gray-300">·</span>
-          <a href="#digital-waxx" class="text-gray-600 hover:text-gray-900">Digital Waxx</a>
-          <span class="text-gray-300">·</span>
-          <a href="#weekly-plays" class="text-gray-600 hover:text-gray-900">Weekly</a>
+        <div class="flex items-center gap-3 mono-tag ml-auto">
+          <a href="#group-action" class="text-ink/60 hover:text-ink">Group Action</a>
+          <span class="text-ink/20">·</span>
+          <a href="#digital-waxx" class="text-ink/60 hover:text-ink">Digital Waxx</a>
+          <span class="text-ink/20">·</span>
+          <a href="#weekly-plays" class="text-ink/60 hover:text-ink">Weekly</a>
         </div>
       </div>
 
-      <!-- Goal chips (compact, optional) -->
-      <div class="flex flex-wrap items-center gap-2 mt-3" id="goalChipsWrap">
-        <span class="text-[10px] font-black uppercase tracking-widest text-gray-400">Try</span>
+      <!-- Goal chips -->
+      <div class="flex flex-wrap items-center gap-2 mt-4" id="goalChipsWrap">
+        <span class="mono-eyebrow">Try</span>
         <div id="goalChips" class="flex flex-wrap gap-1.5"></div>
       </div>
 
