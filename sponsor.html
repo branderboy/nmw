@@ -191,6 +191,52 @@
 
   /* Section H2, Anton display */
   .section-h2 { font-family:'Anton','Impact',sans-serif; text-transform:uppercase; letter-spacing:-.005em; line-height:.92; }
+
+  /* Oblong search pill */
+  .search-pill {
+    display:flex; align-items:stretch; flex-wrap:wrap;
+    background:#fff; border:2px solid var(--ink); border-radius:9999px;
+    box-shadow: 6px 6px 0 var(--ink);
+    overflow:hidden;
+  }
+  .search-pill-field {
+    flex:1; min-width:0;
+    padding:14px 24px;
+    border-right:1px solid rgba(10,10,10,.15);
+    display:flex; flex-direction:column; gap:2px;
+  }
+  .search-pill-field:last-of-type { border-right:none; }
+  .search-pill-field label { display:block; cursor:pointer; }
+  .search-pill-select {
+    width:100%; border:0; background:transparent;
+    font-family:'Manrope', system-ui, sans-serif;
+    font-size:16px; font-weight:700; color:var(--ink);
+    outline:none; appearance:none; -webkit-appearance:none;
+    padding-right:24px; cursor:pointer;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%230A0A0A' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+    background-repeat:no-repeat; background-position:right center;
+  }
+  .search-pill-input {
+    width:100%; border:0; background:transparent;
+    font-family:'Manrope', system-ui, sans-serif;
+    font-size:16px; font-weight:600; color:var(--ink);
+    outline:none; padding:0;
+  }
+  .search-pill-input::placeholder { color:rgba(10,10,10,.4); font-weight:500; }
+  .search-pill-action {
+    background:var(--ink); color:var(--paper);
+    border:0; padding:0 28px;
+    display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+    font-family:'JetBrains Mono', ui-monospace, monospace;
+    font-size:11px; font-weight:700; letter-spacing:.15em; text-transform:uppercase;
+    cursor:pointer; transition: background .15s;
+  }
+  .search-pill-action:hover { background:var(--brand); }
+  @media (max-width: 640px) {
+    .search-pill { border-radius:18px; flex-direction:column; }
+    .search-pill-field { border-right:none; border-bottom:1px solid rgba(10,10,10,.15); }
+    .search-pill-action { padding:14px; }
+  }
 </style>
 <script type="application/ld+json">
 {
@@ -326,33 +372,41 @@
       <p class="text-base md:text-lg text-ink/70 max-w-xl mb-6 font-sans">Pick a play. We review it. If approved, we schedule it and run it.</p>
           </div>
 
-    <!-- SIMPLE SEARCH: who you are + what you're looking for -->
-    <div class="bg-white border-2 border-ink mb-12" style="box-shadow: 6px 6px 0 var(--ink);">
-      <div class="grid sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-ink/15">
-        <!-- User type -->
-        <div class="p-5 sm:p-6">
-          <div class="mono-eyebrow mb-3">I am</div>
-          <div class="flex flex-wrap gap-2" id="audienceTabs">
-            <button type="button" data-audience="artist" class="audience-tab">An Artist</button>
-            <button type="button" data-audience="label" class="audience-tab">A Label</button>
-            <button type="button" data-audience="sponsor" class="audience-tab">A Sponsor</button>
-          </div>
-        </div>
-
-        <!-- Campaign type -->
-        <div class="p-5 sm:p-6">
-          <div class="mono-eyebrow mb-3">Looking for</div>
-          <div class="flex flex-wrap gap-2">
-            <a href="#group-action" class="audience-tab">Group Action</a>
-            <a href="#digital-waxx" class="audience-tab">Digital Waxx</a>
-            <a href="#weekly-plays" class="audience-tab">Weekly Plays</a>
-          </div>
-        </div>
+    <!-- OBLONG SEARCH PILL: two dropdowns + free-text + Find -->
+    <div class="search-pill mb-12">
+      <div class="search-pill-field">
+        <label class="mono-eyebrow">I'm a</label>
+        <select id="audienceSelect" class="search-pill-select">
+          <option value="">Pick one</option>
+          <option value="artist">Artist</option>
+          <option value="label">Label</option>
+          <option value="sponsor">Sponsor</option>
+        </select>
       </div>
+      <div class="search-pill-field">
+        <label class="mono-eyebrow">Looking for</label>
+        <select id="campaignTypeSelect" class="search-pill-select">
+          <option value="">All campaigns</option>
+          <option value="#group-action">Group Action</option>
+          <option value="#digital-waxx">Digital Waxx</option>
+        </select>
+      </div>
+      <div class="search-pill-field">
+        <label class="mono-eyebrow" for="goalSearch">Goal</label>
+        <input id="goalSearch" type="text" class="search-pill-input" placeholder="e.g. DJ feedback, pre-saves" />
+      </div>
+      <button type="button" id="searchPillBtn" class="search-pill-action">
+        <i data-lucide="search" class="w-4 h-4"></i>
+        <span>Find</span>
+      </button>
     </div>
 
     <!-- Hidden hooks so existing JS still works without breaking -->
-    <input id="goalSearch" type="hidden" value="" />
+    <div class="hidden" id="audienceTabs">
+      <button type="button" data-audience="artist" class="audience-tab"></button>
+      <button type="button" data-audience="label" class="audience-tab"></button>
+      <button type="button" data-audience="sponsor" class="audience-tab"></button>
+    </div>
     <div id="goalChips" class="hidden"></div>
     <div id="resultPanel" class="hidden">
       <div id="resultPanelDefault" class="hidden"></div>
@@ -654,51 +708,13 @@
     <p class="text-center text-xs text-gray-500 mt-6 max-w-3xl mx-auto">Spin counts vary by genre and release momentum. The 50K+ list is a real opted-in network of DJs, club programmers, mixshow hosts, and music supervisors built over the life of Digiwaxx. Every spin we report is one a DJ actually played out.</p>
   </section>
 
-  <div id="weekly-plays" class="grid lg:grid-cols-3 gap-6 lg:gap-8 mb-32 lg:mb-0 scroll-mt-20">
-
-    <!-- PRODUCTS -->
-    <section class="lg:col-span-2">
-      <div class="mb-8">
-        <div class="text-[10px] font-black uppercase tracking-[0.25em] text-gray-500 mb-3">Weekly Plays</div>
-        <h2 class="section-h2 text-4xl md:text-6xl text-brand-500">Choose a play you'd like to run.</h2>
-        <p class="text-gray-600 mt-2">Recurring placements that ship every Wednesday, newsletter slots, in-room activations, recap tags, DJ Call mentions. Cancel any time.</p>
-      </div>
-
-      <!-- Placements -->
-      <div>
-        <div class="grid sm:grid-cols-2 gap-4" id="productGrid"></div>
-      </div>
-    </section>
-
-    <!-- CART -->
-    <aside class="hidden lg:block">
-      <div class="cart-sticky bg-white border border-gray-200 rounded-2xl p-6">
-        <div class="flex items-center justify-between mb-4">
-          <h3 class="font-black text-lg flex items-center gap-2"><i data-lucide="shopping-bag" class="w-5 h-5 text-[#8A1558]"></i> Your Inquiry</h3>
-          <span class="pill" id="cartCount">0</span>
-        </div>
-        <div id="cartList" class="space-y-2 mb-5 min-h-[120px]"></div>
-        <div class="border-t border-gray-100 pt-4">
-          <div class="flex justify-between text-sm mb-1"><span class="text-gray-500">Estimated investment</span><span class="font-black" id="cartTotal">$0</span></div>
-          <p class="text-xs text-gray-400 mt-1">Final pricing customized in your proposal.</p>
-        </div>
-        <a href="#contactForm" class="cta cta--brand mt-5">
-          <div class="cta__shadow"></div>
-          <div class="cta__face"><span class="cta__label">Submit for Review →</span></div>
-        </a>
-      </div>
-    </aside>
-
-    <!-- Mobile cart -->
-    <div class="lg:hidden cart-sticky bg-white border-t border-gray-200 p-4">
-      <div class="flex items-center justify-between gap-3">
-        <div>
-          <div class="text-xs font-bold uppercase tracking-widest text-gray-500">Your Inquiry</div>
-          <div class="font-black text-lg" id="cartTotalMobile">0 items</div>
-        </div>
-        <a href="#contactForm" class="bg-[#8A1558] text-white px-5 py-3 rounded-lg text-xs font-black tracking-widest uppercase hover:bg-[#680D3E]">Continue →</a>
-      </div>
-    </div>
+  <!-- Weekly Plays section removed per request. Hidden stubs keep existing JS happy. -->
+  <div id="weekly-plays" class="hidden">
+    <div id="productGrid"></div>
+    <div id="cartList"></div>
+    <span id="cartCount">0</span>
+    <span id="cartTotal">$0</span>
+    <span id="cartTotalMobile">0 items</span>
   </div>
 
   <!-- INQUIRY FORM -->
@@ -997,6 +1013,7 @@ const cart = new Set();
 
 function renderProducts() {
   const productGrid = document.getElementById('productGrid');
+  if (!productGrid || productGrid.closest('#weekly-plays')?.classList.contains('hidden')) return;
   productGrid.innerHTML = PRODUCTS.map(p => productCard(p)).join('');
   document.querySelectorAll('[data-add]').forEach(b => b.addEventListener('click', (e) => {
     e.preventDefault();
@@ -1473,6 +1490,34 @@ if (goalSearchInput) {
 renderProducts();
 renderCart();
 setActiveAudience('artist');
+
+// Wire the oblong search pill: dropdowns + free-text + Find button
+const audSel  = document.getElementById('audienceSelect');
+const typeSel = document.getElementById('campaignTypeSelect');
+const findBtn = document.getElementById('searchPillBtn');
+const goalInp = document.getElementById('goalSearch');
+function runPillSearch() {
+  const aud  = audSel  ? audSel.value  : '';
+  const type = typeSel ? typeSel.value : '';
+  const text = goalInp ? goalInp.value.trim() : '';
+  if (aud)  setActiveAudience(aud);
+  activeQuery = text.toLowerCase();
+  applyPlayFilter({ scrollFirst: !!text });
+  if (type) {
+    const el = document.querySelector(type);
+    if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+}
+if (audSel)  audSel.addEventListener('change',  runPillSearch);
+if (typeSel) typeSel.addEventListener('change', runPillSearch);
+if (findBtn) findBtn.addEventListener('click',  runPillSearch);
+if (goalInp) {
+  goalInp.addEventListener('input', () => {
+    activeQuery = (goalInp.value || '').trim().toLowerCase();
+    applyPlayFilter();
+  });
+  goalInp.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); runPillSearch(); } });
+}
 (typeof lucide !== "undefined" && lucide.createIcons());
 
 // Re-apply filter + goal pill refresh after any renderProducts() call so
