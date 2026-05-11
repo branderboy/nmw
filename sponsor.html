@@ -368,7 +368,7 @@
       <div class="nmw-search__select-wrap">
         <label for="audienceSelect" class="sr-only">Who is this for?</label>
         <select id="audienceSelect" class="nmw-search__select" aria-label="Who is this for?">
-          <option value="" selected>Who is this for? — All</option>
+          <option value="" selected>Who is this for? All</option>
           <option value="artist">Artist</option>
           <option value="label">Label</option>
           <option value="sponsor">Sponsor</option>
@@ -378,7 +378,7 @@
       <div class="nmw-search__select-wrap">
         <label for="goalSelect" class="sr-only">Campaign goal</label>
         <select id="goalSelect" class="nmw-search__select" aria-label="Campaign goal">
-          <option value="" selected>Campaign goal — All</option>
+          <option value="" selected>Campaign goal All</option>
         </select>
       </div>
       <div class="nmw-search__divider"></div>
@@ -1330,7 +1330,7 @@ function renderGoalSelect() {
     });
   }
   sel.innerHTML =
-    '<option value="" selected>Campaign goal — All</option>' +
+    '<option value="" selected>Campaign goal All</option>' +
     chips.map(c => `<option value="${c.tags}">${c.label}</option>`).join('');
 }
 
