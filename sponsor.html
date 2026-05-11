@@ -326,42 +326,39 @@
       <p class="text-base md:text-lg text-ink/70 max-w-xl mb-6 font-sans">Pick a play. We run it. We send you a report.</p>
     </div>
 
-    <!-- SEARCH BAR (light, intuitive, strong contrast) -->
-    <div class="bg-white border-2 border-ink mb-6" style="box-shadow: 6px 6px 0 var(--ink);">
-      <!-- Big search input row -->
-      <div class="relative">
-        <i data-lucide="search" class="w-6 h-6 text-ink absolute left-5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
-        <input id="goalSearch" type="text" placeholder="Search plays. Try “push a new release” or “DJ feedback”" class="w-full pl-16 pr-5 py-5 bg-white text-ink border-0 focus:outline-none text-base md:text-lg font-semibold placeholder:text-ink/40" />
-      </div>
-
-      <!-- Filters row -->
-      <div class="border-t border-ink/20 px-5 py-3 flex flex-wrap items-center gap-x-4 gap-y-2 bg-paper">
-        <span class="mono-eyebrow">Filter</span>
-        <div class="flex flex-wrap gap-1" id="audienceTabs">
-          <button type="button" data-audience="artist" class="audience-tab">Artist</button>
-          <button type="button" data-audience="label" class="audience-tab">Label</button>
-          <button type="button" data-audience="sponsor" class="audience-tab">Sponsor</button>
+    <!-- SIMPLE SEARCH: who you are + what you're looking for -->
+    <div class="bg-white border-2 border-ink mb-12" style="box-shadow: 6px 6px 0 var(--ink);">
+      <div class="grid sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-ink/15">
+        <!-- User type -->
+        <div class="p-5 sm:p-6">
+          <div class="mono-eyebrow mb-3">I am</div>
+          <div class="flex flex-wrap gap-2" id="audienceTabs">
+            <button type="button" data-audience="artist" class="audience-tab">An Artist</button>
+            <button type="button" data-audience="label" class="audience-tab">A Label</button>
+            <button type="button" data-audience="sponsor" class="audience-tab">A Sponsor</button>
+          </div>
         </div>
-        <div class="hidden sm:block w-px h-4 bg-ink/20"></div>
-        <span class="mono-eyebrow">Try</span>
-        <div id="goalChips" class="flex flex-wrap gap-1.5"></div>
-      </div>
 
-      <!-- Inline match result -->
-      <div id="resultPanel" class="hidden border-t border-ink/20 bg-white">
-        <div id="resultPanelDefault" class="hidden"></div>
-        <div id="resultPanelContent" class="w-full"></div>
+        <!-- Campaign type -->
+        <div class="p-5 sm:p-6">
+          <div class="mono-eyebrow mb-3">Looking for</div>
+          <div class="flex flex-wrap gap-2">
+            <a href="#group-action" class="audience-tab">Group Action</a>
+            <a href="#digital-waxx" class="audience-tab">Digital Waxx</a>
+            <a href="#weekly-plays" class="audience-tab">Weekly Plays</a>
+          </div>
+        </div>
       </div>
-      <div id="searchStatus" class="hidden border-t border-ink/10 px-5 py-2 text-xs text-ink/60 bg-paper"></div>
     </div>
 
-    <!-- In-the-store quick nav -->
-    <div class="flex flex-wrap items-center gap-3 mono-tag mb-10">
-      <span class="text-ink/40">In the store</span>
-      <a href="#group-action" class="text-ink/70 hover:text-ink">Group Action</a>
-      <a href="#digital-waxx" class="text-ink/70 hover:text-ink">Digital Waxx</a>
-      <a href="#weekly-plays" class="text-ink/70 hover:text-ink">Weekly Plays</a>
+    <!-- Hidden hooks so existing JS still works without breaking -->
+    <input id="goalSearch" type="hidden" value="" />
+    <div id="goalChips" class="hidden"></div>
+    <div id="resultPanel" class="hidden">
+      <div id="resultPanelDefault" class="hidden"></div>
+      <div id="resultPanelContent" class="hidden"></div>
     </div>
+    <div id="searchStatus" class="hidden"></div>
   </section>
 
   <!-- PRODUCT LINE: GROUP ACTION -->
