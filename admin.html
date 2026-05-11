@@ -58,6 +58,7 @@ if (typeof tailwind !== "undefined") tailwind.config = { theme: { extend: {
       <button class="tab" data-tab="events">Events</button>
       <button class="tab" data-tab="referrals">Referrals</button>
       <button class="tab" data-tab="blast">The Blast</button>
+      <button class="tab" data-tab="invites">Invites</button>
       <button class="tab" data-tab="djs">DJs</button>
       <button class="tab" data-tab="sponsors">Sponsors</button>
       <button class="tab" data-tab="distribution">Distribution</button>
@@ -271,6 +272,116 @@ if (typeof tailwind !== "undefined") tailwind.config = { theme: { extend: {
           <div class="text-xs text-gray-500">Demo only, wire to ESP/SMS provider in production.</div>
         </div>
       </aside>
+    </div>
+  </section>
+
+  <!-- INVITES -->
+  <section data-pane="invites" class="pane hidden">
+    <div class="grid lg:grid-cols-3 gap-6">
+      <!-- New invite form -->
+      <div class="lg:col-span-2 bg-white border border-gray-200 rounded-2xl p-6">
+        <div class="flex items-center gap-2 mb-1">
+          <i data-lucide="send" class="w-5 h-5 text-[#8A1558]"></i>
+          <h2 class="text-lg font-black tracking-tight">Invite to NMW</h2>
+        </div>
+        <p class="text-sm text-gray-500 mb-5">Upload a list of DJs, artists, or labels and queue invitations. Each recipient gets an audience-specific landing link and is added to the right pipeline.</p>
+
+        <form id="inviteForm" class="space-y-4">
+          <!-- Audience -->
+          <div>
+            <label class="text-[10px] font-black uppercase tracking-widest text-gray-700 block mb-2">Audience</label>
+            <div class="flex flex-wrap gap-2" id="inviteAudienceTabs">
+              <button type="button" data-invite-audience="dj"     class="invite-tab text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full transition-all bg-[#8A1558] text-white">DJ Members</button>
+              <button type="button" data-invite-audience="artist" class="invite-tab text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full transition-all bg-gray-100 text-gray-700 hover:bg-gray-200">Artists</button>
+              <button type="button" data-invite-audience="label"  class="invite-tab text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full transition-all bg-gray-100 text-gray-700 hover:bg-gray-200">Labels</button>
+            </div>
+          </div>
+
+          <!-- Optional batch label -->
+          <div>
+            <label class="text-[10px] font-black uppercase tracking-widest text-gray-700 block mb-2">Batch label <span class="text-gray-400 font-normal">(internal, for tracking)</span></label>
+            <input id="inviteBatchLabel" type="text" class="field-input" placeholder="e.g. Q1 DJ refresh push" />
+          </div>
+
+          <!-- File upload -->
+          <div>
+            <label class="text-[10px] font-black uppercase tracking-widest text-gray-700 block mb-2">Upload list (CSV or TXT)</label>
+            <label for="inviteFile" class="block border-2 border-dashed border-gray-300 hover:border-[#8A1558] rounded-xl p-5 text-center cursor-pointer transition-colors">
+              <i data-lucide="upload-cloud" class="w-8 h-8 text-gray-400 mx-auto mb-2"></i>
+              <div class="text-sm font-bold text-gray-700">Drop file or click to upload</div>
+              <div class="text-xs text-gray-500 mt-1">CSV columns: <code class="bg-gray-100 px-1 rounded">name, email, phone</code> — or one email per line</div>
+              <input id="inviteFile" type="file" accept=".csv,.txt,.tsv" class="hidden" />
+            </label>
+            <div id="inviteFileName" class="text-xs text-gray-500 mt-2 hidden"></div>
+          </div>
+
+          <!-- Or paste -->
+          <div>
+            <label class="text-[10px] font-black uppercase tracking-widest text-gray-700 block mb-2">…or paste a list</label>
+            <textarea id="invitePaste" rows="4" class="field-input" placeholder="alice@label.com&#10;bob@dj.net, Bob Smith&#10;chris@artist.co"></textarea>
+          </div>
+
+          <!-- Custom message -->
+          <div>
+            <label class="text-[10px] font-black uppercase tracking-widest text-gray-700 block mb-2">Custom message <span class="text-gray-400 font-normal">(optional, prepended to the template)</span></label>
+            <textarea id="inviteMessage" rows="3" class="field-input" placeholder="Hey — thought you should be in the room for this one."></textarea>
+          </div>
+
+          <!-- Preview -->
+          <div id="invitePreview" class="hidden bg-[#FDF2F8] border border-[#FBCFE8] rounded-xl p-4">
+            <div class="text-[10px] font-black uppercase tracking-widest text-[#8A1558] mb-2">Parsed</div>
+            <div class="text-sm font-bold text-gray-900 mb-2"><span id="inviteCount">0</span> recipients ready · <span id="inviteAudienceLabel" class="text-[#8A1558]">DJ Members</span></div>
+            <div id="inviteSample" class="text-xs text-gray-600 font-mono space-y-0.5 max-h-24 overflow-y-auto"></div>
+          </div>
+
+          <!-- Submit -->
+          <div class="flex flex-wrap gap-2 items-center pt-2 border-t border-gray-100">
+            <button type="submit" class="inline-flex items-center gap-1.5 bg-[#8A1558] text-white hover:bg-[#680D3E] px-5 py-2.5 rounded-lg text-xs font-black tracking-widest uppercase transition-all">
+              <i data-lucide="send" class="w-4 h-4"></i> Queue Invites
+            </button>
+            <button type="button" id="inviteResetBtn" class="text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-gray-900">Clear</button>
+            <span id="inviteHint" class="text-[11px] text-gray-500 ml-auto"></span>
+          </div>
+        </form>
+      </div>
+
+      <!-- Right rail: how it works -->
+      <aside class="bg-gray-50 border border-gray-200 rounded-2xl p-6">
+        <div class="text-[10px] font-black uppercase tracking-widest text-[#8A1558] mb-2">How it works</div>
+        <ol class="text-sm text-gray-700 font-serif space-y-2 list-decimal pl-4">
+          <li>Pick the audience — each gets a different invite template + landing page.</li>
+          <li>Drop a CSV/TXT or paste a list. We parse names + emails + phones.</li>
+          <li>Click <b>Queue Invites</b>. Each recipient gets an audience-specific email + WhatsApp template (when opted-in).</li>
+          <li>Recipients land on a custom join URL, opt-in to The Blast, and drop into the right pipeline (DJ / Artist / Label).</li>
+        </ol>
+        <div class="mt-5 pt-5 border-t border-gray-200 text-xs text-gray-500">
+          <b class="text-gray-900 block mb-1">Pre-launch note</b>
+          Invites are stored locally for now. When the migration lands (Phase 6 Resend + Phase 8 WhatsApp), queued batches will fire automatically.
+        </div>
+      </aside>
+    </div>
+
+    <!-- Recent batches -->
+    <div class="bg-white border border-gray-200 rounded-2xl p-6 mt-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-black tracking-tight">Recent Invite Batches</h3>
+        <span class="text-xs text-gray-500" id="inviteBatchCount">0 batches</span>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="min-w-full text-sm">
+          <thead class="text-left text-[10px] font-black uppercase tracking-widest text-gray-500 border-b border-gray-200">
+            <tr>
+              <th class="px-3 py-2">Sent</th>
+              <th class="px-3 py-2">Label</th>
+              <th class="px-3 py-2">Audience</th>
+              <th class="px-3 py-2">Recipients</th>
+              <th class="px-3 py-2">Status</th>
+              <th class="px-3 py-2"></th>
+            </tr>
+          </thead>
+          <tbody id="inviteBatchRows"></tbody>
+        </table>
+      </div>
     </div>
   </section>
 
@@ -1370,6 +1481,197 @@ document.getElementById('resetContentBtn').addEventListener('click', () => {
 
 loadPageContent();
 renderAll();
+
+// ============================================================================
+// INVITES — upload a list of DJs / artists / labels, queue invitations
+// ============================================================================
+const INVITES_KEY = 'nmw.inviteBatches';
+let inviteAudience = 'dj';
+let inviteRecipients = [];
+
+function inviteAudienceLabel(aud) {
+  return aud === 'dj' ? 'DJ Members' : aud === 'artist' ? 'Artists' : 'Labels';
+}
+
+// Parser: accepts CSV with name,email,phone OR one-per-line emails OR
+// "email, name" / "name <email>" combos. Returns { name, email, phone }[].
+function parseInviteText(text) {
+  if (!text) return [];
+  const out = [];
+  const seen = new Set();
+  const emailRe = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/i;
+  text.split(/\r?\n/).forEach(rawLine => {
+    const line = rawLine.trim();
+    if (!line) return;
+    // CSV header line? skip
+    if (/^name\s*,/i.test(line) && /email/i.test(line)) return;
+    let name = '', email = '', phone = '';
+    // CSV: name, email, phone
+    const parts = line.split(/,(?![^"]*"\s*$)/).map(s => s.trim().replace(/^"|"$/g, ''));
+    if (parts.length >= 2 && emailRe.test(parts[1])) {
+      name = parts[0]; email = parts[1]; phone = parts[2] || '';
+    } else if (parts.length === 1) {
+      const m = parts[0].match(emailRe);
+      if (m) email = m[0];
+      const angle = parts[0].match(/^([^<]+?)\s*<([^>]+)>/);
+      if (angle) { name = angle[1].trim(); email = angle[2].trim(); }
+    } else {
+      // First part with @ wins as email; the other parts are name + phone
+      const emailIdx = parts.findIndex(p => emailRe.test(p));
+      if (emailIdx >= 0) {
+        email = parts[emailIdx].match(emailRe)[0];
+        name = parts.filter((_, i) => i !== emailIdx).find(p => !/^\+?\d[\d\s\-().]+$/.test(p)) || '';
+        phone = parts.find(p => /^\+?\d[\d\s\-().]{5,}$/.test(p)) || '';
+      }
+    }
+    if (!email || seen.has(email.toLowerCase())) return;
+    seen.add(email.toLowerCase());
+    out.push({ name: name.trim(), email: email.trim(), phone: phone.trim() });
+  });
+  return out;
+}
+
+function updateInvitePreview() {
+  const previewEl = document.getElementById('invitePreview');
+  const countEl = document.getElementById('inviteCount');
+  const audEl = document.getElementById('inviteAudienceLabel');
+  const sampleEl = document.getElementById('inviteSample');
+  if (!inviteRecipients.length) {
+    previewEl.classList.add('hidden');
+    return;
+  }
+  previewEl.classList.remove('hidden');
+  countEl.textContent = inviteRecipients.length;
+  audEl.textContent = inviteAudienceLabel(inviteAudience);
+  const sample = inviteRecipients.slice(0, 6).map(r =>
+    `<div>${r.name ? r.name + ' &lt;' : ''}${r.email}${r.name ? '&gt;' : ''}${r.phone ? ' · ' + r.phone : ''}</div>`
+  );
+  if (inviteRecipients.length > 6) sample.push(`<div class="text-gray-400 italic">…and ${inviteRecipients.length - 6} more</div>`);
+  sampleEl.innerHTML = sample.join('');
+}
+
+function refreshInviteRecipients() {
+  const pasted = document.getElementById('invitePaste').value || '';
+  inviteRecipients = parseInviteText(pasted);
+  updateInvitePreview();
+}
+
+// Audience tab switching
+document.querySelectorAll('.invite-tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    inviteAudience = btn.dataset.inviteAudience;
+    document.querySelectorAll('.invite-tab').forEach(b => {
+      if (b.dataset.inviteAudience === inviteAudience) {
+        b.className = 'invite-tab text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full transition-all bg-[#8A1558] text-white';
+      } else {
+        b.className = 'invite-tab text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full transition-all bg-gray-100 text-gray-700 hover:bg-gray-200';
+      }
+    });
+    updateInvitePreview();
+  });
+});
+
+// File upload
+document.getElementById('inviteFile').addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const nameEl = document.getElementById('inviteFileName');
+  nameEl.classList.remove('hidden');
+  nameEl.textContent = `Loaded ${file.name} (${(file.size/1024).toFixed(1)} KB)`;
+  const reader = new FileReader();
+  reader.onload = (ev) => {
+    document.getElementById('invitePaste').value = ev.target.result || '';
+    refreshInviteRecipients();
+  };
+  reader.readAsText(file);
+});
+
+document.getElementById('invitePaste').addEventListener('input', refreshInviteRecipients);
+
+// Reset
+document.getElementById('inviteResetBtn').addEventListener('click', () => {
+  document.getElementById('inviteForm').reset();
+  document.getElementById('inviteFileName').classList.add('hidden');
+  document.getElementById('invitePreview').classList.add('hidden');
+  inviteRecipients = [];
+});
+
+// Queue + render batches
+function getInviteBatches() {
+  try { return JSON.parse(localStorage.getItem(INVITES_KEY) || '[]'); }
+  catch { return []; }
+}
+function saveInviteBatches(arr) {
+  localStorage.setItem(INVITES_KEY, JSON.stringify(arr));
+}
+
+function renderInviteBatches() {
+  const rows = getInviteBatches();
+  const tbody = document.getElementById('inviteBatchRows');
+  const countEl = document.getElementById('inviteBatchCount');
+  countEl.textContent = `${rows.length} batch${rows.length === 1 ? '' : 'es'}`;
+  if (!rows.length) {
+    tbody.innerHTML = '<tr><td colspan="6" class="px-3 py-4 text-sm text-gray-500 italic">No invite batches yet.</td></tr>';
+    return;
+  }
+  tbody.innerHTML = rows.slice().reverse().map(b => {
+    const status = b.status === 'sent'
+      ? '<span class="inline-flex items-center gap-1 text-[10px] font-black uppercase tracking-widest text-green-700 bg-green-50 border border-green-200 px-2 py-0.5 rounded-full">Sent</span>'
+      : '<span class="inline-flex items-center gap-1 text-[10px] font-black uppercase tracking-widest text-amber-700 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-full">Queued</span>';
+    const when = new Date(b.createdAt).toLocaleString();
+    return `<tr class="border-b border-gray-100 hover:bg-gray-50">
+      <td class="px-3 py-2 text-xs text-gray-600">${when}</td>
+      <td class="px-3 py-2 text-sm font-bold">${(b.label || '—').replace(/[<>]/g,'')}</td>
+      <td class="px-3 py-2 text-sm">${inviteAudienceLabel(b.audience)}</td>
+      <td class="px-3 py-2 text-sm font-bold">${b.recipients.length}</td>
+      <td class="px-3 py-2">${status}</td>
+      <td class="px-3 py-2 text-right">
+        <button type="button" data-invite-delete="${b.id}" class="text-xs text-red-600 hover:underline font-bold">Delete</button>
+      </td>
+    </tr>`;
+  }).join('');
+  tbody.querySelectorAll('[data-invite-delete]').forEach(b => {
+    b.addEventListener('click', () => {
+      if (!confirm('Delete this invite batch? (Pre-launch only — once Resend is wired this will be a real undo flow.)')) return;
+      saveInviteBatches(getInviteBatches().filter(x => x.id !== b.dataset.inviteDelete));
+      renderInviteBatches();
+    });
+  });
+}
+
+// Submit
+document.getElementById('inviteForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  refreshInviteRecipients();
+  const hint = document.getElementById('inviteHint');
+  if (!inviteRecipients.length) {
+    hint.textContent = 'Upload a file or paste at least one recipient with an email.';
+    hint.style.color = '#dc2626';
+    return;
+  }
+  const batch = {
+    id: 'inv_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2,6),
+    label: (document.getElementById('inviteBatchLabel').value || '').trim(),
+    audience: inviteAudience,
+    message: (document.getElementById('inviteMessage').value || '').trim(),
+    recipients: inviteRecipients,
+    status: 'queued',
+    createdAt: Date.now(),
+  };
+  const all = getInviteBatches();
+  all.push(batch);
+  saveInviteBatches(all);
+  hint.textContent = `Queued ${inviteRecipients.length} ${inviteAudienceLabel(inviteAudience).toLowerCase()} — will fire when Resend is wired.`;
+  hint.style.color = '#16a34a';
+  document.getElementById('inviteForm').reset();
+  document.getElementById('inviteFileName').classList.add('hidden');
+  document.getElementById('invitePreview').classList.add('hidden');
+  inviteRecipients = [];
+  renderInviteBatches();
+});
+
+renderInviteBatches();
+(typeof lucide !== 'undefined') && lucide.createIcons();
 </script>
 </body>
 </html>
