@@ -359,18 +359,19 @@
     <!-- OBLONG SEARCH BAR: who is this for + campaign goal + free-text tag search -->
     <form class="nmw-search mb-12 w-full max-w-6xl" role="search" onsubmit="event.preventDefault();">
       <div class="nmw-search__select-wrap">
-        <label for="audienceSelect" class="sr-only">I am</label>
-        <select id="audienceSelect" class="nmw-search__select" aria-label="I am">
-          <option value="artist">I am an Artist</option>
-          <option value="label">I am a Label</option>
-          <option value="sponsor">I am a Sponsor</option>
+        <label for="audienceSelect" class="sr-only">Who is this for?</label>
+        <select id="audienceSelect" class="nmw-search__select" aria-label="Who is this for?">
+          <option value="" disabled selected hidden>Who is this for?</option>
+          <option value="artist">Artist</option>
+          <option value="label">Label</option>
+          <option value="sponsor">Sponsor</option>
         </select>
       </div>
       <div class="nmw-search__divider"></div>
       <div class="nmw-search__select-wrap">
-        <label for="goalSelect" class="sr-only">My goal is</label>
-        <select id="goalSelect" class="nmw-search__select" aria-label="My goal is">
-          <option value="">My goal is — All</option>
+        <label for="goalSelect" class="sr-only">Campaign goal</label>
+        <select id="goalSelect" class="nmw-search__select" aria-label="Campaign goal">
+          <option value="" disabled selected hidden>Campaign goal</option>
         </select>
       </div>
       <div class="nmw-search__divider"></div>
@@ -1289,10 +1290,10 @@ function styleTab(btn, active) {
 }
 
 function setActiveAudience(aud) {
-  activeAudience = aud;
-  document.querySelectorAll('.audience-tab').forEach(b => styleTab(b, b.dataset.audience === aud));
+  activeAudience = aud || '';
+  document.querySelectorAll('.audience-tab').forEach(b => styleTab(b, b.dataset.audience === activeAudience));
   const audSelect = document.getElementById('audienceSelect');
-  if (audSelect && audSelect.value !== aud) audSelect.value = aud;
+  if (audSelect && audSelect.value !== activeAudience) audSelect.value = activeAudience;
   renderGoalChips();
   renderGoalSelect();
   refreshGoalPills();
@@ -1302,10 +1303,10 @@ function setActiveAudience(aud) {
 function renderGoalSelect() {
   const sel = document.getElementById('goalSelect');
   if (!sel) return;
-  const chips = GOAL_CHIPS[activeAudience] || [];
+  const chips = activeAudience ? (GOAL_CHIPS[activeAudience] || []) : [];
   sel.innerHTML =
-    '<option value="">My goal is — All</option>' +
-    chips.map(c => `<option value="${c.tags}">My goal is — ${c.label}</option>`).join('');
+    '<option value="" disabled selected hidden>Campaign goal</option>' +
+    chips.map(c => `<option value="${c.tags}">${c.label}</option>`).join('');
 }
 
 // Each play card may carry data-goal-{artist|label|sponsor}. Show the one
@@ -1473,7 +1474,7 @@ if (goalSearchInput) {
 
 renderProducts();
 renderCart();
-setActiveAudience('artist');
+setActiveAudience('');
 (typeof lucide !== "undefined" && lucide.createIcons());
 
 // Re-apply filter + goal pill refresh after any renderProducts() call so
