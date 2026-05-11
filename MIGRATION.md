@@ -68,6 +68,13 @@ they have lead times we can't shorten)
 - ✅ Sanity → WhatsApp broadcasts (T-3 hr show reminder; DJ Call reminder)
 - ✅ Sanity event publish → Blast feature auto-queued for Tuesday issue
 - ✅ Sanity → DJ Call agenda auto-update
+- ✅ Sanity podcast episode publish → RSS feed update (auto-distributed to
+  Apple Podcasts + Spotify) + per-episode landing page (`/podcast/[slug]`)
+  generated with `PodcastEpisode` JSON-LD, transcript, embedded audio,
+  guest links, related events
+- ✅ Podcast group / community page at `/podcast/community` (or similar
+  slug TBD) — show-wide hub: subscriber list, recurring guest hosts (CL,
+  Anna, Chrys), upcoming episode lineup, listener-only Blast tier signup
 - ✅ All distribution rows visible in admin dashboard with retry / view-remote
   links (the full Phase 13 dashboard, shipping in v1)
 
