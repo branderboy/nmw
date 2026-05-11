@@ -1,0 +1,16 @@
+{
+  "name": "New Music Wednesdays",
+  "short_name": "NMW",
+  "description": "Live performance and rollout infrastructure for rising artists. Every Wednesday at The Penthouse NYC.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FAFAF7",
+  "theme_color": "#8A1558",
+  "categories": ["music", "entertainment", "business"],
+  "icons": [
+    { "src": "/images/nmw-logo.png", "sizes": "1074x862", "type": "image/png", "purpose": "any" },
+    { "src": "/images/nmw-logo.png", "sizes": "any", "type": "image/png", "purpose": "maskable" }
+  ]
+}
