@@ -188,97 +188,62 @@
 
 <main class="max-w-7xl mx-auto px-4 py-12 md:py-16">
 
-  <!-- STORE HEADER -->
-  <section class="mb-14">
-    <div class="text-center mb-10">
-      <span class="text-[#8A1558] font-black tracking-widest text-base md:text-lg mb-3 block">[ The Campaign Store ]</span>
-      <h1 class="text-4xl md:text-6xl font-black tracking-tighter mb-4">Run a real campaign at NMW.</h1>
-      <p class="text-gray-600 font-serif text-lg max-w-2xl mx-auto">Pick a play. We run it. We send you a report so you know what happened.</p>
-      <p class="mt-4 text-sm md:text-base text-[#8A1558] font-bold max-w-2xl mx-auto"><i data-lucide="zap" class="w-4 h-4 inline mb-0.5"></i> The room is roughly 150 people, and they're not random fans. They're DJs, A&amp;Rs, programmers, and tastemakers. When they all act on the same record in the same night, the platforms pay attention.</p>
+  <!-- STORE HEADER (editorial, SXSW/Shopify direction) -->
+  <section class="mb-10 pt-2">
+    <div class="max-w-5xl">
+      <div class="text-[10px] font-black uppercase tracking-[0.25em] text-gray-500 mb-3">Campaign Store · NMW</div>
+      <h1 class="text-[2.5rem] sm:text-5xl md:text-7xl font-black tracking-[-0.03em] leading-[0.95] text-gray-900 mb-5">Run a real campaign at&nbsp;NMW.</h1>
+      <p class="text-lg md:text-2xl text-gray-700 font-serif max-w-2xl mb-8">Pick a play. We run it. We send you a report.</p>
     </div>
 
-    <!-- Three audiences -->
-    <div class="grid md:grid-cols-3 gap-4 max-w-5xl mx-auto mb-10">
-      <div class="bg-white border border-gray-200 rounded-2xl p-6">
-        <div class="flex items-center gap-2 mb-3">
-          <div class="w-9 h-9 rounded-full bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center"><i data-lucide="mic" class="w-4 h-4"></i></div>
-          <span class="text-xs font-black uppercase tracking-widest text-[#8A1558]">For Artists</span>
+    <!-- Compact inline filter — single row -->
+    <div class="border-t border-b border-gray-200 py-4 mb-10 -mx-4 px-4 sm:mx-0 sm:px-0">
+      <div class="flex flex-wrap items-center gap-x-6 gap-y-3">
+        <div class="flex items-center gap-2">
+          <span class="text-[10px] font-black uppercase tracking-widest text-gray-500">Shopping as</span>
+          <div class="flex gap-1" id="audienceTabs">
+            <button type="button" data-audience="artist" class="audience-tab text-xs font-black uppercase tracking-wider px-3 py-1.5 rounded-md transition-all">Artist</button>
+            <button type="button" data-audience="label" class="audience-tab text-xs font-black uppercase tracking-wider px-3 py-1.5 rounded-md transition-all">Label</button>
+            <button type="button" data-audience="sponsor" class="audience-tab text-xs font-black uppercase tracking-wider px-3 py-1.5 rounded-md transition-all">Sponsor</button>
+          </div>
         </div>
-        <div class="text-sm font-black text-gray-900 mb-2">You've got a release coming.</div>
-        <p class="text-xs text-gray-600 font-serif leading-relaxed">Plays here put weight behind it. Pre-saves before release day, your sound on TikTok, real eyes on the music video, spins from DJs who actually program clubs.</p>
-      </div>
-      <div class="bg-white border border-gray-200 rounded-2xl p-6">
-        <div class="flex items-center gap-2 mb-3">
-          <div class="w-9 h-9 rounded-full bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center"><i data-lucide="disc-3" class="w-4 h-4"></i></div>
-          <span class="text-xs font-black uppercase tracking-widest text-[#8A1558]">For Labels</span>
-        </div>
-        <div class="text-sm font-black text-gray-900 mb-2">You already paid to develop the roster.</div>
-        <p class="text-xs text-gray-600 font-serif leading-relaxed">Plays here put your dollars in front of the people who program music. One artist or the whole lineup, your call. We tell you what worked, per artist.</p>
-      </div>
-      <div class="bg-white border border-gray-200 rounded-2xl p-6">
-        <div class="flex items-center gap-2 mb-3">
-          <div class="w-9 h-9 rounded-full bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center"><i data-lucide="handshake" class="w-4 h-4"></i></div>
-          <span class="text-xs font-black uppercase tracking-widest text-[#8A1558]">For Sponsors</span>
-        </div>
-        <div class="text-sm font-black text-gray-900 mb-2">You want to reach culture, not impressions.</div>
-        <p class="text-xs text-gray-600 font-serif leading-relaxed">The room is full of the people who shape what gets played. Show up there honestly, end up in the newsletter, then in the recap clips that travel.</p>
-      </div>
-    </div>
 
-    <!-- FIND YOUR PLAY -->
-    <div class="max-w-4xl mx-auto bg-white border-2 border-gray-200 rounded-2xl p-5 md:p-6 mb-8 shadow-sm">
-      <div class="flex items-center gap-2 mb-5">
-        <i data-lucide="search" class="w-5 h-5 text-[#8A1558]"></i>
-        <span class="text-xs font-black uppercase tracking-widest text-gray-900">Find your play</span>
-      </div>
+        <div class="flex-1 min-w-[220px] flex items-center gap-2">
+          <i data-lucide="search" class="w-4 h-4 text-gray-400 flex-shrink-0"></i>
+          <input id="goalSearch" type="text" placeholder="What are you trying to do?" class="w-full px-2 py-1.5 bg-transparent border-0 border-b border-gray-300 focus:border-gray-900 focus:outline-none focus:ring-0 text-sm font-medium" />
+        </div>
 
-      <!-- Who you are -->
-      <div class="mb-5">
-        <div class="flex flex-wrap gap-2" id="audienceTabs">
-          <button type="button" data-audience="artist" class="audience-tab text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full transition-all">An Artist</button>
-          <button type="button" data-audience="label" class="audience-tab text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full transition-all">A Label</button>
-          <button type="button" data-audience="sponsor" class="audience-tab text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full transition-all">A Sponsor</button>
+        <div class="flex items-center gap-3 text-xs font-black uppercase tracking-wider">
+          <a href="#group-action" class="text-gray-600 hover:text-gray-900">Group Action</a>
+          <span class="text-gray-300">·</span>
+          <a href="#digital-waxx" class="text-gray-600 hover:text-gray-900">Digital Waxx</a>
+          <span class="text-gray-300">·</span>
+          <a href="#weekly-plays" class="text-gray-600 hover:text-gray-900">Weekly</a>
         </div>
       </div>
 
-      <!-- What you're trying to do -->
-      <div class="mb-5">
-        <div class="relative mb-3">
-          <i data-lucide="search" class="w-4 h-4 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none"></i>
-          <input id="goalSearch" type="text" placeholder="What are you trying to do?" class="w-full pl-11 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#8A1558] focus:outline-none text-sm font-medium" />
-        </div>
-        <div class="flex flex-wrap items-start gap-2">
-          <span class="text-[10px] font-black uppercase tracking-widest text-gray-500 mr-1 mt-2">Or try one of these:</span>
-          <div id="goalChips" class="flex flex-wrap gap-2"></div>
-        </div>
+      <!-- Goal chips (compact, optional) -->
+      <div class="flex flex-wrap items-center gap-2 mt-3" id="goalChipsWrap">
+        <span class="text-[10px] font-black uppercase tracking-widest text-gray-400">Try</span>
+        <div id="goalChips" class="flex flex-wrap gap-1.5"></div>
       </div>
 
-      <!-- Result -->
-      <div>
-        <div id="resultPanel" class="bg-gradient-to-br from-[#FDF2F8] to-white border-2 border-[#FBCFE8] rounded-xl p-5 min-h-[88px] flex items-center">
-          <div id="resultPanelDefault" class="text-sm text-gray-500 font-serif italic">Pick a goal above and we'll point you to the right play.</div>
-          <div id="resultPanelContent" class="w-full hidden"></div>
-        </div>
-        <div id="searchStatus" class="mt-3 text-xs font-medium text-gray-600 hidden"></div>
+      <!-- Result line, inline, no boxed card -->
+      <div id="resultPanel" class="mt-3 hidden">
+        <div id="resultPanelDefault" class="hidden"></div>
+        <div id="resultPanelContent" class="w-full"></div>
       </div>
-    </div>
-
-    <!-- Product line nav (anchors to sections below) -->
-    <div class="flex flex-wrap items-center justify-center gap-3 text-xs font-black uppercase tracking-widest">
-      <span class="text-gray-500">In the store:</span>
-      <a href="#group-action" class="border border-gray-300 hover:border-[#8A1558] hover:text-[#8A1558] text-gray-700 px-3 py-1.5 rounded-full transition-colors">Group Action</a>
-      <a href="#digital-waxx" class="border border-gray-300 hover:border-[#8A1558] hover:text-[#8A1558] text-gray-700 px-3 py-1.5 rounded-full transition-colors">Digital Waxx</a>
-      <a href="#weekly-plays" class="border border-gray-300 hover:border-[#8A1558] hover:text-[#8A1558] text-gray-700 px-3 py-1.5 rounded-full transition-colors">Weekly Plays</a>
-      <span class="text-gray-400 italic normal-case tracking-normal font-serif">+ more coming</span>
+      <div id="searchStatus" class="mt-2 text-xs text-gray-500 hidden"></div>
     </div>
   </section>
 
   <!-- PRODUCT LINE: GROUP ACTION -->
   <section id="group-action" class="mb-16 scroll-mt-20">
     <div class="text-center mb-8">
-      <span class="text-[#8A1558] font-black tracking-widest text-sm md:text-base mb-3 block">[ Product Line · Group Action ]</span>
-      <h2 class="text-3xl md:text-5xl font-black tracking-tighter mb-3">The Audience Boosts Your Music in Real Time</h2>
-      <p class="text-gray-600 font-serif text-lg max-w-2xl mx-auto">~150 people in the room coordinated to take one synchronized action while you perform, moving the platform's algorithm in your favor before you leave the stage. Pick one for your Wednesday, or stack them.</p>
+      <div class="text-[10px] font-black uppercase tracking-[0.25em] text-gray-500 mb-3">Group Action</div>
+      <h2 class="text-3xl md:text-5xl font-black tracking-tighter mb-3">The room moves on your music, in real time.</h2>
+      <p class="text-gray-600 font-serif text-lg max-w-2xl mx-auto mb-4">Everyone in the room takes the same action while you perform. 150 phones doing one thing at once. Pick a single platform or stack the whole night.</p>
+      <p class="text-sm md:text-base text-[#8A1558] font-bold max-w-2xl mx-auto"><i data-lucide="zap" class="w-4 h-4 inline mb-0.5"></i> The room isn't random fans. It's DJs, A&amp;Rs, programmers, and tastemakers. When they all hit your track at once, the platforms pay attention.</p>
     </div>
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
@@ -288,7 +253,7 @@
         <div class="w-14 h-14 rounded-full bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center mb-4"><i data-lucide="radar" class="w-7 h-7"></i></div>
         <h3 class="text-lg font-black tracking-tight mb-2">Shazam Group Action</h3>
         <div class="goal-pill inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-[#8A1558] bg-[#FDF2F8] px-2.5 py-1 rounded-full self-start mb-3" data-goal-artist="Boost Shazam Discovery" data-goal-label="Chart a Roster Artist on Shazam"><i data-lucide="target" class="w-3 h-3"></i> Goal: <span class="goal-text">Boost Shazam Discovery</span></div>
-        <p class="text-sm text-gray-700 font-serif mb-4">The room Shazams your set in real time. ~150 simultaneous Shazams in one venue, in one window, a signal Shazam's chart and "discovery" surfaces respond to.</p>
+        <p class="text-sm text-gray-700 font-serif mb-4">Everyone Shazams your track at the same time. 150 Shazams in one room, in one window. Shazam's local and genre charts notice. So does Apple Music.</p>
         <ul class="text-xs text-gray-600 space-y-1.5 mb-5 flex-1">
           <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>~150 synchronized Shazams during your set</li>
           <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>Boost to local + genre Shazam charts</li>
@@ -306,7 +271,7 @@
         <div class="w-14 h-14 rounded-full bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center mb-4"><i data-lucide="youtube" class="w-7 h-7"></i></div>
         <h3 class="text-lg font-black tracking-tight mb-2">YouTube Group Action</h3>
         <div class="goal-pill inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-[#8A1558] bg-[#FDF2F8] px-2.5 py-1 rounded-full self-start mb-3" data-goal-artist="YouTube Algorithm Push" data-goal-label="Push a Roster Artist's Video"><i data-lucide="target" class="w-3 h-3"></i> Goal: <span class="goal-text">YouTube Algorithm Push</span></div>
-        <p class="text-sm text-gray-700 font-serif mb-4">QR code on every table, the room scans, lands on your music video, watches, likes, comments. ~150 real engaged views in a 10-minute window: the strongest signal YouTube's algorithm reads.</p>
+        <p class="text-sm text-gray-700 font-serif mb-4">QR on every table. Everyone scans, lands on your music video, watches it, likes it, leaves a comment. 150 real engaged sessions in a ten-minute window. That's the signal YouTube uses to decide what to push.</p>
         <ul class="text-xs text-gray-600 space-y-1.5 mb-5 flex-1">
           <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>~150 watch sessions, real engagement</li>
           <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>Likes + comments seeded during set</li>
@@ -324,7 +289,7 @@
         <div class="w-14 h-14 rounded-full bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center mb-4"><i data-lucide="music-2" class="w-7 h-7"></i></div>
         <h3 class="text-lg font-black tracking-tight mb-2">TikTok Sound Group Action</h3>
         <div class="goal-pill inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-[#8A1558] bg-[#FDF2F8] px-2.5 py-1 rounded-full self-start mb-3" data-goal-artist="Seed a Viral Sound" data-goal-label="Seed a Roster Artist's Sound"><i data-lucide="target" class="w-3 h-3"></i> Goal: <span class="goal-text">Seed a Viral Sound</span></div>
-        <p class="text-sm text-gray-700 font-serif mb-4">QR scans land in TikTok on a seed post using your sound. Each guest reuses the sound on their own clip, turning your track into a trending sound from one Wednesday performance.</p>
+        <p class="text-sm text-gray-700 font-serif mb-4">QR drops everyone into TikTok on a post that already uses your sound. Forty to eighty people in the room reuse it on their own clip that night. That's how sounds break, started in one Wednesday.</p>
         <ul class="text-xs text-gray-600 space-y-1.5 mb-5 flex-1">
           <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>Seed post with your sound pre-loaded</li>
           <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>~40–80 attendees reuse the sound</li>
@@ -342,7 +307,7 @@
         <div class="w-14 h-14 rounded-full bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center mb-4"><i data-lucide="bookmark-plus" class="w-7 h-7"></i></div>
         <h3 class="text-lg font-black tracking-tight mb-2">Spotify Pre-Save Group Action</h3>
         <div class="goal-pill inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-[#8A1558] bg-[#FDF2F8] px-2.5 py-1 rounded-full self-start mb-3" data-goal-artist="Stack Release-Day Streams" data-goal-label="Boost a Roster Release"><i data-lucide="target" class="w-3 h-3"></i> Goal: <span class="goal-text">Stack Release-Day Streams</span></div>
-        <p class="text-sm text-gray-700 font-serif mb-4">QR scans land on a one-tap Spotify pre-save for your next release. ~150 pre-saves from a live audience in one night, the signal Spotify's editorial + algorithmic playlists weight heavily.</p>
+        <p class="text-sm text-gray-700 font-serif mb-4">QR goes to a one-tap pre-save for your upcoming release. 150 pre-saves from a live room in one night. That's what Spotify's editorial team and the algorithm both look at when they decide playlist placement.</p>
         <ul class="text-xs text-gray-600 space-y-1.5 mb-5 flex-1">
           <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>~150 pre-saves during your set</li>
           <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>First-week-stream surge on release day</li>
@@ -361,9 +326,9 @@
   <!-- GROUP ACTION BUNDLES / DEALS -->
   <section class="mb-16">
     <div class="text-center mb-10">
-      <span class="text-[#8A1558] font-black tracking-widest text-base md:text-lg mb-3 block">[ Stack the Stack ]</span>
-      <h2 class="text-3xl md:text-4xl font-black tracking-tighter mb-3">Bundle Group Actions, Compound the Impact</h2>
-      <p class="text-gray-600 font-serif text-lg max-w-2xl mx-auto">Each Group Action moves one algorithm. Stack them and you hit every major discovery surface in a single night, the strongest cross-platform signal an indie artist can manufacture without ad spend.</p>
+      <div class="text-[10px] font-black uppercase tracking-[0.25em] text-gray-500 mb-3">Bundles</div>
+      <h2 class="text-3xl md:text-4xl font-black tracking-tighter mb-3">Stack a few plays. Hit more places at once.</h2>
+      <p class="text-gray-600 font-serif text-lg max-w-2xl mx-auto">One play hits one platform. Two hits two. The full stack hits all four in the same night, which is about as much cross-platform signal as you can manufacture without paying for ads.</p>
     </div>
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -373,7 +338,7 @@
         <div class="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2">Tier 1</div>
         <h3 class="text-xl font-black tracking-tight mb-2">Single</h3>
         <div class="goal-pill inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-[#8A1558] bg-[#FDF2F8] px-2.5 py-1 rounded-full self-start mb-3" data-goal-artist="Move One Algorithm" data-goal-label="Targeted Single-Platform Push"><i data-lucide="target" class="w-3 h-3"></i> Goal: <span class="goal-text">Move One Algorithm</span></div>
-        <p class="text-sm text-gray-700 font-serif mb-4">Pick any 1 Group Action. Best for testing the mechanic on a focused platform.</p>
+        <p class="text-sm text-gray-700 font-serif mb-4">Pick one Group Action. Good if you want to test the mechanic on the platform that matters most.</p>
         <div class="text-[11px] font-bold uppercase tracking-widest text-[#8A1558] mb-3 flex items-start gap-1.5">
           <i data-lucide="zap" class="w-3.5 h-3.5 mt-0.5 flex-shrink-0"></i> <span>One algorithm moved in real time during your set</span>
         </div>
@@ -393,7 +358,7 @@
         <div class="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2">Tier 2</div>
         <h3 class="text-xl font-black tracking-tight mb-2">Double</h3>
         <div class="goal-pill inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-[#8A1558] bg-[#FDF2F8] px-2.5 py-1 rounded-full self-start mb-3" data-goal-artist="Cross-Platform Signal" data-goal-label="Cross-Platform Roster Push"><i data-lucide="target" class="w-3 h-3"></i> Goal: <span class="goal-text">Cross-Platform Signal</span></div>
-        <p class="text-sm text-gray-700 font-serif mb-4">Pick any 2 Group Actions. Cross-platform signal, when 2 algorithms move in the same window, both notice.</p>
+        <p class="text-sm text-gray-700 font-serif mb-4">Pick two Group Actions. When two platforms get the signal in the same window, both algorithms notice you faster.</p>
         <div class="text-[11px] font-bold uppercase tracking-widest text-[#8A1558] mb-3 flex items-start gap-1.5">
           <i data-lucide="zap" class="w-3.5 h-3.5 mt-0.5 flex-shrink-0"></i> <span>Two platforms boosted simultaneously, multiplied signal</span>
         </div>
@@ -413,7 +378,7 @@
         <div class="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2">Tier 3</div>
         <h3 class="text-xl font-black tracking-tight mb-2">Triple</h3>
         <div class="goal-pill inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-[#8A1558] bg-[#FDF2F8] px-2.5 py-1 rounded-full self-start mb-3" data-goal-label="Multi-Surface Roster Push"><i data-lucide="target" class="w-3 h-3"></i> Goal: <span class="goal-text">Multi-Surface Roster Push</span></div>
-        <p class="text-sm text-gray-700 font-serif mb-4">Pick any 3 Group Actions. Three of the four major discovery surfaces hit in one night.</p>
+        <p class="text-sm text-gray-700 font-serif mb-4">Pick three Group Actions. You cover most of the surfaces your fans use to discover music, in one Wednesday.</p>
         <div class="text-[11px] font-bold uppercase tracking-widest text-[#8A1558] mb-3 flex items-start gap-1.5">
           <i data-lucide="zap" class="w-3.5 h-3.5 mt-0.5 flex-shrink-0"></i> <span>Broad surface coverage, streaming + video + social in one play</span>
         </div>
@@ -434,7 +399,7 @@
         <div class="text-[10px] font-black uppercase tracking-widest text-[#8A1558] mb-2">Tier 4 · The Stack</div>
         <h3 class="text-xl font-black tracking-tight mb-2">Full Stack</h3>
         <div class="goal-pill inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-[#8A1558] bg-[#FDF2F8] px-2.5 py-1 rounded-full self-start mb-3" data-goal-label="Full Roster Career Moment"><i data-lucide="target" class="w-3 h-3"></i> Goal: <span class="goal-text">Full Roster Career Moment</span></div>
-        <p class="text-sm text-gray-700 font-serif mb-4">All four Group Actions in one Wednesday, every major DSP and discovery surface boosted simultaneously.</p>
+        <p class="text-sm text-gray-700 font-serif mb-4">All four Group Actions in one Wednesday. Shazam, YouTube, TikTok, Spotify all get a real signal off the same night.</p>
         <div class="text-[11px] font-bold uppercase tracking-widest text-[#8A1558] mb-3 flex items-start gap-1.5">
           <i data-lucide="zap" class="w-3.5 h-3.5 mt-0.5 flex-shrink-0"></i> <span>Full algorithmic momentum, career-moment night, every platform pulling in your direction</span>
         </div>
@@ -459,9 +424,9 @@
   <!-- PRODUCT LINE: DIGITAL WAXX DISTRIBUTION -->
   <section id="digital-waxx" class="mb-16 scroll-mt-20">
     <div class="text-center mb-10">
-      <span class="text-[#8A1558] font-black tracking-widest text-sm md:text-base mb-3 block">[ Product Line · Digital Waxx Distribution ]</span>
-      <h2 class="text-3xl md:text-5xl font-black tracking-tighter mb-3">Real Deliverables From the DJ Network</h2>
-      <p class="text-gray-600 font-serif text-lg max-w-2xl mx-auto mb-6">Digiwaxx's flagship distribution service. Our 50,000+ DJ network actively <strong class="text-gray-900">supports your record</strong>, not "awareness," three concrete deliverables, every one of them tracked and reported back.</p>
+      <div class="text-[10px] font-black uppercase tracking-[0.25em] text-gray-500 mb-3">Digital Waxx Distribution</div>
+      <h2 class="text-3xl md:text-5xl font-black tracking-tighter mb-3">DJs actually play your record.</h2>
+      <p class="text-gray-600 font-serif text-lg max-w-2xl mx-auto mb-6">Digiwaxx has been running this network for years. 50,000 DJs who actually program clubs and shows. When we put your record in front of them, three things happen, and we report all three back to you.</p>
 
       <!-- The three deliverables -->
       <div class="grid sm:grid-cols-3 gap-3 max-w-3xl mx-auto">
@@ -568,7 +533,7 @@
     <!-- PRODUCTS -->
     <section class="lg:col-span-2">
       <div class="mb-8">
-        <span class="text-[#8A1558] font-black tracking-widest text-sm md:text-base mb-2 block">[ Product Line · Weekly Plays ]</span>
+        <div class="text-[10px] font-black uppercase tracking-[0.25em] text-gray-500 mb-3">Weekly Plays</div>
         <h2 class="text-3xl md:text-4xl font-black tracking-tighter">Choose a Play You'd Like to Run</h2>
         <p class="text-gray-600 mt-2">Recurring placements that ship every Wednesday, newsletter slots, in-room activations, recap tags, DJ Call mentions. Cancel any time.</p>
       </div>
@@ -1229,9 +1194,9 @@ let activeQuery = '';
 
 function styleTab(btn, active) {
   if (active) {
-    btn.className = 'audience-tab text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full transition-all bg-[#8A1558] text-white';
+    btn.className = 'audience-tab text-xs font-black uppercase tracking-wider px-3 py-1.5 rounded-md transition-all bg-gray-900 text-white';
   } else {
-    btn.className = 'audience-tab text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full transition-all bg-gray-100 text-gray-700 hover:bg-gray-200';
+    btn.className = 'audience-tab text-xs font-black uppercase tracking-wider px-3 py-1.5 rounded-md transition-all text-gray-600 hover:text-gray-900';
   }
 }
 
@@ -1264,7 +1229,7 @@ function renderGoalChips() {
   const host = document.getElementById('goalChips');
   if (!host) return;
   host.innerHTML = chips.map(c =>
-    `<button type="button" data-chip-tags="${c.tags}" class="goal-chip text-xs font-bold bg-[#FDF2F8] text-[#8A1558] border border-[#FBCFE8] hover:bg-[#8A1558] hover:text-white px-3 py-1.5 rounded-full transition-all">${c.label}</button>`
+    `<button type="button" data-chip-tags="${c.tags}" class="goal-chip text-[11px] font-bold text-gray-600 hover:text-gray-900 border border-gray-200 hover:border-gray-900 px-2.5 py-1 rounded-md transition-all">${c.label}</button>`
   ).join('');
   host.querySelectorAll('.goal-chip').forEach(c => {
     c.addEventListener('click', () => {
@@ -1326,45 +1291,41 @@ function applyPlayFilter(opts = {}) {
 
 // Surface the top-matching play in the result panel as a clear "Your play" answer.
 function renderResultPanel(card, query, matchCount) {
-  const defaultEl = document.getElementById('resultPanelDefault');
+  const panel = document.getElementById('resultPanel');
   const contentEl = document.getElementById('resultPanelContent');
-  if (!contentEl) return;
+  if (!panel || !contentEl) return;
   if (!card || !query) {
-    defaultEl.style.display = '';
-    contentEl.classList.add('hidden');
+    panel.classList.add('hidden');
     contentEl.innerHTML = '';
     return;
   }
-  // Pull display fields off the card
+  // Pull display fields off the matched card
   const nameEl = card.querySelector('h3');
-  const priceEl = card.querySelector('.font-black.text-\\[\\#8A1558\\]');
+  const priceEl = card.querySelector('.play-price') || card.querySelector('.font-black.text-\\[\\#8A1558\\]');
   const goalEl = card.querySelector('.goal-text');
-  const ctaEl = card.querySelector('a[data-bundle], a[data-group-action]');
+  const addBtn = card.querySelector('button[data-add-play]');
   const name = nameEl ? nameEl.textContent.trim() : 'Recommended play';
   const price = priceEl ? priceEl.textContent.trim() : '';
   const goal = goalEl ? goalEl.textContent.trim() : '';
-  const ctaHref = ctaEl ? ctaEl.getAttribute('href') : '#contactForm';
-  const ctaDataAttr = ctaEl && ctaEl.dataset.bundle
-    ? `data-bundle="${ctaEl.dataset.bundle}"`
-    : (ctaEl && ctaEl.dataset.groupAction ? `data-group-action="${ctaEl.dataset.groupAction}"` : '');
-  const moreText = matchCount > 1 ? `<span class="text-[10px] font-bold text-gray-500 ml-auto self-center">+${matchCount - 1} more match${matchCount - 1 === 1 ? '' : 'es'} below</span>` : '';
+  const playId = addBtn ? addBtn.dataset.addPlay : '';
+  const inCart = playId && cart.has(playId);
+  const moreText = matchCount > 1 ? ` · +${matchCount - 1} more below` : '';
 
-  defaultEl.style.display = 'none';
-  contentEl.classList.remove('hidden');
+  panel.classList.remove('hidden');
   contentEl.innerHTML = `
-    <div class="flex flex-wrap items-center gap-3 md:gap-4">
-      <div class="w-10 h-10 rounded-full bg-[#8A1558] text-white flex items-center justify-center flex-shrink-0"><i data-lucide="target" class="w-5 h-5"></i></div>
+    <div class="flex flex-wrap items-center gap-3 py-2 px-3 bg-gray-50 rounded-lg border border-gray-200">
       <div class="flex-1 min-w-0">
-        <div class="text-base md:text-lg font-black tracking-tight text-gray-900 truncate">${name}</div>
-        ${goal ? `<div class="text-[11px] font-bold uppercase tracking-widest text-[#8A1558] mt-0.5">Goal: ${goal}</div>` : ''}
-        ${price ? `<div class="text-sm font-black text-gray-900 mt-1">${price}</div>` : ''}
+        <div class="text-xs font-black uppercase tracking-widest text-gray-500">Match for "${query}"</div>
+        <div class="text-sm md:text-base font-black tracking-tight text-gray-900">${name}${goal ? ` <span class="text-gray-500 font-normal italic">· ${goal}</span>` : ''}</div>
       </div>
-      <a href="${ctaHref}" ${ctaDataAttr} class="result-cta inline-flex items-center justify-center gap-1.5 bg-[#8A1558] text-white hover:bg-[#680D3E] px-4 py-2.5 rounded-lg text-xs font-black tracking-widest uppercase transition-all whitespace-nowrap"><i data-lucide="play" class="w-3.5 h-3.5"></i> Run This Play</a>
-      ${moreText}
+      ${price ? `<div class="text-sm font-black text-gray-900">${price}</div>` : ''}
+      ${playId ? `<button type="button" data-add-play-result="${playId}" class="result-cta inline-flex items-center gap-1.5 ${inCart ? 'bg-[#8A1558]' : 'bg-gray-900 hover:bg-black'} text-white px-3 py-1.5 rounded-md text-[11px] font-black uppercase tracking-widest transition-colors whitespace-nowrap"><i data-lucide="${inCart ? 'check' : 'plus'}" class="w-3 h-3"></i> ${inCart ? 'Added' : 'Add'}</button>` : ''}
+      ${moreText ? `<span class="text-[10px] text-gray-500 w-full">${moreText.replace(' · ', '')}</span>` : ''}
     </div>
   `;
-  // Re-render icons + wire the new Inquire button so it prefills the form
   if (typeof lucide !== 'undefined') lucide.createIcons();
+  const cta = contentEl.querySelector('.result-cta');
+  if (cta) cta.addEventListener('click', () => toggleCartItem(cta.dataset.addPlayResult));
   const cta = contentEl.querySelector('.result-cta');
   if (cta) {
     cta.addEventListener('click', () => {
