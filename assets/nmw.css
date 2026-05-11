@@ -1,5 +1,9 @@
 /* NMW shared styles — built around the sales-funnel design system */
 
+/* Prevent horizontal scroll / mobile wobble caused by oversized absolutely
+   positioned decorative blobs. Sets the viewport as the hard right boundary. */
+html, body { overflow-x: hidden; max-width: 100%; }
+
 /* Title-case every headline so the first letter of each word is capitalized */
 h1, h2, h3 { text-transform: capitalize; }
 
