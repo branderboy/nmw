@@ -356,30 +356,28 @@
       <p class="text-base md:text-lg text-ink/70 max-w-xl mb-6 font-sans">Pick a play. We review it. If approved, we schedule it and run it.</p>
           </div>
 
-    <!-- OBLONG SEARCH BAR: I am + Looking for + free-text tag search -->
+    <!-- OBLONG SEARCH BAR: who is this for + campaign goal + free-text tag search -->
     <form class="nmw-search mb-12 max-w-4xl" role="search" onsubmit="event.preventDefault();">
       <div class="nmw-search__select-wrap">
         <label for="audienceSelect" class="sr-only">I am</label>
         <select id="audienceSelect" class="nmw-search__select" aria-label="I am">
-          <option value="artist">I'm an Artist</option>
-          <option value="label">I'm a Label</option>
-          <option value="sponsor">I'm a Sponsor</option>
+          <option value="artist">I am an Artist</option>
+          <option value="label">I am a Label</option>
+          <option value="sponsor">I am a Sponsor</option>
         </select>
       </div>
       <div class="nmw-search__divider"></div>
       <div class="nmw-search__select-wrap">
-        <label for="categorySelect" class="sr-only">Looking for</label>
-        <select id="categorySelect" class="nmw-search__select" aria-label="Looking for">
-          <option value="">All campaigns</option>
-          <option value="group-action">Group Action</option>
-          <option value="digital-waxx">Digital Waxx</option>
+        <label for="goalSelect" class="sr-only">My goal is</label>
+        <select id="goalSelect" class="nmw-search__select" aria-label="My goal is">
+          <option value="">My goal is — All</option>
         </select>
       </div>
       <div class="nmw-search__divider"></div>
       <div class="nmw-search__input-wrap">
         <i data-lucide="search" class="nmw-search__icon"></i>
         <input id="goalSearch" type="search" class="nmw-search__input"
-               placeholder="Search by goal, tag, or keyword (e.g. tiktok, spins, presave)…"
+               placeholder="Search by tag or keyword (e.g. tiktok, spins, presave)…"
                autocomplete="off" />
       </div>
     </form>
@@ -1296,8 +1294,18 @@ function setActiveAudience(aud) {
   const audSelect = document.getElementById('audienceSelect');
   if (audSelect && audSelect.value !== aud) audSelect.value = aud;
   renderGoalChips();
+  renderGoalSelect();
   refreshGoalPills();
   applyPlayFilter();
+}
+
+function renderGoalSelect() {
+  const sel = document.getElementById('goalSelect');
+  if (!sel) return;
+  const chips = GOAL_CHIPS[activeAudience] || [];
+  sel.innerHTML =
+    '<option value="">My goal is — All</option>' +
+    chips.map(c => `<option value="${c.tags}">My goal is — ${c.label}</option>`).join('');
 }
 
 // Each play card may carry data-goal-{artist|label|sponsor}. Show the one
@@ -1436,13 +1444,19 @@ if (audienceSelect) {
   audienceSelect.addEventListener('change', (e) => setActiveAudience(e.target.value));
 }
 
-const categorySelect = document.getElementById('categorySelect');
-if (categorySelect) {
-  categorySelect.addEventListener('change', (e) => {
-    const id = e.target.value;
-    if (!id) return;
-    const target = document.getElementById(id);
-    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+const goalSelect = document.getElementById('goalSelect');
+if (goalSelect) {
+  goalSelect.addEventListener('change', (e) => {
+    const tags = e.target.value;
+    const inp = document.getElementById('goalSearch');
+    if (tags) {
+      activeQuery = tags.toLowerCase();
+      if (inp) inp.value = '';
+      applyPlayFilter({ scrollFirst: true });
+    } else {
+      activeQuery = inp ? inp.value.toLowerCase().trim() : '';
+      applyPlayFilter();
+    }
   });
 }
 
@@ -1450,6 +1464,8 @@ const goalSearchInput = document.getElementById('goalSearch');
 if (goalSearchInput) {
   goalSearchInput.addEventListener('input', (e) => {
     activeQuery = e.target.value.toLowerCase().trim();
+    const gs = document.getElementById('goalSelect');
+    if (gs && gs.value) gs.value = '';
     applyPlayFilter({ scrollFirst: false });
   });
 }
