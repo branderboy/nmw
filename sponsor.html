@@ -1402,7 +1402,7 @@ function applyPlayFilter(opts = {}) {
     if (q) {
       status.classList.remove('hidden');
       status.textContent = `${matchCount} play${matchCount === 1 ? '' : 's'} match, see all in the store below ↓`;
-    } else if (activeAudience !== 'artist') {
+    } else if (activeAudience && activeAudience !== 'artist') {
       status.classList.remove('hidden');
       status.textContent = `Showing plays for ${activeAudience}s.`;
     } else {
