@@ -140,24 +140,54 @@
   }
   .goal-chip:hover { color:var(--ink); border-color: var(--ink); }
 
-  /* ----- Impactful search panel (dark) ----- */
-  .search-dark .audience-block {
-    width:100%;
-    padding:14px 12px;
-    border:1px solid rgba(250,250,247,.25);
-    background:transparent;
-    color: var(--paper);
+  /* ----- Oblong search bar ----- */
+  .nmw-search {
+    display:flex; align-items:stretch;
+    background:#fff;
+    border:2px solid var(--ink);
+    border-radius:9999px;
+    box-shadow: 6px 6px 0 var(--brand);
+    overflow:hidden;
+    transition: box-shadow .15s, transform .15s;
+  }
+  .nmw-search:focus-within { box-shadow: 8px 8px 0 var(--brand); transform: translate(-1px,-1px); }
+  .nmw-search__select-wrap { position:relative; display:flex; align-items:center; }
+  .nmw-search__select {
+    appearance:none; -webkit-appearance:none; -moz-appearance:none;
+    background:transparent; border:0; outline:0;
     font-family:'JetBrains Mono', ui-monospace, monospace;
-    font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
-    transition: all .15s;
+    font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+    color: var(--ink);
+    padding:16px 34px 16px 24px;
     cursor:pointer;
   }
-  .search-dark .audience-block:hover { border-color: var(--paper); background: rgba(250,250,247,.05); }
-  .search-dark .audience-block.is-active { background: var(--brand); border-color: var(--brand); color: var(--paper); }
-  .search-dark .goal-chip { color: rgba(250,250,247,.7); border-color: rgba(250,250,247,.25); }
-  .search-dark .goal-chip:hover { color: var(--paper); border-color: var(--paper); }
-  .search-input-wrap input { box-shadow: 4px 4px 0 var(--brand); }
-  .search-input-wrap input:focus { box-shadow: 6px 6px 0 var(--brand); transform: translate(-1px,-1px); }
+  .nmw-search__select-wrap::after {
+    content:''; position:absolute; right:16px; top:50%;
+    width:0; height:0;
+    border-left:4px solid transparent;
+    border-right:4px solid transparent;
+    border-top:5px solid var(--ink);
+    transform:translateY(-50%);
+    pointer-events:none;
+  }
+  .nmw-search__divider { width:1px; background:rgba(10,10,10,.15); align-self:stretch; }
+  .nmw-search__input-wrap { display:flex; align-items:center; flex:1; min-width:0; padding:0 22px; gap:10px; }
+  .nmw-search__icon { width:18px; height:18px; color:rgba(10,10,10,.4); flex-shrink:0; }
+  .nmw-search__input {
+    flex:1; min-width:0;
+    background:transparent; border:0; outline:0;
+    font-family:'Manrope', system-ui, sans-serif;
+    font-size:14px; color:var(--ink);
+    padding:14px 0;
+  }
+  .nmw-search__input::placeholder { color:rgba(10,10,10,.4); }
+  @media (max-width: 720px) {
+    .nmw-search { flex-wrap:wrap; border-radius:24px; }
+    .nmw-search__divider { display:none; }
+    .nmw-search__select-wrap { flex:1 1 50%; }
+    .nmw-search__select { width:100%; padding:14px 30px 14px 20px; font-size:10px; }
+    .nmw-search__input-wrap { width:100%; border-top:1px solid rgba(10,10,10,.15); padding:0 20px; }
+  }
 
   /* Floating cart: paper-stamp pill */
   .floating-cart { position:fixed; right:1.25rem; bottom:1.25rem; z-index:60; }
@@ -326,33 +356,33 @@
       <p class="text-base md:text-lg text-ink/70 max-w-xl mb-6 font-sans">Pick a play. We review it. If approved, we schedule it and run it.</p>
           </div>
 
-    <!-- SIMPLE SEARCH: who you are + what you're looking for -->
-    <div class="bg-white border-2 border-ink mb-12" style="box-shadow: 6px 6px 0 var(--ink);">
-      <div class="grid sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-ink/15">
-        <!-- User type -->
-        <div class="p-5 sm:p-6">
-          <div class="mono-eyebrow mb-3">I am</div>
-          <div class="flex flex-wrap gap-2" id="audienceTabs">
-            <button type="button" data-audience="artist" class="audience-tab">An Artist</button>
-            <button type="button" data-audience="label" class="audience-tab">A Label</button>
-            <button type="button" data-audience="sponsor" class="audience-tab">A Sponsor</button>
-          </div>
-        </div>
-
-        <!-- Campaign type -->
-        <div class="p-5 sm:p-6">
-          <div class="mono-eyebrow mb-3">Looking for</div>
-          <div class="flex flex-wrap gap-2">
-            <a href="#group-action" class="audience-tab">Group Action</a>
-            <a href="#digital-waxx" class="audience-tab">Digital Waxx</a>
-            <a href="#weekly-plays" class="audience-tab">Weekly Plays</a>
-          </div>
-        </div>
+    <!-- OBLONG SEARCH BAR: who is this for + campaign goal + free-text tag search -->
+    <form class="nmw-search mb-12 max-w-4xl" role="search" onsubmit="event.preventDefault();">
+      <div class="nmw-search__select-wrap">
+        <label for="audienceSelect" class="sr-only">I am</label>
+        <select id="audienceSelect" class="nmw-search__select" aria-label="I am">
+          <option value="artist">I am an Artist</option>
+          <option value="label">I am a Label</option>
+          <option value="sponsor">I am a Sponsor</option>
+        </select>
       </div>
-    </div>
+      <div class="nmw-search__divider"></div>
+      <div class="nmw-search__select-wrap">
+        <label for="goalSelect" class="sr-only">My goal is</label>
+        <select id="goalSelect" class="nmw-search__select" aria-label="My goal is">
+          <option value="">My goal is — All</option>
+        </select>
+      </div>
+      <div class="nmw-search__divider"></div>
+      <div class="nmw-search__input-wrap">
+        <i data-lucide="search" class="nmw-search__icon"></i>
+        <input id="goalSearch" type="search" class="nmw-search__input"
+               placeholder="Add a keyword or phrase (e.g. tiktok, dj feedback, presave)…"
+               autocomplete="off" />
+      </div>
+    </form>
 
     <!-- Hidden hooks so existing JS still works without breaking -->
-    <input id="goalSearch" type="hidden" value="" />
     <div id="goalChips" class="hidden"></div>
     <div id="resultPanel" class="hidden">
       <div id="resultPanelDefault" class="hidden"></div>
@@ -552,26 +582,7 @@
     <div class="mb-10 max-w-3xl">
       <div class="mono-eyebrow mb-4">Digital Waxx Distribution</div>
       <h2 class="section-h2 text-4xl md:text-6xl mb-5 text-brand-500">Reach real professional DJs in the game.</h2>
-      <p class="text-base md:text-lg text-ink/70 font-sans max-w-xl mb-6">50,000 club programmers, mix-show hosts, and music supervisors who actually move records. Your track lands in their inbox. You get three things back, depending on the tier you pick.</p>
-
-      <!-- The three deliverables -->
-      <div class="grid sm:grid-cols-3 gap-3 max-w-3xl">
-        <div class="bg-[#FDF2F8] border border-[#FBCFE8] rounded-xl p-4">
-          <div class="mb-3 text-ink"><i data-lucide="message-square-quote" class="w-5 h-5"></i></div>
-          <div class="text-sm font-black text-gray-900">DJ Feedback</div>
-          <div class="text-xs text-gray-600 font-serif mt-1">What DJs thought of the track and how to reach them. Real names, real notes.</div>
-        </div>
-        <div class="bg-[#FDF2F8] border border-[#FBCFE8] rounded-xl p-4">
-          <div class="mb-3 text-ink"><i data-lucide="disc-3" class="w-5 h-5"></i></div>
-          <div class="text-sm font-black text-gray-900">Club Spins</div>
-          <div class="text-xs text-gray-600 font-serif mt-1">Where it got played in clubs. DJ name, venue, city, date, for every spin.</div>
-        </div>
-        <div class="bg-[#FDF2F8] border border-[#FBCFE8] rounded-xl p-4">
-          <div class="mb-3 text-ink"><i data-lucide="radio" class="w-5 h-5"></i></div>
-          <div class="text-sm font-black text-gray-900">Mix-Show Spins</div>
-          <div class="text-xs text-gray-600 font-serif mt-1">Where it got played on mixshows. Radio and streaming, with the show name and host.</div>
-        </div>
-      </div>
+      <p class="text-base md:text-lg text-ink/70 font-sans max-w-xl">50,000 club programmers, mix-show hosts, and music supervisors who actually move records. Your track lands in their inbox. You get three things back, depending on the tier you pick.</p>
     </div>
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -653,53 +664,6 @@
 
     <p class="text-center text-xs text-gray-500 mt-6 max-w-3xl mx-auto">Spin counts vary by genre and release momentum. The 50K+ list is a real opted-in network of DJs, club programmers, mixshow hosts, and music supervisors built over the life of Digiwaxx. Every spin we report is one a DJ actually played out.</p>
   </section>
-
-  <div id="weekly-plays" class="grid lg:grid-cols-3 gap-6 lg:gap-8 mb-32 lg:mb-0 scroll-mt-20">
-
-    <!-- PRODUCTS -->
-    <section class="lg:col-span-2">
-      <div class="mb-8">
-        <div class="text-[10px] font-black uppercase tracking-[0.25em] text-gray-500 mb-3">Weekly Plays</div>
-        <h2 class="section-h2 text-4xl md:text-6xl text-brand-500">Choose a play you'd like to run.</h2>
-        <p class="text-gray-600 mt-2">Recurring placements that ship every Wednesday, newsletter slots, in-room activations, recap tags, DJ Call mentions. Cancel any time.</p>
-      </div>
-
-      <!-- Placements -->
-      <div>
-        <div class="grid sm:grid-cols-2 gap-4" id="productGrid"></div>
-      </div>
-    </section>
-
-    <!-- CART -->
-    <aside class="hidden lg:block">
-      <div class="cart-sticky bg-white border border-gray-200 rounded-2xl p-6">
-        <div class="flex items-center justify-between mb-4">
-          <h3 class="font-black text-lg flex items-center gap-2"><i data-lucide="shopping-bag" class="w-5 h-5 text-[#8A1558]"></i> Your Inquiry</h3>
-          <span class="pill" id="cartCount">0</span>
-        </div>
-        <div id="cartList" class="space-y-2 mb-5 min-h-[120px]"></div>
-        <div class="border-t border-gray-100 pt-4">
-          <div class="flex justify-between text-sm mb-1"><span class="text-gray-500">Estimated investment</span><span class="font-black" id="cartTotal">$0</span></div>
-          <p class="text-xs text-gray-400 mt-1">Final pricing customized in your proposal.</p>
-        </div>
-        <a href="#contactForm" class="cta cta--brand mt-5">
-          <div class="cta__shadow"></div>
-          <div class="cta__face"><span class="cta__label">Submit for Review →</span></div>
-        </a>
-      </div>
-    </aside>
-
-    <!-- Mobile cart -->
-    <div class="lg:hidden cart-sticky bg-white border-t border-gray-200 p-4">
-      <div class="flex items-center justify-between gap-3">
-        <div>
-          <div class="text-xs font-bold uppercase tracking-widest text-gray-500">Your Inquiry</div>
-          <div class="font-black text-lg" id="cartTotalMobile">0 items</div>
-        </div>
-        <a href="#contactForm" class="bg-[#8A1558] text-white px-5 py-3 rounded-lg text-xs font-black tracking-widest uppercase hover:bg-[#680D3E]">Continue →</a>
-      </div>
-    </div>
-  </div>
 
   <!-- INQUIRY FORM -->
   <section id="contactForm" class="mt-16 lg:mt-24 max-w-3xl mx-auto">
@@ -997,6 +961,7 @@ const cart = new Set();
 
 function renderProducts() {
   const productGrid = document.getElementById('productGrid');
+  if (!productGrid) return;
   productGrid.innerHTML = PRODUCTS.map(p => productCard(p)).join('');
   document.querySelectorAll('[data-add]').forEach(b => b.addEventListener('click', (e) => {
     e.preventDefault();
@@ -1326,9 +1291,21 @@ function styleTab(btn, active) {
 function setActiveAudience(aud) {
   activeAudience = aud;
   document.querySelectorAll('.audience-tab').forEach(b => styleTab(b, b.dataset.audience === aud));
+  const audSelect = document.getElementById('audienceSelect');
+  if (audSelect && audSelect.value !== aud) audSelect.value = aud;
   renderGoalChips();
+  renderGoalSelect();
   refreshGoalPills();
   applyPlayFilter();
+}
+
+function renderGoalSelect() {
+  const sel = document.getElementById('goalSelect');
+  if (!sel) return;
+  const chips = GOAL_CHIPS[activeAudience] || [];
+  sel.innerHTML =
+    '<option value="">My goal is — All</option>' +
+    chips.map(c => `<option value="${c.tags}">My goal is — ${c.label}</option>`).join('');
 }
 
 // Each play card may carry data-goal-{artist|label|sponsor}. Show the one
@@ -1462,11 +1439,34 @@ document.querySelectorAll('.audience-tab').forEach(b => {
   b.addEventListener('click', () => setActiveAudience(b.dataset.audience));
 });
 
+const audienceSelect = document.getElementById('audienceSelect');
+if (audienceSelect) {
+  audienceSelect.addEventListener('change', (e) => setActiveAudience(e.target.value));
+}
+
+const goalSelect = document.getElementById('goalSelect');
+if (goalSelect) {
+  goalSelect.addEventListener('change', (e) => {
+    const tags = e.target.value;
+    const inp = document.getElementById('goalSearch');
+    if (tags) {
+      activeQuery = tags.toLowerCase();
+      if (inp) inp.value = '';
+      applyPlayFilter({ scrollFirst: true });
+    } else {
+      activeQuery = inp ? inp.value.toLowerCase().trim() : '';
+      applyPlayFilter();
+    }
+  });
+}
+
 const goalSearchInput = document.getElementById('goalSearch');
 if (goalSearchInput) {
   goalSearchInput.addEventListener('input', (e) => {
     activeQuery = e.target.value.toLowerCase().trim();
-    applyPlayFilter();
+    const gs = document.getElementById('goalSelect');
+    if (gs && gs.value) gs.value = '';
+    applyPlayFilter({ scrollFirst: false });
   });
 }
 
