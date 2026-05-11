@@ -179,30 +179,50 @@
     <div class="max-w-4xl mx-auto bg-white border-2 border-gray-200 rounded-2xl p-5 md:p-6 mb-8 shadow-sm">
       <div class="flex items-center gap-2 mb-4">
         <i data-lucide="search" class="w-5 h-5 text-[#8A1558]"></i>
-        <span class="text-xs font-black uppercase tracking-widest text-gray-900">Find a play by your goal</span>
+        <span class="text-xs font-black uppercase tracking-widest text-gray-900">Find your play</span>
       </div>
 
-      <!-- Audience tabs -->
-      <div class="flex flex-wrap gap-2 mb-4" id="audienceTabs">
-        <button type="button" data-audience="artist" class="audience-tab text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full transition-all">For Artists</button>
-        <button type="button" data-audience="label" class="audience-tab text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full transition-all">For Labels</button>
-        <button type="button" data-audience="sponsor" class="audience-tab text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full transition-all">For Sponsors</button>
+      <!-- STEP 1 — YOU -->
+      <div class="mb-5">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="w-5 h-5 rounded-full bg-[#8A1558] text-white text-[10px] font-black flex items-center justify-center">1</span>
+          <span class="text-[10px] font-black uppercase tracking-widest text-gray-700">You are</span>
+        </div>
+        <div class="flex flex-wrap gap-2" id="audienceTabs">
+          <button type="button" data-audience="artist" class="audience-tab text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full transition-all">An Artist</button>
+          <button type="button" data-audience="label" class="audience-tab text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full transition-all">A Label</button>
+          <button type="button" data-audience="sponsor" class="audience-tab text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full transition-all">A Sponsor</button>
+        </div>
       </div>
 
-      <!-- Text input -->
-      <div class="relative mb-4">
-        <i data-lucide="search" class="w-4 h-4 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none"></i>
-        <input id="goalSearch" type="text" placeholder="What are you trying to accomplish?" class="w-full pl-11 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#8A1558] focus:outline-none text-sm font-medium" />
+      <!-- STEP 2 — YOUR GOAL -->
+      <div class="mb-5">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="w-5 h-5 rounded-full bg-[#8A1558] text-white text-[10px] font-black flex items-center justify-center">2</span>
+          <span class="text-[10px] font-black uppercase tracking-widest text-gray-700">Your goal</span>
+        </div>
+        <div class="relative mb-3">
+          <i data-lucide="search" class="w-4 h-4 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+          <input id="goalSearch" type="text" placeholder="What are you trying to accomplish?" class="w-full pl-11 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#8A1558] focus:outline-none text-sm font-medium" />
+        </div>
+        <div class="flex flex-wrap items-start gap-2">
+          <span class="text-[10px] font-black uppercase tracking-widest text-gray-500 mr-1 mt-2">or pick a common goal:</span>
+          <div id="goalChips" class="flex flex-wrap gap-2"></div>
+        </div>
       </div>
 
-      <!-- Common goals (rendered per tab) -->
-      <div class="flex flex-wrap items-start gap-2">
-        <span class="text-[10px] font-black uppercase tracking-widest text-gray-500 mr-1 mt-2">Common goals:</span>
-        <div id="goalChips" class="flex flex-wrap gap-2"></div>
+      <!-- STEP 3 — YOUR PLAY (result panel) -->
+      <div>
+        <div class="flex items-center gap-2 mb-2">
+          <span class="w-5 h-5 rounded-full bg-[#8A1558] text-white text-[10px] font-black flex items-center justify-center">3</span>
+          <span class="text-[10px] font-black uppercase tracking-widest text-gray-700">Your play</span>
+        </div>
+        <div id="resultPanel" class="bg-gradient-to-br from-[#FDF2F8] to-white border-2 border-[#FBCFE8] rounded-xl p-5 min-h-[88px] flex items-center">
+          <div id="resultPanelDefault" class="text-sm text-gray-500 font-serif italic">Pick a goal above to see the play that fits.</div>
+          <div id="resultPanelContent" class="w-full hidden"></div>
+        </div>
+        <div id="searchStatus" class="mt-3 text-xs font-medium text-gray-600 hidden"></div>
       </div>
-
-      <!-- Search results status -->
-      <div id="searchStatus" class="mt-4 text-xs font-medium text-gray-600 hidden"></div>
     </div>
 
     <!-- Product line nav (anchors to sections below) -->
@@ -1089,11 +1109,12 @@ function renderGoalChips() {
 }
 
 function applyPlayFilter(opts = {}) {
-  const cards = document.querySelectorAll('.play-card');
+  const cards = Array.from(document.querySelectorAll('.play-card'));
   const q = (activeQuery || '').toLowerCase().trim();
   const terms = q ? q.split(/\s+/).filter(Boolean) : [];
   let matchCount = 0;
-  let firstMatch = null;
+  let bestCard = null;
+  let bestScore = -1;
 
   cards.forEach(card => {
     const audiences = (card.dataset.audience || '').toLowerCase();
@@ -1104,32 +1125,84 @@ function applyPlayFilter(opts = {}) {
     const isMatch = audienceMatch && queryMatch;
 
     card.style.opacity = isMatch ? '1' : '0.25';
-    if (isMatch && q) {
-      card.style.boxShadow = '0 0 0 3px #8A1558';
-    } else {
-      card.style.boxShadow = '';
-    }
+    card.style.boxShadow = (isMatch && q) ? '0 0 0 3px #8A1558' : '';
+
     if (isMatch) {
       matchCount++;
-      if (!firstMatch) firstMatch = card;
+      // Score: heavier weight for tag hits than body text
+      let score = 0;
+      terms.forEach(t => { if (tags.includes(t)) score += 3; else if (text.includes(t)) score += 1; });
+      if (score > bestScore) { bestScore = score; bestCard = card; }
     }
   });
+
+  renderResultPanel(bestCard, q, matchCount);
 
   const status = document.getElementById('searchStatus');
   if (status) {
     if (q) {
       status.classList.remove('hidden');
-      status.textContent = `${matchCount} play${matchCount === 1 ? '' : 's'} match — non-matching plays dimmed. Clear search to see all.`;
+      status.textContent = `${matchCount} play${matchCount === 1 ? '' : 's'} match — see all in the store below ↓`;
     } else if (activeAudience !== 'artist') {
       status.classList.remove('hidden');
-      status.textContent = `Showing plays for ${activeAudience}s. Non-matching plays dimmed.`;
+      status.textContent = `Showing plays for ${activeAudience}s.`;
     } else {
       status.classList.add('hidden');
     }
   }
 
-  if (firstMatch && q && opts.scrollFirst) {
-    firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  if (bestCard && q && opts.scrollFirst) {
+    bestCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
+
+// Surface the top-matching play in the result panel as a clear "Your play" answer.
+function renderResultPanel(card, query, matchCount) {
+  const defaultEl = document.getElementById('resultPanelDefault');
+  const contentEl = document.getElementById('resultPanelContent');
+  if (!contentEl) return;
+  if (!card || !query) {
+    defaultEl.style.display = '';
+    contentEl.classList.add('hidden');
+    contentEl.innerHTML = '';
+    return;
+  }
+  // Pull display fields off the card
+  const nameEl = card.querySelector('h3');
+  const priceEl = card.querySelector('.font-black.text-\\[\\#8A1558\\]');
+  const goalEl = card.querySelector('.goal-text');
+  const ctaEl = card.querySelector('a[data-bundle], a[data-group-action]');
+  const name = nameEl ? nameEl.textContent.trim() : 'Recommended play';
+  const price = priceEl ? priceEl.textContent.trim() : '';
+  const goal = goalEl ? goalEl.textContent.trim() : '';
+  const ctaHref = ctaEl ? ctaEl.getAttribute('href') : '#contactForm';
+  const ctaDataAttr = ctaEl && ctaEl.dataset.bundle
+    ? `data-bundle="${ctaEl.dataset.bundle}"`
+    : (ctaEl && ctaEl.dataset.groupAction ? `data-group-action="${ctaEl.dataset.groupAction}"` : '');
+  const moreText = matchCount > 1 ? `<span class="text-[10px] font-bold text-gray-500 ml-auto self-center">+${matchCount - 1} more match${matchCount - 1 === 1 ? '' : 'es'} below</span>` : '';
+
+  defaultEl.style.display = 'none';
+  contentEl.classList.remove('hidden');
+  contentEl.innerHTML = `
+    <div class="flex flex-wrap items-center gap-3 md:gap-4">
+      <div class="w-10 h-10 rounded-full bg-[#8A1558] text-white flex items-center justify-center flex-shrink-0"><i data-lucide="target" class="w-5 h-5"></i></div>
+      <div class="flex-1 min-w-0">
+        <div class="text-base md:text-lg font-black tracking-tight text-gray-900 truncate">${name}</div>
+        ${goal ? `<div class="text-[11px] font-bold uppercase tracking-widest text-[#8A1558] mt-0.5">Goal: ${goal}</div>` : ''}
+        ${price ? `<div class="text-sm font-black text-gray-900 mt-1">${price}</div>` : ''}
+      </div>
+      <a href="${ctaHref}" ${ctaDataAttr} class="result-cta inline-flex items-center justify-center gap-1.5 bg-[#8A1558] text-white hover:bg-[#680D3E] px-4 py-2.5 rounded-lg text-xs font-black tracking-widest uppercase transition-all whitespace-nowrap"><i data-lucide="play" class="w-3.5 h-3.5"></i> Run This Play</a>
+      ${moreText}
+    </div>
+  `;
+  // Re-render icons + wire the new Inquire button so it prefills the form
+  if (typeof lucide !== 'undefined') lucide.createIcons();
+  const cta = contentEl.querySelector('.result-cta');
+  if (cta) {
+    cta.addEventListener('click', () => {
+      if (cta.dataset.bundle) prefillForm(BUNDLE_LABELS[cta.dataset.bundle]);
+      else if (cta.dataset.groupAction) prefillForm(GROUP_ACTION_LABELS[cta.dataset.groupAction]);
+    });
   }
 }
 
