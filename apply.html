@@ -509,9 +509,8 @@
 <script src="assets/nmw.js"></script>
 <script>
 let funnel = NMW.getFunnel();
-const params = new URLSearchParams(location.search);
-const presetPkg = params.get('pkg');
-if (presetPkg) funnel.package = presetPkg;
+// Always start with no package preselected on a fresh page load.
+funnel.package = null;
 NMW.setFunnel(funnel);
 
 function stepSequence() {
