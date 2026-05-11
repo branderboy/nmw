@@ -745,7 +745,7 @@ function renderSummary() {
   const dateEl = document.getElementById('summaryDate');
   if (funnel.eventDate) {
     dateEl.classList.remove('hidden');
-    const rain = funnel.rainDate ? ` · Rain date ${NMW.fmtDate(new Date(funnel.rainDate))}` : '';
+    const rain = funnel.rainDate ? `, Rain date ${NMW.fmtDate(new Date(funnel.rainDate))}` : '';
     dateEl.textContent = 'Performing ' + NMW.fmtDate(new Date(funnel.eventDate)) + rain;
   } else {
     dateEl.classList.add('hidden');
