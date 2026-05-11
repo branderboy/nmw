@@ -174,6 +174,36 @@
       </div>
     </div>
 
+    <!-- GOAL-DRIVEN SEARCH -->
+    <div class="max-w-4xl mx-auto bg-white border-2 border-gray-200 rounded-2xl p-5 md:p-6 mb-8 shadow-sm">
+      <div class="flex items-center gap-2 mb-4">
+        <i data-lucide="search" class="w-5 h-5 text-[#8A1558]"></i>
+        <span class="text-xs font-black uppercase tracking-widest text-gray-900">Find a play by your goal</span>
+      </div>
+
+      <!-- Audience tabs -->
+      <div class="flex flex-wrap gap-2 mb-4" id="audienceTabs">
+        <button type="button" data-audience="artist" class="audience-tab text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full transition-all">For Artists</button>
+        <button type="button" data-audience="label" class="audience-tab text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full transition-all">For Labels</button>
+        <button type="button" data-audience="sponsor" class="audience-tab text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full transition-all">For Sponsors</button>
+      </div>
+
+      <!-- Text input -->
+      <div class="relative mb-4">
+        <i data-lucide="search" class="w-4 h-4 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+        <input id="goalSearch" type="text" placeholder="What are you trying to accomplish?" class="w-full pl-11 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#8A1558] focus:outline-none text-sm font-medium" />
+      </div>
+
+      <!-- Common goals (rendered per tab) -->
+      <div class="flex flex-wrap items-start gap-2">
+        <span class="text-[10px] font-black uppercase tracking-widest text-gray-500 mr-1 mt-2">Common goals:</span>
+        <div id="goalChips" class="flex flex-wrap gap-2"></div>
+      </div>
+
+      <!-- Search results status -->
+      <div id="searchStatus" class="mt-4 text-xs font-medium text-gray-600 hidden"></div>
+    </div>
+
     <!-- Product line nav (anchors to sections below) -->
     <div class="flex flex-wrap items-center justify-center gap-3 text-xs font-black uppercase tracking-widest">
       <span class="text-gray-500">In the store:</span>
@@ -194,7 +224,7 @@
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
 
       <!-- 1. Shazam -->
-      <div class="section-card flex flex-col border-2 border-[#8A1558]">
+      <div class="play-card section-card flex flex-col border-2 border-[#8A1558] transition-all" data-audience="artist label" data-tags="shazam discovery release rollout apple-music chart genre">
         <div class="w-14 h-14 rounded-full bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center mb-4"><i data-lucide="radar" class="w-7 h-7"></i></div>
         <h3 class="text-lg font-black tracking-tight mb-2">Shazam Group Action</h3>
         <p class="text-sm text-gray-700 font-serif mb-4">The room Shazams your set in real time. ~150 simultaneous Shazams in one venue, in one window — a signal Shazam's chart and "discovery" surfaces respond to.</p>
@@ -213,7 +243,7 @@
       </div>
 
       <!-- 2. YouTube -->
-      <div class="section-card flex flex-col border-2 border-[#8A1558]">
+      <div class="play-card section-card flex flex-col border-2 border-[#8A1558] transition-all" data-audience="artist label" data-tags="youtube video music-video views likes comments algorithm release rollout suggested">
         <div class="w-14 h-14 rounded-full bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center mb-4"><i data-lucide="youtube" class="w-7 h-7"></i></div>
         <h3 class="text-lg font-black tracking-tight mb-2">YouTube Group Action</h3>
         <p class="text-sm text-gray-700 font-serif mb-4">QR code on every table — the room scans, lands on your music video, watches, likes, comments. ~150 real engaged views in a 10-minute window: the strongest signal YouTube's algorithm reads.</p>
@@ -232,7 +262,7 @@
       </div>
 
       <!-- 3. TikTok -->
-      <div class="section-card flex flex-col border-2 border-[#8A1558]">
+      <div class="play-card section-card flex flex-col border-2 border-[#8A1558] transition-all" data-audience="artist label" data-tags="tiktok sound viral trend reuse release rollout social">
         <div class="w-14 h-14 rounded-full bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center mb-4"><i data-lucide="music-2" class="w-7 h-7"></i></div>
         <h3 class="text-lg font-black tracking-tight mb-2">TikTok Sound Group Action</h3>
         <p class="text-sm text-gray-700 font-serif mb-4">QR scans land in TikTok on a seed post using your sound. Each guest reuses the sound on their own clip — turning your track into a trending sound from one Wednesday performance.</p>
@@ -251,7 +281,7 @@
       </div>
 
       <!-- 4. Spotify pre-save -->
-      <div class="section-card flex flex-col border-2 border-[#8A1558]">
+      <div class="play-card section-card flex flex-col border-2 border-[#8A1558] transition-all" data-audience="artist label" data-tags="spotify pre-save presave streams release release-day playlist discover-weekly marquee ads">
         <div class="w-14 h-14 rounded-full bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center mb-4"><i data-lucide="bookmark-plus" class="w-7 h-7"></i></div>
         <h3 class="text-lg font-black tracking-tight mb-2">Spotify Pre-Save Group Action</h3>
         <p class="text-sm text-gray-700 font-serif mb-4">QR scans land on a one-tap Spotify pre-save for your next release. ~150 pre-saves from a live audience in one night — the signal Spotify's editorial + algorithmic playlists weight heavily.</p>
@@ -283,7 +313,7 @@
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
 
       <!-- Single -->
-      <div class="section-card flex flex-col">
+      <div class="play-card section-card flex flex-col transition-all" data-audience="artist label" data-tags="bundle single one play one-platform">
         <div class="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2">Tier 1</div>
         <h3 class="text-xl font-black tracking-tight mb-2">Single</h3>
         <p class="text-sm text-gray-700 font-serif mb-4">Pick any 1 Group Action. Best for testing the mechanic on a focused platform.</p>
@@ -304,7 +334,7 @@
       </div>
 
       <!-- Double -->
-      <div class="section-card flex flex-col">
+      <div class="play-card section-card flex flex-col transition-all" data-audience="artist label" data-tags="bundle double two-platform cross-platform">
         <div class="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2">Tier 2</div>
         <h3 class="text-xl font-black tracking-tight mb-2">Double</h3>
         <p class="text-sm text-gray-700 font-serif mb-4">Pick any 2 Group Actions. Cross-platform signal — when 2 algorithms move in the same window, both notice.</p>
@@ -325,7 +355,7 @@
       </div>
 
       <!-- Triple -->
-      <div class="section-card flex flex-col">
+      <div class="play-card section-card flex flex-col transition-all" data-audience="artist label" data-tags="bundle triple three-platform multi-platform">
         <div class="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2">Tier 3</div>
         <h3 class="text-xl font-black tracking-tight mb-2">Triple</h3>
         <p class="text-sm text-gray-700 font-serif mb-4">Pick any 3 Group Actions. Three of the four major discovery surfaces hit in one night.</p>
@@ -346,7 +376,7 @@
       </div>
 
       <!-- Full Stack (featured) -->
-      <div class="section-card flex flex-col border-2 border-[#8A1558] relative">
+      <div class="play-card section-card flex flex-col border-2 border-[#8A1558] relative transition-all" data-audience="artist label" data-tags="bundle full-stack stack all-four every-platform release-day rollout career-moment">
         <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#8A1558] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full whitespace-nowrap">Best Value</div>
         <div class="text-[10px] font-black uppercase tracking-widest text-[#8A1558] mb-2">Tier 4 · The Stack</div>
         <h3 class="text-xl font-black tracking-tight mb-2">Full Stack</h3>
@@ -574,66 +604,81 @@
 const PRODUCTS = [
   // Hero placement: highest-impact spoken brand integration
   { id: 'podcast-mentions', name: '5 Podcast Mentions', icon: 'mic', featured: true,
+    audience: 'sponsor label artist', tags: 'awareness brand podcast mention spoken distribution',
     blurb: 'Five spoken brand mentions across The Digiwaxx / NMW podcast slate. Lives forever in the feed and goes out to the regular listenership.',
     outcome: 'Avg 5K-15K downloads across 5 episodes',
     price: '$500 / 5 episodes', priceMin: 500 },
 
   // In-room activations: real things that happen in the venue
   { id: 'live-demo', name: 'Live Product Demo', icon: 'box',
+    audience: 'sponsor', tags: 'awareness in-room activation demo sampling product brand',
     blurb: 'Demo your product on stage between sets at The Penthouse. Real artists try it, real fans see it work.',
     outcome: '~150 in-room attendees, live demo',
     price: '$250 / Wednesday', priceMin: 250 },
   { id: 'sampling-table', name: 'Sampling Table at Door', icon: 'package',
+    audience: 'sponsor', tags: 'awareness in-room sampling activation product acquisition customer',
     blurb: 'Branded sampling table at the door, every guest passes it on entry and exit.',
     outcome: '~150 guests sampled / Wednesday',
     price: '$300 / Wednesday', priceMin: 300 },
   { id: 'gift-bag-insert', name: 'Artist Gift Bag Insert', icon: 'gift',
+    audience: 'sponsor', tags: 'awareness in-room product sampling brand artist',
     blurb: 'Drop product or sample into the artist swag bag handed to every performing act.',
     outcome: '5-8 performers / Wednesday',
     price: '$175 / Wednesday', priceMin: 175 },
   { id: 'free-ticket-giveaway', name: 'Free Ticket Giveaway', icon: 'ticket',
+    audience: 'sponsor', tags: 'awareness leads newsletter giveaway acquisition brand',
     blurb: 'Sponsor 10 free tickets given away via The Blast newsletter, code branded with your name.',
     outcome: '10 free tickets, ~600 entries',
     price: '$200 / week', priceMin: 200 },
   { id: 'artist-product-prize', name: 'Artist Prize Drop', icon: 'award',
+    audience: 'sponsor', tags: 'awareness in-room activation product brand recap social',
     blurb: 'Your product becomes the prize for the night\'s standout performance, picked by the room.',
     outcome: '1 winning artist / Wednesday + IG share',
     price: '$300 / Wednesday', priceMin: 300 },
   { id: 'step-and-repeat', name: 'Step & Repeat Banner', icon: 'camera',
+    audience: 'sponsor', tags: 'awareness in-room brand photo recap social ig tiktok',
     blurb: 'Branded photo-op backdrop in the lobby. Every guest poses, every photo travels through their socials.',
     outcome: '~150 guests, ~40 IG/TikTok posts',
     price: '$350 / Wednesday', priceMin: 350 },
 
   // Distribution: ongoing weekly placements
   { id: 'newsletter-slot', name: 'Newsletter Slot', icon: 'mail',
+    audience: 'sponsor label', tags: 'awareness leads newsletter mail community distribution brand',
     blurb: 'One sponsored block in The Blast every Wednesday, pushed to ~3K openers.',
     outcome: 'Avg 850 opens, 120 clicks / week',
     price: '$150 / week', priceMin: 600 },
   { id: 'recap-clip-sponsor', name: 'Recap Clip Tag', icon: 'film',
+    audience: 'sponsor label', tags: 'awareness recap clip social brand artist',
     blurb: 'Your handle on every Wednesday recap clip the artists themselves share to their followers.',
     outcome: 'Avg 5-12K organic views / week',
     price: '$200 / week', priceMin: 800 },
   { id: 'dj-call-mention', name: 'DJ Call Mention', icon: 'headphones',
+    audience: 'sponsor label', tags: 'awareness dj-network distribution mention spoken',
     blurb: 'Spoken brand mention on the Wednesday DJ Call, straight to the ~30K DJ network.',
     outcome: '30K DJs, weekly drop',
     price: '$100 / week', priceMin: 400 },
   { id: 'subscriber-drop', name: 'Subscriber-Only Drop', icon: 'tag',
+    audience: 'sponsor', tags: 'acquisition leads newsletter customer drop redemption sales',
     blurb: 'Exclusive code or first-look pushed to The Blast list. Drives orders directly back to your store.',
     outcome: 'Avg 60-180 redemptions / drop',
     price: '$120 / week', priceMin: 480 },
   { id: 'story-cobrand', name: 'Story Frame Co-Brand', icon: 'frame',
+    audience: 'sponsor label', tags: 'awareness social ig story recap brand co-brand',
     blurb: 'Co-branded Instagram Story frame in every artist share-pack we ship that week.',
     outcome: 'Avg 8-15 artist Stories / week',
     price: '$80 / week', priceMin: 320 },
   { id: 'event-listing-banner', name: 'Event Page Banner', icon: 'calendar-days',
+    audience: 'sponsor', tags: 'awareness banner event rsvp brand',
     blurb: 'Banner on /events while users decide to RSVP, hot-intent traffic.',
     outcome: 'Avg 1.4K weekly impressions',
     price: '$90 / week', priceMin: 360 },
   { id: 'audience-list-rental', name: 'Sponsor The Blast Newsletter', icon: 'send',
+    audience: 'sponsor label', tags: 'awareness leads newsletter mail monthly community brand',
     blurb: 'Be the monthly sponsor of The Blast — our weekly newsletter to artists and fans. Your brand gets the lead spot in every issue for the month.',
     outcome: 'Avg 1.1K opens, 90 clicks per send',
     price: '$400 / month', priceMin: 400 },
   { id: 'referral-share', name: 'Referral Reward Sponsor', icon: 'star',
+    audience: 'sponsor label', tags: 'awareness brand acquisition referral reward',
     blurb: 'Sponsor the artist referral unlocks (free ticket, priority, feature). Your brand becomes the prize.',
     outcome: '~40 referral chains / month',
     price: '$300 / month', priceMin: 300 },
@@ -677,7 +722,7 @@ function productCard(p, isBundle = false) {
          <i data-lucide="trending-up" class="w-3.5 h-3.5"></i> ${p.outcome}
        </div>`
     : '';
-  return `<div class="product-card section-card flex flex-col text-center items-center ${sel ? 'selected' : ''} ${p.featured ? 'border-2 border-[#8A1558]' : ''}">
+  return `<div class="play-card product-card section-card flex flex-col text-center items-center ${sel ? 'selected' : ''} ${p.featured ? 'border-2 border-[#8A1558]' : ''} transition-all" data-audience="${p.audience || ''}" data-tags="${p.tags || ''}">
     ${p.featured ? '<div class="text-[10px] font-black uppercase tracking-widest text-[#8A1558] mb-2">Most Popular</div>' : ''}
     <div class="w-20 h-20 rounded-full bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center mb-4"><i data-lucide="${p.icon}" class="w-9 h-9"></i></div>
     <h3 class="text-lg font-black tracking-tight mb-2">${p.name}</h3>
@@ -826,9 +871,138 @@ document.querySelectorAll('[data-bundle]').forEach(btn => {
   btn.addEventListener('click', () => prefillForm(BUNDLE_LABELS[btn.dataset.bundle]));
 });
 
+// ============================================================================
+// Goal-driven search: tabs + chips + free-text input filter the play cards.
+// ============================================================================
+const GOAL_CHIPS = {
+  artist: [
+    { label: 'I have a release coming up',    tags: 'release rollout' },
+    { label: 'Pre-saves for release day',     tags: 'spotify presave release-day' },
+    { label: 'Boost streams',                  tags: 'spotify streams playlist' },
+    { label: 'Go viral on TikTok',            tags: 'tiktok sound viral' },
+    { label: 'YouTube algorithm push',         tags: 'youtube video algorithm' },
+    { label: 'Chart on Shazam',               tags: 'shazam discovery chart' },
+  ],
+  label: [
+    { label: 'Promote a roster artist',       tags: 'release rollout' },
+    { label: 'Coordinated multi-platform',    tags: 'bundle stack multi-platform' },
+    { label: 'Newsletter feature',            tags: 'newsletter mail' },
+    { label: 'DJ Network push',               tags: 'dj-network distribution' },
+    { label: 'Recap content placement',       tags: 'recap clip' },
+  ],
+  sponsor: [
+    { label: 'Product awareness',             tags: 'awareness brand' },
+    { label: 'Lead generation',               tags: 'leads newsletter' },
+    { label: 'Customer acquisition',          tags: 'acquisition customer redemption' },
+    { label: 'In-room activation',            tags: 'in-room activation sampling' },
+    { label: 'Reach the community',           tags: 'newsletter community distribution' },
+    { label: 'Brand on recap content',        tags: 'recap clip social brand' },
+  ],
+};
+
+let activeAudience = 'artist';
+let activeQuery = '';
+
+function styleTab(btn, active) {
+  if (active) {
+    btn.className = 'audience-tab text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full transition-all bg-[#8A1558] text-white';
+  } else {
+    btn.className = 'audience-tab text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full transition-all bg-gray-100 text-gray-700 hover:bg-gray-200';
+  }
+}
+
+function setActiveAudience(aud) {
+  activeAudience = aud;
+  document.querySelectorAll('.audience-tab').forEach(b => styleTab(b, b.dataset.audience === aud));
+  renderGoalChips();
+  applyPlayFilter();
+}
+
+function renderGoalChips() {
+  const chips = GOAL_CHIPS[activeAudience] || [];
+  const host = document.getElementById('goalChips');
+  if (!host) return;
+  host.innerHTML = chips.map(c =>
+    `<button type="button" data-chip-tags="${c.tags}" class="goal-chip text-xs font-bold bg-[#FDF2F8] text-[#8A1558] border border-[#FBCFE8] hover:bg-[#8A1558] hover:text-white px-3 py-1.5 rounded-full transition-all">${c.label}</button>`
+  ).join('');
+  host.querySelectorAll('.goal-chip').forEach(c => {
+    c.addEventListener('click', () => {
+      const inp = document.getElementById('goalSearch');
+      inp.value = c.textContent;
+      activeQuery = c.dataset.chipTags;
+      applyPlayFilter({ scrollFirst: true });
+    });
+  });
+}
+
+function applyPlayFilter(opts = {}) {
+  const cards = document.querySelectorAll('.play-card');
+  const q = (activeQuery || '').toLowerCase().trim();
+  const terms = q ? q.split(/\s+/).filter(Boolean) : [];
+  let matchCount = 0;
+  let firstMatch = null;
+
+  cards.forEach(card => {
+    const audiences = (card.dataset.audience || '').toLowerCase();
+    const tags = (card.dataset.tags || '').toLowerCase();
+    const text = (card.textContent || '').toLowerCase();
+    const audienceMatch = !audiences || audiences.includes(activeAudience);
+    const queryMatch = !terms.length || terms.some(t => tags.includes(t) || text.includes(t));
+    const isMatch = audienceMatch && queryMatch;
+
+    card.style.opacity = isMatch ? '1' : '0.25';
+    if (isMatch && q) {
+      card.style.boxShadow = '0 0 0 3px #8A1558';
+    } else {
+      card.style.boxShadow = '';
+    }
+    if (isMatch) {
+      matchCount++;
+      if (!firstMatch) firstMatch = card;
+    }
+  });
+
+  const status = document.getElementById('searchStatus');
+  if (status) {
+    if (q) {
+      status.classList.remove('hidden');
+      status.textContent = `${matchCount} play${matchCount === 1 ? '' : 's'} match — non-matching plays dimmed. Clear search to see all.`;
+    } else if (activeAudience !== 'artist') {
+      status.classList.remove('hidden');
+      status.textContent = `Showing plays for ${activeAudience}s. Non-matching plays dimmed.`;
+    } else {
+      status.classList.add('hidden');
+    }
+  }
+
+  if (firstMatch && q && opts.scrollFirst) {
+    firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
+
+document.querySelectorAll('.audience-tab').forEach(b => {
+  b.addEventListener('click', () => setActiveAudience(b.dataset.audience));
+});
+
+const goalSearchInput = document.getElementById('goalSearch');
+if (goalSearchInput) {
+  goalSearchInput.addEventListener('input', (e) => {
+    activeQuery = e.target.value.toLowerCase().trim();
+    applyPlayFilter();
+  });
+}
+
 renderProducts();
 renderCart();
+setActiveAudience('artist');
 (typeof lucide !== "undefined" && lucide.createIcons());
+
+// Re-apply filter after any renderProducts() call so weekly plays stay filtered
+const _origRenderProducts = renderProducts;
+renderProducts = function() {
+  _origRenderProducts.apply(this, arguments);
+  applyPlayFilter();
+};
 </script>
 </body>
 </html>
