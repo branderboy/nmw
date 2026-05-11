@@ -1398,14 +1398,7 @@ function applyPlayFilter(opts = {}) {
   renderResultPanel(bestCard, q, matchCount);
 
   const status = document.getElementById('searchStatus');
-  if (status) {
-    if (q) {
-      status.classList.remove('hidden');
-      status.textContent = `${matchCount} play${matchCount === 1 ? '' : 's'} match, see all in the store below ↓`;
-    } else {
-      status.classList.add('hidden');
-    }
-  }
+  if (status) status.classList.add('hidden');
 
   if (bestCard && q && opts.scrollFirst) {
     bestCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
