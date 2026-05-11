@@ -361,7 +361,7 @@
       <div class="nmw-search__select-wrap">
         <label for="audienceSelect" class="sr-only">Who is this for?</label>
         <select id="audienceSelect" class="nmw-search__select" aria-label="Who is this for?">
-          <option value="" disabled selected hidden>Who is this for?</option>
+          <option value="" selected>Who is this for? — All</option>
           <option value="artist">Artist</option>
           <option value="label">Label</option>
           <option value="sponsor">Sponsor</option>
@@ -371,7 +371,7 @@
       <div class="nmw-search__select-wrap">
         <label for="goalSelect" class="sr-only">Campaign goal</label>
         <select id="goalSelect" class="nmw-search__select" aria-label="Campaign goal">
-          <option value="" disabled selected hidden>Campaign goal</option>
+          <option value="" selected>Campaign goal — All</option>
         </select>
       </div>
       <div class="nmw-search__divider"></div>
@@ -1294,6 +1294,10 @@ function setActiveAudience(aud) {
   document.querySelectorAll('.audience-tab').forEach(b => styleTab(b, b.dataset.audience === activeAudience));
   const audSelect = document.getElementById('audienceSelect');
   if (audSelect && audSelect.value !== activeAudience) audSelect.value = activeAudience;
+  // Reset any previous goal-based query so switching audience doesn't carry it over.
+  // The free-text search input is preserved.
+  const searchInput = document.getElementById('goalSearch');
+  activeQuery = searchInput ? searchInput.value.toLowerCase().trim() : '';
   renderGoalChips();
   renderGoalSelect();
   refreshGoalPills();
@@ -1303,9 +1307,23 @@ function setActiveAudience(aud) {
 function renderGoalSelect() {
   const sel = document.getElementById('goalSelect');
   if (!sel) return;
-  const chips = activeAudience ? (GOAL_CHIPS[activeAudience] || []) : [];
+  let chips;
+  if (activeAudience) {
+    chips = GOAL_CHIPS[activeAudience] || [];
+  } else {
+    // No audience picked yet: show every goal across audiences, dedupe by label
+    const seen = new Set();
+    chips = [];
+    Object.values(GOAL_CHIPS).forEach(list => {
+      list.forEach(c => {
+        if (seen.has(c.label)) return;
+        seen.add(c.label);
+        chips.push(c);
+      });
+    });
+  }
   sel.innerHTML =
-    '<option value="" disabled selected hidden>Campaign goal</option>' +
+    '<option value="" selected>Campaign goal — All</option>' +
     chips.map(c => `<option value="${c.tags}">${c.label}</option>`).join('');
 }
 
