@@ -359,8 +359,8 @@
   <section class="mb-5 md:mb-10 pt-2 relative z-10">
     <div class="max-w-6xl">
       <div class="mono-eyebrow mb-3">Campaign Store, NMW</div>
-      <h1 class="display display-tight text-5xl sm:text-6xl md:text-7xl mb-4 text-ink">Campaign Store</h1>
-      <p class="text-base md:text-lg text-ink/70 max-w-xl mb-6 font-sans">These are the plays we run for the artists in our community. Each one is built around a goal: getting your record heard by real DJs, moving an algorithm, putting your release in front of an audience that cares. Pick what fits your moment. We run it on a scheduled Wednesday and send a real report back.</p>
+      <h1 class="display display-tight text-5xl sm:text-6xl md:text-7xl mb-4 text-ink">Plays for your release rollout.</h1>
+      <p class="text-base md:text-lg text-ink/70 max-w-xl mb-6 font-sans">Plays we run for artists in our community. Pick what fits your moment. We run it on a scheduled Wednesday and send a real report back.</p>
           </div>
 
     <!-- OBLONG SEARCH BAR: who is this for + campaign goal + free-text tag search -->
@@ -403,8 +403,8 @@
   <section id="group-action" class="mb-5 md:mb-20 scroll-mt-20 relative z-10">
     <div class="ed-rule mb-8"></div>
     <div class="mb-5 md:mb-10 max-w-3xl">
-      <div class="mono-eyebrow mb-4">Group Action</div>
-      <h2 class="section-h2 text-4xl md:text-6xl mb-5 text-brand-500">Group Action</h2>
+      <div class="mono-eyebrow mb-4">Campaign Type: Group Action</div>
+      <h2 class="section-h2 text-4xl md:text-6xl mb-5 text-brand-500">Everyone in the room takes the same action on their phone.</h2>
       <p class="text-base md:text-lg text-ink/70 font-sans max-w-xl">The room moves with you. While you perform, everyone hits the same play on their phone, a Shazam, a YouTube watch, a TikTok sound, a Spotify pre-save. 150 people, one motion, one night. The kind of signal an algorithm actually notices.</p>
     </div>
 
@@ -489,8 +489,8 @@
   <section class="mb-5 md:mb-20 relative z-10">
     <div class="ed-rule mb-8"></div>
     <div class="mb-5 md:mb-10 max-w-3xl">
-      <div class="mono-eyebrow mb-4">Bundles</div>
-      <h2 class="section-h2 text-4xl md:text-6xl mb-5 text-brand-500">Bundles</h2>
+      <div class="mono-eyebrow mb-4">Campaign Type: Bundles</div>
+      <h2 class="section-h2 text-4xl md:text-6xl mb-5 text-brand-500">Combine plays. Pay less.</h2>
       <p class="text-base md:text-lg text-ink/70 font-sans max-w-xl">Stack plays for a bigger night. Two platforms moving in the same window. Four platforms on the same night is about as much algorithmic momentum as you can buy without paying for ads.</p>
     </div>
 
@@ -588,8 +588,8 @@
   <section id="digital-waxx" class="mb-5 md:mb-20 scroll-mt-20 relative z-10">
     <div class="ed-rule mb-8"></div>
     <div class="mb-5 md:mb-10 max-w-3xl">
-      <div class="mono-eyebrow mb-4">Digital Waxx Distribution</div>
-      <h2 class="section-h2 text-4xl md:text-6xl mb-5 text-brand-500">DJ Distribution</h2>
+      <div class="mono-eyebrow mb-4">Campaign Type: DJ Outreach</div>
+      <h2 class="section-h2 text-4xl md:text-6xl mb-5 text-brand-500">Get your record to 50,000 working DJs.</h2>
       <p class="text-base md:text-lg text-ink/70 font-sans max-w-xl">Digiwaxx has been the network behind urban radio and club DJs for over 20 years. We send your record to 50,000 of them, programmers, mixshow hosts, music supervisors, the people who decide what plays in real rooms. You get a report back showing who picked it up and where they spun it.</p>
     </div>
 
@@ -1398,17 +1398,7 @@ function applyPlayFilter(opts = {}) {
   renderResultPanel(bestCard, q, matchCount);
 
   const status = document.getElementById('searchStatus');
-  if (status) {
-    if (q) {
-      status.classList.remove('hidden');
-      status.textContent = `${matchCount} play${matchCount === 1 ? '' : 's'} match, see all in the store below ↓`;
-    } else if (activeAudience !== 'artist') {
-      status.classList.remove('hidden');
-      status.textContent = `Showing plays for ${activeAudience}s.`;
-    } else {
-      status.classList.add('hidden');
-    }
-  }
+  if (status) status.classList.add('hidden');
 
   if (bestCard && q && opts.scrollFirst) {
     bestCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
