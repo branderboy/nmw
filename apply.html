@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="images/nmw-logo.png" />
+<link rel="apple-touch-icon" href="images/nmw-logo.png" />
 <title>Apply to Perform | The Next Up Experience at The Penthouse NYC</title>
 <meta name="description" content="Apply for a Wednesday performance slot at The Penthouse NYC. Live showcase, press capture, DJ network distribution. Pick a package, lock a date, secure your rollout.">
 <link rel="canonical" href="https://www.newmusicwednesdayslive.com/apply.html">
@@ -18,7 +20,7 @@
 <meta name="twitter:image" content="https://www.newmusicwednesdayslive.com/images/nmw-logo.png">
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://unpkg.com/lucide@0.474.0"></script>
 <link rel="stylesheet" href="assets/nmw.css">
 <script>
   if (typeof tailwind !== "undefined") tailwind.config = { theme: { extend: {
@@ -103,7 +105,7 @@
     <a href="apply.html" class="hover:text-black">ARTIST ACCESS</a>
     <a href="faq.html" class="hover:text-black">FAQ</a>
     <a href="alerts.html" class="hover:text-black">GET ALERTS</a>
-    <a href="sponsor.html" class="hover:text-black">SPONSOR</a>
+    <a href="sponsor.html" class="hover:text-black">CAMPAIGN STORE</a>
   </div>
   </div>
 </nav>
@@ -127,6 +129,33 @@
         <p class="text-gray-500 mb-8">Select the package that fits your rollout.</p>
 
         <div class="grid grid-cols-2 md:grid-cols-4 gap-3" id="pkgGrid"></div>
+
+        <div class="mt-6 grid md:grid-cols-2 gap-4">
+          <div class="rounded-xl border border-gray-200 bg-gray-50 p-5">
+            <div class="flex items-start gap-3">
+              <div class="w-9 h-9 rounded-full bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center flex-shrink-0"><i data-lucide="ticket" class="w-5 h-5"></i></div>
+              <div class="min-w-0">
+                <h3 class="font-black tracking-tight mb-1">Want to come see it live?</h3>
+                <p class="text-sm text-gray-600 font-serif">RSVP for a Wednesday at The Penthouse before you commit to a slot. See the room, feel the energy, hear the artists.</p>
+                <a href="https://www.newmusicwednesdayslive.com/rsvp" target="_blank" rel="noopener noreferrer" class="text-xs font-black uppercase tracking-widest text-[#8A1558] hover:text-[#680D3E] mt-3 inline-flex items-center gap-1">RSVP for a Wednesday <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-xl border border-gray-200 bg-gray-50 p-5">
+            <div class="flex items-start gap-3">
+              <div class="w-9 h-9 rounded-full bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center flex-shrink-0"><i data-lucide="newspaper" class="w-5 h-5"></i></div>
+              <div class="min-w-0">
+                <h3 class="font-black tracking-tight mb-1">Press &amp; Media Network</h3>
+                <p class="text-sm text-gray-600 font-serif">Media isn't on the sidelines here — it's at the center of the culture. The media pit is where interviews come to life and moments get documented during a live taping.</p>
+                <p class="text-xs text-gray-500 mt-2">Partners include Digiwaxx, DSN Network, QueueVision, FUBU Radio, HLM Media, and a rotating roster of personalities and producers.</p>
+                <div class="flex flex-wrap gap-x-4 gap-y-2 mt-3">
+                  <button type="button" class="text-xs font-black uppercase tracking-widest text-[#8A1558] hover:text-[#680D3E] inline-flex items-center gap-1" data-info="press">View full media team <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></button>
+                  <a href="https://www.newmusicwednesdayslive.com/mediaaccess" target="_blank" rel="noopener noreferrer" class="text-xs font-black uppercase tracking-widest text-[#8A1558] hover:text-[#680D3E] inline-flex items-center gap-1">Request Media Access <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div class="border-t border-gray-100 mt-10 pt-8">
           <h2 class="text-2xl md:text-3xl font-black tracking-tight mb-1">YOUR DETAILS</h2>
@@ -434,12 +463,13 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="mission.html">Mission</a></li>
           <li><a href="events.html">Events</a></li>
+          <li><a href="https://www.newmusicwednesdayslive.com/rsvp" target="_blank" rel="noopener">RSVP</a></li>
           <li><a href="dj-call.html">DJ Call</a></li>
           <li><a href="podcast.html">Podcast</a></li>
           <li><a href="apply.html">Artist Access</a></li>
           <li><a href="faq.html">FAQ</a></li>
           <li><a href="alerts.html">Get Alerts</a></li>
-          <li><a href="sponsor.html">Sponsor NMW</a></li>
+          <li><a href="sponsor.html">Campaign Store</a></li>
         </ul>
       </div>
       <div>
@@ -535,14 +565,21 @@ function prevStep() {
   if (i > 0) showStep(seq[i - 1]);
 }
 
+const PKG_INFO = { 'media-ready': 'press' };
+
 function renderPackages() {
   const grid = document.getElementById('pkgGrid');
   grid.innerHTML = NMW.PACKAGES.map(p => {
     const sel = funnel.package === p.id ? 'is-selected' : '';
-    return `<button type="button" class="pkg-tile ${sel}" data-pkg="${p.id}">
-      <div class="pkg-name">${p.name}</div>
-      <div class="pkg-price">$${p.price}</div>
-    </button>`;
+    const info = PKG_INFO[p.id]
+      ? `<button type="button" class="pkg-info" data-info="${PKG_INFO[p.id]}" aria-label="More info"><i data-lucide="info" class="w-3.5 h-3.5"></i></button>`
+      : '';
+    return `<div class="pkg-tile-wrap">
+      <button type="button" class="pkg-tile ${sel}" data-pkg="${p.id}">
+        <div class="pkg-name">${p.name}</div>
+        <div class="pkg-price">$${p.price}</div>
+      </button>${info}
+    </div>`;
   }).join('');
   grid.querySelectorAll('[data-pkg]').forEach(el => {
     el.addEventListener('click', () => {
@@ -554,6 +591,26 @@ function renderPackages() {
       renderSummary();
     });
   });
+  grid.querySelectorAll('[data-info]').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openInfoModal(el.dataset.info);
+    });
+  });
+  if (typeof lucide !== 'undefined') lucide.createIcons();
+}
+
+function openInfoModal(kind) {
+  const modal = document.getElementById('infoModal');
+  if (!modal) return;
+  modal.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+function closeInfoModal() {
+  const modal = document.getElementById('infoModal');
+  if (!modal) return;
+  modal.classList.add('hidden');
+  document.body.style.overflow = '';
 }
 
 function renderDates() {
@@ -844,6 +901,19 @@ renderPackages();
 renderGoals();
 renderSummary();
 
+// Info modal wiring (delegated for inline triggers outside the package grid)
+document.addEventListener('click', (e) => {
+  const trigger = e.target.closest('[data-info]');
+  if (trigger && !trigger.closest('#pkgGrid')) {
+    e.preventDefault();
+    openInfoModal(trigger.dataset.info);
+  }
+  if (e.target.closest('[data-info-close]')) closeInfoModal();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeInfoModal();
+});
+
 // Promo / offer code wiring
 (function promoWiring() {
   const input = document.getElementById('promoInput');
@@ -893,5 +963,67 @@ if (funnel.info) {
 validateStep1();
 showStep('1');
 </script>
+
+<!-- Press / Media info modal -->
+<div id="infoModal" class="hidden fixed inset-0 z-[200] flex items-end sm:items-center justify-center p-0 sm:p-6">
+  <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" data-info-close></div>
+  <div class="relative bg-white w-full sm:max-w-2xl rounded-t-2xl sm:rounded-2xl shadow-2xl max-h-[90vh] overflow-y-auto">
+    <div class="sticky top-0 bg-white border-b border-gray-100 flex items-center justify-between px-6 py-4 z-10">
+      <div class="text-xs font-black uppercase tracking-widest text-[#8A1558]">[ Media Team ]</div>
+      <button type="button" data-info-close class="w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center" aria-label="Close"><i data-lucide="x" class="w-5 h-5"></i></button>
+    </div>
+    <div class="px-6 py-6 md:px-8 md:py-8">
+      <h2 class="text-3xl md:text-4xl font-black tracking-tighter mb-3">Join The Media Team</h2>
+      <p class="text-gray-700 font-serif mb-3">Media isn't on the sidelines here — it's at the center of the culture. Every week, the media pit is where conversations spark, relationships are built, and moments get documented as they happen — all during a live taping and streamed production. Interviews come to life. Exclusive reactions. You never know who might pop up.</p>
+      <p class="text-gray-700 font-serif mb-3">It's about bringing back that real in-the-room energy — the kind you can feel. Building relationships. Capturing authentic stories. Connecting the culture to the world through media, streaming, and in-person coverage.</p>
+      <p class="text-gray-700 font-serif mb-6">From celebrity guests to next-up talent, the room stays alive — and our media partners keep that energy moving far beyond the walls.</p>
+
+      <h3 class="text-xs font-black uppercase tracking-widest text-gray-500 mb-3">Press &amp; Media Partners</h3>
+      <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-2 mb-6 text-sm">
+        <li><span class="font-black">Digiwaxx</span> — Creator / Host / Platform</li>
+        <li><span class="font-black">DSN Network</span> — Platform / Production / Studios</li>
+        <li><span class="font-black">QueueVision</span> — Media Coverage &amp; Network</li>
+        <li><span class="font-black">iLana Perez</span> — Personality &amp; Coverage</li>
+        <li><span class="font-black">Anna Nyakana</span> — Personality &amp; Producer</li>
+        <li><span class="font-black">Chrys Childs</span> — Personality &amp; Producer</li>
+        <li><span class="font-black">FUBU Radio</span> — Radio Station &amp; Platform</li>
+        <li><span class="font-black">Jaylin</span> — Personality &amp; Coverage</li>
+        <li><span class="font-black">HLM Media</span> — Coverage &amp; Network</li>
+        <li><span class="font-black">Beverly Road</span> — A&amp;R / Music Producer</li>
+        <li><span class="font-black">Reemo's Corner</span> — Personality &amp; Coverage</li>
+        <li><span class="font-black">My Flowz Remarkable</span> — Personality &amp; Coverage</li>
+      </ul>
+
+      <h3 class="text-xs font-black uppercase tracking-widest text-gray-500 mb-3">Hosts + DJs</h3>
+      <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-2 mb-6 text-sm">
+        <li><span class="font-black">Terrell Blair</span> — Host</li>
+        <li><span class="font-black">DJ Cuddy</span> — DJ</li>
+        <li><span class="font-black">DJ Epidemik</span> — DJ</li>
+      </ul>
+
+      <h3 class="text-xs font-black uppercase tracking-widest text-gray-500 mb-3">Production Team</h3>
+      <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-2 mb-6 text-sm">
+        <li><span class="font-black">DWI Podfather</span> — Media Production Manager</li>
+        <li><span class="font-black">Fame Academy</span> — Visual Production Manager</li>
+      </ul>
+
+      <h3 class="text-xs font-black uppercase tracking-widest text-gray-500 mb-3">Visual Media Team</h3>
+      <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-2 mb-8 text-sm">
+        <li><span class="font-black">Etiquette</span> — Creative Imaging Director</li>
+        <li><span class="font-black">Lifes A Movie</span> — Visual Media Operator</li>
+      </ul>
+
+      <div class="rounded-xl p-5" style="background:linear-gradient(135deg,#FDF2F8 0%,#FCE7F3 100%);">
+        <h4 class="font-black tracking-tight mb-1">Want to join the media team?</h4>
+        <p class="text-sm text-gray-700 font-serif mb-3">If you're ready to lock in, build real connections, and capture the culture from inside the room — this is your entry point. We're curating a select rotation of media partners who bring perspective, professionalism, and presence to the space.</p>
+        <div class="flex flex-wrap gap-3">
+          <a href="https://www.newmusicwednesdayslive.com/mediaaccess" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-[#8A1558] text-white px-5 py-2.5 rounded-md text-xs font-black tracking-widest uppercase hover:bg-[#680D3E] transition-colors">Request Media Access <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+          <button type="button" data-info-close class="inline-flex items-center gap-2 bg-white border border-gray-300 text-gray-700 px-5 py-2.5 rounded-md text-xs font-black tracking-widest uppercase hover:border-[#8A1558] hover:text-[#8A1558] transition-colors">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>

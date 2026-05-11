@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow" />
+<link rel="icon" type="image/png" href="images/nmw-logo.png" />
+<link rel="apple-touch-icon" href="images/nmw-logo.png" />
 <title>Verification Portal | New Music Wednesdays</title>
 <meta name="description" content="Claim your Bandsintown, Songkick and DICE artist profiles, then upload screenshots to unlock event distribution.">
 <link rel="canonical" href="https://www.newmusicwednesdayslive.com/verify.html">
@@ -18,7 +21,7 @@
 <meta name="twitter:image" content="https://www.newmusicwednesdayslive.com/images/nmw-logo.png">
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://unpkg.com/lucide@0.474.0"></script>
 <link rel="stylesheet" href="assets/nmw.css">
 <script>
 if (typeof tailwind !== "undefined") tailwind.config = { theme: { extend: {
@@ -43,7 +46,7 @@ if (typeof tailwind !== "undefined") tailwind.config = { theme: { extend: {
     <a href="apply.html" class="hover:text-black">ARTIST ACCESS</a>
     <a href="faq.html" class="hover:text-black">FAQ</a>
     <a href="alerts.html" class="hover:text-black">GET ALERTS</a>
-    <a href="sponsor.html" class="hover:text-black">SPONSOR</a>
+    <a href="sponsor.html" class="hover:text-black">CAMPAIGN STORE</a>
   </div>
   </div>
 </nav>
@@ -84,9 +87,9 @@ if (typeof tailwind !== "undefined") tailwind.config = { theme: { extend: {
     <div class="mt-8 bg-white border border-gray-200 rounded-2xl p-6">
       <h3 class="font-bold mb-3">Where to claim:</h3>
       <ul class="text-sm space-y-2">
-        <li class="flex items-center gap-2"><i data-lucide="external-link" class="w-4 h-4 text-brand-500"></i><a href="https://artists.bandsintown.com" target="_blank" class="hover:text-brand-500">artists.bandsintown.com</a></li>
-        <li class="flex items-center gap-2"><i data-lucide="external-link" class="w-4 h-4 text-brand-500"></i><a href="https://www.songkick.com/tourbox" target="_blank" class="hover:text-brand-500">songkick.com/tourbox</a></li>
-        <li class="flex items-center gap-2"><i data-lucide="external-link" class="w-4 h-4 text-brand-500"></i><a href="https://dice.fm" target="_blank" class="hover:text-brand-500">dice.fm</a></li>
+        <li class="flex items-center gap-2"><i data-lucide="external-link" class="w-4 h-4 text-brand-500"></i><a href="https://artists.bandsintown.com" target="_blank" rel="noopener noreferrer" class="hover:text-brand-500">artists.bandsintown.com</a></li>
+        <li class="flex items-center gap-2"><i data-lucide="external-link" class="w-4 h-4 text-brand-500"></i><a href="https://www.songkick.com/tourbox" target="_blank" rel="noopener noreferrer" class="hover:text-brand-500">songkick.com/tourbox</a></li>
+        <li class="flex items-center gap-2"><i data-lucide="external-link" class="w-4 h-4 text-brand-500"></i><a href="https://dice.fm" target="_blank" rel="noopener noreferrer" class="hover:text-brand-500">dice.fm</a></li>
       </ul>
     </div>
   </div>
@@ -127,7 +130,7 @@ function render() {
         </div>
         <p class="text-xs text-gray-500 mb-3">${s.desc}</p>
 
-        <a href="${s.signupUrl}" target="_blank" class="flex items-center justify-between gap-2 p-3 mb-3 border border-brand-200 bg-brand-50 rounded-lg hover:border-brand-500 transition-colors">
+        <a href="${s.signupUrl}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between gap-2 p-3 mb-3 border border-brand-200 bg-brand-50 rounded-lg hover:border-brand-500 transition-colors">
           <div class="text-left min-w-0">
             <div class="text-xs font-black uppercase tracking-widest text-brand-500">Step 1, Sign up here</div>
             <div class="text-xs text-gray-700 truncate">${s.signupLabel}</div>

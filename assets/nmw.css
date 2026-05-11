@@ -283,6 +283,28 @@ body {
 }
 .onboarding-back:hover { border-color: #9ca3af; color: #111827; }
 
+/* Package tile wrapper — allows info button overlay */
+.pkg-tile-wrap { position: relative; }
+.pkg-tile-wrap > .pkg-tile { width: 100%; }
+.pkg-info {
+  position: absolute;
+  top: 0.45rem;
+  right: 0.45rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 9999px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  color: #6b7280;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s;
+  z-index: 2;
+}
+.pkg-info:hover { color: var(--brand-500); border-color: var(--brand-500); background: var(--brand-50); }
+
 /* Package tile — compact, radio-style with brand accents */
 .pkg-tile {
   background: #fff;

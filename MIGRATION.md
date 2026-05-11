@@ -23,6 +23,86 @@ All free or near-free until the room scales.
 
 ---
 
+## v1 Launch — Aggressive 4-week cut (automation-first)
+
+The whole investment in this rebuild is **AI-leveraged automation** — the
+admin should never manually post the same event to Eventbrite, Luma, DICE,
+Buffer, etc. Anything that already has an API ships automated in v1. We do
+NOT cut automation to save time; we cut polish (SEO long-tail, CRM,
+verification moderation UI).
+
+### Day-zero external setup (kick off these the moment Week 1 starts —
+they have lead times we can't shorten)
+
+- **Stripe** account → live-mode approval (24–48 hrs)
+- **DICE Partners API** access request (manual review, days)
+- **Meta Business** + **WhatsApp Business Cloud** verification + template
+  pre-approval (`show_reminder`, `dj_call_reminder`, `verification_nudge`,
+  `promo_drop`) — 3–7 days
+- **Bandsintown for Artists** + **Songkick Tourbox** API key requests
+- **Google Business Profile** claim for The Penthouse + NMW
+
+### In v1
+
+| Week | Phases | Deliverable |
+|---|---|---|
+| **1** | 0–1 | Next.js shell on Vercel; 12 public pages migrated 1:1; domain pointed; QA on staging. **Submit all API access requests above on day 1.** |
+| **2** | 2–5 + 13 scaffold | Sanity Studio live + content migrated; Postgres provisioned (incl. `event_distributions` + `distribution_schedule` tables); `/api/apply` + Stripe Checkout (test); Clerk admin; **`/api/events/distribute` dispatcher + admin distribution dashboard skeleton.** |
+| **3** | 6 + 7 (most) | Resend (receipts + Blast); **Eventbrite, Luma, Buffer, Google Business Profile** auto-publish on Sanity webhook (Buffer covers IG/FB/X/TikTok/Threads in one connector); Stripe live; favicon + OG-image polish. |
+| **4** | 7 (rest) + 8 + 9 | **Bandsintown + Songkick** per-artist push; **DICE** if API access granted (else best-effort copy-kit fallback for that one channel); **WhatsApp** broadcasts (templates approved by now); verification upload + moderation queue; soft-launch. |
+
+### What ships automated in v1 (full list)
+
+- ✅ Stripe Checkout (apply → pay)
+- ✅ Resend transactional email + Blast pipeline
+- ✅ Sanity → Eventbrite (event auto-created)
+- ✅ Sanity → Luma
+- ✅ Sanity → Buffer (IG, FB, X, TikTok, Threads — full T-7 → T+7 cadence
+  auto-queued per the Phase 13 schedule below)
+- ✅ Sanity → Google Business Profile
+- ✅ Sanity → Bandsintown (per-artist push for each lineup performer)
+- ✅ Sanity → Songkick Tourbox
+- ✅ Sanity → DICE *(if Partners API access granted in time; otherwise a
+  one-line copy-kit just for DICE until access lands — every other channel
+  is automated)*
+- ✅ Sanity → WhatsApp broadcasts (T-3 hr show reminder; DJ Call reminder)
+- ✅ Sanity event publish → Blast feature auto-queued for Tuesday issue
+- ✅ Sanity → DJ Call agenda auto-update
+- ✅ All distribution rows visible in admin dashboard with retry / view-remote
+  links (the full Phase 13 dashboard, shipping in v1)
+
+### Deferred to post-launch (Weeks 5+) — polish, not core
+
+- **Phase 11** — Full SEO content engine (per-event recap pages with
+  JSON-LD expansion, blog content cadence, backlink push). Basic per-event
+  pages launch in v1 with `Event` schema; recap-mode upgrade comes in Phase 11.
+- **Phase 12** — Pixels (GA4 + Meta + TikTok + LinkedIn), Cookiebot,
+  Attio CRM sync. v1 launches with **Vercel Web Analytics only** (cookieless,
+  zero-config) to avoid blocking on consent banner work.
+- **Phase 13 hardening** — distribution dashboard ships in v1 with retries
+  and per-channel status; advanced features (per-channel caption overrides,
+  bulk re-push, distribution-kit fallback editor) come post-launch.
+
+### Risks to the 4-week timeline
+
+1. **DICE Partners API approval** — out of our hands. Mitigation: best-effort
+   copy-kit fallback for DICE only; ship without if not granted by Week 4.
+2. **WhatsApp template approval** — Meta reviews 3–7 days. Mitigation: submit
+   day 1 of Week 1; templates land before Week 4 build.
+3. **Stripe live-mode approval** — 24–48 hrs. Start day 1.
+4. **Sanity content migration** — ~1 day of manual copy from current HTML.
+   Run in parallel during Week 2.
+5. **DNS cutover** — propagation lag. Cut DNS at start of Week 4 to leave
+   72 hrs of buffer before soft-launch.
+
+### If the timeline slips
+
+The order to drop scope (last to first): WhatsApp broadcasts → DICE → GBP →
+Bandsintown/Songkick. Eventbrite, Luma, Buffer, Resend, Stripe, Sanity, Clerk,
+Postgres, Next.js shell are non-negotiable for v1.
+
+---
+
 ## Phase 0 — Repo prep (1 hour)
 
 - [ ] Create `migration/` branch on the existing repo
@@ -377,11 +457,22 @@ The list is intentionally pessimistic — most weeks have buffer.
 
 ## Things that don't migrate
 
-- `landing-page.html`, `blog.html`, `mixtapes.html`, `index2.html` — stale or experimental, drop them
+- `index2.html` — design preview, already `noindex`; drop after Next.js shell ships
+- `elements.html` — internal style guide, already `noindex`; drop or move to `/_internal/elements` behind Clerk
+- `admin.html` / `dashboard.html` / `verify.html` — replaced by Next.js routes (`/admin`, `/dashboard`, `/verify`)
 - `nmw.js` — full rewrite as TypeScript modules in `lib/`
 - `assets/nmw.css` — port to `app/globals.css`, keep brand variables, drop Tailwind fallback shims (Next's Tailwind handles this)
 - The `data-cms` localStorage CMS layer — Sanity replaces it
 - The mobile drawer JS — Next.js component using `useState`
+
+## Files that belong to a separate site (do NOT migrate or delete)
+
+- `landing-page.html`
+- `blog.html`
+- `mixtapes.html`
+
+These are content for a different property that happens to share this repo.
+Leave them in place; they are not part of NMW's production migration.
 
 ---
 

@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="images/nmw-logo.png" />
+<link rel="apple-touch-icon" href="images/nmw-logo.png" />
 <title>Upcoming Events | New Music Wednesdays at The Penthouse NYC</title>
 <meta name="description" content="Live performances every Wednesday at The Penthouse NYC. RSVP, see lineups, add to your calendar, share with your team.">
 <link rel="canonical" href="https://www.newmusicwednesdayslive.com/events.html">
@@ -18,7 +20,7 @@
 <meta name="twitter:image" content="https://www.newmusicwednesdayslive.com/images/nmw-logo.png">
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://unpkg.com/lucide@0.474.0"></script>
 <link rel="stylesheet" href="assets/nmw.css">
 <script>
   if (typeof tailwind !== "undefined") tailwind.config = { theme: { extend: {
@@ -102,12 +104,18 @@
     <a href="apply.html" class="hover:text-black">ARTIST ACCESS</a>
     <a href="faq.html" class="hover:text-black">FAQ</a>
     <a href="alerts.html" class="hover:text-black">GET ALERTS</a>
-    <a href="sponsor.html" class="hover:text-black">SPONSOR</a>
+    <a href="sponsor.html" class="hover:text-black">CAMPAIGN STORE</a>
   </div>
   </div>
 </nav>
 
 <main class="max-w-5xl mx-auto px-4 py-10">
+
+  <div class="mb-8 max-w-3xl">
+    <div class="text-xs font-black uppercase tracking-widest text-[#8A1558] mb-2">[ Every Wednesday ]</div>
+    <h1 class="text-3xl md:text-4xl font-black tracking-tighter text-gray-900 mb-3">A Community That Moves For Rising Artists</h1>
+    <p class="text-base md:text-lg text-gray-700 font-serif leading-relaxed">~150 people, every Wednesday at The Penthouse NYC. Not a quiet audience — an <a href="mission.html" class="text-[#8A1558] underline hover:no-underline">active community</a> that Shazams the set, pre-saves the release, and carries the name to the next room. RSVP and become part of it.</p>
+  </div>
 
   <div class="mb-8 flex flex-wrap gap-2 items-center">
     <a id="recurringCal" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-[#8A1558] text-white px-4 py-2.5 rounded-md text-sm font-bold hover:bg-[#680D3E] transition-colors"><i data-lucide="calendar-plus" class="w-4 h-4"></i> Add weekly to calendar</a>
@@ -193,12 +201,13 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="mission.html">Mission</a></li>
           <li><a href="events.html">Events</a></li>
+          <li><a href="https://www.newmusicwednesdayslive.com/rsvp" target="_blank" rel="noopener">RSVP</a></li>
           <li><a href="dj-call.html">DJ Call</a></li>
           <li><a href="podcast.html">Podcast</a></li>
           <li><a href="apply.html">Artist Access</a></li>
           <li><a href="faq.html">FAQ</a></li>
           <li><a href="alerts.html">Get Alerts</a></li>
-          <li><a href="sponsor.html">Sponsor NMW</a></li>
+          <li><a href="sponsor.html">Campaign Store</a></li>
         </ul>
       </div>
       <div>
@@ -240,10 +249,7 @@
 NMW.seedDemoIfEmpty();
 
 function rsvpUrl(d) {
-  const yyyy = d.getFullYear();
-  const mm = String(d.getMonth() + 1).padStart(2, '0');
-  const dd = String(d.getDate()).padStart(2, '0');
-  return `https://www.newmusicwednesdayslive.com/event-details/new-music-wednesdays-x-the-next-up-experience-${yyyy}-${mm}-${dd}-19-00`;
+  return 'https://www.newmusicwednesdayslive.com/rsvp';
 }
 
 function buildEventModel(d) {
