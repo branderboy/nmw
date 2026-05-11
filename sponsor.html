@@ -357,7 +357,7 @@
           </div>
 
     <!-- OBLONG SEARCH BAR: who is this for + campaign goal + free-text tag search -->
-    <form class="nmw-search mb-12 max-w-4xl" role="search" onsubmit="event.preventDefault();">
+    <form class="nmw-search mb-12 w-full max-w-6xl" role="search" onsubmit="event.preventDefault();">
       <div class="nmw-search__select-wrap">
         <label for="audienceSelect" class="sr-only">I am</label>
         <select id="audienceSelect" class="nmw-search__select" aria-label="I am">
@@ -1425,13 +1425,14 @@ function renderResultPanel(card, query, matchCount) {
   `;
   if (typeof lucide !== 'undefined') lucide.createIcons();
   const cta = contentEl.querySelector('.result-cta');
-  if (cta) cta.addEventListener('click', () => toggleCartItem(cta.dataset.addPlayResult));
-  const cta = contentEl.querySelector('.result-cta');
   if (cta) {
-    cta.addEventListener('click', () => {
-      if (cta.dataset.bundle) prefillForm(BUNDLE_LABELS[cta.dataset.bundle]);
-      else if (cta.dataset.groupAction) prefillForm(GROUP_ACTION_LABELS[cta.dataset.groupAction]);
-    });
+    cta.addEventListener('click', () => toggleCartItem(cta.dataset.addPlayResult));
+    if (cta.dataset.bundle || cta.dataset.groupAction) {
+      cta.addEventListener('click', () => {
+        if (cta.dataset.bundle) prefillForm(BUNDLE_LABELS[cta.dataset.bundle]);
+        else if (cta.dataset.groupAction) prefillForm(GROUP_ACTION_LABELS[cta.dataset.groupAction]);
+      });
+    }
   }
 }
 
