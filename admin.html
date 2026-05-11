@@ -330,7 +330,7 @@ if (typeof tailwind !== "undefined") tailwind.config = { theme: { extend: {
           <!-- Preview -->
           <div id="invitePreview" class="hidden bg-[#FDF2F8] border border-[#FBCFE8] rounded-xl p-4">
             <div class="text-[10px] font-black uppercase tracking-widest text-[#8A1558] mb-2">Parsed</div>
-            <div class="text-sm font-bold text-gray-900 mb-2"><span id="inviteCount">0</span> recipients ready · <span id="inviteAudienceLabel" class="text-[#8A1558]">DJ Members</span></div>
+            <div class="text-sm font-bold text-gray-900 mb-2"><span id="inviteCount">0</span> recipients ready, <span id="inviteAudienceLabel" class="text-[#8A1558]">DJ Members</span></div>
             <div id="inviteSample" class="text-xs text-gray-600 font-mono space-y-0.5 max-h-24 overflow-y-auto"></div>
           </div>
 
@@ -1281,7 +1281,7 @@ function showDistroKit(ev) {
   const venue = ev.venue || 'The Penthouse NYC, Manhattan';
   const lineup = (ev.lineup || []).join(', ');
   const dateStr = dt.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
-  const whenStr = `${dateStr} · Doors ${ev.doors || '3:00 PM'} · Live ${ev.liveStart || '7:00 PM'}-${ev.liveEnd || '9:30 PM'} ET`;
+  const whenStr = `${dateStr}, Doors ${ev.doors || '3:00 PM'}, Live ${ev.liveStart || '7:00 PM'}-${ev.liveEnd || '9:30 PM'} ET`;
   const title = 'New Music Wednesdays at The Penthouse NYC';
   const url = (location.origin && !location.origin.startsWith('null') ? location.origin : 'https://www.newmusicwednesdayslive.com') + '/events.html';
   const desc = [
@@ -1290,7 +1290,7 @@ function showDistroKit(ev) {
     `Venue: ${venue}`,
     lineup ? `Lineup: ${lineup}` : '',
     '',
-    'Hip Hop · R&B · Soul · Reggae · Dancehall · Afrobeat · Gospel · Latin Urban / Dance.',
+    'Hip Hop, R&B, Soul, Reggae, Dancehall, Afrobeat, Gospel, Latin Urban / Dance.',
     'RSVPs are free. Performance slots and DJ-network distribution are managed by Digiwaxx.',
     '',
     `RSVP and full lineup: ${url}`,
@@ -1544,7 +1544,7 @@ function updateInvitePreview() {
   countEl.textContent = inviteRecipients.length;
   audEl.textContent = inviteAudienceLabel(inviteAudience);
   const sample = inviteRecipients.slice(0, 6).map(r =>
-    `<div>${r.name ? r.name + ' &lt;' : ''}${r.email}${r.name ? '&gt;' : ''}${r.phone ? ' · ' + r.phone : ''}</div>`
+    `<div>${r.name ? r.name + ' &lt;' : ''}${r.email}${r.name ? '&gt;' : ''}${r.phone ? ', ' + r.phone : ''}</div>`
   );
   if (inviteRecipients.length > 6) sample.push(`<div class="text-gray-400 italic">…and ${inviteRecipients.length - 6} more</div>`);
   sampleEl.innerHTML = sample.join('');

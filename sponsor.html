@@ -117,7 +117,7 @@
   .add-cart-btn.is-added .label-default { display:none; }
   .add-cart-btn.is-added .label-added   { display:inline-flex; }
 
-  /* Price typeface — mono so it reads as data not marketing */
+  /* Price typeface, mono so it reads as data not marketing */
   .play-price { font-family:'JetBrains Mono', ui-monospace, monospace; font-weight:700; letter-spacing:.02em; font-size:14px; color:var(--ink); }
 
   /* Audience tabs as pass-stamp pills */
@@ -139,6 +139,25 @@
     transition:all .15s;
   }
   .goal-chip:hover { color:var(--ink); border-color: var(--ink); }
+
+  /* ----- Impactful search panel (dark) ----- */
+  .search-dark .audience-block {
+    width:100%;
+    padding:14px 12px;
+    border:1px solid rgba(250,250,247,.25);
+    background:transparent;
+    color: var(--paper);
+    font-family:'JetBrains Mono', ui-monospace, monospace;
+    font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+    transition: all .15s;
+    cursor:pointer;
+  }
+  .search-dark .audience-block:hover { border-color: var(--paper); background: rgba(250,250,247,.05); }
+  .search-dark .audience-block.is-active { background: var(--brand); border-color: var(--brand); color: var(--paper); }
+  .search-dark .goal-chip { color: rgba(250,250,247,.7); border-color: rgba(250,250,247,.25); }
+  .search-dark .goal-chip:hover { color: var(--paper); border-color: var(--paper); }
+  .search-input-wrap input { box-shadow: 4px 4px 0 var(--brand); }
+  .search-input-wrap input:focus { box-shadow: 6px 6px 0 var(--brand); transform: translate(-1px,-1px); }
 
   /* Floating cart: paper-stamp pill */
   .floating-cart { position:fixed; right:1.25rem; bottom:1.25rem; z-index:60; }
@@ -170,7 +189,7 @@
   .product-card { transition: all 0.2s; }
   .product-card.selected { border-color: var(--brand); box-shadow: 4px 4px 0 var(--brand); }
 
-  /* Section H2 — Anton display */
+  /* Section H2, Anton display */
   .section-h2 { font-family:'Anton','Impact',sans-serif; text-transform:uppercase; letter-spacing:-.005em; line-height:.92; }
 </style>
 <script type="application/ld+json">
@@ -302,50 +321,46 @@
   <!-- STORE HEADER (editorial / festival-poster) -->
   <section class="mb-10 pt-2 relative z-10">
     <div class="max-w-6xl">
-      <div class="mono-eyebrow mb-3">Campaign Store · NMW</div>
+      <div class="mono-eyebrow mb-3">Campaign Store, NMW</div>
       <h1 class="display display-tight text-5xl sm:text-6xl md:text-7xl mb-4 text-ink">Run a real campaign<br>at NMW.</h1>
       <p class="text-base md:text-lg text-ink/70 max-w-xl mb-6 font-sans">Pick a play. We run it. We send you a report.</p>
     </div>
 
-    <!-- Filter + search -->
-    <div class="border-t border-b border-ink/15 py-6 mb-10">
-      <!-- Big visible search field -->
-      <div class="relative mb-5 max-w-3xl">
-        <i data-lucide="search" class="w-5 h-5 text-ink/40 absolute left-5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
-        <input id="goalSearch" type="text" placeholder="What are you trying to do? (e.g. push a new release, get DJ feedback)" class="w-full pl-14 pr-5 py-4 bg-white border-2 border-ink/20 rounded-md focus:border-ink focus:outline-none text-base font-medium placeholder:text-ink/40 transition-colors" />
+    <!-- SEARCH BAR (light, intuitive, strong contrast) -->
+    <div class="bg-white border-2 border-ink mb-6" style="box-shadow: 6px 6px 0 var(--ink);">
+      <!-- Big search input row -->
+      <div class="relative">
+        <i data-lucide="search" class="w-6 h-6 text-ink absolute left-5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+        <input id="goalSearch" type="text" placeholder="Search plays. Try “push a new release” or “DJ feedback”" class="w-full pl-16 pr-5 py-5 bg-white text-ink border-0 focus:outline-none text-base md:text-lg font-semibold placeholder:text-ink/40" />
       </div>
 
-      <div class="flex flex-wrap items-center gap-x-6 gap-y-3">
-        <div class="flex items-center gap-2">
-          <span class="mono-eyebrow">Shopping as</span>
-          <div class="flex gap-1" id="audienceTabs">
-            <button type="button" data-audience="artist" class="audience-tab">Artist</button>
-            <button type="button" data-audience="label" class="audience-tab">Label</button>
-            <button type="button" data-audience="sponsor" class="audience-tab">Sponsor</button>
-          </div>
+      <!-- Filters row -->
+      <div class="border-t border-ink/20 px-5 py-3 flex flex-wrap items-center gap-x-4 gap-y-2 bg-paper">
+        <span class="mono-eyebrow">Filter</span>
+        <div class="flex flex-wrap gap-1" id="audienceTabs">
+          <button type="button" data-audience="artist" class="audience-tab">Artist</button>
+          <button type="button" data-audience="label" class="audience-tab">Label</button>
+          <button type="button" data-audience="sponsor" class="audience-tab">Sponsor</button>
         </div>
-
-        <div class="flex items-center gap-3 mono-tag ml-auto">
-          <a href="#group-action" class="text-ink/60 hover:text-ink">Group Action</a>
-          <span class="text-ink/20">·</span>
-          <a href="#digital-waxx" class="text-ink/60 hover:text-ink">Digital Waxx</a>
-          <span class="text-ink/20">·</span>
-          <a href="#weekly-plays" class="text-ink/60 hover:text-ink">Weekly</a>
-        </div>
-      </div>
-
-      <!-- Goal chips -->
-      <div class="flex flex-wrap items-center gap-2 mt-4" id="goalChipsWrap">
+        <div class="hidden sm:block w-px h-4 bg-ink/20"></div>
         <span class="mono-eyebrow">Try</span>
         <div id="goalChips" class="flex flex-wrap gap-1.5"></div>
       </div>
 
-      <!-- Result line, inline, no boxed card -->
-      <div id="resultPanel" class="mt-3 hidden">
+      <!-- Inline match result -->
+      <div id="resultPanel" class="hidden border-t border-ink/20 bg-white">
         <div id="resultPanelDefault" class="hidden"></div>
         <div id="resultPanelContent" class="w-full"></div>
       </div>
-      <div id="searchStatus" class="mt-2 text-xs text-gray-500 hidden"></div>
+      <div id="searchStatus" class="hidden border-t border-ink/10 px-5 py-2 text-xs text-ink/60 bg-paper"></div>
+    </div>
+
+    <!-- In-the-store quick nav -->
+    <div class="flex flex-wrap items-center gap-3 mono-tag mb-10">
+      <span class="text-ink/40">In the store</span>
+      <a href="#group-action" class="text-ink/70 hover:text-ink">Group Action</a>
+      <a href="#digital-waxx" class="text-ink/70 hover:text-ink">Digital Waxx</a>
+      <a href="#weekly-plays" class="text-ink/70 hover:text-ink">Weekly Plays</a>
     </div>
   </section>
 
@@ -374,7 +389,7 @@
         </ul>
         <div class="border-t border-gray-100 pt-4 flex flex-col gap-3">
           <span class="play-price font-black text-ink">$1,500 / Wednesday</span>
-          <button type="button" data-add-play="ga-shazam" class="add-cart-btn"><span class="label-default"><i data-lucide="plus" class="w-3.5 h-3.5"></i> Add to Cart</span><span class="label-added"><i data-lucide="check" class="w-3.5 h-3.5"></i> Added · Tap to remove</span></button>
+          <button type="button" data-add-play="ga-shazam" class="add-cart-btn"><span class="label-default"><i data-lucide="plus" class="w-3.5 h-3.5"></i> Add to Cart</span><span class="label-added"><i data-lucide="check" class="w-3.5 h-3.5"></i> Added, Tap to remove</span></button>
         </div>
       </div>
 
@@ -392,7 +407,7 @@
         </ul>
         <div class="border-t border-gray-100 pt-4 flex flex-col gap-3">
           <span class="play-price font-black text-ink">$1,500 / Wednesday</span>
-          <button type="button" data-add-play="ga-youtube" class="add-cart-btn"><span class="label-default"><i data-lucide="plus" class="w-3.5 h-3.5"></i> Add to Cart</span><span class="label-added"><i data-lucide="check" class="w-3.5 h-3.5"></i> Added · Tap to remove</span></button>
+          <button type="button" data-add-play="ga-youtube" class="add-cart-btn"><span class="label-default"><i data-lucide="plus" class="w-3.5 h-3.5"></i> Add to Cart</span><span class="label-added"><i data-lucide="check" class="w-3.5 h-3.5"></i> Added, Tap to remove</span></button>
         </div>
       </div>
 
@@ -404,13 +419,13 @@
         <p class="text-sm text-gray-700 font-serif mb-4">QR drops everyone into TikTok on a post that already uses your sound. Forty to eighty people in the room reuse it on their own clip that night. That's how sounds break, started in one Wednesday.</p>
         <ul class="text-xs text-gray-600 space-y-1.5 mb-5 flex-1">
           <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>Seed post with your sound pre-loaded</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>~40–80 attendees reuse the sound</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>~40, 80 attendees reuse the sound</li>
           <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>Burst signal triggers sound-trend rank</li>
           <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>Compounds beyond the room organically</li>
         </ul>
         <div class="border-t border-gray-100 pt-4 flex flex-col gap-3">
           <span class="play-price font-black text-ink">$1,500 / Wednesday</span>
-          <button type="button" data-add-play="ga-tiktok" class="add-cart-btn"><span class="label-default"><i data-lucide="plus" class="w-3.5 h-3.5"></i> Add to Cart</span><span class="label-added"><i data-lucide="check" class="w-3.5 h-3.5"></i> Added · Tap to remove</span></button>
+          <button type="button" data-add-play="ga-tiktok" class="add-cart-btn"><span class="label-default"><i data-lucide="plus" class="w-3.5 h-3.5"></i> Add to Cart</span><span class="label-added"><i data-lucide="check" class="w-3.5 h-3.5"></i> Added, Tap to remove</span></button>
         </div>
       </div>
 
@@ -428,7 +443,7 @@
         </ul>
         <div class="border-t border-gray-100 pt-4 flex flex-col gap-3">
           <span class="play-price font-black text-ink">$1,500 / Wednesday</span>
-          <button type="button" data-add-play="ga-spotify-presave" class="add-cart-btn"><span class="label-default"><i data-lucide="plus" class="w-3.5 h-3.5"></i> Add to Cart</span><span class="label-added"><i data-lucide="check" class="w-3.5 h-3.5"></i> Added · Tap to remove</span></button>
+          <button type="button" data-add-play="ga-spotify-presave" class="add-cart-btn"><span class="label-default"><i data-lucide="plus" class="w-3.5 h-3.5"></i> Add to Cart</span><span class="label-added"><i data-lucide="check" class="w-3.5 h-3.5"></i> Added, Tap to remove</span></button>
         </div>
       </div>
 
@@ -462,7 +477,7 @@
         </ul>
         <div class="border-t border-gray-100 pt-4 flex flex-col gap-3">
           <span class="play-price font-black text-ink">$1,500 / Wednesday</span>
-          <button type="button" data-add-play="bundle-single" class="add-cart-btn"><span class="label-default"><i data-lucide="plus" class="w-3.5 h-3.5"></i> Add to Cart</span><span class="label-added"><i data-lucide="check" class="w-3.5 h-3.5"></i> Added · Tap to remove</span></button>
+          <button type="button" data-add-play="bundle-single" class="add-cart-btn"><span class="label-default"><i data-lucide="plus" class="w-3.5 h-3.5"></i> Add to Cart</span><span class="label-added"><i data-lucide="check" class="w-3.5 h-3.5"></i> Added, Tap to remove</span></button>
         </div>
       </div>
 
@@ -482,7 +497,7 @@
         </ul>
         <div class="border-t border-gray-100 pt-4 flex flex-col gap-3">
           <span class="play-price font-black text-ink">$2,700 / Wednesday</span>
-          <button type="button" data-add-play="bundle-double" class="add-cart-btn"><span class="label-default"><i data-lucide="plus" class="w-3.5 h-3.5"></i> Add to Cart</span><span class="label-added"><i data-lucide="check" class="w-3.5 h-3.5"></i> Added · Tap to remove</span></button>
+          <button type="button" data-add-play="bundle-double" class="add-cart-btn"><span class="label-default"><i data-lucide="plus" class="w-3.5 h-3.5"></i> Add to Cart</span><span class="label-added"><i data-lucide="check" class="w-3.5 h-3.5"></i> Added, Tap to remove</span></button>
         </div>
       </div>
 
@@ -502,14 +517,14 @@
         </ul>
         <div class="border-t border-gray-100 pt-4 flex flex-col gap-3">
           <span class="play-price font-black text-ink">$3,900 / Wednesday</span>
-          <button type="button" data-add-play="bundle-triple" class="add-cart-btn"><span class="label-default"><i data-lucide="plus" class="w-3.5 h-3.5"></i> Add to Cart</span><span class="label-added"><i data-lucide="check" class="w-3.5 h-3.5"></i> Added · Tap to remove</span></button>
+          <button type="button" data-add-play="bundle-triple" class="add-cart-btn"><span class="label-default"><i data-lucide="plus" class="w-3.5 h-3.5"></i> Add to Cart</span><span class="label-added"><i data-lucide="check" class="w-3.5 h-3.5"></i> Added, Tap to remove</span></button>
         </div>
       </div>
 
       <!-- Full Stack (featured) -->
       <div class="play-card section-card flex flex-col border-2 border-[#8A1558] relative transition-all" data-play-id="bundle-full-stack" data-audience="label" data-tags="bundle full-stack stack all-four every-platform release-day rollout career-moment roster">
         <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#8A1558] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full whitespace-nowrap">Best Value</div>
-        <div class="text-[10px] font-black uppercase tracking-widest text-ink mb-2">Tier 4 · The Stack</div>
+        <div class="text-[10px] font-black uppercase tracking-widest text-ink mb-2">Tier 4, The Stack</div>
         <h3 class="text-xl font-black tracking-tight mb-2">Full Stack</h3>
         <div class="goal-pill inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-[#8A1558] bg-[#FDF2F8] px-2.5 py-1 rounded-full self-start mb-3" data-goal-label="Full Roster Career Moment"><i data-lucide="target" class="w-3 h-3"></i> Goal: <span class="goal-text">Full Roster Career Moment</span></div>
         <p class="text-sm text-gray-700 font-serif mb-4">All four Group Actions in one Wednesday. Shazam, YouTube, TikTok, Spotify all get a real signal off the same night.</p>
@@ -525,7 +540,7 @@
         </ul>
         <div class="border-t border-gray-100 pt-4 flex flex-col gap-3">
           <span class="play-price font-black text-ink text-lg">$5,000 / Wednesday</span>
-          <button type="button" data-add-play="bundle-full-stack" class="add-cart-btn"><span class="label-default"><i data-lucide="plus" class="w-3.5 h-3.5"></i> Add to Cart</span><span class="label-added"><i data-lucide="check" class="w-3.5 h-3.5"></i> Added · Tap to remove</span></button>
+          <button type="button" data-add-play="bundle-full-stack" class="add-cart-btn"><span class="label-default"><i data-lucide="plus" class="w-3.5 h-3.5"></i> Add to Cart</span><span class="label-added"><i data-lucide="check" class="w-3.5 h-3.5"></i> Added, Tap to remove</span></button>
         </div>
       </div>
 
@@ -566,7 +581,7 @@
 
       <!-- Regular -->
       <div class="play-card section-card flex flex-col transition-all" data-play-id="dx-regular" data-audience="artist label" data-tags="dj-network distribution digiwaxx record-pool email-blast social submission basic regular awareness build-awareness brand">
-        <div class="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2">Tier 1 · Regular</div>
+        <div class="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2">Tier 1, Regular</div>
         <h3 class="text-xl font-black tracking-tight mb-2">Regular</h3>
         <div class="goal-pill inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-[#8A1558] bg-[#FDF2F8] px-2.5 py-1 rounded-full self-start mb-3" data-goal-artist="Land Your First Spins" data-goal-label="Land First Spins for a Roster Artist"><i data-lucide="target" class="w-3 h-3"></i> Goal: <span class="goal-text">Land Your First Spins</span></div>
         <p class="text-sm text-gray-700 font-serif mb-4">Entry point to the DJ network. Submission goes out + release alert hits social, first wave of DJs pick it up for club + mixshow tryouts.</p>
@@ -577,13 +592,13 @@
         </ul>
         <div class="border-t border-gray-100 pt-4 flex flex-col gap-3">
           <span class="play-price font-black text-ink">$150</span>
-          <button type="button" data-add-play="dx-regular" class="add-cart-btn"><span class="label-default"><i data-lucide="plus" class="w-3.5 h-3.5"></i> Add to Cart</span><span class="label-added"><i data-lucide="check" class="w-3.5 h-3.5"></i> Added · Tap to remove</span></button>
+          <button type="button" data-add-play="dx-regular" class="add-cart-btn"><span class="label-default"><i data-lucide="plus" class="w-3.5 h-3.5"></i> Add to Cart</span><span class="label-added"><i data-lucide="check" class="w-3.5 h-3.5"></i> Added, Tap to remove</span></button>
         </div>
       </div>
 
       <!-- Regular Plus -->
       <div class="play-card section-card flex flex-col transition-all" data-play-id="dx-regular-plus" data-audience="artist label" data-tags="dj-network distribution digiwaxx record-pool email-blast 50k subscribers social submission regular-plus release rollout follow-up push-release new-release">
-        <div class="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2">Tier 2 · Regular Plus</div>
+        <div class="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2">Tier 2, Regular Plus</div>
         <h3 class="text-xl font-black tracking-tight mb-2">Regular Plus</h3>
         <div class="goal-pill inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-[#8A1558] bg-[#FDF2F8] px-2.5 py-1 rounded-full self-start mb-3" data-goal-artist="Get Your Record Into Rotation" data-goal-label="Get a Roster Release Into Rotation"><i data-lucide="target" class="w-3 h-3"></i> Goal: <span class="goal-text">Get Your Record Into Rotation</span></div>
         <p class="text-sm text-gray-700 font-serif mb-4">Real distribution. Record pool + promo single goes out to our 50K+ DJ network, your track lands in club crates and mixshow rotation. Follow-up blast week 2 keeps it in front of the DJs who didn't pick up week 1.</p>
@@ -596,14 +611,14 @@
         </ul>
         <div class="border-t border-gray-100 pt-4 flex flex-col gap-3">
           <span class="play-price font-black text-ink">$250</span>
-          <button type="button" data-add-play="dx-regular-plus" class="add-cart-btn"><span class="label-default"><i data-lucide="plus" class="w-3.5 h-3.5"></i> Add to Cart</span><span class="label-added"><i data-lucide="check" class="w-3.5 h-3.5"></i> Added · Tap to remove</span></button>
+          <button type="button" data-add-play="dx-regular-plus" class="add-cart-btn"><span class="label-default"><i data-lucide="plus" class="w-3.5 h-3.5"></i> Add to Cart</span><span class="label-added"><i data-lucide="check" class="w-3.5 h-3.5"></i> Added, Tap to remove</span></button>
         </div>
       </div>
 
       <!-- Advance (Most Popular) -->
       <div class="play-card section-card flex flex-col border-2 border-[#8A1558] relative transition-all" data-play-id="dx-advance" data-audience="artist label" data-tags="dj-network distribution digiwaxx record-pool email-blast 50k subscribers analytics feedback dj-feedback spin-data ratings advance release rollout most-popular">
         <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#8A1558] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full whitespace-nowrap">Most Popular</div>
-        <div class="text-[10px] font-black uppercase tracking-widest text-ink mb-2">Tier 3 · Advance</div>
+        <div class="text-[10px] font-black uppercase tracking-widest text-ink mb-2">Tier 3, Advance</div>
         <h3 class="text-xl font-black tracking-tight mb-2">Advance</h3>
         <div class="goal-pill inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-[#8A1558] bg-[#FDF2F8] px-2.5 py-1 rounded-full self-start mb-3" data-goal-artist="Track Every Spin + Get DJ Feedback" data-goal-label="Track Roster Spins + Get DJ Feedback"><i data-lucide="target" class="w-3 h-3"></i> Goal: <span class="goal-text">Track Every Spin + Get DJ Feedback</span></div>
         <p class="text-sm text-gray-700 font-serif mb-4">Everything in Regular Plus, plus the data layer: per-spin analytics, which DJ played it, in which club / on which mixshow, in what city, plus their ratings and comments. Proof of rotation, not vibes.</p>
@@ -615,13 +630,13 @@
         </ul>
         <div class="border-t border-gray-100 pt-4 flex flex-col gap-3">
           <span class="play-price font-black text-ink text-lg">$350</span>
-          <button type="button" data-add-play="dx-advance" class="add-cart-btn"><span class="label-default"><i data-lucide="plus" class="w-3.5 h-3.5"></i> Add to Cart</span><span class="label-added"><i data-lucide="check" class="w-3.5 h-3.5"></i> Added · Tap to remove</span></button>
+          <button type="button" data-add-play="dx-advance" class="add-cart-btn"><span class="label-default"><i data-lucide="plus" class="w-3.5 h-3.5"></i> Add to Cart</span><span class="label-added"><i data-lucide="check" class="w-3.5 h-3.5"></i> Added, Tap to remove</span></button>
         </div>
       </div>
 
       <!-- Advance Plus -->
       <div class="play-card section-card flex flex-col transition-all" data-play-id="dx-advance-plus" data-audience="artist label" data-tags="dj-network distribution digiwaxx record-pool email-blast 50k subscribers analytics feedback dj-feedback spin-data ratings advance-plus release rollout sustained four-week cadence follow-up streams increase-streams stream">
-        <div class="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2">Tier 4 · Advance Plus</div>
+        <div class="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2">Tier 4, Advance Plus</div>
         <h3 class="text-xl font-black tracking-tight mb-2">Advance Plus</h3>
         <div class="goal-pill inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-[#8A1558] bg-[#FDF2F8] px-2.5 py-1 rounded-full self-start mb-3" data-goal-artist="Stay in Rotation for 4 Weeks" data-goal-label="Keep a Roster Release in Rotation for 4 Weeks"><i data-lucide="target" class="w-3 h-3"></i> Goal: <span class="goal-text">Stay in Rotation for 4 Weeks</span></div>
         <p class="text-sm text-gray-700 font-serif mb-4">Sustained 4-week push. Everything in Advance plus 3 weekly follow-up blasts, record stays in club crates + on mixshow rotations for a month instead of a one-week pop. Every spin tracked across the run.</p>
@@ -633,7 +648,7 @@
         </ul>
         <div class="border-t border-gray-100 pt-4 flex flex-col gap-3">
           <span class="play-price font-black text-ink">$600</span>
-          <button type="button" data-add-play="dx-advance-plus" class="add-cart-btn"><span class="label-default"><i data-lucide="plus" class="w-3.5 h-3.5"></i> Add to Cart</span><span class="label-added"><i data-lucide="check" class="w-3.5 h-3.5"></i> Added · Tap to remove</span></button>
+          <button type="button" data-add-play="dx-advance-plus" class="add-cart-btn"><span class="label-default"><i data-lucide="plus" class="w-3.5 h-3.5"></i> Add to Cart</span><span class="label-added"><i data-lucide="check" class="w-3.5 h-3.5"></i> Added, Tap to remove</span></button>
         </div>
       </div>
 
@@ -692,7 +707,7 @@
   <!-- INQUIRY FORM -->
   <section id="contactForm" class="mt-16 lg:mt-24 max-w-3xl mx-auto">
     <div class="text-center mb-10">
-      <span class="mono-eyebrow mb-3 block">Step 2 · Tell Us About You</span>
+      <span class="mono-eyebrow mb-3 block">Step 2, Tell Us About You</span>
       <h2 class="text-3xl md:text-5xl font-black tracking-tighter mb-3">Let's Build Something Impactful.</h2>
       <p class="text-gray-600 font-serif text-lg">We collaborate with brands, agencies, and partners to create strategic, high-visibility sponsorships that resonate authentically.</p>
     </div>
@@ -1307,11 +1322,8 @@ let activeAudience = 'artist';
 let activeQuery = '';
 
 function styleTab(btn, active) {
-  if (active) {
-    btn.className = 'audience-tab text-xs font-black uppercase tracking-wider px-3 py-1.5 rounded-md transition-all bg-gray-900 text-white';
-  } else {
-    btn.className = 'audience-tab text-xs font-black uppercase tracking-wider px-3 py-1.5 rounded-md transition-all text-gray-600 hover:text-gray-900';
-  }
+  if (active) btn.classList.add('is-active');
+  else btn.classList.remove('is-active');
 }
 
 function setActiveAudience(aud) {
@@ -1423,18 +1435,18 @@ function renderResultPanel(card, query, matchCount) {
   const goal = goalEl ? goalEl.textContent.trim() : '';
   const playId = addBtn ? addBtn.dataset.addPlay : '';
   const inCart = playId && cart.has(playId);
-  const moreText = matchCount > 1 ? ` · +${matchCount - 1} more below` : '';
+  const moreText = matchCount > 1 ? `, +${matchCount - 1} more below` : '';
 
   panel.classList.remove('hidden');
   contentEl.innerHTML = `
-    <div class="flex flex-wrap items-center gap-3 py-2 px-3 bg-gray-50 rounded-lg border border-gray-200">
+    <div class="flex flex-wrap items-center gap-3 px-5 py-4">
       <div class="flex-1 min-w-0">
-        <div class="text-xs font-black uppercase tracking-widest text-gray-500">Match for "${query}"</div>
-        <div class="text-sm md:text-base font-black tracking-tight text-gray-900">${name}${goal ? ` <span class="text-gray-500 font-normal italic">· ${goal}</span>` : ''}</div>
+        <div style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase" class="text-ink/50">Match for "${query}"</div>
+        <div class="text-base md:text-lg font-black tracking-tight text-ink mt-0.5">${name}${goal ? ` <span class="text-ink/50 font-normal italic">${goal}</span>` : ''}</div>
       </div>
-      ${price ? `<div class="text-sm font-black text-gray-900">${price}</div>` : ''}
-      ${playId ? `<button type="button" data-add-play-result="${playId}" class="result-cta inline-flex items-center gap-1.5 ${inCart ? 'bg-[#8A1558]' : 'bg-gray-900 hover:bg-black'} text-white px-3 py-1.5 rounded-md text-[11px] font-black uppercase tracking-widest transition-colors whitespace-nowrap"><i data-lucide="${inCart ? 'check' : 'plus'}" class="w-3 h-3"></i> ${inCart ? 'Added' : 'Add'}</button>` : ''}
-      ${moreText ? `<span class="text-[10px] text-gray-500 w-full">${moreText.replace(' · ', '')}</span>` : ''}
+      ${price ? `<div class="play-price">${price}</div>` : ''}
+      ${playId ? `<button type="button" data-add-play-result="${playId}" class="result-cta inline-flex items-center gap-1.5 ${inCart ? 'bg-brand-500' : 'bg-ink hover:bg-black'} text-paper px-4 py-2.5 rounded-sm text-[11px] font-bold uppercase tracking-widest transition-colors whitespace-nowrap" style="font-family:'JetBrains Mono',ui-monospace,monospace"><i data-lucide="${inCart ? 'check' : 'plus'}" class="w-3.5 h-3.5"></i> ${inCart ? 'Added' : 'Add to Cart'}</button>` : ''}
+      ${moreText ? `<span class="text-[10px] text-ink/50 w-full" style="font-family:'JetBrains Mono',ui-monospace,monospace">${moreText.replace(', ', '')}</span>` : ''}
     </div>
   `;
   if (typeof lucide !== 'undefined') lucide.createIcons();
