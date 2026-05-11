@@ -309,7 +309,7 @@ if (typeof tailwind !== "undefined") tailwind.config = { theme: { extend: {
             <label for="inviteFile" class="block border-2 border-dashed border-gray-300 hover:border-[#8A1558] rounded-xl p-5 text-center cursor-pointer transition-colors">
               <i data-lucide="upload-cloud" class="w-8 h-8 text-gray-400 mx-auto mb-2"></i>
               <div class="text-sm font-bold text-gray-700">Drop file or click to upload</div>
-              <div class="text-xs text-gray-500 mt-1">CSV columns: <code class="bg-gray-100 px-1 rounded">name, email, phone</code> — or one email per line</div>
+              <div class="text-xs text-gray-500 mt-1">CSV columns: <code class="bg-gray-100 px-1 rounded">name, email, phone</code>, or one email per line</div>
               <input id="inviteFile" type="file" accept=".csv,.txt,.tsv" class="hidden" />
             </label>
             <div id="inviteFileName" class="text-xs text-gray-500 mt-2 hidden"></div>
@@ -324,7 +324,7 @@ if (typeof tailwind !== "undefined") tailwind.config = { theme: { extend: {
           <!-- Custom message -->
           <div>
             <label class="text-[10px] font-black uppercase tracking-widest text-gray-700 block mb-2">Custom message <span class="text-gray-400 font-normal">(optional, prepended to the template)</span></label>
-            <textarea id="inviteMessage" rows="3" class="field-input" placeholder="Hey — thought you should be in the room for this one."></textarea>
+            <textarea id="inviteMessage" rows="3" class="field-input" placeholder="Hey, thought you should be in the room for this one."></textarea>
           </div>
 
           <!-- Preview -->
@@ -349,7 +349,7 @@ if (typeof tailwind !== "undefined") tailwind.config = { theme: { extend: {
       <aside class="bg-gray-50 border border-gray-200 rounded-2xl p-6">
         <div class="text-[10px] font-black uppercase tracking-widest text-[#8A1558] mb-2">How it works</div>
         <ol class="text-sm text-gray-700 font-serif space-y-2 list-decimal pl-4">
-          <li>Pick the audience — each gets a different invite template + landing page.</li>
+          <li>Pick the audience, each gets a different invite template + landing page.</li>
           <li>Drop a CSV/TXT or paste a list. We parse names + emails + phones.</li>
           <li>Click <b>Queue Invites</b>. Each recipient gets an audience-specific email + WhatsApp template (when opted-in).</li>
           <li>Recipients land on a custom join URL, opt-in to The Blast, and drop into the right pipeline (DJ / Artist / Label).</li>
@@ -1285,7 +1285,7 @@ function showDistroKit(ev) {
   const title = 'New Music Wednesdays at The Penthouse NYC';
   const url = (location.origin && !location.origin.startsWith('null') ? location.origin : 'https://www.newmusicwednesdayslive.com') + '/events.html';
   const desc = [
-    'New Music Wednesdays — live performance + rollout for rising urban artists.',
+    'New Music Wednesdays, live performance + rollout for rising urban artists.',
     `Date: ${whenStr}`,
     `Venue: ${venue}`,
     lineup ? `Lineup: ${lineup}` : '',
@@ -1483,7 +1483,7 @@ loadPageContent();
 renderAll();
 
 // ============================================================================
-// INVITES — upload a list of DJs / artists / labels, queue invitations
+// INVITES, upload a list of DJs / artists / labels, queue invitations
 // ============================================================================
 const INVITES_KEY = 'nmw.inviteBatches';
 let inviteAudience = 'dj';
@@ -1621,7 +1621,7 @@ function renderInviteBatches() {
     const when = new Date(b.createdAt).toLocaleString();
     return `<tr class="border-b border-gray-100 hover:bg-gray-50">
       <td class="px-3 py-2 text-xs text-gray-600">${when}</td>
-      <td class="px-3 py-2 text-sm font-bold">${(b.label || '—').replace(/[<>]/g,'')}</td>
+      <td class="px-3 py-2 text-sm font-bold">${(b.label || ', ').replace(/[<>]/g,'')}</td>
       <td class="px-3 py-2 text-sm">${inviteAudienceLabel(b.audience)}</td>
       <td class="px-3 py-2 text-sm font-bold">${b.recipients.length}</td>
       <td class="px-3 py-2">${status}</td>
@@ -1632,7 +1632,7 @@ function renderInviteBatches() {
   }).join('');
   tbody.querySelectorAll('[data-invite-delete]').forEach(b => {
     b.addEventListener('click', () => {
-      if (!confirm('Delete this invite batch? (Pre-launch only — once Resend is wired this will be a real undo flow.)')) return;
+      if (!confirm('Delete this invite batch? (Pre-launch only, once Resend is wired this will be a real undo flow.)')) return;
       saveInviteBatches(getInviteBatches().filter(x => x.id !== b.dataset.inviteDelete));
       renderInviteBatches();
     });
@@ -1661,7 +1661,7 @@ document.getElementById('inviteForm').addEventListener('submit', (e) => {
   const all = getInviteBatches();
   all.push(batch);
   saveInviteBatches(all);
-  hint.textContent = `Queued ${inviteRecipients.length} ${inviteAudienceLabel(inviteAudience).toLowerCase()} — will fire when Resend is wired.`;
+  hint.textContent = `Queued ${inviteRecipients.length} ${inviteAudienceLabel(inviteAudience).toLowerCase()}, will fire when Resend is wired.`;
   hint.style.color = '#16a34a';
   document.getElementById('inviteForm').reset();
   document.getElementById('inviteFileName').classList.add('hidden');
