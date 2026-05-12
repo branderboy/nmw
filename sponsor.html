@@ -295,7 +295,7 @@
 <div class="floating-cart">
   <button type="button" id="floatingCartBtn" class="floating-cart-btn">
     <span class="floating-cart-count" id="floatingCartCount">0</span>
-    <span>Submit for Review →</span>
+    <span data-cart-cta-label>Submit Inquiry →</span>
   </button>
 </div>
 
@@ -325,7 +325,7 @@
     </div>
     <p class="text-[10px] text-gray-500 mb-4">Final pricing confirmed in your campaign proposal.</p>
     <a href="#contactForm" id="drawerSubmitBtn" class="block w-full text-center bg-[#8A1558] hover:bg-[#680D3E] text-white py-3.5 rounded-lg text-xs font-black tracking-widest uppercase transition-colors">
-      Submit for Review →
+      <span data-cart-cta-label>Submit Inquiry →</span>
     </a>
     <button type="button" data-cart-close class="w-full text-center mt-2 text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-gray-900 py-2">Keep browsing</button>
   </div>
@@ -1309,6 +1309,17 @@ function setActiveAudience(aud) {
   renderGoalSelect();
   refreshGoalPills();
   applyPlayFilter();
+  updateCartCTA();
+}
+
+// Cart CTA splits by audience: artist routes to checkout (apply.html),
+// label/sponsor routes to the inquiry form on the page.
+function updateCartCTA() {
+  const isArtist = activeAudience === 'artist';
+  const label = isArtist ? 'Buy →' : 'Submit Inquiry →';
+  document.querySelectorAll('[data-cart-cta-label]').forEach(el => { el.textContent = label; });
+  const drawerBtn = document.getElementById('drawerSubmitBtn');
+  if (drawerBtn) drawerBtn.setAttribute('href', isArtist ? 'apply.html' : '#contactForm');
 }
 
 function renderGoalSelect() {
