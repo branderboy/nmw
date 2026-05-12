@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="images/nmw-logo.png" />
 <link rel="apple-touch-icon" href="images/nmw-logo.png" />
-<title>The Campaign Store at NMW</title>
+<title>Campaign Store | Buy Into the NMW Demand Engine</title>
 <meta name="description" content="Pick a play, we run it, we send you a report. Plays for artists with a release coming up, labels pushing roster, and sponsors who want to reach the people who shape what gets played.">
 <link rel="canonical" href="https://www.newmusicwednesdayslive.com/sponsor.html">
 <meta property="og:type" content="website">
@@ -339,14 +339,13 @@
   </a>
   <div class="hidden md:flex space-x-6 items-center text-sm font-bold tracking-wide text-gray-600">
     <a href="index.html" class="hover:text-black">HOME</a>
-    <a href="mission.html" class="hover:text-black">MISSION</a>
-    <a href="events.html" class="hover:text-black">ATTEND</a>
-    <a href="dj-call.html" class="hover:text-black">DJ CALL</a>
-    <a href="podcast.html" class="hover:text-black">PODCAST</a>
     <a href="apply.html" class="hover:text-black">ARTIST ACCESS</a>
-    <a href="faq.html" class="hover:text-black">FAQ</a>
-    <a href="alerts.html" class="hover:text-black">GET ALERTS</a>
+    <a href="events.html" class="hover:text-black">ATTEND</a>
+    <a href="happy-hour.html" class="hover:text-black">HAPPY HOUR</a>
     <a href="sponsor.html" class="text-black">CAMPAIGN STORE</a>
+    <a href="dj-call.html" class="hover:text-black">DJ CALL</a>
+    <a href="mission.html" class="hover:text-black">MISSION</a>
+    <a href="faq.html" class="hover:text-black">FAQ</a>
   </div>
   </div>
 </nav>
@@ -359,8 +358,28 @@
   <section class="mb-5 md:mb-10 pt-2 relative z-10">
     <div class="max-w-6xl">
       <div class="mono-eyebrow mb-3">Campaign Store, NMW</div>
-      <h1 class="display display-tight text-5xl sm:text-6xl md:text-7xl mb-4 text-ink">Run a campaign<br>at NMW.</h1>
-      <p class="text-base md:text-lg text-ink/70 max-w-xl mb-6 font-sans">For artists, record labels, and sponsors. Pick what fits your moment. We run it on a scheduled Wednesday and send a real report back.</p>
+      <h1 class="display display-tight text-5xl sm:text-6xl md:text-7xl mb-4 text-ink">Buy into the<br>demand engine.</h1>
+      <p class="text-base md:text-lg text-ink/70 max-w-2xl mb-6 font-sans">NMW Live manufactures attention every Wednesday: a curated NYC penthouse room, 237 artists in the audition queue, 1,284 fans on the waitlist, DJ amplification, and content distribution. The Campaign Store is how artists, labels, and sponsors plug into that pressure.</p>
+
+      <!-- Demand-engine snapshot bar -->
+      <div id="sponsorDemandBar" class="mb-8 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl">
+        <div class="rounded-xl border border-ink/10 bg-white/60 backdrop-blur p-4">
+          <div class="text-3xl md:text-4xl font-black tabular-nums text-ink" data-counter="audq" data-target="237">237</div>
+          <div class="text-[10px] font-black uppercase tracking-widest text-ink/60 mt-1">artists in queue</div>
+        </div>
+        <div class="rounded-xl border border-ink/10 bg-white/60 backdrop-blur p-4">
+          <div class="text-3xl md:text-4xl font-black tabular-nums text-ink" data-counter="fanq" data-target="1284">1,284</div>
+          <div class="text-[10px] font-black uppercase tracking-widest text-ink/60 mt-1">fans waitlisted</div>
+        </div>
+        <div class="rounded-xl border border-ink/10 bg-white/60 backdrop-blur p-4">
+          <div class="text-3xl md:text-4xl font-black tabular-nums text-ink" data-counter="djn" data-target="47">47</div>
+          <div class="text-[10px] font-black uppercase tracking-widest text-ink/60 mt-1">DJs in network</div>
+        </div>
+        <div class="rounded-xl border border-ink/10 bg-white/60 backdrop-blur p-4">
+          <div class="text-3xl md:text-4xl font-black tabular-nums text-ink" data-counter="invR" data-target="4">4</div>
+          <div class="text-[10px] font-black uppercase tracking-widest text-ink/60 mt-1">campaign slots left this month</div>
+        </div>
+      </div>
           </div>
 
     <!-- OBLONG SEARCH BAR: who is this for + campaign goal + free-text tag search -->
@@ -1500,6 +1519,24 @@ renderProducts = function() {
   refreshGoalPills();
   applyPlayFilter();
 };
+
+// Demand-engine snapshot counters in the store header
+(function animateSponsorCounters() {
+  document.querySelectorAll('#sponsorDemandBar [data-counter][data-target]').forEach(el => {
+    const target = parseInt(el.dataset.target, 10);
+    if (!Number.isFinite(target)) return;
+    const duration = 1100 + Math.random() * 400;
+    const start = performance.now();
+    function tick(now) {
+      const t = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - t, 3);
+      el.textContent = Math.round(target * eased).toLocaleString();
+      if (t < 1) requestAnimationFrame(tick);
+      else el.textContent = target.toLocaleString();
+    }
+    requestAnimationFrame(tick);
+  });
+})();
 </script>
 </body>
 </html>
