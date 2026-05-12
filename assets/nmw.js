@@ -168,7 +168,7 @@ const NMW = (() => {
       body: "What's hitting the stage this Wednesday, plus subscriber-only drops, free giveaways, and new music picks. RSVP: {{rsvpLink}}",
       status: 'active' },
     { id: 'flow_dj_call_invite', name: 'DJ Call — Tuesday Reminder', trigger: 'Every Tuesday 8 PM ET', audience: 'djs',
-      subject: 'Tomorrow · DJ Call · 3 PM ET on Zoom',
+      subject: 'Tomorrow · DJ Call · 4 PM ET on Zoom',
       body: "Standing Zoom link: {{zoomLink}}\n\nThis week's spotlight: {{theme}}. See you on the call.",
       status: 'active' },
     { id: 'flow_sponsor_received', name: 'Sponsor — Inquiry Received', trigger: 'Sponsor submits inquiry', audience: 'sponsors',
@@ -258,15 +258,15 @@ const NMW = (() => {
     set(KEYS.djs, all);
   };
 
-  // Recurring weekly DJ Call calendar link (Wednesdays 3-7PM)
+  // Recurring weekly DJ Call calendar link (Wednesdays 4-6PM)
   const djCallCalendarLink = () => {
     const start = nextWednesday();
-    start.setHours(15, 0, 0, 0); // 3PM
+    start.setHours(16, 0, 0, 0); // 4PM
     return buildCalendarLink({
       title: 'Digiwaxx DJ Call · NMW',
       start,
-      durationHours: 4,
-      details: 'Weekly Digiwaxx DJ Call — every Wednesday 3-7PM ET. Zoom link sent to confirmed DJs. New records, network roundtable, Wednesday-night prep.',
+      durationHours: 2,
+      details: 'Weekly Digiwaxx DJ Call — every Wednesday 4-6PM ET on Zoom. Live roundtable with DJs nationwide. Edited audio releases on the NMW Podcast.',
       location: 'Zoom (link sent to confirmed DJs)',
       recurring: true,
     });
