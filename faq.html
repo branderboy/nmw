@@ -104,14 +104,16 @@
   </a>
   <div class="hidden md:flex space-x-6 items-center text-sm font-bold tracking-wide text-gray-600">
     <a href="index.html" class="hover:text-black">HOME</a>
-    <a href="mission.html" class="hover:text-black">MISSION</a>
+    <a href="schedule.html" class="hover:text-black">SCHEDULE</a>
     <a href="events.html" class="hover:text-black">ATTEND</a>
+    <a href="apply.html" class="hover:text-black">ARTIST ACCESS</a>
+    <a href="happy-hour.html" class="hover:text-black">HAPPY HOUR</a>
     <a href="dj-call.html" class="hover:text-black">DJ CALL</a>
     <a href="podcast.html" class="hover:text-black">PODCAST</a>
-    <a href="apply.html" class="hover:text-black">ARTIST ACCESS</a>
-    <a href="faq.html" class="text-black">FAQ</a>
-    <a href="alerts.html" class="hover:text-black">GET ALERTS</a>
+    <a href="blog.html" class="hover:text-black">THE DROP</a>
     <a href="sponsor.html" class="hover:text-black">CAMPAIGN STORE</a>
+    <a href="mission.html" class="hover:text-black">MISSION</a>
+    <a href="faq.html" class="text-black">FAQ</a>
   </div>
   </div>
 </nav>
@@ -195,17 +197,25 @@ const PRODUCTS = [
 const FAQS = [
   // ============= NMW EVENTS =============
   { cat: 'events', q: 'What is New Music Wednesdays?',
-    a: 'A live performance and rollout night every Wednesday at The Penthouse NYC. Doors at 3PM, DJ Call 3-7PM, live performances 7-9:30PM. Hosted by Anna Nyakana, CL, and Chrys Childs.' },
+    a: 'A weekly demand engine for rising artists, structured as a three-block Wednesday at The Penthouse NYC. <b>4-6 PM</b>: Digiwaxx DJ Call (live Zoom roundtable). <b>7-9 PM</b>: Happy Hour + The Media Pit (home of The Next Up Experience couch interviews). <b>9-11 PM</b>: Live performances at The Booth + Barz at the Bar cyphers. Hosted by Anna Nyakana, CL, and Chrys Childs. See the full <a href="schedule.html" class="text-[#8A1558] underline">Wednesday schedule</a>.' },
   { cat: 'events', q: 'How do I RSVP to an upcoming Wednesday?',
-    a: 'Pick a Wednesday on the Events page or RSVP directly at <a href="https://www.newmusicwednesdayslive.com/event-details/new-music-wednesdays-x-the-next-up-experience-2026-04-29-19-00" target="_blank" rel="noopener noreferrer" class="text-[#8A1558] underline">newmusicwednesdayslive.com</a>. Add the series to your calendar so you don\'t miss the next one.' },
+    a: 'Join the fan waitlist on the <a href="events.html" class="text-[#8A1558] underline">Attend page</a> &mdash; <b>free during launch phase</b>. Approved waitlist members get the RSVP link the moment doors open, plus after-hours invites. The room is ~150 seats and we keep it small on purpose.' },
   { cat: 'events', q: 'Where is The Penthouse NYC?',
-    a: 'Manhattan. Exact address sent with your RSVP confirmation. Doors 3PM, DJ Call 3-7PM, live performances 7-9:30PM.' },
+    a: 'Manhattan. Exact address goes to approved waitlist members the morning of the show. The day runs in three blocks: DJ Call 4-6 PM (Zoom), Happy Hour + Media Pit 7-9 PM (in person), Live Performances 9-11 PM.' },
   { cat: 'events', q: 'Is there a cover or ticket fee for fans?',
-    a: 'RSVP is required. Some weeks are free with RSVP, others have a cover at the door, the Events page shows what each Wednesday looks like.' },
+    a: 'The fan waitlist is <b>free to join during launch phase</b>. Some Wednesdays are free with RSVP, others have a cover at the door. The Events page shows what each Wednesday looks like before you commit.' },
+  { cat: 'events', q: 'What is the Media Pit / The Next Up Experience?',
+    a: 'The Media Pit is the back room that runs in parallel with Happy Hour from 7-9 PM. New Media Wednesdays operates out of there: Digiwaxx, DSN, FUBU Radio, HLM, QueueVision and the personality network rotate through on-camera interviews. The Next Up Experience is the featured couch-interview segment with the week\'s approved artists.' },
+  { cat: 'events', q: 'What are The Booth and Barz at the Bar?',
+    a: 'The Booth is the 9-11 PM live performance segment &mdash; audition-approved artists run tight live sets at the DJ booth, unreleased material encouraged. Barz at the Bar is the cypher-style segment that lives inside the same block: freestyle legends and emerging talent in a raw, in-the-room moment.' },
 
   // ============= NMW FOR ARTISTS =============
+  { cat: 'artists', q: 'How much does it cost to submit my music?',
+    a: 'Submission is <b>free during launch phase</b>. Drop a track, our A&R team reviews every submission, and approved artists get a private rollout link with packages and dates. There\'s no upfront audition fee right now.' },
   { cat: 'artists', q: 'What does an Artist Access package actually book me for?',
-    a: 'Performance tier packages ($395 / $650 / $899) book a live performance slot plus full event distribution across DICE, Bandsintown, Songkick, Eventbrite, and Luma. Entry tier packages ($200 / $250) cover media coverage and visual capture only, no live performance slot.' },
+    a: 'After approval, you pick a package on the private rollout link. Performance tier packages ($395 / $650 / $899) book a live performance slot at The Booth (9-11 PM block) plus full event distribution across DICE, Bandsintown, Songkick, Eventbrite, and Luma. <b>Performance Ready ($395) is the most popular pick</b>; Full Experience ($650) is our recommended tier for active rollouts because it adds a Next Up Experience couch interview. Entry tier packages ($200 / $250) cover media coverage and visual capture only, no live performance slot.' },
+  { cat: 'artists', q: 'Which package should I pick?',
+    a: 'On the rollout page, we surface a "Recommended for you" banner based on the goals you tell us (push a new release, get DJ feedback, increase streams, etc.). The middle tier &mdash; Performance Ready ($395) &mdash; is what most approved artists pick. If you\'re actively rolling out a project, Full Experience ($650) is what we recommend. Premiere ($899) is the headline tier for an artist taking the whole room.' },
   { cat: 'artists', q: 'Can I pick which Wednesday I perform?',
     a: 'Yes. After selecting a performance package, you\'ll choose from the next eight Wednesdays. The booking page shows live availability so you know exactly what\'s open.' },
   { cat: 'artists', q: 'What if my preferred date is sold out?',
@@ -248,7 +258,9 @@ const FAQS = [
 
   // ============= NMW DJ CALL =============
   { cat: 'djcall', q: 'What is the NMW DJ Call?',
-    a: 'A weekly Zoom session every Wednesday from 3 to 7 PM ET. The DJs in the network log on, hear new records, lock in their Wednesday-night sets, and decide what\'s about to move. Ends right when doors open at The Penthouse.' },
+    a: 'A live Zoom roundtable every Wednesday from <b>4 to 6 PM ET</b> &mdash; the first block of the Wednesday day map. Tastemakers and DJs nationwide log on, audition new records in real time, and set the tone for what spins next, both in the room that night and across the Digiwaxx DJ network all week. The DJ Call is the participation product; the edited audio gets released as <a href="podcast.html" class="text-[#8A1558] underline">the NMW Podcast</a>.' },
+  { cat: 'djcall', q: 'What is the difference between the DJ Call and the Podcast?',
+    a: 'The DJ Call is the live source &mdash; you participate in real time on Zoom. The Podcast is the edited output &mdash; the audio gets cut, mixed, and shipped to Spotify, Apple, YouTube, and Amazon Music. Different value props, same content. The DJ Call is for participation and networking; the Podcast is for asynchronous listen-back.' },
   { cat: 'djcall', q: 'How do I get on the call list?',
     a: 'Fill out the short application at <a href="dj-call.html" class="text-[#8A1558] underline">DJ Call</a>. We confirm within 24 hours and add you to the recurring invite.' },
   { cat: 'djcall', q: 'How do I sign in every Wednesday?',

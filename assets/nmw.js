@@ -34,16 +34,47 @@ const NMW = (() => {
     { id: 'one-mic', name: 'One Mic Visual Session', price: 250, tier: 'entry',
       blurb: 'Cinematic visual session built for content rollout.',
       perks: ['Studio visual session', 'Cinematic edit', 'Reel-ready clips'] },
-    { id: 'performance-ready', name: 'Performance Ready', price: 395, tier: 'performance',
+    { id: 'performance-ready', name: 'Performance Ready', price: 395, tier: 'performance', badge: 'popular',
       blurb: 'Live performance slot + full event distribution.',
-      perks: ['Live performance slot', 'Event distribution', 'Bandsintown / Songkick / DICE', 'Artist verification'] },
-    { id: 'full-experience', name: 'Full Experience', price: 650, tier: 'performance',
-      blurb: 'Performance + extended media + content package.',
-      perks: ['Everything in Performance Ready', 'Interview segment', 'Photo + clip package', 'Promo asset bundle'] },
-    { id: 'premiere', name: 'The Premiere Package', price: 899, tier: 'performance',
+      perks: ['Live performance slot at The Booth', '9-11 PM live block', 'Event distribution', 'Bandsintown / Songkick / DICE', 'Artist verification'] },
+    { id: 'full-experience', name: 'Full Experience', price: 650, tier: 'performance', badge: 'recommended',
+      blurb: 'Performance + Next Up Experience couch interview + content package.',
+      perks: ['Everything in Performance Ready', 'Next Up Experience couch interview in the Media Pit', 'Photo + clip package', 'Promo asset bundle'] },
+    { id: 'premiere', name: 'The Premiere Package', price: 899, tier: 'performance', badge: 'premium',
       blurb: 'Top-tier rollout with premium positioning.',
-      perks: ['Headline-style placement', 'Featured editorial', 'Full media kit', 'Priority DICE rollout'] },
+      perks: ['Headline-style placement', 'Featured editorial in The Drop', 'Full media kit', 'Priority DICE rollout', 'Barz at the Bar feature spot'] },
   ];
+
+  // Goal → recommended package (used for the personalized "Recommended for you" rec)
+  const GOAL_PACKAGE = {
+    'Build awareness':            'performance-ready',
+    'Push a new release':         'full-experience',
+    'Get DJ feedback':            'performance-ready',
+    'Increase streams':           'full-experience',
+    'Go viral/create content':    'full-experience',
+    'Test a record':              'performance-ready',
+    'Promote an upcoming project':'premiere',
+    'Build industry relationships':'full-experience',
+    'Improve discoverability':    'performance-ready',
+    'Grow locally':               'media-ready',
+    'Build a fanbase':            'performance-ready',
+  };
+
+  // Pick the highest-tier package recommended by any of the artist's goals.
+  // Falls back to the "popular" tile when goals are empty / unrecognized.
+  const recommendPackage = (goals) => {
+    if (!Array.isArray(goals) || goals.length === 0) {
+      return PACKAGES.find(p => p.badge === 'popular')?.id || 'performance-ready';
+    }
+    const order = { 'media-ready': 1, 'one-mic': 2, 'performance-ready': 3, 'full-experience': 4, 'premiere': 5 };
+    let best = null;
+    for (const g of goals) {
+      const id = GOAL_PACKAGE[g];
+      if (!id) continue;
+      if (!best || order[id] > order[best]) best = id;
+    }
+    return best || PACKAGES.find(p => p.badge === 'popular')?.id || 'performance-ready';
+  };
 
   const GOALS = [
     'Build awareness',
@@ -168,7 +199,7 @@ const NMW = (() => {
       body: "What's hitting the stage this Wednesday, plus subscriber-only drops, free giveaways, and new music picks. RSVP: {{rsvpLink}}",
       status: 'active' },
     { id: 'flow_dj_call_invite', name: 'DJ Call — Tuesday Reminder', trigger: 'Every Tuesday 8 PM ET', audience: 'djs',
-      subject: 'Tomorrow · DJ Call · 3 PM ET on Zoom',
+      subject: 'Tomorrow · DJ Call · 4 PM ET on Zoom',
       body: "Standing Zoom link: {{zoomLink}}\n\nThis week's spotlight: {{theme}}. See you on the call.",
       status: 'active' },
     { id: 'flow_sponsor_received', name: 'Sponsor — Inquiry Received', trigger: 'Sponsor submits inquiry', audience: 'sponsors',
@@ -258,15 +289,15 @@ const NMW = (() => {
     set(KEYS.djs, all);
   };
 
-  // Recurring weekly DJ Call calendar link (Wednesdays 3-7PM)
+  // Recurring weekly DJ Call calendar link (Wednesdays 4-6PM)
   const djCallCalendarLink = () => {
     const start = nextWednesday();
-    start.setHours(15, 0, 0, 0); // 3PM
+    start.setHours(16, 0, 0, 0); // 4PM
     return buildCalendarLink({
       title: 'Digiwaxx DJ Call · NMW',
       start,
-      durationHours: 4,
-      details: 'Weekly Digiwaxx DJ Call — every Wednesday 3-7PM ET. Zoom link sent to confirmed DJs. New records, network roundtable, Wednesday-night prep.',
+      durationHours: 2,
+      details: 'Weekly Digiwaxx DJ Call — every Wednesday 4-6PM ET on Zoom. Live roundtable with DJs nationwide. Edited audio releases on the NMW Podcast.',
       location: 'Zoom (link sent to confirmed DJs)',
       recurring: true,
     });
@@ -557,7 +588,7 @@ const NMW = (() => {
   };
 
   return {
-    PACKAGES, GOALS, UPSELLS, REFERRAL_TIERS,
+    PACKAGES, GOALS, UPSELLS, REFERRAL_TIERS, recommendPackage,
     getFunnel, setFunnel,
     getArtist, setArtist, getArtists, saveArtist,
     getBlast, addBlast, getEvents, saveEvent, setEvents,

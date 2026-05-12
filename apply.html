@@ -105,10 +105,13 @@
   </a>
   <div class="hidden md:flex space-x-6 items-center text-sm font-bold tracking-wide text-gray-600">
     <a href="index.html" class="hover:text-black">HOME</a>
+    <a href="schedule.html" class="hover:text-black">SCHEDULE</a>
     <a href="events.html" class="hover:text-black">ATTEND</a>
     <a href="apply.html" class="text-black">ARTIST ACCESS</a>
     <a href="happy-hour.html" class="hover:text-black">HAPPY HOUR</a>
     <a href="dj-call.html" class="hover:text-black">DJ CALL</a>
+    <a href="podcast.html" class="hover:text-black">PODCAST</a>
+    <a href="blog.html" class="hover:text-black">THE DROP</a>
     <a href="sponsor.html" class="hover:text-black">CAMPAIGN STORE</a>
     <a href="mission.html" class="hover:text-black">MISSION</a>
     <a href="faq.html" class="hover:text-black">FAQ</a>
@@ -122,7 +125,7 @@
     <div class="grid lg:grid-cols-5 gap-8 items-end">
       <div class="lg:col-span-3">
         <div class="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-widest bg-white/10 px-3 py-1.5 rounded-full mb-4">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#FBCFE8] animate-pulse"></span> Live audition queue · NYC · <span class="text-[#FBCFE8]">Free · launch phase</span>
+          <span class="w-1.5 h-1.5 rounded-full bg-[#FBCFE8] animate-pulse"></span> Block 3 · Wednesdays · 9-11 PM Live Performances · <span class="text-[#FBCFE8]">Free · launch phase</span>
         </div>
         <h1 class="text-4xl md:text-6xl font-black tracking-tighter leading-[0.95]">
           Submit your music.<br>
@@ -132,7 +135,7 @@
           Over 120,000 songs are uploaded to Spotify every day. Most disappear. New Music Wednesdays Live is the demand engine that turns one live moment into industry attention, fan demand, and rollout momentum.
         </p>
         <p class="text-sm text-white/60 mt-4 max-w-2xl">
-          <b class="text-white">Free to submit during launch phase.</b> Approved artists get a private rollout link: live performance slot at The Penthouse, DJ-network distribution, press capture, and the Digiwaxx amplification stack.
+          <b class="text-white">Free to submit during launch phase.</b> Approved artists step into the 9-11 PM <b class="text-white">Live Performances</b> block: <b class="text-white">The Booth</b> for a tight live set at the DJ booth, plus <b class="text-white">Barz at the Bar</b> for cypher-eligible artists. You also get a Next Up Experience couch interview in the Media Pit, DJ-network distribution, press capture, and the Digiwaxx amplification stack.
         </p>
       </div>
       <div class="lg:col-span-2">
@@ -337,9 +340,12 @@
       <!-- STEP 1: PACKAGE + YOUR DETAILS -->
       <section data-step="1" class="step bg-white rounded-2xl shadow-sm p-6 md:p-10 hidden">
         <h2 class="text-2xl md:text-3xl font-black tracking-tight mb-1">CHOOSE YOUR PACKAGE</h2>
-        <p class="text-gray-500 mb-8">Select the package that fits your rollout.</p>
+        <p class="text-gray-500 mb-6">Approved. Now pick the rollout. Most artists pick the <b>Most Popular</b> tile; if your goals point somewhere else, our recommendation banner will tell you.</p>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-3" id="pkgGrid"></div>
+        <!-- Personalized recommendation banner: populated by renderPackages() based on goals. -->
+        <div id="pkgRecBanner" class="hidden mb-5 rounded-2xl p-4 md:p-5 text-white" style="background:linear-gradient(135deg,#680D3E 0%,#8A1558 100%);box-shadow:0 12px 28px -14px rgba(138,21,88,0.45);"></div>
+
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-3" id="pkgGrid"></div>
 
         <div class="mt-6 grid md:grid-cols-2 gap-4">
           <div class="rounded-xl border border-gray-200 bg-gray-50 p-5">
@@ -463,7 +469,7 @@
         <p class="text-gray-500 mb-8">Quick read before you book. These keep the night running smooth and your distribution unlocked.</p>
 
         <div class="space-y-4 mb-8">
-          <div class="flex items-start gap-3"><i data-lucide="clock" class="w-5 h-5 text-[#8A1558] flex-shrink-0 mt-0.5"></i><p class="text-sm text-gray-800"><b>Call time is 5:30 PM, sharp.</b> Doors at 3 PM, DJ Call 3-7 PM, live performances 7-9:30 PM. Late = forfeited slot.</p></div>
+          <div class="flex items-start gap-3"><i data-lucide="clock" class="w-5 h-5 text-[#8A1558] flex-shrink-0 mt-0.5"></i><p class="text-sm text-gray-800"><b>Call time is 6:30 PM, sharp.</b> Wednesday flow: <b>DJ Call</b> on Zoom 4-6 PM, <b>Happy Hour + Media Pit</b> 7-9 PM (your Next Up Experience couch interview lands here), <b>Live Performances</b> 9-11 PM at The Booth (and Barz at the Bar if cypher-eligible). Late = forfeited slot.</p></div>
           <div class="flex items-start gap-3"><i data-lucide="mic" class="w-5 h-5 text-[#8A1558] flex-shrink-0 mt-0.5"></i><p class="text-sm text-gray-800"><b>Two songs max per artist.</b> Bring clean instrumentals on a USB. No backing-track vocals.</p></div>
           <div class="flex items-start gap-3"><i data-lucide="users" class="w-5 h-5 text-[#8A1558] flex-shrink-0 mt-0.5"></i><p class="text-sm text-gray-800"><b>+1 guest comp.</b> Anyone beyond that needs to RSVP through your share link.</p></div>
           <div class="flex items-start gap-3"><i data-lucide="ban" class="w-5 h-5 text-[#8A1558] flex-shrink-0 mt-0.5"></i><p class="text-sm text-gray-800"><b>No no-shows.</b> No-show forfeits the package; the rain date is your safety net.</p></div>
@@ -801,20 +807,71 @@ function prevStep() {
 
 const PKG_INFO = { 'media-ready': 'press' };
 
+const BADGE_LABEL = { popular: 'Most Popular', recommended: 'Recommended', premium: 'Premium' };
+
 function renderPackages() {
   const grid = document.getElementById('pkgGrid');
+  // Personalized rec: use the artist's selected goals if any, otherwise the popular tile.
+  const recId = NMW.recommendPackage ? NMW.recommendPackage(funnel.goals || []) : null;
+
   grid.innerHTML = NMW.PACKAGES.map(p => {
     const sel = funnel.package === p.id ? 'is-selected' : '';
+    const isRecForYou = recId === p.id && (funnel.goals && funnel.goals.length > 0);
+    const badge = p.badge ? `<span class="pkg-badge pkg-badge--${p.badge}">${BADGE_LABEL[p.badge] || ''}</span>` : '';
+    const recForYou = isRecForYou ? `<span class="pkg-badge pkg-badge--rec-you">Best for your goals</span>` : '';
     const info = PKG_INFO[p.id]
       ? `<button type="button" class="pkg-info" data-info="${PKG_INFO[p.id]}" aria-label="More info"><i data-lucide="info" class="w-3.5 h-3.5"></i></button>`
       : '';
     return `<div class="pkg-tile-wrap">
       <button type="button" class="pkg-tile ${sel}" data-pkg="${p.id}">
+        ${badge}${recForYou}
         <div class="pkg-name">${p.name}</div>
         <div class="pkg-price">$${p.price}</div>
       </button>${info}
     </div>`;
   }).join('');
+
+  // Personalized recommendation banner: tells the artist why we're suggesting a package.
+  const recBanner = document.getElementById('pkgRecBanner');
+  if (recBanner) {
+    const recPkg = NMW.PACKAGES.find(p => p.id === recId);
+    if (recPkg && funnel.goals && funnel.goals.length > 0) {
+      recBanner.innerHTML = `
+        <div class="flex items-start gap-3">
+          <div class="w-9 h-9 rounded-lg bg-white/15 text-[#FBCFE8] flex items-center justify-center flex-shrink-0"><i data-lucide="sparkles" class="w-4 h-4"></i></div>
+          <div class="flex-1 min-w-0">
+            <div class="text-[10px] font-black uppercase tracking-widest text-[#FBCFE8] mb-0.5">Recommended for you</div>
+            <div class="font-black tracking-tight text-white">${recPkg.name} &middot; $${recPkg.price}</div>
+            <div class="text-xs text-white/70 mt-0.5">${recPkg.blurb} Based on your goals: ${funnel.goals.slice(0,3).join(', ')}.</div>
+          </div>
+          <button type="button" class="text-[10px] font-black uppercase tracking-widest bg-[#FBCFE8] text-[#680D3E] px-3 py-2 rounded-md hover:bg-white whitespace-nowrap" data-rec-pick="${recPkg.id}">Pick this</button>
+        </div>`;
+      recBanner.classList.remove('hidden');
+      const pick = recBanner.querySelector('[data-rec-pick]');
+      if (pick) pick.addEventListener('click', () => {
+        funnel.package = pick.dataset.recPick;
+        if (!NMW.isPerformanceTier(funnel.package)) funnel.eventDate = null;
+        NMW.setFunnel(funnel);
+        renderPackages();
+        validateStep1();
+        renderSummary();
+      });
+    } else {
+      // No goals set yet, show a softer "most artists choose" nudge to the popular tile.
+      const popular = NMW.PACKAGES.find(p => p.badge === 'popular');
+      if (popular) {
+        recBanner.innerHTML = `
+          <div class="flex items-center gap-3 text-sm">
+            <i data-lucide="users" class="w-4 h-4 text-[#FBCFE8] flex-shrink-0"></i>
+            <div class="text-white/80">Most approved artists pick <b class="text-white">${popular.name}</b> ($${popular.price}). Tell us your goals on the next step and we'll tailor a tighter recommendation.</div>
+          </div>`;
+        recBanner.classList.remove('hidden');
+      } else {
+        recBanner.classList.add('hidden');
+      }
+    }
+  }
+
   grid.querySelectorAll('[data-pkg]').forEach(el => {
     el.addEventListener('click', () => {
       funnel.package = el.dataset.pkg;
