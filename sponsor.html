@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="images/nmw-logo.png" />
 <link rel="apple-touch-icon" href="images/nmw-logo.png" />
-<title>Campaign Store | Buy Into the NMW Demand Engine</title>
+<title>The Campaign Store at NMW</title>
 <meta name="description" content="Pick a play, we run it, we send you a report. Plays for artists with a release coming up, labels pushing roster, and sponsors who want to reach the people who shape what gets played.">
 <link rel="canonical" href="https://www.newmusicwednesdayslive.com/sponsor.html">
 <meta property="og:type" content="website">
@@ -339,16 +339,14 @@
   </a>
   <div class="hidden md:flex space-x-6 items-center text-sm font-bold tracking-wide text-gray-600">
     <a href="index.html" class="hover:text-black">HOME</a>
-    <a href="schedule.html" class="hover:text-black">SCHEDULE</a>
+    <a href="mission.html" class="hover:text-black">MISSION</a>
     <a href="events.html" class="hover:text-black">ATTEND</a>
-    <a href="apply.html" class="hover:text-black">ARTIST ACCESS</a>
-    <a href="happy-hour.html" class="hover:text-black">HAPPY HOUR</a>
     <a href="dj-call.html" class="hover:text-black">DJ CALL</a>
     <a href="podcast.html" class="hover:text-black">PODCAST</a>
-    <a href="blog.html" class="hover:text-black">THE DROP</a>
-    <a href="sponsor.html" class="text-black">CAMPAIGN STORE</a>
-    <a href="mission.html" class="hover:text-black">MISSION</a>
+    <a href="apply.html" class="hover:text-black">ARTIST ACCESS</a>
     <a href="faq.html" class="hover:text-black">FAQ</a>
+    <a href="alerts.html" class="hover:text-black">GET ALERTS</a>
+    <a href="sponsor.html" class="text-black">CAMPAIGN STORE</a>
   </div>
   </div>
 </nav>
@@ -361,31 +359,8 @@
   <section class="mb-5 md:mb-10 pt-2 relative z-10">
     <div class="max-w-6xl">
       <div class="mono-eyebrow mb-3">Campaign Store, NMW</div>
-      <h1 class="display display-tight text-5xl sm:text-6xl md:text-7xl mb-4 text-ink">Buy into the<br>demand engine.</h1>
-      <p class="text-base md:text-lg text-ink/70 max-w-2xl mb-6 font-sans">NMW Live manufactures attention every Wednesday: a curated NYC penthouse room, 237 artists in the audition queue, 1,284 fans on the waitlist, DJ amplification, and content distribution. The Campaign Store is how artists, labels, and sponsors plug into that pressure.</p>
-
-      <!-- Demand-engine snapshot bar -->
-      <div id="sponsorDemandBar" class="mb-5 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl">
-        <div class="rounded-xl border border-ink/10 bg-white/60 backdrop-blur p-4">
-          <div class="text-3xl md:text-4xl font-black tabular-nums text-ink" data-counter="audq" data-target="237">237</div>
-          <div class="text-[10px] font-black uppercase tracking-widest text-ink/60 mt-1">artists in queue</div>
-        </div>
-        <div class="rounded-xl border border-ink/10 bg-white/60 backdrop-blur p-4">
-          <div class="text-3xl md:text-4xl font-black tabular-nums text-ink" data-counter="fanq" data-target="1284">1,284</div>
-          <div class="text-[10px] font-black uppercase tracking-widest text-ink/60 mt-1">fans waitlisted</div>
-        </div>
-        <div class="rounded-xl border border-ink/10 bg-white/60 backdrop-blur p-4">
-          <div class="text-3xl md:text-4xl font-black tabular-nums text-ink" data-counter="djn" data-target="47">47</div>
-          <div class="text-[10px] font-black uppercase tracking-widest text-ink/60 mt-1">DJs in network</div>
-        </div>
-        <div class="rounded-xl border border-ink/10 bg-white/60 backdrop-blur p-4">
-          <div class="text-3xl md:text-4xl font-black tabular-nums text-ink" data-counter="invR" data-target="4">4</div>
-          <div class="text-[10px] font-black uppercase tracking-widest text-ink/60 mt-1">campaign slots left this month</div>
-        </div>
-      </div>
-
-      <!-- Audience-driven recommendation: surfaces a popular/recommended play once user picks who this is for. -->
-      <div id="audienceRecBanner" class="hidden mb-8 rounded-2xl p-4 md:p-5 text-white max-w-4xl" style="background:linear-gradient(135deg,#680D3E 0%,#8A1558 100%);box-shadow:0 12px 28px -14px rgba(138,21,88,0.45);"></div>
+      <h1 class="display display-tight text-5xl sm:text-6xl md:text-7xl mb-4 text-ink">Run a campaign<br>at NMW.</h1>
+      <p class="text-base md:text-lg text-ink/70 max-w-xl mb-6 font-sans">For artists, record labels, and sponsors. Pick what fits your moment. We run it on a scheduled Wednesday and send a real report back.</p>
           </div>
 
     <!-- OBLONG SEARCH BAR: who is this for + campaign goal + free-text tag search -->
@@ -1321,56 +1296,11 @@ function styleTab(btn, active) {
   else btn.classList.remove('is-active');
 }
 
-// Audience → recommended play: which surface we point each persona to first.
-const REC_BY_AUDIENCE = {
-  artist: {
-    title: 'Most Popular for artists',
-    pitch: 'Group Action + DJ Advance &mdash; gets a record into 47 active DJs across the Digiwaxx network and turns the room into measurable redemptions.',
-    cta: 'See DJ Advance',
-    href: '#dx-advance',
-  },
-  label: {
-    title: 'Recommended for labels',
-    pitch: 'Growth Stack &mdash; 5 recurring placements every Wednesday across newsletter, story co-brand, recap clip, subscriber drop, and event banner. Built for pushing a roster.',
-    cta: 'See the Growth Stack',
-    href: '#stacks',
-  },
-  sponsor: {
-    title: 'Most Popular for sponsors',
-    pitch: 'Sampling Table + Sponsor The Blast &mdash; product in-hand on Wednesday plus the audience list on Thursday. The clean front-of-room + post-room combo.',
-    cta: 'See sponsor plays',
-    href: '#sponsors',
-  },
-};
-
-function updateAudienceRecBanner() {
-  const banner = document.getElementById('audienceRecBanner');
-  if (!banner) return;
-  const rec = REC_BY_AUDIENCE[activeAudience];
-  if (!rec) {
-    banner.classList.add('hidden');
-    banner.innerHTML = '';
-    return;
-  }
-  banner.innerHTML = `
-    <div class="flex items-start gap-3">
-      <div class="w-9 h-9 rounded-lg bg-white/15 text-[#FBCFE8] flex items-center justify-center flex-shrink-0"><i data-lucide="sparkles" class="w-4 h-4"></i></div>
-      <div class="flex-1 min-w-0">
-        <div class="text-[10px] font-black uppercase tracking-widest text-[#FBCFE8] mb-0.5">${rec.title}</div>
-        <div class="text-sm md:text-base text-white">${rec.pitch}</div>
-      </div>
-      <a href="${rec.href}" class="text-[10px] font-black uppercase tracking-widest bg-[#FBCFE8] text-[#680D3E] px-3 py-2 rounded-md hover:bg-white whitespace-nowrap">${rec.cta}</a>
-    </div>`;
-  banner.classList.remove('hidden');
-  if (typeof lucide !== 'undefined') lucide.createIcons();
-}
-
 function setActiveAudience(aud) {
   activeAudience = aud || '';
   document.querySelectorAll('.audience-tab').forEach(b => styleTab(b, b.dataset.audience === activeAudience));
   const audSelect = document.getElementById('audienceSelect');
   if (audSelect && audSelect.value !== activeAudience) audSelect.value = activeAudience;
-  updateAudienceRecBanner();
   // Reset any previous goal-based query so switching audience doesn't carry it over.
   // The free-text search input is preserved.
   const searchInput = document.getElementById('goalSearch');
@@ -1570,24 +1500,6 @@ renderProducts = function() {
   refreshGoalPills();
   applyPlayFilter();
 };
-
-// Demand-engine snapshot counters in the store header
-(function animateSponsorCounters() {
-  document.querySelectorAll('#sponsorDemandBar [data-counter][data-target]').forEach(el => {
-    const target = parseInt(el.dataset.target, 10);
-    if (!Number.isFinite(target)) return;
-    const duration = 1100 + Math.random() * 400;
-    const start = performance.now();
-    function tick(now) {
-      const t = Math.min(1, (now - start) / duration);
-      const eased = 1 - Math.pow(1 - t, 3);
-      el.textContent = Math.round(target * eased).toLocaleString();
-      if (t < 1) requestAnimationFrame(tick);
-      else el.textContent = target.toLocaleString();
-    }
-    requestAnimationFrame(tick);
-  });
-})();
 </script>
 </body>
 </html>
