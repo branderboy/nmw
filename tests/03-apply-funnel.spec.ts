@@ -1,23 +1,25 @@
 import { test, expect } from '@playwright/test';
 import { collectConsoleErrors, filterAppErrors, resetAppState } from './helpers';
 
-// Helper: fill the step-1 details form
+// Helper: fill the step-1 details form (scoped to the approved-mode package step, since
+// the audition step also has fields with the same names)
 async function fillStep1Details(page: any, opts: { artistName?: string } = {}) {
-  await page.locator('input[name="name"]').fill('Test Artist');
-  await page.locator('input[name="email"]').fill('test@example.com');
-  await page.locator('input[name="artistName"]').fill(opts.artistName ?? 'Stage Name');
-  await page.locator('select[name="genre"]').selectOption('R&B');
+  const step1 = page.locator('[data-step="1"]');
+  await step1.locator('input[name="name"]').fill('Test Artist');
+  await step1.locator('input[name="email"]').fill('test@example.com');
+  await step1.locator('input[name="artistName"]').fill(opts.artistName ?? 'Stage Name');
+  await step1.locator('select[name="genre"]').selectOption('R&B');
 }
 
 test.describe('Artist Access apply funnel (apply.html)', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/apply.html');
+    await page.goto('/apply.html?approved=1');
     await resetAppState(page);
     await page.reload();
   });
 
   test('package preselected from query string + filled details enables continue', async ({ page }) => {
-    await page.goto('/apply.html?pkg=performance-ready');
+    await page.goto('/apply.html?approved=1&pkg=performance-ready');
     await fillStep1Details(page);
     const continueBtn = page.locator('[data-step="1"] button[data-next="1"]');
     await expect(continueBtn).toBeEnabled();
@@ -25,7 +27,7 @@ test.describe('Artist Access apply funnel (apply.html)', () => {
 
   test('end-to-end performance tier checkout flow', async ({ page }) => {
     const errors = collectConsoleErrors(page);
-    await page.goto('/apply.html');
+    await page.goto('/apply.html?approved=1');
 
     // STEP 1: pick package + fill required details (now combined)
     await page.locator('[data-pkg="performance-ready"]').click();
@@ -75,7 +77,7 @@ test.describe('Artist Access apply funnel (apply.html)', () => {
   });
 
   test('entry-tier checkout skips the date step', async ({ page }) => {
-    await page.goto('/apply.html');
+    await page.goto('/apply.html?approved=1');
     await page.locator('[data-pkg="media-ready"]').click();
     await fillStep1Details(page, { artistName: 'EntryName' });
     await page.locator('[data-step="1"] button[data-next="1"]').click();
@@ -93,7 +95,7 @@ test.describe('Artist Access apply funnel (apply.html)', () => {
   });
 
   test('cannot continue from step 1 without package + required details', async ({ page }) => {
-    await page.goto('/apply.html');
+    await page.goto('/apply.html?approved=1');
     const cont = page.locator('[data-step="1"] button[data-next="1"]');
     // No package, no details
     await expect(cont).toBeDisabled();
@@ -103,5 +105,41 @@ test.describe('Artist Access apply funnel (apply.html)', () => {
     // Now fill details — should enable
     await fillStep1Details(page);
     await expect(cont).toBeEnabled();
+  });
+});
+
+test.describe('Public audition flow (apply.html, demand engine)', () => {
+  test('default landing shows the audition step + perceived demand counters', async ({ page }) => {
+    await page.goto('/apply.html');
+    await resetAppState(page);
+    await page.reload();
+
+    await expect(page.locator('[data-step="audition"]')).toBeVisible();
+    await expect(page.locator('[data-step="1"]')).toBeHidden();
+    await expect(page.locator('#auditionHero')).toBeVisible();
+    await expect(page.locator('[data-counter="artists"]')).toBeVisible();
+    await expect(page.locator('[data-counter="fans"]')).toBeVisible();
+  });
+
+  test('audition pay button is disabled until required fields are filled, then submission lands in queue', async ({ page }) => {
+    await page.goto('/apply.html');
+    await resetAppState(page);
+    await page.reload();
+
+    const pay = page.locator('#auditionPayBtn');
+    await expect(pay).toBeDisabled();
+
+    await page.locator('#auditionForm input[name="name"]').fill('Test Artist');
+    await page.locator('#auditionForm input[name="email"]').fill('test@example.com');
+    await page.locator('#auditionForm input[name="artistName"]').fill('Stage Name');
+    await page.locator('#auditionForm input[name="location"]').fill('Brooklyn, NY');
+    await page.locator('#auditionForm select[name="genre"]').selectOption('R&B');
+    await page.locator('#auditionForm input[name="trackUrl"]').fill('https://open.spotify.com/track/123');
+    await expect(pay).toBeEnabled();
+
+    await pay.click();
+    await expect(page.locator('[data-step="audition-success"]')).toBeVisible({ timeout: 5000 });
+    await expect(page.locator('#queuePosition')).toContainText('#');
+    await expect(page.locator('#auditionId')).toContainText('NMW-AUD-');
   });
 });
