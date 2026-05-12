@@ -290,6 +290,32 @@ body {
 /* Package tile wrapper — allows info button overlay */
 .pkg-tile-wrap { position: relative; }
 .pkg-tile-wrap > .pkg-tile { width: 100%; }
+
+/* Package badges: popular / recommended / premium / personalized "best for your goals" */
+.pkg-badge {
+  position: absolute;
+  top: 0.4rem;
+  left: 0.5rem;
+  font-size: 0.55rem;
+  font-weight: 900;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.55rem;
+  border-radius: 9999px;
+  line-height: 1.2;
+  white-space: nowrap;
+  z-index: 2;
+}
+.pkg-badge--popular     { background: var(--brand-500, #8A1558); color: #fff; }
+.pkg-badge--recommended { background: #FBCFE8; color: var(--brand-600, #680D3E); border: 1px solid var(--brand-500, #8A1558); }
+.pkg-badge--premium     { background: #111827; color: #FBCFE8; }
+.pkg-badge--rec-you {
+  top: auto; left: 0.5rem; bottom: 0.5rem;
+  background: linear-gradient(90deg, #FBCFE8 0%, #8A1558 100%);
+  color: #fff;
+}
+.pkg-tile.is-selected .pkg-badge--popular,
+.pkg-tile.is-selected .pkg-badge--premium { box-shadow: 0 0 0 2px #fff; }
 .pkg-info {
   position: absolute;
   top: 0.45rem;
@@ -314,10 +340,11 @@ body {
   background: #fff;
   border: 1.5px solid #e5e7eb;
   border-radius: 0.75rem;
-  padding: 0.85rem 0.95rem;
+  padding: 1.75rem 0.95rem 0.85rem;
   text-align: left;
   cursor: pointer;
   transition: all 0.15s;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

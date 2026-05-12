@@ -365,7 +365,7 @@
       <p class="text-base md:text-lg text-ink/70 max-w-2xl mb-6 font-sans">NMW Live manufactures attention every Wednesday: a curated NYC penthouse room, 237 artists in the audition queue, 1,284 fans on the waitlist, DJ amplification, and content distribution. The Campaign Store is how artists, labels, and sponsors plug into that pressure.</p>
 
       <!-- Demand-engine snapshot bar -->
-      <div id="sponsorDemandBar" class="mb-8 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl">
+      <div id="sponsorDemandBar" class="mb-5 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl">
         <div class="rounded-xl border border-ink/10 bg-white/60 backdrop-blur p-4">
           <div class="text-3xl md:text-4xl font-black tabular-nums text-ink" data-counter="audq" data-target="237">237</div>
           <div class="text-[10px] font-black uppercase tracking-widest text-ink/60 mt-1">artists in queue</div>
@@ -383,6 +383,9 @@
           <div class="text-[10px] font-black uppercase tracking-widest text-ink/60 mt-1">campaign slots left this month</div>
         </div>
       </div>
+
+      <!-- Audience-driven recommendation: surfaces a popular/recommended play once user picks who this is for. -->
+      <div id="audienceRecBanner" class="hidden mb-8 rounded-2xl p-4 md:p-5 text-white max-w-4xl" style="background:linear-gradient(135deg,#680D3E 0%,#8A1558 100%);box-shadow:0 12px 28px -14px rgba(138,21,88,0.45);"></div>
           </div>
 
     <!-- OBLONG SEARCH BAR: who is this for + campaign goal + free-text tag search -->
@@ -1318,11 +1321,56 @@ function styleTab(btn, active) {
   else btn.classList.remove('is-active');
 }
 
+// Audience → recommended play: which surface we point each persona to first.
+const REC_BY_AUDIENCE = {
+  artist: {
+    title: 'Most Popular for artists',
+    pitch: 'Group Action + DJ Advance &mdash; gets a record into 47 active DJs across the Digiwaxx network and turns the room into measurable redemptions.',
+    cta: 'See DJ Advance',
+    href: '#dx-advance',
+  },
+  label: {
+    title: 'Recommended for labels',
+    pitch: 'Growth Stack &mdash; 5 recurring placements every Wednesday across newsletter, story co-brand, recap clip, subscriber drop, and event banner. Built for pushing a roster.',
+    cta: 'See the Growth Stack',
+    href: '#stacks',
+  },
+  sponsor: {
+    title: 'Most Popular for sponsors',
+    pitch: 'Sampling Table + Sponsor The Blast &mdash; product in-hand on Wednesday plus the audience list on Thursday. The clean front-of-room + post-room combo.',
+    cta: 'See sponsor plays',
+    href: '#sponsors',
+  },
+};
+
+function updateAudienceRecBanner() {
+  const banner = document.getElementById('audienceRecBanner');
+  if (!banner) return;
+  const rec = REC_BY_AUDIENCE[activeAudience];
+  if (!rec) {
+    banner.classList.add('hidden');
+    banner.innerHTML = '';
+    return;
+  }
+  banner.innerHTML = `
+    <div class="flex items-start gap-3">
+      <div class="w-9 h-9 rounded-lg bg-white/15 text-[#FBCFE8] flex items-center justify-center flex-shrink-0"><i data-lucide="sparkles" class="w-4 h-4"></i></div>
+      <div class="flex-1 min-w-0">
+        <div class="text-[10px] font-black uppercase tracking-widest text-[#FBCFE8] mb-0.5">${rec.title}</div>
+        <div class="text-sm md:text-base text-white">${rec.pitch}</div>
+      </div>
+      <a href="${rec.href}" class="text-[10px] font-black uppercase tracking-widest bg-[#FBCFE8] text-[#680D3E] px-3 py-2 rounded-md hover:bg-white whitespace-nowrap">${rec.cta}</a>
+    </div>`;
+  banner.classList.remove('hidden');
+  if (typeof lucide !== 'undefined') lucide.createIcons();
+}
+
 function setActiveAudience(aud) {
   activeAudience = aud || '';
   document.querySelectorAll('.audience-tab').forEach(b => styleTab(b, b.dataset.audience === activeAudience));
   const audSelect = document.getElementById('audienceSelect');
   if (audSelect && audSelect.value !== activeAudience) audSelect.value = activeAudience;
+  updateAudienceRecBanner();
   // Reset any previous goal-based query so switching audience doesn't carry it over.
   // The free-text search input is preserved.
   const searchInput = document.getElementById('goalSearch');
