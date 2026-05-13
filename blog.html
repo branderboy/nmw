@@ -43,44 +43,96 @@
 <body class="font-sans antialiased selection:bg-brand-500 selection:text-white bg-white text-gray-900">
 
     <!-- Navigation -->
-<header class="sxsw-header">
-  <div class="sxsw-header__top-bar">EVERY WED &middot; THE PENTHOUSE NYC &middot; MIDTOWN, MANHATTAN</div>
-  <div class="sxsw-header__main">
-    <a href="index.html" class="sxsw-header__brand">
-      <img src="images/nmw-logo-light.png" class="sxsw-header__logo" alt="New Music Wednesdays" />
-    </a>
-    <div class="sxsw-header__nav-left">
-      <a href="index.html">HOME</a>
-    <div class="nav-dropdown">
-      <button type="button" class="nav-dropdown__trigger">MISSION</button>
-      <div class="nav-dropdown__panel">
-        <a href="mission.html">Mission</a>
-        <a href="faq.html">FAQ</a>
-      </div>
-    </div>
-      <a href="attend.html">ATTEND</a>
-      <a href="apply.html">ARTIST ACCESS</a>
-      <div class="nav-dropdown">
-        <button type="button" class="nav-dropdown__trigger">LISTEN</button>
-        <div class="nav-dropdown__panel">
-          <a href="dj-call.html">DJ Call</a>
-          <a href="podcast.html">Podcast</a>
+    <nav class="fixed w-full z-50 glass-nav top-0 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-brand-500 rounded-sm flex items-center justify-center text-white font-black text-xl tracking-tighter">NMW</div>
+                    <div class="hidden md:flex flex-col justify-center">
+                        <span class="font-bold text-xl tracking-tight leading-none">NEW MUSIC WEDNESDAY</span>
+                        <span class="font-medium text-brand-500 text-xs tracking-widest uppercase mt-1">by Digiwaxx</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center text-sm font-bold tracking-wide text-gray-600">
+                    <a href="#thedrop" class="hover:text-black transition-colors">THE DROP</a>
+                    <a href="#artist" class="hover:text-black transition-colors">ARTIST</a>
+                    <a href="#tools" class="hover:text-black transition-colors">TOOLS</a>
+                    <a href="#blog" class="hover:text-black transition-colors">BLOG</a>
+                    <a href="#events" class="hover:text-black transition-colors">ATTEND</a>
+                    <a href="#submit" class="bg-yellow-400 text-black px-6 py-2.5 rounded-full font-black uppercase tracking-wider text-xs hover:bg-yellow-500 hover:scale-105 transition-all shadow-md flex items-center gap-2 border border-yellow-500">
+                        <i data-lucide="upload" class="w-4 h-4"></i> Submit Music
+                    </a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button class="text-black focus:outline-none"><i data-lucide="menu" class="w-6 h-6"></i></button>
+                </div>
+            </div>
         </div>
-      </div>
-      <a href="blog.html" class="is-active">THE DROP</a>
-      <a href="sponsor.html">CAMPAIGN STORE</a>
-    </div>
-    <a href="attend.html" class="sxsw-header__cta sxsw-header__cta--primary"><i data-lucide="ticket" class="w-4 h-4"></i> ATTEND</a>
-  </div>
-</header>
+    </nav>
 
-<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 md:pt-12 pb-2">
-  <div class="font-mono text-[11px] uppercase tracking-[0.18em] text-gray-500 mb-3">The Drop, NMW</div>
-  <h1 class="text-5xl sm:text-6xl md:text-7xl font-black tracking-tighter uppercase leading-[0.9] mb-3 text-gray-900">The drop.</h1>
-  <p class="text-base md:text-lg text-gray-600 max-w-2xl">Editorial. Reviews. The weekly newsletter.</p>
-</section>
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="h-px bg-gray-900 my-6"></div></div>
+    <!-- HERO: LiveMixtape meets Medium -->
+    <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden border-b border-gray-200 bg-white">
+        <div class="absolute top-0 left-1/2 w-full -translate-x-1/2 h-full z-0 opacity-10 pointer-events-none">
+            <div class="absolute top-20 left-1/4 w-96 h-96 bg-brand-500 rounded-full mix-blend-multiply filter blur-[128px]"></div>
+        </div>
 
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col lg:flex-row gap-12 items-center">
+                
+                <!-- Left: The Mixtape -->
+                <div class="w-full lg:w-1/2 group">
+                    <div class="relative w-full aspect-square bg-white rounded-lg overflow-hidden shadow-xl border border-gray-200">
+                        <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Featured Artist" class="object-cover w-full h-full opacity-90 group-hover:opacity-100 transition-opacity duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        
+                        <!-- Play Overlay -->
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button class="w-20 h-20 bg-brand-500 rounded-full flex items-center justify-center text-white hover:scale-105 transition-transform shadow-lg">
+                                <i data-lucide="play" class="w-8 h-8 ml-1"></i>
+                            </button>
+                        </div>
+
+                        <!-- Labels -->
+                        <div class="absolute top-6 left-6 flex gap-2">
+                            <span class="bg-brand-500 text-white text-xs font-bold px-3 py-1 uppercase tracking-wider shadow-sm">Editorial Pick</span>
+                            <span class="bg-white/90 backdrop-blur text-black text-xs font-bold px-3 py-1 uppercase tracking-wider shadow-sm">This Wednesday</span>
+                        </div>
+                        
+                        <div class="absolute bottom-6 left-6 right-6 text-white">
+                            <h1 class="text-4xl md:text-5xl font-black tracking-tight mb-1">Midnight in Brooklyn</h1>
+                            <p class="text-xl font-serif italic text-gray-200">by Marcus Vance</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: The Medium -->
+                <div class="w-full lg:w-1/2">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="flex space-x-4 text-sm font-bold text-brand-500 uppercase tracking-widest bg-brand-50 px-4 py-2 rounded border border-brand-200">
+                            <span><i data-lucide="clock" class="w-4 h-4 inline mr-1 -mt-1 text-brand-600"></i> Next Drop in:</span>
+                            <span id="countdown" class="text-black">Loading...</span>
+                        </div>
+                    </div>
+                    
+                    <h2 class="text-3xl font-bold mb-6 font-serif leading-tight text-gray-900">New Music Wednesday: Manhattan's Ultimate Live Music Destination</h2>
+                    
+                    <div class="font-serif text-lg text-gray-600 leading-relaxed mb-8 space-y-6">
+                        <p class="editorial-dropcap">Located in the heart of Manhattan, New Music Wednesday has become an undeniable addiction for tourists and area residents alike. The Penthouse is officially the top destination for the most authentic new music experience in NYC.</p>
+                        <p>This is exactly why Digiwaxx built this platform. Out of hundreds of submissions this week, the public voted and the DJs tested them live in New York City. We give the ultimate standouts the full editorial treatment because the culture deserves a permanent record.</p>
+                    </div>
+
+                    <div class="flex items-center gap-4 border-t border-gray-200 pt-6 mt-8">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=100&h=100&q=80" alt="Editor" class="w-12 h-12 rounded-full grayscale border border-gray-300">
+                        <div>
+                            <p class="text-sm font-bold uppercase tracking-wider text-gray-900">Review by Digiwaxx Editorial</p>
+                            <p class="text-sm text-gray-500">Live from The Penthouse NYC</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </header>
 
     <!-- THE DROP: LiveMixtape Rating Engine -->
     <section id="thedrop" class="py-24 bg-gray-50 border-b border-gray-200">
