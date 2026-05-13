@@ -114,12 +114,11 @@ body {
 
 /* Thin top strip with venue + date + address */
 .sxsw-header__top-bar {
-  color:#fff; text-align: center;
+  background:#0A0A0A; color:#fff; text-align: center;
   font-family: ui-monospace, 'JetBrains Mono', monospace;
   font-size: 11px; font-weight: 600; letter-spacing: .15em; text-transform: uppercase;
   padding: 0.4rem 1.5rem;
   border-bottom: 1px solid rgba(255,255,255,.08);
-  max-width: 80rem; margin: 0 auto;
 }
 
 /* Main row: logo + nav links + single ATTEND CTA — grid layout */
