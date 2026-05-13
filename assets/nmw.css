@@ -81,6 +81,48 @@ body {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
 }
+/* ============ Dropdown nav menu ============ */
+.nmw-nav__menu { display: flex; align-items: center; gap: 1.5rem; }
+.nmw-nav__menu > a, .nmw-nav__menu .nav-dropdown__trigger {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  font-size: 0.875rem; font-weight: 700; letter-spacing: 0.025em;
+  color: #4b5563; background: transparent; border: 0; cursor: pointer;
+  padding: 0.25rem 0; white-space: nowrap;
+}
+.nmw-nav__menu > a:hover, .nmw-nav__menu .nav-dropdown__trigger:hover { color: #000; }
+.nmw-nav__menu > a.is-active, .nav-dropdown.is-active > .nav-dropdown__trigger { color: #000; }
+.nmw-nav--dark .nmw-nav__menu > a,
+.nmw-nav--dark .nmw-nav__menu .nav-dropdown__trigger { color: #d1d5db; }
+.nmw-nav--dark .nmw-nav__menu > a:hover,
+.nmw-nav--dark .nmw-nav__menu .nav-dropdown__trigger:hover { color: #fff; }
+.nmw-nav--dark .nmw-nav__menu > a.is-active,
+.nmw-nav--dark .nav-dropdown.is-active > .nav-dropdown__trigger { color: #fff; }
+
+.nav-dropdown { position: relative; }
+.nav-dropdown__trigger::after {
+  content: ''; display: inline-block; margin-left: 0.15rem;
+  width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent;
+  border-top: 4px solid currentColor; transform: translateY(1px); opacity: 0.7;
+}
+.nav-dropdown__panel {
+  position: absolute; top: 100%; left: 0; margin-top: 0.5rem;
+  background: #fff; border: 1px solid #e5e7eb; border-radius: 0.5rem;
+  box-shadow: 0 12px 28px -10px rgba(0,0,0,0.18);
+  min-width: 12rem; padding: 0.4rem; z-index: 50;
+  opacity: 0; visibility: hidden; transform: translateY(-2px);
+  transition: opacity 0.12s ease, transform 0.12s ease, visibility 0.12s ease;
+}
+.nav-dropdown:hover .nav-dropdown__panel,
+.nav-dropdown:focus-within .nav-dropdown__panel,
+.nav-dropdown.is-open .nav-dropdown__panel {
+  opacity: 1; visibility: visible; transform: translateY(0);
+}
+.nav-dropdown__panel a {
+  display: block; padding: 0.55rem 0.75rem; border-radius: 0.35rem;
+  font-size: 0.85rem; font-weight: 600; color: #1f2937; white-space: nowrap;
+}
+.nav-dropdown__panel a:hover { background: #FDF2F8; color: #8A1558; }
+.nav-dropdown__panel a.is-active { background: #FDF2F8; color: #8A1558; }
 @media (min-width: 768px) {
   .nmw-nav__inner { padding-left: 2rem; padding-right: 2rem; gap: 2.5rem; }
 }
