@@ -110,27 +110,34 @@ body {
   padding-right: 1.5rem;
 }
 /* ============ SXSW-style site header (Penthouse strip + main row) ============ */
-.sxsw-header { position: sticky; top: 0; z-index: 60; }
+.sxsw-header { position: sticky; top: 0; z-index: 60; background:#0A0A0A; }
 
 /* Thin top strip with venue + date + address */
 .sxsw-header__top-bar {
-  background:#0A0A0A; color:#9CA3AF;
-  text-align: center;
+  color:#9CA3AF; text-align: center;
   font-family: ui-monospace, 'JetBrains Mono', monospace;
   font-size: 11px; font-weight: 500; letter-spacing: .15em; text-transform: uppercase;
-  padding: 0.4rem 1.25rem;
+  padding: 0.4rem 1.5rem;
   border-bottom: 1px solid rgba(255,255,255,.08);
+  max-width: 80rem; margin: 0 auto;
 }
 
 /* Main row: logo + nav links + single ATTEND CTA — grid layout */
 .sxsw-header__main {
-  background:#0A0A0A; color:#fff;
+  color:#fff;
   display:grid; grid-template-columns: auto 1fr auto;
   align-items:center; gap:2rem;
-  padding: 0.75rem 2rem;
+  padding: 0.5rem 1.5rem;
+  max-width: 80rem; margin: 0 auto;
+}
+@media (min-width: 768px) {
+  .sxsw-header__main { padding: 0.5rem 2rem; gap: 2.5rem; }
+  .sxsw-header__top-bar { padding: 0.4rem 2rem; }
 }
 .sxsw-header__brand { display:flex; align-items:center; gap:.85rem; color:#fff; text-decoration:none; flex-shrink:0; }
-.sxsw-header__logo { height: 110px; width:auto; display:block; }
+.sxsw-header__logo { height: 60px; width:auto; max-width: 200px; display:block; object-fit:contain; }
+@media (min-width: 768px) { .sxsw-header__logo { height: 96px; max-width: 240px; } }
+@media (min-width: 1024px) { .sxsw-header__logo { height: 128px; max-width: 280px; } }
 .sxsw-header__partner { font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:#9CA3AF; white-space:nowrap; }
 .sxsw-header__partner strong { color:#fff; font-weight:800; letter-spacing:.04em; font-size:13px; margin-left:.4rem; }
 
