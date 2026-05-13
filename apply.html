@@ -179,15 +179,44 @@
 
       <!-- STEP 0: AUDITION (default public entry) -->
       <section data-step="audition" class="step bg-white rounded-2xl shadow-sm p-6 md:p-10">
-        <h2 class="text-2xl md:text-3xl font-black tracking-tight mb-6">Submit your music</h2>
+
+        <!-- Heads-up: we're backed up. Plus the visitor's projected queue position. -->
+        <div class="rounded-xl border-2 border-yellow-300 bg-yellow-50 p-4 md:p-5 mb-4 flex items-start gap-3">
+          <i data-lucide="alert-circle" class="w-6 h-6 text-yellow-700 flex-shrink-0 mt-0.5"></i>
+          <div>
+            <div class="font-black text-yellow-900 tracking-tight">Heads up &mdash; we're backed up.</div>
+            <p class="text-sm text-yellow-800 mt-0.5">Review queue is heavy right now. Submit and hold tight &mdash; A&amp;R is working through it in order.</p>
+          </div>
+        </div>
+        <div class="rounded-xl border-2 border-[#FBCFE8] bg-[#FDF2F8] p-4 md:p-5 mb-6 flex items-center gap-4">
+          <div class="w-12 h-12 rounded-lg bg-white text-[#8A1558] flex items-center justify-center flex-shrink-0">
+            <i data-lucide="user-plus" class="w-6 h-6"></i>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="text-[10px] font-mono uppercase tracking-[0.18em] text-[#8A1558] mb-0.5">Visitor #<span id="visitorNumber" data-counter="visitor" data-target="2847">2,847</span> today</div>
+            <div class="font-black tracking-tight text-gray-900 text-base md:text-lg">If you submit now, you'd be <span class="text-[#8A1558]" id="projectedQueue">#238</span> in the review queue.</div>
+          </div>
+        </div>
+
+        <h2 class="text-2xl md:text-3xl font-black tracking-tight mb-2">Submit your music</h2>
+        <p class="text-sm text-gray-500 mb-6">Two steps. Less than a minute.</p>
+
+        <!-- Step pill indicator -->
+        <div class="flex items-center gap-2 mb-6 text-xs font-black uppercase tracking-widest">
+          <span id="auditionStepPill1" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#8A1558] text-white">1 &middot; You</span>
+          <span class="w-6 h-px bg-gray-300"></span>
+          <span id="auditionStepPill2" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-100 text-gray-500">2 &middot; The Record</span>
+        </div>
 
         <form id="auditionForm" class="grid sm:grid-cols-2 gap-5">
-          <div><label class="onboarding-label">Full Name *</label><input class="onboarding-input" name="name" placeholder="Your name" required></div>
-          <div><label class="onboarding-label">Email Address *</label><input class="onboarding-input" name="email" type="email" placeholder="you@email.com" required></div>
-          <div><label class="onboarding-label">Artist / Stage Name *</label><input class="onboarding-input" name="artistName" placeholder="Stage name" required></div>
-          <div><label class="onboarding-label">Phone (Optional)</label><input class="onboarding-input" name="phone" type="tel" placeholder="(555) 000-0000"></div>
-          <div><label class="onboarding-label">Location *</label><input class="onboarding-input" name="location" placeholder="City, State" required></div>
-          <div><label class="onboarding-label">Primary Genre *</label>
+          <!-- Step 1 fields: who you are -->
+          <div data-audition-part="1"><label class="onboarding-label">Full Name *</label><input class="onboarding-input" name="name" placeholder="Your name" required></div>
+          <div data-audition-part="1"><label class="onboarding-label">Email Address *</label><input class="onboarding-input" name="email" type="email" placeholder="you@email.com" required></div>
+          <div data-audition-part="1"><label class="onboarding-label">Artist / Stage Name *</label><input class="onboarding-input" name="artistName" placeholder="Stage name" required></div>
+          <div data-audition-part="1"><label class="onboarding-label">Location *</label><input class="onboarding-input" name="location" placeholder="City, State" required></div>
+
+          <!-- Step 2 fields: the record (hidden until step 1 is valid) -->
+          <div data-audition-part="2" class="hidden"><label class="onboarding-label">Primary Genre *</label>
             <select class="onboarding-input" name="genre" required>
               <option value="">Select…</option>
               <option>Hip Hop</option>
@@ -200,16 +229,23 @@
               <option>Latin Urban / Dance</option>
             </select>
           </div>
-          <div class="sm:col-span-2"><label class="onboarding-label">Submission Track URL * <span class="text-gray-400 font-normal">(Spotify, Apple Music, SoundCloud, YouTube, or Dropbox link)</span></label><input class="onboarding-input" name="trackUrl" type="url" placeholder="https://..." required></div>
-          <div class="sm:col-span-2"><label class="onboarding-label">Why this record? <span class="text-gray-400 font-normal">(1-2 sentences for our A&amp;R team)</span></label><textarea class="onboarding-input min-h-[96px]" name="pitch" rows="3" placeholder="Tell us about the record, the rollout, and what you're trying to build."></textarea></div>
-          <div><label class="onboarding-label">Instagram</label><input class="onboarding-input" name="instagram" placeholder="@yourhandle"></div>
-          <div><label class="onboarding-label">Spotify Artist Profile</label><input class="onboarding-input" name="spotify" type="url" placeholder="open.spotify.com/artist/..."></div>
+          <div data-audition-part="2" class="hidden"><label class="onboarding-label">Phone (Optional)</label><input class="onboarding-input" name="phone" type="tel" placeholder="(555) 000-0000"></div>
+          <div data-audition-part="2" class="hidden sm:col-span-2"><label class="onboarding-label">Submission Track URL * <span class="text-gray-400 font-normal">(Spotify, Apple Music, SoundCloud, YouTube, or Dropbox link)</span></label><input class="onboarding-input" name="trackUrl" type="url" placeholder="https://..." required></div>
+          <div data-audition-part="2" class="hidden sm:col-span-2"><label class="onboarding-label">Why this record? <span class="text-gray-400 font-normal">(1-2 sentences for our A&amp;R team)</span></label><textarea class="onboarding-input min-h-[96px]" name="pitch" rows="3" placeholder="Tell us about the record, the rollout, and what you're trying to build."></textarea></div>
+          <div data-audition-part="2" class="hidden"><label class="onboarding-label">Instagram</label><input class="onboarding-input" name="instagram" placeholder="@yourhandle"></div>
+          <div data-audition-part="2" class="hidden"><label class="onboarding-label">Spotify Artist Profile</label><input class="onboarding-input" name="spotify" type="url" placeholder="open.spotify.com/artist/..."></div>
         </form>
 
-        <div class="mt-8 flex justify-end">
-          <button id="auditionPayBtn" type="button" class="onboarding-cta onboarding-cta--brand whitespace-nowrap" disabled>
-            <i data-lucide="send" class="w-4 h-4"></i> Submit
-          </button>
+        <div class="mt-8 flex justify-between items-center gap-3">
+          <button id="auditionBackBtn" type="button" class="text-xs font-black uppercase tracking-widest text-gray-500 hover:text-gray-900 hidden">&larr; Back</button>
+          <div class="ml-auto flex gap-3">
+            <button id="auditionNextBtn" type="button" class="onboarding-cta onboarding-cta--brand whitespace-nowrap" disabled>
+              Continue <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+            <button id="auditionPayBtn" type="button" class="onboarding-cta onboarding-cta--brand whitespace-nowrap hidden" disabled>
+              <i data-lucide="send" class="w-4 h-4"></i> Submit
+            </button>
+          </div>
         </div>
 
         <div class="mt-6 grid sm:grid-cols-2 gap-4 text-xs text-gray-500">
@@ -1257,27 +1293,71 @@ validateStep1();
   });
 })();
 
-// Audition form wiring (launch phase: free submit; upgrade pitched on success screen)
+// Audition form wiring: two-step (You → The Record), live projected-queue preview
 (function auditionWiring() {
   const form = document.getElementById('auditionForm');
   const payBtn = document.getElementById('auditionPayBtn');
-  if (!form || !payBtn) return;
+  const nextBtn = document.getElementById('auditionNextBtn');
+  const backBtn = document.getElementById('auditionBackBtn');
+  const pill1 = document.getElementById('auditionStepPill1');
+  const pill2 = document.getElementById('auditionStepPill2');
+  const projectedEl = document.getElementById('projectedQueue');
+  if (!form || !payBtn || !nextBtn) return;
 
-  function isValid() { return form.checkValidity(); }
-  function refresh() { payBtn.disabled = !isValid(); }
-  form.addEventListener('input', refresh);
-  form.addEventListener('change', refresh);
-  refresh();
+  // Compute the visitor's projected queue position from the live demand counter.
+  function projectedPosition() {
+    const base = parseInt(document.querySelector('[data-counter="artists"]')?.textContent.replace(/,/g, '') || '237', 10);
+    return base + 1;
+  }
+  function refreshProjection() {
+    if (projectedEl) projectedEl.textContent = '#' + projectedPosition().toLocaleString();
+  }
+  refreshProjection();
+  // Drift the projection upward as the live counter ticks.
+  setInterval(refreshProjection, 4000);
+
+  // Two-step machinery: validate only the fields visible in the current part.
+  let part = 1;
+  function setPart(p) {
+    part = p;
+    document.querySelectorAll('[data-audition-part]').forEach(el => {
+      const matches = String(el.dataset.auditionPart) === String(p);
+      el.classList.toggle('hidden', !matches);
+    });
+    pill1.className = 'inline-flex items-center gap-2 px-3 py-1.5 rounded-full ' + (p === 1 ? 'bg-[#8A1558] text-white' : 'bg-gray-100 text-gray-500');
+    pill2.className = 'inline-flex items-center gap-2 px-3 py-1.5 rounded-full ' + (p === 2 ? 'bg-[#8A1558] text-white' : 'bg-gray-100 text-gray-500');
+    backBtn.classList.toggle('hidden', p === 1);
+    nextBtn.classList.toggle('hidden', p === 2);
+    payBtn.classList.toggle('hidden', p === 1);
+    refreshButtons();
+  }
+  function isPartValid(p) {
+    const fields = form.querySelectorAll('[data-audition-part="' + p + '"] [required]');
+    return Array.from(fields).every(f => f.checkValidity());
+  }
+  function refreshButtons() {
+    if (part === 1) nextBtn.disabled = !isPartValid(1);
+    else payBtn.disabled = !isPartValid(2);
+  }
+  form.addEventListener('input', refreshButtons);
+  form.addEventListener('change', refreshButtons);
+
+  nextBtn.addEventListener('click', () => {
+    if (!isPartValid(1)) { form.reportValidity(); return; }
+    setPart(2);
+    refreshProjection();
+    document.querySelector('[data-audition-part="2"] input,[data-audition-part="2"] select')?.focus();
+  });
+  backBtn.addEventListener('click', () => setPart(1));
 
   payBtn.addEventListener('click', () => {
-    if (!isValid()) { form.reportValidity(); return; }
+    if (!isPartValid(2)) { form.reportValidity(); return; }
     payBtn.disabled = true;
     payBtn.innerHTML = '<i data-lucide="loader" class="w-4 h-4 animate-spin"></i> Submitting…';
     if (typeof lucide !== 'undefined') lucide.createIcons();
 
     setTimeout(() => {
       const data = Object.fromEntries(new FormData(form).entries());
-      // Persist enough info that the approved-mode flow can prefill the package picker form.
       try {
         funnel.info = Object.assign({}, funnel.info, {
           name: data.name, email: data.email, artistName: data.artistName,
@@ -1287,9 +1367,7 @@ validateStep1();
         NMW.setFunnel(funnel);
       } catch (_) {}
 
-      // Show queue position + submission id on the success screen
-      const baseQueue = parseInt(document.querySelector('[data-counter="artists"]')?.textContent.replace(/,/g, '') || '237', 10);
-      const myPos = baseQueue + 1;
+      const myPos = projectedPosition();
       const posEl = document.getElementById('queuePosition');
       if (posEl) posEl.textContent = '#' + myPos.toLocaleString();
       const idEl = document.getElementById('auditionId');
@@ -1301,6 +1379,8 @@ validateStep1();
       showStep('audition-success');
     }, 900);
   });
+
+  setPart(1);
 })();
 // ---------- end AUDITION FLOW ----------
 showStep(currentStep);
