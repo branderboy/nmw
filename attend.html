@@ -201,18 +201,9 @@
         </div>
       </fieldset>
 
-      <!-- Q3: Group role tiles -->
+      <!-- Q3: open text -->
       <fieldset>
-        <legend class="mono-eyebrow mb-4">03 &middot; Who's in the group?</legend>
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2" id="attendRoleTiles" role="radiogroup">
-          <!-- tiles injected by JS -->
-        </div>
-        <input type="hidden" name="groupRole" id="attendGroupRole">
-      </fieldset>
-
-      <!-- Q4: open text -->
-      <fieldset>
-        <legend class="mono-eyebrow mb-4">04 &middot; One line on the room.</legend>
+        <legend class="mono-eyebrow mb-4">03 &middot; One line on the room.</legend>
         <input class="onboarding-input w-full" name="why" placeholder="An artist you're coming for, a record you want to hear, etc.">
       </fieldset>
 
@@ -376,8 +367,6 @@
   const hint = document.getElementById("attendValidationHint");
   const sizeInput = document.getElementById("attendGroupSize");
   const sizeTiles = document.getElementById("attendGroupTiles");
-  const roleInput = document.getElementById("attendGroupRole");
-  const roleTiles = document.getElementById("attendRoleTiles");
   const successEl = document.getElementById("attendSuccess");
   const queuePosEl = document.getElementById("attendQueuePosition");
   const groupSizeOutEl = document.getElementById("attendGroupSizeOut");
@@ -387,10 +376,6 @@
   // Render the group-size tiles 1..9, then 10+
   const sizes = ["1","2","3","4","5","6","7","8","9","10+"];
   sizeTiles.innerHTML = sizes.map(n => `<button type="button" class="tile-select" data-val="${n}" role="radio" aria-checked="false">${n}</button>`).join("");
-
-  // Render the role tiles
-  const roles = ["Fans / culture","Artists / managers","DJs / tastemakers","Media / press","Label / A&R","Brand / sponsor"];
-  roleTiles.innerHTML = roles.map(r => `<button type="button" class="tile-select tile-select--wide" data-val="${r}" role="radio" aria-checked="false">${r}</button>`).join("");
 
   function bindTiles(container, hiddenInput){
     container.addEventListener("click", e => {
@@ -407,7 +392,6 @@
     });
   }
   bindTiles(sizeTiles, sizeInput);
-  bindTiles(roleTiles, roleInput);
 
   function isValid(){
     if(!sizeInput.value) return false;
