@@ -97,34 +97,49 @@
 </head>
 <body class="bg-gray-50 text-gray-900 selection:bg-[#8A1558] selection:text-white">
 
-<nav class="nmw-nav nmw-nav--dark">
-  <div class="nmw-nav__inner">
-  <a href="index.html" class="nmw-logo-block">
-    <img src="images/nmw-logo.png" alt="New Music Wednesday" class="nmw-logo-img" />
-  </a>
-  <div class="hidden md:flex nmw-nav__menu">
-    <a href="index.html">HOME</a>
-    <a href="events.html">ATTEND</a>
-    <a href="apply.html">ARTIST ACCESS</a>
-    <div class="nav-dropdown">
-      <button type="button" class="nav-dropdown__trigger">LISTEN</button>
-      <div class="nav-dropdown__panel">
-        <a href="dj-call.html">DJ Call</a>
-        <a href="podcast.html">Podcast</a>
-      </div>
-    </div>
-    <a href="blog.html">THE DROP</a>
-    <a href="sponsor.html">CAMPAIGN STORE</a>
-    <div class="nav-dropdown is-active">
-      <button type="button" class="nav-dropdown__trigger">MISSION</button>
-      <div class="nav-dropdown__panel">
-        <a href="mission.html">Mission</a>
-        <a href="faq.html" class="is-active">FAQ</a>
-      </div>
+<header class="sxsw-header">
+  <div class="sxsw-header__top">
+    <a href="index.html" class="sxsw-header__brand">
+      <img src="images/nmw-logo-light.png" class="sxsw-header__logo" alt="New Music Wednesdays" />
+      <span class="sxsw-header__partner">DRIVEN BY <strong>DIGIWAXX</strong></span>
+    </a>
+    <div class="sxsw-header__top-right">
+      <a href="apply.html" class="sxsw-header__cta sxsw-header__cta--primary">SUBMIT</a>
+      <a href="attend.html" class="sxsw-header__cta sxsw-header__cta--secondary">ATTEND</a>
     </div>
   </div>
+  <div class="sxsw-header__nav">
+    <div class="sxsw-header__nav-left">
+      <a href="index.html">HOME</a>
+      <a href="attend.html">ATTEND</a>
+      <a href="apply.html">ARTIST ACCESS</a>
+      <div class="nav-dropdown">
+        <button type="button" class="nav-dropdown__trigger">LISTEN</button>
+        <div class="nav-dropdown__panel">
+          <a href="dj-call.html">DJ Call</a>
+          <a href="podcast.html">Podcast</a>
+        </div>
+      </div>
+      <a href="blog.html">THE DROP</a>
+      <a href="sponsor.html">CAMPAIGN STORE</a>
+      <div class="nav-dropdown is-active">
+        <button type="button" class="nav-dropdown__trigger">MISSION</button>
+        <div class="nav-dropdown__panel">
+          <a href="mission.html">Mission</a>
+          <a href="faq.html" class="is-active">FAQ</a>
+        </div>
+      </div>
+    </div>
+    <div class="sxsw-header__nav-right">EVERY WEDNESDAY &middot; THE PENTHOUSE NYC</div>
   </div>
-</nav>
+</header>
+
+<section class="max-w-4xl mx-auto px-4 pt-8 md:pt-12 pb-2">
+  <div class="font-mono text-[11px] uppercase tracking-[0.18em] text-gray-500 mb-3">FAQ, NMW</div>
+  <h1 class="text-5xl sm:text-6xl md:text-7xl font-black tracking-tighter uppercase leading-[0.9] mb-3 text-gray-900">Questions, answered.</h1>
+  <p class="text-base md:text-lg text-gray-600 max-w-2xl">Everything you need to know about NMW.</p>
+</section>
+<div class="max-w-4xl mx-auto px-4"><div class="h-px bg-gray-900 my-6"></div></div>
 
 <!-- Product tabs -->
 <div class="bg-white sticky top-0 z-30 border-b border-gray-200">
@@ -149,7 +164,7 @@
         <ul class="space-y-2 text-sm">
           <li><a href="index.html">Home</a></li>
           <li><a href="mission.html">Mission</a></li>
-          <li><a href="events.html">Events</a></li>
+          <li><a href="attend.html">Events</a></li>
           <li><a href="https://www.newmusicwednesdayslive.com/rsvp" target="_blank" rel="noopener">RSVP</a></li>
           <li><a href="dj-call.html">DJ Call</a></li>
           <li><a href="podcast.html">Podcast</a></li>
@@ -207,7 +222,7 @@ const FAQS = [
   { cat: 'events', q: 'What is New Music Wednesdays?',
     a: 'A weekly demand engine for rising artists, structured as a three-block Wednesday at The Penthouse NYC. <b>4-6 PM</b>: Digiwaxx DJ Call (live Zoom roundtable). <b>7-9 PM</b>: Happy Hour + The Media Pit (home of The Next Up Experience couch interviews). <b>9-11 PM</b>: Live performances at The Booth + Barz at the Bar cyphers. Hosted by Anna Nyakana, CL, and Chrys Childs.' },
   { cat: 'events', q: 'How do I RSVP to an upcoming Wednesday?',
-    a: 'Join the fan waitlist on the <a href="events.html" class="text-[#8A1558] underline">Attend page</a> &mdash; <b>free during launch phase</b>. Approved waitlist members get the RSVP link the moment doors open, plus after-hours invites. The room is ~150 seats and we keep it small on purpose.' },
+    a: 'Join the fan waitlist on the <a href="attend.html" class="text-[#8A1558] underline">Attend page</a> &mdash; <b>free during launch phase</b>. Approved waitlist members get the RSVP link the moment doors open, plus after-hours invites. The room is ~150 seats and we keep it small on purpose.' },
   { cat: 'events', q: 'Where is The Penthouse NYC?',
     a: 'Manhattan. Exact address goes to approved waitlist members the morning of the show. The day runs in three blocks: DJ Call 4-6 PM (Zoom), Happy Hour + Media Pit 7-9 PM (in person), Live Performances 9-11 PM.' },
   { cat: 'events', q: 'Is there a cover or ticket fee for fans?',

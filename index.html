@@ -112,26 +112,16 @@
   <a href="index.html" class="nmw-logo-block">
     <img src="images/nmw-logo.png" alt="New Music Wednesday" class="nmw-logo-img" />
   </a>
-  <div class="hidden md:flex nmw-nav__menu">
-    <a href="index.html" class="is-active">HOME</a>
-    <a href="events.html">ATTEND</a>
-    <a href="apply.html">ARTIST ACCESS</a>
-    <div class="nav-dropdown">
-      <button type="button" class="nav-dropdown__trigger">LISTEN</button>
-      <div class="nav-dropdown__panel">
-        <a href="dj-call.html">DJ Call</a>
-        <a href="podcast.html">Podcast</a>
-      </div>
-    </div>
-    <a href="blog.html">THE DROP</a>
-    <a href="sponsor.html">CAMPAIGN STORE</a>
-    <div class="nav-dropdown">
-      <button type="button" class="nav-dropdown__trigger">MISSION</button>
-      <div class="nav-dropdown__panel">
-        <a href="mission.html">Mission</a>
-        <a href="faq.html">FAQ</a>
-      </div>
-    </div>
+  <div class="hidden md:flex space-x-6 items-center text-sm font-bold tracking-wide text-gray-600">
+    <a href="index.html" class="text-black">HOME</a>
+    <a href="mission.html" class="hover:text-black">MISSION</a>
+    <a href="events.html" class="hover:text-black">ATTEND</a>
+    <a href="dj-call.html" class="hover:text-black">DJ CALL</a>
+    <a href="podcast.html" class="hover:text-black">PODCAST</a>
+    <a href="apply.html" class="hover:text-black">ARTIST ACCESS</a>
+    <a href="faq.html" class="hover:text-black">FAQ</a>
+    <a href="alerts.html" class="hover:text-black">GET ALERTS</a>
+    <a href="sponsor.html" class="hover:text-black">CAMPAIGN STORE</a>
   </div>
   </div>
 </nav>
@@ -141,181 +131,245 @@
   <div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
 
     <h2 class="text-[#8A1558] font-black tracking-widest text-sm md:text-base mb-4" data-cms="heroEyebrow">
-      [ Official Artist Registration ]
+      [ Every Wednesday in NYC ]
     </h2>
 
     <h1 class="text-4xl md:text-6xl font-black tracking-tighter leading-[1] text-gray-900 mb-6 drop-shadow-sm" data-cms="heroHeadline">
-      Live music showcase in Manhattan.
+      Where Music, Conversation &amp; Attention Meet Every Wednesday
     </h1>
 
-    <p class="text-lg md:text-2xl text-gray-700 max-w-3xl mx-auto font-medium leading-relaxed mb-8" data-cms="heroSubhead">
-      Every Wednesday, we put rising artists on a real stage in front of DJs, A&amp;Rs, and the people who actually decide what gets played. You perform. We document the night, video, photos, a write-up, and put it in front of our 50,000+ DJ network.
+    <p class="text-lg md:text-2xl text-gray-700 max-w-3xl mx-auto font-medium leading-relaxed mb-4" data-cms="heroSubhead">
+      New Music Wednesdays is a live NYC music ecosystem helping artists create conversation, visibility, and real industry attention around their music.
+    </p>
+    <p class="text-base md:text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed mb-4">
+      Powered by DJs, influencers, media personalities, producers, managers, tastemakers, and creatives shaping culture in real time.
+    </p>
+    <p class="text-base md:text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed mb-8">
+      From the legendary Digiwaxx DJ Call on Zoom to live performances, interviews, penthouse networking, content creation, and curated happy hours &mdash; every Wednesday is built to help music move beyond streaming platforms and into real conversations.
     </p>
 
-    <!-- Main Hero CTA -->
-    <div class="flex flex-col items-center justify-center px-4 w-full max-w-2xl mx-auto">
-      <button onclick="scrollToPackages()" class="relative w-full group block mb-4">
-        <div class="absolute inset-0 bg-yellow-600 rounded-xl translate-y-2"></div>
-
-        <div class="relative bg-yellow-400 border-2 border-yellow-300 text-black px-4 py-6 rounded-xl flex flex-col items-center justify-center transform group-hover:translate-y-1 transition-transform shadow-2xl">
-          <div class="flex items-center justify-center gap-2 text-2xl md:text-3xl font-black tracking-tighter w-full text-center">
-            <span data-cms="primaryCta">Apply for a Wednesday</span>
-            <i data-lucide="chevrons-right" class="w-8 h-8 animate-pulse hidden sm:block"></i>
-          </div>
-        </div>
-      </button>
+    <!-- Hero CTAs -->
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-3 px-4 w-full max-w-3xl mx-auto">
+      <a href="attend.html" class="inline-flex items-center gap-2 bg-[#8A1558] text-white px-6 py-4 rounded-md text-sm md:text-base font-black uppercase tracking-widest hover:bg-[#680D3E] transition-colors w-full sm:w-auto justify-center">
+        <i data-lucide="ticket" class="w-4 h-4"></i> Join The Guest Waitlist
+      </a>
+      <a href="apply.html" class="inline-flex items-center gap-2 bg-yellow-400 text-black border-2 border-yellow-500 px-6 py-4 rounded-md text-sm md:text-base font-black uppercase tracking-widest hover:bg-yellow-300 transition-colors w-full sm:w-auto justify-center">
+        <i data-lucide="mic" class="w-4 h-4"></i> Submit Music
+      </a>
+      <a href="sponsor.html" class="inline-flex items-center gap-2 bg-white text-gray-900 border-2 border-gray-300 px-6 py-4 rounded-md text-sm md:text-base font-black uppercase tracking-widest hover:border-[#8A1558] hover:text-[#8A1558] transition-colors w-full sm:w-auto justify-center">
+        <i data-lucide="handshake" class="w-4 h-4"></i> Become A Sponsor
+      </a>
     </div>
 
   </div>
 </header>
 
-<!-- Social Proof Bar -->
-<div class="py-8" style="background:linear-gradient(135deg,#fdfdfd 0%,#f7f8fa 50%,#f1f3f6 100%);">
-  <div class="max-w-6xl mx-auto px-4 text-center">
-    <div class="text-xs font-black tracking-widest uppercase text-gray-400 mb-4">Distribution Partners</div>
-    <div class="flex flex-wrap justify-center gap-6 md:gap-10 items-center font-black text-lg tracking-widest">
-      <a href="https://www.digiwaxx.com" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-[#8A1558] transition-colors">DIGIWAXX</a>
-      <a href="https://dice.fm" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-[#8A1558] transition-colors">DICE</a>
-      <a href="https://www.bandsintown.com" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-[#8A1558] transition-colors">BANDSINTOWN</a>
-      <a href="https://www.songkick.com" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-[#8A1558] transition-colors">SONGKICK</a>
-      <a href="https://www.eventbrite.com" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-[#8A1558] transition-colors">EVENTBRITE</a>
-      <a href="https://lu.ma" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-[#8A1558] transition-colors">LUMA</a>
+<!-- Live Proof Bar -->
+<div class="py-6 bg-[#FDF2F8] border-y border-[#FBCFE8]">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex flex-wrap justify-center items-center gap-x-6 gap-y-2 text-xs md:text-sm font-bold tracking-wide text-gray-700">
+      <span><span class="text-[#8A1558] font-black">2,300+</span> Community Members</span>
+      <span class="text-[#FBCFE8]">&bull;</span>
+      <span>Weekly Artist Submissions</span>
+      <span class="text-[#FBCFE8]">&bull;</span>
+      <span>Live DJ Feedback</span>
+      <span class="text-[#FBCFE8]">&bull;</span>
+      <span>Media Coverage</span>
+      <span class="text-[#FBCFE8]">&bull;</span>
+      <span>NYC Networking</span>
+      <span class="text-[#FBCFE8]">&bull;</span>
+      <span>Live Interviews</span>
+      <span class="text-[#FBCFE8]">&bull;</span>
+      <span>Content Capture</span>
+      <span class="text-[#FBCFE8]">&bull;</span>
+      <span>Surprise Guests</span>
     </div>
   </div>
 </div>
 
-<!-- Value Stack -->
-<section id="how-it-works" class="py-10 md:py-24 bg-white relative overflow-hidden">
+
+<!-- Intro Section -->
+<section class="py-12 md:py-20 bg-white">
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <h2 class="text-3xl md:text-5xl font-black tracking-tight mb-6">More than an event, <span class="text-[#8A1558]">New Music Wednesdays</span> creates environments where artists, DJs, media personalities, influencers, producers, and tastemakers connect around music, culture, and visibility.</h2>
+    <p class="text-lg md:text-xl text-gray-700 font-serif italic mb-2">This isn't random networking.</p>
+    <p class="text-lg md:text-xl text-gray-700 font-serif italic mb-8">This is a live music and media environment designed to help records gain attention in the real world.</p>
+    <p class="text-base md:text-lg text-gray-600 mb-6">Inside the room:</p>
+    <div class="flex flex-wrap justify-center gap-2 md:gap-3">
+      <span class="inline-flex items-center px-4 py-2 rounded-full bg-[#FDF2F8] border border-[#FBCFE8] text-[#8A1558] text-sm font-bold">DJs</span>
+      <span class="inline-flex items-center px-4 py-2 rounded-full bg-[#FDF2F8] border border-[#FBCFE8] text-[#8A1558] text-sm font-bold">Artists</span>
+      <span class="inline-flex items-center px-4 py-2 rounded-full bg-[#FDF2F8] border border-[#FBCFE8] text-[#8A1558] text-sm font-bold">Influencers</span>
+      <span class="inline-flex items-center px-4 py-2 rounded-full bg-[#FDF2F8] border border-[#FBCFE8] text-[#8A1558] text-sm font-bold">Media Personalities</span>
+      <span class="inline-flex items-center px-4 py-2 rounded-full bg-[#FDF2F8] border border-[#FBCFE8] text-[#8A1558] text-sm font-bold">Producers</span>
+      <span class="inline-flex items-center px-4 py-2 rounded-full bg-[#FDF2F8] border border-[#FBCFE8] text-[#8A1558] text-sm font-bold">Videographers</span>
+      <span class="inline-flex items-center px-4 py-2 rounded-full bg-[#FDF2F8] border border-[#FBCFE8] text-[#8A1558] text-sm font-bold">Managers</span>
+      <span class="inline-flex items-center px-4 py-2 rounded-full bg-[#FDF2F8] border border-[#FBCFE8] text-[#8A1558] text-sm font-bold">Tastemakers</span>
+      <span class="inline-flex items-center px-4 py-2 rounded-full bg-[#FDF2F8] border border-[#FBCFE8] text-[#8A1558] text-sm font-bold">Content Creators</span>
+      <span class="inline-flex items-center px-4 py-2 rounded-full bg-[#FDF2F8] border border-[#FBCFE8] text-[#8A1558] text-sm font-bold">Industry Professionals</span>
+    </div>
+  </div>
+</section>
+
+<!-- This Wednesday -->
+<section class="py-12 md:py-20 bg-gray-50 border-t border-gray-200">
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <h2 class="text-3xl md:text-5xl font-black tracking-tight mb-4">This Wednesday</h2>
+    <p class="text-base md:text-lg text-gray-700 mb-8">Every Wednesday brings a different energy, different conversations, and different opportunities.</p>
+    <p class="text-xs font-black tracking-widest uppercase text-[#8A1558] mb-6">This Week Includes</p>
+    <ul class="grid sm:grid-cols-2 gap-3 max-w-2xl mx-auto text-left">
+      <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558] flex-shrink-0"></i> The Digiwaxx DJ Call on Zoom</li>
+      <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558] flex-shrink-0"></i> Live Artist Performances</li>
+      <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558] flex-shrink-0"></i> Media Interviews</li>
+      <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558] flex-shrink-0"></i> Penthouse Happy Hour Networking</li>
+      <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558] flex-shrink-0"></i> Live Podcast Production</li>
+      <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558] flex-shrink-0"></i> DJ &amp; Tastemaker Conversations</li>
+      <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558] flex-shrink-0"></i> Content Creation &amp; Videography</li>
+      <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558] flex-shrink-0"></i> Surprise Pull-Ups &amp; Guest Appearances</li>
+    </ul>
+  </div>
+</section>
+
+<!-- The Industry Changed -->
+<section class="py-12 md:py-20 bg-white border-t border-gray-200">
+  <div class="max-w-3xl mx-auto px-4 text-center">
+    <h2 class="text-3xl md:text-5xl font-black tracking-tight mb-4">The Industry Changed</h2>
+    <p class="text-xl md:text-2xl text-gray-900 font-black tracking-tight mb-2">Over 120,000 songs hit streaming platforms every day.</p>
+    <p class="text-lg md:text-xl text-[#8A1558] font-black tracking-tight mb-8">Most artists struggle to create real attention around their releases.</p>
+    <p class="text-base md:text-lg text-gray-700 mb-6">Music moves faster than ever, but real visibility still comes from:</p>
+    <ul class="grid sm:grid-cols-2 gap-3 max-w-xl mx-auto mb-8 text-left">
+      <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558] flex-shrink-0"></i> Conversations</li>
+      <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558] flex-shrink-0"></i> Relationships</li>
+      <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558] flex-shrink-0"></i> Media Moments</li>
+      <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558] flex-shrink-0"></i> Content</li>
+      <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558] flex-shrink-0"></i> Community</li>
+      <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558] flex-shrink-0"></i> People sharing records in real environments</li>
+    </ul>
+    <p class="text-lg md:text-xl text-gray-700 font-serif italic">New Music Wednesdays was built to help artists create those moments consistently.</p>
+  </div>
+</section>
+
+<!-- How It Works -->
+<section id="how-it-works" class="py-10 md:py-24 bg-white relative overflow-hidden border-t border-gray-200">
   <div class="max-w-6xl mx-auto px-4 relative z-10">
-    <h2 class="text-3xl md:text-5xl font-black tracking-tight text-center mb-5 md:mb-20 max-w-4xl mx-auto">
-      Here Is Exactly What You Get When You Join <span class="text-[#8A1558]">The Next Up Experience</span> Today:
-    </h2>
+    <h2 class="text-3xl md:text-5xl font-black tracking-tight text-center mb-10 md:mb-20 max-w-4xl mx-auto">How It Works</h2>
 
     <div class="space-y-24">
-      <!-- Block 1 -->
+      <!-- Block 1: DJ Call -->
       <div class="flex flex-col md:flex-row items-center gap-6 md:gap-12">
         <div class="w-full md:w-1/2 md:pr-8">
-          <h3 class="text-3xl md:text-4xl font-black tracking-tight text-gray-900 mb-4">Live Showcase Performance</h3>
+          <h3 class="text-3xl md:text-4xl font-black tracking-tight text-gray-900 mb-4">The Digiwaxx DJ Call</h3>
           <p class="text-gray-600 font-serif text-lg leading-relaxed mb-6">
-            Perform live on Manhattan's top stage at The Penthouse NYC. We don't just give you a slot; we put you directly in front of real crowds, industry tastemakers, and verified fans.
+            Every week starts with the legendary Digiwaxx Zoom call featuring DJs, tastemakers, artists, and industry conversations centered around new music and what's gaining attention.
           </p>
-          <ul class="space-y-3">
-            <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558]"></i> Wednesday-night residency at The Penthouse NYC</li>
-            <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558]"></i> Live audience of DJs, A&amp;Rs, and music fans</li>
-          </ul>
+        </div>
+        <div class="w-full md:w-1/2">
+          <div class="image-card-rotate"><img src="images/audience.avif" alt="DJ Call" /></div>
+        </div>
+      </div>
+
+      <!-- Block 2: Happy Hour -->
+      <div class="flex flex-col md:flex-row items-center gap-6 md:gap-12">
+        <div class="w-full md:w-1/2 md:order-2 md:pl-8">
+          <h3 class="text-3xl md:text-4xl font-black tracking-tight text-gray-900 mb-4">The Happy Hour Experience</h3>
+          <p class="text-gray-600 font-serif text-lg leading-relaxed mb-3">Curated cocktails. Real networking. Creative energy.</p>
+          <p class="text-gray-600 font-serif text-lg leading-relaxed">
+            Meet artists, DJs, influencers, producers, media personalities, and creatives inside an exclusive NYC environment built for conversation and collaboration.
+          </p>
+        </div>
+        <div class="w-full md:w-1/2 md:order-1">
+          <div class="image-card-rotate rotate-neg"><img src="images/pr-slots.png" alt="Happy Hour" /></div>
+        </div>
+      </div>
+
+      <!-- Block 3: Next Up Experience -->
+      <div class="flex flex-col md:flex-row items-center gap-6 md:gap-12">
+        <div class="w-full md:w-1/2 md:pr-8">
+          <h3 class="text-3xl md:text-4xl font-black tracking-tight text-gray-900 mb-4">The Next Up Experience</h3>
+          <p class="text-gray-600 font-serif text-lg leading-relaxed mb-3">
+            Selected artists perform live, debut records, create content, sit for interviews, and connect directly with DJs, media, influencers, and tastemakers.
+          </p>
+          <p class="text-gray-700 font-bold text-lg leading-relaxed">This is where artists turn releases into real-world conversation and visibility.</p>
         </div>
         <div class="w-full md:w-1/2">
           <div class="image-card-rotate"><img src="images/performance.avif" alt="Live Performance" /></div>
-        </div>
-      </div>
-
-      <!-- Block 2 -->
-      <div class="flex flex-col md:flex-row items-center gap-6 md:gap-12">
-        <div class="w-full md:w-1/2 md:order-2 md:pl-8">
-          <h3 class="text-3xl md:text-4xl font-black tracking-tight text-gray-900 mb-4">Press &amp; Media Coverage</h3>
-          <p class="text-gray-600 font-serif text-lg leading-relaxed mb-6">
-            You aren't just performing; you are building a professional press kit. Get high-end visual capture, live media interviews, and full editorial write-ups on the NMW platform to use for your PR rollout.
-          </p>
-          <ul class="space-y-3">
-            <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558]"></i> Live performance video and photo capture</li>
-            <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558]"></i> Editorial write-up on the NMW platform</li>
-          </ul>
-        </div>
-        <div class="w-full md:w-1/2 md:order-1">
-          <div class="image-card-rotate rotate-neg"><img src="images/pr-slots.png" alt="Press and Media" /></div>
-        </div>
-      </div>
-
-      <!-- Block 3 -->
-      <div class="flex flex-col md:flex-row items-center gap-6 md:gap-12">
-        <div class="w-full md:w-1/2 md:pr-8">
-          <h3 class="text-3xl md:text-4xl font-black tracking-tight text-gray-900 mb-4">An Active Music Community &amp; Professional DJs</h3>
-          <p class="text-gray-600 font-serif text-lg leading-relaxed mb-6">
-            We don't build audiences. We build <strong class="text-gray-900">communities</strong> that move for the artists they discover. A real room every Wednesday plus our 50,000+ Digiwaxx DJ network spinning your record in <strong class="text-gray-900">clubs and on mix-shows</strong>, every spin tracked and reported back, plus instant syndication to DICE, Bandsintown, and Songkick.
-          </p>
-          <ul class="space-y-3">
-            <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558]"></i> Reach to the 50,000+ Digiwaxx DJ network</li>
-            <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558]"></i> Event distributed across DICE, Bandsintown, and Songkick</li>
-          </ul>
-        </div>
-        <div class="w-full md:w-1/2">
-          <div class="image-card-rotate"><img src="images/audience.avif" alt="Live Audience" /></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Lead capture / intake form -->
-<section id="packages" class="py-10 md:py-24 lead-bg border-t border-gray-200">
-  <div class="max-w-3xl mx-auto px-4">
-    <div class="mb-8 text-center">
-      <h2 class="text-3xl md:text-5xl font-black tracking-tighter text-gray-900 mb-3">Apply To Perform At <span class="text-[#8A1558]">The Next Up Experience</span></h2>
-      <p class="text-base md:text-lg text-gray-600">Performance slots at The Penthouse NYC. Every Wednesday.</p>
+<!-- For Artists -->
+<section class="py-12 md:py-24 bg-gray-50 border-t border-gray-200">
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <h2 class="text-3xl md:text-5xl font-black tracking-tight mb-4">For Artists</h2>
+    <p class="text-xl md:text-2xl text-[#8A1558] font-black tracking-tight mb-8">A release is only the beginning.</p>
+    <p class="text-base md:text-lg text-gray-700 mb-6">New Music Wednesdays helps artists create attention around their music through:</p>
+    <ul class="grid sm:grid-cols-2 gap-3 max-w-2xl mx-auto mb-8 text-left">
+      <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558] flex-shrink-0"></i> Live performances</li>
+      <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558] flex-shrink-0"></i> Interviews</li>
+      <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558] flex-shrink-0"></i> DJ exposure</li>
+      <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558] flex-shrink-0"></i> Media coverage</li>
+      <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558] flex-shrink-0"></i> Content creation</li>
+      <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558] flex-shrink-0"></i> Networking</li>
+      <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558] flex-shrink-0"></i> Rollout visibility</li>
+      <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558] flex-shrink-0"></i> Live audience reactions</li>
+    </ul>
+    <p class="text-base md:text-lg text-gray-700 mb-8">Artists join the submission waitlist and upload music for review. Approved artists receive onboarding access and performance opportunities.</p>
+    <a href="apply.html" class="inline-flex items-center gap-2 bg-[#8A1558] text-white px-8 py-4 rounded-md text-sm md:text-base font-black uppercase tracking-widest hover:bg-[#680D3E] transition-colors">
+      <i data-lucide="mic" class="w-4 h-4"></i> Submit Music
+    </a>
+  </div>
+</section>
+
+<!-- Guest Access -->
+<section class="py-12 md:py-24 bg-white border-t border-gray-200">
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <h2 class="text-3xl md:text-5xl font-black tracking-tight mb-4">Guest Access</h2>
+    <p class="text-base md:text-lg text-gray-700 mb-6">Attendance is limited weekly. Guests join the RSVP waitlist for access to:</p>
+    <ul class="grid sm:grid-cols-2 gap-3 max-w-2xl mx-auto mb-8 text-left">
+      <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558] flex-shrink-0"></i> Live performances</li>
+      <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558] flex-shrink-0"></i> Artist interviews</li>
+      <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558] flex-shrink-0"></i> Penthouse networking</li>
+      <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558] flex-shrink-0"></i> Media experiences</li>
+      <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558] flex-shrink-0"></i> Live podcast production</li>
+      <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558] flex-shrink-0"></i> Curated happy hour</li>
+      <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558] flex-shrink-0"></i> Content moments</li>
+      <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558] flex-shrink-0"></i> Surprise guests</li>
+    </ul>
+    <p class="text-base md:text-lg text-gray-700 font-serif italic mb-8">Every Wednesday creates a new room, new conversations, and new opportunities to connect.</p>
+    <a href="attend.html" class="inline-flex items-center gap-2 bg-[#8A1558] text-white px-8 py-4 rounded-md text-sm md:text-base font-black uppercase tracking-widest hover:bg-[#680D3E] transition-colors">
+      <i data-lucide="ticket" class="w-4 h-4"></i> Request Access
+    </a>
+  </div>
+</section>
+
+<!-- Why People Pull Up -->
+<section class="py-12 md:py-24 bg-gray-50 border-t border-gray-200">
+  <div class="max-w-5xl mx-auto px-4">
+    <h2 class="text-3xl md:text-5xl font-black tracking-tight text-center mb-10">Why People Pull Up</h2>
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+      <div class="bg-white border border-gray-200 rounded-xl p-4 text-center font-bold text-gray-800">Live Performances</div>
+      <div class="bg-white border border-gray-200 rounded-xl p-4 text-center font-bold text-gray-800">Industry Networking</div>
+      <div class="bg-white border border-gray-200 rounded-xl p-4 text-center font-bold text-gray-800">DJ Conversations</div>
+      <div class="bg-white border border-gray-200 rounded-xl p-4 text-center font-bold text-gray-800">Media Coverage</div>
+      <div class="bg-white border border-gray-200 rounded-xl p-4 text-center font-bold text-gray-800">Artist Discovery</div>
+      <div class="bg-white border border-gray-200 rounded-xl p-4 text-center font-bold text-gray-800">Podcast Energy</div>
+      <div class="bg-white border border-gray-200 rounded-xl p-4 text-center font-bold text-gray-800">High-Impact Videography</div>
+      <div class="bg-white border border-gray-200 rounded-xl p-4 text-center font-bold text-gray-800">Influencer Presence</div>
+      <div class="bg-white border border-gray-200 rounded-xl p-4 text-center font-bold text-gray-800">Creative Collaboration</div>
+      <div class="bg-white border border-gray-200 rounded-xl p-4 text-center font-bold text-gray-800">Real Music Conversations</div>
+      <div class="bg-white border border-gray-200 rounded-xl p-4 text-center font-bold text-gray-800">NYC Culture &amp; Energy</div>
+      <div class="bg-white border border-gray-200 rounded-xl p-4 text-center font-bold text-gray-800">Sponsorship Activations</div>
     </div>
+  </div>
+</section>
 
-    <button type="button" id="videoThumb" class="group relative block w-full rounded-2xl overflow-hidden shadow-lg mb-6 focus:outline-none">
-      <img src="images/video_thumbnail.png" alt="New Music Wednesdays performance" class="w-full block" />
-      <span class="absolute inset-0 bg-black/20 group-hover:bg-black/35 transition-colors"></span>
-      <span class="absolute inset-0 flex items-center justify-center">
-        <span class="w-20 h-20 md:w-24 md:h-24 rounded-full bg-white/95 flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform" style="box-shadow:0 18px 40px -12px rgba(138,21,88,0.55);">
-          <i data-lucide="play" class="w-9 h-9 md:w-11 md:h-11 text-[#8A1558] ml-1" style="fill:#8A1558"></i>
-        </span>
-      </span>
-      <span class="absolute bottom-3 left-4 text-xs md:text-sm font-black uppercase tracking-widest text-white drop-shadow">Watch the room</span>
-    </button>
-
-    <div id="videoModal" class="hidden fixed inset-0 z-[100] bg-black/85 items-center justify-center p-4" onclick="if(event.target===this)closeVideo()">
-      <div class="relative w-full max-w-4xl aspect-video">
-        <button type="button" onclick="closeVideo()" aria-label="Close" class="absolute -top-10 right-0 text-white/80 hover:text-white text-sm font-bold tracking-widest">CLOSE ✕</button>
-        <iframe id="videoFrame" class="w-full h-full rounded-xl" src="" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
-      </div>
-    </div>
-
-    <div class="text-center -mb-2">
-      <i data-lucide="arrow-down" class="w-20 h-20 md:w-28 md:h-28 text-[#8A1558] mx-auto animate-bounce" style="stroke-width:3"></i>
-    </div>
-
-    <form id="leadForm" class="relative grid sm:grid-cols-2 gap-5 bg-white border border-gray-100 rounded-2xl p-6 md:p-8" style="box-shadow: 0 30px 60px -15px rgba(138, 21, 88, 0.35), 0 12px 24px -8px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.04);">
-      <div class="sm:col-span-2"><label class="onboarding-label">Artist Name *</label><input class="onboarding-input" name="artistName" required placeholder="Your stage name"></div>
-      <div class="sm:col-span-2"><label class="onboarding-label">Location *</label><input class="onboarding-input" name="location" required placeholder="City, State"></div>
-      <div class="sm:col-span-2"><label class="onboarding-label">What kind of music do you make? *</label>
-        <select class="onboarding-input" name="genre" required>
-          <option value="">Select a genre</option>
-          <option>Hip Hop</option>
-          <option>R&amp;B</option>
-          <option>Soul</option>
-          <option>Reggae</option>
-          <option>Dancehall</option>
-          <option>Afrobeat</option>
-          <option>Gospel</option>
-          <option>Latin Urban / Dance</option>
-        </select>
-        <p class="text-xs text-gray-500 mt-2">We only book urban: Hip Hop, R&amp;B, Soul, Reggae, Dancehall, Afrobeat, Gospel, and Latin Urban / Dance.</p>
-      </div>
-
-      <div class="sm:col-span-2 flex justify-end pt-2">
-        <button type="submit" class="inline-flex items-center gap-2 bg-[#8A1558] text-white px-8 py-3 rounded-md text-sm font-bold tracking-widest uppercase hover:bg-[#680D3E] transition-colors">
-          Submit <i data-lucide="arrow-right" class="w-4 h-4"></i>
-        </button>
-      </div>
-    </form>
-
-    <!-- Personalized response + Continue -->
-    <div id="leadResponse" class="hidden mt-6 bg-[#FDF2F8] border border-[#FBCFE8] rounded-2xl p-6 md:p-8 text-center">
-      <div class="w-14 h-14 mx-auto bg-white rounded-full flex items-center justify-center mb-4 border border-[#FBCFE8]">
-        <i data-lucide="check" class="w-7 h-7 text-[#8A1558]"></i>
-      </div>
-      <h3 class="text-xl md:text-2xl font-black tracking-tighter mb-2" id="leadGreeting">Got it.</h3>
-      <p class="text-gray-700 leading-relaxed" id="leadMessage"></p>
-      <a href="apply.html" id="leadContinue" class="inline-flex items-center gap-2 bg-[#8A1558] text-white px-6 py-3 rounded-md text-sm font-bold tracking-widest uppercase hover:bg-[#680D3E] mt-5">
-        Continue <i data-lucide="arrow-right" class="w-4 h-4"></i>
-      </a>
-    </div>
-
-    <div class="mt-8 text-center">
-      <a href="events.html" class="text-[#8A1558] font-bold tracking-widest text-xs uppercase hover:underline">See upcoming events at The Penthouse</a>
-    </div>
+<!-- Closing Section -->
+<section class="py-12 md:py-24 bg-white border-t border-gray-200">
+  <div class="max-w-3xl mx-auto px-4 text-center">
+    <p class="text-2xl md:text-4xl font-black tracking-tight text-gray-900 leading-tight mb-6">New Music Wednesdays isn't just about performing.</p>
+    <p class="text-xl md:text-2xl text-gray-700 font-serif leading-relaxed mb-6">It's about creating the conversations, visibility, relationships, and moments that help music travel further.</p>
+    <p class="text-lg md:text-xl text-gray-600 font-serif italic">Every Wednesday brings together the people, media, energy, and culture that help records gain real-world attention.</p>
   </div>
 </section>
 
@@ -380,26 +434,6 @@
 <script src="assets/nmw.js"></script>
 <script>
   (typeof lucide !== "undefined" && lucide.createIcons());
-  function scrollToPackages() { document.getElementById('packages').scrollIntoView({ behavior: 'smooth' }); }
-
-  // Video modal, swap VIDEO_ID with the real upload when available
-  const VIDEO_ID = 'dQw4w9WgXcQ';
-  function openVideo() {
-    const m = document.getElementById('videoModal');
-    document.getElementById('videoFrame').src = `https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&rel=0`;
-    m.classList.remove('hidden');
-    m.classList.add('flex');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeVideo() {
-    const m = document.getElementById('videoModal');
-    document.getElementById('videoFrame').src = '';
-    m.classList.add('hidden');
-    m.classList.remove('flex');
-    document.body.style.overflow = '';
-  }
-  document.getElementById('videoThumb')?.addEventListener('click', openVideo);
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeVideo(); });
 
   // Capture referral code from URL if present
   const params = new URLSearchParams(location.search);
@@ -413,44 +447,6 @@
       NMW.saveArtist(ow);
     }
   }
-
-  // Lead capture: save to localStorage and prefill apply.html funnel info
-  document.getElementById('leadForm').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const data = new FormData(e.target);
-    const lead = {
-      artistName: (data.get('artistName') || '').trim(),
-      location: (data.get('location') || '').trim(),
-      genre: data.get('genre') || '',
-      submittedAt: new Date().toISOString(),
-    };
-    if (!lead.artistName || !lead.location || !lead.genre) return;
-
-    // Append to leads list
-    const leads = JSON.parse(localStorage.getItem('nmw.leads') || '[]');
-    leads.push(lead);
-    localStorage.setItem('nmw.leads', JSON.stringify(leads));
-
-    // Prefill the apply funnel so the user doesn't re-type
-    const funnel = NMW.getFunnel();
-    funnel.info = Object.assign({}, funnel.info || {}, {
-      name: lead.artistName,
-      artistName: lead.artistName,
-      location: lead.location,
-      genre: lead.genre,
-    });
-    NMW.setFunnel(funnel);
-
-    // Personalized response
-    document.getElementById('leadGreeting').textContent = `Welcome, ${lead.artistName}.`;
-    document.getElementById('leadMessage').innerHTML =
-      `We hear ${lead.genre ? '<b>' + lead.genre + '</b> ' : ''}from <b>${lead.location || 'wherever you are'}</b>. ` +
-      `Tap continue and pick the package that fits your rollout. We've already saved your details.`;
-    document.getElementById('leadForm').classList.add('hidden');
-    document.getElementById('leadResponse').classList.remove('hidden');
-    (typeof lucide !== "undefined" && lucide.createIcons());
-    document.getElementById('leadResponse').scrollIntoView({ behavior: 'smooth', block: 'center' });
-  });
 </script>
 </body>
 </html>

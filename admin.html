@@ -600,7 +600,7 @@ if (typeof tailwind !== "undefined") tailwind.config = { theme: { extend: {
           <ul class="space-y-2 text-sm">
             <li><a href="index.html" target="_blank" rel="noopener noreferrer" class="flex justify-between hover:text-brand-500"><span>Sales / Funnel</span><i data-lucide="external-link" class="w-3.5 h-3.5"></i></a></li>
             <li><a href="mission.html" target="_blank" rel="noopener noreferrer" class="flex justify-between hover:text-brand-500"><span>Mission</span><i data-lucide="external-link" class="w-3.5 h-3.5"></i></a></li>
-            <li><a href="events.html" target="_blank" rel="noopener noreferrer" class="flex justify-between hover:text-brand-500"><span>Events</span><i data-lucide="external-link" class="w-3.5 h-3.5"></i></a></li>
+            <li><a href="attend.html" target="_blank" rel="noopener noreferrer" class="flex justify-between hover:text-brand-500"><span>Events</span><i data-lucide="external-link" class="w-3.5 h-3.5"></i></a></li>
             <li><a href="dj-call.html" target="_blank" rel="noopener noreferrer" class="flex justify-between hover:text-brand-500"><span>DJ Call</span><i data-lucide="external-link" class="w-3.5 h-3.5"></i></a></li>
             <li><a href="apply.html" target="_blank" rel="noopener noreferrer" class="flex justify-between hover:text-brand-500"><span>Artist Access (Apply)</span><i data-lucide="external-link" class="w-3.5 h-3.5"></i></a></li>
             <li><a href="faq.html" target="_blank" rel="noopener noreferrer" class="flex justify-between hover:text-brand-500"><span>FAQ</span><i data-lucide="external-link" class="w-3.5 h-3.5"></i></a></li>
@@ -1283,7 +1283,7 @@ function showDistroKit(ev) {
   const dateStr = dt.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
   const whenStr = `${dateStr}, Doors ${ev.doors || '3:00 PM'}, Live ${ev.liveStart || '7:00 PM'}-${ev.liveEnd || '9:30 PM'} ET`;
   const title = 'New Music Wednesdays at The Penthouse NYC';
-  const url = (location.origin && !location.origin.startsWith('null') ? location.origin : 'https://www.newmusicwednesdayslive.com') + '/events.html';
+  const url = (location.origin && !location.origin.startsWith('null') ? location.origin : 'https://www.newmusicwednesdayslive.com') + '/attend.html';
   const desc = [
     'New Music Wednesdays, live performance + rollout for rising urban artists.',
     `Date: ${whenStr}`,
