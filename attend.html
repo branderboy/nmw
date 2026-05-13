@@ -97,44 +97,53 @@
 </head>
 <body class="bg-white text-gray-900 selection:bg-[#8A1558] selection:text-white">
 
-<nav class="nmw-nav nmw-nav--dark">
-  <div class="nmw-nav__inner">
-  <a href="index.html" class="nmw-logo-block">
-    <img src="images/nmw-logo.png" alt="New Music Wednesday" class="nmw-logo-img" />
-  </a>
-  <div class="hidden md:flex nmw-nav__menu">
-    <a href="index.html">HOME</a>
-    <a href="attend.html" class="is-active">ATTEND</a>
-    <a href="apply.html">ARTIST ACCESS</a>
-    <div class="nav-dropdown">
-      <button type="button" class="nav-dropdown__trigger">LISTEN</button>
-      <div class="nav-dropdown__panel">
-        <a href="dj-call.html">DJ Call</a>
-        <a href="podcast.html">Podcast</a>
-      </div>
-    </div>
-    <a href="blog.html">THE DROP</a>
-    <a href="sponsor.html">CAMPAIGN STORE</a>
-    <div class="nav-dropdown">
-      <button type="button" class="nav-dropdown__trigger">MISSION</button>
-      <div class="nav-dropdown__panel">
-        <a href="mission.html">Mission</a>
-        <a href="faq.html">FAQ</a>
-      </div>
+<header class="sxsw-header">
+  <div class="sxsw-header__top">
+    <a href="index.html" class="sxsw-header__brand">
+      <img src="images/nmw-logo-light.png" class="sxsw-header__logo" alt="New Music Wednesdays" />
+      <span class="sxsw-header__partner">DRIVEN BY <strong>DIGIWAXX</strong></span>
+    </a>
+    <div class="sxsw-header__top-right">
+      <a href="apply.html" class="sxsw-header__cta sxsw-header__cta--primary">SUBMIT</a>
+      <a href="attend.html" class="sxsw-header__cta sxsw-header__cta--secondary">ATTEND</a>
     </div>
   </div>
+  <div class="sxsw-header__nav">
+    <div class="sxsw-header__nav-left">
+      <a href="index.html">HOME</a>
+      <a href="attend.html" class="is-active">ATTEND</a>
+      <a href="apply.html">ARTIST ACCESS</a>
+      <div class="nav-dropdown">
+        <button type="button" class="nav-dropdown__trigger">LISTEN</button>
+        <div class="nav-dropdown__panel">
+          <a href="dj-call.html">DJ Call</a>
+          <a href="podcast.html">Podcast</a>
+        </div>
+      </div>
+      <a href="blog.html">THE DROP</a>
+      <a href="sponsor.html">CAMPAIGN STORE</a>
+      <div class="nav-dropdown">
+        <button type="button" class="nav-dropdown__trigger">MISSION</button>
+        <div class="nav-dropdown__panel">
+          <a href="mission.html">Mission</a>
+          <a href="faq.html">FAQ</a>
+        </div>
+      </div>
+    </div>
+    <div class="sxsw-header__nav-right">EVERY WEDNESDAY &middot; THE PENTHOUSE NYC</div>
   </div>
-</nav>
+</header>
+
+<section class="max-w-5xl mx-auto px-4 pt-8 md:pt-12 pb-2">
+  <div class="font-mono text-[11px] uppercase tracking-[0.18em] text-gray-500 mb-3">Attend, NMW</div>
+  <h1 class="text-5xl sm:text-6xl md:text-7xl font-black tracking-tighter uppercase leading-[0.9] mb-3 text-gray-900">Wednesdays at the Penthouse.</h1>
+  <p class="text-base md:text-lg text-gray-600 max-w-2xl">RSVP for the next show. ~150 seats.</p>
+</section>
+<div class="max-w-5xl mx-auto px-4"><div class="h-px bg-gray-900 my-6"></div></div>
 
 <main class="max-w-5xl mx-auto px-4 py-10">
 
-  <div class="mb-8 max-w-3xl">
-    <div class="text-xs font-black uppercase tracking-widest text-[#8A1558] mb-2">[ Every Wednesday ]</div>
-    <h1 class="text-3xl md:text-4xl font-black tracking-tighter text-gray-900 mb-3">A Community That Moves For Rising Artists</h1>
-    <p class="text-base md:text-lg text-gray-700 font-serif leading-relaxed">~150 people, every Wednesday at The Penthouse NYC. Not a quiet audience, an <a href="mission.html" class="text-[#8A1558] underline hover:no-underline">active community</a> that Shazams the set, pre-saves the release, and carries the name to the next room. RSVP and become part of it.</p>
-  </div>
-
-  <div class="mb-8 flex flex-wrap gap-2 items-center">
+<div class="mb-8 flex flex-wrap gap-2 items-center">
     <a id="recurringCal" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-[#8A1558] text-white px-4 py-2.5 rounded-md text-sm font-bold hover:bg-[#680D3E] transition-colors"><i data-lucide="calendar-plus" class="w-4 h-4"></i> Add weekly to calendar</a>
     <button id="shareTeamBtn" type="button" class="inline-flex items-center gap-2 bg-white border border-gray-300 text-gray-900 px-4 py-2.5 rounded-md text-sm font-bold hover:bg-gray-100 transition-colors"><i data-lucide="share-2" class="w-4 h-4"></i> Share With Your Team</button>
     <span id="shareTeamToast" class="hidden text-xs font-bold text-[#8A1558]">Link copied</span>
