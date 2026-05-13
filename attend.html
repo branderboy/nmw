@@ -169,17 +169,17 @@
 
     <form id="attendForm" class="space-y-10" novalidate>
 
-      <!-- Q1: Group size -- visual tile selector -->
+      <!-- Q1: Group size -->
       <fieldset>
         <legend class="text-xl md:text-2xl font-black tracking-tight text-gray-900 mb-4">1. How many tickets?</legend>
-        <div class="grid grid-cols-5 gap-2 sm:gap-3 max-w-2xl" id="attendGroupTiles" role="radiogroup">
-          <button type="button" class="tile-select" data-val="1" role="radio" aria-checked="false">1</button>
-          <button type="button" class="tile-select" data-val="2" role="radio" aria-checked="false">2</button>
-          <button type="button" class="tile-select" data-val="3" role="radio" aria-checked="false">3</button>
-          <button type="button" class="tile-select" data-val="4" role="radio" aria-checked="false">4</button>
-          <button type="button" class="tile-select" data-val="5+" role="radio" aria-checked="false">5+</button>
-        </div>
-        <input type="hidden" name="groupSize" id="attendGroupSize" required>
+        <select name="groupSize" id="attendGroupSize" required class="onboarding-input max-w-xs">
+          <option value="">Select group size</option>
+          <option value="1">1 ticket</option>
+          <option value="2">2 tickets</option>
+          <option value="3">3 tickets</option>
+          <option value="4">4 tickets</option>
+          <option value="5+">5+ tickets</option>
+        </select>
       </fieldset>
 
       <!-- Q2: Who you are -->
@@ -370,28 +370,11 @@
   const submitBtn = document.getElementById("attendSubmitBtn");
   const hint = document.getElementById("attendValidationHint");
   const sizeInput = document.getElementById("attendGroupSize");
-  const sizeTiles = document.getElementById("attendGroupTiles");
   const successEl = document.getElementById("attendSuccess");
   const queuePosEl = document.getElementById("attendQueuePosition");
   const groupSizeOutEl = document.getElementById("attendGroupSizeOut");
   const requestIdEl = document.getElementById("attendRequestId");
   if(!form || !submitBtn) return;
-
-  function bindTiles(container, hiddenInput){
-    container.addEventListener("click", e => {
-      const btn = e.target.closest("[data-val]");
-      if(!btn) return;
-      container.querySelectorAll(".tile-select").forEach(b => {
-        b.classList.remove("is-selected");
-        b.setAttribute("aria-checked","false");
-      });
-      btn.classList.add("is-selected");
-      btn.setAttribute("aria-checked","true");
-      hiddenInput.value = btn.dataset.val;
-      refreshSubmit();
-    });
-  }
-  bindTiles(sizeTiles, sizeInput);
 
   function isValid(){
     if(!sizeInput.value) return false;
