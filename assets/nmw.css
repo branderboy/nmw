@@ -50,7 +50,18 @@ h1, h2, h3 { text-transform: capitalize; }
   --brand-500: #8A1558;
   --brand-600: #680D3E;
   --ink: #111827;
+  --paper: #FAFAF7;
+  --ink-deep: #0A0A0A;
 }
+
+/* ============ Editorial typography (Campaign Store vocabulary) ============ */
+.display       { font-family:'Anton','Impact',sans-serif; text-transform:uppercase; letter-spacing:.005em; line-height:.9; }
+.display-tight { letter-spacing:-.01em; }
+.mono-eyebrow  { font-family:'JetBrains Mono', ui-monospace, monospace; text-transform:uppercase; font-size:11px; font-weight:500; letter-spacing:.15em; color:#666; }
+.mono-tag      { font-family:'JetBrains Mono', ui-monospace, monospace; text-transform:uppercase; font-size:10px; font-weight:500; letter-spacing:.12em; }
+.ed-rule       { height:1px; background: var(--ink-deep); width:100%; }
+.ed-rule-thin  { height:1px; background: rgba(10,10,10,.15); width:100%; }
+.text-ink      { color: var(--ink-deep); }
 
 body {
   font-family: 'Inter', system-ui, sans-serif;
