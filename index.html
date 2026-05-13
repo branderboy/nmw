@@ -190,48 +190,70 @@
     <div class="mono-eyebrow mb-4">This Wednesday</div>
     <h2 class="display display-tight text-4xl md:text-6xl text-ink mb-10 max-w-4xl">Different energy. Different room. Different opportunity.</h2>
 
-    <ol class="border-t border-gray-300">
-      <li class="group flex items-baseline gap-4 md:gap-8 py-4 md:py-5 border-b border-gray-300 hover:bg-white transition-colors">
-        <span class="font-mono text-xs md:text-sm text-gray-400 tabular-nums">01</span>
-        <span class="section-h2 text-2xl md:text-4xl !text-ink flex-1">Digiwaxx DJ Call on Zoom</span>
-        <span class="hidden md:inline font-mono text-xs text-gray-400 uppercase tracking-widest">4-6 PM</span>
-      </li>
-      <li class="group flex items-baseline gap-4 md:gap-8 py-4 md:py-5 border-b border-gray-300 hover:bg-white transition-colors">
-        <span class="font-mono text-xs md:text-sm text-gray-400 tabular-nums">02</span>
-        <span class="section-h2 text-2xl md:text-4xl !text-ink flex-1">Live artist performances</span>
-        <span class="hidden md:inline font-mono text-xs text-gray-400 uppercase tracking-widest">9-11 PM</span>
-      </li>
-      <li class="group flex items-baseline gap-4 md:gap-8 py-4 md:py-5 border-b border-gray-300 hover:bg-white transition-colors">
-        <span class="font-mono text-xs md:text-sm text-gray-400 tabular-nums">03</span>
-        <span class="section-h2 text-2xl md:text-4xl !text-ink flex-1">Media interviews</span>
-        <span class="hidden md:inline font-mono text-xs text-gray-400 uppercase tracking-widest">7-9 PM</span>
-      </li>
-      <li class="group flex items-baseline gap-4 md:gap-8 py-4 md:py-5 border-b border-gray-300 hover:bg-white transition-colors">
-        <span class="font-mono text-xs md:text-sm text-gray-400 tabular-nums">04</span>
-        <span class="section-h2 text-2xl md:text-4xl !text-ink flex-1">Penthouse happy hour networking</span>
-        <span class="hidden md:inline font-mono text-xs text-gray-400 uppercase tracking-widest">7-9 PM</span>
-      </li>
-      <li class="group flex items-baseline gap-4 md:gap-8 py-4 md:py-5 border-b border-gray-300 hover:bg-white transition-colors">
-        <span class="font-mono text-xs md:text-sm text-gray-400 tabular-nums">05</span>
-        <span class="section-h2 text-2xl md:text-4xl !text-ink flex-1">Live podcast production</span>
-        <span class="hidden md:inline font-mono text-xs text-gray-400 uppercase tracking-widest">In Studio</span>
-      </li>
-      <li class="group flex items-baseline gap-4 md:gap-8 py-4 md:py-5 border-b border-gray-300 hover:bg-white transition-colors">
-        <span class="font-mono text-xs md:text-sm text-gray-400 tabular-nums">06</span>
-        <span class="section-h2 text-2xl md:text-4xl !text-ink flex-1">DJ &amp; tastemaker conversations</span>
-        <span class="hidden md:inline font-mono text-xs text-gray-400 uppercase tracking-widest">All Night</span>
-      </li>
-      <li class="group flex items-baseline gap-4 md:gap-8 py-4 md:py-5 border-b border-gray-300 hover:bg-white transition-colors">
-        <span class="font-mono text-xs md:text-sm text-gray-400 tabular-nums">07</span>
-        <span class="section-h2 text-2xl md:text-4xl !text-ink flex-1">Content creation &amp; videography</span>
-        <span class="hidden md:inline font-mono text-xs text-gray-400 uppercase tracking-widest">Rolling</span>
-      </li>
-      <li class="group flex items-baseline gap-4 md:gap-8 py-4 md:py-5 border-b border-gray-300 hover:bg-white transition-colors">
-        <span class="font-mono text-xs md:text-sm text-gray-400 tabular-nums">08</span>
-        <span class="section-h2 text-2xl md:text-4xl !text-ink flex-1">Surprise pull-ups &amp; guest appearances</span>
-        <span class="hidden md:inline font-mono text-xs text-[#8A1558] uppercase tracking-widest">TBA</span>
-      </li>
-    </ol>
+    <!-- Horizontal timeline strip: scrolls left-to-right on mobile, fits flush on desktop -->
+    <div class="relative -mx-4 sm:mx-0">
+      <!-- ruler line behind the nodes -->
+      <div class="absolute left-4 right-4 sm:left-0 sm:right-0 top-9 h-px bg-gray-300"></div>
+
+      <ol class="flex gap-0 overflow-x-auto pb-2 snap-x snap-mandatory scroll-px-4 px-4 sm:px-0">
+        <li class="flex-none w-44 md:w-1/8 md:flex-1 snap-start relative pt-12 pr-3">
+          <span class="absolute left-0 top-0 font-mono text-[10px] uppercase tracking-widest text-gray-500">4-6 PM</span>
+          <span class="absolute left-0 top-7 w-3 h-3 rounded-full bg-[#8A1558] ring-4 ring-white"></span>
+          <div class="font-mono text-[10px] tabular-nums text-gray-400 mb-1">01</div>
+          <div class="font-semibold text-sm md:text-base text-ink leading-snug">Digiwaxx DJ Call on Zoom</div>
+          <div class="font-mono text-[10px] uppercase tracking-widest text-gray-500 mt-2">DJs &amp; tastemakers</div>
+        </li>
+        <li class="flex-none w-44 md:w-1/8 md:flex-1 snap-start relative pt-12 pr-3">
+          <span class="absolute left-0 top-0 font-mono text-[10px] uppercase tracking-widest text-gray-500">7-9 PM</span>
+          <span class="absolute left-0 top-7 w-3 h-3 rounded-full bg-ink ring-4 ring-white"></span>
+          <div class="font-mono text-[10px] tabular-nums text-gray-400 mb-1">03</div>
+          <div class="font-semibold text-sm md:text-base text-ink leading-snug">Media interviews</div>
+          <div class="font-mono text-[10px] uppercase tracking-widest text-gray-500 mt-2">Press &amp; media</div>
+        </li>
+        <li class="flex-none w-44 md:w-1/8 md:flex-1 snap-start relative pt-12 pr-3">
+          <span class="absolute left-0 top-0 font-mono text-[10px] uppercase tracking-widest text-gray-500">7-9 PM</span>
+          <span class="absolute left-0 top-7 w-3 h-3 rounded-full bg-ink ring-4 ring-white"></span>
+          <div class="font-mono text-[10px] tabular-nums text-gray-400 mb-1">04</div>
+          <div class="font-semibold text-sm md:text-base text-ink leading-snug">Penthouse happy hour networking</div>
+          <div class="font-mono text-[10px] uppercase tracking-widest text-gray-500 mt-2">Industry mix</div>
+        </li>
+        <li class="flex-none w-44 md:w-1/8 md:flex-1 snap-start relative pt-12 pr-3">
+          <span class="absolute left-0 top-0 font-mono text-[10px] uppercase tracking-widest text-gray-500">9-11 PM</span>
+          <span class="absolute left-0 top-7 w-3 h-3 rounded-full bg-[#8A1558] ring-4 ring-white"></span>
+          <div class="font-mono text-[10px] tabular-nums text-gray-400 mb-1">02</div>
+          <div class="font-semibold text-sm md:text-base text-ink leading-snug">Live artist performances</div>
+          <div class="font-mono text-[10px] uppercase tracking-widest text-gray-500 mt-2">Artists &amp; managers</div>
+        </li>
+        <li class="flex-none w-44 md:w-1/8 md:flex-1 snap-start relative pt-12 pr-3">
+          <span class="absolute left-0 top-0 font-mono text-[10px] uppercase tracking-widest text-gray-500">9-11 PM</span>
+          <span class="absolute left-0 top-7 w-3 h-3 rounded-full bg-ink ring-4 ring-white"></span>
+          <div class="font-mono text-[10px] tabular-nums text-gray-400 mb-1">06</div>
+          <div class="font-semibold text-sm md:text-base text-ink leading-snug">DJ &amp; tastemaker conversations</div>
+          <div class="font-mono text-[10px] uppercase tracking-widest text-gray-500 mt-2">DJs &amp; influencers</div>
+        </li>
+        <li class="flex-none w-44 md:w-1/8 md:flex-1 snap-start relative pt-12 pr-3">
+          <span class="absolute left-0 top-0 font-mono text-[10px] uppercase tracking-widest text-gray-500">All Night</span>
+          <span class="absolute left-0 top-7 w-3 h-3 rounded-full bg-ink ring-4 ring-white"></span>
+          <div class="font-mono text-[10px] tabular-nums text-gray-400 mb-1">05</div>
+          <div class="font-semibold text-sm md:text-base text-ink leading-snug">Live podcast production</div>
+          <div class="font-mono text-[10px] uppercase tracking-widest text-gray-500 mt-2">Hosts &amp; guests</div>
+        </li>
+        <li class="flex-none w-44 md:w-1/8 md:flex-1 snap-start relative pt-12 pr-3">
+          <span class="absolute left-0 top-0 font-mono text-[10px] uppercase tracking-widest text-gray-500">Rolling</span>
+          <span class="absolute left-0 top-7 w-3 h-3 rounded-full bg-ink ring-4 ring-white"></span>
+          <div class="font-mono text-[10px] tabular-nums text-gray-400 mb-1">07</div>
+          <div class="font-semibold text-sm md:text-base text-ink leading-snug">Content creation &amp; videography</div>
+          <div class="font-mono text-[10px] uppercase tracking-widest text-gray-500 mt-2">Creators &amp; videographers</div>
+        </li>
+        <li class="flex-none w-44 md:w-1/8 md:flex-1 snap-start relative pt-12 pr-3">
+          <span class="absolute left-0 top-0 font-mono text-[10px] uppercase tracking-widest text-[#8A1558]">TBA</span>
+          <span class="absolute left-0 top-7 w-3 h-3 rounded-full bg-[#FACC15] ring-4 ring-white"></span>
+          <div class="font-mono text-[10px] tabular-nums text-gray-400 mb-1">08</div>
+          <div class="font-semibold text-sm md:text-base text-ink leading-snug">Surprise pull-ups &amp; guest appearances</div>
+          <div class="font-mono text-[10px] uppercase tracking-widest text-gray-500 mt-2">Special guests</div>
+        </li>
+      </ol>
+    </div>
   </div>
 </section>
 
