@@ -136,7 +136,7 @@
       </div>
     </div>
   </div>
-  <a href="attend.html" class="hidden md:inline-flex items-center gap-2 bg-yellow-400 text-black font-black uppercase tracking-widest text-xs px-4 py-2.5 rounded-full hover:bg-yellow-300 transition-colors">
+  <a href="attend.html" class="inline-flex items-center gap-2 bg-yellow-400 text-black font-black uppercase tracking-widest text-xs px-4 py-2.5 rounded-full hover:bg-yellow-300 transition-colors flex-shrink-0">
     <i data-lucide="ticket" class="w-4 h-4"></i> ATTEND
   </a>
   </div>
@@ -172,7 +172,7 @@
 </header>
 
 <!-- INTRO -->
-<section class="bg-[var(--paper)] pt-8 md:pt-12 pb-4">
+<section class="bg-white pt-8 md:pt-12 pb-4">
   <div class="max-w-6xl mx-auto px-4">
     <div class="mono-eyebrow mb-4">More than an event</div>
     <h2 class="display display-tight text-4xl md:text-6xl text-ink mb-6 max-w-4xl">A live music &amp; media scene.</h2>
@@ -185,34 +185,65 @@
 </section>
 
 <!-- THIS WEDNESDAY -->
-<section class="bg-[var(--paper)] pt-8 md:pt-12 pb-4">
+<section class="bg-white pt-8 md:pt-12 pb-10 md:pb-14">
   <div class="max-w-6xl mx-auto px-4">
-    <div class="ed-rule mb-12"></div>
     <div class="mono-eyebrow mb-4">This Wednesday</div>
-    <h2 class="display display-tight text-4xl md:text-6xl text-ink mb-4 max-w-4xl">Different energy. Different room. Different opportunity.</h2>
-    <p class="text-base md:text-lg text-gray-700 max-w-3xl mb-8">Every week includes:</p>
-    <ul class="text-lg md:text-xl text-ink leading-loose">
-      <li>Digiwaxx DJ Call on Zoom</li>
-      <li>Live artist performances</li>
-      <li>Media interviews</li>
-      <li>Penthouse happy hour networking</li>
-      <li>Live podcast production</li>
-      <li>DJ &amp; tastemaker conversations</li>
-      <li>Content creation &amp; videography</li>
-      <li>Surprise pull-ups &amp; guest appearances</li>
-    </ul>
+    <h2 class="display display-tight text-4xl md:text-6xl text-ink mb-10 max-w-4xl">Different energy. Different room. Different opportunity.</h2>
+
+    <ol class="border-t border-gray-300">
+      <li class="group flex items-baseline gap-4 md:gap-8 py-4 md:py-5 border-b border-gray-300 hover:bg-white transition-colors">
+        <span class="font-mono text-xs md:text-sm text-gray-400 tabular-nums">01</span>
+        <span class="section-h2 text-2xl md:text-4xl !text-ink flex-1">Digiwaxx DJ Call on Zoom</span>
+        <span class="hidden md:inline font-mono text-xs text-gray-400 uppercase tracking-widest">4-6 PM</span>
+      </li>
+      <li class="group flex items-baseline gap-4 md:gap-8 py-4 md:py-5 border-b border-gray-300 hover:bg-white transition-colors">
+        <span class="font-mono text-xs md:text-sm text-gray-400 tabular-nums">02</span>
+        <span class="section-h2 text-2xl md:text-4xl !text-ink flex-1">Live artist performances</span>
+        <span class="hidden md:inline font-mono text-xs text-gray-400 uppercase tracking-widest">9-11 PM</span>
+      </li>
+      <li class="group flex items-baseline gap-4 md:gap-8 py-4 md:py-5 border-b border-gray-300 hover:bg-white transition-colors">
+        <span class="font-mono text-xs md:text-sm text-gray-400 tabular-nums">03</span>
+        <span class="section-h2 text-2xl md:text-4xl !text-ink flex-1">Media interviews</span>
+        <span class="hidden md:inline font-mono text-xs text-gray-400 uppercase tracking-widest">7-9 PM</span>
+      </li>
+      <li class="group flex items-baseline gap-4 md:gap-8 py-4 md:py-5 border-b border-gray-300 hover:bg-white transition-colors">
+        <span class="font-mono text-xs md:text-sm text-gray-400 tabular-nums">04</span>
+        <span class="section-h2 text-2xl md:text-4xl !text-ink flex-1">Penthouse happy hour networking</span>
+        <span class="hidden md:inline font-mono text-xs text-gray-400 uppercase tracking-widest">7-9 PM</span>
+      </li>
+      <li class="group flex items-baseline gap-4 md:gap-8 py-4 md:py-5 border-b border-gray-300 hover:bg-white transition-colors">
+        <span class="font-mono text-xs md:text-sm text-gray-400 tabular-nums">05</span>
+        <span class="section-h2 text-2xl md:text-4xl !text-ink flex-1">Live podcast production</span>
+        <span class="hidden md:inline font-mono text-xs text-gray-400 uppercase tracking-widest">In Studio</span>
+      </li>
+      <li class="group flex items-baseline gap-4 md:gap-8 py-4 md:py-5 border-b border-gray-300 hover:bg-white transition-colors">
+        <span class="font-mono text-xs md:text-sm text-gray-400 tabular-nums">06</span>
+        <span class="section-h2 text-2xl md:text-4xl !text-ink flex-1">DJ &amp; tastemaker conversations</span>
+        <span class="hidden md:inline font-mono text-xs text-gray-400 uppercase tracking-widest">All Night</span>
+      </li>
+      <li class="group flex items-baseline gap-4 md:gap-8 py-4 md:py-5 border-b border-gray-300 hover:bg-white transition-colors">
+        <span class="font-mono text-xs md:text-sm text-gray-400 tabular-nums">07</span>
+        <span class="section-h2 text-2xl md:text-4xl !text-ink flex-1">Content creation &amp; videography</span>
+        <span class="hidden md:inline font-mono text-xs text-gray-400 uppercase tracking-widest">Rolling</span>
+      </li>
+      <li class="group flex items-baseline gap-4 md:gap-8 py-4 md:py-5 border-b border-gray-300 hover:bg-white transition-colors">
+        <span class="font-mono text-xs md:text-sm text-gray-400 tabular-nums">08</span>
+        <span class="section-h2 text-2xl md:text-4xl !text-ink flex-1">Surprise pull-ups &amp; guest appearances</span>
+        <span class="hidden md:inline font-mono text-xs text-[#8A1558] uppercase tracking-widest">TBA</span>
+      </li>
+    </ol>
   </div>
 </section>
 
 <!-- THE INDUSTRY CHANGED -->
-<section class="bg-[var(--paper)] pt-8 md:pt-12 pb-16 md:pb-24">
+<section class="bg-white pt-8 md:pt-12 pb-16 md:pb-24">
   <div class="max-w-6xl mx-auto px-4">
-    <div class="ed-rule mb-12"></div>
     <div class="mono-eyebrow mb-4">The Industry Changed</div>
     <h2 class="display display-tight text-4xl md:text-6xl text-ink mb-4 max-w-4xl">120,000 songs hit streaming every day.</h2>
     <p class="text-lg md:text-xl text-[#8A1558] font-bold mb-8">Most artists struggle to create real attention around their releases.</p>
-    <p class="text-base md:text-lg text-gray-700 max-w-3xl mb-6">Music moves faster than ever &mdash; but real visibility still comes from conversations, relationships, media moments, content, community, and people sharing records in real environments.</p>
-    <p class="text-base md:text-lg text-ink font-semibold max-w-3xl">New Music Wednesdays was built to create those moments consistently.</p>
+    <p class="text-base md:text-lg text-gray-700 max-w-3xl mb-6">Music moves faster than ever &mdash; but real visibility still comes from conversations, relationships, media moments, content, community, and people sharing records in real scenes.</p>
+    <p class="text-base md:text-lg text-ink font-semibold max-w-3xl mb-12">New Music Wednesdays was built to create those moments consistently.</p>
+    <div class="ed-rule"></div>
   </div>
 </section>
 
