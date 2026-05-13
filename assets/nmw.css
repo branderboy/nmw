@@ -50,6 +50,33 @@ h1, h2, h3 { text-transform: capitalize; }
   --brand-500: #8A1558;
   --brand-600: #680D3E;
   --ink: #111827;
+  --paper: #FAFAF7;
+  --ink-deep: #0A0A0A;
+}
+
+/* ============ Editorial typography (Campaign Store vocabulary) ============ */
+.display       { font-family:'Anton','Impact',sans-serif; text-transform:uppercase; letter-spacing:.005em; line-height:.9; }
+.display-tight { letter-spacing:-.01em; }
+.mono-eyebrow  { font-family:'JetBrains Mono', ui-monospace, monospace; text-transform:uppercase; font-size:11px; font-weight:500; letter-spacing:.15em; color:#666; }
+.mono-tag      { font-family:'JetBrains Mono', ui-monospace, monospace; text-transform:uppercase; font-size:10px; font-weight:500; letter-spacing:.12em; }
+.ed-rule       { height:1px; background: var(--ink-deep); width:100%; }
+.ed-rule-thin  { height:1px; background: rgba(10,10,10,.15); width:100%; }
+.text-ink      { color: var(--ink-deep); }
+
+/* ============ Editorial tile selector (RSVP, etc.) ============ */
+.tile-select {
+  appearance: none; background: #fff; border: 1.5px solid #e5e7eb;
+  padding: 0.85rem 0.5rem; border-radius: 0.5rem;
+  font-family: 'Anton','Impact',sans-serif; font-size: 1.5rem; line-height: 1; text-align: center;
+  color: var(--ink-deep); cursor: pointer; transition: all .15s;
+  letter-spacing: .005em;
+}
+.tile-select:hover { border-color: var(--ink-deep); transform: translateY(-1px); }
+.tile-select.is-selected { background: var(--ink-deep); color: #fff; border-color: var(--ink-deep); box-shadow: 3px 3px 0 var(--brand-500, #8A1558); transform: translate(-1px,-1px); }
+.tile-select--wide {
+  font-family: 'Manrope', system-ui, sans-serif; font-size: 0.85rem; font-weight: 700;
+  letter-spacing: .04em; text-transform: uppercase;
+  padding: 0.75rem 0.85rem; text-align: left;
 }
 
 body {
@@ -101,12 +128,12 @@ body {
   padding: 0.65rem 1.25rem;
 }
 .sxsw-header__brand { display:flex; align-items:center; gap:.85rem; color:#fff; text-decoration:none; flex-shrink:0; }
-.sxsw-header__logo { height: 44px; width:auto; display:block; }
+.sxsw-header__logo { height: 60px; width:auto; display:block; }
 .sxsw-header__partner { font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:#9CA3AF; white-space:nowrap; }
 .sxsw-header__partner strong { color:#fff; font-weight:800; letter-spacing:.04em; font-size:13px; margin-left:.4rem; }
 
 .sxsw-header__nav-left {
-  flex:1; display:flex; align-items:center; gap:1.5rem;
+  flex:1; display:flex; align-items:center; justify-content:center; gap:1.75rem;
 }
 .sxsw-header__nav-left > a,
 .sxsw-header__nav-left .nav-dropdown__trigger {

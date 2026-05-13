@@ -160,111 +160,81 @@
 
 <main class="max-w-5xl mx-auto px-4 py-6">
 
-  <!-- WAITLIST REQUEST FORM -->
-  <section class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 md:p-10 mb-12">
+  <!-- RSVP FORM -->
+  <section class="mb-12">
+    <div class="ed-rule mb-8"></div>
+    <div class="mono-eyebrow mb-4">RSVP &middot; Wednesday next</div>
+    <h2 class="display display-tight text-4xl md:text-6xl text-ink mb-3">Tell us who's coming.</h2>
+    <p class="text-base md:text-lg text-gray-700 max-w-2xl mb-10">Strong groups get the offer. Solo guests get the wait.</p>
 
-    <!-- Heads-up: we're at capacity + how the bid works -->
-    <div class="rounded-xl border-2 border-yellow-300 bg-yellow-50 p-4 md:p-5 mb-4 flex items-start gap-3">
-      <i data-lucide="alert-circle" class="w-6 h-6 text-yellow-700 flex-shrink-0 mt-0.5"></i>
-      <div>
-        <div class="font-black text-yellow-900 tracking-tight">We're at capacity &mdash; this week is bid-based.</div>
-        <p class="text-sm text-yellow-800 mt-0.5">Tell us about your group. We review every request and send offers to the strongest groups. If yours is selected, we'll email a private link to claim your tickets.</p>
+    <form id="attendForm" class="space-y-10" novalidate>
+
+      <!-- Q1: Group size -- visual tile selector -->
+      <fieldset>
+        <legend class="mono-eyebrow mb-4">01 &middot; How many tickets?</legend>
+        <div class="grid grid-cols-5 sm:grid-cols-10 gap-2" id="attendGroupTiles" role="radiogroup">
+          <!-- tiles injected by JS -->
+        </div>
+        <input type="hidden" name="groupSize" id="attendGroupSize" required>
+      </fieldset>
+
+      <!-- Q2: Who you are -->
+      <fieldset>
+        <legend class="mono-eyebrow mb-4">02 &middot; Main contact</legend>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label class="onboarding-label">Your name *</label>
+            <input class="onboarding-input" name="name" placeholder="Full name" required>
+          </div>
+          <div>
+            <label class="onboarding-label">Email *</label>
+            <input class="onboarding-input" name="email" type="email" placeholder="you@email.com" required>
+          </div>
+          <div>
+            <label class="onboarding-label">Mobile *</label>
+            <input class="onboarding-input" name="phone" type="tel" placeholder="(555) 000-0000" required>
+          </div>
+          <div>
+            <label class="onboarding-label">Instagram</label>
+            <input class="onboarding-input" name="instagram" placeholder="@yourhandle">
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Q3: open text -->
+      <fieldset>
+        <legend class="mono-eyebrow mb-4">03 &middot; One line on the room.</legend>
+        <input class="onboarding-input w-full" name="why" placeholder="An artist you're coming for, a record you want to hear, etc.">
+      </fieldset>
+
+      <div class="pt-2">
+        <button id="attendSubmitBtn" type="submit" class="inline-flex items-center gap-2 bg-[#8A1558] text-white font-black uppercase tracking-widest text-sm px-7 py-4 rounded-md hover:bg-[#680D3E] transition-colors disabled:opacity-40 disabled:cursor-not-allowed" disabled>
+          <i data-lucide="send" class="w-4 h-4"></i> Submit RSVP
+        </button>
+        <span id="attendValidationHint" class="ml-3 text-xs text-gray-500 align-middle">Pick a group size + fill the required fields.</span>
       </div>
-    </div>
-
-    <!-- Visitor + projected queue position -->
-    <div class="rounded-xl border-2 border-[#FBCFE8] bg-[#FDF2F8] p-4 md:p-5 mb-6 flex items-center gap-4">
-      <div class="w-12 h-12 rounded-lg bg-white text-[#8A1558] flex items-center justify-center flex-shrink-0">
-        <i data-lucide="users" class="w-6 h-6"></i>
-      </div>
-      <div class="flex-1 min-w-0">
-        <div class="text-[10px] font-mono uppercase tracking-[0.18em] text-[#8A1558] mb-0.5">Visitor #<span data-counter="visitor" data-target="2847">2,847</span> today</div>
-        <div class="font-black tracking-tight text-gray-900 text-base md:text-lg">If you request now, you'd be <span class="text-[#8A1558]" id="projectedQueue">#1,285</span> in line.</div>
-      </div>
-    </div>
-
-    <h2 class="text-2xl md:text-3xl font-black tracking-tight mb-1">Request access</h2>
-    <p class="text-sm text-gray-500 mb-6">Two steps. Less than a minute.</p>
-
-    <!-- Step pills -->
-    <div class="flex items-center gap-2 mb-6 text-xs font-black uppercase tracking-widest">
-      <span id="attendStepPill1" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#8A1558] text-white">1 &middot; You</span>
-      <span class="w-6 h-px bg-gray-300"></span>
-      <span id="attendStepPill2" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-100 text-gray-500">2 &middot; Your Group</span>
-    </div>
-
-    <form id="attendForm" class="grid sm:grid-cols-2 gap-5">
-      <!-- Step 1: who you are + how many tickets -->
-      <div data-attend-part="1"><label class="onboarding-label">Full Name *</label><input class="onboarding-input" name="name" placeholder="Your name" required></div>
-      <div data-attend-part="1"><label class="onboarding-label">Email Address *</label><input class="onboarding-input" name="email" type="email" placeholder="you@email.com" required></div>
-      <div data-attend-part="1"><label class="onboarding-label">Mobile *</label><input class="onboarding-input" name="phone" type="tel" placeholder="(555) 000-0000" required></div>
-      <div data-attend-part="1"><label class="onboarding-label">How many tickets? *</label>
-        <select class="onboarding-input" name="groupSize" required>
-          <option value="">Select group size&hellip;</option>
-          <option>1 &middot; Solo</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-          <option>6</option>
-          <option>7</option>
-          <option>8</option>
-          <option>9</option>
-          <option>10+</option>
-        </select>
-      </div>
-
-      <!-- Step 2: about the group -->
-      <div data-attend-part="2" class="hidden sm:col-span-2"><label class="onboarding-label">Who's coming with you? *</label><textarea class="onboarding-input min-h-[96px]" name="groupBio" rows="3" required placeholder="A few words on your group. Roles, social handles, anything that helps us pick the room."></textarea></div>
-      <div data-attend-part="2" class="hidden"><label class="onboarding-label">Group role / industry</label>
-        <select class="onboarding-input" name="groupRole">
-          <option value="">Mixed / general</option>
-          <option>Fans / culture</option>
-          <option>Artists / managers</option>
-          <option>DJs / tastemakers</option>
-          <option>Media / press</option>
-          <option>Label / A&amp;R</option>
-          <option>Brand / sponsor</option>
-        </select>
-      </div>
-      <div data-attend-part="2" class="hidden"><label class="onboarding-label">Instagram (group lead)</label><input class="onboarding-input" name="instagram" placeholder="@yourhandle"></div>
-      <div data-attend-part="2" class="hidden sm:col-span-2"><label class="onboarding-label">Why this Wednesday?</label><input class="onboarding-input" name="why" placeholder="An artist you're coming for, a record you want to hear, etc."></div>
     </form>
 
-    <div class="mt-8 flex justify-between items-center gap-3">
-      <button id="attendBackBtn" type="button" class="text-xs font-black uppercase tracking-widest text-gray-500 hover:text-gray-900 hidden">&larr; Back</button>
-      <div class="ml-auto flex gap-3">
-        <button id="attendNextBtn" type="button" class="onboarding-cta onboarding-cta--brand whitespace-nowrap" disabled>
-          Continue <i data-lucide="arrow-right" class="w-4 h-4"></i>
-        </button>
-        <button id="attendSubmitBtn" type="button" class="onboarding-cta onboarding-cta--brand whitespace-nowrap hidden" disabled>
-          <i data-lucide="send" class="w-4 h-4"></i> Submit Request
-        </button>
-      </div>
-    </div>
-
     <!-- Success state -->
-    <div id="attendSuccess" class="hidden mt-8 pt-8 border-t border-gray-200">
-      <div class="text-center mb-6">
-        <div class="w-16 h-16 bg-[#FDF2F8] rounded-full flex items-center justify-center mx-auto mb-3">
-          <i data-lucide="check" class="w-8 h-8 text-[#8A1558]"></i>
+    <div id="attendSuccess" class="hidden mt-12">
+      <div class="ed-rule mb-10"></div>
+      <div class="mono-eyebrow mb-4">RSVP received</div>
+      <h3 class="display display-tight text-4xl md:text-6xl text-ink mb-4">You're in the bid pool.</h3>
+      <p class="text-base md:text-lg text-gray-700 max-w-2xl mb-8">If the room picks your group this week, you'll get a private link by email to claim your tickets.</p>
+      <div class="grid sm:grid-cols-3 gap-x-12 gap-y-6 max-w-3xl">
+        <div>
+          <div class="mono-eyebrow mb-1">Your position</div>
+          <div class="display display-tight text-4xl md:text-6xl text-[#8A1558]" id="attendQueuePosition">#1,285</div>
         </div>
-        <h3 class="text-2xl md:text-3xl font-black tracking-tighter mb-2">Request received.</h3>
-        <p class="text-gray-700">You're in the bid pool. We review every group and send offers to the strongest ones.</p>
+        <div>
+          <div class="mono-eyebrow mb-1">Group size</div>
+          <div class="display display-tight text-4xl md:text-6xl text-ink" id="attendGroupSizeOut">&mdash;</div>
+        </div>
+        <div>
+          <div class="mono-eyebrow mb-1">Request ID</div>
+          <div class="font-mono text-base md:text-lg text-ink tracking-tight break-all" id="attendRequestId">NMW-REQ-&mdash;</div>
+        </div>
       </div>
-      <div class="grid sm:grid-cols-2 gap-4 max-w-xl mx-auto">
-        <div class="bg-[#FDF2F8] border border-[#FBCFE8] rounded-xl p-4 text-center">
-          <div class="text-[10px] font-mono uppercase tracking-widest text-[#8A1558] mb-1">Your position</div>
-          <div class="text-3xl md:text-4xl font-black tabular-nums text-[#8A1558]" id="attendQueuePosition">#1,285</div>
-          <div class="text-xs text-gray-600 mt-1">in the bid pool</div>
-        </div>
-        <div class="bg-gray-50 border border-gray-200 rounded-xl p-4 text-center">
-          <div class="text-[10px] font-mono uppercase tracking-widest text-gray-500 mb-1">Group size</div>
-          <div class="text-3xl md:text-4xl font-black tabular-nums" id="attendGroupSizeOut">&mdash;</div>
-          <div class="text-xs text-gray-600 mt-1">tickets requested</div>
-        </div>
-      </div>
-      <p class="mt-6 text-center text-sm text-gray-600 max-w-xl mx-auto">If your group fits the room this week, you'll get an email with a private link to claim your tickets.</p>
     </div>
   </section>
 
@@ -390,81 +360,92 @@
   });
 })();
 
-// Two-step waitlist request form
+// RSVP single-step form with tile selectors
 (function attendForm(){
   const form = document.getElementById("attendForm");
-  const nextBtn = document.getElementById("attendNextBtn");
-  const backBtn = document.getElementById("attendBackBtn");
   const submitBtn = document.getElementById("attendSubmitBtn");
-  const pill1 = document.getElementById("attendStepPill1");
-  const pill2 = document.getElementById("attendStepPill2");
+  const hint = document.getElementById("attendValidationHint");
+  const sizeInput = document.getElementById("attendGroupSize");
+  const sizeTiles = document.getElementById("attendGroupTiles");
   const successEl = document.getElementById("attendSuccess");
-  const projectedEl = document.getElementById("projectedQueue");
   const queuePosEl = document.getElementById("attendQueuePosition");
   const groupSizeOutEl = document.getElementById("attendGroupSizeOut");
-  if(!form || !nextBtn || !submitBtn) return;
+  const requestIdEl = document.getElementById("attendRequestId");
+  if(!form || !submitBtn) return;
+
+  // Render the group-size tiles 1..9, then 10+
+  const sizes = ["1","2","3","4","5","6","7","8","9","10+"];
+  sizeTiles.innerHTML = sizes.map(n => `<button type="button" class="tile-select" data-val="${n}" role="radio" aria-checked="false">${n}</button>`).join("");
+
+  function bindTiles(container, hiddenInput){
+    container.addEventListener("click", e => {
+      const btn = e.target.closest("[data-val]");
+      if(!btn) return;
+      container.querySelectorAll(".tile-select").forEach(b => {
+        b.classList.remove("is-selected");
+        b.setAttribute("aria-checked","false");
+      });
+      btn.classList.add("is-selected");
+      btn.setAttribute("aria-checked","true");
+      hiddenInput.value = btn.dataset.val;
+      refreshSubmit();
+    });
+  }
+  bindTiles(sizeTiles, sizeInput);
+
+  function isValid(){
+    if(!sizeInput.value) return false;
+    return Array.from(form.querySelectorAll("input[required]")).every(f => f.checkValidity());
+  }
+  function refreshSubmit(){
+    const valid = isValid();
+    submitBtn.disabled = !valid;
+    if(hint) hint.textContent = valid ? "Ready to submit." : "Pick a group size + fill the required fields.";
+  }
+  form.addEventListener("input", refreshSubmit);
+  form.addEventListener("change", refreshSubmit);
 
   function projectedPosition(){
     const base = parseInt(document.querySelector("[data-counter=\"requests\"]")?.textContent.replace(/,/g,"") || "1284", 10);
     return base + 1;
   }
-  function refreshProjection(){ if(projectedEl) projectedEl.textContent = "#" + projectedPosition().toLocaleString(); }
-  refreshProjection();
-  setInterval(refreshProjection, 4000);
 
-  let part = 1;
-  function setPart(p){
-    part = p;
-    document.querySelectorAll("[data-attend-part]").forEach(el => {
-      el.classList.toggle("hidden", String(el.dataset.attendPart) !== String(p));
-    });
-    pill1.className = "inline-flex items-center gap-2 px-3 py-1.5 rounded-full " + (p===1 ? "bg-[#8A1558] text-white" : "bg-gray-100 text-gray-500");
-    pill2.className = "inline-flex items-center gap-2 px-3 py-1.5 rounded-full " + (p===2 ? "bg-[#8A1558] text-white" : "bg-gray-100 text-gray-500");
-    backBtn.classList.toggle("hidden", p===1);
-    nextBtn.classList.toggle("hidden", p===2);
-    submitBtn.classList.toggle("hidden", p===1);
-    refreshButtons();
-  }
-  function isPartValid(p){
-    const fields = form.querySelectorAll("[data-attend-part=\""+p+"\"] [required]");
-    return Array.from(fields).every(f => f.checkValidity());
-  }
-  function refreshButtons(){
-    if(part===1) nextBtn.disabled = !isPartValid(1);
-    else submitBtn.disabled = !isPartValid(2);
-  }
-  form.addEventListener("input", refreshButtons);
-  form.addEventListener("change", refreshButtons);
-  nextBtn.addEventListener("click", () => {
-    if(!isPartValid(1)){ form.reportValidity(); return; }
-    setPart(2);
-  });
-  backBtn.addEventListener("click", () => setPart(1));
-  submitBtn.addEventListener("click", () => {
-    if(!isPartValid(2)){ form.reportValidity(); return; }
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    if(!isValid()){ form.reportValidity(); return; }
     submitBtn.disabled = true;
-    submitBtn.innerHTML = "<i data-lucide=\"loader\" class=\"w-4 h-4 animate-spin\"></i> Submitting…";
+    submitBtn.innerHTML = `<i data-lucide="loader" class="w-4 h-4 animate-spin"></i> Submitting…`;
     if(typeof lucide !== "undefined") lucide.createIcons();
+
     setTimeout(() => {
       const data = Object.fromEntries(new FormData(form).entries());
+      data.at = new Date().toISOString();
+      data.id = "NMW-REQ-" + Date.now().toString(36).toUpperCase().slice(-6);
       try {
         const reqs = JSON.parse(localStorage.getItem("nmw.attendRequests") || "[]");
-        reqs.push({...data, at: new Date().toISOString()});
+        reqs.push(data);
         localStorage.setItem("nmw.attendRequests", JSON.stringify(reqs));
       } catch(_){}
+
       if(queuePosEl) queuePosEl.textContent = "#" + projectedPosition().toLocaleString();
       if(groupSizeOutEl) groupSizeOutEl.textContent = data.groupSize || "—";
+      if(requestIdEl) requestIdEl.textContent = data.id;
+
       form.classList.add("hidden");
-      nextBtn.classList.add("hidden");
-      backBtn.classList.add("hidden");
-      submitBtn.classList.add("hidden");
-      pill1.parentElement.classList.add("hidden");
       successEl.classList.remove("hidden");
       successEl.scrollIntoView({behavior: "smooth", block: "start"});
       if(typeof lucide !== "undefined") lucide.createIcons();
-    }, 700);
+
+      // Bump the live "requests in queue" counter so the next visitor sees it tick.
+      const liveEl = document.querySelector("[data-counter=\"requests\"]");
+      if(liveEl){
+        const cur = parseInt(liveEl.textContent.replace(/,/g,""),10) || 1284;
+        liveEl.textContent = (cur + 1).toLocaleString();
+      }
+    }, 600);
   });
-  setPart(1);
+
+  refreshSubmit();
 })();
 </script>
 </body>
