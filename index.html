@@ -97,7 +97,7 @@
 }
 </script>
 </head>
-<body class="text-gray-900 selection:bg-[#8A1558] selection:text-white bg-[linear-gradient(135deg,#f8f8f8_0%,#f5f2f7_30%,#f1e7f2_65%,#ead9ee_100%)]">
+<body class="text-gray-900 selection:bg-[#8A1558] selection:text-white bg-white">
 
 <!-- Urgency Bar (scrolling) -->
 <div class="urgency-bar" aria-label="Announcement">
@@ -143,7 +143,7 @@
 </nav>
 
 <!-- HERO -->
-<header class="relative bg-[var(--paper)] pt-10 md:pt-16 pb-12 md:pb-16 border-b border-gray-900">
+<header class="relative bg-white pt-10 md:pt-16 pb-12 md:pb-16 border-b border-gray-900">
   <div class="max-w-6xl mx-auto px-4 relative z-10 text-center">
     <div class="mono-eyebrow mb-4 text-center">[ Every Wednesday in NYC ]</div>
     <h1 class="display display-tight text-6xl sm:text-7xl md:text-[7.5rem] leading-[0.85] text-ink mb-6 max-w-5xl mx-auto text-center">Where Music, Conversation &amp; Attention Meet Every Wednesday</h1>
@@ -400,13 +400,21 @@
 </section>
 
 <!-- CLOSING -->
-<section class="bg-[var(--paper)] pt-8 md:pt-12 pb-12 md:pb-16">
-  <div class="max-w-6xl mx-auto px-4">
-    <div class="ed-rule mb-12"></div>
-    <div class="mono-eyebrow mb-4">Closing</div>
-    <p class="display display-tight text-4xl md:text-6xl text-ink mb-6 max-w-4xl">New Music Wednesdays isn't just about performing.</p>
-    <p class="text-lg md:text-xl text-gray-700 max-w-3xl mb-4">It's about creating the conversations, visibility, relationships, and moments that help music travel further.</p>
-    <p class="text-base md:text-lg text-gray-600 max-w-3xl">Every Wednesday brings together the people, media, energy, and culture that help records gain real-world attention.</p>
+<section class="pt-8 md:pt-12 pb-12 md:pb-16">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="bg-[#0A0A0A] rounded-3xl overflow-hidden grid md:grid-cols-2 gap-0">
+      <div class="p-8 md:p-12 lg:p-16 flex flex-col justify-center">
+        <h2 class="display display-tight text-4xl md:text-5xl lg:text-6xl text-[#FBCFE8] mb-6">New Music Wednesdays isn't just about performing.</h2>
+        <p class="text-base md:text-lg text-white/80 mb-4">It's about creating the conversations, visibility, relationships, and moments that help music travel further.</p>
+        <p class="text-base md:text-lg text-white/70 mb-8">Every Wednesday brings together the people, media, energy, and culture that help records gain real-world attention.</p>
+        <div>
+          <a href="attend.html" class="inline-block bg-white text-[#0A0A0A] font-mono text-xs uppercase tracking-widest font-bold px-6 py-3 rounded-full hover:bg-[#FBCFE8] transition-colors">RSVP For Access</a>
+        </div>
+      </div>
+      <div class="relative min-h-[280px] md:min-h-0">
+        <img src="images/audience.avif" alt="Crowd at New Music Wednesdays" class="absolute inset-0 w-full h-full object-cover" />
+      </div>
+    </div>
   </div>
 </section>
 
