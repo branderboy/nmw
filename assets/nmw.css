@@ -57,6 +57,7 @@ h1, h2, h3 { text-transform: capitalize; }
 /* ============ Editorial typography (Campaign Store vocabulary) ============ */
 .display       { font-family:'Anton','Impact',sans-serif; text-transform:uppercase; letter-spacing:.005em; line-height:.9; }
 .display-tight { letter-spacing:-.01em; }
+.section-h2    { font-family:'Anton','Impact',sans-serif; text-transform:uppercase; letter-spacing:-.005em; line-height:.92; color: var(--brand-500, #8A1558); }
 .mono-eyebrow  { font-family:'JetBrains Mono', ui-monospace, monospace; text-transform:uppercase; font-size:11px; font-weight:500; letter-spacing:.15em; color:#666; }
 .mono-tag      { font-family:'JetBrains Mono', ui-monospace, monospace; text-transform:uppercase; font-size:10px; font-weight:500; letter-spacing:.12em; }
 .ed-rule       { height:1px; background: var(--ink-deep); width:100%; }
@@ -121,15 +122,15 @@ body {
   border-bottom: 1px solid rgba(255,255,255,.08);
 }
 
-/* Main row: logo + nav links + single ATTEND CTA — grid keeps nav truly centered */
+/* Main row: logo + nav links + single ATTEND CTA — grid layout */
 .sxsw-header__main {
   background:#0A0A0A; color:#fff;
   display:grid; grid-template-columns: auto 1fr auto;
-  align-items:center; gap:1.5rem;
-  padding: 0.65rem 1.25rem;
+  align-items:center; gap:2rem;
+  padding: 0.75rem 2rem;
 }
 .sxsw-header__brand { display:flex; align-items:center; gap:.85rem; color:#fff; text-decoration:none; flex-shrink:0; }
-.sxsw-header__logo { height: 80px; width:auto; display:block; }
+.sxsw-header__logo { height: 110px; width:auto; display:block; }
 .sxsw-header__partner { font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:#9CA3AF; white-space:nowrap; }
 .sxsw-header__partner strong { color:#fff; font-weight:800; letter-spacing:.04em; font-size:13px; margin-left:.4rem; }
 
