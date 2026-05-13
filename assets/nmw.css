@@ -216,8 +216,8 @@ body {
   text-decoration:none; transition: transform .12s, background .12s;
   flex-shrink:0;
 }
-.sxsw-header__cta--primary { background:#FACC15; color:#0A0A0A; }
-.sxsw-header__cta--primary:hover { background:#FFD93C; transform: translateY(-1px); }
+.sxsw-header__cta--primary { background:#8A1558; color:#fff; }
+.sxsw-header__cta--primary:hover { background:#680D3E; transform: translateY(-1px); }
 
 @media (max-width: 767px) {
   .sxsw-header__nav-left { gap:1rem; overflow-x:auto; -webkit-overflow-scrolling: touch; }
@@ -413,22 +413,24 @@ body {
 
 .onboarding-label {
   display: block;
-  font-size: 0.7rem;
+  font-size: 0.85rem;
   font-weight: 800;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
-  color: #4b5563;
-  margin-bottom: 0.4rem;
+  color: #111827;
+  margin-bottom: 0.5rem;
 }
 .onboarding-input {
   width: 100%;
-  padding: 0.75rem 1rem;
-  border: 1.5px solid #e5e7eb;
+  padding: 0.85rem 1rem;
+  border: 1.5px solid #d1d5db;
   border-radius: 0.5rem;
-  font-size: 0.95rem;
+  font-size: 1rem;
+  color: #111827;
   background: #fff;
   transition: all 0.15s;
 }
+.onboarding-input::placeholder { color: #6b7280; }
 .onboarding-input:focus {
   outline: none;
   border-color: var(--brand-500);
