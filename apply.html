@@ -157,26 +157,7 @@
 
       <!-- STEP 0: AUDITION (default public entry) -->
       <section data-step="audition" class="step bg-white rounded-2xl shadow-sm p-6 md:p-10">
-        <div class="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-[#8A1558] mb-3">
-          <i data-lucide="mic" class="w-3.5 h-3.5"></i> Audition · Free · launch phase
-        </div>
-        <h2 class="text-2xl md:text-3xl font-black tracking-tight mb-1">SUBMIT YOUR MUSIC — FREE</h2>
-        <p class="text-gray-500 mb-6">Drop a track. Our A&amp;R team reviews every submission. <b>Free to submit during launch phase.</b> Approved artists get a private link to pick a Wednesday slot and unlock the full rollout funnel.</p>
-
-        <div class="rounded-xl border border-gray-200 bg-gray-50 p-4 mb-8 grid sm:grid-cols-3 gap-4 text-sm">
-          <div class="flex items-start gap-2">
-            <i data-lucide="list-ordered" class="w-4 h-4 text-[#8A1558] flex-shrink-0 mt-0.5"></i>
-            <div><b>Queue:</b> you'll see your position the moment you submit.</div>
-          </div>
-          <div class="flex items-start gap-2">
-            <i data-lucide="user-check" class="w-4 h-4 text-[#8A1558] flex-shrink-0 mt-0.5"></i>
-            <div><b>Reviewed:</b> human A&amp;R, not a bot. Avg ~72 hours.</div>
-          </div>
-          <div class="flex items-start gap-2">
-            <i data-lucide="rocket" class="w-4 h-4 text-[#8A1558] flex-shrink-0 mt-0.5"></i>
-            <div><b>Approved:</b> private rollout link with packages &amp; dates.</div>
-          </div>
-        </div>
+        <h2 class="text-2xl md:text-3xl font-black tracking-tight mb-6">Submit your music</h2>
 
         <form id="auditionForm" class="grid sm:grid-cols-2 gap-5">
           <div><label class="onboarding-label">Full Name *</label><input class="onboarding-input" name="name" placeholder="Your name" required></div>
@@ -203,17 +184,10 @@
           <div><label class="onboarding-label">Spotify Artist Profile</label><input class="onboarding-input" name="spotify" type="url" placeholder="open.spotify.com/artist/..."></div>
         </form>
 
-        <div class="mt-8 rounded-2xl p-5 md:p-6 text-white" style="background:linear-gradient(135deg,#680D3E 0%,#8A1558 100%);box-shadow:0 18px 40px -18px rgba(138,21,88,0.55);">
-          <div class="flex items-start sm:items-center gap-4 flex-col sm:flex-row sm:justify-between">
-            <div class="min-w-0">
-              <div class="text-xs font-black uppercase tracking-widest text-[#FBCFE8] mb-1">Submission</div>
-              <div class="text-2xl md:text-3xl font-black tracking-tight">Free · launch phase</div>
-              <div class="text-sm text-white/80 mt-1">No charge to submit during launch. Human A&amp;R review, queue placement, and a clear yes/no. If approved, you'll receive a private rollout link with package &amp; date options.</div>
-            </div>
-            <button id="auditionPayBtn" type="button" class="onboarding-cta onboarding-cta--brand !bg-black hover:!bg-gray-900 whitespace-nowrap" disabled>
-              <i data-lucide="send" class="w-4 h-4"></i> Submit free
-            </button>
-          </div>
+        <div class="mt-8 flex justify-end">
+          <button id="auditionPayBtn" type="button" class="onboarding-cta onboarding-cta--brand whitespace-nowrap" disabled>
+            <i data-lucide="send" class="w-4 h-4"></i> Submit
+          </button>
         </div>
 
         <div class="mt-6 grid sm:grid-cols-2 gap-4 text-xs text-gray-500">
