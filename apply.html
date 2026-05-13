@@ -138,9 +138,31 @@
 <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 md:pt-12 pb-2">
   <div class="font-mono text-[11px] uppercase tracking-[0.18em] text-gray-500 mb-3">Artist Access, NMW</div>
   <h1 class="text-5xl sm:text-6xl md:text-7xl font-black tracking-tighter uppercase leading-[0.9] mb-3 text-gray-900">Submit your music.</h1>
-  <p class="text-base md:text-lg text-gray-600 max-w-2xl">Free during launch phase. A&amp;R reviews every track.</p>
 </section>
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="h-px bg-gray-900 my-6"></div></div>
+
+<!-- LIVE DEMAND SIGNALS -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
+  <div class="text-[10px] font-mono uppercase tracking-[0.18em] text-gray-500 mb-3">Live demand &middot; this week</div>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+    <div class="bg-white border border-gray-200 rounded-xl p-4">
+      <div class="text-3xl md:text-4xl font-black tabular-nums text-gray-900" data-counter="artists" data-target="237">237</div>
+      <div class="text-[11px] font-mono uppercase tracking-widest text-gray-500 mt-1">artists in review</div>
+    </div>
+    <div class="bg-white border border-gray-200 rounded-xl p-4">
+      <div class="text-3xl md:text-4xl font-black tabular-nums text-gray-900" data-counter="fans" data-target="1284">1,284</div>
+      <div class="text-[11px] font-mono uppercase tracking-widest text-gray-500 mt-1">fans on waitlist</div>
+    </div>
+    <div class="bg-white border border-gray-200 rounded-xl p-4">
+      <div class="text-3xl md:text-4xl font-black tabular-nums text-[#8A1558]" data-counter="slots" data-target="6">6</div>
+      <div class="text-[11px] font-mono uppercase tracking-widest text-gray-500 mt-1">slots open this month</div>
+    </div>
+    <div class="bg-white border border-gray-200 rounded-xl p-4">
+      <div class="text-3xl md:text-4xl font-black tabular-nums text-gray-900" data-counter="approved" data-target="11">11</div>
+      <div class="text-[11px] font-mono uppercase tracking-widest text-gray-500 mt-1">approved this week</div>
+    </div>
+  </div>
+</section>
 
 <!-- STEP INDICATOR -->
 <section class="bg-gray-50 pt-10 pb-8">
@@ -157,34 +179,44 @@
 
       <!-- STEP 0: AUDITION (default public entry) -->
       <section data-step="audition" class="step bg-white rounded-2xl shadow-sm p-6 md:p-10">
-        <div class="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-[#8A1558] mb-3">
-          <i data-lucide="mic" class="w-3.5 h-3.5"></i> Audition · Free · launch phase
-        </div>
-        <h2 class="text-2xl md:text-3xl font-black tracking-tight mb-1">SUBMIT YOUR MUSIC — FREE</h2>
-        <p class="text-gray-500 mb-6">Drop a track. Our A&amp;R team reviews every submission. <b>Free to submit during launch phase.</b> Approved artists get a private link to pick a Wednesday slot and unlock the full rollout funnel.</p>
 
-        <div class="rounded-xl border border-gray-200 bg-gray-50 p-4 mb-8 grid sm:grid-cols-3 gap-4 text-sm">
-          <div class="flex items-start gap-2">
-            <i data-lucide="list-ordered" class="w-4 h-4 text-[#8A1558] flex-shrink-0 mt-0.5"></i>
-            <div><b>Queue:</b> you'll see your position the moment you submit.</div>
+        <!-- Heads-up: we're backed up. Plus the visitor's projected queue position. -->
+        <div class="rounded-xl border-2 border-yellow-300 bg-yellow-50 p-4 md:p-5 mb-4 flex items-start gap-3">
+          <i data-lucide="alert-circle" class="w-6 h-6 text-yellow-700 flex-shrink-0 mt-0.5"></i>
+          <div>
+            <div class="font-black text-yellow-900 tracking-tight">Heads up &mdash; we're backed up.</div>
+            <p class="text-sm text-yellow-800 mt-0.5">Review queue is heavy right now. Submit and hold tight &mdash; A&amp;R is working through it in order.</p>
           </div>
-          <div class="flex items-start gap-2">
-            <i data-lucide="user-check" class="w-4 h-4 text-[#8A1558] flex-shrink-0 mt-0.5"></i>
-            <div><b>Reviewed:</b> human A&amp;R, not a bot. Avg ~72 hours.</div>
+        </div>
+        <div class="rounded-xl border-2 border-[#FBCFE8] bg-[#FDF2F8] p-4 md:p-5 mb-6 flex items-center gap-4">
+          <div class="w-12 h-12 rounded-lg bg-white text-[#8A1558] flex items-center justify-center flex-shrink-0">
+            <i data-lucide="user-plus" class="w-6 h-6"></i>
           </div>
-          <div class="flex items-start gap-2">
-            <i data-lucide="rocket" class="w-4 h-4 text-[#8A1558] flex-shrink-0 mt-0.5"></i>
-            <div><b>Approved:</b> private rollout link with packages &amp; dates.</div>
+          <div class="flex-1 min-w-0">
+            <div class="text-[10px] font-mono uppercase tracking-[0.18em] text-[#8A1558] mb-0.5">Visitor #<span id="visitorNumber" data-counter="visitor" data-target="2847">2,847</span> today</div>
+            <div class="font-black tracking-tight text-gray-900 text-base md:text-lg">If you submit now, you'd be <span class="text-[#8A1558]" id="projectedQueue">#238</span> in the review queue.</div>
           </div>
+        </div>
+
+        <h2 class="text-2xl md:text-3xl font-black tracking-tight mb-2">Submit your music</h2>
+        <p class="text-sm text-gray-500 mb-6">Two steps. Less than a minute.</p>
+
+        <!-- Step pill indicator -->
+        <div class="flex items-center gap-2 mb-6 text-xs font-black uppercase tracking-widest">
+          <span id="auditionStepPill1" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#8A1558] text-white">1 &middot; You</span>
+          <span class="w-6 h-px bg-gray-300"></span>
+          <span id="auditionStepPill2" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-100 text-gray-500">2 &middot; The Record</span>
         </div>
 
         <form id="auditionForm" class="grid sm:grid-cols-2 gap-5">
-          <div><label class="onboarding-label">Full Name *</label><input class="onboarding-input" name="name" placeholder="Your name" required></div>
-          <div><label class="onboarding-label">Email Address *</label><input class="onboarding-input" name="email" type="email" placeholder="you@email.com" required></div>
-          <div><label class="onboarding-label">Artist / Stage Name *</label><input class="onboarding-input" name="artistName" placeholder="Stage name" required></div>
-          <div><label class="onboarding-label">Phone (Optional)</label><input class="onboarding-input" name="phone" type="tel" placeholder="(555) 000-0000"></div>
-          <div><label class="onboarding-label">Location *</label><input class="onboarding-input" name="location" placeholder="City, State" required></div>
-          <div><label class="onboarding-label">Primary Genre *</label>
+          <!-- Step 1 fields: who you are -->
+          <div data-audition-part="1"><label class="onboarding-label">Full Name *</label><input class="onboarding-input" name="name" placeholder="Your name" required></div>
+          <div data-audition-part="1"><label class="onboarding-label">Email Address *</label><input class="onboarding-input" name="email" type="email" placeholder="you@email.com" required></div>
+          <div data-audition-part="1"><label class="onboarding-label">Artist / Stage Name *</label><input class="onboarding-input" name="artistName" placeholder="Stage name" required></div>
+          <div data-audition-part="1"><label class="onboarding-label">Location *</label><input class="onboarding-input" name="location" placeholder="City, State" required></div>
+
+          <!-- Step 2 fields: the record (hidden until step 1 is valid) -->
+          <div data-audition-part="2" class="hidden"><label class="onboarding-label">Primary Genre *</label>
             <select class="onboarding-input" name="genre" required>
               <option value="">Select…</option>
               <option>Hip Hop</option>
@@ -197,21 +229,21 @@
               <option>Latin Urban / Dance</option>
             </select>
           </div>
-          <div class="sm:col-span-2"><label class="onboarding-label">Submission Track URL * <span class="text-gray-400 font-normal">(Spotify, Apple Music, SoundCloud, YouTube, or Dropbox link)</span></label><input class="onboarding-input" name="trackUrl" type="url" placeholder="https://..." required></div>
-          <div class="sm:col-span-2"><label class="onboarding-label">Why this record? <span class="text-gray-400 font-normal">(1-2 sentences for our A&amp;R team)</span></label><textarea class="onboarding-input min-h-[96px]" name="pitch" rows="3" placeholder="Tell us about the record, the rollout, and what you're trying to build."></textarea></div>
-          <div><label class="onboarding-label">Instagram</label><input class="onboarding-input" name="instagram" placeholder="@yourhandle"></div>
-          <div><label class="onboarding-label">Spotify Artist Profile</label><input class="onboarding-input" name="spotify" type="url" placeholder="open.spotify.com/artist/..."></div>
+          <div data-audition-part="2" class="hidden"><label class="onboarding-label">Phone (Optional)</label><input class="onboarding-input" name="phone" type="tel" placeholder="(555) 000-0000"></div>
+          <div data-audition-part="2" class="hidden sm:col-span-2"><label class="onboarding-label">Submission Track URL * <span class="text-gray-400 font-normal">(Spotify, Apple Music, SoundCloud, YouTube, or Dropbox link)</span></label><input class="onboarding-input" name="trackUrl" type="url" placeholder="https://..." required></div>
+          <div data-audition-part="2" class="hidden sm:col-span-2"><label class="onboarding-label">Why this record? <span class="text-gray-400 font-normal">(1-2 sentences for our A&amp;R team)</span></label><textarea class="onboarding-input min-h-[96px]" name="pitch" rows="3" placeholder="Tell us about the record, the rollout, and what you're trying to build."></textarea></div>
+          <div data-audition-part="2" class="hidden"><label class="onboarding-label">Instagram</label><input class="onboarding-input" name="instagram" placeholder="@yourhandle"></div>
+          <div data-audition-part="2" class="hidden"><label class="onboarding-label">Spotify Artist Profile</label><input class="onboarding-input" name="spotify" type="url" placeholder="open.spotify.com/artist/..."></div>
         </form>
 
-        <div class="mt-8 rounded-2xl p-5 md:p-6 text-white" style="background:linear-gradient(135deg,#680D3E 0%,#8A1558 100%);box-shadow:0 18px 40px -18px rgba(138,21,88,0.55);">
-          <div class="flex items-start sm:items-center gap-4 flex-col sm:flex-row sm:justify-between">
-            <div class="min-w-0">
-              <div class="text-xs font-black uppercase tracking-widest text-[#FBCFE8] mb-1">Submission</div>
-              <div class="text-2xl md:text-3xl font-black tracking-tight">Free · launch phase</div>
-              <div class="text-sm text-white/80 mt-1">No charge to submit during launch. Human A&amp;R review, queue placement, and a clear yes/no. If approved, you'll receive a private rollout link with package &amp; date options.</div>
-            </div>
-            <button id="auditionPayBtn" type="button" class="onboarding-cta onboarding-cta--brand !bg-black hover:!bg-gray-900 whitespace-nowrap" disabled>
-              <i data-lucide="send" class="w-4 h-4"></i> Submit free
+        <div class="mt-8 flex justify-between items-center gap-3">
+          <button id="auditionBackBtn" type="button" class="text-xs font-black uppercase tracking-widest text-gray-500 hover:text-gray-900 hidden">&larr; Back</button>
+          <div class="ml-auto flex gap-3">
+            <button id="auditionNextBtn" type="button" class="onboarding-cta onboarding-cta--brand whitespace-nowrap" disabled>
+              Continue <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+            <button id="auditionPayBtn" type="button" class="onboarding-cta onboarding-cta--brand whitespace-nowrap hidden" disabled>
+              <i data-lucide="send" class="w-4 h-4"></i> Submit
             </button>
           </div>
         </div>
@@ -229,54 +261,43 @@
             <i data-lucide="check" class="w-10 h-10 text-[#8A1558]"></i>
           </div>
           <div class="text-[10px] font-black uppercase tracking-widest text-[#8A1558] mb-2">You're in the queue</div>
-          <h2 class="text-3xl md:text-4xl font-black tracking-tighter mb-2">SUBMISSION RECEIVED.</h2>
-          <p class="text-gray-600 text-lg">We've got your record. Our A&amp;R team is on it.</p>
+          <h2 class="text-3xl md:text-4xl font-black tracking-tighter mb-2">Submission received.</h2>
+          <p class="text-gray-700 text-base md:text-lg max-w-xl mx-auto">Heads up &mdash; we're backed up right now. A&amp;R is working through the queue in order.</p>
         </div>
 
-        <div class="grid sm:grid-cols-3 gap-4 mb-8">
+        <div class="grid sm:grid-cols-2 gap-4 mb-8">
           <div class="bg-[#FDF2F8] border border-[#FBCFE8] rounded-xl p-5 text-center">
             <div class="text-[10px] font-black uppercase tracking-widest text-[#8A1558] mb-1">Your position</div>
             <div class="text-4xl md:text-5xl font-black tabular-nums text-[#8A1558]" id="queuePosition">#238</div>
             <div class="text-xs text-gray-600 mt-1">in the review queue</div>
           </div>
           <div class="bg-gray-50 border border-gray-200 rounded-xl p-5 text-center">
-            <div class="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-1">Avg review</div>
-            <div class="text-4xl md:text-5xl font-black tabular-nums">~72h</div>
-            <div class="text-xs text-gray-600 mt-1">A&amp;R turnaround</div>
-          </div>
-          <div class="bg-gray-50 border border-gray-200 rounded-xl p-5 text-center">
-            <div class="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-1">Approval rate</div>
-            <div class="text-4xl md:text-5xl font-black tabular-nums">~18%</div>
-            <div class="text-xs text-gray-600 mt-1">last 30 days</div>
+            <div class="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-1">Standard review</div>
+            <div class="text-4xl md:text-5xl font-black tabular-nums">~2-3 wks</div>
+            <div class="text-xs text-gray-600 mt-1">current backlog</div>
           </div>
         </div>
 
-        <div class="bg-yellow-50 border-2 border-yellow-300 rounded-xl p-5 mb-6 flex items-start gap-3">
-          <i data-lucide="mail" class="w-6 h-6 text-yellow-700 flex-shrink-0"></i>
-          <div>
-            <h3 class="font-black text-yellow-900">Watch your inbox.</h3>
-            <p class="text-sm text-yellow-800 mt-0.5">If approved, you'll get a private rollout link to pick your Wednesday, choose a package, and unlock distribution upgrades. If passed, you'll get written A&amp;R feedback.</p>
-          </div>
-        </div>
-
-        <!-- UPGRADE TEASER: arrow CTA. The actual priority payment link is sent by email a few days later (operator-side funnel). -->
-        <button id="upgradeTeaserBtn" type="button" class="group w-full text-left mb-6 rounded-2xl p-5 md:p-6 text-white transition-transform hover:-translate-y-0.5" style="background:linear-gradient(135deg,#680D3E 0%,#8A1558 100%);box-shadow:0 18px 40px -18px rgba(138,21,88,0.55);">
-          <div class="flex items-center gap-5">
+        <!-- PRIORITY UPGRADE: $35 to jump the queue -->
+        <div id="upgradeTeaserBtn" class="mb-6 rounded-2xl p-5 md:p-6 text-white" style="background:linear-gradient(135deg,#680D3E 0%,#8A1558 100%);box-shadow:0 18px 40px -18px rgba(138,21,88,0.55);">
+          <div class="flex flex-col sm:flex-row sm:items-center gap-4">
             <div class="w-12 h-12 rounded-xl bg-white/15 flex items-center justify-center flex-shrink-0">
               <i data-lucide="zap" class="w-6 h-6 text-[#FBCFE8]"></i>
             </div>
             <div class="flex-1 min-w-0">
-              <div class="text-[10px] font-black uppercase tracking-widest text-[#FBCFE8] mb-1">Upgrade your submission</div>
-              <div class="text-lg md:text-xl font-black tracking-tight">Bump to the top of the A&amp;R stack.</div>
-              <div class="text-sm text-white/75 mt-0.5">Skip the line. Get written A&amp;R feedback within ~72 hours, either way.</div>
+              <div class="text-[10px] font-black uppercase tracking-widest text-[#FBCFE8] mb-1">Make your submission a priority</div>
+              <div class="text-xl md:text-2xl font-black tracking-tight">Jump the queue &mdash; <span class="text-[#FBCFE8]">$35</span></div>
+              <div class="text-sm text-white/80 mt-1">A&amp;R reviews priority submissions within 72 hours and sends written feedback either way.</div>
             </div>
-            <i data-lucide="arrow-right" class="w-7 h-7 text-[#FBCFE8] flex-shrink-0 group-hover:translate-x-1 transition-transform"></i>
+            <button id="upgradePayBtn" type="button" class="bg-[#FBCFE8] text-[#680D3E] font-black uppercase tracking-widest text-xs px-5 py-3 rounded-md hover:bg-white whitespace-nowrap inline-flex items-center gap-2">
+              <i data-lucide="zap" class="w-4 h-4"></i> Upgrade $35
+            </button>
           </div>
-        </button>
+        </div>
         <div id="upgradeTeaserConfirm" class="hidden mb-6 rounded-xl border-2 border-[#FBCFE8] bg-[#FDF2F8] p-4 flex items-start gap-3">
           <i data-lucide="check-circle-2" class="w-5 h-5 text-[#8A1558] flex-shrink-0 mt-0.5"></i>
           <div class="text-sm text-[#680D3E]">
-            <b>Got it.</b> We'll email you a private upgrade link in the next few days. No action needed on your end.
+            <b>Priority requested.</b> We'll email you the $35 payment link shortly. Once paid, your submission jumps to the top of the queue.
           </div>
         </div>
 
@@ -1272,27 +1293,71 @@ validateStep1();
   });
 })();
 
-// Audition form wiring (launch phase: free submit; upgrade pitched on success screen)
+// Audition form wiring: two-step (You → The Record), live projected-queue preview
 (function auditionWiring() {
   const form = document.getElementById('auditionForm');
   const payBtn = document.getElementById('auditionPayBtn');
-  if (!form || !payBtn) return;
+  const nextBtn = document.getElementById('auditionNextBtn');
+  const backBtn = document.getElementById('auditionBackBtn');
+  const pill1 = document.getElementById('auditionStepPill1');
+  const pill2 = document.getElementById('auditionStepPill2');
+  const projectedEl = document.getElementById('projectedQueue');
+  if (!form || !payBtn || !nextBtn) return;
 
-  function isValid() { return form.checkValidity(); }
-  function refresh() { payBtn.disabled = !isValid(); }
-  form.addEventListener('input', refresh);
-  form.addEventListener('change', refresh);
-  refresh();
+  // Compute the visitor's projected queue position from the live demand counter.
+  function projectedPosition() {
+    const base = parseInt(document.querySelector('[data-counter="artists"]')?.textContent.replace(/,/g, '') || '237', 10);
+    return base + 1;
+  }
+  function refreshProjection() {
+    if (projectedEl) projectedEl.textContent = '#' + projectedPosition().toLocaleString();
+  }
+  refreshProjection();
+  // Drift the projection upward as the live counter ticks.
+  setInterval(refreshProjection, 4000);
+
+  // Two-step machinery: validate only the fields visible in the current part.
+  let part = 1;
+  function setPart(p) {
+    part = p;
+    document.querySelectorAll('[data-audition-part]').forEach(el => {
+      const matches = String(el.dataset.auditionPart) === String(p);
+      el.classList.toggle('hidden', !matches);
+    });
+    pill1.className = 'inline-flex items-center gap-2 px-3 py-1.5 rounded-full ' + (p === 1 ? 'bg-[#8A1558] text-white' : 'bg-gray-100 text-gray-500');
+    pill2.className = 'inline-flex items-center gap-2 px-3 py-1.5 rounded-full ' + (p === 2 ? 'bg-[#8A1558] text-white' : 'bg-gray-100 text-gray-500');
+    backBtn.classList.toggle('hidden', p === 1);
+    nextBtn.classList.toggle('hidden', p === 2);
+    payBtn.classList.toggle('hidden', p === 1);
+    refreshButtons();
+  }
+  function isPartValid(p) {
+    const fields = form.querySelectorAll('[data-audition-part="' + p + '"] [required]');
+    return Array.from(fields).every(f => f.checkValidity());
+  }
+  function refreshButtons() {
+    if (part === 1) nextBtn.disabled = !isPartValid(1);
+    else payBtn.disabled = !isPartValid(2);
+  }
+  form.addEventListener('input', refreshButtons);
+  form.addEventListener('change', refreshButtons);
+
+  nextBtn.addEventListener('click', () => {
+    if (!isPartValid(1)) { form.reportValidity(); return; }
+    setPart(2);
+    refreshProjection();
+    document.querySelector('[data-audition-part="2"] input,[data-audition-part="2"] select')?.focus();
+  });
+  backBtn.addEventListener('click', () => setPart(1));
 
   payBtn.addEventListener('click', () => {
-    if (!isValid()) { form.reportValidity(); return; }
+    if (!isPartValid(2)) { form.reportValidity(); return; }
     payBtn.disabled = true;
     payBtn.innerHTML = '<i data-lucide="loader" class="w-4 h-4 animate-spin"></i> Submitting…';
     if (typeof lucide !== 'undefined') lucide.createIcons();
 
     setTimeout(() => {
       const data = Object.fromEntries(new FormData(form).entries());
-      // Persist enough info that the approved-mode flow can prefill the package picker form.
       try {
         funnel.info = Object.assign({}, funnel.info, {
           name: data.name, email: data.email, artistName: data.artistName,
@@ -1302,9 +1367,7 @@ validateStep1();
         NMW.setFunnel(funnel);
       } catch (_) {}
 
-      // Show queue position + submission id on the success screen
-      const baseQueue = parseInt(document.querySelector('[data-counter="artists"]')?.textContent.replace(/,/g, '') || '237', 10);
-      const myPos = baseQueue + 1;
+      const myPos = projectedPosition();
       const posEl = document.getElementById('queuePosition');
       if (posEl) posEl.textContent = '#' + myPos.toLocaleString();
       const idEl = document.getElementById('auditionId');
@@ -1316,6 +1379,8 @@ validateStep1();
       showStep('audition-success');
     }, 900);
   });
+
+  setPart(1);
 })();
 // ---------- end AUDITION FLOW ----------
 showStep(currentStep);

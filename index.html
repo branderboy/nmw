@@ -112,16 +112,26 @@
   <a href="index.html" class="nmw-logo-block">
     <img src="images/nmw-logo.png" alt="New Music Wednesday" class="nmw-logo-img" />
   </a>
-  <div class="hidden md:flex space-x-6 items-center text-sm font-bold tracking-wide text-gray-600">
-    <a href="index.html" class="text-black">HOME</a>
-    <a href="mission.html" class="hover:text-black">MISSION</a>
-    <a href="events.html" class="hover:text-black">ATTEND</a>
-    <a href="dj-call.html" class="hover:text-black">DJ CALL</a>
-    <a href="podcast.html" class="hover:text-black">PODCAST</a>
-    <a href="apply.html" class="hover:text-black">ARTIST ACCESS</a>
-    <a href="faq.html" class="hover:text-black">FAQ</a>
-    <a href="alerts.html" class="hover:text-black">GET ALERTS</a>
-    <a href="sponsor.html" class="hover:text-black">CAMPAIGN STORE</a>
+  <div class="hidden md:flex nmw-nav__menu">
+    <a href="index.html" class="is-active">HOME</a>
+    <a href="attend.html">ATTEND</a>
+    <a href="apply.html">ARTIST ACCESS</a>
+    <div class="nav-dropdown">
+      <button type="button" class="nav-dropdown__trigger">LISTEN</button>
+      <div class="nav-dropdown__panel">
+        <a href="dj-call.html">DJ Call</a>
+        <a href="podcast.html">Podcast</a>
+      </div>
+    </div>
+    <a href="blog.html">THE DROP</a>
+    <a href="sponsor.html">CAMPAIGN STORE</a>
+    <div class="nav-dropdown">
+      <button type="button" class="nav-dropdown__trigger">MISSION</button>
+      <div class="nav-dropdown__panel">
+        <a href="mission.html">Mission</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+    </div>
   </div>
   </div>
 </nav>
@@ -138,14 +148,14 @@
       Where Music, Conversation &amp; Attention Meet Every Wednesday
     </h1>
 
-    <p class="text-lg md:text-2xl text-gray-700 max-w-3xl mx-auto font-medium leading-relaxed mb-4" data-cms="heroSubhead">
-      New Music Wednesdays is a live NYC music ecosystem helping artists create conversation, visibility, and real industry attention around their music.
+    <p class="text-lg md:text-2xl text-gray-700 max-w-3xl mx-auto font-medium leading-relaxed mb-3" data-cms="heroSubhead">
+      A live NYC music ecosystem.
     </p>
-    <p class="text-base md:text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed mb-4">
-      Powered by DJs, influencers, media personalities, producers, managers, tastemakers, and creatives shaping culture in real time.
+    <p class="text-base md:text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed mb-3">
+      Conversation. Visibility. Real industry attention.
     </p>
     <p class="text-base md:text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed mb-8">
-      From the legendary Digiwaxx DJ Call on Zoom to live performances, interviews, penthouse networking, content creation, and curated happy hours &mdash; every Wednesday is built to help music move beyond streaming platforms and into real conversations.
+      Powered by DJs, influencers, media, producers, and tastemakers shaping culture.
     </p>
 
     <!-- Hero CTAs -->
@@ -191,9 +201,9 @@
 <!-- Intro Section -->
 <section class="py-12 md:py-20 bg-white">
   <div class="max-w-4xl mx-auto px-4 text-center">
-    <h2 class="text-3xl md:text-5xl font-black tracking-tight mb-6">More than an event, <span class="text-[#8A1558]">New Music Wednesdays</span> creates environments where artists, DJs, media personalities, influencers, producers, and tastemakers connect around music, culture, and visibility.</h2>
-    <p class="text-lg md:text-xl text-gray-700 font-serif italic mb-2">This isn't random networking.</p>
-    <p class="text-lg md:text-xl text-gray-700 font-serif italic mb-8">This is a live music and media environment designed to help records gain attention in the real world.</p>
+    <h2 class="text-4xl md:text-6xl font-black tracking-tighter mb-4">More than an event.</h2>
+    <p class="text-base md:text-lg text-gray-700 max-w-2xl mx-auto mb-2">A live music and media environment.</p>
+    <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto mb-8 font-serif italic">Built to help records gain attention in the real world.</p>
     <p class="text-base md:text-lg text-gray-600 mb-6">Inside the room:</p>
     <div class="flex flex-wrap justify-center gap-2 md:gap-3">
       <span class="inline-flex items-center px-4 py-2 rounded-full bg-[#FDF2F8] border border-[#FBCFE8] text-[#8A1558] text-sm font-bold">DJs</span>
@@ -213,8 +223,10 @@
 <!-- This Wednesday -->
 <section class="py-12 md:py-20 bg-gray-50 border-t border-gray-200">
   <div class="max-w-4xl mx-auto px-4 text-center">
-    <h2 class="text-3xl md:text-5xl font-black tracking-tight mb-4">This Wednesday</h2>
-    <p class="text-base md:text-lg text-gray-700 mb-8">Every Wednesday brings a different energy, different conversations, and different opportunities.</p>
+    <h2 class="text-4xl md:text-6xl font-black tracking-tighter mb-4">This Wednesday</h2>
+    <p class="text-base md:text-lg text-gray-700 mb-2">Different energy.</p>
+    <p class="text-base md:text-lg text-gray-700 mb-2">Different conversations.</p>
+    <p class="text-base md:text-lg text-gray-700 mb-8">Different opportunities.</p>
     <p class="text-xs font-black tracking-widest uppercase text-[#8A1558] mb-6">This Week Includes</p>
     <ul class="grid sm:grid-cols-2 gap-3 max-w-2xl mx-auto text-left">
       <li class="flex items-center gap-3 font-bold text-gray-800"><i data-lucide="check-circle" class="w-5 h-5 text-[#8A1558] flex-shrink-0"></i> The Digiwaxx DJ Call on Zoom</li>
