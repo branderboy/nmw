@@ -64,6 +64,19 @@ h1, h2, h3 { text-transform: capitalize; }
 .ed-rule-thin  { height:1px; background: rgba(10,10,10,.15); width:100%; }
 .text-ink      { color: var(--ink-deep); }
 
+/* Partner / press logo wordmarks: clean grayscale type that hovers to brand */
+.partner-logo {
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: 'Anton', 'Impact', sans-serif;
+  font-size: 1.1rem; letter-spacing: .04em; text-transform: uppercase;
+  color: #9CA3AF;
+  text-decoration: none;
+  transition: color .15s, transform .15s;
+  white-space: nowrap;
+}
+@media (min-width: 768px) { .partner-logo { font-size: 1.35rem; } }
+.partner-logo:hover { color: var(--brand-500, #8A1558); transform: translateY(-1px); }
+
 /* ============ Editorial tile selector (RSVP, etc.) ============ */
 .tile-select {
   appearance: none; background: #fff; border: 1.5px solid #e5e7eb;
