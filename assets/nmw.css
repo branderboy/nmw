@@ -121,19 +121,20 @@ body {
   border-bottom: 1px solid rgba(255,255,255,.08);
 }
 
-/* Main row: logo + nav links + single ATTEND CTA */
+/* Main row: logo + nav links + single ATTEND CTA — grid keeps nav truly centered */
 .sxsw-header__main {
   background:#0A0A0A; color:#fff;
-  display:flex; align-items:center; gap:1.5rem;
+  display:grid; grid-template-columns: auto 1fr auto;
+  align-items:center; gap:1.5rem;
   padding: 0.65rem 1.25rem;
 }
 .sxsw-header__brand { display:flex; align-items:center; gap:.85rem; color:#fff; text-decoration:none; flex-shrink:0; }
-.sxsw-header__logo { height: 60px; width:auto; display:block; }
+.sxsw-header__logo { height: 80px; width:auto; display:block; }
 .sxsw-header__partner { font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:#9CA3AF; white-space:nowrap; }
 .sxsw-header__partner strong { color:#fff; font-weight:800; letter-spacing:.04em; font-size:13px; margin-left:.4rem; }
 
 .sxsw-header__nav-left {
-  flex:1; display:flex; align-items:center; justify-content:center; gap:1.75rem;
+  display:flex; align-items:center; justify-content:flex-end; gap:1.75rem;
 }
 .sxsw-header__nav-left > a,
 .sxsw-header__nav-left .nav-dropdown__trigger {
