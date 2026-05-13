@@ -135,36 +135,142 @@
 
 <section class="max-w-5xl mx-auto px-4 pt-8 md:pt-12 pb-2">
   <div class="font-mono text-[11px] uppercase tracking-[0.18em] text-gray-500 mb-3">Attend, NMW</div>
-  <h1 class="text-5xl sm:text-6xl md:text-7xl font-black tracking-tighter uppercase leading-[0.9] mb-3 text-gray-900">Wednesdays at the Penthouse.</h1>
-  <p class="text-base md:text-lg text-gray-600 max-w-2xl">RSVP for the next show. ~150 seats.</p>
+  <h1 class="text-5xl sm:text-6xl md:text-7xl font-black tracking-tighter uppercase leading-[0.9] mb-3 text-gray-900">Request your spot.</h1>
+  <p class="text-base md:text-lg text-gray-600 max-w-2xl">Group-based waitlist. We send offers to the strongest groups each week.</p>
 </section>
 <div class="max-w-5xl mx-auto px-4"><div class="h-px bg-gray-900 my-6"></div></div>
 
-<main class="max-w-5xl mx-auto px-4 py-10">
-
-<div class="mb-8 flex flex-wrap gap-2 items-center">
-    <a id="recurringCal" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-[#8A1558] text-white px-4 py-2.5 rounded-md text-sm font-bold hover:bg-[#680D3E] transition-colors"><i data-lucide="calendar-plus" class="w-4 h-4"></i> Add weekly to calendar</a>
-    <button id="shareTeamBtn" type="button" class="inline-flex items-center gap-2 bg-white border border-gray-300 text-gray-900 px-4 py-2.5 rounded-md text-sm font-bold hover:bg-gray-100 transition-colors"><i data-lucide="share-2" class="w-4 h-4"></i> Share With Your Team</button>
-    <span id="shareTeamToast" class="hidden text-xs font-bold text-[#8A1558]">Link copied</span>
+<!-- LIVE DEMAND -->
+<section class="max-w-5xl mx-auto px-4 mb-6">
+  <div class="text-[10px] font-mono uppercase tracking-[0.18em] text-gray-500 mb-3">Live demand &middot; this week</div>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+    <div class="bg-white border border-gray-200 rounded-xl p-4">
+      <div class="text-3xl md:text-4xl font-black tabular-nums text-gray-900" data-counter="requests" data-target="1284">1,284</div>
+      <div class="text-[11px] font-mono uppercase tracking-widest text-gray-500 mt-1">requests in queue</div>
+    </div>
+    <div class="bg-white border border-gray-200 rounded-xl p-4">
+      <div class="text-3xl md:text-4xl font-black tabular-nums text-gray-900" data-counter="groups" data-target="47">47</div>
+      <div class="text-[11px] font-mono uppercase tracking-widest text-gray-500 mt-1">groups offered this month</div>
+    </div>
+    <div class="bg-white border border-gray-200 rounded-xl p-4">
+      <div class="text-3xl md:text-4xl font-black tabular-nums text-[#8A1558]" data-counter="seats" data-target="150">150</div>
+      <div class="text-[11px] font-mono uppercase tracking-widest text-gray-500 mt-1">seats per Wednesday</div>
+    </div>
+    <div class="bg-white border border-gray-200 rounded-xl p-4">
+      <div class="text-3xl md:text-4xl font-black tabular-nums text-gray-900" data-counter="left" data-target="23">23</div>
+      <div class="text-[11px] font-mono uppercase tracking-widest text-gray-500 mt-1">spots open this Wed</div>
+    </div>
   </div>
+</section>
 
-  <!-- Featured next event (Eventbrite-style: simple hero card) -->
-  <section id="featuredWrap" class="mb-5 md:mb-12"></section>
+<main class="max-w-5xl mx-auto px-4 py-6">
 
-  <!-- Upcoming events list -->
-  <section class="mb-5 md:mb-12">
-    <div class="flex items-end justify-between flex-wrap gap-3 mb-5">
-      <h2 class="text-2xl font-black tracking-tight text-gray-900">More events</h2>
-      <div class="flex items-center gap-2 text-sm">
-        <label for="rangeSel" class="text-xs font-bold uppercase tracking-wider text-gray-500">Show:</label>
-        <select id="rangeSel" class="border border-gray-300 rounded-md px-3 py-1.5 text-sm bg-white">
-          <option value="4">Next 4 weeks</option>
-          <option value="8" selected>Next 8 weeks</option>
-          <option value="12">Next 12 weeks</option>
-        </select>
+  <!-- WAITLIST REQUEST FORM -->
+  <section class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 md:p-10 mb-12">
+
+    <!-- Heads-up: we're at capacity + how the bid works -->
+    <div class="rounded-xl border-2 border-yellow-300 bg-yellow-50 p-4 md:p-5 mb-4 flex items-start gap-3">
+      <i data-lucide="alert-circle" class="w-6 h-6 text-yellow-700 flex-shrink-0 mt-0.5"></i>
+      <div>
+        <div class="font-black text-yellow-900 tracking-tight">We're at capacity &mdash; this week is bid-based.</div>
+        <p class="text-sm text-yellow-800 mt-0.5">Tell us about your group. We review every request and send offers to the strongest groups. If yours is selected, we'll email a private link to claim your tickets.</p>
       </div>
     </div>
-    <div id="eventList" class="divide-y divide-gray-200 border-t border-gray-200"></div>
+
+    <!-- Visitor + projected queue position -->
+    <div class="rounded-xl border-2 border-[#FBCFE8] bg-[#FDF2F8] p-4 md:p-5 mb-6 flex items-center gap-4">
+      <div class="w-12 h-12 rounded-lg bg-white text-[#8A1558] flex items-center justify-center flex-shrink-0">
+        <i data-lucide="users" class="w-6 h-6"></i>
+      </div>
+      <div class="flex-1 min-w-0">
+        <div class="text-[10px] font-mono uppercase tracking-[0.18em] text-[#8A1558] mb-0.5">Visitor #<span data-counter="visitor" data-target="2847">2,847</span> today</div>
+        <div class="font-black tracking-tight text-gray-900 text-base md:text-lg">If you request now, you'd be <span class="text-[#8A1558]" id="projectedQueue">#1,285</span> in line.</div>
+      </div>
+    </div>
+
+    <h2 class="text-2xl md:text-3xl font-black tracking-tight mb-1">Request access</h2>
+    <p class="text-sm text-gray-500 mb-6">Two steps. Less than a minute.</p>
+
+    <!-- Step pills -->
+    <div class="flex items-center gap-2 mb-6 text-xs font-black uppercase tracking-widest">
+      <span id="attendStepPill1" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#8A1558] text-white">1 &middot; You</span>
+      <span class="w-6 h-px bg-gray-300"></span>
+      <span id="attendStepPill2" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-100 text-gray-500">2 &middot; Your Group</span>
+    </div>
+
+    <form id="attendForm" class="grid sm:grid-cols-2 gap-5">
+      <!-- Step 1: who you are + how many tickets -->
+      <div data-attend-part="1"><label class="onboarding-label">Full Name *</label><input class="onboarding-input" name="name" placeholder="Your name" required></div>
+      <div data-attend-part="1"><label class="onboarding-label">Email Address *</label><input class="onboarding-input" name="email" type="email" placeholder="you@email.com" required></div>
+      <div data-attend-part="1"><label class="onboarding-label">Mobile *</label><input class="onboarding-input" name="phone" type="tel" placeholder="(555) 000-0000" required></div>
+      <div data-attend-part="1"><label class="onboarding-label">How many tickets? *</label>
+        <select class="onboarding-input" name="groupSize" required>
+          <option value="">Select group size&hellip;</option>
+          <option>1 &middot; Solo</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+          <option>7</option>
+          <option>8</option>
+          <option>9</option>
+          <option>10+</option>
+        </select>
+      </div>
+
+      <!-- Step 2: about the group -->
+      <div data-attend-part="2" class="hidden sm:col-span-2"><label class="onboarding-label">Who's coming with you? *</label><textarea class="onboarding-input min-h-[96px]" name="groupBio" rows="3" required placeholder="A few words on your group. Roles, social handles, anything that helps us pick the room."></textarea></div>
+      <div data-attend-part="2" class="hidden"><label class="onboarding-label">Group role / industry</label>
+        <select class="onboarding-input" name="groupRole">
+          <option value="">Mixed / general</option>
+          <option>Fans / culture</option>
+          <option>Artists / managers</option>
+          <option>DJs / tastemakers</option>
+          <option>Media / press</option>
+          <option>Label / A&amp;R</option>
+          <option>Brand / sponsor</option>
+        </select>
+      </div>
+      <div data-attend-part="2" class="hidden"><label class="onboarding-label">Instagram (group lead)</label><input class="onboarding-input" name="instagram" placeholder="@yourhandle"></div>
+      <div data-attend-part="2" class="hidden sm:col-span-2"><label class="onboarding-label">Why this Wednesday?</label><input class="onboarding-input" name="why" placeholder="An artist you're coming for, a record you want to hear, etc."></div>
+    </form>
+
+    <div class="mt-8 flex justify-between items-center gap-3">
+      <button id="attendBackBtn" type="button" class="text-xs font-black uppercase tracking-widest text-gray-500 hover:text-gray-900 hidden">&larr; Back</button>
+      <div class="ml-auto flex gap-3">
+        <button id="attendNextBtn" type="button" class="onboarding-cta onboarding-cta--brand whitespace-nowrap" disabled>
+          Continue <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+        <button id="attendSubmitBtn" type="button" class="onboarding-cta onboarding-cta--brand whitespace-nowrap hidden" disabled>
+          <i data-lucide="send" class="w-4 h-4"></i> Submit Request
+        </button>
+      </div>
+    </div>
+
+    <!-- Success state -->
+    <div id="attendSuccess" class="hidden mt-8 pt-8 border-t border-gray-200">
+      <div class="text-center mb-6">
+        <div class="w-16 h-16 bg-[#FDF2F8] rounded-full flex items-center justify-center mx-auto mb-3">
+          <i data-lucide="check" class="w-8 h-8 text-[#8A1558]"></i>
+        </div>
+        <h3 class="text-2xl md:text-3xl font-black tracking-tighter mb-2">Request received.</h3>
+        <p class="text-gray-700">You're in the bid pool. We review every group and send offers to the strongest ones.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-4 max-w-xl mx-auto">
+        <div class="bg-[#FDF2F8] border border-[#FBCFE8] rounded-xl p-4 text-center">
+          <div class="text-[10px] font-mono uppercase tracking-widest text-[#8A1558] mb-1">Your position</div>
+          <div class="text-3xl md:text-4xl font-black tabular-nums text-[#8A1558]" id="attendQueuePosition">#1,285</div>
+          <div class="text-xs text-gray-600 mt-1">in the bid pool</div>
+        </div>
+        <div class="bg-gray-50 border border-gray-200 rounded-xl p-4 text-center">
+          <div class="text-[10px] font-mono uppercase tracking-widest text-gray-500 mb-1">Group size</div>
+          <div class="text-3xl md:text-4xl font-black tabular-nums" id="attendGroupSizeOut">&mdash;</div>
+          <div class="text-xs text-gray-600 mt-1">tickets requested</div>
+        </div>
+      </div>
+      <p class="mt-6 text-center text-sm text-gray-600 max-w-xl mx-auto">If your group fits the room this week, you'll get an email with a private link to claim your tickets.</p>
+    </div>
   </section>
 
   <!-- Where to find us -->
@@ -271,156 +377,100 @@
 
 <script src="assets/nmw.js"></script>
 <script>
-NMW.seedDemoIfEmpty();
-
-function rsvpUrl(d) {
-  return 'https://www.newmusicwednesdayslive.com/rsvp';
-}
-
-function buildEventModel(d) {
-  const slot = NMW.getSlot(NMW.dateKey(d));
-  const bookings = slot.bookings || [];
-  const lineup = bookings.map(b => b.artistName).filter(Boolean);
-  const left = Math.max(0, slot.capacity - bookings.length);
-  const title = `New Music Wednesdays at The Penthouse NYC | ${lineup.length ? lineup.join(', ') : 'Live Showcase'}`;
-  return { date: d, lineup, slot, capacity: slot.capacity, booked: bookings.length, left, full: left === 0, title };
-}
-
-function availabilityTag(ev) {
-  if (ev.full) return '<span class="inline-flex items-center gap-1 text-xs font-bold text-gray-500 bg-gray-100 px-2 py-1 rounded">Sold out</span>';
-  if (ev.left <= 1) return `<span class="inline-flex items-center gap-1 text-xs font-bold text-yellow-700 bg-yellow-50 px-2 py-1 rounded">${ev.left} slot left</span>`;
-  if (ev.booked === 0) return '<span class="inline-flex items-center gap-1 text-xs font-bold text-green-700 bg-green-50 px-2 py-1 rounded">Open</span>';
-  return `<span class="inline-flex items-center gap-1 text-xs font-bold text-blue-700 bg-blue-50 px-2 py-1 rounded">${ev.left} of ${ev.capacity} open</span>`;
-}
-
-function renderFeatured() {
-  const d = NMW.upcomingWednesdays(1)[0];
-  const ev = buildEventModel(d);
-  const cal = NMW.buildCalendarLink({ title: ev.title, start: d });
-  const shareText = `Catch the lineup live at New Music Wednesdays, ${NMW.fmtDate(d)}, The Penthouse NYC`;
-  const shareUrl = location.origin + location.pathname;
-
-  const lineupHTML = ev.lineup.length
-    ? ev.lineup.map(n => `<li class="text-base font-bold text-gray-900">${n}</li>`).join('')
-    : '<li class="text-sm text-gray-500 italic">Lineup announcing soon</li>';
-
-  document.getElementById('featuredWrap').innerHTML = `
-    <article class="bg-white border border-gray-200 rounded-lg overflow-hidden">
-      <div class="grid md:grid-cols-3 gap-0">
-        <!-- Image with date overlay -->
-        <div class="relative h-48 md:h-auto">
-          <img src="images/performance.avif" alt="New Music Wednesdays at The Penthouse NYC" class="absolute inset-0 w-full h-full object-cover" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/20"></div>
-          <div class="relative h-full p-6 md:p-8 flex flex-col justify-end text-white">
-            <div class="text-xs font-bold uppercase tracking-widest text-[#FBCFE8] mb-1">This Wednesday</div>
-            <div class="text-5xl md:text-6xl font-black tracking-tighter leading-none">${d.getDate()}</div>
-            <div class="text-sm font-bold uppercase tracking-widest mt-2">${d.toLocaleDateString(undefined, { month: 'long', year: 'numeric' })}</div>
-            <div class="text-sm text-white/80 mt-1">${d.toLocaleDateString(undefined, { weekday: 'long' })}</div>
-          </div>
-        </div>
-        <!-- Body -->
-        <div class="md:col-span-2 p-6 md:p-8">
-          <div class="flex items-start justify-between gap-3 flex-wrap">
-            <div>
-              <h2 class="text-2xl md:text-3xl font-black tracking-tight text-gray-900 mb-1">New Music Wednesdays</h2>
-              <p class="text-sm text-gray-600">The Penthouse NYC, Doors 3 PM, DJ Call 3-7 PM, Live 7-9:30 PM</p>
-              <p class="text-xs text-gray-500 mt-1">${ev.booked} of ${ev.capacity} performance slots booked</p>
-            </div>
-            ${availabilityTag(ev)}
-          </div>
-
-          <div class="mt-4">
-            <div class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Lineup</div>
-            <ul class="space-y-1">${lineupHTML}</ul>
-          </div>
-
-          <div class="mt-6 flex flex-wrap gap-2">
-            <a href="${rsvpUrl(d)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-[#8A1558] text-white px-5 py-2.5 rounded-md text-sm font-bold hover:bg-[#680D3E] transition-colors"><i data-lucide="ticket" class="w-4 h-4"></i> RSVP</a>
-            <a href="${cal}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-white border border-gray-300 text-gray-900 px-4 py-2.5 rounded-md text-sm font-bold hover:border-gray-500 transition-colors"><i data-lucide="calendar-plus" class="w-4 h-4"></i> Add to Calendar</a>
-            <button class="inline-flex items-center gap-2 bg-white border border-gray-300 text-gray-900 px-4 py-2.5 rounded-md text-sm font-bold hover:border-gray-500 transition-colors" data-share='${JSON.stringify({text: shareText, url: shareUrl}).replace(/'/g, "&#39;")}'><i data-lucide="share-2" class="w-4 h-4"></i> Share</button>
-            ${ev.full ? '' : '<a href="apply.html" class="inline-flex items-center gap-2 text-[#8A1558] px-2 py-2.5 text-sm font-bold hover:underline self-center">Perform here →</a>'}
-          </div>
-        </div>
-      </div>
-    </article>
-  `;
-  bindShareButtons();
-  (typeof lucide !== "undefined" && lucide.createIcons());
-}
-
-function renderList() {
-  const count = +document.getElementById('rangeSel').value;
-  const dates = NMW.upcomingWednesdays(count);
-  const wrap = document.getElementById('eventList');
-  wrap.innerHTML = dates.map(d => {
-    const ev = buildEventModel(d);
-    const cal = NMW.buildCalendarLink({ title: ev.title, start: d });
-    const month = d.toLocaleDateString(undefined, { month: 'short' }).toUpperCase();
-    const day = d.getDate();
-    const lineupLine = ev.lineup.length ? ev.lineup.join(', ') : 'Lineup TBA';
-
-    return `<article class="flex items-center gap-5 py-5 hover:bg-gray-50 px-2 -mx-2 rounded-md transition-colors">
-      <div class="flex-shrink-0 w-14 text-center">
-        <div class="text-[10px] font-bold tracking-widest text-[#8A1558]">${month}</div>
-        <div class="text-2xl font-black leading-none mt-1 text-gray-900">${day}</div>
-        <div class="text-[10px] text-gray-400 mt-1 font-bold tracking-widest">WED</div>
-      </div>
-      <div class="flex-1 min-w-0">
-        <h3 class="font-bold text-base text-gray-900 truncate">New Music Wednesdays</h3>
-        <p class="text-xs text-gray-500 mt-0.5">The Penthouse NYC, 7-9:30 PM, ${ev.booked}/${ev.capacity} slots</p>
-      </div>
-      <div class="flex items-center gap-3 flex-shrink-0">
-        ${availabilityTag(ev)}
-        <a href="${rsvpUrl(d)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-white border border-gray-300 text-gray-900 px-3 py-1.5 rounded-md text-xs font-bold hover:border-[#8A1558] hover:text-[#8A1558] transition-colors">RSVP <i data-lucide="arrow-right" class="w-3 h-3"></i></a>
-      </div>
-    </article>`;
-  }).join('');
-  bindShareButtons();
-  (typeof lucide !== "undefined" && lucide.createIcons());
-}
-
-function bindShareButtons() {
-  document.querySelectorAll('[data-share]').forEach(btn => {
-    btn.addEventListener('click', async () => {
-      const data = JSON.parse(btn.getAttribute('data-share').replace(/&#39;/g, "'"));
-      if (navigator.share) {
-        try { await navigator.share({ title: 'New Music Wednesdays', text: data.text, url: data.url }); return; } catch(_){}
-      }
-      try {
-        await navigator.clipboard.writeText(`${data.text} ${data.url}`);
-        const orig = btn.innerHTML;
-        btn.innerHTML = '<i data-lucide="check" class="w-3.5 h-3.5"></i> Copied';
-        (typeof lucide !== "undefined" && lucide.createIcons());
-        setTimeout(() => { btn.innerHTML = orig; (typeof lucide !== "undefined" && lucide.createIcons()); }, 1500);
-      } catch(_){}
-    });
+<script>
+// Live demand counters
+(function animateCounters(){
+  document.querySelectorAll("[data-counter][data-target]").forEach(el => {
+    const target = parseInt(el.dataset.target,10);
+    if(!Number.isFinite(target)) return;
+    const start = performance.now();
+    const dur = 1100 + Math.random()*400;
+    function tick(now){
+      const t = Math.min(1, (now-start)/dur);
+      const eased = 1 - Math.pow(1-t, 3);
+      el.textContent = Math.round(target*eased).toLocaleString();
+      if(t<1) requestAnimationFrame(tick); else el.textContent = target.toLocaleString();
+    }
+    requestAnimationFrame(tick);
   });
-}
+})();
 
-document.getElementById('recurringCal').href = NMW.googleCalendarLink('NMW');
+// Two-step waitlist request form
+(function attendForm(){
+  const form = document.getElementById("attendForm");
+  const nextBtn = document.getElementById("attendNextBtn");
+  const backBtn = document.getElementById("attendBackBtn");
+  const submitBtn = document.getElementById("attendSubmitBtn");
+  const pill1 = document.getElementById("attendStepPill1");
+  const pill2 = document.getElementById("attendStepPill2");
+  const successEl = document.getElementById("attendSuccess");
+  const projectedEl = document.getElementById("projectedQueue");
+  const queuePosEl = document.getElementById("attendQueuePosition");
+  const groupSizeOutEl = document.getElementById("attendGroupSizeOut");
+  if(!form || !nextBtn || !submitBtn) return;
 
-document.getElementById('shareTeamBtn').addEventListener('click', async () => {
-  const artist = NMW.getArtist && NMW.getArtist();
-  const ref = artist?.referral?.code;
-  const base = location.href.split('?')[0];
-  const url = ref ? `${base}?ref=${encodeURIComponent(ref)}` : base;
-  const payload = {
-    title: 'New Music Wednesdays',
-    text: 'Pull up to New Music Wednesdays with me at The Penthouse NYC, every Wednesday.',
-    url,
-  };
-  try {
-    if (navigator.share) { await navigator.share(payload); return; }
-    await navigator.clipboard.writeText(`${payload.text} ${payload.url}`);
-    const t = document.getElementById('shareTeamToast');
-    t.classList.remove('hidden');
-    setTimeout(() => t.classList.add('hidden'), 2500);
-  } catch (_) { /* user cancelled */ }
-});
-document.getElementById('rangeSel').addEventListener('change', renderList);
+  function projectedPosition(){
+    const base = parseInt(document.querySelector("[data-counter=\"requests\"]")?.textContent.replace(/,/g,"") || "1284", 10);
+    return base + 1;
+  }
+  function refreshProjection(){ if(projectedEl) projectedEl.textContent = "#" + projectedPosition().toLocaleString(); }
+  refreshProjection();
+  setInterval(refreshProjection, 4000);
 
-renderFeatured();
-renderList();
+  let part = 1;
+  function setPart(p){
+    part = p;
+    document.querySelectorAll("[data-attend-part]").forEach(el => {
+      el.classList.toggle("hidden", String(el.dataset.attendPart) !== String(p));
+    });
+    pill1.className = "inline-flex items-center gap-2 px-3 py-1.5 rounded-full " + (p===1 ? "bg-[#8A1558] text-white" : "bg-gray-100 text-gray-500");
+    pill2.className = "inline-flex items-center gap-2 px-3 py-1.5 rounded-full " + (p===2 ? "bg-[#8A1558] text-white" : "bg-gray-100 text-gray-500");
+    backBtn.classList.toggle("hidden", p===1);
+    nextBtn.classList.toggle("hidden", p===2);
+    submitBtn.classList.toggle("hidden", p===1);
+    refreshButtons();
+  }
+  function isPartValid(p){
+    const fields = form.querySelectorAll("[data-attend-part=\""+p+"\"] [required]");
+    return Array.from(fields).every(f => f.checkValidity());
+  }
+  function refreshButtons(){
+    if(part===1) nextBtn.disabled = !isPartValid(1);
+    else submitBtn.disabled = !isPartValid(2);
+  }
+  form.addEventListener("input", refreshButtons);
+  form.addEventListener("change", refreshButtons);
+  nextBtn.addEventListener("click", () => {
+    if(!isPartValid(1)){ form.reportValidity(); return; }
+    setPart(2);
+  });
+  backBtn.addEventListener("click", () => setPart(1));
+  submitBtn.addEventListener("click", () => {
+    if(!isPartValid(2)){ form.reportValidity(); return; }
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = "<i data-lucide=\"loader\" class=\"w-4 h-4 animate-spin\"></i> Submitting…";
+    if(typeof lucide !== "undefined") lucide.createIcons();
+    setTimeout(() => {
+      const data = Object.fromEntries(new FormData(form).entries());
+      try {
+        const reqs = JSON.parse(localStorage.getItem("nmw.attendRequests") || "[]");
+        reqs.push({...data, at: new Date().toISOString()});
+        localStorage.setItem("nmw.attendRequests", JSON.stringify(reqs));
+      } catch(_){}
+      if(queuePosEl) queuePosEl.textContent = "#" + projectedPosition().toLocaleString();
+      if(groupSizeOutEl) groupSizeOutEl.textContent = data.groupSize || "—";
+      form.classList.add("hidden");
+      nextBtn.classList.add("hidden");
+      backBtn.classList.add("hidden");
+      submitBtn.classList.add("hidden");
+      pill1.parentElement.classList.add("hidden");
+      successEl.classList.remove("hidden");
+      successEl.scrollIntoView({behavior: "smooth", block: "start"});
+      if(typeof lucide !== "undefined") lucide.createIcons();
+    }, 700);
+  });
+  setPart(1);
+})();
 </script>
 </body>
 </html>
