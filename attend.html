@@ -169,18 +169,22 @@
 
     <form id="attendForm" class="space-y-10" novalidate>
 
-      <!-- Q1: Group size -- visual tile selector -->
+      <!-- Q1: Group size -->
       <fieldset>
-        <legend class="mono-eyebrow mb-4">01 &middot; How many tickets?</legend>
-        <div class="grid grid-cols-5 sm:grid-cols-10 gap-2" id="attendGroupTiles" role="radiogroup">
-          <!-- tiles injected by JS -->
-        </div>
-        <input type="hidden" name="groupSize" id="attendGroupSize" required>
+        <legend class="text-xl md:text-2xl font-black tracking-tight text-gray-900 mb-4">1. How many tickets?</legend>
+        <select name="groupSize" id="attendGroupSize" required class="onboarding-input max-w-xs">
+          <option value="">Select group size</option>
+          <option value="1">1 ticket</option>
+          <option value="2">2 tickets</option>
+          <option value="3">3 tickets</option>
+          <option value="4">4 tickets</option>
+          <option value="5+">5+ tickets</option>
+        </select>
       </fieldset>
 
       <!-- Q2: Who you are -->
       <fieldset>
-        <legend class="mono-eyebrow mb-4">02 &middot; Main contact</legend>
+        <legend class="text-xl md:text-2xl font-black tracking-tight text-gray-900 mb-4">2. Main contact</legend>
         <div class="grid sm:grid-cols-2 gap-4">
           <div>
             <label class="onboarding-label">Your name *</label>
@@ -203,7 +207,7 @@
 
       <!-- Q3: open text -->
       <fieldset>
-        <legend class="mono-eyebrow mb-4">03 &middot; One line on the room.</legend>
+        <legend class="text-xl md:text-2xl font-black tracking-tight text-gray-900 mb-4">3. One line on the room.</legend>
         <input class="onboarding-input w-full" name="why" placeholder="An artist you're coming for, a record you want to hear, etc.">
       </fieldset>
 
@@ -366,32 +370,11 @@
   const submitBtn = document.getElementById("attendSubmitBtn");
   const hint = document.getElementById("attendValidationHint");
   const sizeInput = document.getElementById("attendGroupSize");
-  const sizeTiles = document.getElementById("attendGroupTiles");
   const successEl = document.getElementById("attendSuccess");
   const queuePosEl = document.getElementById("attendQueuePosition");
   const groupSizeOutEl = document.getElementById("attendGroupSizeOut");
   const requestIdEl = document.getElementById("attendRequestId");
   if(!form || !submitBtn) return;
-
-  // Render the group-size tiles 1..9, then 10+
-  const sizes = ["1","2","3","4","5","6","7","8","9","10+"];
-  sizeTiles.innerHTML = sizes.map(n => `<button type="button" class="tile-select" data-val="${n}" role="radio" aria-checked="false">${n}</button>`).join("");
-
-  function bindTiles(container, hiddenInput){
-    container.addEventListener("click", e => {
-      const btn = e.target.closest("[data-val]");
-      if(!btn) return;
-      container.querySelectorAll(".tile-select").forEach(b => {
-        b.classList.remove("is-selected");
-        b.setAttribute("aria-checked","false");
-      });
-      btn.classList.add("is-selected");
-      btn.setAttribute("aria-checked","true");
-      hiddenInput.value = btn.dataset.val;
-      refreshSubmit();
-    });
-  }
-  bindTiles(sizeTiles, sizeInput);
 
   function isValid(){
     if(!sizeInput.value) return false;
