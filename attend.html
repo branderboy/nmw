@@ -173,7 +173,11 @@
       <fieldset>
         <legend class="mono-eyebrow mb-4">1. How many tickets?</legend>
         <div class="grid grid-cols-5 gap-2 sm:gap-3 max-w-2xl" id="attendGroupTiles" role="radiogroup">
-          <!-- tiles injected by JS -->
+          <button type="button" class="tile-select" data-val="1" role="radio" aria-checked="false">1</button>
+          <button type="button" class="tile-select" data-val="2" role="radio" aria-checked="false">2</button>
+          <button type="button" class="tile-select" data-val="3" role="radio" aria-checked="false">3</button>
+          <button type="button" class="tile-select" data-val="4" role="radio" aria-checked="false">4</button>
+          <button type="button" class="tile-select" data-val="5+" role="radio" aria-checked="false">5+</button>
         </div>
         <input type="hidden" name="groupSize" id="attendGroupSize" required>
       </fieldset>
@@ -372,10 +376,6 @@
   const groupSizeOutEl = document.getElementById("attendGroupSizeOut");
   const requestIdEl = document.getElementById("attendRequestId");
   if(!form || !submitBtn) return;
-
-  // Render the group-size tiles 1..4, then 5+
-  const sizes = ["1","2","3","4","5+"];
-  sizeTiles.innerHTML = sizes.map(n => `<button type="button" class="tile-select" data-val="${n}" role="radio" aria-checked="false">${n}</button>`).join("");
 
   function bindTiles(container, hiddenInput){
     container.addEventListener("click", e => {
