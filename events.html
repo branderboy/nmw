@@ -102,16 +102,26 @@
   <a href="index.html" class="nmw-logo-block">
     <img src="images/nmw-logo.png" alt="New Music Wednesday" class="nmw-logo-img" />
   </a>
-  <div class="hidden md:flex space-x-6 items-center text-sm font-bold tracking-wide text-gray-600">
-    <a href="index.html" class="hover:text-black">HOME</a>
-    <a href="mission.html" class="hover:text-black">MISSION</a>
-    <a href="events.html" class="text-black">ATTEND</a>
-    <a href="dj-call.html" class="hover:text-black">DJ CALL</a>
-    <a href="podcast.html" class="hover:text-black">PODCAST</a>
-    <a href="apply.html" class="hover:text-black">ARTIST ACCESS</a>
-    <a href="faq.html" class="hover:text-black">FAQ</a>
-    <a href="alerts.html" class="hover:text-black">GET ALERTS</a>
-    <a href="sponsor.html" class="hover:text-black">CAMPAIGN STORE</a>
+  <div class="hidden md:flex nmw-nav__menu">
+    <a href="index.html">HOME</a>
+    <a href="events.html" class="is-active">ATTEND</a>
+    <a href="apply.html">ARTIST ACCESS</a>
+    <div class="nav-dropdown">
+      <button type="button" class="nav-dropdown__trigger">LISTEN</button>
+      <div class="nav-dropdown__panel">
+        <a href="dj-call.html">DJ Call</a>
+        <a href="podcast.html">Podcast</a>
+      </div>
+    </div>
+    <a href="blog.html">THE DROP</a>
+    <a href="sponsor.html">CAMPAIGN STORE</a>
+    <div class="nav-dropdown">
+      <button type="button" class="nav-dropdown__trigger">MISSION</button>
+      <div class="nav-dropdown__panel">
+        <a href="mission.html">Mission</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+    </div>
   </div>
   </div>
 </nav>
