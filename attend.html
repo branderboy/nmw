@@ -172,7 +172,7 @@
       <!-- Q1: Group size -- visual tile selector -->
       <fieldset>
         <legend class="mono-eyebrow mb-4">1. How many tickets?</legend>
-        <div class="grid grid-cols-5 sm:grid-cols-10 gap-2" id="attendGroupTiles" role="radiogroup">
+        <div class="grid grid-cols-5 gap-2 sm:gap-3 max-w-2xl" id="attendGroupTiles" role="radiogroup">
           <!-- tiles injected by JS -->
         </div>
         <input type="hidden" name="groupSize" id="attendGroupSize" required>
@@ -373,8 +373,8 @@
   const requestIdEl = document.getElementById("attendRequestId");
   if(!form || !submitBtn) return;
 
-  // Render the group-size tiles 1..9, then 10+
-  const sizes = ["1","2","3","4","5","6","7","8","9","10+"];
+  // Render the group-size tiles 1..4, then 5+
+  const sizes = ["1","2","3","4","5+"];
   sizeTiles.innerHTML = sizes.map(n => `<button type="button" class="tile-select" data-val="${n}" role="radio" aria-checked="false">${n}</button>`).join("");
 
   function bindTiles(container, hiddenInput){
