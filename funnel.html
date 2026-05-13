@@ -5,19 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="images/nmw-logo.png" />
 <link rel="apple-touch-icon" href="images/nmw-logo.png" />
-<title>Audition | Submit Your Music. Get in the Queue. | New Music Wednesdays</title>
-<meta name="description" content="Submit your music free during NMW launch phase. Human A&R review. Approved artists get a private rollout link: live showcase at The Penthouse NYC, DJ-network distribution, and press.">
-<link rel="canonical" href="https://www.newmusicwednesdayslive.com/apply.html">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Audition for New Music Wednesdays | Submit your music free">
-<meta property="og:description" content="Artists compete for visibility. Fans compete for access. Submit your music, get reviewed, get the rollout.">
-<meta property="og:url" content="https://www.newmusicwednesdayslive.com/apply.html">
-<meta property="og:image" content="https://www.newmusicwednesdayslive.com/images/nmw-logo.png">
-<meta property="og:site_name" content="New Music Wednesdays">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Audition for New Music Wednesdays | Submit your music free">
-<meta name="twitter:description" content="Artists compete for visibility. Fans compete for access. Submit your music, get reviewed, get the rollout.">
-<meta name="twitter:image" content="https://www.newmusicwednesdayslive.com/images/nmw-logo.png">
+<title>Artist Rollout | New Music Wednesdays</title>
+<meta name="description" content="Private rollout link for approved NMW artists. Pick your package, choose your Wednesday, lock the slot.">
+<meta name="robots" content="noindex,nofollow">
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@0.474.0"></script>
@@ -742,7 +732,7 @@ NMW.setFunnel(funnel);
 //   - Public mode (default): the demand-engine audition funnel. $35, queue, A&R review.
 //   - Approved mode (?approved=1): the private rollout link emailed to approved artists.
 //     This unlocks the package picker, date picker, enhancements, and payment flow.
-const isApproved = false;
+const isApproved = true;
 
 function stepSequence() {
   if (!isApproved) return ['audition'];
