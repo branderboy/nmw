@@ -7,6 +7,14 @@ body {
     color: #1A0418 !important;
 }
 
+/* Force Inter on every text element across the site */
+body, h1, h2, h3, h4, h5, h6, p, span, li, a, button, label,
+input, textarea, select, blockquote, figcaption,
+.font-serif, .editorial-dropcap, .pull-quote, .signature-line,
+.display, .display-tight, .section-h2, .mono-eyebrow {
+    font-family: 'Inter', sans-serif !important;
+}
+
 /* Chunky display headings */
 h1, h2, h3, .heading-font {
     font-weight: 900;
