@@ -19,8 +19,8 @@
 <meta name="twitter:description" content="Artists compete for visibility. Fans compete for access. Submit your music, get reviewed, get the rollout.">
 <meta name="twitter:image" content="https://www.newmusicwednesdayslive.com/images/nmw-logo.png">
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@0.474.0"></script>
 <!-- PWA -->
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="theme-color" content="#8A1558">
@@ -28,6 +28,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="NMW">
 <script src="/assets/pwa.js" defer></script>
+<link rel="stylesheet" href="assets/nmw.css">
 <script>
   if (typeof tailwind !== "undefined") tailwind.config = { theme: { extend: {
     fontFamily: { sans: ['Inter','sans-serif'] },
@@ -93,244 +94,104 @@
   ]
 }
 </script>
-<style>
-  body {
-    font-family: 'Inter', sans-serif;
-    background-color: #FAFAF7;
-    color: #1A0418;
-  }
-  h1, h2, h3, .heading-font {
-    font-weight: 900;
-    letter-spacing: -0.03em;
-    text-transform: uppercase;
-  }
-  /* NMW Brand utilities */
-  .bg-sxsw-pink     { background-color: #8A1558; }
-  .bg-sxsw-deeppink { background-color: #680D3E; }
-  .bg-sxsw-teal     { background-color: #FBCFE8; }
-  .bg-sxsw-green    { background-color: #FACC15; }
-  .bg-sxsw-dark     { background-color: #222222; }
-  .bg-brand-cream   { background-color: #FAFAF7; }
-  .bg-brand-blush50 { background-color: #FDF2F8; }
-  .text-sxsw-pink     { color: #8A1558; }
-  .text-sxsw-deeppink { color: #680D3E; }
-  .text-sxsw-teal     { color: #FBCFE8; }
-  .text-brand-gold    { color: #FACC15; }
-  .border-sxsw-deeppink { border-color: #680D3E; }
-  html { scroll-behavior: smooth; }
-
-  /* --- Funnel components (re-implemented from nmw.css for self-contained styling) --- */
-
-  /* Step indicator dots */
-  .onboarding-dot {
-    width: 2rem; height: 2rem; border-radius: 9999px;
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 800; font-size: 0.875rem; border: 2px solid;
-  }
-  .onboarding-step-label {
-    font-size: 10px; font-weight: 800; text-transform: uppercase;
-    letter-spacing: 0.18em; margin-top: 0.5rem;
-  }
-
-  /* Form fields */
-  .onboarding-label {
-    display: block; font-size: 11px; font-weight: 800;
-    letter-spacing: 0.18em; text-transform: uppercase;
-    color: #4b5563; margin-bottom: 0.4rem;
-  }
-  .onboarding-input {
-    width: 100%; padding: 0.75rem 1rem; border: 1px solid #d1d5db;
-    border-radius: 0.5rem; font-size: 0.95rem; background: #fff;
-    color: #111827; transition: border-color .15s, box-shadow .15s;
-  }
-  .onboarding-input::placeholder { color: #9ca3af; }
-  .onboarding-input:focus {
-    outline: none; border-color: #8A1558;
-    box-shadow: 0 0 0 3px rgba(138,21,88,0.12);
-  }
-
-  /* CTA buttons (preserve class hooks used by JS state toggling) */
-  .onboarding-cta {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    padding: 0.7rem 1.25rem; border-radius: 0.5rem;
-    font-size: 12px; font-weight: 900; text-transform: uppercase;
-    letter-spacing: 0.15em; background: #111827; color: #fff;
-    border: 1px solid transparent; cursor: pointer;
-    transition: background .15s, transform .15s;
-  }
-  .onboarding-cta:disabled { background: #e5e7eb; color: #9ca3af; cursor: not-allowed; }
-  .onboarding-cta:not(:disabled):hover { background: #8A1558; }
-  .onboarding-cta--brand:not(:disabled) { background: #8A1558; }
-  .onboarding-cta--brand:not(:disabled):hover { background: #680D3E; }
-  .onboarding-back {
-    display: inline-flex; align-items: center; gap: 0.4rem;
-    padding: 0.6rem 1rem; border-radius: 0.5rem;
-    background: #fff; color: #4b5563; border: 1px solid #d1d5db;
-    font-size: 12px; font-weight: 900; text-transform: uppercase;
-    letter-spacing: 0.15em; cursor: pointer; transition: all .15s;
-  }
-  .onboarding-back:hover { border-color: #9ca3af; color: #111827; }
-
-  /* Package tiles */
-  .pkg-tile-wrap { position: relative; }
-  .pkg-tile-wrap > .pkg-tile { width: 100%; }
-  .pkg-tile {
-    background: #fff; border: 2px solid #e5e7eb; border-radius: 1rem;
-    padding: 1rem 0.85rem; cursor: pointer; text-align: left;
-    position: relative; transition: transform .15s, border-color .15s, box-shadow .15s, background .15s;
-  }
-  .pkg-tile::before {
-    content: ""; position: absolute; inset: 0; border-radius: 1rem;
-    box-shadow: 0 6px 16px rgba(138,21,88,0.10); opacity: 0; transition: opacity .15s; pointer-events: none;
-  }
-  .pkg-tile:hover { border-color: #FBCFE8; transform: translateY(-1px); }
-  .pkg-tile:hover::before { opacity: 0.6; }
-  .pkg-tile.is-selected { border-color: #8A1558; background: #FDF2F8; }
-  .pkg-tile.is-selected::before { opacity: 1; }
-  .pkg-name { font-weight: 800; font-size: 0.85rem; color: #111827; line-height: 1.25; letter-spacing: 0.01em; }
-  .pkg-price { font-weight: 900; font-size: 1.35rem; color: #8A1558; margin-top: 0.4rem; letter-spacing: -0.02em; }
-  .pkg-tile.is-selected .pkg-price { color: #680D3E; }
-  .pkg-badge {
-    display: inline-block; font-size: 9px; font-weight: 900;
-    text-transform: uppercase; letter-spacing: 0.12em;
-    padding: 0.2rem 0.5rem; border-radius: 9999px;
-    margin-bottom: 0.5rem; line-height: 1.4;
-  }
-  .pkg-badge--popular     { background: #8A1558; color: #fff; }
-  .pkg-badge--recommended { background: #FBCFE8; color: #680D3E; border: 1px solid #8A1558; }
-  .pkg-badge--premium     { background: #222222; color: #FBCFE8; }
-  .pkg-badge--rec-you {
-    background: #FACC15; color: #111827; margin-left: 0.25rem;
-  }
-  .pkg-info {
-    position: absolute; top: 0.5rem; right: 0.5rem;
-    width: 1.5rem; height: 1.5rem; border-radius: 9999px;
-    border: 1px solid #d1d5db; background: #fff; color: #6b7280;
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer; transition: all .15s;
-  }
-  .pkg-info:hover { color: #8A1558; border-color: #8A1558; background: #FDF2F8; }
-
-  /* Date tiles */
-  .date-tile {
-    background: #fff; border: 2px solid #e5e7eb; border-radius: 0.75rem;
-    padding: 1rem; text-align: center; cursor: pointer; transition: all .15s;
-  }
-  .date-tile:hover:not(.is-disabled) { border-color: #9ca3af; }
-  .date-tile.is-selected { border-color: #8A1558; box-shadow: 0 0 0 1px #8A1558; background: #FDF2F8; }
-  .date-tile.is-disabled { opacity: 0.5; cursor: not-allowed; }
-
-  /* Goal chips */
-  .goal-chip {
-    display: inline-flex; align-items: center; padding: 0.5rem 1rem;
-    background: #fff; border: 2px solid #e5e7eb; border-radius: 9999px;
-    font-size: 0.85rem; font-weight: 700; color: #4b5563;
-    cursor: pointer; transition: all .15s;
-  }
-  .goal-chip:hover { border-color: #8A1558; }
-  .goal-chip.is-selected { background: #8A1558; color: #fff; border-color: #8A1558; }
-
-  /* Upsell rows */
-  .upsell-row {
-    display: flex; align-items: center; gap: 0.85rem;
-    padding: 0.85rem 1rem; background: #fff; border: 2px solid #e5e7eb;
-    border-radius: 0.75rem; cursor: pointer; transition: all .15s;
-  }
-  .upsell-row:hover { border-color: #9ca3af; }
-  .upsell-row.is-selected { border-color: #8A1558; background: #FDF2F8; }
-  .upsell-row input[type="checkbox"] {
-    width: 1.2rem; height: 1.2rem; accent-color: #8A1558; cursor: pointer;
-  }
-</style>
+<style></style>
+  <link rel="stylesheet" href="assets/homepage.css">
 </head>
-<body class="antialiased">
+<body class="bg-gray-50 text-gray-900 selection:bg-[#8A1558] selection:text-white">
 
+<!-- Navigation -->
 <!-- Top Location Banner -->
 <div class="bg-sxsw-dark text-white text-xs md:text-sm font-bold tracking-widest uppercase py-2 text-center w-full z-50 relative">
-  EVERY WED &middot; THE PENTHOUSE NYC &middot; MIDTOWN, MANHATTAN
+    EVERY WED · THE PENTHOUSE NYC · MIDTOWN, MANHATTAN
 </div>
 
 <!-- Navigation -->
 <nav class="w-full bg-white/90 backdrop-blur-md border-b border-gray-200 sticky top-0 z-40">
-  <div class="w-full flex justify-between items-center px-6 md:px-12 py-3">
-    <a href="index.html" class="flex items-center gap-2">
-      <img src="images/nmw-logo.png" alt="New Music Wednesdays" class="h-20 md:h-24 w-auto" style="filter: brightness(0.55) saturate(1.4) hue-rotate(-10deg);" />
-    </a>
-    <div class="hidden md:flex space-x-6 items-center text-sm font-bold tracking-wide text-gray-600">
-      <a href="index.html" class="hover:text-black">HOME</a>
-      <a href="mission.html" class="hover:text-black">MISSION</a>
-      <a href="attend.html" class="hover:text-black">ATTEND</a>
-      <a href="dj-call.html" class="hover:text-black">DJ CALL</a>
-      <a href="podcast.html" class="hover:text-black">PODCAST</a>
-      <a href="faq.html" class="hover:text-black">FAQ</a>
-      <a href="alerts.html" class="hover:text-black">SUBSCRIBE NOW</a>
-      <a href="sponsor.html" class="hover:text-black">CAMPAIGN STORE</a>
-      <a href="apply.html" class="bg-[#8A1558] text-white px-4 py-2 rounded font-bold tracking-widest text-xs hover:bg-[#680D3E] transition-colors">Apply Now</a>
+    <div class="w-full flex justify-between items-center px-6 md:px-12 py-3">
+        <a href="index.html" class="flex items-center gap-2">
+            <img src="images/nmw-logo.png" alt="New Music Wednesdays" class="h-20 md:h-24 w-auto" style="filter: brightness(0.55) saturate(1.4) hue-rotate(-10deg);" />
+        </a>
+        <div class="hidden md:flex space-x-5 items-center text-sm font-bold tracking-wide text-gray-600">
+            <a href="index.html" class="hover:text-black">HOME</a>
+            <div class="relative group">
+                <button type="button" class="hover:text-black flex items-center gap-1 py-2">MISSION <i data-lucide="chevron-down" class="w-3 h-3"></i></button>
+                <div class="absolute top-full left-0 bg-white border border-gray-200 rounded-md shadow-lg py-2 min-w-[160px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                    <a href="mission.html" class="block px-4 py-2 text-sm hover:bg-brand-blush50 hover:text-black">Mission</a>
+                    <a href="faq.html" class="block px-4 py-2 text-sm hover:bg-brand-blush50 hover:text-black">FAQ</a>
+                </div>
+            </div>
+            <a href="attend.html" class="hover:text-black">ATTEND</a>
+            <a href="apply.html" class="text-black">ARTIST ACCESS</a>
+            <div class="relative group">
+                <button type="button" class="hover:text-black flex items-center gap-1 py-2">LISTEN <i data-lucide="chevron-down" class="w-3 h-3"></i></button>
+                <div class="absolute top-full left-0 bg-white border border-gray-200 rounded-md shadow-lg py-2 min-w-[160px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                    <a href="dj-call.html" class="block px-4 py-2 text-sm hover:bg-brand-blush50 hover:text-black">DJ Call</a>
+                    <a href="podcast.html" class="block px-4 py-2 text-sm hover:bg-brand-blush50 hover:text-black">Podcast</a>
+                </div>
+            </div>
+            <a href="blog.html" class="hover:text-black">THE DROP</a>
+            <a href="sponsor.html" class="hover:text-black">CAMPAIGN STORE</a>
+            <a href="attend.html" class="inline-flex items-center gap-2 bg-[#8A1558] text-white px-5 py-2.5 rounded-full font-bold tracking-widest text-xs hover:bg-[#680D3E] transition-colors">
+                <i data-lucide="ticket" class="w-4 h-4"></i>
+                ATTEND
+            </a>
+        </div>
     </div>
-  </div>
 </nav>
 
-<!-- Page Hero -->
-<section class="w-full px-6 md:px-12 pt-12 md:pt-16 pb-6">
-  <div class="max-w-7xl mx-auto">
-    <p class="font-bold text-xs md:text-sm tracking-widest text-sxsw-pink mb-3 uppercase">[ Artist Access &middot; NMW ]</p>
-    <h1 class="text-5xl md:text-6xl lg:text-7xl font-black leading-[0.95] mb-4 text-black">SUBMIT YOUR MUSIC.</h1>
-    <p class="text-lg md:text-xl font-medium text-gray-700 max-w-2xl">Free during launch phase. Human A&amp;R review. Approved artists get a private rollout link: live showcase at The Penthouse NYC, DJ-network distribution, and press.</p>
-    <div class="h-1 w-32 bg-black mt-6"></div>
-  </div>
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 md:pt-12 pb-2">
+  <div class="font-mono text-[11px] uppercase tracking-[0.18em] text-gray-500 mb-3">Artist Access, NMW</div>
+  <h1 class="text-5xl sm:text-6xl md:text-7xl font-black tracking-tighter uppercase leading-[0.9] mb-3 text-gray-900">Submit your music.</h1>
 </section>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="h-px bg-gray-900 my-6"></div></div>
 
 <!-- LIVE DEMAND SIGNALS -->
-<section class="w-full px-6 md:px-12 mb-6">
-  <div class="max-w-7xl mx-auto">
-    <div class="text-[10px] font-bold uppercase tracking-[0.18em] text-gray-500 mb-3">Live demand &middot; this week</div>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-      <div class="bg-white border-2 border-black rounded-2xl p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-        <div class="text-3xl md:text-4xl font-black tabular-nums text-black" data-counter="artists" data-target="237">237</div>
-        <div class="text-[11px] font-bold uppercase tracking-widest text-gray-500 mt-1">artists in review</div>
-      </div>
-      <div class="bg-white border-2 border-black rounded-2xl p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-        <div class="text-3xl md:text-4xl font-black tabular-nums text-black" data-counter="fans" data-target="1284">1,284</div>
-        <div class="text-[11px] font-bold uppercase tracking-widest text-gray-500 mt-1">fans on waitlist</div>
-      </div>
-      <div class="bg-sxsw-pink border-2 border-black rounded-2xl p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-        <div class="text-3xl md:text-4xl font-black tabular-nums text-white" data-counter="slots" data-target="6">6</div>
-        <div class="text-[11px] font-bold uppercase tracking-widest text-sxsw-teal mt-1">slots open this month</div>
-      </div>
-      <div class="bg-white border-2 border-black rounded-2xl p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-        <div class="text-3xl md:text-4xl font-black tabular-nums text-black" data-counter="approved" data-target="11">11</div>
-        <div class="text-[11px] font-bold uppercase tracking-widest text-gray-500 mt-1">approved this week</div>
-      </div>
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
+  <div class="text-[10px] font-mono uppercase tracking-[0.18em] text-gray-500 mb-3">Live demand &middot; this week</div>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+    <div class="bg-white border border-gray-200 rounded-xl p-4">
+      <div class="text-3xl md:text-4xl font-black tabular-nums text-gray-900" data-counter="artists" data-target="237">237</div>
+      <div class="text-[11px] font-mono uppercase tracking-widest text-gray-500 mt-1">artists in review</div>
+    </div>
+    <div class="bg-white border border-gray-200 rounded-xl p-4">
+      <div class="text-3xl md:text-4xl font-black tabular-nums text-gray-900" data-counter="fans" data-target="1284">1,284</div>
+      <div class="text-[11px] font-mono uppercase tracking-widest text-gray-500 mt-1">fans on waitlist</div>
+    </div>
+    <div class="bg-white border border-gray-200 rounded-xl p-4">
+      <div class="text-3xl md:text-4xl font-black tabular-nums text-[#8A1558]" data-counter="slots" data-target="6">6</div>
+      <div class="text-[11px] font-mono uppercase tracking-widest text-gray-500 mt-1">slots open this month</div>
+    </div>
+    <div class="bg-white border border-gray-200 rounded-xl p-4">
+      <div class="text-3xl md:text-4xl font-black tabular-nums text-gray-900" data-counter="approved" data-target="11">11</div>
+      <div class="text-[11px] font-mono uppercase tracking-widest text-gray-500 mt-1">approved this week</div>
     </div>
   </div>
 </section>
 
 <!-- STEP INDICATOR -->
-<section class="pt-8 pb-6">
-  <div class="w-full px-6 md:px-12">
-    <div class="max-w-7xl mx-auto">
-      <div class="flex items-start" id="stepIndicator"></div>
-    </div>
+<section class="bg-gray-50 pt-10 pb-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-start" id="stepIndicator"></div>
   </div>
 </section>
 
-<main class="w-full px-6 md:px-12 pb-16">
-  <div class="max-w-7xl mx-auto grid lg:grid-cols-3 gap-6">
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+  <div class="grid lg:grid-cols-3 gap-6">
 
     <!-- MAIN COLUMN -->
     <div class="lg:col-span-2">
 
       <!-- STEP 0: AUDITION (default public entry) -->
-      <section data-step="audition" class="step bg-white rounded-[24px] border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-6 md:p-10">
+      <section data-step="audition" class="step bg-white rounded-2xl shadow-sm p-6 md:p-10">
 
-        <h2 class="text-3xl md:text-4xl mb-2 text-black">SUBMIT YOUR MUSIC</h2>
-        <p class="text-sm text-gray-500 mb-6 normal-case font-medium" style="text-transform:none;letter-spacing:normal;">Two steps. Less than a minute.</p>
+        <h2 class="text-2xl md:text-3xl font-black tracking-tight mb-2">Submit your music</h2>
+        <p class="text-sm text-gray-500 mb-6">Two steps. Less than a minute.</p>
 
         <!-- Step pill indicator -->
         <div class="flex items-center gap-2 mb-6 text-xs font-black uppercase tracking-widest">
-          <span id="auditionStepPill1" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-sxsw-pink text-white">1 &middot; You</span>
+          <span id="auditionStepPill1" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#8A1558] text-white">1 &middot; You</span>
           <span class="w-6 h-px bg-gray-300"></span>
-          <span id="auditionStepPill2" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-100 text-gray-500">2 &middot; Your Music</span>
+          <span id="auditionStepPill2" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-100 text-gray-500">2. Your Music</span>
         </div>
 
         <form id="auditionForm" class="grid sm:grid-cols-2 gap-5">
@@ -355,8 +216,8 @@
             </select>
           </div>
           <div data-audition-part="2" class="hidden"><label class="onboarding-label">Phone (Optional)</label><input class="onboarding-input" name="phone" type="tel" placeholder="(555) 000-0000"></div>
-          <div data-audition-part="2" class="hidden sm:col-span-2"><label class="onboarding-label">Submission Track URL * <span class="text-gray-400 font-normal normal-case tracking-normal">(Spotify, Apple Music, SoundCloud, YouTube, or Dropbox link)</span></label><input class="onboarding-input" name="trackUrl" type="url" placeholder="https://..." required></div>
-          <div data-audition-part="2" class="hidden sm:col-span-2"><label class="onboarding-label">Why this record? <span class="text-gray-400 font-normal normal-case tracking-normal">(1-2 sentences for our A&amp;R team)</span></label><textarea class="onboarding-input min-h-[96px]" name="pitch" rows="3" placeholder="Tell us about the record, the rollout, and what you're trying to build."></textarea></div>
+          <div data-audition-part="2" class="hidden sm:col-span-2"><label class="onboarding-label">Submission Track URL * <span class="text-gray-400 font-normal">(Spotify, Apple Music, SoundCloud, YouTube, or Dropbox link)</span></label><input class="onboarding-input" name="trackUrl" type="url" placeholder="https://..." required></div>
+          <div data-audition-part="2" class="hidden sm:col-span-2"><label class="onboarding-label">Why this record? <span class="text-gray-400 font-normal">(1-2 sentences for our A&amp;R team)</span></label><textarea class="onboarding-input min-h-[96px]" name="pitch" rows="3" placeholder="Tell us about the record, the rollout, and what you're trying to build."></textarea></div>
           <div data-audition-part="2" class="hidden"><label class="onboarding-label">Instagram</label><input class="onboarding-input" name="instagram" placeholder="@yourhandle"></div>
           <div data-audition-part="2" class="hidden"><label class="onboarding-label">Spotify Artist Profile</label><input class="onboarding-input" name="spotify" type="url" placeholder="open.spotify.com/artist/..."></div>
         </form>
@@ -374,128 +235,128 @@
         </div>
 
         <div class="mt-6 grid sm:grid-cols-2 gap-4 text-xs text-gray-500">
-          <div class="flex items-center gap-2"><i data-lucide="shield-check" class="w-3.5 h-3.5"></i> 256-bit SSL &middot; secure submission</div>
+          <div class="flex items-center gap-2"><i data-lucide="shield-check" class="w-3.5 h-3.5"></i> 256-bit SSL · secure submission</div>
           <div class="flex items-center gap-2"><i data-lucide="eye-off" class="w-3.5 h-3.5"></i> Submissions reviewed privately. Not posted publicly.</div>
         </div>
       </section>
 
       <!-- AUDITION SUCCESS: queue confirmation -->
-      <section data-step="audition-success" class="step bg-white rounded-[24px] border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-6 md:p-10 hidden">
+      <section data-step="audition-success" class="step bg-white rounded-2xl shadow-sm p-6 md:p-10 hidden">
         <div class="text-center mb-8">
-          <div class="w-20 h-20 bg-brand-blush50 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-sxsw-pink">
-            <i data-lucide="check" class="w-10 h-10 text-sxsw-pink"></i>
+          <div class="w-20 h-20 bg-[#FDF2F8] rounded-full flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="check" class="w-10 h-10 text-[#8A1558]"></i>
           </div>
-          <div class="text-[10px] font-black uppercase tracking-widest text-sxsw-pink mb-2">You're in the queue</div>
-          <h2 class="text-3xl md:text-4xl mb-2 text-black">SUBMISSION RECEIVED.</h2>
-          <p class="text-gray-700 text-base md:text-lg max-w-xl mx-auto normal-case font-medium" style="text-transform:none;letter-spacing:normal;">Heads up &mdash; we're backed up right now. A&amp;R is working through the queue in order.</p>
+          <div class="text-[10px] font-black uppercase tracking-widest text-[#8A1558] mb-2">You're in the queue</div>
+          <h2 class="text-3xl md:text-4xl font-black tracking-tighter mb-2">Submission received.</h2>
+          <p class="text-gray-700 text-base md:text-lg max-w-xl mx-auto">Heads up &mdash; we're backed up right now. A&amp;R is working through the queue in order.</p>
         </div>
 
         <div class="grid sm:grid-cols-2 gap-4 mb-8">
-          <div class="bg-brand-blush50 border-2 border-sxsw-pink rounded-2xl p-5 text-center">
-            <div class="text-[10px] font-black uppercase tracking-widest text-sxsw-pink mb-1">Your position</div>
-            <div class="text-4xl md:text-5xl font-black tabular-nums text-sxsw-pink" id="queuePosition">#238</div>
-            <div class="text-xs text-gray-600 mt-1 normal-case" style="text-transform:none;letter-spacing:normal;">in the review queue</div>
+          <div class="bg-[#FDF2F8] border border-[#FBCFE8] rounded-xl p-5 text-center">
+            <div class="text-[10px] font-black uppercase tracking-widest text-[#8A1558] mb-1">Your position</div>
+            <div class="text-4xl md:text-5xl font-black tabular-nums text-[#8A1558]" id="queuePosition">#238</div>
+            <div class="text-xs text-gray-600 mt-1">in the review queue</div>
           </div>
-          <div class="bg-gray-50 border-2 border-gray-200 rounded-2xl p-5 text-center">
+          <div class="bg-gray-50 border border-gray-200 rounded-xl p-5 text-center">
             <div class="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-1">Standard review</div>
-            <div class="text-4xl md:text-5xl font-black tabular-nums text-black">~2-3 wks</div>
-            <div class="text-xs text-gray-600 mt-1 normal-case" style="text-transform:none;letter-spacing:normal;">current backlog</div>
+            <div class="text-4xl md:text-5xl font-black tabular-nums">~2-3 wks</div>
+            <div class="text-xs text-gray-600 mt-1">current backlog</div>
           </div>
         </div>
 
         <!-- PRIORITY UPGRADE: $35 to jump the queue -->
-        <div id="upgradeTeaserBtn" class="mb-6 rounded-2xl p-5 md:p-6 text-white border-4 border-black" style="background:linear-gradient(135deg,#680D3E 0%,#8A1558 100%);box-shadow:8px 8px 0px 0px rgba(0,0,0,1);">
+        <div id="upgradeTeaserBtn" class="mb-6 rounded-2xl p-5 md:p-6 text-white" style="background:linear-gradient(135deg,#680D3E 0%,#8A1558 100%);box-shadow:0 18px 40px -18px rgba(138,21,88,0.55);">
           <div class="flex flex-col sm:flex-row sm:items-center gap-4">
             <div class="w-12 h-12 rounded-xl bg-white/15 flex items-center justify-center flex-shrink-0">
-              <i data-lucide="zap" class="w-6 h-6 text-sxsw-teal"></i>
+              <i data-lucide="zap" class="w-6 h-6 text-[#FBCFE8]"></i>
             </div>
             <div class="flex-1 min-w-0">
-              <div class="text-[10px] font-black uppercase tracking-widest text-sxsw-teal mb-1">Make your submission a priority</div>
-              <div class="text-xl md:text-2xl font-black tracking-tight">JUMP THE QUEUE &mdash; <span class="text-sxsw-teal">$35</span></div>
-              <div class="text-sm text-white/80 mt-1 normal-case" style="text-transform:none;letter-spacing:normal;font-weight:500;">A&amp;R reviews priority submissions within 72 hours and sends written feedback either way.</div>
+              <div class="text-[10px] font-black uppercase tracking-widest text-[#FBCFE8] mb-1">Make your submission a priority</div>
+              <div class="text-xl md:text-2xl font-black tracking-tight">Jump the queue &mdash; <span class="text-[#FBCFE8]">$35</span></div>
+              <div class="text-sm text-white/80 mt-1">A&amp;R reviews priority submissions within 72 hours and sends written feedback either way.</div>
             </div>
-            <button id="upgradePayBtn" type="button" class="bg-sxsw-teal text-sxsw-deeppink font-black uppercase tracking-widest text-xs px-5 py-3 rounded-md hover:bg-white whitespace-nowrap inline-flex items-center gap-2">
+            <button id="upgradePayBtn" type="button" class="bg-[#FBCFE8] text-[#680D3E] font-black uppercase tracking-widest text-xs px-5 py-3 rounded-md hover:bg-white whitespace-nowrap inline-flex items-center gap-2">
               <i data-lucide="zap" class="w-4 h-4"></i> Upgrade $35
             </button>
           </div>
         </div>
-        <div id="upgradeTeaserConfirm" class="hidden mb-6 rounded-xl border-2 border-sxsw-pink bg-brand-blush50 p-4 flex items-start gap-3">
-          <i data-lucide="check-circle-2" class="w-5 h-5 text-sxsw-pink flex-shrink-0 mt-0.5"></i>
-          <div class="text-sm text-sxsw-deeppink normal-case" style="text-transform:none;letter-spacing:normal;">
+        <div id="upgradeTeaserConfirm" class="hidden mb-6 rounded-xl border-2 border-[#FBCFE8] bg-[#FDF2F8] p-4 flex items-start gap-3">
+          <i data-lucide="check-circle-2" class="w-5 h-5 text-[#8A1558] flex-shrink-0 mt-0.5"></i>
+          <div class="text-sm text-[#680D3E]">
             <b>Priority requested.</b> We'll email you the $35 payment link shortly. Once paid, your submission jumps to the top of the queue.
           </div>
         </div>
 
-        <div class="border-2 border-black rounded-2xl p-5 md:p-6 mb-6 bg-white">
-          <h3 class="text-xl mb-3 text-black">WHILE YOU WAIT, STACK THE DECK.</h3>
-          <p class="text-sm text-gray-600 mb-4 normal-case font-medium" style="text-transform:none;letter-spacing:normal;">Approved artists who arrive with a following close their rollout 3x faster. Pull your team in now.</p>
+        <div class="border border-gray-200 rounded-2xl p-5 md:p-6 mb-6">
+          <h3 class="font-black tracking-tight mb-3">While you wait, stack the deck.</h3>
+          <p class="text-sm text-gray-600 mb-4">Approved artists who arrive with a following close their rollout 3x faster. Pull your team in now.</p>
           <div class="grid md:grid-cols-3 gap-4">
-            <div class="bg-brand-blush50 border-2 border-sxsw-teal rounded-xl p-4">
-              <div class="w-9 h-9 rounded-lg bg-white text-sxsw-pink flex items-center justify-center mb-3"><i data-lucide="users" class="w-4 h-4"></i></div>
-              <h4 class="font-black mb-1 text-sm normal-case" style="text-transform:none;letter-spacing:normal;">Pull fans onto the waitlist</h4>
-              <p class="text-xs text-gray-600 mb-3 normal-case font-medium" style="text-transform:none;letter-spacing:normal;">Send your audience to the fan waitlist. Demand signals matter when A&amp;R reviews you.</p>
-              <a href="https://www.newmusicwednesdayslive.com/rsvp" target="_blank" rel="noopener" class="text-xs font-black uppercase tracking-widest text-sxsw-pink hover:text-sxsw-deeppink inline-flex items-center gap-1">Share waitlist link <i data-lucide="arrow-right" class="w-3 h-3"></i></a>
+            <div class="bg-[#FDF2F8] border border-[#FBCFE8] rounded-xl p-4">
+              <div class="w-9 h-9 rounded-lg bg-white text-[#8A1558] flex items-center justify-center mb-3"><i data-lucide="users" class="w-4 h-4"></i></div>
+              <h4 class="font-black mb-1 text-sm">Pull fans onto the waitlist</h4>
+              <p class="text-xs text-gray-600 mb-3">Send your audience to the fan waitlist. Demand signals matter when A&amp;R reviews you.</p>
+              <a href="https://www.newmusicwednesdayslive.com/rsvp" target="_blank" rel="noopener" class="text-xs font-black uppercase tracking-widest text-[#8A1558] hover:text-[#680D3E] inline-flex items-center gap-1">Share waitlist link <i data-lucide="arrow-right" class="w-3 h-3"></i></a>
             </div>
-            <div class="bg-brand-blush50 border-2 border-sxsw-teal rounded-xl p-4">
-              <div class="w-9 h-9 rounded-lg bg-white text-sxsw-pink flex items-center justify-center mb-3"><i data-lucide="instagram" class="w-4 h-4"></i></div>
-              <h4 class="font-black mb-1 text-sm normal-case" style="text-transform:none;letter-spacing:normal;">Follow @digiwaxx</h4>
-              <p class="text-xs text-gray-600 mb-3 normal-case font-medium" style="text-transform:none;letter-spacing:normal;">Approval announcements drop on Instagram first.</p>
-              <a href="https://instagram.com/digiwaxx" target="_blank" rel="noopener" class="text-xs font-black uppercase tracking-widest text-sxsw-pink hover:text-sxsw-deeppink inline-flex items-center gap-1">Follow <i data-lucide="arrow-right" class="w-3 h-3"></i></a>
+            <div class="bg-[#FDF2F8] border border-[#FBCFE8] rounded-xl p-4">
+              <div class="w-9 h-9 rounded-lg bg-white text-[#8A1558] flex items-center justify-center mb-3"><i data-lucide="instagram" class="w-4 h-4"></i></div>
+              <h4 class="font-black mb-1 text-sm">Follow @digiwaxx</h4>
+              <p class="text-xs text-gray-600 mb-3">Approval announcements drop on Instagram first.</p>
+              <a href="https://instagram.com/digiwaxx" target="_blank" rel="noopener" class="text-xs font-black uppercase tracking-widest text-[#8A1558] hover:text-[#680D3E] inline-flex items-center gap-1">Follow <i data-lucide="arrow-right" class="w-3 h-3"></i></a>
             </div>
-            <div class="bg-brand-blush50 border-2 border-sxsw-teal rounded-xl p-4">
-              <div class="w-9 h-9 rounded-lg bg-white text-sxsw-pink flex items-center justify-center mb-3"><i data-lucide="ticket" class="w-4 h-4"></i></div>
-              <h4 class="font-black mb-1 text-sm normal-case" style="text-transform:none;letter-spacing:normal;">Come see a Wednesday</h4>
-              <p class="text-xs text-gray-600 mb-3 normal-case font-medium" style="text-transform:none;letter-spacing:normal;">Walk the room before you play it. RSVP for an upcoming show.</p>
-              <a href="attend.html" class="text-xs font-black uppercase tracking-widest text-sxsw-pink hover:text-sxsw-deeppink inline-flex items-center gap-1">See dates <i data-lucide="arrow-right" class="w-3 h-3"></i></a>
+            <div class="bg-[#FDF2F8] border border-[#FBCFE8] rounded-xl p-4">
+              <div class="w-9 h-9 rounded-lg bg-white text-[#8A1558] flex items-center justify-center mb-3"><i data-lucide="ticket" class="w-4 h-4"></i></div>
+              <h4 class="font-black mb-1 text-sm">Come see a Wednesday</h4>
+              <p class="text-xs text-gray-600 mb-3">Walk the room before you play it. RSVP for an upcoming show.</p>
+              <a href="attend.html" class="text-xs font-black uppercase tracking-widest text-[#8A1558] hover:text-[#680D3E] inline-flex items-center gap-1">See dates <i data-lucide="arrow-right" class="w-3 h-3"></i></a>
             </div>
           </div>
         </div>
 
-        <div class="text-center text-xs text-gray-500 normal-case" style="text-transform:none;letter-spacing:normal;">
-          Submission ID: <span id="auditionId" class="font-mono font-bold text-gray-700">NMW-AUD-000000</span> &middot; Save this for your records.
+        <div class="text-center text-xs text-gray-500">
+          Submission ID: <span id="auditionId" class="font-mono font-bold text-gray-700">NMW-AUD-000000</span> · Save this for your records.
         </div>
       </section>
 
       <!-- STEP 1: PACKAGE + YOUR DETAILS -->
-      <section data-step="1" class="step bg-white rounded-[24px] border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-6 md:p-10 hidden">
-        <h2 class="text-2xl md:text-3xl mb-1 text-black">CHOOSE YOUR PACKAGE</h2>
-        <p class="text-gray-500 mb-6 normal-case font-medium" style="text-transform:none;letter-spacing:normal;">Approved. Now pick the rollout. Most artists pick the <b>Most Popular</b> tile; if your goals point somewhere else, our recommendation banner will tell you.</p>
+      <section data-step="1" class="step bg-white rounded-2xl shadow-sm p-6 md:p-10 hidden">
+        <h2 class="text-2xl md:text-3xl font-black tracking-tight mb-1">CHOOSE YOUR PACKAGE</h2>
+        <p class="text-gray-500 mb-6">Approved. Now pick the rollout. Most artists pick the <b>Most Popular</b> tile; if your goals point somewhere else, our recommendation banner will tell you.</p>
 
         <!-- Personalized recommendation banner: populated by renderPackages() based on goals. -->
-        <div id="pkgRecBanner" class="hidden mb-5 rounded-2xl p-4 md:p-5 text-white border-2 border-black" style="background:linear-gradient(135deg,#680D3E 0%,#8A1558 100%);box-shadow:6px 6px 0px 0px rgba(0,0,0,1);"></div>
+        <div id="pkgRecBanner" class="hidden mb-5 rounded-2xl p-4 md:p-5 text-white" style="background:linear-gradient(135deg,#680D3E 0%,#8A1558 100%);box-shadow:0 12px 28px -14px rgba(138,21,88,0.45);"></div>
 
         <div class="grid grid-cols-2 md:grid-cols-5 gap-3" id="pkgGrid"></div>
 
         <div class="mt-6 grid md:grid-cols-2 gap-4">
-          <div class="rounded-2xl border-2 border-black bg-brand-blush50 p-5">
+          <div class="rounded-xl border border-gray-200 bg-gray-50 p-5">
             <div class="flex items-start gap-3">
-              <div class="w-9 h-9 rounded-full bg-white text-sxsw-pink flex items-center justify-center flex-shrink-0"><i data-lucide="ticket" class="w-5 h-5"></i></div>
+              <div class="w-9 h-9 rounded-full bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center flex-shrink-0"><i data-lucide="ticket" class="w-5 h-5"></i></div>
               <div class="min-w-0">
-                <h3 class="text-lg mb-1 text-black">WANT TO COME SEE IT LIVE?</h3>
-                <p class="text-sm text-gray-700 font-medium normal-case" style="text-transform:none;letter-spacing:normal;">RSVP for a Wednesday at The Penthouse before you commit to a slot. See the room, feel the energy, hear the artists.</p>
-                <a href="https://www.newmusicwednesdayslive.com/rsvp" target="_blank" rel="noopener noreferrer" class="text-xs font-black uppercase tracking-widest text-sxsw-pink hover:text-sxsw-deeppink mt-3 inline-flex items-center gap-1">RSVP for a Wednesday <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a>
+                <h3 class="font-black tracking-tight mb-1">Want to come see it live?</h3>
+                <p class="text-sm text-gray-600 font-serif">RSVP for a Wednesday at The Penthouse before you commit to a slot. See the room, feel the energy, hear the artists.</p>
+                <a href="https://www.newmusicwednesdayslive.com/rsvp" target="_blank" rel="noopener noreferrer" class="text-xs font-black uppercase tracking-widest text-[#8A1558] hover:text-[#680D3E] mt-3 inline-flex items-center gap-1">RSVP for a Wednesday <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a>
               </div>
             </div>
           </div>
-          <div class="rounded-2xl border-2 border-black bg-brand-blush50 p-5">
+          <div class="rounded-xl border border-gray-200 bg-gray-50 p-5">
             <div class="flex items-start gap-3">
-              <div class="w-9 h-9 rounded-full bg-white text-sxsw-pink flex items-center justify-center flex-shrink-0"><i data-lucide="newspaper" class="w-5 h-5"></i></div>
+              <div class="w-9 h-9 rounded-full bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center flex-shrink-0"><i data-lucide="newspaper" class="w-5 h-5"></i></div>
               <div class="min-w-0">
-                <h3 class="text-lg mb-1 text-black">PRESS &amp; MEDIA NETWORK</h3>
-                <p class="text-sm text-gray-700 font-medium normal-case" style="text-transform:none;letter-spacing:normal;">Media isn't on the sidelines here, it's at the center of the culture. The media pit is where interviews come to life and moments get documented during a live taping.</p>
-                <p class="text-xs text-gray-500 mt-2 normal-case font-medium" style="text-transform:none;letter-spacing:normal;">Partners include Digiwaxx, DSN Network, QueueVision, FUBU Radio, HLM Media, and a rotating roster of personalities and producers.</p>
+                <h3 class="font-black tracking-tight mb-1">Press &amp; Media Network</h3>
+                <p class="text-sm text-gray-600 font-serif">Media isn't on the sidelines here, it's at the center of the culture. The media pit is where interviews come to life and moments get documented during a live taping.</p>
+                <p class="text-xs text-gray-500 mt-2">Partners include Digiwaxx, DSN Network, QueueVision, FUBU Radio, HLM Media, and a rotating roster of personalities and producers.</p>
                 <div class="flex flex-wrap gap-x-4 gap-y-2 mt-3">
-                  <button type="button" class="text-xs font-black uppercase tracking-widest text-sxsw-pink hover:text-sxsw-deeppink inline-flex items-center gap-1" data-info="press">View full media team <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></button>
-                  <a href="https://www.newmusicwednesdayslive.com/mediaaccess" target="_blank" rel="noopener noreferrer" class="text-xs font-black uppercase tracking-widest text-sxsw-pink hover:text-sxsw-deeppink inline-flex items-center gap-1">Request Media Access <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a>
+                  <button type="button" class="text-xs font-black uppercase tracking-widest text-[#8A1558] hover:text-[#680D3E] inline-flex items-center gap-1" data-info="press">View full media team <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></button>
+                  <a href="https://www.newmusicwednesdayslive.com/mediaaccess" target="_blank" rel="noopener noreferrer" class="text-xs font-black uppercase tracking-widest text-[#8A1558] hover:text-[#680D3E] inline-flex items-center gap-1">Request Media Access <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="border-t-2 border-gray-100 mt-5 md:mt-10 pt-8">
-          <h2 class="text-2xl md:text-3xl mb-1 text-black">YOUR DETAILS</h2>
-          <p class="text-gray-500 mb-6 normal-case font-medium" style="text-transform:none;letter-spacing:normal;">Where should we send your event details?</p>
+        <div class="border-t border-gray-100 mt-5 md:mt-10 pt-8">
+          <h2 class="text-2xl md:text-3xl font-black tracking-tight mb-1">YOUR DETAILS</h2>
+          <p class="text-gray-500 mb-6">Where should we send your event details?</p>
           <form id="step1Form" class="grid sm:grid-cols-2 gap-5">
             <div><label class="onboarding-label">Full Name *</label><input class="onboarding-input" name="name" placeholder="Your name" required></div>
             <div><label class="onboarding-label">Email Address *</label><input class="onboarding-input" name="email" type="email" placeholder="you@email.com" required></div>
@@ -539,20 +400,20 @@
       </section>
 
       <!-- STEP 2: DATE (performance only) -->
-      <section data-step="date" class="step bg-white rounded-[24px] border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-6 md:p-10 hidden">
-        <h2 class="text-2xl md:text-3xl mb-1 text-black">PICK YOUR WEDNESDAY</h2>
-        <p class="text-gray-500 mb-8 normal-case font-medium" style="text-transform:none;letter-spacing:normal;">Each Wednesday at The Penthouse has limited slots. Pick an open one.</p>
+      <section data-step="date" class="step bg-white rounded-2xl shadow-sm p-6 md:p-10 hidden">
+        <h2 class="text-2xl md:text-3xl font-black tracking-tight mb-1">PICK YOUR WEDNESDAY</h2>
+        <p class="text-gray-500 mb-8">Each Wednesday at The Penthouse has limited slots. Pick an open one.</p>
 
-        <div class="text-xs font-black uppercase tracking-widest text-sxsw-pink mb-3">Primary Date *</div>
+        <div class="text-xs font-black uppercase tracking-widest text-[#8A1558] mb-3">Primary Date *</div>
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3" id="dateGrid"></div>
 
         <div class="text-xs font-black uppercase tracking-widest text-gray-500 mt-5 md:mt-10 mb-2">Rain Date *</div>
-        <p class="text-sm text-gray-500 mb-3 normal-case font-medium" style="text-transform:none;letter-spacing:normal;">Pick a backup Wednesday in case the primary doesn't work, weather, scheduling conflict, or a sold-out room. Must be different from your primary date.</p>
+        <p class="text-sm text-gray-500 mb-3">Pick a backup Wednesday in case the primary doesn't work, weather, scheduling conflict, or a sold-out room. Must be different from your primary date.</p>
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3" id="rainDateGrid"></div>
 
-        <div class="mt-8 bg-brand-blush50 border-2 border-sxsw-pink rounded-xl p-4 flex items-start gap-3">
-          <i data-lucide="phone-call" class="w-5 h-5 text-sxsw-pink flex-shrink-0 mt-0.5"></i>
-          <p class="text-sm text-gray-800 normal-case" style="text-transform:none;letter-spacing:normal;"><b>Heads up:</b> a New Music Wednesdays assistant will call you within 24 hours to confirm your date and walk through what to bring.</p>
+        <div class="mt-8 bg-[#FDF2F8] border border-[#FBCFE8] rounded-xl p-4 flex items-start gap-3">
+          <i data-lucide="phone-call" class="w-5 h-5 text-[#8A1558] flex-shrink-0 mt-0.5"></i>
+          <p class="text-sm text-gray-800"><b>Heads up:</b> a New Music Wednesdays assistant will call you within 24 hours to confirm your date and walk through what to bring.</p>
         </div>
 
         <div class="flex justify-between mt-8">
@@ -562,18 +423,18 @@
       </section>
 
       <!-- STEP 3: ENHANCE (upsells + goals) -->
-      <section data-step="enhance" class="step bg-white rounded-[24px] border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-6 md:p-10 hidden">
-        <h2 class="text-2xl md:text-3xl mb-1 text-black">ENHANCE YOUR ROLLOUT</h2>
-        <p class="text-gray-500 mb-2 normal-case font-medium" style="text-transform:none;letter-spacing:normal;">First, what's your main goal?</p>
+      <section data-step="enhance" class="step bg-white rounded-2xl shadow-sm p-6 md:p-10 hidden">
+        <h2 class="text-2xl md:text-3xl font-black tracking-tight mb-1">ENHANCE YOUR ROLLOUT</h2>
+        <p class="text-gray-500 mb-2">First, what's your main goal?</p>
         <div class="flex flex-wrap gap-2 mb-8" id="goalsGrid"></div>
 
-        <p class="text-gray-500 mb-2 normal-case font-medium" style="text-transform:none;letter-spacing:normal;">Recommended distribution upgrades for your goal:</p>
+        <p class="text-gray-500 mb-2">Recommended distribution upgrades for your goal:</p>
         <div id="recsGrid" class="space-y-3"></div>
-        <p id="noRecsNote" class="text-sm text-gray-400 italic mt-3 normal-case" style="text-transform:none;letter-spacing:normal;"></p>
+        <p id="noRecsNote" class="text-sm text-gray-400 italic mt-3"></p>
 
-        <div class="bg-sxsw-green border-2 border-black rounded-xl p-4 mt-6 flex items-start gap-3">
-          <i data-lucide="zap" class="w-5 h-5 text-black flex-shrink-0 mt-0.5"></i>
-          <p class="text-sm font-bold text-black normal-case" style="text-transform:none;letter-spacing:normal;">These upgrades trigger direct DJ-network distribution and email blasts. Add now or skip, you can layer them on later.</p>
+        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mt-6 flex items-start gap-3">
+          <i data-lucide="zap" class="w-5 h-5 text-yellow-700 flex-shrink-0 mt-0.5"></i>
+          <p class="text-sm font-bold text-yellow-900">These upgrades trigger direct DJ-network distribution and email blasts. Add now or skip, you can layer them on later.</p>
         </div>
 
         <div class="flex justify-between mt-8">
@@ -583,40 +444,40 @@
       </section>
 
       <!-- STEP 3.5: NEXT STEPS -->
-      <section data-step="rules" class="step bg-white rounded-[24px] border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-6 md:p-10 hidden">
-        <h2 class="text-2xl md:text-3xl mb-1 text-black">NEXT STEPS</h2>
-        <p class="text-gray-500 mb-8 normal-case font-medium" style="text-transform:none;letter-spacing:normal;">Quick read before you book. These keep the night running smooth and your distribution unlocked.</p>
+      <section data-step="rules" class="step bg-white rounded-2xl shadow-sm p-6 md:p-10 hidden">
+        <h2 class="text-2xl md:text-3xl font-black tracking-tight mb-1">NEXT STEPS</h2>
+        <p class="text-gray-500 mb-8">Quick read before you book. These keep the night running smooth and your distribution unlocked.</p>
 
         <div class="space-y-4 mb-8">
-          <div class="flex items-start gap-3"><i data-lucide="clock" class="w-5 h-5 text-sxsw-pink flex-shrink-0 mt-0.5"></i><p class="text-sm text-gray-800 normal-case" style="text-transform:none;letter-spacing:normal;"><b>Call time is 6:30 PM, sharp.</b> Wednesday flow: <b>DJ Call</b> on Zoom 4-6 PM, <b>Happy Hour + Media Pit</b> 7-9 PM (your Next Up Experience couch interview lands here), <b>Live Performances</b> 9-11 PM at The Booth (and Barz at the Bar if cypher-eligible). Late = forfeited slot.</p></div>
-          <div class="flex items-start gap-3"><i data-lucide="mic" class="w-5 h-5 text-sxsw-pink flex-shrink-0 mt-0.5"></i><p class="text-sm text-gray-800 normal-case" style="text-transform:none;letter-spacing:normal;"><b>Two songs max per artist.</b> Bring clean instrumentals on a USB. No backing-track vocals.</p></div>
-          <div class="flex items-start gap-3"><i data-lucide="users" class="w-5 h-5 text-sxsw-pink flex-shrink-0 mt-0.5"></i><p class="text-sm text-gray-800 normal-case" style="text-transform:none;letter-spacing:normal;"><b>+1 guest comp.</b> Anyone beyond that needs to RSVP through your share link.</p></div>
-          <div class="flex items-start gap-3"><i data-lucide="ban" class="w-5 h-5 text-sxsw-pink flex-shrink-0 mt-0.5"></i><p class="text-sm text-gray-800 normal-case" style="text-transform:none;letter-spacing:normal;"><b>No no-shows.</b> No-show forfeits the package; the rain date is your safety net.</p></div>
-          <div class="flex items-start gap-3"><i data-lucide="video" class="w-5 h-5 text-sxsw-pink flex-shrink-0 mt-0.5"></i><p class="text-sm text-gray-800 normal-case" style="text-transform:none;letter-spacing:normal;"><b>You consent to capture.</b> We record audio + video for your press kit and our editorial / partner distribution (Digiwaxx, DICE, Bandsintown, Songkick, Eventbrite, Luma).</p></div>
+          <div class="flex items-start gap-3"><i data-lucide="clock" class="w-5 h-5 text-[#8A1558] flex-shrink-0 mt-0.5"></i><p class="text-sm text-gray-800"><b>Call time is 6:30 PM, sharp.</b> Wednesday flow: <b>DJ Call</b> on Zoom 4-6 PM, <b>Happy Hour + Media Pit</b> 7-9 PM (your Next Up Experience couch interview lands here), <b>Live Performances</b> 9-11 PM at The Booth (and Barz at the Bar if cypher-eligible). Late = forfeited slot.</p></div>
+          <div class="flex items-start gap-3"><i data-lucide="mic" class="w-5 h-5 text-[#8A1558] flex-shrink-0 mt-0.5"></i><p class="text-sm text-gray-800"><b>Two songs max per artist.</b> Bring clean instrumentals on a USB. No backing-track vocals.</p></div>
+          <div class="flex items-start gap-3"><i data-lucide="users" class="w-5 h-5 text-[#8A1558] flex-shrink-0 mt-0.5"></i><p class="text-sm text-gray-800"><b>+1 guest comp.</b> Anyone beyond that needs to RSVP through your share link.</p></div>
+          <div class="flex items-start gap-3"><i data-lucide="ban" class="w-5 h-5 text-[#8A1558] flex-shrink-0 mt-0.5"></i><p class="text-sm text-gray-800"><b>No no-shows.</b> No-show forfeits the package; the rain date is your safety net.</p></div>
+          <div class="flex items-start gap-3"><i data-lucide="video" class="w-5 h-5 text-[#8A1558] flex-shrink-0 mt-0.5"></i><p class="text-sm text-gray-800"><b>You consent to capture.</b> We record audio + video for your press kit and our editorial / partner distribution (Digiwaxx, DICE, Bandsintown, Songkick, Eventbrite, Luma).</p></div>
         </div>
 
-        <div class="border-t-2 border-gray-100 pt-6">
-          <h3 class="text-lg mb-2 text-black">SIGN UP AT THESE PLATFORMS BEFORE SHOWTIME</h3>
-          <p class="text-sm text-gray-500 mb-4 normal-case font-medium" style="text-transform:none;letter-spacing:normal;">Distribution unlocks once we verify your artist profiles. Claim them now and upload screenshots in the Verification Portal.</p>
+        <div class="border-t border-gray-100 pt-6">
+          <h3 class="font-black tracking-tight mb-2">Sign up at these platforms before showtime</h3>
+          <p class="text-sm text-gray-500 mb-4">Distribution unlocks once we verify your artist profiles. Claim them now and upload screenshots in the Verification Portal.</p>
           <div class="grid sm:grid-cols-3 gap-3">
-            <a href="https://artists.bandsintown.com" target="_blank" rel="noopener" class="flex items-center justify-between gap-2 p-3 border-2 border-gray-200 rounded-lg hover:border-sxsw-pink transition-colors">
+            <a href="https://artists.bandsintown.com" target="_blank" rel="noopener" class="flex items-center justify-between gap-2 p-3 border border-gray-200 rounded-lg hover:border-[#8A1558] transition-colors">
               <div class="text-left min-w-0">
-                <div class="text-xs font-black uppercase tracking-widest text-sxsw-pink">Bandsintown</div>
-                <div class="text-xs text-gray-600 truncate normal-case" style="text-transform:none;letter-spacing:normal;">artists.bandsintown.com</div>
+                <div class="text-xs font-black uppercase tracking-widest text-[#8A1558]">Bandsintown</div>
+                <div class="text-xs text-gray-600 truncate">artists.bandsintown.com</div>
               </div>
               <i data-lucide="external-link" class="w-4 h-4 text-gray-400 flex-shrink-0"></i>
             </a>
-            <a href="https://www.songkick.com/tourbox" target="_blank" rel="noopener" class="flex items-center justify-between gap-2 p-3 border-2 border-gray-200 rounded-lg hover:border-sxsw-pink transition-colors">
+            <a href="https://www.songkick.com/tourbox" target="_blank" rel="noopener" class="flex items-center justify-between gap-2 p-3 border border-gray-200 rounded-lg hover:border-[#8A1558] transition-colors">
               <div class="text-left min-w-0">
-                <div class="text-xs font-black uppercase tracking-widest text-sxsw-pink">Songkick</div>
-                <div class="text-xs text-gray-600 truncate normal-case" style="text-transform:none;letter-spacing:normal;">songkick.com/tourbox</div>
+                <div class="text-xs font-black uppercase tracking-widest text-[#8A1558]">Songkick</div>
+                <div class="text-xs text-gray-600 truncate">songkick.com/tourbox</div>
               </div>
               <i data-lucide="external-link" class="w-4 h-4 text-gray-400 flex-shrink-0"></i>
             </a>
-            <a href="https://dice.fm" target="_blank" rel="noopener" class="flex items-center justify-between gap-2 p-3 border-2 border-gray-200 rounded-lg hover:border-sxsw-pink transition-colors">
+            <a href="https://dice.fm" target="_blank" rel="noopener" class="flex items-center justify-between gap-2 p-3 border border-gray-200 rounded-lg hover:border-[#8A1558] transition-colors">
               <div class="text-left min-w-0">
-                <div class="text-xs font-black uppercase tracking-widest text-sxsw-pink">DICE</div>
-                <div class="text-xs text-gray-600 truncate normal-case" style="text-transform:none;letter-spacing:normal;">dice.fm</div>
+                <div class="text-xs font-black uppercase tracking-widest text-[#8A1558]">DICE</div>
+                <div class="text-xs text-gray-600 truncate">dice.fm</div>
               </div>
               <i data-lucide="external-link" class="w-4 h-4 text-gray-400 flex-shrink-0"></i>
             </a>
@@ -625,7 +486,7 @@
 
         <label class="mt-8 flex items-start gap-3 cursor-pointer">
           <input id="rulesAgree" type="checkbox" class="mt-1 w-5 h-5 accent-[#8A1558]">
-          <span class="text-sm text-gray-800 normal-case" style="text-transform:none;letter-spacing:normal;">I've read the next steps and I'll claim my Bandsintown, Songkick, and DICE profiles before showtime.</span>
+          <span class="text-sm text-gray-800">I've read the next steps and I'll claim my Bandsintown, Songkick, and DICE profiles before showtime.</span>
         </label>
 
         <div class="flex justify-between mt-8">
@@ -635,19 +496,19 @@
       </section>
 
       <!-- STEP 4: PAYMENT -->
-      <section data-step="payment" class="step bg-white rounded-[24px] border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-6 md:p-10 hidden">
-        <h2 class="text-2xl md:text-3xl mb-1 text-black">SECURE PAYMENT</h2>
-        <p class="text-gray-500 mb-8 normal-case font-medium" style="text-transform:none;letter-spacing:normal;">Stripe-encrypted checkout. Cards charged once verification clears.</p>
+      <section data-step="payment" class="step bg-white rounded-2xl shadow-sm p-6 md:p-10 hidden">
+        <h2 class="text-2xl md:text-3xl font-black tracking-tight mb-1">SECURE PAYMENT</h2>
+        <p class="text-gray-500 mb-8">Stripe-encrypted checkout. Cards charged once verification clears.</p>
 
-        <div id="premiereOffer" class="hidden mb-6 rounded-2xl p-5 md:p-6 text-white border-4 border-black" style="background:linear-gradient(135deg,#680D3E 0%,#8A1558 100%);box-shadow:8px 8px 0px 0px rgba(0,0,0,1);">
+        <div id="premiereOffer" class="hidden mb-6 rounded-2xl p-5 md:p-6 text-white" style="background:linear-gradient(135deg,#680D3E 0%,#8A1558 100%);box-shadow:0 18px 40px -18px rgba(138,21,88,0.55);">
           <div class="flex items-start sm:items-center gap-4 flex-col sm:flex-row sm:justify-between">
             <div>
-              <div class="text-xs font-black uppercase tracking-widest text-sxsw-teal mb-1">Limited Time</div>
-              <div class="text-lg md:text-xl font-black tracking-tight">PREMIERE PACKAGE: <span class="line-through opacity-70 mr-1">$899</span> <span>$699</span></div>
-              <div class="text-sm text-white/80 mt-1 normal-case" style="text-transform:none;letter-spacing:normal;font-weight:500;">Close this out before the timer hits zero. Once it expires, the price reverts.</div>
+              <div class="text-xs font-black uppercase tracking-widest text-[#FBCFE8] mb-1">Limited Time</div>
+              <div class="text-lg md:text-xl font-black tracking-tight">Premiere Package: <span class="line-through opacity-70 mr-1">$899</span> <span>$699</span></div>
+              <div class="text-sm text-white/80 mt-1">Close this out before the timer hits zero. Once it expires, the price reverts.</div>
             </div>
             <div class="text-right">
-              <div class="text-[10px] font-black uppercase tracking-widest text-sxsw-teal">Expires in</div>
+              <div class="text-[10px] font-black uppercase tracking-widest text-[#FBCFE8]">Expires in</div>
               <div id="premiereTimer" class="text-3xl md:text-4xl font-black tabular-nums leading-none mt-1">1:00</div>
             </div>
           </div>
@@ -657,16 +518,16 @@
           <div><label class="onboarding-label">Expiry</label><input class="onboarding-input" placeholder="MM/YY" value="12/29"></div>
           <div><label class="onboarding-label">CVC</label><input class="onboarding-input" placeholder="123" value="123"></div>
           <div class="sm:col-span-2"><label class="onboarding-label">Cardholder Name</label><input class="onboarding-input" placeholder="Name on card"></div>
-          <div class="sm:col-span-2 border-t-2 border-gray-100 pt-5">
+          <div class="sm:col-span-2 border-t border-gray-100 pt-5">
             <label class="onboarding-label">Have an offer code?</label>
             <div class="flex gap-2">
               <input id="promoInput" class="onboarding-input flex-1 uppercase" placeholder="Enter code" autocomplete="off">
               <button type="button" id="promoApply" class="onboarding-cta onboarding-cta--brand whitespace-nowrap">Apply</button>
             </div>
-            <p id="promoStatus" class="text-xs mt-2 normal-case" style="text-transform:none;letter-spacing:normal;"></p>
+            <p id="promoStatus" class="text-xs mt-2"></p>
           </div>
         </div>
-        <div class="text-xs text-gray-400 flex items-center gap-2 mt-3 normal-case" style="text-transform:none;letter-spacing:normal;"><i data-lucide="lock" class="w-3 h-3"></i> 256-bit SSL, Stripe-powered, Demo only</div>
+        <div class="text-xs text-gray-400 flex items-center gap-2 mt-3"><i data-lucide="lock" class="w-3 h-3"></i> 256-bit SSL, Stripe-powered, Demo only</div>
         <div class="flex justify-between mt-8">
           <button class="onboarding-back" data-back="payment"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back</button>
           <button class="onboarding-cta onboarding-cta--brand" data-next="payment"><i data-lucide="zap" class="w-4 h-4"></i> Complete Booking</button>
@@ -674,46 +535,46 @@
       </section>
 
       <!-- STEP 5: AGREEMENT (success) -->
-      <section data-step="success" class="step bg-white rounded-[24px] border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-6 md:p-10 hidden">
+      <section data-step="success" class="step bg-white rounded-2xl shadow-sm p-6 md:p-10 hidden">
         <div class="text-center mb-8">
-          <div class="w-20 h-20 bg-brand-blush50 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-sxsw-pink">
-            <i data-lucide="check" class="w-10 h-10 text-sxsw-pink"></i>
+          <div class="w-20 h-20 bg-[#FDF2F8] rounded-full flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="check" class="w-10 h-10 text-[#8A1558]"></i>
           </div>
-          <h2 class="text-3xl md:text-4xl mb-2 text-black">YOU'RE BOOKED.</h2>
-          <p class="text-gray-600 text-lg normal-case font-medium" id="successSub" style="text-transform:none;letter-spacing:normal;"></p>
+          <h2 class="text-3xl md:text-4xl font-black tracking-tighter mb-2">YOU'RE BOOKED.</h2>
+          <p class="text-gray-600 text-lg" id="successSub"></p>
         </div>
 
-        <div class="bg-brand-blush50 border-2 border-sxsw-pink rounded-xl p-5 mb-6 grid sm:grid-cols-2 gap-4">
-          <div class="flex items-start gap-3"><i data-lucide="mail" class="w-5 h-5 text-sxsw-pink flex-shrink-0 mt-0.5"></i><p class="text-sm text-gray-800 normal-case" style="text-transform:none;letter-spacing:normal;"><b>Check your inbox.</b> We just emailed your receipt and your next-steps checklist.</p></div>
-          <div class="flex items-start gap-3"><i data-lucide="phone-call" class="w-5 h-5 text-sxsw-pink flex-shrink-0 mt-0.5"></i><p class="text-sm text-gray-800 normal-case" style="text-transform:none;letter-spacing:normal;"><b>An NMW assistant will call</b> within 24 hours to confirm your date and walk through prep.</p></div>
+        <div class="bg-[#FDF2F8] border border-[#FBCFE8] rounded-xl p-5 mb-6 grid sm:grid-cols-2 gap-4">
+          <div class="flex items-start gap-3"><i data-lucide="mail" class="w-5 h-5 text-[#8A1558] flex-shrink-0 mt-0.5"></i><p class="text-sm text-gray-800"><b>Check your inbox.</b> We just emailed your receipt and your next-steps checklist.</p></div>
+          <div class="flex items-start gap-3"><i data-lucide="phone-call" class="w-5 h-5 text-[#8A1558] flex-shrink-0 mt-0.5"></i><p class="text-sm text-gray-800"><b>An NMW assistant will call</b> within 24 hours to confirm your date and walk through prep.</p></div>
         </div>
 
         <div id="performanceNext" class="hidden">
-          <div class="bg-sxsw-green border-2 border-black rounded-xl p-5 mb-5 flex items-start gap-3">
-            <i data-lucide="alert-triangle" class="w-6 h-6 text-black flex-shrink-0"></i>
+          <div class="bg-yellow-50 border-2 border-yellow-300 rounded-xl p-5 mb-5 flex items-start gap-3">
+            <i data-lucide="alert-triangle" class="w-6 h-6 text-yellow-700 flex-shrink-0"></i>
             <div>
-              <h3 class="text-lg text-black">ACTION REQUIRED WITHIN 24 HOURS</h3>
-              <p class="text-sm text-black mt-0.5 normal-case font-medium" style="text-transform:none;letter-spacing:normal;">Your distribution unlocks once we can verify your artist profiles on the three platforms below.</p>
+              <h3 class="font-black text-yellow-900">Action required within 24 hours</h3>
+              <p class="text-sm text-yellow-800 mt-0.5">Your distribution unlocks once we can verify your artist profiles on the three platforms below.</p>
             </div>
           </div>
 
-          <div class="bg-gray-50 rounded-xl p-5 border-2 border-gray-200">
-            <p class="text-sm text-gray-700 mb-4 normal-case" style="text-transform:none;letter-spacing:normal;">Hi <span id="welcomeName" class="font-bold">artist</span>, your <span id="welcomePkg" class="font-bold"></span> is confirmed for <span id="welcomeDate" class="font-bold text-sxsw-pink"></span>. Sign up at each platform, screenshot proof, and upload at the Verification Portal.</p>
+          <div class="bg-gray-50 rounded-xl p-5 border border-gray-200">
+            <p class="text-sm text-gray-700 mb-4">Hi <span id="welcomeName" class="font-bold">artist</span>, your <span id="welcomePkg" class="font-bold"></span> is confirmed for <span id="welcomeDate" class="font-bold text-[#8A1558]"></span>. Sign up at each platform, screenshot proof, and upload at the Verification Portal.</p>
             <ol class="space-y-3">
-              <li class="flex items-center gap-3 p-3 bg-white border-2 border-gray-200 rounded-lg">
-                <span class="flex-shrink-0 w-8 h-8 rounded-full bg-brand-blush50 text-sxsw-pink flex items-center justify-center font-black">1</span>
-                <div class="flex-1"><div class="font-bold normal-case" style="text-transform:none;letter-spacing:normal;">Bandsintown</div></div>
-                <a href="https://artists.bandsintown.com" target="_blank" rel="noopener" class="text-xs font-black uppercase tracking-widest bg-sxsw-pink text-white px-3 py-2 rounded hover:bg-sxsw-deeppink">Sign up <i data-lucide="external-link" class="w-3 h-3 inline"></i></a>
+              <li class="flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-lg">
+                <span class="flex-shrink-0 w-8 h-8 rounded-full bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center font-black">1</span>
+                <div class="flex-1"><div class="font-bold">Bandsintown</div></div>
+                <a href="https://artists.bandsintown.com" target="_blank" rel="noopener" class="text-xs font-black uppercase tracking-widest bg-[#8A1558] text-white px-3 py-2 rounded hover:bg-[#680D3E]">Sign up <i data-lucide="external-link" class="w-3 h-3 inline"></i></a>
               </li>
-              <li class="flex items-center gap-3 p-3 bg-white border-2 border-gray-200 rounded-lg">
-                <span class="flex-shrink-0 w-8 h-8 rounded-full bg-brand-blush50 text-sxsw-pink flex items-center justify-center font-black">2</span>
-                <div class="flex-1"><div class="font-bold normal-case" style="text-transform:none;letter-spacing:normal;">Songkick / Tourbox</div></div>
-                <a href="https://www.songkick.com/tourbox" target="_blank" rel="noopener" class="text-xs font-black uppercase tracking-widest bg-sxsw-pink text-white px-3 py-2 rounded hover:bg-sxsw-deeppink">Sign up <i data-lucide="external-link" class="w-3 h-3 inline"></i></a>
+              <li class="flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-lg">
+                <span class="flex-shrink-0 w-8 h-8 rounded-full bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center font-black">2</span>
+                <div class="flex-1"><div class="font-bold">Songkick / Tourbox</div></div>
+                <a href="https://www.songkick.com/tourbox" target="_blank" rel="noopener" class="text-xs font-black uppercase tracking-widest bg-[#8A1558] text-white px-3 py-2 rounded hover:bg-[#680D3E]">Sign up <i data-lucide="external-link" class="w-3 h-3 inline"></i></a>
               </li>
-              <li class="flex items-center gap-3 p-3 bg-white border-2 border-gray-200 rounded-lg">
-                <span class="flex-shrink-0 w-8 h-8 rounded-full bg-brand-blush50 text-sxsw-pink flex items-center justify-center font-black">3</span>
-                <div class="flex-1"><div class="font-bold normal-case" style="text-transform:none;letter-spacing:normal;">DICE</div></div>
-                <a href="https://dice.fm" target="_blank" rel="noopener" class="text-xs font-black uppercase tracking-widest bg-sxsw-pink text-white px-3 py-2 rounded hover:bg-sxsw-deeppink">Sign up <i data-lucide="external-link" class="w-3 h-3 inline"></i></a>
+              <li class="flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-lg">
+                <span class="flex-shrink-0 w-8 h-8 rounded-full bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center font-black">3</span>
+                <div class="flex-1"><div class="font-bold">DICE</div></div>
+                <a href="https://dice.fm" target="_blank" rel="noopener" class="text-xs font-black uppercase tracking-widest bg-[#8A1558] text-white px-3 py-2 rounded hover:bg-[#680D3E]">Sign up <i data-lucide="external-link" class="w-3 h-3 inline"></i></a>
               </li>
             </ol>
           </div>
@@ -722,29 +583,29 @@
         <!-- Viral Loop block, share, add to calendar, invite 5 + IG follow -->
         <div class="mt-8 grid md:grid-cols-3 gap-4" id="loopsBlock">
           <!-- Share with team -->
-          <div class="bg-brand-blush50 border-2 border-sxsw-teal rounded-xl p-5">
-            <div class="w-10 h-10 rounded-lg bg-white text-sxsw-pink flex items-center justify-center mb-3"><i data-lucide="users" class="w-5 h-5"></i></div>
-            <h4 class="font-black mb-1 normal-case" style="text-transform:none;letter-spacing:normal;">Share with your team</h4>
-            <p class="text-xs text-gray-600 mb-3 normal-case font-medium" style="text-transform:none;letter-spacing:normal;">Manager, DJ, videographer, friends, bring the room with you.</p>
-            <button id="shareTeamBtn" class="text-xs font-black uppercase tracking-widest bg-sxsw-pink text-white px-3 py-2 rounded hover:bg-sxsw-deeppink flex items-center gap-1.5"><i data-lucide="share-2" class="w-3.5 h-3.5"></i> Share Link</button>
+          <div class="bg-[#FDF2F8] border border-[#FBCFE8] rounded-xl p-5">
+            <div class="w-10 h-10 rounded-lg bg-white text-[#8A1558] flex items-center justify-center mb-3"><i data-lucide="users" class="w-5 h-5"></i></div>
+            <h4 class="font-black mb-1">Share with your team</h4>
+            <p class="text-xs text-gray-600 mb-3">Manager, DJ, videographer, friends, bring the room with you.</p>
+            <button id="shareTeamBtn" class="text-xs font-black uppercase tracking-widest bg-[#8A1558] text-white px-3 py-2 rounded hover:bg-[#680D3E] flex items-center gap-1.5"><i data-lucide="share-2" class="w-3.5 h-3.5"></i> Share Link</button>
           </div>
 
           <!-- Add to Calendar -->
-          <div class="bg-brand-blush50 border-2 border-sxsw-teal rounded-xl p-5">
-            <div class="w-10 h-10 rounded-lg bg-white text-sxsw-pink flex items-center justify-center mb-3"><i data-lucide="calendar-plus" class="w-5 h-5"></i></div>
-            <h4 class="font-black mb-1 normal-case" style="text-transform:none;letter-spacing:normal;">Add to your calendar</h4>
-            <p class="text-xs text-gray-600 mb-3 normal-case font-medium" style="text-transform:none;letter-spacing:normal;">Drop the date so you don't miss anything.</p>
-            <a id="addCalBtn" target="_blank" rel="noopener" class="text-xs font-black uppercase tracking-widest bg-sxsw-pink text-white px-3 py-2 rounded hover:bg-sxsw-deeppink inline-flex items-center gap-1.5"><i data-lucide="calendar-plus" class="w-3.5 h-3.5"></i> Add</a>
+          <div class="bg-[#FDF2F8] border border-[#FBCFE8] rounded-xl p-5">
+            <div class="w-10 h-10 rounded-lg bg-white text-[#8A1558] flex items-center justify-center mb-3"><i data-lucide="calendar-plus" class="w-5 h-5"></i></div>
+            <h4 class="font-black mb-1">Add to your calendar</h4>
+            <p class="text-xs text-gray-600 mb-3">Drop the date so you don't miss anything.</p>
+            <a id="addCalBtn" target="_blank" rel="noopener" class="text-xs font-black uppercase tracking-widest bg-[#8A1558] text-white px-3 py-2 rounded hover:bg-[#680D3E] inline-flex items-center gap-1.5"><i data-lucide="calendar-plus" class="w-3.5 h-3.5"></i> Add</a>
           </div>
 
           <!-- Invite 5 friends → free ticket -->
-          <div class="bg-sxsw-green border-2 border-black rounded-xl p-5">
-            <div class="w-10 h-10 rounded-lg bg-white text-black flex items-center justify-center mb-3"><i data-lucide="gift" class="w-5 h-5"></i></div>
-            <h4 class="font-black mb-1 normal-case" style="text-transform:none;letter-spacing:normal;">Invite 5 friends → free ticket</h4>
-            <p class="text-xs text-black mb-3 normal-case font-medium" style="text-transform:none;letter-spacing:normal;">Share with 5 friends. They follow <a href="https://instagram.com/digiwaxx" target="_blank" rel="noopener" class="font-bold underline">@digiwaxx</a> on IG. You get a free ticket.</p>
+          <div class="bg-yellow-50 border-2 border-yellow-300 rounded-xl p-5">
+            <div class="w-10 h-10 rounded-lg bg-white text-yellow-700 flex items-center justify-center mb-3"><i data-lucide="gift" class="w-5 h-5"></i></div>
+            <h4 class="font-black mb-1">Invite 5 friends → free ticket</h4>
+            <p class="text-xs text-yellow-900 mb-3">Share with 5 friends. They follow <a href="https://instagram.com/digiwaxx" target="_blank" rel="noopener" class="font-bold underline">@digiwaxx</a> on IG. You get a free ticket.</p>
             <div class="flex gap-2">
-              <button id="inviteFriendsBtn" class="text-xs font-black uppercase tracking-widest bg-black text-sxsw-green px-3 py-2 rounded hover:bg-sxsw-deeppink flex items-center gap-1.5"><i data-lucide="share-2" class="w-3.5 h-3.5"></i> Share Invite</button>
-              <a href="https://instagram.com/digiwaxx" target="_blank" rel="noopener" class="text-xs font-black uppercase tracking-widest bg-white border-2 border-black text-black px-3 py-2 rounded hover:bg-gray-100 flex items-center gap-1.5"><i data-lucide="instagram" class="w-3.5 h-3.5"></i> Follow</a>
+              <button id="inviteFriendsBtn" class="text-xs font-black uppercase tracking-widest bg-yellow-400 border border-yellow-500 text-black px-3 py-2 rounded hover:bg-yellow-300 flex items-center gap-1.5"><i data-lucide="share-2" class="w-3.5 h-3.5"></i> Share Invite</button>
+              <a href="https://instagram.com/digiwaxx" target="_blank" rel="noopener" class="text-xs font-black uppercase tracking-widest bg-white border border-yellow-500 text-yellow-900 px-3 py-2 rounded hover:bg-yellow-100 flex items-center gap-1.5"><i data-lucide="instagram" class="w-3.5 h-3.5"></i> Follow</a>
             </div>
           </div>
         </div>
@@ -758,23 +619,23 @@
 
     <!-- ORDER SUMMARY (sticky) -->
     <aside class="lg:col-span-1">
-      <div class="bg-white rounded-[24px] border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-6 lg:sticky lg:top-24">
+      <div class="bg-white rounded-2xl shadow-sm p-6 lg:sticky lg:top-6">
         <div class="flex items-center justify-between mb-4">
-          <h3 class="text-lg text-black">ORDER SUMMARY</h3>
+          <h3 class="text-lg font-black tracking-tight">ORDER SUMMARY</h3>
           <i data-lucide="receipt" class="w-5 h-5 text-gray-400"></i>
         </div>
-        <div id="summaryEmpty" class="text-center text-gray-400 text-sm py-8 normal-case font-medium" style="text-transform:none;letter-spacing:normal;">Pick a package to see your total.</div>
+        <div id="summaryEmpty" class="text-center text-gray-400 text-sm py-8">Pick a package to see your total.</div>
         <div id="summaryFilled" class="hidden">
           <div id="summaryItems" class="space-y-3 text-sm"></div>
-          <div class="border-t-2 border-gray-200 mt-4 pt-4">
+          <div class="border-t border-gray-200 mt-4 pt-4">
             <div class="flex justify-between items-baseline">
               <span class="text-xs font-bold uppercase tracking-widest text-gray-500">Total</span>
-              <span class="text-2xl font-black text-black" id="summaryTotal">$0</span>
+              <span class="text-2xl font-black" id="summaryTotal">$0</span>
             </div>
-            <div id="summaryDate" class="text-xs text-sxsw-pink font-bold mt-2 hidden normal-case" style="text-transform:none;letter-spacing:normal;"></div>
+            <div id="summaryDate" class="text-xs text-[#8A1558] font-bold mt-2 hidden"></div>
           </div>
         </div>
-        <div class="mt-5 pt-5 border-t-2 border-gray-100 text-xs text-gray-400 space-y-1 normal-case" style="text-transform:none;letter-spacing:normal;">
+        <div class="mt-5 pt-5 border-t border-gray-100 text-xs text-gray-400 space-y-1">
           <div class="flex items-center gap-2"><i data-lucide="lock" class="w-3 h-3"></i> 256-bit SSL secure</div>
           <div class="flex items-center gap-2"><i data-lucide="shield-check" class="w-3 h-3"></i> Stripe-powered</div>
           <div class="flex items-center gap-2"><i data-lucide="rotate-ccw" class="w-3 h-3"></i> Refundable until verification</div>
@@ -784,67 +645,60 @@
   </div>
 </main>
 
-<!-- Footer -->
-<footer class="bg-sxsw-dark text-white py-14 px-6 md:px-12 border-t-8 border-sxsw-green">
-  <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
-    <div class="lg:col-span-2">
-      <img src="images/nmw-logo-light.png" alt="New Music Wednesdays" class="h-24 w-auto mb-6" />
-      <p class="text-white font-medium max-w-sm mb-6 normal-case" style="text-transform:none;letter-spacing:normal;">
-        Live performance and rollout infrastructure for rising artists. Every Wednesday at The Penthouse NYC.
-      </p>
-      <p class="text-xs uppercase tracking-widest font-bold text-white">Presented by Digiwaxx</p>
+<!-- LIGHT FOOTER -->
+<!-- DARK FOOTER -->
+<footer class="nmw-footer">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-8 py-2">
+      <div class="col-span-2 md:col-span-2">
+        <img src="images/nmw-logo-light.png" alt="New Music Wednesdays, Digiwaxx" class="footer-logo mb-4" />
+        <p class="text-sm leading-relaxed">Live performance and rollout infrastructure for rising artists. Every Wednesday at The Penthouse NYC, presented by <a href="https://www.digiwaxx.com" target="_blank" rel="noopener noreferrer" class="text-[#8A1558] hover:underline">Digiwaxx</a>.</p>
+      </div>
+      <div>
+        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Funnel</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="mission.html">Mission</a></li>
+          <li><a href="attend.html">Events</a></li>
+          <li><a href="https://www.newmusicwednesdayslive.com/rsvp" target="_blank" rel="noopener">RSVP</a></li>
+          <li><a href="dj-call.html">DJ Call</a></li>
+          <li><a href="podcast.html">Podcast</a></li>
+          <li><a href="apply.html">Artist Access</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="alerts.html">Subscribe Now</a></li>
+          <li><a href="sponsor.html">Campaign Store</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Distribution</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="https://www.digiwaxx.com" target="_blank" rel="noopener">Digiwaxx</a></li>
+          <li><a href="https://www.newmusicwednesdayslive.com" target="_blank" rel="noopener">NewMusicWednesdaysLive</a></li>
+          <li><a href="https://dice.fm" target="_blank" rel="noopener">DICE</a></li>
+          <li><a href="https://www.bandsintown.com" target="_blank" rel="noopener">Bandsintown</a></li>
+          <li><a href="https://www.songkick.com" target="_blank" rel="noopener">Songkick</a></li>
+          <li><a href="https://www.eventbrite.com" target="_blank" rel="noopener">Eventbrite</a></li>
+          <li><a href="https://lu.ma" target="_blank" rel="noopener">Luma</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Listings</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z" target="_blank" rel="noopener">Google Maps</a></li>
+          <li><a href="https://www.tripadvisor.com" target="_blank" rel="noopener">TripAdvisor</a></li>
+          <li><a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.youtube.com" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://www.tiktok.com" target="_blank" rel="noopener">TikTok</a></li>
+          <li><a href="https://x.com" target="_blank" rel="noopener">X / Twitter</a></li>
+        </ul>
+      </div>
     </div>
-
-    <div>
-      <h4 class="font-bold uppercase tracking-widest text-white mb-4 text-sm">Funnel</h4>
-      <ul class="flex flex-col gap-2 font-medium text-white normal-case" style="text-transform:none;letter-spacing:normal;">
-        <li><a href="index.html" class="hover:text-sxsw-pink transition-colors">Home</a></li>
-        <li><a href="mission.html" class="hover:text-sxsw-pink transition-colors">Mission</a></li>
-        <li><a href="attend.html" class="hover:text-sxsw-pink transition-colors">Events</a></li>
-        <li><a href="https://www.newmusicwednesdayslive.com/rsvp" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">RSVP</a></li>
-        <li><a href="dj-call.html" class="hover:text-sxsw-pink transition-colors">DJ Call</a></li>
-        <li><a href="podcast.html" class="hover:text-sxsw-pink transition-colors">Podcast</a></li>
-        <li><a href="apply.html" class="hover:text-sxsw-pink transition-colors">Artist Access</a></li>
-        <li><a href="faq.html" class="hover:text-sxsw-pink transition-colors">FAQ</a></li>
-        <li><a href="alerts.html" class="hover:text-sxsw-pink transition-colors">Subscribe Now</a></li>
-        <li><a href="sponsor.html" class="hover:text-sxsw-pink transition-colors">Campaign Store</a></li>
-      </ul>
-    </div>
-
-    <div>
-      <h4 class="font-bold uppercase tracking-widest text-white mb-4 text-sm">Distribution</h4>
-      <ul class="flex flex-col gap-2 font-medium text-white normal-case" style="text-transform:none;letter-spacing:normal;">
-        <li><a href="https://www.digiwaxx.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Digiwaxx</a></li>
-        <li><a href="https://www.newmusicwednesdayslive.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">NewMusicWednesdaysLive</a></li>
-        <li><a href="https://dice.fm" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">DICE</a></li>
-        <li><a href="https://www.bandsintown.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Bandsintown</a></li>
-        <li><a href="https://www.songkick.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Songkick</a></li>
-        <li><a href="https://www.eventbrite.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Eventbrite</a></li>
-        <li><a href="https://lu.ma" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Luma</a></li>
-      </ul>
-    </div>
-
-    <div>
-      <h4 class="font-bold uppercase tracking-widest text-white mb-4 text-sm">Listings</h4>
-      <ul class="flex flex-col gap-2 font-medium text-white mb-8 normal-case" style="text-transform:none;letter-spacing:normal;">
-        <li><a href="https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Google Maps</a></li>
-        <li><a href="https://www.tripadvisor.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">TripAdvisor</a></li>
-      </ul>
-      <h4 class="font-bold uppercase tracking-widest text-white mb-4 text-sm">Socials</h4>
-      <ul class="flex flex-col gap-2 font-medium text-white normal-case" style="text-transform:none;letter-spacing:normal;">
-        <li><a href="https://www.instagram.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Instagram</a></li>
-        <li><a href="https://www.youtube.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">YouTube</a></li>
-        <li><a href="https://www.tiktok.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">TikTok</a></li>
-        <li><a href="https://x.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">X / Twitter</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="w-full mt-16 pt-8 border-t border-white/20 flex flex-col md:flex-row justify-between items-center text-sm text-white font-medium normal-case" style="text-transform:none;letter-spacing:normal;">
-    <p>&copy; 2026 New Music Wednesdays. By Digiwaxx. All rights reserved.</p>
-    <div class="flex gap-4 mt-4 md:mt-0">
-      <a href="privacy.html" class="hover:text-sxsw-pink">Privacy Policy</a>
-      <a href="terms.html" class="hover:text-sxsw-pink">Terms &amp; Conditions</a>
+    <div class="border-t border-white/10 pt-6 mt-6 flex flex-col sm:flex-row gap-3 sm:gap-0 sm:justify-between items-center text-xs">
+      <div>&copy; 2026 New Music Wednesdays. By Digiwaxx. All rights reserved.</div>
+      <div class="flex gap-5">
+        <a href="privacy.html" class="hover:text-white">Privacy Policy</a>
+        <a href="terms.html" class="hover:text-white">Terms &amp; Conditions</a>
+      </div>
     </div>
   </div>
 </footer>
@@ -1516,27 +1370,24 @@ validateStep1();
 })();
 // ---------- end AUDITION FLOW ----------
 showStep(currentStep);
-
-// Initialize lucide icons after DOM is populated
-if (window.lucide) { lucide.createIcons(); }
 </script>
 
 <!-- Press / Media info modal -->
 <div id="infoModal" class="hidden fixed inset-0 z-[200] flex items-end sm:items-center justify-center p-0 sm:p-6">
   <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" data-info-close></div>
-  <div class="relative bg-white w-full sm:max-w-2xl rounded-t-2xl sm:rounded-2xl shadow-2xl max-h-[90vh] overflow-y-auto border-4 border-black">
-    <div class="sticky top-0 bg-white border-b-2 border-gray-100 flex items-center justify-between px-6 py-4 z-10">
-      <div class="text-xs font-black uppercase tracking-widest text-sxsw-pink">[ Media Team ]</div>
+  <div class="relative bg-white w-full sm:max-w-2xl rounded-t-2xl sm:rounded-2xl shadow-2xl max-h-[90vh] overflow-y-auto">
+    <div class="sticky top-0 bg-white border-b border-gray-100 flex items-center justify-between px-6 py-4 z-10">
+      <div class="text-xs font-black uppercase tracking-widest text-[#8A1558]">[ Media Team ]</div>
       <button type="button" data-info-close class="w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center" aria-label="Close"><i data-lucide="x" class="w-5 h-5"></i></button>
     </div>
     <div class="px-6 py-6 md:px-8 md:py-8">
-      <h2 class="text-3xl md:text-4xl mb-3 text-black">JOIN THE MEDIA TEAM</h2>
-      <p class="text-gray-700 mb-3 normal-case font-medium" style="text-transform:none;letter-spacing:normal;">Media isn't on the sidelines here, it's at the center of the culture. Every week, the media pit is where conversations spark, relationships are built, and moments get documented as they happen, all during a live taping and streamed production. Interviews come to life. Real reactions. You never know who might pop up.</p>
-      <p class="text-gray-700 mb-3 normal-case font-medium" style="text-transform:none;letter-spacing:normal;">It's about bringing back that real in-the-room energy, the kind you can feel. Building relationships. Capturing authentic stories. Connecting the culture to the world through media, streaming, and in-person coverage.</p>
-      <p class="text-gray-700 mb-6 normal-case font-medium" style="text-transform:none;letter-spacing:normal;">From celebrity guests to next-up talent, the room stays alive, and our media partners keep that energy moving far beyond the walls.</p>
+      <h2 class="text-3xl md:text-4xl font-black tracking-tighter mb-3">Join The Media Team</h2>
+      <p class="text-gray-700 font-serif mb-3">Media isn't on the sidelines here, it's at the center of the culture. Every week, the media pit is where conversations spark, relationships are built, and moments get documented as they happen, all during a live taping and streamed production. Interviews come to life. Real reactions. You never know who might pop up.</p>
+      <p class="text-gray-700 font-serif mb-3">It's about bringing back that real in-the-room energy, the kind you can feel. Building relationships. Capturing authentic stories. Connecting the culture to the world through media, streaming, and in-person coverage.</p>
+      <p class="text-gray-700 font-serif mb-6">From celebrity guests to next-up talent, the room stays alive, and our media partners keep that energy moving far beyond the walls.</p>
 
       <h3 class="text-xs font-black uppercase tracking-widest text-gray-500 mb-3">Press &amp; Media Partners</h3>
-      <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-2 mb-6 text-sm normal-case" style="text-transform:none;letter-spacing:normal;">
+      <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-2 mb-6 text-sm">
         <li><span class="font-black">Digiwaxx</span>, Creator / Host / Platform</li>
         <li><span class="font-black">DSN Network</span>, Platform / Production / Studios</li>
         <li><span class="font-black">QueueVision</span>, Media Coverage &amp; Network</li>
@@ -1552,30 +1403,30 @@ if (window.lucide) { lucide.createIcons(); }
       </ul>
 
       <h3 class="text-xs font-black uppercase tracking-widest text-gray-500 mb-3">Hosts + DJs</h3>
-      <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-2 mb-6 text-sm normal-case" style="text-transform:none;letter-spacing:normal;">
+      <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-2 mb-6 text-sm">
         <li><span class="font-black">Terrell Blair</span>, Host</li>
         <li><span class="font-black">DJ Cuddy</span>, DJ</li>
         <li><span class="font-black">DJ Epidemik</span>, DJ</li>
       </ul>
 
       <h3 class="text-xs font-black uppercase tracking-widest text-gray-500 mb-3">Production Team</h3>
-      <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-2 mb-6 text-sm normal-case" style="text-transform:none;letter-spacing:normal;">
+      <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-2 mb-6 text-sm">
         <li><span class="font-black">DWI Podfather</span>, Media Production Manager</li>
         <li><span class="font-black">Fame Academy</span>, Visual Production Manager</li>
       </ul>
 
       <h3 class="text-xs font-black uppercase tracking-widest text-gray-500 mb-3">Visual Media Team</h3>
-      <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-2 mb-8 text-sm normal-case" style="text-transform:none;letter-spacing:normal;">
+      <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-2 mb-8 text-sm">
         <li><span class="font-black">Etiquette</span>, Creative Imaging Director</li>
         <li><span class="font-black">Lifes A Movie</span>, Visual Media Operator</li>
       </ul>
 
-      <div class="rounded-xl p-5 border-2 border-sxsw-pink" style="background:linear-gradient(135deg,#FDF2F8 0%,#FCE7F3 100%);">
-        <h4 class="font-black mb-1 text-black">WANT TO JOIN THE MEDIA TEAM?</h4>
-        <p class="text-sm text-gray-700 mb-3 normal-case font-medium" style="text-transform:none;letter-spacing:normal;">If you're ready to lock in, build real connections, and capture the culture from inside the room, this is your entry point. We're curating a select rotation of media partners who bring perspective, professionalism, and presence to the space.</p>
+      <div class="rounded-xl p-5" style="background:linear-gradient(135deg,#FDF2F8 0%,#FCE7F3 100%);">
+        <h4 class="font-black tracking-tight mb-1">Want to join the media team?</h4>
+        <p class="text-sm text-gray-700 font-serif mb-3">If you're ready to lock in, build real connections, and capture the culture from inside the room, this is your entry point. We're curating a select rotation of media partners who bring perspective, professionalism, and presence to the space.</p>
         <div class="flex flex-wrap gap-3">
-          <a href="https://www.newmusicwednesdayslive.com/mediaaccess" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-sxsw-pink text-white px-5 py-2.5 rounded-md text-xs font-black tracking-widest uppercase hover:bg-sxsw-deeppink transition-colors">Request Media Access <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
-          <button type="button" data-info-close class="inline-flex items-center gap-2 bg-white border-2 border-gray-300 text-gray-700 px-5 py-2.5 rounded-md text-xs font-black tracking-widest uppercase hover:border-sxsw-pink hover:text-sxsw-pink transition-colors">Close</button>
+          <a href="https://www.newmusicwednesdayslive.com/mediaaccess" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-[#8A1558] text-white px-5 py-2.5 rounded-md text-xs font-black tracking-widest uppercase hover:bg-[#680D3E] transition-colors">Request Media Access <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+          <button type="button" data-info-close class="inline-flex items-center gap-2 bg-white border border-gray-300 text-gray-700 px-5 py-2.5 rounded-md text-xs font-black tracking-widest uppercase hover:border-[#8A1558] hover:text-[#8A1558] transition-colors">Close</button>
         </div>
       </div>
     </div>

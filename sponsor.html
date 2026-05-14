@@ -19,8 +19,10 @@
 <meta name="twitter:description" content="Pick a play, we run it, we send you a report. Plays for artists with a release coming up, labels pushing roster, and sponsors who want to reach the people who shape what gets played.">
 <meta name="twitter:image" content="https://www.newmusicwednesdayslive.com/images/nmw-logo.png">
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@0.474.0"></script>
 <!-- PWA -->
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="theme-color" content="#8A1558">
@@ -28,198 +30,205 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="NMW">
 <script src="/assets/pwa.js" defer></script>
+<link rel="stylesheet" href="assets/nmw.css">
+<script>
+  if (typeof tailwind !== "undefined") tailwind.config = { theme: { extend: {
+    fontFamily: {
+      sans:    ['Manrope','system-ui','sans-serif'],
+      display: ['Anton','Impact','sans-serif'],
+      mono:    ['JetBrains Mono','ui-monospace','monospace'],
+      serif:   ['Merriweather','serif'],
+    },
+    colors: {
+      brand: { 500:'#8A1558', 600:'#680D3E' },
+      paper: '#FAFAF7',
+      ink:   '#0A0A0A',
+    }
+  }}}
+</script>
 <style>
-  body {
-    font-family: 'Inter', sans-serif;
-    background-color: #FAFAF7; /* NMW cream */
-    color: #1A0418;
+
+  :root {
+    --paper:#FAFAF7;
+    --ink:#0A0A0A;
+    --brand:#8A1558;
+    --brand-dark:#680D3E;
+    --rule:#0A0A0A;
   }
 
-  /* Typography overrides for that chunky SXSW feel */
-  h1, h2, h3, .heading-font {
-    font-weight: 900;
-    letter-spacing: -0.03em;
-    text-transform: uppercase;
+  /* Body type + paper canvas */
+  body.store-page { background: #ffffff; color: var(--ink); font-family: 'Manrope', system-ui, sans-serif; }
+
+  /* Subtle print grain so the page doesn't feel screen-glossy */
+  body.store-page::before {
+    content:'';
+    position:fixed; inset:0;
+    pointer-events:none;
+    z-index:1;
+    opacity:.04;
+    background-image:
+      radial-gradient(rgba(0,0,0,1) 0.5px, transparent 0.5px),
+      radial-gradient(rgba(0,0,0,1) 0.5px, transparent 0.5px);
+    background-size: 3px 3px, 7px 7px;
+    background-position: 0 0, 1px 1px;
+    mix-blend-mode: multiply;
   }
 
-  /* NMW Brand utilities */
-  .bg-sxsw-pink     { background-color: #8A1558; }
-  .bg-sxsw-deeppink { background-color: #680D3E; }
-  .bg-sxsw-teal     { background-color: #FBCFE8; }
-  .bg-sxsw-green    { background-color: #FACC15; }
-  .bg-sxsw-dark     { background-color: #222222; }
-  .bg-brand-cream   { background-color: #FAFAF7; }
-  .bg-brand-blush50 { background-color: #FDF2F8; }
-  .text-sxsw-pink     { color: #8A1558; }
-  .text-sxsw-deeppink { color: #680D3E; }
-  .text-sxsw-teal     { color: #FBCFE8; }
-  .text-brand-gold    { color: #FACC15; }
-  .border-sxsw-deeppink { border-color: #680D3E; }
+  /* Display utility classes (Anton uppercase) */
+  .display    { font-family:'Anton','Impact',sans-serif; text-transform:uppercase; letter-spacing:.005em; line-height:.9; }
+  .display-tight { letter-spacing:-.01em; }
+  .mono-eyebrow { font-family:'JetBrains Mono', ui-monospace, monospace; text-transform:uppercase; font-size:11px; font-weight:500; letter-spacing:.15em; color:#666; }
+  .mono-tag     { font-family:'JetBrains Mono', ui-monospace, monospace; text-transform:uppercase; font-size:10px; font-weight:500; letter-spacing:.12em; }
 
-  html { scroll-behavior: smooth; }
+  /* Sharp section rule */
+  .ed-rule { height:1px; background:var(--ink); width:100%; }
+  .ed-rule-thin { height:1px; background:rgba(10,10,10,.15); width:100%; }
 
-  /* ============================================================
-     Sponsor-page specific components, re-implemented with brand
-     palette. These are load-bearing for the cart/filter JS.
-     ============================================================ */
-
-  /* Play cards: white card with hard offset shadow on hover */
+  /* Play cards (newsprint feel, not shopify pastel) */
   .play-card {
-    background: #fff;
-    border: 2px solid #1A0418;
-    border-radius: 16px;
-    padding: 1.5rem;
-    transition: box-shadow .15s, transform .15s, background .15s;
-    position: relative;
+    background:#fff;
+    border:1px solid rgba(10,10,10,.12);
+    border-radius:2px;
+    padding:1.25rem;
+    transition: box-shadow .15s, border-color .15s, transform .15s, background .15s;
+    position:relative;
   }
-  .play-card:hover { box-shadow: 6px 6px 0 #1A0418; transform: translate(-2px,-2px); }
-  .play-card.in-cart { border-color: #8A1558; box-shadow: 6px 6px 0 #8A1558; }
-  .play-card h3 { font-weight: 900; text-transform: uppercase; letter-spacing: -0.02em; line-height: 1.05; }
+  .play-card:hover { border-color: var(--ink); box-shadow: 4px 4px 0 var(--ink); transform: translate(-2px,-2px); }
+  .play-card.in-cart { border-color: var(--brand); box-shadow: 4px 4px 0 var(--brand); }
 
-  /* Goal pill */
+  /* Card headings use Anton */
+  .play-card h3 { font-family:'Anton','Impact',sans-serif; text-transform:uppercase; letter-spacing:.005em; line-height:1; font-size:1.25rem; font-weight:400; }
+
+  /* Goal pill: mono tag, not pastel pink fill */
   .goal-pill {
-    display: inline-flex; align-items: center; gap: .35rem;
-    font-size: 10px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase;
-    color: #8A1558; background: #FDF2F8;
-    border: 1px solid #FBCFE8;
-    padding: 4px 10px; border-radius: 9999px;
+    display:inline-flex; align-items:center; gap:.35rem;
+    font-family:'JetBrains Mono', ui-monospace, monospace;
+    font-size:10px; font-weight:500; letter-spacing:.12em; text-transform:uppercase;
+    color: var(--brand); background:transparent;
+    border:1px solid var(--brand);
+    padding:3px 7px; border-radius:2px;
   }
+  .goal-pill .goal-text { font-family:inherit; }
 
-  /* Add-to-cart button on each card */
+  /* Add to Cart button: blocky, paper-poster feel */
   .add-cart-btn {
-    width: 100%; padding: .85rem 1rem; border-radius: 9999px;
-    font-size: 11px; font-weight: 900; letter-spacing: .18em; text-transform: uppercase;
-    transition: all .15s; border: 2px solid #1A0418; background: #1A0418; color: #fff;
-    display: inline-flex; align-items: center; justify-content: center; gap: .4rem;
+    width:100%; padding:.85rem 1rem; border-radius:2px;
+    font-family:'JetBrains Mono', ui-monospace, monospace;
+    font-size:11px; font-weight:700; letter-spacing:.15em; text-transform:uppercase;
+    transition: all .15s; border:1px solid var(--ink); background: var(--ink); color:#fff;
+    display:inline-flex; align-items:center; justify-content:center; gap:.4rem;
   }
-  .add-cart-btn:hover { background: #8A1558; border-color: #8A1558; }
-  .add-cart-btn.is-added { background: #8A1558; border-color: #8A1558; }
-  .add-cart-btn .label-default { display: inline-flex; align-items: center; gap: .4rem; }
-  .add-cart-btn .label-added   { display: none; align-items: center; gap: .4rem; }
-  .add-cart-btn.is-added .label-default { display: none; }
-  .add-cart-btn.is-added .label-added   { display: inline-flex; }
+  .add-cart-btn:hover { background:#000; box-shadow: 3px 3px 0 var(--brand); transform: translate(-1px,-1px); }
+  .add-cart-btn.is-added { background:var(--brand); border-color:var(--brand); }
+  .add-cart-btn .label-default { display:inline-flex; align-items:center; gap:.4rem; }
+  .add-cart-btn .label-added   { display:none; align-items:center; gap:.4rem; }
+  .add-cart-btn.is-added .label-default { display:none; }
+  .add-cart-btn.is-added .label-added   { display:inline-flex; }
 
-  .play-price { font-weight: 900; letter-spacing: -0.01em; font-size: 15px; color: #1A0418; }
+  /* Price typeface, mono so it reads as data not marketing */
+  .play-price { font-family:'JetBrains Mono', ui-monospace, monospace; font-weight:700; letter-spacing:.02em; font-size:14px; color:var(--ink); }
 
-  /* Audience tabs (legacy hook used by JS) */
+  /* Audience tabs as pass-stamp pills */
   .audience-tab {
-    font-size: 11px; font-weight: 800; letter-spacing: .15em; text-transform: uppercase;
-    padding: 8px 14px; border-radius: 9999px; border: 2px solid #E5E7EB;
-    color: #6B7280; transition: all .15s; background: #fff;
+    font-family:'JetBrains Mono', ui-monospace, monospace;
+    font-size:11px; font-weight:500; letter-spacing:.15em; text-transform:uppercase;
+    padding:6px 10px; border-radius:2px; border:1px solid transparent;
+    color:#666; transition:all .15s;
   }
-  .audience-tab:hover { color: #1A0418; border-color: #1A0418; }
-  .audience-tab.is-active { background: #1A0418; color: #fff; border-color: #1A0418; }
+  .audience-tab:hover { color:var(--ink); }
+  .audience-tab.is-active { background:var(--ink); color:#fff; }
 
-  /* Goal chips (hidden host, but kept stylable) */
+  /* Goal chips: outlined, mono */
   .goal-chip {
-    font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
-    color: #6B7280; border: 1px solid rgba(26,4,24,.2);
-    padding: 6px 11px; border-radius: 9999px;
-    transition: all .15s; background: #fff;
+    font-family:'JetBrains Mono', ui-monospace, monospace;
+    font-size:10px; font-weight:500; letter-spacing:.1em; text-transform:uppercase;
+    color:#666; border:1px solid rgba(10,10,10,.2);
+    padding:4px 9px; border-radius:2px;
+    transition:all .15s;
   }
-  .goal-chip:hover { color: #1A0418; border-color: #1A0418; }
+  .goal-chip:hover { color:var(--ink); border-color: var(--ink); }
 
-  /* Oblong search bar */
+  /* ----- Oblong search bar ----- */
   .nmw-search {
-    display: flex; align-items: stretch;
-    background: #fff;
-    border: 3px solid #1A0418;
-    border-radius: 9999px;
-    box-shadow: 6px 6px 0 #8A1558;
-    overflow: hidden;
+    display:flex; align-items:stretch;
+    background:#fff;
+    border:2px solid var(--ink);
+    border-radius:9999px;
+    box-shadow: 6px 6px 0 var(--brand);
+    overflow:hidden;
     transition: box-shadow .15s, transform .15s;
   }
-  .nmw-search:focus-within { box-shadow: 8px 8px 0 #8A1558; transform: translate(-1px,-1px); }
-  .nmw-search__select-wrap { position: relative; display: flex; align-items: center; }
+  .nmw-search:focus-within { box-shadow: 8px 8px 0 var(--brand); transform: translate(-1px,-1px); }
+  .nmw-search__select-wrap { position:relative; display:flex; align-items:center; }
   .nmw-search__select {
-    appearance: none; -webkit-appearance: none; -moz-appearance: none;
-    background: transparent; border: 0; outline: 0;
-    font-size: 12px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase;
-    color: #1A0418;
-    padding: 18px 36px 18px 26px;
-    cursor: pointer;
+    appearance:none; -webkit-appearance:none; -moz-appearance:none;
+    background:transparent; border:0; outline:0;
+    font-family:'JetBrains Mono', ui-monospace, monospace;
+    font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+    color: var(--ink);
+    padding:16px 34px 16px 24px;
+    cursor:pointer;
   }
   .nmw-search__select-wrap::after {
-    content: ''; position: absolute; right: 16px; top: 50%;
-    width: 0; height: 0;
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent;
-    border-top: 5px solid #1A0418;
-    transform: translateY(-50%);
-    pointer-events: none;
+    content:''; position:absolute; right:16px; top:50%;
+    width:0; height:0;
+    border-left:4px solid transparent;
+    border-right:4px solid transparent;
+    border-top:5px solid var(--ink);
+    transform:translateY(-50%);
+    pointer-events:none;
   }
-  .nmw-search__divider { width: 2px; background: rgba(26,4,24,.12); align-self: stretch; }
-  .nmw-search__input-wrap { display: flex; align-items: center; flex: 1; min-width: 0; padding: 0 24px; gap: 10px; }
-  .nmw-search__icon { width: 18px; height: 18px; color: rgba(26,4,24,.4); flex-shrink: 0; }
+  .nmw-search__divider { width:1px; background:rgba(10,10,10,.15); align-self:stretch; }
+  .nmw-search__input-wrap { display:flex; align-items:center; flex:1; min-width:0; padding:0 22px; gap:10px; }
+  .nmw-search__icon { width:18px; height:18px; color:rgba(10,10,10,.4); flex-shrink:0; }
   .nmw-search__input {
-    flex: 1; min-width: 0;
-    background: transparent; border: 0; outline: 0;
-    font-size: 14px; color: #1A0418;
-    padding: 14px 0; font-weight: 500;
+    flex:1; min-width:0;
+    background:transparent; border:0; outline:0;
+    font-family:'Manrope', system-ui, sans-serif;
+    font-size:14px; color:var(--ink);
+    padding:14px 0;
   }
-  .nmw-search__input::placeholder { color: rgba(26,4,24,.4); }
+  .nmw-search__input::placeholder { color:rgba(10,10,10,.4); }
   @media (max-width: 720px) {
-    .nmw-search { flex-wrap: wrap; border-radius: 28px; }
-    .nmw-search__divider { display: none; }
-    .nmw-search__select-wrap { flex: 1 1 50%; }
-    .nmw-search__select { width: 100%; padding: 14px 30px 14px 20px; font-size: 11px; }
-    .nmw-search__input-wrap { width: 100%; border-top: 2px solid rgba(26,4,24,.12); padding: 0 20px; }
+    .nmw-search { flex-wrap:wrap; border-radius:24px; }
+    .nmw-search__divider { display:none; }
+    .nmw-search__select-wrap { flex:1 1 50%; }
+    .nmw-search__select { width:100%; padding:14px 30px 14px 20px; font-size:10px; }
+    .nmw-search__input-wrap { width:100%; border-top:1px solid rgba(10,10,10,.15); padding:0 20px; }
   }
 
-  /* Floating cart pill */
-  .floating-cart { position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 60; }
+  /* Floating cart: paper-stamp pill */
+  .floating-cart { position:fixed; right:1.25rem; bottom:1.25rem; z-index:60; }
   .floating-cart-btn {
-    display: none; background: #1A0418; color: #fff;
-    padding: 1rem 1.4rem; border-radius: 9999px;
-    font-size: 11px; font-weight: 900; letter-spacing: .18em; text-transform: uppercase;
-    box-shadow: 4px 4px 0 #8A1558;
-    align-items: center; gap: .6rem; transition: transform .15s, box-shadow .15s;
-    border: 2px solid #1A0418;
+    display:none; background:var(--ink); color:#fff;
+    padding:.95rem 1.25rem; border-radius:2px;
+    font-family:'JetBrains Mono', ui-monospace, monospace;
+    font-size:11px; font-weight:700; letter-spacing:.15em; text-transform:uppercase;
+    box-shadow: 4px 4px 0 var(--brand);
+    align-items:center; gap:.6rem; transition: transform .15s, box-shadow .15s;
   }
-  .floating-cart-btn:hover { transform: translate(-1px,-1px); box-shadow: 6px 6px 0 #8A1558; }
-  .floating-cart-btn.is-visible { display: inline-flex; }
+  .floating-cart-btn:hover { transform: translate(-1px,-1px); box-shadow: 5px 5px 0 var(--brand); }
+  .floating-cart-btn.is-visible { display:inline-flex; }
   .floating-cart-count {
-    background: #8A1558; color: #fff;
-    min-width: 1.5rem; height: 1.5rem; padding: 0 .4rem; border-radius: 9999px;
-    font-size: 11px; font-weight: 900; display: inline-flex; align-items: center; justify-content: center;
+    background:#fff; color:var(--ink);
+    min-width:1.4rem; height:1.4rem; padding:0 .35rem; border-radius:2px;
+    font-size:10px; font-weight:700; display:inline-flex; align-items:center; justify-content:center;
   }
 
-  /* Cart drawer */
-  .cart-drawer-overlay { position: fixed; inset: 0; background: rgba(26,4,24,.55); opacity: 0; pointer-events: none; transition: opacity .25s; z-index: 70; }
-  .cart-drawer-overlay.is-open { opacity: 1; pointer-events: auto; }
-  .cart-drawer { position: fixed; top: 0; right: 0; bottom: 0; width: 100%; max-width: 28rem; background: #FAFAF7; border-left: 2px solid #1A0418; box-shadow: -20px 0 40px -10px rgba(0,0,0,.2); transform: translateX(100%); transition: transform .25s; z-index: 71; display: flex; flex-direction: column; }
-  .cart-drawer.is-open { transform: translateX(0); }
-  .cart-drawer-line { display: flex; align-items: flex-start; gap: .75rem; padding: 1rem 0; border-bottom: 1px solid rgba(26,4,24,.12); }
-  .cart-drawer-line:last-child { border-bottom: 0; }
+  /* Drawer */
+  .cart-drawer-overlay { position:fixed; inset:0; background:rgba(10,10,10,.55); opacity:0; pointer-events:none; transition:opacity .25s; z-index:70; }
+  .cart-drawer-overlay.is-open { opacity:1; pointer-events:auto; }
+  .cart-drawer { position:fixed; top:0; right:0; bottom:0; width:100%; max-width:28rem; background: var(--paper); border-left: 1px solid var(--ink); box-shadow: -20px 0 40px -10px rgba(0,0,0,.2); transform:translateX(100%); transition: transform .25s; z-index:71; display:flex; flex-direction:column; }
+  .cart-drawer.is-open { transform:translateX(0); }
+  .cart-drawer-line { display:flex; align-items:flex-start; gap:.75rem; padding:1rem 0; border-bottom:1px solid rgba(10,10,10,.1); }
+  .cart-drawer-line:last-child { border-bottom:0; }
 
-  /* Product card (legacy weekly plays renderer) */
+  /* Existing legacy product cards (weekly plays renderer) */
   .product-card { transition: all 0.2s; }
-  .product-card.selected { border-color: #8A1558; box-shadow: 6px 6px 0 #8A1558; }
+  .product-card.selected { border-color: var(--brand); box-shadow: 4px 4px 0 var(--brand); }
 
-  /* Form field utilities (used by inquiry form) */
-  .field-label { display: block; font-size: 0.75rem; font-weight: 800; color: #1A0418; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.08em; }
-  .field-input {
-    width: 100%; padding: 0.85rem 1rem;
-    border: 2px solid #1A0418; border-radius: 12px;
-    background: #fff; color: #1A0418; font-size: 0.95rem; font-weight: 500;
-    transition: box-shadow .15s, border-color .15s;
-  }
-  .field-input:focus { outline: none; border-color: #8A1558; box-shadow: 0 0 0 3px rgba(138,21,88,0.18); }
-  .field-input::placeholder { color: #9CA3AF; }
-
-  /* Form chip (preferred contact + best time) */
-  .chip {
-    display: inline-flex; align-items: center; justify-content: center;
-    padding: 0.55rem 1rem; border-radius: 9999px;
-    border: 2px solid #E5E7EB; background: #fff;
-    font-size: 0.75rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
-    color: #4B5563; cursor: pointer; transition: all .15s;
-  }
-  .chip:hover { border-color: #1A0418; color: #1A0418; }
-  .chip.selected { background: #8A1558; border-color: #8A1558; color: #fff; }
-
-  /* Section card (used by form wrapper) */
-  .section-card { background: #fff; border: 2px solid #1A0418; border-radius: 24px; padding: 1.75rem; box-shadow: 6px 6px 0 #1A0418; }
+  /* Section H2, Anton display */
+  .section-h2 { font-family:'Anton','Impact',sans-serif; text-transform:uppercase; letter-spacing:-.005em; line-height:.92; }
 </style>
 <script type="application/ld+json">
 {
@@ -280,14 +289,16 @@
   ]
 }
 </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/homepage.css">
 </head>
-<body class="antialiased selection:bg-[#8A1558] selection:text-white">
+<body class="store-page bg-paper text-ink selection:bg-[#8A1558] selection:text-white antialiased">
 
 <!-- FLOATING CART PILL -->
 <div class="floating-cart">
   <button type="button" id="floatingCartBtn" class="floating-cart-btn">
     <span class="floating-cart-count" id="floatingCartCount">0</span>
-    <span>Submit for Review &rarr;</span>
+    <span>Submit for Review →</span>
   </button>
 </div>
 
@@ -306,26 +317,27 @@
     <div id="drawerEmpty" class="text-center py-8 md:py-16 text-gray-500">
       <i data-lucide="shopping-bag" class="w-10 h-10 mx-auto mb-3 text-gray-300"></i>
       <div class="font-bold text-gray-700">Your cart is empty</div>
-      <div class="text-xs mt-1">Add a play from the store to get started.</div>
+      <div class="text-xs font-serif mt-1">Add a play from the store to get started.</div>
     </div>
   </div>
 
-  <div class="border-t border-gray-200 px-5 py-4 bg-white">
+  <div class="border-t border-gray-200 px-5 py-4 bg-gray-50">
     <div class="flex items-center justify-between mb-1 text-sm">
       <span class="text-gray-600">Estimated investment</span>
       <span class="font-black text-gray-900" id="drawerTotal">$0</span>
     </div>
     <p class="text-[10px] text-gray-500 mb-4">Final pricing confirmed in your campaign proposal.</p>
-    <a href="#contactForm" id="drawerSubmitBtn" class="block w-full text-center bg-sxsw-pink hover:bg-sxsw-deeppink text-white py-3.5 rounded-full text-xs font-black tracking-widest uppercase transition-colors">
-      Submit for Review &rarr;
+    <a href="#contactForm" id="drawerSubmitBtn" class="block w-full text-center bg-[#8A1558] hover:bg-[#680D3E] text-white py-3.5 rounded-lg text-xs font-black tracking-widest uppercase transition-colors">
+      Submit for Review →
     </a>
     <button type="button" data-cart-close class="w-full text-center mt-2 text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-gray-900 py-2">Keep browsing</button>
   </div>
 </aside>
 
+
 <!-- Top Location Banner -->
 <div class="bg-sxsw-dark text-white text-xs md:text-sm font-bold tracking-widest uppercase py-2 text-center w-full z-50 relative">
-    EVERY WED &middot; THE PENTHOUSE NYC &middot; MIDTOWN, MANHATTAN
+    EVERY WED · THE PENTHOUSE NYC · MIDTOWN, MANHATTAN
 </div>
 
 <!-- Navigation -->
@@ -334,32 +346,48 @@
         <a href="index.html" class="flex items-center gap-2">
             <img src="images/nmw-logo.png" alt="New Music Wednesdays" class="h-20 md:h-24 w-auto" style="filter: brightness(0.55) saturate(1.4) hue-rotate(-10deg);" />
         </a>
-        <div class="hidden md:flex space-x-6 items-center text-sm font-bold tracking-wide text-gray-600">
+        <div class="hidden md:flex space-x-5 items-center text-sm font-bold tracking-wide text-gray-600">
             <a href="index.html" class="hover:text-black">HOME</a>
-            <a href="mission.html" class="hover:text-black">MISSION</a>
+            <div class="relative group">
+                <button type="button" class="hover:text-black flex items-center gap-1 py-2">MISSION <i data-lucide="chevron-down" class="w-3 h-3"></i></button>
+                <div class="absolute top-full left-0 bg-white border border-gray-200 rounded-md shadow-lg py-2 min-w-[160px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                    <a href="mission.html" class="block px-4 py-2 text-sm hover:bg-brand-blush50 hover:text-black">Mission</a>
+                    <a href="faq.html" class="block px-4 py-2 text-sm hover:bg-brand-blush50 hover:text-black">FAQ</a>
+                </div>
+            </div>
             <a href="attend.html" class="hover:text-black">ATTEND</a>
-            <a href="dj-call.html" class="hover:text-black">DJ CALL</a>
-            <a href="podcast.html" class="hover:text-black">PODCAST</a>
-            <a href="faq.html" class="hover:text-black">FAQ</a>
-            <a href="alerts.html" class="hover:text-black">SUBSCRIBE NOW</a>
+            <a href="apply.html" class="hover:text-black">ARTIST ACCESS</a>
+            <div class="relative group">
+                <button type="button" class="hover:text-black flex items-center gap-1 py-2">LISTEN <i data-lucide="chevron-down" class="w-3 h-3"></i></button>
+                <div class="absolute top-full left-0 bg-white border border-gray-200 rounded-md shadow-lg py-2 min-w-[160px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                    <a href="dj-call.html" class="block px-4 py-2 text-sm hover:bg-brand-blush50 hover:text-black">DJ Call</a>
+                    <a href="podcast.html" class="block px-4 py-2 text-sm hover:bg-brand-blush50 hover:text-black">Podcast</a>
+                </div>
+            </div>
+            <a href="blog.html" class="hover:text-black">THE DROP</a>
             <a href="sponsor.html" class="text-black">CAMPAIGN STORE</a>
-            <a href="apply.html" class="bg-[#8A1558] text-white px-4 py-2 rounded font-bold tracking-widest text-xs hover:bg-[#680D3E] transition-colors">Apply Now</a>
+            <a href="attend.html" class="inline-flex items-center gap-2 bg-[#8A1558] text-white px-5 py-2.5 rounded-full font-bold tracking-widest text-xs hover:bg-[#680D3E] transition-colors">
+                <i data-lucide="ticket" class="w-4 h-4"></i>
+                ATTEND
+            </a>
         </div>
     </div>
 </nav>
 
-<main class="max-w-7xl mx-auto px-6 md:px-12 py-10 md:py-16">
 
-  <!-- STORE HEADER -->
-  <section class="mb-10 md:mb-14 relative z-10">
+
+<main class="max-w-7xl mx-auto px-4 py-5 md:py-16">
+
+  <!-- STORE HEADER (editorial / festival-poster) -->
+  <section class="mb-5 md:mb-10 pt-2 relative z-10">
     <div class="max-w-6xl">
-      <p class="font-bold text-sm tracking-widest text-sxsw-pink mb-4 uppercase">[ Campaign Store, NMW ]</p>
-      <h1 class="text-5xl sm:text-6xl md:text-7xl mb-6 text-black leading-[0.95]">RUN A CAMPAIGN<br>AT NMW.</h1>
-      <p class="text-lg md:text-xl text-gray-700 max-w-2xl mb-8 font-medium">For artists, record labels, and sponsors. Pick what fits your moment. We run it on a scheduled Wednesday and send a real report back.</p>
-    </div>
+      <div class="mono-eyebrow mb-3">Campaign Store, NMW</div>
+      <h1 class="display display-tight text-5xl sm:text-6xl md:text-7xl mb-4 text-ink">Run a campaign<br>at NMW.</h1>
+      <p class="text-base md:text-lg text-ink/70 max-w-xl mb-6 font-sans">For artists, record labels, and sponsors. Pick what fits your moment. We run it on a scheduled Wednesday and send a real report back.</p>
+          </div>
 
-    <!-- OBLONG SEARCH BAR -->
-    <form class="nmw-search mb-2 w-full max-w-6xl" role="search" onsubmit="event.preventDefault();">
+    <!-- OBLONG SEARCH BAR: who is this for + campaign goal + free-text tag search -->
+    <form class="nmw-search mb-5 md:mb-12 w-full max-w-6xl" role="search" onsubmit="event.preventDefault();">
       <div class="nmw-search__select-wrap">
         <label for="audienceSelect" class="sr-only">Who is this for?</label>
         <select id="audienceSelect" class="nmw-search__select" aria-label="Who is this for?">
@@ -380,7 +408,7 @@
       <div class="nmw-search__input-wrap">
         <i data-lucide="search" class="nmw-search__icon"></i>
         <input id="goalSearch" type="search" class="nmw-search__input"
-               placeholder="Add a keyword or phrase (e.g. tiktok, dj feedback, presave)&hellip;"
+               placeholder="Add a keyword or phrase (e.g. tiktok, dj feedback, presave)…"
                autocomplete="off" />
       </div>
     </form>
@@ -395,84 +423,84 @@
   </section>
 
   <!-- PRODUCT LINE: GROUP ACTION -->
-  <section id="group-action" class="mb-14 md:mb-24 scroll-mt-24 relative z-10">
-    <div class="h-1 w-24 bg-sxsw-pink mb-8"></div>
-    <div class="mb-8 md:mb-12 max-w-3xl">
-      <p class="font-bold text-xs tracking-widest text-sxsw-pink mb-3 uppercase">[ Campaign Type: Group Action ]</p>
-      <h2 class="text-4xl md:text-6xl mb-5 text-black leading-[0.95]">Everyone in the room takes the same action on their phone.</h2>
-      <p class="text-base md:text-lg text-gray-700 font-medium max-w-2xl">The room moves with you. While you perform, everyone hits the same play on their phone, a Shazam, a YouTube watch, a TikTok sound, a Spotify pre-save. 150 people, one motion, one night. The kind of signal an algorithm actually notices.</p>
+  <section id="group-action" class="mb-5 md:mb-20 scroll-mt-20 relative z-10">
+    <div class="ed-rule mb-8"></div>
+    <div class="mb-5 md:mb-10 max-w-3xl">
+      <div class="mono-eyebrow mb-4">Campaign Type: Group Action</div>
+      <h2 class="section-h2 text-4xl md:text-6xl mb-5 text-brand-500">Everyone in the room takes the same action on their phone.</h2>
+      <p class="text-base md:text-lg text-ink/70 font-sans max-w-xl">The room moves with you. While you perform, everyone hits the same play on their phone, a Shazam, a YouTube watch, a TikTok sound, a Spotify pre-save. 150 people, one motion, one night. The kind of signal an algorithm actually notices.</p>
     </div>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-5 md:mb-10">
 
       <!-- 1. Shazam -->
-      <div class="play-card flex flex-col" data-play-id="ga-shazam" data-audience="artist label" data-tags="shazam discovery release rollout apple-music chart genre">
-        <div class="mb-4 text-sxsw-pink"><i data-lucide="radar" class="w-8 h-8"></i></div>
-        <h3 class="text-lg mb-2">Shazam Group Action</h3>
-        <div class="goal-pill self-start mb-3" data-goal-artist="Boost Shazam Discovery" data-goal-label="Chart a Roster Artist on Shazam"><i data-lucide="target" class="w-3 h-3"></i> Goal: <span class="goal-text">Boost Shazam Discovery</span></div>
-        <p class="text-sm text-gray-700 mb-4">Everyone Shazams your track at the same time. 150 Shazams in one room, in one window. Shazam's local and genre charts notice. So does Apple Music.</p>
+      <div class="play-card section-card flex flex-col border-2 border-[#8A1558] transition-all" data-play-id="ga-shazam" data-audience="artist label" data-tags="shazam discovery release rollout apple-music chart genre">
+        <div class="mb-4 text-ink"><i data-lucide="radar" class="w-7 h-7"></i></div>
+        <h3 class="text-lg font-black tracking-tight mb-2">Shazam Group Action</h3>
+        <div class="goal-pill inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-[#8A1558] bg-[#FDF2F8] px-2.5 py-1 rounded-full self-start mb-3" data-goal-artist="Boost Shazam Discovery" data-goal-label="Chart a Roster Artist on Shazam"><i data-lucide="target" class="w-3 h-3"></i> Goal: <span class="goal-text">Boost Shazam Discovery</span></div>
+        <p class="text-sm text-gray-700 font-serif mb-4">Everyone Shazams your track at the same time. 150 Shazams in one room, in one window. Shazam's local and genre charts notice. So does Apple Music.</p>
         <ul class="text-xs text-gray-600 space-y-1.5 mb-5 flex-1">
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>~150 synchronized Shazams during your set</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>Boost to local + genre Shazam charts</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>Permanent Shazam &rarr; Apple Music linkage</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>Discoverability lift on Apple Music too</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>~150 synchronized Shazams during your set</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>Boost to local + genre Shazam charts</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>Permanent Shazam → Apple Music linkage</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>Discoverability lift on Apple Music too</li>
         </ul>
-        <div class="border-t border-gray-200 pt-4 flex flex-col gap-3">
-          <span class="play-price">$1,500 / Wednesday</span>
+        <div class="border-t border-gray-100 pt-4 flex flex-col gap-3">
+          <span class="play-price font-black text-ink">$1,500 / Wednesday</span>
           <button type="button" data-add-play="ga-shazam" class="add-cart-btn"><span class="label-default"><i data-lucide="plus" class="w-3.5 h-3.5"></i> Add to Cart</span><span class="label-added"><i data-lucide="check" class="w-3.5 h-3.5"></i> Added, Tap to remove</span></button>
         </div>
       </div>
 
       <!-- 2. YouTube -->
-      <div class="play-card flex flex-col" data-play-id="ga-youtube" data-audience="artist label" data-tags="youtube video music-video views likes comments algorithm release rollout suggested">
-        <div class="mb-4 text-sxsw-pink"><i data-lucide="youtube" class="w-8 h-8"></i></div>
-        <h3 class="text-lg mb-2">YouTube Group Action</h3>
-        <div class="goal-pill self-start mb-3" data-goal-artist="YouTube Algorithm Push" data-goal-label="Push a Roster Artist's Video"><i data-lucide="target" class="w-3 h-3"></i> Goal: <span class="goal-text">YouTube Algorithm Push</span></div>
-        <p class="text-sm text-gray-700 mb-4">QR on every table. Everyone scans, lands on your music video, watches it, likes it, leaves a comment. 150 real engaged sessions in a ten-minute window. That's the signal YouTube uses to decide what to push.</p>
+      <div class="play-card section-card flex flex-col border-2 border-[#8A1558] transition-all" data-play-id="ga-youtube" data-audience="artist label" data-tags="youtube video music-video views likes comments algorithm release rollout suggested">
+        <div class="mb-4 text-ink"><i data-lucide="youtube" class="w-7 h-7"></i></div>
+        <h3 class="text-lg font-black tracking-tight mb-2">YouTube Group Action</h3>
+        <div class="goal-pill inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-[#8A1558] bg-[#FDF2F8] px-2.5 py-1 rounded-full self-start mb-3" data-goal-artist="YouTube Algorithm Push" data-goal-label="Push a Roster Artist's Video"><i data-lucide="target" class="w-3 h-3"></i> Goal: <span class="goal-text">YouTube Algorithm Push</span></div>
+        <p class="text-sm text-gray-700 font-serif mb-4">QR on every table. Everyone scans, lands on your music video, watches it, likes it, leaves a comment. 150 real engaged sessions in a ten-minute window. That's the signal YouTube uses to decide what to push.</p>
         <ul class="text-xs text-gray-600 space-y-1.5 mb-5 flex-1">
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>~150 watch sessions, real engagement</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>Likes + comments seeded during set</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>Concentrated signal &rarr; algorithm boost</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>Suggested-video placement lift</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>~150 watch sessions, real engagement</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>Likes + comments seeded during set</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>Concentrated signal → algorithm boost</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>Suggested-video placement lift</li>
         </ul>
-        <div class="border-t border-gray-200 pt-4 flex flex-col gap-3">
-          <span class="play-price">$1,500 / Wednesday</span>
+        <div class="border-t border-gray-100 pt-4 flex flex-col gap-3">
+          <span class="play-price font-black text-ink">$1,500 / Wednesday</span>
           <button type="button" data-add-play="ga-youtube" class="add-cart-btn"><span class="label-default"><i data-lucide="plus" class="w-3.5 h-3.5"></i> Add to Cart</span><span class="label-added"><i data-lucide="check" class="w-3.5 h-3.5"></i> Added, Tap to remove</span></button>
         </div>
       </div>
 
       <!-- 3. TikTok -->
-      <div class="play-card flex flex-col" data-play-id="ga-tiktok" data-audience="artist label" data-tags="tiktok sound viral trend reuse release rollout social">
-        <div class="mb-4 text-sxsw-pink"><i data-lucide="music-2" class="w-8 h-8"></i></div>
-        <h3 class="text-lg mb-2">TikTok Sound Group Action</h3>
-        <div class="goal-pill self-start mb-3" data-goal-artist="Seed a Viral Sound" data-goal-label="Seed a Roster Artist's Sound"><i data-lucide="target" class="w-3 h-3"></i> Goal: <span class="goal-text">Seed a Viral Sound</span></div>
-        <p class="text-sm text-gray-700 mb-4">QR drops everyone into TikTok on a post that already uses your sound. Forty to eighty people in the room reuse it on their own clip that night. That's how sounds break, started in one Wednesday.</p>
+      <div class="play-card section-card flex flex-col border-2 border-[#8A1558] transition-all" data-play-id="ga-tiktok" data-audience="artist label" data-tags="tiktok sound viral trend reuse release rollout social">
+        <div class="mb-4 text-ink"><i data-lucide="music-2" class="w-7 h-7"></i></div>
+        <h3 class="text-lg font-black tracking-tight mb-2">TikTok Sound Group Action</h3>
+        <div class="goal-pill inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-[#8A1558] bg-[#FDF2F8] px-2.5 py-1 rounded-full self-start mb-3" data-goal-artist="Seed a Viral Sound" data-goal-label="Seed a Roster Artist's Sound"><i data-lucide="target" class="w-3 h-3"></i> Goal: <span class="goal-text">Seed a Viral Sound</span></div>
+        <p class="text-sm text-gray-700 font-serif mb-4">QR drops everyone into TikTok on a post that already uses your sound. Forty to eighty people in the room reuse it on their own clip that night. That's how sounds break, started in one Wednesday.</p>
         <ul class="text-xs text-gray-600 space-y-1.5 mb-5 flex-1">
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>Seed post with your sound pre-loaded</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>~40, 80 attendees reuse the sound</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>Burst signal triggers sound-trend rank</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>Compounds beyond the room organically</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>Seed post with your sound pre-loaded</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>~40, 80 attendees reuse the sound</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>Burst signal triggers sound-trend rank</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>Compounds beyond the room organically</li>
         </ul>
-        <div class="border-t border-gray-200 pt-4 flex flex-col gap-3">
-          <span class="play-price">$1,500 / Wednesday</span>
+        <div class="border-t border-gray-100 pt-4 flex flex-col gap-3">
+          <span class="play-price font-black text-ink">$1,500 / Wednesday</span>
           <button type="button" data-add-play="ga-tiktok" class="add-cart-btn"><span class="label-default"><i data-lucide="plus" class="w-3.5 h-3.5"></i> Add to Cart</span><span class="label-added"><i data-lucide="check" class="w-3.5 h-3.5"></i> Added, Tap to remove</span></button>
         </div>
       </div>
 
       <!-- 4. Spotify pre-save -->
-      <div class="play-card flex flex-col" data-play-id="ga-spotify-presave" data-audience="artist label" data-tags="spotify pre-save presave streams release release-day playlist discover-weekly marquee ads">
-        <div class="mb-4 text-sxsw-pink"><i data-lucide="bookmark-plus" class="w-8 h-8"></i></div>
-        <h3 class="text-lg mb-2">Spotify Pre-Save Group Action</h3>
-        <div class="goal-pill self-start mb-3" data-goal-artist="Stack Release-Day Streams" data-goal-label="Boost a Roster Release"><i data-lucide="target" class="w-3 h-3"></i> Goal: <span class="goal-text">Stack Release-Day Streams</span></div>
-        <p class="text-sm text-gray-700 mb-4">QR goes to a one-tap pre-save for your upcoming release. 150 pre-saves from a live room in one night. That's what Spotify's editorial team and the algorithm both look at when they decide playlist placement.</p>
+      <div class="play-card section-card flex flex-col border-2 border-[#8A1558] transition-all" data-play-id="ga-spotify-presave" data-audience="artist label" data-tags="spotify pre-save presave streams release release-day playlist discover-weekly marquee ads">
+        <div class="mb-4 text-ink"><i data-lucide="bookmark-plus" class="w-7 h-7"></i></div>
+        <h3 class="text-lg font-black tracking-tight mb-2">Spotify Pre-Save Group Action</h3>
+        <div class="goal-pill inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-[#8A1558] bg-[#FDF2F8] px-2.5 py-1 rounded-full self-start mb-3" data-goal-artist="Stack Release-Day Streams" data-goal-label="Boost a Roster Release"><i data-lucide="target" class="w-3 h-3"></i> Goal: <span class="goal-text">Stack Release-Day Streams</span></div>
+        <p class="text-sm text-gray-700 font-serif mb-4">QR goes to a one-tap pre-save for your upcoming release. 150 pre-saves from a live room in one night. That's what Spotify's editorial team and the algorithm both look at when they decide playlist placement.</p>
         <ul class="text-xs text-gray-600 space-y-1.5 mb-5 flex-1">
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>~150 pre-saves during your set</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>First-week-stream surge on release day</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>Boost playlist + Discover Weekly odds</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>Eligibility lift for Spotify ad targeting</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>~150 pre-saves during your set</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>First-week-stream surge on release day</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>Boost playlist + Discover Weekly odds</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>Eligibility lift for Spotify ad targeting</li>
         </ul>
-        <div class="border-t border-gray-200 pt-4 flex flex-col gap-3">
-          <span class="play-price">$1,500 / Wednesday</span>
+        <div class="border-t border-gray-100 pt-4 flex flex-col gap-3">
+          <span class="play-price font-black text-ink">$1,500 / Wednesday</span>
           <button type="button" data-add-play="ga-spotify-presave" class="add-cart-btn"><span class="label-default"><i data-lucide="plus" class="w-3.5 h-3.5"></i> Add to Cart</span><span class="label-added"><i data-lucide="check" class="w-3.5 h-3.5"></i> Added, Tap to remove</span></button>
         </div>
       </div>
@@ -481,216 +509,204 @@
   </section>
 
   <!-- GROUP ACTION BUNDLES / DEALS -->
-  <section class="mb-14 md:mb-24 relative z-10">
-    <div class="h-1 w-24 bg-sxsw-pink mb-8"></div>
-    <div class="mb-8 md:mb-12 max-w-3xl">
-      <p class="font-bold text-xs tracking-widest text-sxsw-pink mb-3 uppercase">[ Campaign Type: Bundles ]</p>
-      <h2 class="text-4xl md:text-6xl mb-5 text-black leading-[0.95]">Combine plays. Pay less.</h2>
-      <p class="text-base md:text-lg text-gray-700 font-medium max-w-2xl">Stack plays for a bigger night. Two platforms moving in the same window. Four platforms on the same night is about as much algorithmic momentum as you can buy without paying for ads.</p>
+  <section class="mb-5 md:mb-20 relative z-10">
+    <div class="ed-rule mb-8"></div>
+    <div class="mb-5 md:mb-10 max-w-3xl">
+      <div class="mono-eyebrow mb-4">Campaign Type: Bundles</div>
+      <h2 class="section-h2 text-4xl md:text-6xl mb-5 text-brand-500">Combine plays. Pay less.</h2>
+      <p class="text-base md:text-lg text-ink/70 font-sans max-w-xl">Stack plays for a bigger night. Two platforms moving in the same window. Four platforms on the same night is about as much algorithmic momentum as you can buy without paying for ads.</p>
     </div>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
 
       <!-- Single -->
-      <div class="play-card flex flex-col" data-play-id="bundle-single" data-audience="artist label" data-tags="bundle single one play one-platform">
-        <span class="inline-block self-start text-[10px] font-black uppercase tracking-widest text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full mb-3">Tier 1</span>
-        <h3 class="text-xl mb-2">Single</h3>
-        <div class="goal-pill self-start mb-3" data-goal-artist="Move One Algorithm" data-goal-label="Targeted Single-Platform Push"><i data-lucide="target" class="w-3 h-3"></i> Goal: <span class="goal-text">Move One Algorithm</span></div>
-        <p class="text-sm text-gray-700 mb-4">Pick one Group Action. Good if you want to test the mechanic on the platform that matters most.</p>
-        <div class="text-[11px] font-black uppercase tracking-widest text-black mb-3 flex items-start gap-1.5">
-          <i data-lucide="zap" class="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-brand-gold"></i> <span>One algorithm moved in real time during your set</span>
+      <div class="play-card section-card flex flex-col transition-all" data-play-id="bundle-single" data-audience="artist label" data-tags="bundle single one play one-platform">
+        <div class="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2">Tier 1</div>
+        <h3 class="text-xl font-black tracking-tight mb-2">Single</h3>
+        <div class="goal-pill inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-[#8A1558] bg-[#FDF2F8] px-2.5 py-1 rounded-full self-start mb-3" data-goal-artist="Move One Algorithm" data-goal-label="Targeted Single-Platform Push"><i data-lucide="target" class="w-3 h-3"></i> Goal: <span class="goal-text">Move One Algorithm</span></div>
+        <p class="text-sm text-gray-700 font-serif mb-4">Pick one Group Action. Good if you want to test the mechanic on the platform that matters most.</p>
+        <div class="text-[11px] font-bold uppercase tracking-widest text-ink mb-3 flex items-start gap-1.5">
+          <i data-lucide="zap" class="w-3.5 h-3.5 mt-0.5 flex-shrink-0"></i> <span>One algorithm moved in real time during your set</span>
         </div>
         <ul class="text-xs text-gray-600 space-y-1.5 mb-5 flex-1">
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>1 platform boost</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>~150 synchronized actions</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>Recap + share kit included</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>1 platform boost</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>~150 synchronized actions</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>Recap + share kit included</li>
         </ul>
-        <div class="border-t border-gray-200 pt-4 flex flex-col gap-3">
-          <span class="play-price">$1,500 / Wednesday</span>
+        <div class="border-t border-gray-100 pt-4 flex flex-col gap-3">
+          <span class="play-price font-black text-ink">$1,500 / Wednesday</span>
           <button type="button" data-add-play="bundle-single" class="add-cart-btn"><span class="label-default"><i data-lucide="plus" class="w-3.5 h-3.5"></i> Add to Cart</span><span class="label-added"><i data-lucide="check" class="w-3.5 h-3.5"></i> Added, Tap to remove</span></button>
         </div>
       </div>
 
       <!-- Double -->
-      <div class="play-card flex flex-col" data-play-id="bundle-double" data-audience="artist label" data-tags="bundle double two-platform cross-platform">
-        <span class="inline-block self-start text-[10px] font-black uppercase tracking-widest text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full mb-3">Tier 2</span>
-        <h3 class="text-xl mb-2">Double</h3>
-        <div class="goal-pill self-start mb-3" data-goal-artist="Cross-Platform Signal" data-goal-label="Cross-Platform Roster Push"><i data-lucide="target" class="w-3 h-3"></i> Goal: <span class="goal-text">Cross-Platform Signal</span></div>
-        <p class="text-sm text-gray-700 mb-4">Pick two Group Actions. When two platforms get the signal in the same window, both algorithms notice you faster.</p>
-        <div class="text-[11px] font-black uppercase tracking-widest text-black mb-3 flex items-start gap-1.5">
-          <i data-lucide="zap" class="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-brand-gold"></i> <span>Two platforms boosted simultaneously, multiplied signal</span>
+      <div class="play-card section-card flex flex-col transition-all" data-play-id="bundle-double" data-audience="artist label" data-tags="bundle double two-platform cross-platform">
+        <div class="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2">Tier 2</div>
+        <h3 class="text-xl font-black tracking-tight mb-2">Double</h3>
+        <div class="goal-pill inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-[#8A1558] bg-[#FDF2F8] px-2.5 py-1 rounded-full self-start mb-3" data-goal-artist="Cross-Platform Signal" data-goal-label="Cross-Platform Roster Push"><i data-lucide="target" class="w-3 h-3"></i> Goal: <span class="goal-text">Cross-Platform Signal</span></div>
+        <p class="text-sm text-gray-700 font-serif mb-4">Pick two Group Actions. When two platforms get the signal in the same window, both algorithms notice you faster.</p>
+        <div class="text-[11px] font-bold uppercase tracking-widest text-ink mb-3 flex items-start gap-1.5">
+          <i data-lucide="zap" class="w-3.5 h-3.5 mt-0.5 flex-shrink-0"></i> <span>Two platforms boosted simultaneously, multiplied signal</span>
         </div>
         <ul class="text-xs text-gray-600 space-y-1.5 mb-5 flex-1">
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>2 platform boosts</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>Cross-platform attribution</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i><strong>Save $300</strong> vs picking solo</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>2 platform boosts</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>Cross-platform attribution</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i><strong>Save $300</strong> vs picking solo</li>
         </ul>
-        <div class="border-t border-gray-200 pt-4 flex flex-col gap-3">
-          <span class="play-price">$2,700 / Wednesday</span>
+        <div class="border-t border-gray-100 pt-4 flex flex-col gap-3">
+          <span class="play-price font-black text-ink">$2,700 / Wednesday</span>
           <button type="button" data-add-play="bundle-double" class="add-cart-btn"><span class="label-default"><i data-lucide="plus" class="w-3.5 h-3.5"></i> Add to Cart</span><span class="label-added"><i data-lucide="check" class="w-3.5 h-3.5"></i> Added, Tap to remove</span></button>
         </div>
       </div>
 
       <!-- Triple -->
-      <div class="play-card flex flex-col" data-play-id="bundle-triple" data-audience="label" data-tags="bundle triple three-platform multi-platform roster">
-        <span class="inline-block self-start text-[10px] font-black uppercase tracking-widest text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full mb-3">Tier 3</span>
-        <h3 class="text-xl mb-2">Triple</h3>
-        <div class="goal-pill self-start mb-3" data-goal-label="Multi-Surface Roster Push"><i data-lucide="target" class="w-3 h-3"></i> Goal: <span class="goal-text">Multi-Surface Roster Push</span></div>
-        <p class="text-sm text-gray-700 mb-4">Pick three Group Actions. You cover most of the surfaces your fans use to discover music, in one Wednesday.</p>
-        <div class="text-[11px] font-black uppercase tracking-widest text-black mb-3 flex items-start gap-1.5">
-          <i data-lucide="zap" class="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-brand-gold"></i> <span>Broad surface coverage, streaming + video + social in one play</span>
+      <div class="play-card section-card flex flex-col transition-all" data-play-id="bundle-triple" data-audience="label" data-tags="bundle triple three-platform multi-platform roster">
+        <div class="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2">Tier 3</div>
+        <h3 class="text-xl font-black tracking-tight mb-2">Triple</h3>
+        <div class="goal-pill inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-[#8A1558] bg-[#FDF2F8] px-2.5 py-1 rounded-full self-start mb-3" data-goal-label="Multi-Surface Roster Push"><i data-lucide="target" class="w-3 h-3"></i> Goal: <span class="goal-text">Multi-Surface Roster Push</span></div>
+        <p class="text-sm text-gray-700 font-serif mb-4">Pick three Group Actions. You cover most of the surfaces your fans use to discover music, in one Wednesday.</p>
+        <div class="text-[11px] font-bold uppercase tracking-widest text-ink mb-3 flex items-start gap-1.5">
+          <i data-lucide="zap" class="w-3.5 h-3.5 mt-0.5 flex-shrink-0"></i> <span>Broad surface coverage, streaming + video + social in one play</span>
         </div>
         <ul class="text-xs text-gray-600 space-y-1.5 mb-5 flex-1">
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>3 platform boosts</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>Multi-surface algorithmic lift</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i><strong>Save $600</strong> vs picking solo</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>3 platform boosts</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>Multi-surface algorithmic lift</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i><strong>Save $600</strong> vs picking solo</li>
         </ul>
-        <div class="border-t border-gray-200 pt-4 flex flex-col gap-3">
-          <span class="play-price">$3,900 / Wednesday</span>
+        <div class="border-t border-gray-100 pt-4 flex flex-col gap-3">
+          <span class="play-price font-black text-ink">$3,900 / Wednesday</span>
           <button type="button" data-add-play="bundle-triple" class="add-cart-btn"><span class="label-default"><i data-lucide="plus" class="w-3.5 h-3.5"></i> Add to Cart</span><span class="label-added"><i data-lucide="check" class="w-3.5 h-3.5"></i> Added, Tap to remove</span></button>
         </div>
       </div>
 
       <!-- Full Stack (featured) -->
-      <div class="play-card flex flex-col relative" data-play-id="bundle-full-stack" data-audience="label" data-tags="bundle full-stack stack all-four every-platform release-day rollout career-moment roster" style="border-color:#8A1558;">
-        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-sxsw-pink text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full whitespace-nowrap">Best Value</div>
-        <span class="inline-block self-start text-[10px] font-black uppercase tracking-widest text-white bg-sxsw-pink px-2.5 py-1 rounded-full mb-3">Tier 4, The Stack</span>
-        <h3 class="text-xl mb-2">Full Stack</h3>
-        <div class="goal-pill self-start mb-3" data-goal-label="Full Roster Career Moment"><i data-lucide="target" class="w-3 h-3"></i> Goal: <span class="goal-text">Full Roster Career Moment</span></div>
-        <p class="text-sm text-gray-700 mb-4">All four Group Actions in one Wednesday. Shazam, YouTube, TikTok, Spotify all get a real signal off the same night.</p>
-        <div class="text-[11px] font-black uppercase tracking-widest text-black mb-3 flex items-start gap-1.5">
-          <i data-lucide="zap" class="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-brand-gold"></i> <span>Full algorithmic momentum, career-moment night, every platform pulling in your direction</span>
+      <div class="play-card section-card flex flex-col border-2 border-[#8A1558] relative transition-all" data-play-id="bundle-full-stack" data-audience="label" data-tags="bundle full-stack stack all-four every-platform release-day rollout career-moment roster">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#8A1558] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full whitespace-nowrap">Best Value</div>
+        <div class="text-[10px] font-black uppercase tracking-widest text-ink mb-2">Tier 4, The Stack</div>
+        <h3 class="text-xl font-black tracking-tight mb-2">Full Stack</h3>
+        <div class="goal-pill inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-[#8A1558] bg-[#FDF2F8] px-2.5 py-1 rounded-full self-start mb-3" data-goal-label="Full Roster Career Moment"><i data-lucide="target" class="w-3 h-3"></i> Goal: <span class="goal-text">Full Roster Career Moment</span></div>
+        <p class="text-sm text-gray-700 font-serif mb-4">All four Group Actions in one Wednesday. Shazam, YouTube, TikTok, Spotify all get a real signal off the same night.</p>
+        <div class="text-[11px] font-bold uppercase tracking-widest text-ink mb-3 flex items-start gap-1.5">
+          <i data-lucide="zap" class="w-3.5 h-3.5 mt-0.5 flex-shrink-0"></i> <span>Full algorithmic momentum, career-moment night, every platform pulling in your direction</span>
         </div>
         <ul class="text-xs text-gray-600 space-y-1.5 mb-5 flex-1">
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>Shazam + YouTube + TikTok + Spotify</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>4 algorithms moved in 1 set</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>Playlist + ad eligibility uplift on Spotify</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>Viral-sound seed on TikTok</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i><strong>Save $1,000</strong> vs picking solo</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>Shazam + YouTube + TikTok + Spotify</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>4 algorithms moved in 1 set</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>Playlist + ad eligibility uplift on Spotify</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>Viral-sound seed on TikTok</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i><strong>Save $1,000</strong> vs picking solo</li>
         </ul>
-        <div class="border-t border-gray-200 pt-4 flex flex-col gap-3">
-          <span class="play-price text-lg">$5,000 / Wednesday</span>
+        <div class="border-t border-gray-100 pt-4 flex flex-col gap-3">
+          <span class="play-price font-black text-ink text-lg">$5,000 / Wednesday</span>
           <button type="button" data-add-play="bundle-full-stack" class="add-cart-btn"><span class="label-default"><i data-lucide="plus" class="w-3.5 h-3.5"></i> Add to Cart</span><span class="label-added"><i data-lucide="check" class="w-3.5 h-3.5"></i> Added, Tap to remove</span></button>
         </div>
       </div>
 
     </div>
 
-    <p class="text-center text-xs text-gray-500 mt-8 max-w-3xl mx-auto">Impact figures are based on a typical Wednesday audience of ~150 attendees. Actual lift varies by genre, time of release, and existing artist baseline. We measure and report back within 14 days.</p>
+    <p class="text-center text-xs text-gray-500 mt-6 max-w-3xl mx-auto">Impact figures are based on a typical Wednesday audience of ~150 attendees. Actual lift varies by genre, time of release, and existing artist baseline. We measure and report back within 14 days.</p>
   </section>
 
   <!-- PRODUCT LINE: DIGITAL WAXX DISTRIBUTION -->
-  <section id="digital-waxx" class="mb-14 md:mb-24 scroll-mt-24 relative z-10">
-    <div class="h-1 w-24 bg-sxsw-pink mb-8"></div>
-    <div class="mb-8 md:mb-12 max-w-3xl">
-      <p class="font-bold text-xs tracking-widest text-sxsw-pink mb-3 uppercase">[ Campaign Type: DJ Outreach ]</p>
-      <h2 class="text-4xl md:text-6xl mb-5 text-black leading-[0.95]">Get your music to 50,000 working DJs.</h2>
-      <p class="text-base md:text-lg text-gray-700 font-medium max-w-2xl">Digiwaxx has been the network behind urban radio and club DJs for over 20 years. We send your record to 50,000 of them, programmers, mixshow hosts, music supervisors, the people who decide what plays in real rooms. You get a report back showing who picked it up and where they spun it.</p>
+  <section id="digital-waxx" class="mb-5 md:mb-20 scroll-mt-20 relative z-10">
+    <div class="ed-rule mb-8"></div>
+    <div class="mb-5 md:mb-10 max-w-3xl">
+      <div class="mono-eyebrow mb-4">Campaign Type: DJ Outreach</div>
+      <h2 class="section-h2 text-4xl md:text-6xl mb-5 text-brand-500">Get your music to 50,000 working DJs.</h2>
+      <p class="text-base md:text-lg text-ink/70 font-sans max-w-xl">Digiwaxx has been the network behind urban radio and club DJs for over 20 years. We send your record to 50,000 of them, programmers, mixshow hosts, music supervisors, the people who decide what plays in real rooms. You get a report back showing who picked it up and where they spun it.</p>
     </div>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
 
       <!-- Regular -->
-      <div class="play-card flex flex-col" data-play-id="dx-regular" data-audience="artist label" data-tags="dj-network distribution digiwaxx record-pool email-blast social submission basic regular awareness build-awareness brand">
-        <span class="inline-block self-start text-[10px] font-black uppercase tracking-widest text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full mb-3">Tier 1, Regular</span>
-        <h3 class="text-xl mb-2">Regular</h3>
-        <div class="goal-pill self-start mb-3" data-goal-artist="Land Your First Spins" data-goal-label="Land First Spins for a Roster Artist"><i data-lucide="target" class="w-3 h-3"></i> Goal: <span class="goal-text">Land Your First Spins</span></div>
-        <p class="text-sm text-gray-700 mb-4">Your record goes out to the DJ network and we post the release across Digiwaxx social. DJs start spinning it in clubs and on their mixshows.</p>
+      <div class="play-card section-card flex flex-col transition-all" data-play-id="dx-regular" data-audience="artist label" data-tags="dj-network distribution digiwaxx record-pool email-blast social submission basic regular awareness build-awareness brand">
+        <div class="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2">Tier 1, Regular</div>
+        <h3 class="text-xl font-black tracking-tight mb-2">Regular</h3>
+        <div class="goal-pill inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-[#8A1558] bg-[#FDF2F8] px-2.5 py-1 rounded-full self-start mb-3" data-goal-artist="Land Your First Spins" data-goal-label="Land First Spins for a Roster Artist"><i data-lucide="target" class="w-3 h-3"></i> Goal: <span class="goal-text">Land Your First Spins</span></div>
+        <p class="text-sm text-gray-700 font-serif mb-4">Your record goes out to the DJ network and we post the release across Digiwaxx social. DJs start spinning it in clubs and on their mixshows.</p>
         <ul class="text-xs text-gray-600 space-y-1.5 mb-5 flex-1">
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>Music submission to the network</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>Release alert on Digiwaxx social (FB + IG + X)</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>First-wave club + mixshow pickup</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>Music submission to the network</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>Release alert on Digiwaxx social (FB + IG + X)</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>First-wave club + mixshow pickup</li>
         </ul>
-        <div class="border-t border-gray-200 pt-4 flex flex-col gap-3">
-          <span class="play-price">$150</span>
+        <div class="border-t border-gray-100 pt-4 flex flex-col gap-3">
+          <span class="play-price font-black text-ink">$150</span>
           <button type="button" data-add-play="dx-regular" class="add-cart-btn"><span class="label-default"><i data-lucide="plus" class="w-3.5 h-3.5"></i> Add to Cart</span><span class="label-added"><i data-lucide="check" class="w-3.5 h-3.5"></i> Added, Tap to remove</span></button>
         </div>
       </div>
 
       <!-- Regular Plus -->
-      <div class="play-card flex flex-col" data-play-id="dx-regular-plus" data-audience="artist label" data-tags="dj-network distribution digiwaxx record-pool email-blast 50k subscribers social submission regular-plus release rollout follow-up push-release new-release">
-        <span class="inline-block self-start text-[10px] font-black uppercase tracking-widest text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full mb-3">Tier 2, Regular Plus</span>
-        <h3 class="text-xl mb-2">Regular Plus</h3>
-        <div class="goal-pill self-start mb-3" data-goal-artist="Get Your Record Into Rotation" data-goal-label="Get a Roster Release Into Rotation"><i data-lucide="target" class="w-3 h-3"></i> Goal: <span class="goal-text">Get Your Record Into Rotation</span></div>
-        <p class="text-sm text-gray-700 mb-4">Real distribution. Record pool + promo single goes out to our 50K+ DJ network, your track lands in club crates and mixshow rotation. Follow-up blast week 2 keeps it in front of the DJs who didn't pick up week 1.</p>
+      <div class="play-card section-card flex flex-col transition-all" data-play-id="dx-regular-plus" data-audience="artist label" data-tags="dj-network distribution digiwaxx record-pool email-blast 50k subscribers social submission regular-plus release rollout follow-up push-release new-release">
+        <div class="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2">Tier 2, Regular Plus</div>
+        <h3 class="text-xl font-black tracking-tight mb-2">Regular Plus</h3>
+        <div class="goal-pill inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-[#8A1558] bg-[#FDF2F8] px-2.5 py-1 rounded-full self-start mb-3" data-goal-artist="Get Your Record Into Rotation" data-goal-label="Get a Roster Release Into Rotation"><i data-lucide="target" class="w-3 h-3"></i> Goal: <span class="goal-text">Get Your Record Into Rotation</span></div>
+        <p class="text-sm text-gray-700 font-serif mb-4">Real distribution. Record pool + promo single goes out to our 50K+ DJ network, your track lands in club crates and mixshow rotation. Follow-up blast week 2 keeps it in front of the DJs who didn't pick up week 1.</p>
         <ul class="text-xs text-gray-600 space-y-1.5 mb-5 flex-1">
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>Release alert on Digiwaxx social</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>Digiwaxx digital record pool submission</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>Promo single to 50,000+ DJ member list</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>+1 follow-up blast &amp; social post (week 2)</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>Club + mixshow rotation pickup</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>Release alert on Digiwaxx social</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>Digiwaxx digital record pool submission</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>Promo single to 50,000+ DJ member list</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>+1 follow-up blast &amp; social post (week 2)</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>Club + mixshow rotation pickup</li>
         </ul>
-        <div class="border-t border-gray-200 pt-4 flex flex-col gap-3">
-          <span class="play-price">$250</span>
+        <div class="border-t border-gray-100 pt-4 flex flex-col gap-3">
+          <span class="play-price font-black text-ink">$250</span>
           <button type="button" data-add-play="dx-regular-plus" class="add-cart-btn"><span class="label-default"><i data-lucide="plus" class="w-3.5 h-3.5"></i> Add to Cart</span><span class="label-added"><i data-lucide="check" class="w-3.5 h-3.5"></i> Added, Tap to remove</span></button>
         </div>
       </div>
 
       <!-- Advance (Most Popular) -->
-      <div class="play-card flex flex-col relative" data-play-id="dx-advance" data-audience="artist label" data-tags="dj-network distribution digiwaxx record-pool email-blast 50k subscribers analytics feedback dj-feedback spin-data ratings advance release rollout most-popular" style="border-color:#8A1558;">
-        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-sxsw-pink text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full whitespace-nowrap">Most Popular</div>
-        <span class="inline-block self-start text-[10px] font-black uppercase tracking-widest text-white bg-sxsw-pink px-2.5 py-1 rounded-full mb-3">Tier 3, Advance</span>
-        <h3 class="text-xl mb-2">Advance</h3>
-        <div class="goal-pill self-start mb-3" data-goal-artist="Track Every Spin + Get DJ Feedback" data-goal-label="Track Roster Spins + Get DJ Feedback"><i data-lucide="target" class="w-3 h-3"></i> Goal: <span class="goal-text">Track Every Spin + Get DJ Feedback</span></div>
-        <p class="text-sm text-gray-700 mb-4">Everything in Regular Plus, plus the data layer: per-spin analytics, which DJ played it, in which club / on which mixshow, in what city, plus their ratings and comments. Proof of rotation, not vibes.</p>
+      <div class="play-card section-card flex flex-col border-2 border-[#8A1558] relative transition-all" data-play-id="dx-advance" data-audience="artist label" data-tags="dj-network distribution digiwaxx record-pool email-blast 50k subscribers analytics feedback dj-feedback spin-data ratings advance release rollout most-popular">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#8A1558] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full whitespace-nowrap">Most Popular</div>
+        <div class="text-[10px] font-black uppercase tracking-widest text-ink mb-2">Tier 3, Advance</div>
+        <h3 class="text-xl font-black tracking-tight mb-2">Advance</h3>
+        <div class="goal-pill inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-[#8A1558] bg-[#FDF2F8] px-2.5 py-1 rounded-full self-start mb-3" data-goal-artist="Track Every Spin + Get DJ Feedback" data-goal-label="Track Roster Spins + Get DJ Feedback"><i data-lucide="target" class="w-3 h-3"></i> Goal: <span class="goal-text">Track Every Spin + Get DJ Feedback</span></div>
+        <p class="text-sm text-gray-700 font-serif mb-4">Everything in Regular Plus, plus the data layer: per-spin analytics, which DJ played it, in which club / on which mixshow, in what city, plus their ratings and comments. Proof of rotation, not vibes.</p>
         <ul class="text-xs text-gray-600 space-y-1.5 mb-5 flex-1">
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>Everything in Regular Plus</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>Per-spin reports: DJ, venue/show, format, city, date</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>DJ ratings + qualitative comments on the track</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>Direct contact info for DJs who spun it</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>Everything in Regular Plus</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>Per-spin reports: DJ, venue/show, format, city, date</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>DJ ratings + qualitative comments on the track</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>Direct contact info for DJs who spun it</li>
         </ul>
-        <div class="border-t border-gray-200 pt-4 flex flex-col gap-3">
-          <span class="play-price text-lg">$350</span>
+        <div class="border-t border-gray-100 pt-4 flex flex-col gap-3">
+          <span class="play-price font-black text-ink text-lg">$350</span>
           <button type="button" data-add-play="dx-advance" class="add-cart-btn"><span class="label-default"><i data-lucide="plus" class="w-3.5 h-3.5"></i> Add to Cart</span><span class="label-added"><i data-lucide="check" class="w-3.5 h-3.5"></i> Added, Tap to remove</span></button>
         </div>
       </div>
 
       <!-- Advance Plus -->
-      <div class="play-card flex flex-col" data-play-id="dx-advance-plus" data-audience="artist label" data-tags="dj-network distribution digiwaxx record-pool email-blast 50k subscribers analytics feedback dj-feedback spin-data ratings advance-plus release rollout sustained four-week cadence follow-up streams increase-streams stream">
-        <span class="inline-block self-start text-[10px] font-black uppercase tracking-widest text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full mb-3">Tier 4, Advance Plus</span>
-        <h3 class="text-xl mb-2">Advance Plus</h3>
-        <div class="goal-pill self-start mb-3" data-goal-artist="Stay in Rotation for 4 Weeks" data-goal-label="Keep a Roster Release in Rotation for 4 Weeks"><i data-lucide="target" class="w-3 h-3"></i> Goal: <span class="goal-text">Stay in Rotation for 4 Weeks</span></div>
-        <p class="text-sm text-gray-700 mb-4">Sustained 4-week push. Everything in Advance plus 3 weekly follow-up blasts, record stays in club crates + on mixshow rotations for a month instead of a one-week pop. Every spin tracked across the run.</p>
+      <div class="play-card section-card flex flex-col transition-all" data-play-id="dx-advance-plus" data-audience="artist label" data-tags="dj-network distribution digiwaxx record-pool email-blast 50k subscribers analytics feedback dj-feedback spin-data ratings advance-plus release rollout sustained four-week cadence follow-up streams increase-streams stream">
+        <div class="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2">Tier 4, Advance Plus</div>
+        <h3 class="text-xl font-black tracking-tight mb-2">Advance Plus</h3>
+        <div class="goal-pill inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-[#8A1558] bg-[#FDF2F8] px-2.5 py-1 rounded-full self-start mb-3" data-goal-artist="Stay in Rotation for 4 Weeks" data-goal-label="Keep a Roster Release in Rotation for 4 Weeks"><i data-lucide="target" class="w-3 h-3"></i> Goal: <span class="goal-text">Stay in Rotation for 4 Weeks</span></div>
+        <p class="text-sm text-gray-700 font-serif mb-4">Sustained 4-week push. Everything in Advance plus 3 weekly follow-up blasts, record stays in club crates + on mixshow rotations for a month instead of a one-week pop. Every spin tracked across the run.</p>
         <ul class="text-xs text-gray-600 space-y-1.5 mb-5 flex-1">
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>Everything in Advance</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>3 weekly follow-up blasts &amp; social posts</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>4 weeks of sustained club + mixshow rotation</li>
-          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-sxsw-pink mt-0.5 flex-shrink-0"></i>Full 4-week spin report at the end of the run</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>Everything in Advance</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>3 weekly follow-up blasts &amp; social posts</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>4 weeks of sustained club + mixshow rotation</li>
+          <li class="flex items-start gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-[#8A1558] mt-0.5 flex-shrink-0"></i>Full 4-week spin report at the end of the run</li>
         </ul>
-        <div class="border-t border-gray-200 pt-4 flex flex-col gap-3">
-          <span class="play-price">$600</span>
+        <div class="border-t border-gray-100 pt-4 flex flex-col gap-3">
+          <span class="play-price font-black text-ink">$600</span>
           <button type="button" data-add-play="dx-advance-plus" class="add-cart-btn"><span class="label-default"><i data-lucide="plus" class="w-3.5 h-3.5"></i> Add to Cart</span><span class="label-added"><i data-lucide="check" class="w-3.5 h-3.5"></i> Added, Tap to remove</span></button>
         </div>
       </div>
 
     </div>
 
-    <p class="text-center text-xs text-gray-500 mt-8 max-w-3xl mx-auto">Spin counts vary by genre and release momentum. The 50K+ list is a real opted-in network of DJs, club programmers, mixshow hosts, and music supervisors built over the life of Digiwaxx. Every spin we report is one a DJ actually played out.</p>
-  </section>
-
-  <!-- WEEKLY PLAYS / RECURRING (rendered by JS into #productGrid) -->
-  <section id="weekly-plays" class="mb-14 md:mb-24 scroll-mt-24 relative z-10">
-    <div class="h-1 w-24 bg-sxsw-pink mb-8"></div>
-    <div class="mb-8 md:mb-12 max-w-3xl">
-      <p class="font-bold text-xs tracking-widest text-sxsw-pink mb-3 uppercase">[ Campaign Type: Weekly Plays ]</p>
-      <h2 class="text-4xl md:text-6xl mb-5 text-black leading-[0.95]">Recurring weekly placements.</h2>
-      <p class="text-base md:text-lg text-gray-700 font-medium max-w-2xl">Ongoing in-room activations, podcast mentions, newsletter slots, recap clips, and brand placements that compound week after week. Built for sponsors who want a presence, not a one-shot.</p>
-    </div>
-
-    <div id="productGrid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+    <p class="text-center text-xs text-gray-500 mt-6 max-w-3xl mx-auto">Spin counts vary by genre and release momentum. The 50K+ list is a real opted-in network of DJs, club programmers, mixshow hosts, and music supervisors built over the life of Digiwaxx. Every spin we report is one a DJ actually played out.</p>
   </section>
 
   <!-- INQUIRY FORM -->
-  <section id="contactForm" class="mt-12 md:mt-20 max-w-3xl mx-auto">
-    <div class="text-center mb-8 md:mb-12">
-      <p class="font-bold text-xs tracking-widest text-sxsw-pink mb-3 uppercase">[ Step 2, Tell Us About You ]</p>
-      <h2 class="text-4xl md:text-5xl mb-4 text-black leading-[0.95]">Let's Build Something Impactful.</h2>
-      <p class="text-gray-700 text-lg font-medium">We collaborate with brands, agencies, and partners to create strategic, high-visibility sponsorships that resonate authentically.</p>
+  <section id="contactForm" class="mt-8 md:mt-16 lg:mt-24 max-w-3xl mx-auto">
+    <div class="text-center mb-5 md:mb-10">
+      <span class="mono-eyebrow mb-3 block">Step 2, Tell Us About You</span>
+      <h2 class="text-3xl md:text-5xl font-black tracking-tighter mb-3">Let's Build Something Impactful.</h2>
+      <p class="text-gray-600 font-serif text-lg">We collaborate with brands, agencies, and partners to create strategic, high-visibility sponsorships that resonate authentically.</p>
     </div>
 
     <form id="sponsorForm" class="section-card">
       <!-- Selected products preview -->
-      <div id="formCart" class="mb-6 p-4 bg-brand-blush50 border-2 border-sxsw-teal rounded-2xl"></div>
+      <div id="formCart" class="mb-6 p-4 bg-[#FDF2F8] border border-[#FBCFE8] rounded-xl"></div>
 
       <div class="grid sm:grid-cols-2 gap-5">
         <div><label class="field-label">Full Name *</label><input class="field-input" name="name" required placeholder="Full name"></div>
@@ -701,7 +717,7 @@
 
         <div class="sm:col-span-2"><label class="field-label">Type of Organization</label>
           <select class="field-input" name="orgType">
-            <option value="">Select&hellip;</option>
+            <option value="">Select…</option>
             <option>Brand</option>
             <option>Agency</option>
             <option>Label / Distributor</option>
@@ -724,15 +740,15 @@
             <option>$500K+</option>
             <option>Open to exploring</option>
           </select>
-          <p class="text-xs text-gray-500 mt-2">This helps us tailor partnership opportunities to fit your goals and scale.</p>
+          <p class="text-xs text-gray-500 mt-1">This helps us tailor partnership opportunities to fit your goals and scale.</p>
         </div>
 
         <div class="sm:col-span-2"><label class="field-label">Tell us a bit about your goals for this partnership *</label>
           <textarea class="field-input" name="goal" rows="5" required placeholder="Brand goals, campaign context, audience you're trying to reach, any creative ideas already in motion."></textarea>
         </div>
 
-        <div class="sm:col-span-2 pt-3 border-t-2 border-gray-100">
-          <h3 class="text-sm text-black mt-2 mb-3">Contact Preferences</h3>
+        <div class="sm:col-span-2 pt-3 border-t border-gray-200">
+          <h3 class="text-sm font-black uppercase tracking-widest text-ink mt-2 mb-3">Contact Preferences</h3>
         </div>
 
         <div>
@@ -745,121 +761,113 @@
         </div>
 
         <div class="sm:col-span-2"><label class="field-label">How did you hear about New Music Wednesdays?</label>
-          <input class="field-input" name="source" placeholder="Referral, social, search, event, other&hellip;">
+          <input class="field-input" name="source" placeholder="Referral, social, search, event, other…">
         </div>
       </div>
 
-      <button type="submit" class="mt-8 w-full inline-flex items-center justify-center gap-2 bg-sxsw-pink hover:bg-sxsw-deeppink text-white font-black uppercase text-sm tracking-widest px-6 py-4 rounded-full transition-colors shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-        <i data-lucide="send" class="w-4 h-4"></i> Submit For Approval
+      <button type="submit" class="cta cta--brand mt-6">
+        <div class="cta__shadow"></div>
+        <div class="cta__face"><span class="cta__label flex items-center gap-2"><i data-lucide="send" class="w-4 h-4"></i> Submit For Approval</span></div>
       </button>
-      <p class="text-xs text-gray-500 mt-4 text-center"><i data-lucide="shield-check" class="w-3 h-3 inline"></i> All sponsorships are reviewed for fit. Our partnerships team responds within 2 business days.</p>
+      <p class="text-xs text-gray-500 mt-3 text-center"><i data-lucide="shield-check" class="w-3 h-3 inline"></i> All sponsorships are reviewed for fit. Our partnerships team responds within 2 business days.</p>
     </form>
 
-    <div id="successCard" class="hidden bg-white border-2 border-black rounded-3xl p-8 mt-4 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+    <div id="successCard" class="hidden bg-white border border-gray-200 rounded-2xl p-8 mt-4">
       <div class="text-center mb-6">
-        <div class="w-16 h-16 bg-brand-blush50 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-sxsw-teal">
-          <i data-lucide="check" class="w-8 h-8 text-sxsw-pink"></i>
+        <div class="w-16 h-16 bg-[#FDF2F8] rounded-full flex items-center justify-center mx-auto mb-4 border border-[#FBCFE8]">
+          <i data-lucide="check" class="w-8 h-8 text-[#8A1558]"></i>
         </div>
-        <h2 class="text-3xl md:text-4xl mb-3 text-black">Campaign submitted for review.</h2>
-        <p class="text-gray-700 max-w-lg mx-auto font-medium">We're reviewing the plays you picked against availability and fit. Here's what happens next, you'll get an email with one of these three outcomes within <strong class="text-gray-900">2 business days</strong>.</p>
+        <h2 class="text-2xl md:text-3xl font-black tracking-tighter mb-2">Campaign submitted for review.</h2>
+        <p class="text-gray-700 font-serif max-w-lg mx-auto">We're reviewing the plays you picked against availability and fit. Here's what happens next, you'll get an email with one of these three outcomes within <strong class="text-gray-900">2 business days</strong>.</p>
       </div>
 
       <!-- Three outcomes -->
       <div class="grid md:grid-cols-3 gap-4 max-w-3xl mx-auto mb-6">
-        <div class="border-2 border-green-200 bg-green-50 rounded-2xl p-4">
+        <div class="border border-green-200 bg-green-50 rounded-xl p-4">
           <div class="flex items-center gap-2 mb-2">
             <i data-lucide="check-circle" class="w-4 h-4 text-green-700"></i>
             <span class="text-[10px] font-black uppercase tracking-widest text-green-700">Approved</span>
           </div>
-          <p class="text-sm text-gray-700 leading-snug">Email arrives with a link to <strong>schedule your Wednesday</strong> and <strong>complete payment</strong>. Once paid, your plays are locked.</p>
+          <p class="text-sm text-gray-700 font-serif leading-snug">Email arrives with a link to <strong>schedule your Wednesday</strong> and <strong>complete payment</strong>. Once paid, your plays are locked.</p>
         </div>
-        <div class="border-2 border-amber-200 bg-amber-50 rounded-2xl p-4">
+        <div class="border border-amber-200 bg-amber-50 rounded-xl p-4">
           <div class="flex items-center gap-2 mb-2">
             <i data-lucide="message-square" class="w-4 h-4 text-amber-700"></i>
             <span class="text-[10px] font-black uppercase tracking-widest text-amber-700">Follow-Up</span>
           </div>
-          <p class="text-sm text-gray-700 leading-snug">We need more context, a short reply with questions about your goals, release timing, or audience fit before we can approve.</p>
+          <p class="text-sm text-gray-700 font-serif leading-snug">We need more context, a short reply with questions about your goals, release timing, or audience fit before we can approve.</p>
         </div>
-        <div class="border-2 border-gray-300 bg-gray-50 rounded-2xl p-4">
+        <div class="border border-gray-300 bg-gray-50 rounded-xl p-4">
           <div class="flex items-center gap-2 mb-2">
             <i data-lucide="x-circle" class="w-4 h-4 text-gray-600"></i>
             <span class="text-[10px] font-black uppercase tracking-widest text-gray-600">Not a Fit</span>
           </div>
-          <p class="text-sm text-gray-700 leading-snug">Rare. If a play conflicts with another booking, doesn't match the audience, or we can't deliver the goal, we'll tell you why and refund any deposit.</p>
+          <p class="text-sm text-gray-700 font-serif leading-snug">Rare. If a play conflicts with another booking, doesn't match the audience, or we can't deliver the goal, we'll tell you why and refund any deposit.</p>
         </div>
       </div>
 
-      <div class="text-center flex flex-wrap gap-3 justify-center pt-6 border-t-2 border-gray-100">
-        <a href="attend.html" class="inline-flex items-center gap-2 bg-sxsw-pink text-white px-5 py-3 rounded-full text-xs font-black tracking-widest uppercase hover:bg-sxsw-deeppink transition-colors"><i data-lucide="calendar-days" class="w-4 h-4"></i> See upcoming events</a>
-        <a href="mission.html" class="inline-flex items-center gap-2 bg-white border-2 border-black text-black px-5 py-3 rounded-full text-xs font-black tracking-widest uppercase hover:bg-gray-100">Read the mission</a>
+      <div class="text-center flex flex-wrap gap-3 justify-center pt-4 border-t border-gray-100">
+        <a href="attend.html" class="inline-flex items-center gap-2 bg-[#8A1558] text-white px-5 py-3 rounded-lg text-xs font-bold tracking-widest uppercase hover:bg-[#680D3E]"><i data-lucide="calendar-days" class="w-4 h-4"></i> See upcoming events</a>
+        <a href="mission.html" class="inline-flex items-center gap-2 bg-white border-2 border-gray-200 text-gray-900 px-5 py-3 rounded-lg text-xs font-bold tracking-widest uppercase hover:border-gray-400">Read the mission</a>
       </div>
     </div>
   </section>
 </main>
 
-<!-- Footer -->
-<footer class="bg-sxsw-dark text-white py-14 px-6 md:px-12 border-t-8 border-sxsw-green">
-    <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
-        <div class="lg:col-span-2">
-            <img src="images/nmw-logo-light.png" alt="New Music Wednesdays" class="h-24 w-auto mb-6" />
-            <p class="text-white font-medium max-w-sm mb-6">
-                Live performance and rollout infrastructure for rising artists. Every Wednesday at The Penthouse NYC.
-            </p>
-            <p class="text-xs uppercase tracking-widest font-bold text-white">Presented by Digiwaxx</p>
-        </div>
-
-        <div>
-            <h4 class="font-bold uppercase tracking-widest text-white mb-4 text-sm">Funnel</h4>
-            <ul class="flex flex-col gap-2 font-medium text-white">
-                <li><a href="index.html" class="hover:text-sxsw-pink transition-colors">Home</a></li>
-                <li><a href="mission.html" class="hover:text-sxsw-pink transition-colors">Mission</a></li>
-                <li><a href="attend.html" class="hover:text-sxsw-pink transition-colors">Events</a></li>
-                <li><a href="https://www.newmusicwednesdayslive.com/rsvp" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">RSVP</a></li>
-                <li><a href="dj-call.html" class="hover:text-sxsw-pink transition-colors">DJ Call</a></li>
-                <li><a href="podcast.html" class="hover:text-sxsw-pink transition-colors">Podcast</a></li>
-                <li><a href="apply.html" class="hover:text-sxsw-pink transition-colors">Artist Access</a></li>
-                <li><a href="faq.html" class="hover:text-sxsw-pink transition-colors">FAQ</a></li>
-                <li><a href="alerts.html" class="hover:text-sxsw-pink transition-colors">Subscribe Now</a></li>
-                <li><a href="sponsor.html" class="hover:text-sxsw-pink transition-colors">Campaign Store</a></li>
-            </ul>
-        </div>
-
-        <div>
-            <h4 class="font-bold uppercase tracking-widest text-white mb-4 text-sm">Distribution</h4>
-            <ul class="flex flex-col gap-2 font-medium text-white">
-                <li><a href="https://www.digiwaxx.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Digiwaxx</a></li>
-                <li><a href="https://www.newmusicwednesdayslive.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">NewMusicWednesdaysLive</a></li>
-                <li><a href="https://dice.fm" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">DICE</a></li>
-                <li><a href="https://www.bandsintown.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Bandsintown</a></li>
-                <li><a href="https://www.songkick.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Songkick</a></li>
-                <li><a href="https://www.eventbrite.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Eventbrite</a></li>
-                <li><a href="https://lu.ma" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Luma</a></li>
-            </ul>
-        </div>
-
-        <div>
-            <h4 class="font-bold uppercase tracking-widest text-white mb-4 text-sm">Listings</h4>
-            <ul class="flex flex-col gap-2 font-medium text-white mb-8">
-                <li><a href="https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Google Maps</a></li>
-                <li><a href="https://www.tripadvisor.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">TripAdvisor</a></li>
-            </ul>
-            <h4 class="font-bold uppercase tracking-widest text-white mb-4 text-sm">Socials</h4>
-            <ul class="flex flex-col gap-2 font-medium text-white">
-                <li><a href="https://www.instagram.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Instagram</a></li>
-                <li><a href="https://www.youtube.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">YouTube</a></li>
-                <li><a href="https://www.tiktok.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">TikTok</a></li>
-                <li><a href="https://x.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">X / Twitter</a></li>
-            </ul>
-        </div>
+<footer class="nmw-footer">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-8 py-2">
+      <div class="col-span-2 md:col-span-2">
+        <img src="images/nmw-logo-light.png" alt="New Music Wednesdays, Digiwaxx" class="footer-logo mb-4" />
+        <p class="text-sm leading-relaxed">Live performance and rollout infrastructure for rising artists. Every Wednesday at The Penthouse NYC, presented by <a href="https://www.digiwaxx.com" target="_blank" rel="noopener noreferrer" class="text-ink hover:underline">Digiwaxx</a>.</p>
+      </div>
+      <div>
+        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Funnel</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="mission.html">Mission</a></li>
+          <li><a href="attend.html">Events</a></li>
+          <li><a href="https://www.newmusicwednesdayslive.com/rsvp" target="_blank" rel="noopener">RSVP</a></li>
+          <li><a href="dj-call.html">DJ Call</a></li>
+          <li><a href="podcast.html">Podcast</a></li>
+          <li><a href="apply.html">Artist Access</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="alerts.html">Subscribe Now</a></li>
+          <li><a href="sponsor.html">Campaign Store</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Distribution</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="https://www.digiwaxx.com" target="_blank" rel="noopener">Digiwaxx</a></li>
+          <li><a href="https://www.newmusicwednesdayslive.com" target="_blank" rel="noopener">NewMusicWednesdaysLive</a></li>
+          <li><a href="https://dice.fm" target="_blank" rel="noopener">DICE</a></li>
+          <li><a href="https://www.bandsintown.com" target="_blank" rel="noopener">Bandsintown</a></li>
+          <li><a href="https://www.songkick.com" target="_blank" rel="noopener">Songkick</a></li>
+          <li><a href="https://www.eventbrite.com" target="_blank" rel="noopener">Eventbrite</a></li>
+          <li><a href="https://lu.ma" target="_blank" rel="noopener">Luma</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Listings</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z" target="_blank" rel="noopener">Google Maps</a></li>
+          <li><a href="https://www.tripadvisor.com" target="_blank" rel="noopener">TripAdvisor</a></li>
+          <li><a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.youtube.com" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://www.tiktok.com" target="_blank" rel="noopener">TikTok</a></li>
+          <li><a href="https://x.com" target="_blank" rel="noopener">X / Twitter</a></li>
+        </ul>
+      </div>
     </div>
-
-    <div class="w-full mt-16 pt-8 border-t border-white/20 flex flex-col md:flex-row justify-between items-center text-sm text-white font-medium">
-        <p>&copy; 2026 New Music Wednesdays. By Digiwaxx. All rights reserved.</p>
-        <div class="flex gap-4 mt-4 md:mt-0">
-            <a href="privacy.html" class="hover:text-sxsw-pink">Privacy Policy</a>
-            <a href="terms.html" class="hover:text-sxsw-pink">Terms of Service</a>
-        </div>
+    <div class="border-t border-white/10 pt-6 mt-6 flex flex-col sm:flex-row gap-3 sm:gap-0 sm:justify-between items-center text-xs">
+      <div>&copy; 2026 New Music Wednesdays. By Digiwaxx. All rights reserved.</div>
+      <div class="flex gap-5">
+        <a href="privacy.html" class="hover:text-white">Privacy Policy</a>
+        <a href="terms.html" class="hover:text-white">Terms &amp; Conditions</a>
+      </div>
     </div>
+  </div>
 </footer>
 
 <script src="assets/nmw.js"></script>
@@ -996,8 +1004,8 @@ function renderProducts() {
 function productCard(p, isBundle = false) {
   const sel = cart.has(p.id);
   const outcomeBlock = p.outcome
-    ? `<div class="text-[11px] font-black uppercase tracking-widest text-black mb-3 flex items-center justify-center gap-1.5">
-         <i data-lucide="trending-up" class="w-3.5 h-3.5 text-sxsw-pink"></i> ${p.outcome}
+    ? `<div class="text-[11px] font-bold uppercase tracking-widest text-ink mb-3 flex items-center justify-center gap-1.5">
+         <i data-lucide="trending-up" class="w-3.5 h-3.5"></i> ${p.outcome}
        </div>`
     : '';
   const goals = p.goals || {};
@@ -1007,21 +1015,18 @@ function productCard(p, isBundle = false) {
     .join(' ');
   const initialGoal = goals.sponsor || goals.artist || goals.label || '';
   const goalPill = initialGoal
-    ? `<div class="goal-pill mb-3" ${goalAttrs}><i data-lucide="target" class="w-3 h-3"></i> Goal: <span class="goal-text">${initialGoal}</span></div>`
+    ? `<div class="goal-pill inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-[#8A1558] bg-[#FDF2F8] px-2.5 py-1 rounded-full mb-3" ${goalAttrs}><i data-lucide="target" class="w-3 h-3"></i> Goal: <span class="goal-text">${initialGoal}</span></div>`
     : '';
-  const featuredBadge = p.featured
-    ? '<div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-sxsw-pink text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full whitespace-nowrap">Most Popular</div>'
-    : '';
-  return `<div class="play-card product-card flex flex-col text-center items-center ${sel ? 'selected' : ''} transition-all relative" data-play-id="${p.id}" data-audience="${p.audience || ''}" data-tags="${p.tags || ''}" ${p.featured ? 'style="border-color:#8A1558;"' : ''}>
-    ${featuredBadge}
-    <div class="w-20 h-20 rounded-full bg-brand-blush50 text-sxsw-pink flex items-center justify-center mb-4 border-2 border-sxsw-teal"><i data-lucide="${p.icon}" class="w-9 h-9"></i></div>
-    <h3 class="text-lg mb-2">${p.name}</h3>
+  return `<div class="play-card product-card section-card flex flex-col text-center items-center ${sel ? 'selected' : ''} ${p.featured ? 'border-2 border-[#8A1558]' : ''} transition-all" data-play-id="${p.id}" data-audience="${p.audience || ''}" data-tags="${p.tags || ''}">
+    ${p.featured ? '<div class="text-[10px] font-black uppercase tracking-widest text-ink mb-2">Most Popular</div>' : ''}
+    <div class="w-20 h-20 rounded-full bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center mb-4"><i data-lucide="${p.icon}" class="w-9 h-9"></i></div>
+    <h3 class="text-lg font-black tracking-tight mb-2">${p.name}</h3>
     ${goalPill}
-    <p class="text-sm text-gray-700 mb-3">${p.blurb}</p>
+    <p class="text-sm text-gray-700 font-serif mb-3">${p.blurb}</p>
     ${outcomeBlock}
-    <div class="w-full flex flex-col items-center gap-3 mt-auto pt-3 border-t border-gray-200">
-      <span class="play-price">${p.price}</span>
-      <button data-add="${p.id}" class="add-btn inline-flex items-center gap-1.5 border-2 border-sxsw-pink text-sxsw-pink hover:bg-sxsw-pink hover:text-white px-5 py-2 rounded-full text-xs font-black tracking-widest uppercase transition-all">
+    <div class="w-full flex flex-col items-center gap-3 mt-auto pt-3 border-t border-gray-100">
+      <span class="font-black text-ink">${p.price}</span>
+      <button data-add="${p.id}" class="add-btn inline-flex items-center gap-1.5 border-2 border-[#8A1558] text-[#8A1558] hover:bg-[#8A1558] hover:text-white px-4 py-1.5 rounded-lg text-xs font-black tracking-widest uppercase transition-all">
         <span class="add-text"><i data-lucide="plus" class="w-3.5 h-3.5 inline"></i> Add</span>
         <span class="added-text"><i data-lucide="check" class="w-3.5 h-3.5 inline"></i> Added</span>
       </button>
@@ -1069,7 +1074,7 @@ function renderCart() {
     drawerEmpty.style.display = 'none';
     drawerList.innerHTML = items.map(p => `
       <div class="cart-drawer-line">
-        <div class="w-10 h-10 rounded-lg bg-brand-blush50 text-sxsw-pink flex items-center justify-center flex-shrink-0"><i data-lucide="disc-3" class="w-5 h-5"></i></div>
+        <div class="w-10 h-10 rounded-lg bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center flex-shrink-0"><i data-lucide="disc-3" class="w-5 h-5"></i></div>
         <div class="flex-1 min-w-0">
           <div class="font-black text-sm tracking-tight text-gray-900">${p.name}</div>
           <div class="text-xs text-gray-600 mt-0.5">${p.price}</div>
@@ -1120,10 +1125,10 @@ function renderCart() {
   const formCart = document.getElementById('formCart');
   if (formCart) {
     if (!items.length) {
-      formCart.innerHTML = '<div class="flex items-center gap-2 text-sm text-sxsw-pink font-medium"><i data-lucide="info" class="w-4 h-4"></i> No plays in your cart yet. Add a play above and come back.</div>';
+      formCart.innerHTML = '<div class="flex items-center gap-2 text-sm text-[#8A1558]"><i data-lucide="info" class="w-4 h-4"></i> No plays in your cart yet. Add a play above and come back.</div>';
     } else {
       formCart.innerHTML = `
-        <div class="text-xs font-black uppercase tracking-widest text-black mb-2">Your campaign (${items.length} play${items.length>1?'s':''})</div>
+        <div class="text-xs font-black uppercase tracking-widest text-ink mb-2">Your campaign (${items.length} play${items.length>1?'s':''})</div>
         <ul class="space-y-1 text-sm">${items.map(p => `<li class="flex justify-between"><span class="font-bold">${p.name}</span><span class="text-gray-500">${p.price}</span></li>`).join('')}</ul>
       `;
     }
@@ -1228,7 +1233,7 @@ document.getElementById('sponsorForm').addEventListener('submit', (e) => {
   if (!items.length) {
     if (!confirm('You haven\'t selected any sponsorship options. Submit anyway?')) return;
   }
-  if (typeof NMW !== 'undefined' && NMW.addSponsor) NMW.addSponsor(entry);
+  NMW.addSponsor(entry);
   document.getElementById('sponsorForm').classList.add('hidden');
   document.getElementById('successCard').classList.remove('hidden');
   (typeof lucide !== "undefined" && lucide.createIcons());
@@ -1362,9 +1367,6 @@ function refreshGoalPills() {
     if (goal && textEl) {
       textEl.textContent = goal;
       pill.style.display = '';
-    } else if (!activeAudience) {
-      // No audience selected, leave the default goal text alone & show pill
-      pill.style.display = '';
     } else {
       pill.style.display = 'none';
     }
@@ -1376,7 +1378,7 @@ function renderGoalChips() {
   const host = document.getElementById('goalChips');
   if (!host) return;
   host.innerHTML = chips.map(c =>
-    `<button type="button" data-chip-tags="${c.tags}" class="goal-chip">${c.label}</button>`
+    `<button type="button" data-chip-tags="${c.tags}" class="goal-chip text-[11px] font-bold text-gray-600 hover:text-gray-900 border border-gray-200 hover:border-gray-900 px-2.5 py-1 rounded-md transition-all">${c.label}</button>`
   ).join('');
   host.querySelectorAll('.goal-chip').forEach(c => {
     c.addEventListener('click', () => {
@@ -1400,7 +1402,7 @@ function applyPlayFilter(opts = {}) {
     const audiences = (card.dataset.audience || '').toLowerCase();
     const tags = (card.dataset.tags || '').toLowerCase();
     const text = (card.textContent || '').toLowerCase();
-    const audienceMatch = !activeAudience || !audiences || audiences.includes(activeAudience);
+    const audienceMatch = !audiences || audiences.includes(activeAudience);
     const queryMatch = !terms.length || terms.some(t => tags.includes(t) || text.includes(t));
     const isMatch = audienceMatch && queryMatch;
 
@@ -1438,7 +1440,7 @@ function renderResultPanel(card, query, matchCount) {
   }
   // Pull display fields off the matched card
   const nameEl = card.querySelector('h3');
-  const priceEl = card.querySelector('.play-price');
+  const priceEl = card.querySelector('.play-price') || card.querySelector('.font-black.text-\\[\\#8A1558\\]');
   const goalEl = card.querySelector('.goal-text');
   const addBtn = card.querySelector('button[data-add-play]');
   const name = nameEl ? nameEl.textContent.trim() : 'Recommended play';
@@ -1452,12 +1454,12 @@ function renderResultPanel(card, query, matchCount) {
   contentEl.innerHTML = `
     <div class="flex flex-wrap items-center gap-3 px-5 py-4">
       <div class="flex-1 min-w-0">
-        <div class="text-[10px] font-black uppercase tracking-widest text-gray-500">Match for "${query}"</div>
-        <div class="text-base md:text-lg font-black tracking-tight text-black mt-0.5">${name}${goal ? ` <span class="text-gray-500 font-normal italic">${goal}</span>` : ''}</div>
+        <div style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase" class="text-ink/50">Match for "${query}"</div>
+        <div class="text-base md:text-lg font-black tracking-tight text-ink mt-0.5">${name}${goal ? ` <span class="text-ink/50 font-normal italic">${goal}</span>` : ''}</div>
       </div>
       ${price ? `<div class="play-price">${price}</div>` : ''}
-      ${playId ? `<button type="button" data-add-play-result="${playId}" class="result-cta inline-flex items-center gap-1.5 ${inCart ? 'bg-sxsw-pink' : 'bg-black hover:bg-sxsw-pink'} text-white px-4 py-2.5 rounded-full text-[11px] font-black uppercase tracking-widest transition-colors whitespace-nowrap"><i data-lucide="${inCart ? 'check' : 'plus'}" class="w-3.5 h-3.5"></i> ${inCart ? 'Added' : 'Add to Cart'}</button>` : ''}
-      ${moreText ? `<span class="text-[10px] text-gray-500 w-full font-bold uppercase tracking-widest">${moreText.replace(', ', '')}</span>` : ''}
+      ${playId ? `<button type="button" data-add-play-result="${playId}" class="result-cta inline-flex items-center gap-1.5 ${inCart ? 'bg-brand-500' : 'bg-ink hover:bg-black'} text-paper px-4 py-2.5 rounded-sm text-[11px] font-bold uppercase tracking-widest transition-colors whitespace-nowrap" style="font-family:'JetBrains Mono',ui-monospace,monospace"><i data-lucide="${inCart ? 'check' : 'plus'}" class="w-3.5 h-3.5"></i> ${inCart ? 'Added' : 'Add to Cart'}</button>` : ''}
+      ${moreText ? `<span class="text-[10px] text-ink/50 w-full" style="font-family:'JetBrains Mono',ui-monospace,monospace">${moreText.replace(', ', '')}</span>` : ''}
     </div>
   `;
   if (typeof lucide !== 'undefined') lucide.createIcons();
@@ -1521,9 +1523,6 @@ renderProducts = function() {
   refreshGoalPills();
   applyPlayFilter();
 };
-</script>
-<script>
-    if (window.lucide) { lucide.createIcons(); }
 </script>
 </body>
 </html>
