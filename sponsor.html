@@ -120,6 +120,16 @@
   }
   .add-cart-btn:hover { background:#000; box-shadow: 3px 3px 0 var(--brand); transform: translate(-1px,-1px); }
   .add-cart-btn.is-added { background:var(--brand); border-color:var(--brand); }
+
+  /* Per-campaign-type Add to Cart colors */
+  #group-action .add-cart-btn { background:#8A1558; border-color:#8A1558; color:#fff; }
+  #group-action .add-cart-btn:hover { background:#680D3E; border-color:#000; box-shadow: 3px 3px 0 #000; }
+
+  #bundles .add-cart-btn { background:#FACC15; border-color:#000; color:#000; }
+  #bundles .add-cart-btn:hover { background:#000; border-color:#000; color:#fff; box-shadow: 3px 3px 0 #FACC15; }
+
+  #digital-waxx .add-cart-btn { background:#000; border-color:#000; color:#fff; }
+  #digital-waxx .add-cart-btn:hover { background:#222; border-color:#000; box-shadow: 3px 3px 0 var(--brand); }
   .add-cart-btn .label-default { display:inline-flex; align-items:center; gap:.4rem; }
   .add-cart-btn .label-added   { display:none; align-items:center; gap:.4rem; }
   .add-cart-btn.is-added .label-default { display:none; }
@@ -510,7 +520,7 @@
   </section>
 
   <!-- GROUP ACTION BUNDLES / DEALS -->
-  <section class="mb-5 md:mb-20 relative z-10">
+  <section id="bundles" class="mb-5 md:mb-20 relative z-10">
     <div class="mb-5 md:mb-10 max-w-3xl">
       <div class="mono-eyebrow mb-4">Campaign Type: Bundles</div>
       <h2 class="section-h2 text-4xl md:text-6xl mb-5 text-brand-500">Combine plays. Pay less.</h2>
