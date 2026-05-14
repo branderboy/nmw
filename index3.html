@@ -13,10 +13,6 @@
             background-color: #FAFAF7; /* NMW cream */
             color: #1A0418;
         }
-        html, body, h1, h2, h3, h4, h5, h6, p, span, li, a, div {
-            -webkit-user-select: text;
-            user-select: text;
-        }
         
         /* Typography overrides for that chunky SXSW feel */
         h1, h2, h3, .heading-font {
@@ -43,11 +39,6 @@
         .bg-brand-cream   { background-color: #FAFAF7; }
         .bg-brand-blush50 { background-color: #FDF2F8; } /* palest brand blush */
         .bg-brand-soft    { background-color: #D14785; } /* lighter brand pink */
-        .text-outline-black {
-            -webkit-text-stroke: 1.5px #1A0418;
-            paint-order: stroke fill;
-            user-select: text;
-        }
         .text-sxsw-pink     { color: #8A1558; }
         .text-sxsw-deeppink { color: #680D3E; }
         .text-brand-gold    { color: #FACC15; }
@@ -66,7 +57,7 @@
         html { scroll-behavior: smooth; }
     </style>
 </head>
-<body class="antialiased selection:bg-sxsw-pink selection:text-white">
+<body class="antialiased">
 
     <!-- Top Location Banner -->
     <div class="bg-sxsw-dark text-white text-xs md:text-sm font-bold tracking-widest uppercase py-2 text-center w-full z-50 relative">
@@ -163,11 +154,11 @@
 
             <!-- Move 1 -->
             <div class="mb-12">
-                <div class="bg-sxsw-teal p-8 md:p-12 lg:p-16 rounded-[40px] shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] border-4 border-black flex flex-col md:flex-row items-center gap-10">
+                <div class="bg-sxsw-pink p-8 md:p-12 lg:p-16 rounded-[40px] shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] border-4 border-black flex flex-col md:flex-row items-center gap-10">
                     <div class="flex-1 w-full order-2 md:order-1">
-                        <p class="text-sm font-bold tracking-widest mb-4 uppercase text-black/60">01 · The Digiwaxx DJ Call</p>
-                        <h3 class="text-4xl md:text-5xl text-black mb-6">LEGENDARY ZOOM CALL.</h3>
-                        <p class="text-black/80 text-lg font-medium">DJs, tastemakers, artists, and industry conversations centered around new music and what's gaining attention.</p>
+                        <p class="text-sm font-bold tracking-widest mb-4 uppercase text-white">01 · The Digiwaxx DJ Call</p>
+                        <h3 class="text-4xl md:text-5xl text-white mb-6">LEGENDARY ZOOM CALL.</h3>
+                        <p class="text-white text-lg font-medium">DJs, tastemakers, artists, and industry conversations centered around new music and what's gaining attention.</p>
                     </div>
                     <div class="flex-1 w-full order-1 md:order-2">
                         <img src="images/video_thumbnail.png" alt="Digiwaxx DJ Zoom Call" class="w-full h-[300px] md:h-[400px] object-cover rounded-3xl border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
