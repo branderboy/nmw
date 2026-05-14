@@ -16,10 +16,11 @@ input, textarea, select, blockquote, figcaption,
 }
 
 /* Chunky display headings */
-h1, h2, h3, .heading-font {
-    font-weight: 900;
+h1, h2, h3, .heading-font, .section-h2, .display, .display-tight {
+    font-weight: 900 !important;
     letter-spacing: -0.03em;
     text-transform: uppercase;
+    color: #000 !important;
 }
 
 /* NMW brand color utilities */
@@ -42,3 +43,16 @@ h1, h2, h3, .heading-font {
 
 /* Smooth scroll */
 html { scroll-behavior: smooth; }
+
+/* Homepage card system applied to all white blocks on light bg
+   Matches the For Artists / Wed Cards / RSVP form treatment on index.html:
+   thick black border + hard offset black shadow + large radius. */
+.section-card,
+.bg-white.rounded-2xl,
+.bg-white.rounded-xl,
+.bg-white.rounded-\[30px\],
+.bg-white.rounded-\[40px\] {
+    border: 4px solid #000 !important;
+    box-shadow: 6px 6px 0 0 #000 !important;
+    border-radius: 30px !important;
+}
