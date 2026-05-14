@@ -1,0 +1,36 @@
+/* NMW Homepage Design Tokens — single source of truth for fonts/colors/bg
+   Inherited by every page that links this file. */
+
+body {
+    font-family: 'Inter', sans-serif !important;
+    background-color: #FAFAF7 !important;
+    color: #1A0418 !important;
+}
+
+/* Chunky display headings */
+h1, h2, h3, .heading-font {
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+}
+
+/* NMW brand color utilities */
+.bg-sxsw-pink     { background-color: #8A1558 !important; }  /* primary magenta */
+.bg-sxsw-deeppink { background-color: #680D3E !important; }  /* deeper magenta */
+.bg-sxsw-teal     { background-color: #FBCFE8 !important; }  /* blush */
+.bg-sxsw-green    { background-color: #FACC15 !important; }  /* gold */
+.bg-sxsw-dark     { background-color: #222222 !important; }  /* charcoal */
+.bg-brand-cream   { background-color: #FAFAF7 !important; }
+.bg-brand-blush50 { background-color: #FDF2F8 !important; }  /* palest blush */
+
+.text-sxsw-pink     { color: #8A1558 !important; }
+.text-sxsw-deeppink { color: #680D3E !important; }
+.text-sxsw-teal     { color: #FBCFE8 !important; }
+.text-brand-gold    { color: #FACC15 !important; }
+.text-sxsw-dark     { color: #222222 !important; }
+
+.border-sxsw-pink     { border-color: #8A1558 !important; }
+.border-sxsw-deeppink { border-color: #680D3E !important; }
+
+/* Smooth scroll */
+html { scroll-behavior: smooth; }
