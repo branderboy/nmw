@@ -44,11 +44,15 @@ h1, h2, h3, .heading-font, .section-h2, .display, .display-tight {
 /* Smooth scroll */
 html { scroll-behavior: smooth; }
 
-/* Raised / outlined treatment for white blocks sitting on the cream body bg */
+/* Homepage card system applied to all white blocks on light bg
+   Matches the For Artists / Wed Cards / RSVP form treatment on index.html:
+   thick black border + hard offset black shadow + large radius. */
 .section-card,
 .bg-white.rounded-2xl,
 .bg-white.rounded-xl,
-.bg-white.rounded-\[30px\] {
-    border: 2px solid #1A0418 !important;
-    box-shadow: 6px 6px 0 0 rgba(26, 4, 24, 0.85) !important;
+.bg-white.rounded-\[30px\],
+.bg-white.rounded-\[40px\] {
+    border: 4px solid #000 !important;
+    box-shadow: 6px 6px 0 0 #000 !important;
+    border-radius: 30px !important;
 }
