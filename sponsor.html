@@ -377,6 +377,48 @@
 <main class="max-w-7xl mx-auto px-4 py-5 md:py-16">
 
   <!-- STORE HEADER (editorial / festival-poster) -->
+  <section class="mb-5 md:mb-10 pt-2 relative z-10">
+    <div class="max-w-6xl">
+      <div class="mono-eyebrow mb-3">Campaign Store, NMW</div>
+      <h1 class="display display-tight text-5xl sm:text-6xl md:text-7xl mb-4 text-ink">Run a campaign<br>at NMW.</h1>
+      <p class="text-base md:text-lg text-ink/70 max-w-xl mb-6 font-sans">For artists, record labels, and sponsors. Pick what fits your moment. We run it on a scheduled Wednesday and send a real report back.</p>
+    </div>
+
+    <!-- OBLONG SEARCH BAR: who is this for + campaign goal + free-text tag search -->
+    <form class="nmw-search mb-5 md:mb-12 w-full max-w-6xl" role="search" onsubmit="event.preventDefault();">
+      <div class="nmw-search__select-wrap">
+        <label for="audienceSelect" class="sr-only">Who is this for?</label>
+        <select id="audienceSelect" class="nmw-search__select" aria-label="Who is this for?">
+          <option value="" selected>Who is this for? All</option>
+          <option value="artist">Artist</option>
+          <option value="label">Label</option>
+          <option value="sponsor">Sponsor</option>
+        </select>
+      </div>
+      <div class="nmw-search__divider"></div>
+      <div class="nmw-search__select-wrap">
+        <label for="goalSelect" class="sr-only">Campaign goal</label>
+        <select id="goalSelect" class="nmw-search__select" aria-label="Campaign goal">
+          <option value="" selected>Campaign goal All</option>
+        </select>
+      </div>
+      <div class="nmw-search__divider"></div>
+      <div class="nmw-search__input-wrap">
+        <i data-lucide="search" class="nmw-search__icon"></i>
+        <input id="goalSearch" type="search" class="nmw-search__input"
+               placeholder="Add a keyword or phrase (e.g. tiktok, dj feedback, presave)…"
+               autocomplete="off" />
+      </div>
+    </form>
+
+    <!-- Hidden hooks so existing JS still works without breaking -->
+    <div id="goalChips" class="hidden"></div>
+    <div id="resultPanel" class="hidden">
+      <div id="resultPanelDefault" class="hidden"></div>
+      <div id="resultPanelContent" class="hidden"></div>
+    </div>
+    <div id="searchStatus" class="hidden"></div>
+  </section>
 
   <!-- PRODUCT LINE: GROUP ACTION -->
   <section id="group-action" class="mb-5 md:mb-20 scroll-mt-20 relative z-10">
