@@ -53,6 +53,15 @@
             animation: scroll 20s linear infinite;
         }
 
+        /* Slanted arrow nudge animation */
+        @keyframes arrow-nudge {
+            0%, 100% { transform: rotate(35deg) translateY(0); }
+            50%      { transform: rotate(35deg) translateY(10px); }
+        }
+        .animate-arrow-nudge {
+            animation: arrow-nudge 1.2s ease-in-out infinite;
+        }
+
         /* Smooth scroll */
         html { scroll-behavior: smooth; }
     </style>
@@ -215,23 +224,15 @@
 
     <!-- Middle Banner (Industry Changed) -->
     <section class="bg-sxsw-dark text-white py-14 px-6 md:px-12 text-center border-y-8 border-sxsw-pink">
-        <div class="w-full">
+        <div class="w-full max-w-4xl mx-auto">
             <p class="text-white font-bold tracking-widest uppercase mb-4">The Industry Changed</p>
-            <h2 class="text-4xl md:text-6xl mb-8 leading-tight">120,000 SONGS HIT STREAMING EVERY DAY.</h2>
-            <p class="text-xl md:text-2xl font-medium text-white mb-10">
+            <div class="inline-flex items-end gap-4 mb-8">
+                <i data-lucide="move-down-right" class="w-12 h-12 md:w-16 md:h-16 text-sxsw-pink animate-arrow-nudge shrink-0" aria-hidden="true"></i>
+                <h2 class="text-3xl md:text-5xl leading-tight">120,000 SONGS HIT STREAMING EVERY DAY.</h2>
+            </div>
+            <p class="text-xl md:text-2xl font-medium text-white max-w-3xl mx-auto">
                 Most artists struggle to create real attention around their releases. Music moves faster than ever but real visibility still comes from conversations, relationships, media moments, content, community, and people sharing records in real scenes. New Music Wednesdays was built to create those moments consistently.
             </p>
-            
-            <div class="flex flex-wrap justify-center gap-3">
-                <span class="border border-white text-white rounded-full px-5 py-2 font-bold uppercase text-xs">DJs</span>
-                <span class="border border-white text-white rounded-full px-5 py-2 font-bold uppercase text-xs">Artists</span>
-                <span class="border border-white text-white rounded-full px-5 py-2 font-bold uppercase text-xs">Influencers</span>
-                <span class="border border-white text-white rounded-full px-5 py-2 font-bold uppercase text-xs">Media Personalities</span>
-                <span class="border border-white text-white rounded-full px-5 py-2 font-bold uppercase text-xs">Producers</span>
-                <span class="border border-white text-white rounded-full px-5 py-2 font-bold uppercase text-xs">Videographers</span>
-                <span class="border border-white text-white rounded-full px-5 py-2 font-bold uppercase text-xs">Managers</span>
-                <span class="border border-white text-white rounded-full px-5 py-2 font-bold uppercase text-xs">Tastemakers</span>
-            </div>
         </div>
     </section>
 
