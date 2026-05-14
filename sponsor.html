@@ -120,6 +120,16 @@
   }
   .add-cart-btn:hover { background:#000; box-shadow: 3px 3px 0 var(--brand); transform: translate(-1px,-1px); }
   .add-cart-btn.is-added { background:var(--brand); border-color:var(--brand); }
+
+  /* Per-campaign-type Add to Cart colors */
+  #group-action .add-cart-btn { background:#8A1558; border-color:#8A1558; color:#fff; }
+  #group-action .add-cart-btn:hover { background:#680D3E; border-color:#000; box-shadow: 3px 3px 0 #000; }
+
+  #bundles .add-cart-btn { background:#FACC15; border-color:#000; color:#000; }
+  #bundles .add-cart-btn:hover { background:#000; border-color:#000; color:#fff; box-shadow: 3px 3px 0 #FACC15; }
+
+  #digital-waxx .add-cart-btn { background:#000; border-color:#000; color:#fff; }
+  #digital-waxx .add-cart-btn:hover { background:#222; border-color:#000; box-shadow: 3px 3px 0 var(--brand); }
   .add-cart-btn .label-default { display:inline-flex; align-items:center; gap:.4rem; }
   .add-cart-btn .label-added   { display:none; align-items:center; gap:.4rem; }
   .add-cart-btn.is-added .label-default { display:none; }
@@ -166,7 +176,7 @@
     font-family:'JetBrains Mono', ui-monospace, monospace;
     font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
     color: var(--ink);
-    padding:10px 34px 10px 24px;
+    padding:20px 34px 20px 24px;
     cursor:pointer;
   }
   .nmw-search__select-wrap::after {
@@ -186,7 +196,7 @@
     background:transparent; border:0; outline:0;
     font-family:'Manrope', system-ui, sans-serif;
     font-size:14px; color:var(--ink);
-    padding:8px 0;
+    padding:18px 0;
   }
   .nmw-search__input::placeholder { color:rgba(10,10,10,.4); }
   @media (max-width: 720px) {
@@ -385,7 +395,7 @@
     </div>
 
     <!-- OBLONG SEARCH BAR: who is this for + campaign goal + free-text tag search -->
-    <form class="nmw-search mb-6 md:mb-8 w-full" role="search" onsubmit="event.preventDefault();">
+    <form class="nmw-search mb-6 md:mb-8 w-full max-w-3xl" role="search" onsubmit="event.preventDefault();">
       <div class="nmw-search__select-wrap">
         <label for="audienceSelect" class="sr-only">Who is this for?</label>
         <select id="audienceSelect" class="nmw-search__select" aria-label="Who is this for?">
@@ -419,8 +429,10 @@
     </div>
     <div id="searchStatus" class="hidden"></div>
 
-    <div class="ed-rule mt-8 md:mt-12"></div>
   </section>
+
+  <!-- Separator between store header/search and the campaign products -->
+  <div class="w-full h-1 bg-black mb-10 md:mb-16"></div>
 
   <!-- PRODUCT LINE: GROUP ACTION -->
   <section id="group-action" class="mb-5 md:mb-20 scroll-mt-20 relative z-10">
@@ -508,7 +520,7 @@
   </section>
 
   <!-- GROUP ACTION BUNDLES / DEALS -->
-  <section class="mb-5 md:mb-20 relative z-10">
+  <section id="bundles" class="mb-5 md:mb-20 relative z-10">
     <div class="mb-5 md:mb-10 max-w-3xl">
       <div class="mono-eyebrow mb-4">Campaign Type: Bundles</div>
       <h2 class="section-h2 text-4xl md:text-6xl mb-5 text-brand-500">Combine plays. Pay less.</h2>
