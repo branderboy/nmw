@@ -6,6 +6,7 @@
     <title>New Music Wednesdays | The Scene</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -62,36 +63,47 @@
         </div>
         <div>
             <a href="#rsvp" class="inline-flex items-center gap-2 bg-sxsw-pink text-white font-bold uppercase text-sm px-6 py-3 rounded-full hover:bg-black transition-colors shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></svg>
+                <i data-lucide="ticket" class="w-4 h-4"></i>
                 ATTEND
             </a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <header class="relative overflow-hidden border-b-4 border-black">
-        <!-- Background image -->
-        <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('images/herobg1.png');"></div>
-        <!-- Color/dark overlay for legibility -->
-        <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/55 to-black/80"></div>
+    <header class="relative overflow-hidden border-b-4 border-black bg-sxsw-pink">
+        <!-- Diagonal stripe pattern overlay -->
+        <div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: repeating-linear-gradient(45deg, rgba(0,0,0,0.35) 0, rgba(0,0,0,0.35) 2px, transparent 2px, transparent 14px);"></div>
+        <!-- Dot grid overlay -->
+        <div class="absolute inset-0 opacity-25 pointer-events-none" style="background-image: radial-gradient(rgba(255,255,255,0.6) 1.5px, transparent 1.5px); background-size: 22px 22px;"></div>
         <!-- Decorative color blobs -->
-        <div class="absolute -top-24 -left-20 w-72 h-72 rounded-full bg-sxsw-pink/40 blur-3xl mix-blend-screen"></div>
-        <div class="absolute -bottom-24 -right-20 w-80 h-80 rounded-full bg-sxsw-teal/40 blur-3xl mix-blend-screen"></div>
+        <div class="absolute -top-24 -left-20 w-72 h-72 rounded-full bg-white/25 blur-3xl"></div>
+        <div class="absolute -bottom-24 -right-20 w-80 h-80 rounded-full bg-sxsw-teal/40 blur-3xl"></div>
+
+        <!-- Sticker badges -->
+        <div class="hidden md:block absolute top-10 left-10 rotate-[-8deg] bg-sxsw-green text-black font-black uppercase text-xs tracking-widest px-4 py-2 rounded-full border-4 border-black shadow-[4px_4px_0_0_rgba(0,0,0,1)]">
+            Live · NYC
+        </div>
+        <div class="hidden md:block absolute top-16 right-12 rotate-[6deg] bg-black text-white font-black uppercase text-xs tracking-widest px-4 py-2 rounded-full border-4 border-white shadow-[4px_4px_0_0_rgba(0,0,0,1)]">
+            Every Wed · 7-11 PM
+        </div>
+        <div class="hidden md:block absolute bottom-12 left-16 rotate-[5deg] bg-sxsw-teal text-black font-black uppercase text-xs tracking-widest px-4 py-2 rounded-full border-4 border-black shadow-[4px_4px_0_0_rgba(0,0,0,1)]">
+            The Penthouse
+        </div>
 
         <div class="relative pt-16 pb-20 px-4 text-center max-w-6xl mx-auto text-white">
-            <p class="font-bold text-sm tracking-widest text-sxsw-teal mb-4 uppercase">[ Every Wednesday in NYC ]</p>
-            <h1 class="text-5xl md:text-7xl lg:text-[6.5rem] leading-[0.9] mb-6 text-white drop-shadow-[4px_4px_0_rgba(242,87,116,0.6)]">
+            <p class="font-bold text-sm tracking-widest text-black mb-4 uppercase">[ Every Wednesday in NYC ]</p>
+            <h1 class="text-5xl md:text-7xl lg:text-[6.5rem] leading-[0.9] mb-6 text-white drop-shadow-[4px_4px_0_rgba(0,0,0,0.85)]">
                 WHERE MUSIC,<br>
                 CONVERSATION &<br>
                 ATTENTION MEET<br>
-                <span class="text-sxsw-green">EVERY WEDNESDAY.</span>
+                <span class="text-black">EVERY WEDNESDAY.</span>
             </h1>
-            <p class="text-lg md:text-2xl font-semibold max-w-3xl mx-auto mb-8 text-gray-200">
+            <p class="text-lg md:text-2xl font-semibold max-w-3xl mx-auto mb-8 text-white/90">
                 A live NYC music ecosystem.
             </p>
 
             <div class="flex flex-col md:flex-row justify-center items-center gap-4">
-                <a href="#rsvp" class="w-full md:w-auto inline-block bg-sxsw-pink text-white font-black uppercase text-base md:text-lg px-8 py-4 rounded-full hover:scale-105 transition-transform shadow-[6px_6px_0px_0px_rgba(255,255,255,1)]">
+                <a href="#rsvp" class="w-full md:w-auto inline-block bg-black text-white font-black uppercase text-base md:text-lg px-8 py-4 rounded-full hover:scale-105 transition-transform shadow-[6px_6px_0px_0px_rgba(255,255,255,1)]">
                     Join The Guest Waitlist
                 </a>
                 <a href="#submit" class="w-full md:w-auto inline-block bg-sxsw-teal text-black font-black uppercase text-base md:text-lg px-8 py-4 rounded-full hover:scale-105 transition-transform shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
@@ -474,5 +486,8 @@
         </div>
     </footer>
 
+    <script>
+        if (window.lucide) { lucide.createIcons(); }
+    </script>
 </body>
 </html>
