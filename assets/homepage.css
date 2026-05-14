@@ -44,9 +44,6 @@ h1, h2, h3, .heading-font, .section-h2, .display, .display-tight {
 /* Smooth scroll */
 html { scroll-behavior: smooth; }
 
-/* Sticky nav: kill the bottom border line */
-nav.sticky { border-bottom: 0 !important; }
-
 /* Hide the .ed-rule editorial 1px separator on all pages */
 .ed-rule, .ed-rule-thin { display: none !important; }
 
