@@ -19,8 +19,8 @@
 <meta name="twitter:description" content="The Digiwaxx DJ Call: every Wednesday, 3, 7 PM ET on Zoom. Records, roundtable, and prep for New Music Wednesdays. No list, no signup, save the link.">
 <meta name="twitter:image" content="https://www.newmusicwednesdayslive.com/images/nmw-logo.png">
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/lucide@0.474.0"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <!-- PWA -->
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="theme-color" content="#8A1558">
@@ -28,10 +28,45 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="NMW">
 <script src="/assets/pwa.js" defer></script>
-<link rel="stylesheet" href="assets/nmw.css">
+<style>
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #FAFAF7; /* NMW cream */
+        color: #1A0418;
+    }
+
+    /* Typography overrides for that chunky SXSW feel */
+    h1, h2, h3, .heading-font {
+        font-weight: 900;
+        letter-spacing: -0.03em;
+        text-transform: uppercase;
+    }
+
+    /* NMW Brand Color Scale */
+    .bg-sxsw-pink     { background-color: #8A1558; }
+    .bg-sxsw-deeppink { background-color: #680D3E; }
+    .bg-sxsw-teal     { background-color: #FBCFE8; }
+    .bg-sxsw-green    { background-color: #FACC15; }
+    .bg-sxsw-dark     { background-color: #222222; }
+    .bg-brand-cream   { background-color: #FAFAF7; }
+    .bg-brand-blush50 { background-color: #FDF2F8; }
+    .text-sxsw-pink     { color: #8A1558; }
+    .text-sxsw-deeppink { color: #680D3E; }
+    .text-sxsw-teal     { color: #FBCFE8; }
+    .text-brand-gold    { color: #FACC15; }
+    .border-sxsw-deeppink { border-color: #680D3E; }
+
+    @keyframes bounce-x {
+        0%, 100% { transform: translateX(0); }
+        50% { transform: translateX(6px); }
+    }
+    .animate-bounce-x { animation: bounce-x 1.2s ease-in-out infinite; }
+
+    html { scroll-behavior: smooth; }
+</style>
 <script>
   if (typeof tailwind !== "undefined") tailwind.config = { theme: { extend: {
-    fontFamily: { sans: ['Inter','sans-serif'], serif: ['Merriweather','serif'] },
+    fontFamily: { sans: ['Inter','sans-serif'] },
     colors: { brand: { 500:'#8A1558', 600:'#680D3E' } }
   }}}
 </script>
@@ -95,171 +130,191 @@
 }
 </script>
 </head>
-<body class="bg-gray-50 text-gray-900 selection:bg-[#8A1558] selection:text-white">
+<body class="antialiased">
 
-<header class="sxsw-header">
-  <div class="sxsw-header__top-bar">EVERY WED &middot; THE PENTHOUSE NYC &middot; MIDTOWN, MANHATTAN</div>
-  <div class="sxsw-header__main">
-    <a href="index.html" class="sxsw-header__brand">
-      <img src="images/nmw-logo-light.png" class="sxsw-header__logo" alt="New Music Wednesdays" />
-    </a>
-    <div class="sxsw-header__nav-left">
-      <a href="index.html">HOME</a>
-    <div class="nav-dropdown">
-      <button type="button" class="nav-dropdown__trigger">MISSION</button>
-      <div class="nav-dropdown__panel">
-        <a href="mission.html">Mission</a>
-        <a href="faq.html">FAQ</a>
-      </div>
-    </div>
-      <a href="attend.html">ATTEND</a>
-      <a href="apply.html">ARTIST ACCESS</a>
-      <div class="nav-dropdown is-active">
-        <button type="button" class="nav-dropdown__trigger">LISTEN</button>
-        <div class="nav-dropdown__panel">
-          <a href="dj-call.html" class="is-active">DJ Call</a>
-          <a href="podcast.html">Podcast</a>
+<!-- Top Location Banner -->
+<div class="bg-sxsw-dark text-white text-xs md:text-sm font-bold tracking-widest uppercase py-2 text-center w-full z-50 relative">
+    EVERY WED &middot; THE PENTHOUSE NYC &middot; MIDTOWN, MANHATTAN
+</div>
+
+<!-- Navigation -->
+<nav class="w-full bg-white/90 backdrop-blur-md border-b border-gray-200 sticky top-0 z-40">
+    <div class="w-full flex justify-between items-center px-6 md:px-12 py-3">
+        <a href="index.html" class="flex items-center gap-2">
+            <img src="images/nmw-logo.png" alt="New Music Wednesdays" class="h-20 md:h-24 w-auto" style="filter: brightness(0.55) saturate(1.4) hue-rotate(-10deg);" />
+        </a>
+        <div class="hidden md:flex space-x-6 items-center text-sm font-bold tracking-wide text-gray-600">
+            <a href="index.html" class="hover:text-black">HOME</a>
+            <a href="mission.html" class="hover:text-black">MISSION</a>
+            <a href="attend.html" class="hover:text-black">ATTEND</a>
+            <a href="dj-call.html" class="text-black">DJ CALL</a>
+            <a href="podcast.html" class="hover:text-black">PODCAST</a>
+            <a href="faq.html" class="hover:text-black">FAQ</a>
+            <a href="alerts.html" class="hover:text-black">SUBSCRIBE NOW</a>
+            <a href="sponsor.html" class="hover:text-black">CAMPAIGN STORE</a>
+            <a href="apply.html" class="bg-[#8A1558] text-white px-4 py-2 rounded font-bold tracking-widest text-xs hover:bg-[#680D3E] transition-colors">Apply Now</a>
         </div>
-      </div>
-      <a href="blog.html">THE DROP</a>
-      <a href="sponsor.html">CAMPAIGN STORE</a>
     </div>
-    <a href="attend.html" class="sxsw-header__cta sxsw-header__cta--primary"><i data-lucide="ticket" class="w-4 h-4"></i> ATTEND</a>
-  </div>
+</nav>
+
+<!-- Hero -->
+<header class="relative overflow-hidden border-b-4 border-black bg-sxsw-pink">
+    <div class="relative pt-16 pb-14 px-6 md:px-12 text-left w-full max-w-4xl">
+        <p class="font-bold text-sm tracking-widest text-brand-gold mb-4 uppercase">[ DJ Call &middot; NMW ]</p>
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-black leading-[0.95] mb-6 text-white drop-shadow-[2px_2px_0_rgba(0,0,0,0.4)]">
+            THE LIVE<br>
+            DJ CALL.
+        </h1>
+        <p class="text-lg md:text-2xl font-semibold mb-8 text-white/90">
+            Wednesdays 4&ndash;6 PM ET on Zoom. The edited audio releases on the podcast.
+        </p>
+        <div class="flex flex-col sm:flex-row items-start gap-3">
+            <a href="#join" class="inline-flex items-center gap-2 bg-black text-white font-black uppercase text-sm md:text-base px-6 py-3 rounded-full hover:scale-105 transition-transform shadow-[6px_6px_0px_0px_rgba(250,204,21,1)]">
+                Join This Wednesday
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+            <a href="#upcoming" class="inline-flex items-center gap-2 bg-white text-sxsw-pink font-black uppercase text-sm md:text-base px-6 py-3 rounded-full hover:scale-105 transition-transform shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+                See Upcoming Calls
+                <i data-lucide="calendar" class="w-4 h-4"></i>
+            </a>
+        </div>
+    </div>
 </header>
 
-<section class="max-w-5xl mx-auto px-4 pt-8 md:pt-12 pb-2">
-  <div class="font-mono text-[11px] uppercase tracking-[0.18em] text-gray-500 mb-3">DJ Call, NMW</div>
-  <h1 class="text-5xl sm:text-6xl md:text-7xl font-black tracking-tighter uppercase leading-[0.9] mb-3 text-gray-900">The live DJ call.</h1>
-  <p class="text-base md:text-lg text-gray-600 max-w-2xl">Wednesdays 4-6 PM ET on Zoom. The edited audio releases on the podcast.</p>
-</section>
-<div class="max-w-5xl mx-auto px-4"><div class="h-px bg-gray-900 my-6"></div></div>
-
-
 <!-- HOW TO SIGN IN -->
-<section id="join" class="py-10 md:py-20 bg-white border-b border-gray-200">
-  <div class="max-w-5xl mx-auto px-4">
-    <div class="text-center mb-5 md:mb-12">
-      <span class="text-[#8A1558] font-black tracking-widest text-base md:text-lg mb-3 block">[ Join the DJ Call ]</span>
-      <h2 class="text-3xl md:text-5xl font-black tracking-tighter">New Music Releases. Every Wednesday.</h2>
-      <p class="text-sm md:text-base font-black tracking-widest uppercase text-gray-500 mt-3">Connect. Collaborate. Elevate.</p>
-    </div>
-
-    <div class="grid md:grid-cols-2 gap-4 md:gap-12 items-center">
-      <div>
-        <img src="images/iphone.png" alt="DJ Call on Zoom, DJs on the weekly call" class="block w-full max-w-sm mx-auto rounded-2xl shadow-2xl" />
-      </div>
-      <div class="space-y-5">
-        <div class="section-card">
-          <div class="w-12 h-12 rounded-full bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center font-black text-xl mb-4">1</div>
-          <h3 class="text-xl font-black tracking-tight mb-2">Add it to your calendar.</h3>
-          <p class="text-gray-700 font-serif">Tap "Add to Calendar" below. The recurring weekly invite drops the Zoom link straight onto your Wednesdays.</p>
+<section id="join" class="py-16 px-6 md:px-12 bg-brand-blush50 border-b-8 border-sxsw-pink">
+    <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-10 md:mb-14">
+            <p class="font-bold text-sm tracking-widest text-sxsw-pink mb-2 uppercase">[ Join the DJ Call ]</p>
+            <h2 class="text-4xl md:text-6xl text-black mb-3">NEW MUSIC RELEASES.<br>EVERY WEDNESDAY.</h2>
+            <p class="text-sm md:text-base font-bold tracking-widest uppercase text-gray-500 mt-3">Connect. Collaborate. Elevate.</p>
         </div>
-        <div class="section-card">
-          <div class="w-12 h-12 rounded-full bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center font-black text-xl mb-4">2</div>
-          <h3 class="text-xl font-black tracking-tight mb-2">Open the Zoom link.</h3>
-          <p class="text-gray-700 font-serif">Same link every week. No list, no signup. Save it once and you're in.</p>
-        </div>
-        <div class="section-card">
-          <div class="w-12 h-12 rounded-full bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center font-black text-xl mb-4">3</div>
-          <h3 class="text-xl font-black tracking-tight mb-2">Show up Wednesday at 3.</h3>
-          <p class="text-gray-700 font-serif">Log in. Camera optional. Bring your ears. We start on time.</p>
-        </div>
-      </div>
-    </div>
 
-    <div class="mt-5 md:mt-10 bg-[#FDF2F8] text-gray-900 rounded-2xl border border-[#FBCFE8] p-6 md:p-8 flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between">
-      <div>
-        <h3 class="font-black text-lg mb-1">This Wednesday's Zoom link</h3>
-        <p class="text-gray-700 font-serif text-sm break-all">us02web.zoom.us/j/84165879840</p>
-      </div>
-      <a href="https://us02web.zoom.us/j/84165879840?pwd=WRC8jjWBihWHaRwwv0gboprCIf9Fht.1" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-[#8A1558] text-white px-5 py-3 rounded-md text-sm font-bold hover:bg-[#680D3E] transition-colors flex-shrink-0">
-        <i data-lucide="video" class="w-4 h-4"></i> Join This Wednesday
-      </a>
-    </div>
+        <div class="grid md:grid-cols-2 gap-10 md:gap-14 items-center">
+            <div>
+                <img src="images/iphone.png" alt="DJ Call on Zoom, DJs on the weekly call" class="block w-full max-w-sm mx-auto rounded-3xl border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]" />
+            </div>
+            <div class="space-y-5">
+                <div class="bg-white p-6 rounded-[24px] border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+                    <div class="w-12 h-12 rounded-full bg-sxsw-pink text-white flex items-center justify-center font-black text-xl mb-4">1</div>
+                    <h3 class="text-xl mb-2 text-black">Add It to Your Calendar.</h3>
+                    <p class="text-gray-700 font-medium normal-case" style="text-transform:none;">Tap "Add to Calendar" below. The recurring weekly invite drops the Zoom link straight onto your Wednesdays.</p>
+                </div>
+                <div class="bg-white p-6 rounded-[24px] border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+                    <div class="w-12 h-12 rounded-full bg-sxsw-pink text-white flex items-center justify-center font-black text-xl mb-4">2</div>
+                    <h3 class="text-xl mb-2 text-black">Open the Zoom Link.</h3>
+                    <p class="text-gray-700 font-medium normal-case" style="text-transform:none;">Same link every week. No list, no signup. Save it once and you're in.</p>
+                </div>
+                <div class="bg-white p-6 rounded-[24px] border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+                    <div class="w-12 h-12 rounded-full bg-sxsw-pink text-white flex items-center justify-center font-black text-xl mb-4">3</div>
+                    <h3 class="text-xl mb-2 text-black">Show Up Wednesday at 4.</h3>
+                    <p class="text-gray-700 font-medium normal-case" style="text-transform:none;">Log in. Camera optional. Bring your ears. We start on time.</p>
+                </div>
+            </div>
+        </div>
 
-    <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
-      <div class="flex items-center gap-2 text-[#8A1558] font-black tracking-widest text-xs uppercase">
-        <span>Don't lose the link</span>
-        <i data-lucide="arrow-right" class="w-6 h-6 md:w-8 md:h-8 animate-bounce-x" style="stroke-width:3"></i>
-      </div>
-      <a id="calBtn" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-white border border-gray-300 text-gray-900 px-4 py-2.5 rounded-md text-sm font-bold hover:bg-gray-100 transition-colors"><i data-lucide="calendar-plus" class="w-4 h-4"></i> Add to Calendar</a>
-      <button id="shareDjBtn" type="button" class="inline-flex items-center gap-2 bg-white border border-gray-300 text-gray-900 px-4 py-2.5 rounded-md text-sm font-bold hover:bg-gray-100 transition-colors"><i data-lucide="share-2" class="w-4 h-4"></i> Share This Page</button>
-      <span id="shareDjToast" class="hidden text-xs font-bold text-[#8A1558]">Link copied</span>
+        <!-- Zoom link callout -->
+        <div class="mt-10 bg-sxsw-dark text-white rounded-[30px] border-4 border-black shadow-[8px_8px_0px_0px_rgba(138,21,88,1)] p-8 md:p-10 flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between">
+            <div>
+                <p class="font-bold text-xs tracking-widest uppercase text-brand-gold mb-2">This Wednesday's Zoom Link</p>
+                <p class="text-white/80 text-sm md:text-base font-medium break-all" style="text-transform:none;">us02web.zoom.us/j/84165879840</p>
+            </div>
+            <a href="https://us02web.zoom.us/j/84165879840?pwd=WRC8jjWBihWHaRwwv0gboprCIf9Fht.1" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-sxsw-pink text-white px-6 py-3 rounded-full text-sm font-black uppercase tracking-widest hover:bg-sxsw-deeppink transition-colors flex-shrink-0 border-2 border-white">
+                <i data-lucide="video" class="w-4 h-4"></i> Join This Wednesday
+            </a>
+        </div>
+
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <div class="flex items-center gap-2 text-sxsw-pink font-black tracking-widest text-xs uppercase">
+                <span>Don't lose the link</span>
+                <i data-lucide="arrow-right" class="w-6 h-6 md:w-8 md:h-8 animate-bounce-x" style="stroke-width:3"></i>
+            </div>
+            <a id="calBtn" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-white border-2 border-black text-black px-4 py-2.5 rounded-full text-xs font-black tracking-widest uppercase hover:bg-sxsw-teal transition-colors"><i data-lucide="calendar-plus" class="w-4 h-4"></i> Add to Calendar</a>
+            <button id="shareDjBtn" type="button" class="inline-flex items-center gap-2 bg-white border-2 border-black text-black px-4 py-2.5 rounded-full text-xs font-black tracking-widest uppercase hover:bg-sxsw-teal transition-colors"><i data-lucide="share-2" class="w-4 h-4"></i> Share This Page</button>
+            <span id="shareDjToast" class="hidden text-xs font-bold text-sxsw-pink uppercase tracking-widest">Link copied</span>
+        </div>
     </div>
-  </div>
 </section>
 
 <!-- UPCOMING CALLS -->
-<section class="py-10 md:py-20 bg-gray-50 border-b border-gray-200">
-  <div class="max-w-5xl mx-auto px-4">
-    <div class="flex items-end justify-between flex-wrap gap-4 mb-8">
-      <div>
-        <span class="text-[#8A1558] font-black tracking-widest text-base md:text-lg mb-3 block">[ Upcoming Calls ]</span>
-        <h2 class="text-3xl md:text-5xl font-black tracking-tighter">Next 6 Wednesdays.</h2>
-      </div>
-      <a id="calBtn2" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-[#8A1558] text-white px-5 py-3 rounded-lg text-xs font-bold tracking-widest uppercase hover:bg-[#680D3E] shadow">
-        <i data-lucide="calendar-plus" class="w-4 h-4"></i> Add weekly to calendar
-      </a>
+<section id="upcoming" class="py-16 px-6 md:px-12 bg-white border-b border-gray-200">
+    <div class="max-w-6xl mx-auto">
+        <div class="flex items-end justify-between flex-wrap gap-4 mb-10">
+            <div>
+                <p class="font-bold text-sm tracking-widest text-sxsw-pink mb-2 uppercase">[ Upcoming Calls ]</p>
+                <h2 class="text-4xl md:text-6xl text-black">NEXT 6 WEDNESDAYS.</h2>
+            </div>
+            <a id="calBtn2" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-sxsw-pink text-white px-6 py-3 rounded-full text-xs font-black tracking-widest uppercase hover:bg-sxsw-deeppink shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] border-2 border-black">
+                <i data-lucide="calendar-plus" class="w-4 h-4"></i> Add Weekly to Calendar
+            </a>
+        </div>
+        <div id="upcomingList" class="grid md:grid-cols-2 gap-5"></div>
     </div>
-    <div id="upcomingList" class="grid md:grid-cols-2 gap-4"></div>
-  </div>
 </section>
 
-<footer class="nmw-footer">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-8 py-2">
-      <div class="col-span-2 md:col-span-2">
-        <img src="images/nmw-logo-light.png" alt="New Music Wednesdays, Digiwaxx" class="footer-logo mb-4" />
-        <p class="text-sm leading-relaxed">Live performance and rollout infrastructure for rising artists. Every Wednesday at The Penthouse NYC, presented by <a href="https://www.digiwaxx.com" target="_blank" rel="noopener noreferrer" class="text-[#8A1558] hover:underline">Digiwaxx</a>.</p>
-      </div>
-      <div>
-        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Funnel</h4>
-        <ul class="space-y-2 text-sm">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="mission.html">Mission</a></li>
-          <li><a href="attend.html">Events</a></li>
-          <li><a href="https://www.newmusicwednesdayslive.com/rsvp" target="_blank" rel="noopener">RSVP</a></li>
-          <li><a href="dj-call.html">DJ Call</a></li>
-          <li><a href="podcast.html">Podcast</a></li>
-          <li><a href="apply.html">Artist Access</a></li>
-          <li><a href="faq.html">FAQ</a></li>
-          <li><a href="alerts.html">Subscribe Now</a></li>
-          <li><a href="sponsor.html">Campaign Store</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Distribution</h4>
-        <ul class="space-y-2 text-sm">
-          <li><a href="https://www.digiwaxx.com" target="_blank" rel="noopener">Digiwaxx</a></li>
-          <li><a href="https://www.newmusicwednesdayslive.com" target="_blank" rel="noopener">NewMusicWednesdaysLive</a></li>
-          <li><a href="https://dice.fm" target="_blank" rel="noopener">DICE</a></li>
-          <li><a href="https://www.bandsintown.com" target="_blank" rel="noopener">Bandsintown</a></li>
-          <li><a href="https://www.songkick.com" target="_blank" rel="noopener">Songkick</a></li>
-          <li><a href="https://www.eventbrite.com" target="_blank" rel="noopener">Eventbrite</a></li>
-          <li><a href="https://lu.ma" target="_blank" rel="noopener">Luma</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Listings</h4>
-        <ul class="space-y-2 text-sm">
-          <li><a href="https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z" target="_blank" rel="noopener">Google Maps</a></li>
-          <li><a href="https://www.tripadvisor.com" target="_blank" rel="noopener">TripAdvisor</a></li>
-          <li><a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="https://www.youtube.com" target="_blank" rel="noopener">YouTube</a></li>
-          <li><a href="https://www.tiktok.com" target="_blank" rel="noopener">TikTok</a></li>
-          <li><a href="https://x.com" target="_blank" rel="noopener">X / Twitter</a></li>
-        </ul>
-      </div>
+<!-- Footer -->
+<footer class="bg-sxsw-dark text-white py-14 px-6 md:px-12 border-t-8 border-sxsw-green">
+    <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
+        <div class="lg:col-span-2">
+            <img src="images/nmw-logo-light.png" alt="New Music Wednesdays" class="h-24 w-auto mb-6" />
+            <p class="text-white font-medium max-w-sm mb-6">
+                Live performance and rollout infrastructure for rising artists. Every Wednesday at The Penthouse NYC.
+            </p>
+            <p class="text-xs uppercase tracking-widest font-bold text-white">Presented by Digiwaxx</p>
+        </div>
+
+        <div>
+            <h4 class="font-bold uppercase tracking-widest text-white mb-4 text-sm">Funnel</h4>
+            <ul class="flex flex-col gap-2 font-medium text-white">
+                <li><a href="index.html" class="hover:text-sxsw-pink transition-colors">Home</a></li>
+                <li><a href="mission.html" class="hover:text-sxsw-pink transition-colors">Mission</a></li>
+                <li><a href="attend.html" class="hover:text-sxsw-pink transition-colors">Events</a></li>
+                <li><a href="https://www.newmusicwednesdayslive.com/rsvp" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">RSVP</a></li>
+                <li><a href="dj-call.html" class="hover:text-sxsw-pink transition-colors">DJ Call</a></li>
+                <li><a href="podcast.html" class="hover:text-sxsw-pink transition-colors">Podcast</a></li>
+                <li><a href="apply.html" class="hover:text-sxsw-pink transition-colors">Artist Access</a></li>
+                <li><a href="faq.html" class="hover:text-sxsw-pink transition-colors">FAQ</a></li>
+                <li><a href="alerts.html" class="hover:text-sxsw-pink transition-colors">Subscribe Now</a></li>
+                <li><a href="sponsor.html" class="hover:text-sxsw-pink transition-colors">Campaign Store</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h4 class="font-bold uppercase tracking-widest text-white mb-4 text-sm">Distribution</h4>
+            <ul class="flex flex-col gap-2 font-medium text-white">
+                <li><a href="https://www.digiwaxx.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Digiwaxx</a></li>
+                <li><a href="https://www.newmusicwednesdayslive.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">NewMusicWednesdaysLive</a></li>
+                <li><a href="https://dice.fm" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">DICE</a></li>
+                <li><a href="https://www.bandsintown.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Bandsintown</a></li>
+                <li><a href="https://www.songkick.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Songkick</a></li>
+                <li><a href="https://www.eventbrite.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Eventbrite</a></li>
+                <li><a href="https://lu.ma" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Luma</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h4 class="font-bold uppercase tracking-widest text-white mb-4 text-sm">Listings</h4>
+            <ul class="flex flex-col gap-2 font-medium text-white mb-8">
+                <li><a href="https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Google Maps</a></li>
+                <li><a href="https://www.tripadvisor.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">TripAdvisor</a></li>
+            </ul>
+            <h4 class="font-bold uppercase tracking-widest text-white mb-4 text-sm">Socials</h4>
+            <ul class="flex flex-col gap-2 font-medium text-white">
+                <li><a href="https://www.instagram.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Instagram</a></li>
+                <li><a href="https://www.youtube.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">YouTube</a></li>
+                <li><a href="https://www.tiktok.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">TikTok</a></li>
+                <li><a href="https://x.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">X / Twitter</a></li>
+            </ul>
+        </div>
     </div>
-    <div class="border-t border-white/10 pt-6 mt-6 flex flex-col sm:flex-row gap-3 sm:gap-0 sm:justify-between items-center text-xs">
-      <div>&copy; 2026 New Music Wednesdays. By Digiwaxx. All rights reserved.</div>
-      <div class="flex gap-5">
-        <a href="privacy.html" class="hover:text-white">Privacy Policy</a>
-        <a href="terms.html" class="hover:text-white">Terms &amp; Conditions</a>
-      </div>
+
+    <div class="w-full mt-16 pt-8 border-t border-white/20 flex flex-col md:flex-row justify-between items-center text-sm text-white font-medium">
+        <p>&copy; 2026 New Music Wednesdays. By Digiwaxx. All rights reserved.</p>
+        <div class="flex gap-4 mt-4 md:mt-0">
+            <a href="privacy.html" class="hover:text-sxsw-pink">Privacy Policy</a>
+            <a href="terms.html" class="hover:text-sxsw-pink">Terms &amp; Conditions</a>
+        </div>
     </div>
-  </div>
 </footer>
 
 <script src="assets/nmw.js"></script>
@@ -275,7 +330,7 @@
     const url = ref ? `${base}?ref=${encodeURIComponent(ref)}` : base;
     const payload = {
       title: 'Digiwaxx DJ Call',
-      text: 'Hop on the Digiwaxx DJ Call with me. Every Wednesday, 3-7 PM ET on Zoom.',
+      text: 'Hop on the Digiwaxx DJ Call with me. Every Wednesday, 4-6 PM ET on Zoom.',
       url,
     };
     try {
@@ -287,36 +342,33 @@
     } catch (_) { /* user cancelled */ }
   });
 
-  // Next call date
-  // (Next Call sidebar was removed when the hero was replaced with the unified black header)
-
   // Upcoming list
   const upcoming = NMW.upcomingWednesdays(6);
   document.getElementById('upcomingList').innerHTML = upcoming.map(d => {
     const month = d.toLocaleDateString(undefined, { month: 'short' }).toUpperCase();
     const day = d.getDate();
-    const start = new Date(d); start.setHours(15, 0, 0, 0);
+    const start = new Date(d); start.setHours(16, 0, 0, 0);
     const link = NMW.buildCalendarLink({
       title: 'Digiwaxx DJ Call, NMW',
-      start, durationHours: 4,
+      start, durationHours: 2,
       details: 'Weekly DJ Call on Zoom. Records, roundtable, Wednesday-night prep.',
       location: 'Zoom',
     });
-    return `<div class="section-card flex gap-4 items-center">
+    return `<div class="bg-white p-5 rounded-[24px] border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] flex gap-4 items-center hover:-translate-y-1 transition-transform">
       <div class="flex-shrink-0 w-16 text-center">
-        <div class="text-xs font-black tracking-widest text-[#8A1558]">${month}</div>
-        <div class="text-3xl font-black leading-none mt-1">${day}</div>
-        <div class="text-xs text-gray-400 mt-1">WED</div>
+        <div class="text-xs font-black tracking-widest text-sxsw-pink">${month}</div>
+        <div class="text-3xl font-black leading-none mt-1 text-black">${day}</div>
+        <div class="text-xs text-gray-500 mt-1 font-bold tracking-widest">WED</div>
       </div>
       <div class="flex-1 min-w-0">
-        <div class="font-black text-base">${d.toLocaleDateString(undefined, { weekday: 'long' })}, 3-7 PM ET</div>
-        <div class="text-xs text-gray-500 font-serif mt-0.5">Zoom, Link sent the night before</div>
+        <div class="font-black text-base text-black uppercase tracking-tight">${d.toLocaleDateString(undefined, { weekday: 'long' })}, 4-6 PM ET</div>
+        <div class="text-xs text-gray-600 font-medium mt-0.5" style="text-transform:none;">Zoom, link sent the night before</div>
       </div>
-      <a href="${link}" target="_blank" rel="noopener noreferrer" class="text-xs font-bold uppercase tracking-widest text-[#8A1558] hover:underline whitespace-nowrap"><i data-lucide="calendar-plus" class="w-3.5 h-3.5 inline"></i> Add</a>
+      <a href="${link}" target="_blank" rel="noopener noreferrer" class="text-xs font-black uppercase tracking-widest text-sxsw-pink hover:text-sxsw-deeppink whitespace-nowrap"><i data-lucide="calendar-plus" class="w-3.5 h-3.5 inline"></i> Add</a>
     </div>`;
   }).join('');
 
-  (typeof lucide !== "undefined" && lucide.createIcons());
+  if (window.lucide) { lucide.createIcons(); }
 </script>
 </body>
 </html>
