@@ -16,10 +16,11 @@ input, textarea, select, blockquote, figcaption,
 }
 
 /* Chunky display headings */
-h1, h2, h3, .heading-font {
-    font-weight: 900;
+h1, h2, h3, .heading-font, .section-h2, .display, .display-tight {
+    font-weight: 900 !important;
     letter-spacing: -0.03em;
     text-transform: uppercase;
+    color: #000 !important;
 }
 
 /* NMW brand color utilities */
