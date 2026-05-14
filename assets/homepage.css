@@ -23,6 +23,11 @@ h1, h2, h3, .heading-font, .section-h2, .display, .display-tight {
     color: #000 !important;
 }
 
+/* Allow Tailwind text-white to win over the heading color override */
+h1.text-white, h2.text-white, h3.text-white,
+.heading-font.text-white, .section-h2.text-white,
+.display.text-white, .display-tight.text-white { color: #fff !important; }
+
 /* NMW brand color utilities */
 .bg-sxsw-pink     { background-color: #8A1558 !important; }  /* primary magenta */
 .bg-sxsw-deeppink { background-color: #680D3E !important; }  /* deeper magenta */
