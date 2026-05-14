@@ -166,7 +166,7 @@
     font-family:'JetBrains Mono', ui-monospace, monospace;
     font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
     color: var(--ink);
-    padding:16px 34px 16px 24px;
+    padding:10px 34px 10px 24px;
     cursor:pointer;
   }
   .nmw-search__select-wrap::after {
@@ -186,7 +186,7 @@
     background:transparent; border:0; outline:0;
     font-family:'Manrope', system-ui, sans-serif;
     font-size:14px; color:var(--ink);
-    padding:14px 0;
+    padding:8px 0;
   }
   .nmw-search__input::placeholder { color:rgba(10,10,10,.4); }
   @media (max-width: 720px) {
@@ -385,7 +385,7 @@
     </div>
 
     <!-- OBLONG SEARCH BAR: who is this for + campaign goal + free-text tag search -->
-    <form class="nmw-search mb-5 md:mb-12 w-full max-w-6xl" role="search" onsubmit="event.preventDefault();">
+    <form class="nmw-search mb-6 md:mb-8 w-full" role="search" onsubmit="event.preventDefault();">
       <div class="nmw-search__select-wrap">
         <label for="audienceSelect" class="sr-only">Who is this for?</label>
         <select id="audienceSelect" class="nmw-search__select" aria-label="Who is this for?">
@@ -418,6 +418,8 @@
       <div id="resultPanelContent" class="hidden"></div>
     </div>
     <div id="searchStatus" class="hidden"></div>
+
+    <div class="ed-rule mt-8 md:mt-12"></div>
   </section>
 
   <!-- PRODUCT LINE: GROUP ACTION -->
