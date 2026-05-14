@@ -47,6 +47,9 @@ html { scroll-behavior: smooth; }
 /* Sticky nav: kill the bottom border line */
 nav.sticky { border-bottom: 0 !important; }
 
+/* Hide the .ed-rule editorial 1px separator on all pages */
+.ed-rule, .ed-rule-thin { display: none !important; }
+
 /* Homepage card system applied to all white blocks on light bg
    Matches the For Artists / Wed Cards / RSVP form treatment on index.html:
    thick black border + hard offset black shadow + large radius. */
