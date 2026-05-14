@@ -19,8 +19,8 @@
 <meta name="twitter:description" content="Get The Blast, our weekly newsletter. Wednesday lineups, free tickets, subscriber-only drops, DJ picks, straight to your inbox.">
 <meta name="twitter:image" content="https://www.newmusicwednesdayslive.com/images/nmw-logo.png">
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@0.474.0"></script>
 <!-- PWA -->
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="theme-color" content="#8A1558">
@@ -28,50 +28,12 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="NMW">
 <script src="/assets/pwa.js" defer></script>
-<style>
-    body {
-        font-family: 'Inter', sans-serif;
-        background-color: #FAFAF7; /* NMW cream */
-        color: #1A0418;
-    }
-
-    /* Typography overrides for that chunky SXSW feel */
-    h1, h2, h3, .heading-font {
-        font-weight: 900;
-        letter-spacing: -0.03em;
-        text-transform: uppercase;
-    }
-
-    /* NMW Brand Color Scale (derived from logo magenta) */
-    .bg-sxsw-pink     { background-color: #8A1558; }
-    .bg-sxsw-deeppink { background-color: #680D3E; }
-    .bg-sxsw-teal     { background-color: #FBCFE8; }
-    .bg-sxsw-green    { background-color: #FACC15; }
-    .bg-sxsw-dark     { background-color: #222222; }
-    .bg-brand-cream   { background-color: #FAFAF7; }
-    .bg-brand-blush50 { background-color: #FDF2F8; }
-    .bg-brand-soft    { background-color: #D14785; }
-    .text-sxsw-pink     { color: #8A1558; }
-    .text-sxsw-deeppink { color: #680D3E; }
-    .text-sxsw-teal     { color: #FBCFE8; }
-    .text-brand-gold    { color: #FACC15; }
-    .border-sxsw-deeppink { border-color: #680D3E; }
-
-    html { scroll-behavior: smooth; }
-
-    /* Form field helpers (re-implemented from old nmw.css) */
-    .field-label { display:block; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color:#374151; margin-bottom: 0.5rem; }
-    .field-input { width:100%; padding: 0.85rem 1rem; border:2px solid #000; border-radius: 0.75rem; background:#fff; font-weight:500; color:#1A0418; font-family: 'Inter', sans-serif; }
-    .field-input:focus { outline:none; border-color:#8A1558; box-shadow: 0 0 0 3px rgba(138,21,88,0.15); }
-    .chip { display:inline-flex; align-items:center; padding: 0.4rem 0.85rem; border:2px solid #000; border-radius: 9999px; background:#fff; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color:#1A0418; cursor:pointer; transition: all 0.15s ease; }
-    .chip:hover { background:#FDF2F8; }
-    .chip.selected { background:#8A1558; color:#fff; border-color:#000; }
-</style>
+<link rel="stylesheet" href="assets/nmw.css">
 <script>
-    if (typeof tailwind !== "undefined") tailwind.config = { theme: { extend: {
-        fontFamily: { sans: ['Inter','sans-serif'] },
-        colors: { brand: { 500:'#8A1558', 600:'#680D3E' } }
-    }}}
+  if (typeof tailwind !== "undefined") tailwind.config = { theme: { extend: {
+    fontFamily: { sans: ['Inter','sans-serif'], serif: ['Merriweather','serif'] },
+    colors: { brand: { 500:'#8A1558', 600:'#680D3E' } }
+  }}}
 </script>
 <script type="application/ld+json">
 {
@@ -133,256 +95,204 @@
 }
 </script>
 </head>
-<body class="antialiased">
+<body class="bg-gray-50 text-gray-900 selection:bg-[#8A1558] selection:text-white">
 
-    <!-- Top Location Banner -->
-    <div class="bg-sxsw-dark text-white text-xs md:text-sm font-bold tracking-widest uppercase py-2 text-center w-full z-50 relative">
-        EVERY WED &middot; THE PENTHOUSE NYC &middot; MIDTOWN, MANHATTAN
+<nav class="nmw-nav nmw-nav--dark">
+  <div class="nmw-nav__inner">
+  <a href="index.html" class="nmw-logo-block">
+    <img src="images/nmw-logo.png" alt="New Music Wednesday" class="nmw-logo-img" />
+  </a>
+  <div class="hidden md:flex space-x-6 items-center text-sm font-bold tracking-wide text-gray-600">
+    <a href="index.html" class="hover:text-black">HOME</a>
+    <a href="mission.html" class="hover:text-black">MISSION</a>
+    <a href="attend.html" class="hover:text-black">ATTEND</a>
+    <a href="dj-call.html" class="hover:text-black">DJ CALL</a>
+    <a href="podcast.html" class="hover:text-black">PODCAST</a>
+    <a href="apply.html" class="hover:text-black">ARTIST ACCESS</a>
+    <a href="faq.html" class="hover:text-black">FAQ</a>
+    <a href="alerts.html" class="text-black">SUBSCRIBE NOW</a>
+    <a href="sponsor.html" class="hover:text-black">CAMPAIGN STORE</a>
+  </div>
+  </div>
+</nav>
+
+<section class="max-w-5xl mx-auto px-4 pt-10 pb-2 text-center">
+  <div class="text-base md:text-lg font-black uppercase tracking-widest text-[#8A1558] mb-3">[ The Community Signal ]</div>
+  <h1 class="text-3xl md:text-5xl font-black tracking-tighter text-gray-900">Join <span class="text-[#8A1558]">The Blast</span></h1>
+  <p class="text-base md:text-lg text-gray-700 mt-5 font-serif italic max-w-2xl mx-auto leading-relaxed">You're not signing up for a newsletter. You're joining the community that <em>moves</em> for rising artists every Wednesday, and gets the call when something is about to break.</p>
+
+  <div class="flex items-center justify-center gap-3 md:gap-5 flex-nowrap whitespace-nowrap mt-6 overflow-x-auto">
+    <span class="text-sm md:text-base font-black tracking-tight text-gray-900">Weekly Events</span>
+    <span class="text-base md:text-lg font-black text-[#8A1558]" aria-hidden="true">+</span>
+    <span class="text-sm md:text-base font-black tracking-tight text-gray-900">Special Offers</span>
+    <span class="text-base md:text-lg font-black text-[#8A1558]" aria-hidden="true">+</span>
+    <span class="text-sm md:text-base font-black tracking-tight text-gray-900">Free Giveaways</span>
+    <span class="text-base md:text-lg font-black text-[#8A1558]" aria-hidden="true">+</span>
+    <span class="text-sm md:text-base font-black tracking-tight text-gray-900">New Music</span>
+    <span class="text-base md:text-lg font-black text-[#8A1558]" aria-hidden="true">+</span>
+    <span class="text-sm md:text-base font-black tracking-tight text-gray-900">Artist Opportunities</span>
+  </div>
+  <p class="text-sm md:text-base text-gray-700 mt-4"><b class="text-black">No spam.</b> One email a week. Unsubscribe in one click.</p>
+</section>
+
+<main class="max-w-5xl mx-auto px-4 py-5 md:py-16">
+
+  <!-- Wide subscribe form -->
+  <section>
+    <form id="blastForm" class="section-card max-w-4xl mx-auto">
+      <h2 class="text-2xl md:text-3xl font-black tracking-tighter text-center">Join the Community</h2>
+      <p class="text-sm text-gray-500 mt-1 mb-6 font-serif text-center">It takes 15 seconds. Become one of the people who moves for rising artists.</p>
+
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div class="sm:col-span-2"><label class="field-label">Email *</label><input class="field-input" name="email" type="email" required placeholder="you@email.com"></div>
+        <div><label class="field-label">First name</label><input class="field-input" name="name" placeholder="Your name"></div>
+        <div><label class="field-label">Phone (optional)</label><input class="field-input" name="phone" type="tel" placeholder="For SMS drops"></div>
+        <div class="sm:col-span-2"><label class="field-label">Genre / Interest</label>
+          <select class="field-input" name="genre">
+            <option value="">All, send me everything</option>
+            <option>Hip Hop</option>
+            <option>R&amp;B</option>
+            <option>Soul</option>
+            <option>Reggae</option>
+            <option>Dancehall</option>
+            <option>Afrobeat</option>
+            <option>Gospel</option>
+            <option>Latin Urban / Dance</option>
+          </select>
+        </div>
+
+        <div class="sm:col-span-2 mt-2">
+          <div class="field-label">I want to hear about</div>
+          <div class="flex flex-wrap gap-2 mt-1" id="topicChips"></div>
+        </div>
+
+        <div class="sm:col-span-2 mt-2">
+          <label class="flex items-start gap-3 cursor-pointer">
+            <input type="checkbox" name="iAmArtist" class="mt-1 w-5 h-5 rounded border-gray-300 text-[#8A1558] focus:ring-[#8A1558]">
+            <div>
+              <div class="font-bold text-sm">I'm an artist</div>
+              <div class="text-xs text-gray-600 font-serif">Get artist only opportunities, open calls, and rollout playbooks.</div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <button type="submit" class="cta cta--brand mt-6">
+        <div class="cta__shadow"></div>
+        <div class="cta__face"><span class="cta__label flex items-center gap-2"><i data-lucide="send" class="w-4 h-4"></i> Subscribe to The Blast</span></div>
+      </button>
+      <p class="text-xs text-gray-400 mt-3 text-center">By subscribing you agree to receive emails from NMW. Unsubscribe anytime.</p>
+    </form>
+
+    <!-- Success -->
+    <div id="successCard" class="hidden bg-[#FDF2F8] border border-[#FBCFE8] rounded-2xl p-8 text-center mt-4 max-w-4xl mx-auto">
+      <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 border border-[#FBCFE8]">
+        <i data-lucide="check" class="w-8 h-8 text-[#8A1558]"></i>
+      </div>
+      <h2 class="text-2xl font-black tracking-tight mb-2">You're on the list.</h2>
+      <p class="text-gray-700 font-serif max-w-md mx-auto">First Blast lands this week. While you wait, see what's coming up at The Penthouse.</p>
+      <div class="mt-6 flex flex-wrap gap-3 justify-center">
+        <a href="attend.html" class="inline-flex items-center gap-2 bg-[#8A1558] text-white px-5 py-3 rounded-lg text-xs font-bold tracking-widest uppercase hover:bg-[#680D3E]"><i data-lucide="calendar-days" class="w-4 h-4"></i> See upcoming events</a>
+        <a href="apply.html" class="inline-flex items-center gap-2 bg-white border-2 border-gray-200 text-gray-900 px-5 py-3 rounded-lg text-xs font-bold tracking-widest uppercase hover:border-gray-400">Apply to perform</a>
+      </div>
     </div>
+  </section>
 
-    <!-- Navigation -->
-    <nav class="w-full bg-white/90 backdrop-blur-md border-b border-gray-200 sticky top-0 z-40">
-        <div class="w-full flex justify-between items-center px-6 md:px-12 py-3">
-            <a href="index.html" class="flex items-center gap-2">
-                <img src="images/nmw-logo.png" alt="New Music Wednesdays" class="h-20 md:h-24 w-auto" style="filter: brightness(0.55) saturate(1.4) hue-rotate(-10deg);" />
-            </a>
-            <div class="hidden md:flex space-x-6 items-center text-sm font-bold tracking-wide text-gray-600">
-                <a href="index.html" class="hover:text-black">HOME</a>
-                <a href="mission.html" class="hover:text-black">MISSION</a>
-                <a href="attend.html" class="hover:text-black">ATTEND</a>
-                <a href="dj-call.html" class="hover:text-black">DJ CALL</a>
-                <a href="podcast.html" class="hover:text-black">PODCAST</a>
-                <a href="faq.html" class="hover:text-black">FAQ</a>
-                <a href="alerts.html" class="text-black">SUBSCRIBE NOW</a>
-                <a href="sponsor.html" class="hover:text-black">CAMPAIGN STORE</a>
-                <a href="apply.html" class="bg-[#8A1558] text-white px-4 py-2 rounded font-bold tracking-widest text-xs hover:bg-[#680D3E] transition-colors">Apply Now</a>
-            </div>
-        </div>
-    </nav>
+</main>
 
-    <!-- Hero -->
-    <header class="relative overflow-hidden border-b-4 border-black bg-brand-blush50">
-        <div class="relative pt-16 pb-14 px-6 md:px-12 text-left w-full max-w-4xl">
-            <p class="font-bold text-sm tracking-widest text-sxsw-pink mb-4 uppercase">[ The Community Signal ]</p>
-            <h1 class="text-5xl md:text-6xl lg:text-7xl font-black leading-[0.95] mb-6 text-black">
-                JOIN <span class="text-sxsw-pink">THE BLAST.</span>
-            </h1>
-            <p class="text-lg md:text-2xl font-semibold mb-6 text-gray-800">
-                You're not signing up for a newsletter. You're joining the community that moves for rising artists every Wednesday.
-            </p>
-            <p class="text-base md:text-lg text-gray-700 mb-8 max-w-2xl">
-                Get event reminders, performance slots, DJ call invites, free tickets, subscriber-only drops, and Wednesday lineups straight to your inbox.
-            </p>
+<footer class="nmw-footer">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-8 py-2">
+      <div class="col-span-2 md:col-span-2">
+        <img src="images/nmw-logo-light.png" alt="New Music Wednesdays, Digiwaxx" class="footer-logo mb-4" />
+        <p class="text-sm leading-relaxed">Live performance and rollout infrastructure for rising artists. Every Wednesday at The Penthouse NYC, presented by <a href="https://www.digiwaxx.com" target="_blank" rel="noopener noreferrer" class="text-[#8A1558] hover:underline">Digiwaxx</a>.</p>
+      </div>
+      <div>
+        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Funnel</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="mission.html">Mission</a></li>
+          <li><a href="attend.html">Events</a></li>
+          <li><a href="https://www.newmusicwednesdayslive.com/rsvp" target="_blank" rel="noopener">RSVP</a></li>
+          <li><a href="dj-call.html">DJ Call</a></li>
+          <li><a href="podcast.html">Podcast</a></li>
+          <li><a href="apply.html">Artist Access</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="alerts.html">Subscribe Now</a></li>
+          <li><a href="sponsor.html">Campaign Store</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Distribution</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="https://www.digiwaxx.com" target="_blank" rel="noopener">Digiwaxx</a></li>
+          <li><a href="https://www.newmusicwednesdayslive.com" target="_blank" rel="noopener">NewMusicWednesdaysLive</a></li>
+          <li><a href="https://dice.fm" target="_blank" rel="noopener">DICE</a></li>
+          <li><a href="https://www.bandsintown.com" target="_blank" rel="noopener">Bandsintown</a></li>
+          <li><a href="https://www.songkick.com" target="_blank" rel="noopener">Songkick</a></li>
+          <li><a href="https://www.eventbrite.com" target="_blank" rel="noopener">Eventbrite</a></li>
+          <li><a href="https://lu.ma" target="_blank" rel="noopener">Luma</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Listings</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z" target="_blank" rel="noopener">Google Maps</a></li>
+          <li><a href="https://www.tripadvisor.com" target="_blank" rel="noopener">TripAdvisor</a></li>
+          <li><a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.youtube.com" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://www.tiktok.com" target="_blank" rel="noopener">TikTok</a></li>
+          <li><a href="https://x.com" target="_blank" rel="noopener">X / Twitter</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-white/10 pt-6 mt-6 flex flex-col sm:flex-row gap-3 sm:gap-0 sm:justify-between items-center text-xs">
+      <div>&copy; 2026 New Music Wednesdays. By Digiwaxx. All rights reserved.</div>
+      <div class="flex gap-5">
+        <a href="privacy.html" class="hover:text-white">Privacy Policy</a>
+        <a href="terms.html" class="hover:text-white">Terms &amp; Conditions</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
-            <div class="flex flex-wrap items-center gap-3 md:gap-5">
-                <span class="text-xs md:text-sm font-black tracking-widest uppercase bg-white border-2 border-black rounded-full px-4 py-2">Weekly Events</span>
-                <span class="text-xs md:text-sm font-black tracking-widest uppercase bg-sxsw-teal border-2 border-black rounded-full px-4 py-2">Free Giveaways</span>
-                <span class="text-xs md:text-sm font-black tracking-widest uppercase bg-sxsw-green border-2 border-black rounded-full px-4 py-2">New Music</span>
-                <span class="text-xs md:text-sm font-black tracking-widest uppercase bg-sxsw-pink text-white border-2 border-black rounded-full px-4 py-2">Artist Opportunities</span>
-            </div>
-            <p class="text-sm md:text-base text-gray-700 mt-6"><b class="text-black">No spam.</b> One email a week. Unsubscribe in one click.</p>
-        </div>
-    </header>
+<script src="assets/nmw.js"></script>
+<script>
+const TOPICS = ['NMW Events', 'NMW for Artists', 'The Blast', 'NMW DJ Call', 'Sponsors'];
+const selected = new Set(['NMW Events']);
+const chips = document.getElementById('topicChips');
+function renderChips() {
+  chips.innerHTML = TOPICS.map(t => `<button type="button" class="chip ${selected.has(t) ? 'selected' : ''}" data-topic="${t}">${t}</button>`).join('');
+  chips.querySelectorAll('[data-topic]').forEach(b => b.addEventListener('click', () => {
+    const t = b.dataset.topic;
+    if (selected.has(t)) selected.delete(t); else selected.add(t);
+    renderChips();
+  }));
+}
+renderChips();
 
-    <!-- What You'll Get Strip -->
-    <section class="py-14 px-6 md:px-12 bg-sxsw-teal border-b-8 border-sxsw-pink">
-        <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-0 md:divide-x md:divide-black/20">
-            <div class="md:pr-12">
-                <p class="inline-block text-xs font-bold tracking-widest text-white mb-4 uppercase bg-sxsw-pink rounded-full px-4 py-1.5">Event Reminders</p>
-                <h3 class="text-3xl mb-4 text-black">EVERY WEDNESDAY LINEUP.</h3>
-                <p class="text-gray-800 font-medium">Who's performing, who's spinning, who's in the room. Delivered before doors open.</p>
-            </div>
-            <div class="md:px-12">
-                <p class="inline-block text-xs font-bold tracking-widest text-black mb-4 uppercase bg-sxsw-green rounded-full px-4 py-1.5">Open Calls</p>
-                <h3 class="text-3xl mb-4 text-black">PERFORMANCE SLOTS & DJ CALLS.</h3>
-                <p class="text-gray-800 font-medium">Submission windows for artists, DJ call invites, and the open slots most people never hear about.</p>
-            </div>
-            <div class="md:pl-12">
-                <p class="inline-block text-xs font-bold tracking-widest text-white mb-4 uppercase bg-sxsw-dark rounded-full px-4 py-1.5">Subscriber Drops</p>
-                <h3 class="text-3xl mb-4 text-black">FREE TICKETS & EARLY ACCESS.</h3>
-                <p class="text-gray-800 font-medium">Guest list pulls, surprise upgrades, and subscriber-only access to special editions.</p>
-            </div>
-        </div>
-    </section>
+document.getElementById('blastForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const data = new FormData(e.target);
+  const entry = {
+    email: (data.get('email') || '').trim(),
+    name: (data.get('name') || '').trim(),
+    phone: (data.get('phone') || '').trim(),
+    genre: data.get('genre') || '',
+    topics: [...selected],
+    iAmArtist: !!data.get('iAmArtist'),
+    subscribedAt: new Date().toISOString(),
+    source: 'alerts-page',
+  };
+  if (!entry.email) return;
+  NMW.addBlast(entry);
+  document.getElementById('blastForm').classList.add('hidden');
+  document.getElementById('successCard').classList.remove('hidden');
+  (typeof lucide !== "undefined" && lucide.createIcons());
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 
-    <!-- Subscribe Form -->
-    <section class="py-14 px-6 md:px-12">
-        <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-10">
-                <p class="font-bold text-sm tracking-widest text-gray-500 mb-2 uppercase">[ Join The Community ]</p>
-                <h2 class="text-5xl md:text-7xl text-black">GET THE BLAST.</h2>
-                <p class="text-lg text-gray-700 mt-4 max-w-2xl mx-auto">It takes 15 seconds. Become one of the people who moves for rising artists.</p>
-            </div>
-
-            <form id="blastForm" class="bg-white border-4 border-black rounded-[30px] p-8 md:p-12 shadow-[8px_8px_0px_0px_rgba(138,21,88,1)]">
-                <div class="grid sm:grid-cols-2 gap-5">
-                    <div class="sm:col-span-2">
-                        <label class="field-label">Email *</label>
-                        <input class="field-input" name="email" type="email" required placeholder="you@email.com">
-                    </div>
-                    <div>
-                        <label class="field-label">First name</label>
-                        <input class="field-input" name="name" placeholder="Your name">
-                    </div>
-                    <div>
-                        <label class="field-label">Phone (optional)</label>
-                        <input class="field-input" name="phone" type="tel" placeholder="For SMS drops">
-                    </div>
-                    <div class="sm:col-span-2">
-                        <label class="field-label">Genre / Interest</label>
-                        <select class="field-input" name="genre">
-                            <option value="">All, send me everything</option>
-                            <option>Hip Hop</option>
-                            <option>R&amp;B</option>
-                            <option>Soul</option>
-                            <option>Reggae</option>
-                            <option>Dancehall</option>
-                            <option>Afrobeat</option>
-                            <option>Gospel</option>
-                            <option>Latin Urban / Dance</option>
-                        </select>
-                    </div>
-
-                    <div class="sm:col-span-2 mt-2">
-                        <div class="field-label">I want to hear about</div>
-                        <div class="flex flex-wrap gap-2 mt-2" id="topicChips"></div>
-                    </div>
-
-                    <div class="sm:col-span-2 mt-2">
-                        <label class="flex items-start gap-3 cursor-pointer bg-brand-blush50 border-2 border-black rounded-xl p-4">
-                            <input type="checkbox" name="iAmArtist" class="mt-1 w-5 h-5 rounded border-gray-300 text-[#8A1558] focus:ring-[#8A1558]">
-                            <div>
-                                <div class="font-black text-sm uppercase tracking-wide text-black">I'm an artist</div>
-                                <div class="text-xs text-gray-700 mt-1">Get artist-only opportunities, open calls, and rollout playbooks.</div>
-                            </div>
-                        </label>
-                    </div>
-                </div>
-
-                <button type="submit" class="mt-8 w-full inline-flex items-center justify-center gap-2 bg-sxsw-pink text-white font-black uppercase text-base px-6 py-4 rounded-full hover:bg-sxsw-deeppink transition-colors border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
-                    <i data-lucide="send" class="w-5 h-5"></i>
-                    Subscribe To The Blast
-                </button>
-                <p class="text-xs text-gray-500 mt-4 text-center">By subscribing you agree to receive emails from NMW. Unsubscribe anytime.</p>
-            </form>
-
-            <!-- Success Card -->
-            <div id="successCard" class="hidden bg-brand-blush50 border-4 border-black rounded-[30px] p-10 text-center mt-6 shadow-[8px_8px_0px_0px_rgba(138,21,88,1)]">
-                <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 border-4 border-black">
-                    <i data-lucide="check" class="w-8 h-8 text-sxsw-pink"></i>
-                </div>
-                <h2 class="text-3xl md:text-4xl mb-3 text-black">YOU'RE ON THE LIST.</h2>
-                <p class="text-gray-700 max-w-md mx-auto text-lg">First Blast lands this week. While you wait, see what's coming up at The Penthouse.</p>
-                <div class="mt-6 flex flex-wrap gap-3 justify-center">
-                    <a href="attend.html" class="inline-flex items-center gap-2 bg-sxsw-pink text-white px-6 py-3 rounded-full text-xs font-black tracking-widest uppercase hover:bg-sxsw-deeppink border-4 border-black"><i data-lucide="calendar-days" class="w-4 h-4"></i> See Upcoming Events</a>
-                    <a href="apply.html" class="inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full text-xs font-black tracking-widest uppercase hover:bg-sxsw-teal border-4 border-black">Apply To Perform</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-sxsw-dark text-white py-14 px-6 md:px-12 border-t-8 border-sxsw-green">
-        <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
-            <div class="lg:col-span-2">
-                <img src="images/nmw-logo-light.png" alt="New Music Wednesdays" class="h-24 w-auto mb-6" />
-                <p class="text-white font-medium max-w-sm mb-6">
-                    Live performance and rollout infrastructure for rising artists. Every Wednesday at The Penthouse NYC.
-                </p>
-                <p class="text-xs uppercase tracking-widest font-bold text-white">Presented by Digiwaxx</p>
-            </div>
-
-            <div>
-                <h4 class="font-bold uppercase tracking-widest text-white mb-4 text-sm">Funnel</h4>
-                <ul class="flex flex-col gap-2 font-medium text-white">
-                    <li><a href="index.html" class="hover:text-sxsw-pink transition-colors">Home</a></li>
-                    <li><a href="mission.html" class="hover:text-sxsw-pink transition-colors">Mission</a></li>
-                    <li><a href="attend.html" class="hover:text-sxsw-pink transition-colors">Events</a></li>
-                    <li><a href="https://www.newmusicwednesdayslive.com/rsvp" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">RSVP</a></li>
-                    <li><a href="dj-call.html" class="hover:text-sxsw-pink transition-colors">DJ Call</a></li>
-                    <li><a href="podcast.html" class="hover:text-sxsw-pink transition-colors">Podcast</a></li>
-                    <li><a href="apply.html" class="hover:text-sxsw-pink transition-colors">Artist Access</a></li>
-                    <li><a href="faq.html" class="hover:text-sxsw-pink transition-colors">FAQ</a></li>
-                    <li><a href="alerts.html" class="hover:text-sxsw-pink transition-colors">Subscribe Now</a></li>
-                    <li><a href="sponsor.html" class="hover:text-sxsw-pink transition-colors">Campaign Store</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="font-bold uppercase tracking-widest text-white mb-4 text-sm">Distribution</h4>
-                <ul class="flex flex-col gap-2 font-medium text-white">
-                    <li><a href="https://www.digiwaxx.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Digiwaxx</a></li>
-                    <li><a href="https://www.newmusicwednesdayslive.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">NewMusicWednesdaysLive</a></li>
-                    <li><a href="https://dice.fm" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">DICE</a></li>
-                    <li><a href="https://www.bandsintown.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Bandsintown</a></li>
-                    <li><a href="https://www.songkick.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Songkick</a></li>
-                    <li><a href="https://www.eventbrite.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Eventbrite</a></li>
-                    <li><a href="https://lu.ma" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Luma</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="font-bold uppercase tracking-widest text-white mb-4 text-sm">Listings</h4>
-                <ul class="flex flex-col gap-2 font-medium text-white mb-8">
-                    <li><a href="https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Google Maps</a></li>
-                    <li><a href="https://www.tripadvisor.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">TripAdvisor</a></li>
-                </ul>
-                <h4 class="font-bold uppercase tracking-widest text-white mb-4 text-sm">Socials</h4>
-                <ul class="flex flex-col gap-2 font-medium text-white">
-                    <li><a href="https://www.instagram.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Instagram</a></li>
-                    <li><a href="https://www.youtube.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">YouTube</a></li>
-                    <li><a href="https://www.tiktok.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">TikTok</a></li>
-                    <li><a href="https://x.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">X / Twitter</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="w-full mt-16 pt-8 border-t border-white/20 flex flex-col md:flex-row justify-between items-center text-sm text-white font-medium">
-            <p>&copy; 2026 New Music Wednesdays. By Digiwaxx. All rights reserved.</p>
-            <div class="flex gap-4 mt-4 md:mt-0">
-                <a href="privacy.html" class="hover:text-sxsw-pink">Privacy Policy</a>
-                <a href="terms.html" class="hover:text-sxsw-pink">Terms &amp; Conditions</a>
-            </div>
-        </div>
-    </footer>
-
-    <script src="assets/nmw.js"></script>
-    <script>
-        const TOPICS = ['NMW Events', 'NMW for Artists', 'The Blast', 'NMW DJ Call', 'Sponsors'];
-        const selected = new Set(['NMW Events']);
-        const chips = document.getElementById('topicChips');
-        function renderChips() {
-            chips.innerHTML = TOPICS.map(t => `<button type="button" class="chip ${selected.has(t) ? 'selected' : ''}" data-topic="${t}">${t}</button>`).join('');
-            chips.querySelectorAll('[data-topic]').forEach(b => b.addEventListener('click', () => {
-                const t = b.dataset.topic;
-                if (selected.has(t)) selected.delete(t); else selected.add(t);
-                renderChips();
-            }));
-        }
-        renderChips();
-
-        document.getElementById('blastForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const data = new FormData(e.target);
-            const entry = {
-                email: (data.get('email') || '').trim(),
-                name: (data.get('name') || '').trim(),
-                phone: (data.get('phone') || '').trim(),
-                genre: data.get('genre') || '',
-                topics: [...selected],
-                iAmArtist: !!data.get('iAmArtist'),
-                subscribedAt: new Date().toISOString(),
-                source: 'alerts-page',
-            };
-            if (!entry.email) return;
-            if (typeof NMW !== 'undefined' && NMW.addBlast) { NMW.addBlast(entry); }
-            document.getElementById('blastForm').classList.add('hidden');
-            document.getElementById('successCard').classList.remove('hidden');
-            if (window.lucide) { lucide.createIcons(); }
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        if (window.lucide) { lucide.createIcons(); }
-    </script>
+(typeof lucide !== "undefined" && lucide.createIcons());
+</script>
 </body>
 </html>

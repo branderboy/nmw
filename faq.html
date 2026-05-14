@@ -19,8 +19,8 @@
 <meta name="twitter:description" content="Answers about packages, performance dates, distribution, refunds, sponsorship, and the DJ Call. Everything in one place.">
 <meta name="twitter:image" content="https://www.newmusicwednesdayslive.com/images/nmw-logo.png">
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@0.474.0"></script>
 <!-- PWA -->
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="theme-color" content="#8A1558">
@@ -28,46 +28,10 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="NMW">
 <script src="/assets/pwa.js" defer></script>
-<style>
-    body {
-        font-family: 'Inter', sans-serif;
-        background-color: #FAFAF7; /* NMW cream */
-        color: #1A0418;
-    }
-
-    /* Typography overrides for that chunky SXSW feel */
-    h1, h2, h3, .heading-font {
-        font-weight: 900;
-        letter-spacing: -0.03em;
-        text-transform: uppercase;
-    }
-
-    /* NMW Brand Color Scale (derived from logo magenta) */
-    .bg-sxsw-pink     { background-color: #8A1558; } /* primary brand magenta */
-    .bg-sxsw-deeppink { background-color: #680D3E; } /* deeper magenta */
-    .bg-sxsw-teal     { background-color: #FBCFE8; } /* soft blush */
-    .bg-sxsw-green    { background-color: #FACC15; } /* gold accent */
-    .bg-sxsw-dark     { background-color: #222222; } /* charcoal */
-    .bg-brand-cream   { background-color: #FAFAF7; }
-    .bg-brand-blush50 { background-color: #FDF2F8; } /* palest brand blush */
-    .text-sxsw-pink     { color: #8A1558; }
-    .text-sxsw-deeppink { color: #680D3E; }
-    .text-sxsw-teal     { color: #FBCFE8; }
-    .text-brand-gold    { color: #FACC15; }
-    .border-sxsw-deeppink { border-color: #680D3E; }
-
-    /* Smooth scroll */
-    html { scroll-behavior: smooth; }
-
-    /* Accordion chevron rotation */
-    details[open] > summary .faq-icon-plus { display: none; }
-    details:not([open]) > summary .faq-icon-minus { display: none; }
-    summary::-webkit-details-marker { display: none; }
-    summary { list-style: none; }
-</style>
+<link rel="stylesheet" href="assets/nmw.css">
 <script>
   if (typeof tailwind !== "undefined") tailwind.config = { theme: { extend: {
-    fontFamily: { sans: ['Inter','sans-serif'] },
+    fontFamily: { sans: ['Inter','sans-serif'], serif: ['Merriweather','serif'] },
     colors: { brand: { 500:'#8A1558', 600:'#680D3E' } }
   }}}
 </script>
@@ -131,141 +95,116 @@
 }
 </script>
 </head>
-<body class="antialiased">
+<body class="bg-gray-50 text-gray-900 selection:bg-[#8A1558] selection:text-white">
 
-    <!-- Top Location Banner -->
-    <div class="bg-sxsw-dark text-white text-xs md:text-sm font-bold tracking-widest uppercase py-2 text-center w-full z-50 relative">
-        EVERY WED · THE PENTHOUSE NYC · MIDTOWN, MANHATTAN
+<header class="sxsw-header">
+  <div class="sxsw-header__top-bar">EVERY WED &middot; THE PENTHOUSE NYC &middot; MIDTOWN, MANHATTAN</div>
+  <div class="sxsw-header__main">
+    <a href="index.html" class="sxsw-header__brand">
+      <img src="images/nmw-logo-light.png" class="sxsw-header__logo" alt="New Music Wednesdays" />
+    </a>
+    <div class="sxsw-header__nav-left">
+      <a href="index.html">HOME</a>
+      <div class="nav-dropdown is-active">
+        <button type="button" class="nav-dropdown__trigger">MISSION</button>
+        <div class="nav-dropdown__panel">
+          <a href="mission.html">Mission</a>
+          <a href="faq.html" class="is-active">FAQ</a>
+        </div>
+      </div>
+      <a href="attend.html">ATTEND</a>
+      <a href="apply.html">ARTIST ACCESS</a>
+      <div class="nav-dropdown">
+        <button type="button" class="nav-dropdown__trigger">LISTEN</button>
+        <div class="nav-dropdown__panel">
+          <a href="dj-call.html">DJ Call</a>
+          <a href="podcast.html">Podcast</a>
+        </div>
+      </div>
+      <a href="blog.html">THE DROP</a>
+      <a href="sponsor.html">CAMPAIGN STORE</a>
     </div>
+    <a href="attend.html" class="sxsw-header__cta sxsw-header__cta--primary"><i data-lucide="ticket" class="w-4 h-4"></i> ATTEND</a>
+  </div>
+</header>
 
-    <!-- Navigation -->
-    <nav class="w-full bg-white/90 backdrop-blur-md border-b border-gray-200 sticky top-0 z-40">
-        <div class="w-full flex justify-between items-center px-6 md:px-12 py-3">
-            <a href="index.html" class="flex items-center gap-2">
-                <img src="images/nmw-logo.png" alt="New Music Wednesdays" class="h-20 md:h-24 w-auto" style="filter: brightness(0.55) saturate(1.4) hue-rotate(-10deg);" />
-            </a>
-            <div class="hidden md:flex space-x-6 items-center text-sm font-bold tracking-wide text-gray-600">
-                <a href="index.html" class="hover:text-black">HOME</a>
-                <a href="mission.html" class="hover:text-black">MISSION</a>
-                <a href="attend.html" class="hover:text-black">ATTEND</a>
-                <a href="dj-call.html" class="hover:text-black">DJ CALL</a>
-                <a href="podcast.html" class="hover:text-black">PODCAST</a>
-                <a href="faq.html" class="text-black">FAQ</a>
-                <a href="alerts.html" class="hover:text-black">SUBSCRIBE NOW</a>
-                <a href="sponsor.html" class="hover:text-black">CAMPAIGN STORE</a>
-                <a href="apply.html" class="bg-[#8A1558] text-white px-4 py-2 rounded font-bold tracking-widest text-xs hover:bg-[#680D3E] transition-colors">Apply Now</a>
-            </div>
-        </div>
-    </nav>
+<section class="max-w-4xl mx-auto px-4 pt-8 md:pt-12 pb-2">
+  <div class="font-mono text-[11px] uppercase tracking-[0.18em] text-gray-500 mb-3">FAQ, NMW</div>
+  <h1 class="text-5xl sm:text-6xl md:text-7xl font-black tracking-tighter uppercase leading-[0.9] mb-3 text-gray-900">Questions, answered.</h1>
+  <p class="text-base md:text-lg text-gray-600 max-w-2xl">Everything you need to know about NMW.</p>
+</section>
+<div class="max-w-4xl mx-auto px-4"><div class="h-px bg-gray-900 my-6"></div></div>
 
-    <!-- Page Header -->
-    <header class="py-14 md:py-20 px-6 md:px-12 bg-brand-blush50 border-b-8 border-sxsw-pink">
-        <div class="max-w-5xl mx-auto text-left">
-            <p class="font-bold text-xs md:text-sm tracking-widest text-sxsw-pink mb-4 uppercase">[ FAQ · New Music Wednesdays ]</p>
-            <h1 class="text-5xl md:text-7xl lg:text-8xl text-black leading-[0.9] mb-6">QUESTIONS, ANSWERED.</h1>
-            <p class="text-lg md:text-2xl font-medium text-gray-700 max-w-3xl">Everything you need to know about NMW &mdash; packages, performance dates, distribution, the DJ Call, the Blast, and the Campaign Store.</p>
-        </div>
-    </header>
+<!-- Product tabs -->
+<div class="bg-white sticky top-0 z-30 border-b border-gray-200">
+  <div class="max-w-4xl mx-auto px-4 overflow-x-auto">
+    <div class="flex gap-1 min-w-max py-2" id="productTabs"></div>
+  </div>
+</div>
 
-    <!-- Product Tabs -->
-    <div class="bg-white sticky top-[88px] md:top-[112px] z-30 border-b-4 border-black">
-        <div class="max-w-5xl mx-auto px-4 md:px-6 overflow-x-auto">
-            <div class="flex gap-2 min-w-max py-4" id="productTabs"></div>
-        </div>
+<main class="py-8 md:py-16">
+  <div class="max-w-4xl mx-auto px-4 space-y-4" id="faqList"></div>
+</main>
+
+<footer class="nmw-footer">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-8 py-2">
+      <div class="col-span-2 md:col-span-2">
+        <img src="images/nmw-logo-light.png" alt="New Music Wednesdays, Digiwaxx" class="footer-logo mb-4" />
+        <p class="text-sm leading-relaxed">Live performance and rollout infrastructure for rising artists. Every Wednesday at The Penthouse NYC, presented by <a href="https://www.digiwaxx.com" target="_blank" rel="noopener noreferrer" class="text-[#8A1558] hover:underline">Digiwaxx</a>.</p>
+      </div>
+      <div>
+        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Funnel</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="mission.html">Mission</a></li>
+          <li><a href="attend.html">Events</a></li>
+          <li><a href="https://www.newmusicwednesdayslive.com/rsvp" target="_blank" rel="noopener">RSVP</a></li>
+          <li><a href="dj-call.html">DJ Call</a></li>
+          <li><a href="podcast.html">Podcast</a></li>
+          <li><a href="apply.html">Artist Access</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="alerts.html">Subscribe Now</a></li>
+          <li><a href="sponsor.html">Campaign Store</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Distribution</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="https://www.digiwaxx.com" target="_blank" rel="noopener">Digiwaxx</a></li>
+          <li><a href="https://www.newmusicwednesdayslive.com" target="_blank" rel="noopener">NewMusicWednesdaysLive</a></li>
+          <li><a href="https://dice.fm" target="_blank" rel="noopener">DICE</a></li>
+          <li><a href="https://www.bandsintown.com" target="_blank" rel="noopener">Bandsintown</a></li>
+          <li><a href="https://www.songkick.com" target="_blank" rel="noopener">Songkick</a></li>
+          <li><a href="https://www.eventbrite.com" target="_blank" rel="noopener">Eventbrite</a></li>
+          <li><a href="https://lu.ma" target="_blank" rel="noopener">Luma</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Listings</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z" target="_blank" rel="noopener">Google Maps</a></li>
+          <li><a href="https://www.tripadvisor.com" target="_blank" rel="noopener">TripAdvisor</a></li>
+          <li><a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.youtube.com" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://www.tiktok.com" target="_blank" rel="noopener">TikTok</a></li>
+          <li><a href="https://x.com" target="_blank" rel="noopener">X / Twitter</a></li>
+        </ul>
+      </div>
     </div>
-
-    <!-- FAQ List -->
-    <main class="py-14 md:py-20 px-6 md:px-12">
-        <div class="max-w-5xl mx-auto" id="faqList"></div>
-    </main>
-
-    <!-- Bottom CTA -->
-    <section class="py-14 px-6 md:px-12 bg-sxsw-teal border-y-8 border-sxsw-pink text-center">
-        <div class="max-w-3xl mx-auto">
-            <p class="font-bold text-xs md:text-sm tracking-widest text-sxsw-deeppink mb-4 uppercase">[ Still Curious? ]</p>
-            <h2 class="text-4xl md:text-6xl text-black mb-6">CAN'T FIND YOUR ANSWER?</h2>
-            <p class="text-lg md:text-xl text-gray-800 font-medium mb-8">Drop us a line or hop onto the next Wednesday and ask us in person.</p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="attend.html" class="inline-flex items-center justify-center gap-2 bg-sxsw-pink text-white font-black uppercase text-sm md:text-base px-6 py-3 rounded-full hover:bg-sxsw-deeppink transition-colors border-2 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
-                    Join The Guest Waitlist
-                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                </a>
-                <a href="alerts.html" class="inline-flex items-center justify-center gap-2 bg-sxsw-dark text-white font-black uppercase text-sm md:text-base px-6 py-3 rounded-full hover:bg-sxsw-pink transition-colors border-2 border-black shadow-[6px_6px_0px_0px_rgba(138,21,88,1)]">
-                    Subscribe To The Blast
-                    <i data-lucide="mail" class="w-4 h-4"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-sxsw-dark text-white py-14 px-6 md:px-12 border-t-8 border-sxsw-green">
-        <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
-            <div class="lg:col-span-2">
-                <img src="images/nmw-logo-light.png" alt="New Music Wednesdays" class="h-24 w-auto mb-6" />
-                <p class="text-white font-medium max-w-sm mb-6">
-                    Live performance and rollout infrastructure for rising artists. Every Wednesday at The Penthouse NYC.
-                </p>
-                <p class="text-xs uppercase tracking-widest font-bold text-white">Presented by Digiwaxx</p>
-            </div>
-
-            <div>
-                <h4 class="font-bold uppercase tracking-widest text-white mb-4 text-sm">Funnel</h4>
-                <ul class="flex flex-col gap-2 font-medium text-white">
-                    <li><a href="index.html" class="hover:text-sxsw-pink transition-colors">Home</a></li>
-                    <li><a href="mission.html" class="hover:text-sxsw-pink transition-colors">Mission</a></li>
-                    <li><a href="attend.html" class="hover:text-sxsw-pink transition-colors">Events</a></li>
-                    <li><a href="https://www.newmusicwednesdayslive.com/rsvp" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">RSVP</a></li>
-                    <li><a href="dj-call.html" class="hover:text-sxsw-pink transition-colors">DJ Call</a></li>
-                    <li><a href="podcast.html" class="hover:text-sxsw-pink transition-colors">Podcast</a></li>
-                    <li><a href="apply.html" class="hover:text-sxsw-pink transition-colors">Artist Access</a></li>
-                    <li><a href="faq.html" class="hover:text-sxsw-pink transition-colors">FAQ</a></li>
-                    <li><a href="alerts.html" class="hover:text-sxsw-pink transition-colors">Subscribe Now</a></li>
-                    <li><a href="sponsor.html" class="hover:text-sxsw-pink transition-colors">Campaign Store</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="font-bold uppercase tracking-widest text-white mb-4 text-sm">Distribution</h4>
-                <ul class="flex flex-col gap-2 font-medium text-white">
-                    <li><a href="https://www.digiwaxx.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Digiwaxx</a></li>
-                    <li><a href="https://www.newmusicwednesdayslive.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">NewMusicWednesdaysLive</a></li>
-                    <li><a href="https://dice.fm" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">DICE</a></li>
-                    <li><a href="https://www.bandsintown.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Bandsintown</a></li>
-                    <li><a href="https://www.songkick.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Songkick</a></li>
-                    <li><a href="https://www.eventbrite.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Eventbrite</a></li>
-                    <li><a href="https://lu.ma" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Luma</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="font-bold uppercase tracking-widest text-white mb-4 text-sm">Listings</h4>
-                <ul class="flex flex-col gap-2 font-medium text-white mb-8">
-                    <li><a href="https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Google Maps</a></li>
-                    <li><a href="https://www.tripadvisor.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">TripAdvisor</a></li>
-                </ul>
-                <h4 class="font-bold uppercase tracking-widest text-white mb-4 text-sm">Socials</h4>
-                <ul class="flex flex-col gap-2 font-medium text-white">
-                    <li><a href="https://www.instagram.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Instagram</a></li>
-                    <li><a href="https://www.youtube.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">YouTube</a></li>
-                    <li><a href="https://www.tiktok.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">TikTok</a></li>
-                    <li><a href="https://x.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">X / Twitter</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="w-full mt-16 pt-8 border-t border-white/20 flex flex-col md:flex-row justify-between items-center text-sm text-white font-medium">
-            <p>&copy; 2026 New Music Wednesdays. By Digiwaxx. All rights reserved.</p>
-            <div class="flex gap-4 mt-4 md:mt-0">
-                <a href="privacy.html" class="hover:text-sxsw-pink">Privacy Policy</a>
-                <a href="terms.html" class="hover:text-sxsw-pink">Terms &amp; Conditions</a>
-            </div>
-        </div>
-    </footer>
+    <div class="border-t border-white/10 pt-6 mt-6 flex flex-col sm:flex-row gap-3 sm:gap-0 sm:justify-between items-center text-xs">
+      <div>&copy; 2026 New Music Wednesdays. By Digiwaxx. All rights reserved.</div>
+      <div class="flex gap-5">
+        <a href="privacy.html" class="hover:text-white">Privacy Policy</a>
+        <a href="terms.html" class="hover:text-white">Terms &amp; Conditions</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
 <script>
 const PRODUCTS = [
-  { id: 'events',   label: 'NMW Events',      icon: 'calendar-days' },
+  { id: 'events',   label: 'NMW Events',     icon: 'calendar-days' },
   { id: 'artists',  label: 'NMW for Artists', icon: 'mic' },
   { id: 'blast',    label: 'The Blast',       icon: 'mail' },
   { id: 'djcall',   label: 'NMW DJ Call',     icon: 'video' },
@@ -277,7 +216,7 @@ const FAQS = [
   { cat: 'events', q: 'What is New Music Wednesdays?',
     a: 'A weekly demand engine for rising artists, structured as a three-block Wednesday at The Penthouse NYC. <b>4-6 PM</b>: Digiwaxx DJ Call (live Zoom roundtable). <b>7-9 PM</b>: Happy Hour + The Media Pit (home of The Next Up Experience couch interviews). <b>9-11 PM</b>: Live performances at The Booth + Barz at the Bar cyphers. Hosted by Anna Nyakana, CL, and Chrys Childs.' },
   { cat: 'events', q: 'How do I RSVP to an upcoming Wednesday?',
-    a: 'Join the fan waitlist on the <a href="attend.html" class="text-sxsw-pink underline font-bold">Attend page</a> &mdash; <b>free during launch phase</b>. Approved waitlist members get the RSVP link the moment doors open, plus after-hours invites. The room is ~150 seats and we keep it small on purpose.' },
+    a: 'Join the fan waitlist on the <a href="attend.html" class="text-[#8A1558] underline">Attend page</a> &mdash; <b>free during launch phase</b>. Approved waitlist members get the RSVP link the moment doors open, plus after-hours invites. The room is ~150 seats and we keep it small on purpose.' },
   { cat: 'events', q: 'Where is The Penthouse NYC?',
     a: 'Manhattan. Exact address goes to approved waitlist members the morning of the show. The day runs in three blocks: DJ Call 4-6 PM (Zoom), Happy Hour + Media Pit 7-9 PM (in person), Live Performances 9-11 PM.' },
   { cat: 'events', q: 'Is there a cover or ticket fee for fans?',
@@ -303,23 +242,32 @@ const FAQS = [
   { cat: 'artists', q: 'What does "distribution" actually mean?',
     a: 'Once verified, NMW auto-creates listings for your performance on Eventbrite and Luma, generates DICE event copy, drops your event into Bandsintown and Songkick, generates a custom event link, and ships you a promo asset bundle (flyer, story graphic, captions).' },
   { cat: 'artists', q: 'Where can I see who from the press is in the room?',
-    a: 'Verified performance artists can view the live media access roster at <a href="https://www.newmusicwednesdayslive.com/mediaaccess" target="_blank" rel="noopener noreferrer" class="text-sxsw-pink underline font-bold">newmusicwednesdayslive.com/mediaaccess</a>, that\'s who is in the press pit each Wednesday.' },
+    a: 'Verified performance artists can view the live media access roster at <a href="https://www.newmusicwednesdayslive.com/mediaaccess" target="_blank" rel="noopener noreferrer" class="text-[#8A1558] underline">newmusicwednesdayslive.com/mediaaccess</a>, that\'s who is in the press pit each Wednesday.' },
   { cat: 'artists', q: 'Do I get the photos and clips after?',
-    a: 'Yes. After your performance you receive your share package: performance clips, photos, recap content, Instagram-story-ready assets, and a personalized share link. The system prompts you to share, that\'s how the loop compounds.' },
-  { cat: 'artists', q: 'Why are there 5 packages?',
-    a: 'Different rollouts need different fuel. Media Ready ($200) and One Mic Visual ($250) are entry-tier press / content products. Performance Ready ($395) is the floor for booking a live slot. Full Experience ($650) and Premiere ($899) layer on premium press positioning and amplification for artists actively rolling out a project.' },
-  { cat: 'artists', q: 'Are there hidden fees?',
-    a: 'No. The number on the package is what you pay. Optional distribution upgrades (Regular, Regular Plus, Advance, Advance Plus) are clearly priced and only added if you choose them.' },
-  { cat: 'artists', q: 'Can I get a refund?',
-    a: 'Slots are limited and we begin distribution work the moment you verify. Once verification is approved and event data is live on third-party platforms, packages are non-refundable. If something goes wrong on our end, we make it right.' },
+    a: 'Yes. After your performance you receive your share package: performance clips, photos, recap content, Instagram-story-ready assets, and a personalized share link. The system prompts you to share, that\'s how the loop compounds.'
+  },
+  {
+    cat: 'Pricing',
+    q: 'Why are there 5 packages?',
+    a: 'Different rollouts need different fuel. Media Ready ($200) and One Mic Visual ($250) are entry-tier press / content products. Performance Ready ($395) is the floor for booking a live slot. Full Experience ($650) and Premiere ($899) layer on premium press positioning and amplification for artists actively rolling out a project.'
+  },
+  {
+    cat: 'Pricing',
+    q: 'Are there hidden fees?',
+    a: 'No. The number on the package is what you pay. Optional distribution upgrades (Regular, Regular Plus, Advance, Advance Plus) are clearly priced and only added if you choose them.'
+  },
+  {
+    cat: 'artists', q: 'Can I get a refund?',
+    a: 'Slots are limited and we begin distribution work the moment you verify. Once verification is approved and event data is live on third-party platforms, packages are non-refundable. If something goes wrong on our end, we make it right.'
+  },
   { cat: 'artists', q: 'How does the "Invite 5 Artists" reward work?',
-    a: 'Every artist gets a unique referral link. Invite 3 &rarr; priority line access. Invite 5 &rarr; free ticket. Invite 10 &rarr; interview consideration plus featured placement. Track your invites and unlocked rewards on your dashboard.' },
+    a: 'Every artist gets a unique referral link. Invite 3 → priority line access. Invite 5 → free ticket. Invite 10 → interview consideration plus featured placement. Track your invites and unlocked rewards on your dashboard.' },
 
   // ============= THE BLAST =============
   { cat: 'blast', q: 'What is The Blast?',
     a: 'Our weekly newsletter, events, special offers, free giveaways, new music drops, DJ updates, media opportunities, and performance alerts. One email a week, no spam, unsubscribe anytime.' },
   { cat: 'blast', q: 'How do I subscribe?',
-    a: 'Head to <a href="alerts.html" class="text-sxsw-pink underline font-bold">Subscribe Now</a> and fill out the short form. Pick your topics (events, giveaways, new music, etc.) so we only send what you actually want.' },
+    a: 'Head to <a href="alerts.html" class="text-[#8A1558] underline">Subscribe Now</a> and fill out the short form. Pick your topics (events, giveaways, new music, etc.) so we only send what you actually want.' },
   { cat: 'blast', q: 'Will I get spammed?',
     a: 'No. One email a week, max, and the occasional drop alert when something time-sensitive lands (free tickets, sudden lineup, special offer). Unsubscribe is one click.' },
   { cat: 'blast', q: 'What\'s the difference between The Blast and an artist account?',
@@ -327,11 +275,11 @@ const FAQS = [
 
   // ============= NMW DJ CALL =============
   { cat: 'djcall', q: 'What is the NMW DJ Call?',
-    a: 'A live Zoom roundtable every Wednesday from <b>4 to 6 PM ET</b> &mdash; the first block of the Wednesday day map. Tastemakers and DJs nationwide log on, audition new records in real time, and set the tone for what spins next, both in the room that night and across the Digiwaxx DJ network all week. The DJ Call is the participation product; the edited audio gets released as <a href="podcast.html" class="text-sxsw-pink underline font-bold">the NMW Podcast</a>.' },
+    a: 'A live Zoom roundtable every Wednesday from <b>4 to 6 PM ET</b> &mdash; the first block of the Wednesday day map. Tastemakers and DJs nationwide log on, audition new records in real time, and set the tone for what spins next, both in the room that night and across the Digiwaxx DJ network all week. The DJ Call is the participation product; the edited audio gets released as <a href="podcast.html" class="text-[#8A1558] underline">the NMW Podcast</a>.' },
   { cat: 'djcall', q: 'What is the difference between the DJ Call and the Podcast?',
     a: 'The DJ Call is the live source &mdash; you participate in real time on Zoom. The Podcast is the edited output &mdash; the audio gets cut, mixed, and shipped to Spotify, Apple, YouTube, and Amazon Music. Different value props, same content. The DJ Call is for participation and networking; the Podcast is for asynchronous listen-back.' },
   { cat: 'djcall', q: 'How do I get on the call list?',
-    a: 'Fill out the short application at <a href="dj-call.html" class="text-sxsw-pink underline font-bold">DJ Call</a>. We confirm within 24 hours and add you to the recurring invite.' },
+    a: 'Fill out the short application at <a href="dj-call.html" class="text-[#8A1558] underline">DJ Call</a>. We confirm within 24 hours and add you to the recurring invite.' },
   { cat: 'djcall', q: 'How do I sign in every Wednesday?',
     a: 'Confirmed DJs receive a standing Zoom link by email. Same link, every week, save it once. Lost it? Email djcall@newmusicwednesday.com and we resend within the hour.' },
   { cat: 'djcall', q: 'Can I add the DJ Call to my calendar?',
@@ -345,7 +293,7 @@ const FAQS = [
   { cat: 'sponsors', q: 'What does a sponsor get in return?',
     a: 'A live qualified audience of artists, DJs, media, and tastemakers. Co-branded content that ships across our network and the artists\' own audiences. Direct relationships with the artists in the room. And a reliable cultural drumbeat, every Wednesday, on schedule.' },
   { cat: 'sponsors', q: 'How do I start the conversation?',
-    a: 'Fill out the inquiry form on the <a href="sponsor.html" class="text-sxsw-pink underline font-bold">Campaign</a> page. Tell us what you\'re trying to accomplish and what your budget looks like. Our partnerships team replies within two business days.' },
+    a: 'Fill out the inquiry form on the <a href="sponsor.html" class="text-[#8A1558] underline">Campaign</a> page. Tell us what you\'re trying to accomplish and what your budget looks like. Our partnerships team replies within two business days.' },
   { cat: 'sponsors', q: 'Are there minimums?',
     a: 'We work with brands at multiple levels. Tell us your goal and timing on the inquiry form, we\'ll come back with what fits.' },
 ];
@@ -355,13 +303,10 @@ const list = document.getElementById('faqList');
 
 function renderProduct(prodId) {
   // Tabs
-  tabsEl.innerHTML = PRODUCTS.map(p => {
-    const active = p.id === prodId;
-    return `
-    <button data-prod="${p.id}" class="px-5 py-2.5 rounded-full text-xs font-black uppercase tracking-widest whitespace-nowrap transition border-2 ${active ? 'bg-sxsw-pink text-white border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]' : 'bg-white text-gray-700 border-black hover:bg-sxsw-teal'}">
-      <i data-lucide="${p.icon}" class="w-4 h-4 inline mr-1 align-[-2px]"></i>${p.label}
-    </button>`;
-  }).join('');
+  tabsEl.innerHTML = PRODUCTS.map(p => `
+    <button data-prod="${p.id}" class="px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest whitespace-nowrap transition bg-white ${p.id === prodId ? 'border-2 border-[#8A1558] text-[#8A1558]' : 'border border-gray-200 text-gray-600 hover:border-gray-400'}">
+      <i data-lucide="${p.icon}" class="w-3.5 h-3.5 inline mr-1"></i>${p.label}
+    </button>`).join('');
   tabsEl.querySelectorAll('[data-prod]').forEach(b => b.addEventListener('click', () => renderProduct(b.dataset.prod)));
 
   // FAQs
@@ -369,30 +314,27 @@ function renderProduct(prodId) {
   const prod = PRODUCTS.find(p => p.id === prodId);
   list.innerHTML = `
     <div>
-      <div class="mb-8 flex items-center gap-3">
-        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-sxsw-pink text-white border-2 border-black"><i data-lucide="${prod.icon}" class="w-5 h-5"></i></span>
-        <h2 class="text-2xl md:text-3xl text-black">${prod.label}</h2>
-      </div>
-      <div class="space-y-4">
+      <h2 class="text-xs font-black uppercase tracking-widest text-[#8A1558] mb-4 flex items-center gap-2"><i data-lucide="${prod.icon}" class="w-4 h-4"></i> ${prod.label}</h2>
+      <div class="space-y-3">
         ${items.map(f => `
-          <details class="group bg-white border-4 border-black rounded-[24px] p-6 md:p-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] cursor-pointer transition-transform hover:-translate-y-0.5">
-            <summary class="flex items-start justify-between gap-4 cursor-pointer">
-              <span class="font-black text-lg md:text-xl text-black uppercase tracking-tight leading-snug group-open:text-sxsw-pink">${f.q}</span>
-              <span class="flex-shrink-0 w-9 h-9 rounded-full bg-white border-2 border-black flex items-center justify-center text-black group-open:bg-sxsw-pink group-open:text-white transition-colors">
-                <i data-lucide="plus" class="w-4 h-4 faq-icon-plus"></i>
-                <i data-lucide="minus" class="w-4 h-4 faq-icon-minus"></i>
+          <details class="section-card group cursor-pointer transition-all">
+            <summary class="flex items-start justify-between gap-4 list-none cursor-pointer">
+              <span class="font-bold text-lg text-gray-900 group-open:text-[#8A1558]">${f.q}</span>
+              <span class="flex-shrink-0 w-8 h-8 rounded-full border-2 border-gray-200 flex items-center justify-center text-gray-400 group-open:bg-[#8A1558] group-open:border-[#8A1558] group-open:text-white transition-colors">
+                <i data-lucide="plus" class="w-4 h-4 group-open:hidden"></i>
+                <i data-lucide="minus" class="w-4 h-4 hidden group-open:block"></i>
               </span>
             </summary>
-            <div class="mt-5 pt-5 border-t-2 border-black/10 text-gray-800 text-base md:text-lg leading-relaxed font-medium">${f.a}</div>
+            <div class="mt-4 pt-4 border-t border-gray-100 text-gray-700 font-serif leading-relaxed">${f.a}</div>
           </details>`).join('')}
       </div>
     </div>
   `;
-  if (window.lucide) lucide.createIcons();
+  (typeof lucide !== "undefined" && lucide.createIcons());
 }
 
 renderProduct('events');
-if (window.lucide) lucide.createIcons();
+(typeof lucide !== "undefined" && lucide.createIcons());
 </script>
 </body>
 </html>

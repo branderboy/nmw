@@ -19,8 +19,8 @@
 <meta name="twitter:description" content="Live performances every Wednesday at The Penthouse NYC. RSVP, see lineups, add to your calendar, share with your team.">
 <meta name="twitter:image" content="https://www.newmusicwednesdayslive.com/images/nmw-logo.png">
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@0.474.0"></script>
 <!-- PWA -->
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="theme-color" content="#8A1558">
@@ -28,68 +28,10 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="NMW">
 <script src="/assets/pwa.js" defer></script>
-<style>
-    body {
-        font-family: 'Inter', sans-serif;
-        background-color: #FAFAF7; /* NMW cream */
-        color: #1A0418;
-    }
-
-    /* Typography overrides for that chunky SXSW feel */
-    h1, h2, h3, .heading-font {
-        font-weight: 900;
-        letter-spacing: -0.03em;
-        text-transform: uppercase;
-    }
-
-    /* NMW Brand Color Scale */
-    .bg-sxsw-pink     { background-color: #8A1558; }
-    .bg-sxsw-deeppink { background-color: #680D3E; }
-    .bg-sxsw-teal     { background-color: #FBCFE8; }
-    .bg-sxsw-green    { background-color: #FACC15; }
-    .bg-sxsw-dark     { background-color: #222222; }
-    .bg-brand-cream   { background-color: #FAFAF7; }
-    .bg-brand-blush50 { background-color: #FDF2F8; }
-    .bg-brand-soft    { background-color: #D14785; }
-    .text-sxsw-pink     { color: #8A1558; }
-    .text-sxsw-deeppink { color: #680D3E; }
-    .text-sxsw-teal     { color: #FBCFE8; }
-    .text-brand-gold    { color: #FACC15; }
-    .border-sxsw-deeppink { border-color: #680D3E; }
-
-    /* Form controls */
-    .nmw-input {
-        width: 100%;
-        background: #FFFFFF;
-        border: 2px solid #000000;
-        border-radius: 12px;
-        padding: 14px 16px;
-        font-family: 'Inter', sans-serif;
-        font-weight: 500;
-        font-size: 1rem;
-        color: #1A0418;
-        transition: border-color .15s ease, box-shadow .15s ease;
-    }
-    .nmw-input:focus {
-        outline: none;
-        border-color: #8A1558;
-        box-shadow: 0 0 0 3px rgba(138,21,88,0.15);
-    }
-    .nmw-label {
-        display: block;
-        font-size: .75rem;
-        font-weight: 800;
-        letter-spacing: .12em;
-        text-transform: uppercase;
-        color: #1A0418;
-        margin-bottom: .5rem;
-    }
-
-    html { scroll-behavior: smooth; }
-</style>
+<link rel="stylesheet" href="assets/nmw.css">
 <script>
   if (typeof tailwind !== "undefined") tailwind.config = { theme: { extend: {
-    fontFamily: { sans: ['Inter','sans-serif'] },
+    fontFamily: { sans: ['Inter','sans-serif'], serif: ['Merriweather','serif'] },
     colors: { brand: { 500:'#8A1558', 600:'#680D3E' } }
   }}}
 </script>
@@ -153,386 +95,341 @@
 }
 </script>
 </head>
-<body class="antialiased">
+<body class="bg-white text-gray-900 selection:bg-[#8A1558] selection:text-white">
 
-    <!-- Top Location Banner -->
-    <div class="bg-sxsw-dark text-white text-xs md:text-sm font-bold tracking-widest uppercase py-2 text-center w-full z-50 relative">
-        EVERY WED &middot; THE PENTHOUSE NYC &middot; MIDTOWN, MANHATTAN
+<header class="sxsw-header">
+  <div class="sxsw-header__top-bar">EVERY WED &middot; THE PENTHOUSE NYC &middot; MIDTOWN, MANHATTAN</div>
+  <div class="sxsw-header__main">
+    <a href="index.html" class="sxsw-header__brand">
+      <img src="images/nmw-logo-light.png" class="sxsw-header__logo" alt="New Music Wednesdays" />
+    </a>
+    <div class="sxsw-header__nav-left">
+      <a href="index.html">HOME</a>
+    <div class="nav-dropdown">
+      <button type="button" class="nav-dropdown__trigger">MISSION</button>
+      <div class="nav-dropdown__panel">
+        <a href="mission.html">Mission</a>
+        <a href="faq.html">FAQ</a>
+      </div>
     </div>
-
-    <!-- Navigation -->
-    <nav class="w-full bg-white/90 backdrop-blur-md border-b border-gray-200 sticky top-0 z-40">
-        <div class="w-full flex justify-between items-center px-6 md:px-12 py-3">
-            <a href="index.html" class="flex items-center gap-2">
-                <img src="images/nmw-logo.png" alt="New Music Wednesdays" class="h-20 md:h-24 w-auto" style="filter: brightness(0.55) saturate(1.4) hue-rotate(-10deg);" />
-            </a>
-            <div class="hidden md:flex space-x-6 items-center text-sm font-bold tracking-wide text-gray-600">
-                <a href="index.html" class="hover:text-black">HOME</a>
-                <a href="mission.html" class="hover:text-black">MISSION</a>
-                <a href="attend.html" class="text-black">ATTEND</a>
-                <a href="dj-call.html" class="hover:text-black">DJ CALL</a>
-                <a href="podcast.html" class="hover:text-black">PODCAST</a>
-                <a href="faq.html" class="hover:text-black">FAQ</a>
-                <a href="alerts.html" class="hover:text-black">SUBSCRIBE NOW</a>
-                <a href="sponsor.html" class="hover:text-black">CAMPAIGN STORE</a>
-                <a href="apply.html" class="bg-[#8A1558] text-white px-4 py-2 rounded font-bold tracking-widest text-xs hover:bg-[#680D3E] transition-colors">Apply Now</a>
-            </div>
+      <a href="attend.html" class="is-active">ATTEND</a>
+      <a href="apply.html">ARTIST ACCESS</a>
+      <div class="nav-dropdown">
+        <button type="button" class="nav-dropdown__trigger">LISTEN</button>
+        <div class="nav-dropdown__panel">
+          <a href="dj-call.html">DJ Call</a>
+          <a href="podcast.html">Podcast</a>
         </div>
-    </nav>
+      </div>
+      <a href="blog.html">THE DROP</a>
+      <a href="sponsor.html">CAMPAIGN STORE</a>
+    </div>
+    <a href="attend.html" class="sxsw-header__cta sxsw-header__cta--primary"><i data-lucide="ticket" class="w-4 h-4"></i> ATTEND</a>
+  </div>
+</header>
 
-    <!-- Hero -->
-    <header class="relative overflow-hidden border-b-4 border-black bg-sxsw-pink">
-        <div class="absolute inset-0 opacity-30 bg-cover bg-center" style="background-image:url('images/audience.avif');"></div>
-        <div class="relative pt-16 pb-14 px-6 md:px-12 text-left w-full max-w-3xl">
-            <p class="font-bold text-sm tracking-widest text-brand-gold mb-4 uppercase">[ Attend &middot; NMW ]</p>
-            <h1 class="text-5xl md:text-6xl lg:text-7xl font-black leading-[0.95] mb-6 text-white drop-shadow-[2px_2px_0_rgba(0,0,0,0.6)]">
-                REQUEST<br>YOUR SPOT.
-            </h1>
-            <p class="text-lg md:text-2xl font-semibold mb-8 text-white/90">
-                Group-based waitlist. We send offers to the strongest groups each week.
-            </p>
-            <div class="flex flex-col sm:flex-row items-start gap-3">
-                <a href="#rsvp" class="inline-flex items-center gap-2 bg-black text-white font-black uppercase text-sm md:text-base px-6 py-3 rounded-full hover:scale-105 transition-transform shadow-[6px_6px_0px_0px_rgba(255,255,255,0.4)]">
-                    Join The Waitlist
-                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                </a>
-                <a href="#where" class="inline-flex items-center gap-2 bg-white text-sxsw-pink font-black uppercase text-sm md:text-base px-6 py-3 rounded-full hover:scale-105 transition-transform shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
-                    Where To Find Us
-                    <i data-lucide="map-pin" class="w-4 h-4"></i>
-                </a>
-            </div>
+<section class="max-w-5xl mx-auto px-4 pt-8 md:pt-12 pb-2">
+  <div class="font-mono text-[11px] uppercase tracking-[0.18em] text-gray-500 mb-3">Attend, NMW</div>
+  <h1 class="display display-tight text-5xl sm:text-6xl md:text-7xl text-ink mb-3">Request your spot.</h1>
+  <p class="text-base md:text-lg text-gray-600 max-w-2xl">Group-based waitlist. We send offers to the strongest groups each week.</p>
+</section>
+<div class="max-w-5xl mx-auto px-4"><div class="h-px bg-gray-900 my-6"></div></div>
+
+<!-- LIVE DEMAND -->
+<section class="max-w-5xl mx-auto px-4 mb-6">
+  <div class="text-[10px] font-mono uppercase tracking-[0.18em] text-gray-500 mb-3">Live demand &middot; this week</div>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+    <div class="bg-white border border-gray-200 rounded-xl p-4">
+      <div class="text-3xl md:text-4xl font-black tabular-nums text-gray-900" data-counter="requests" data-target="1284">1,284</div>
+      <div class="text-[11px] font-mono uppercase tracking-widest text-gray-500 mt-1">requests in queue</div>
+    </div>
+    <div class="bg-white border border-gray-200 rounded-xl p-4">
+      <div class="text-3xl md:text-4xl font-black tabular-nums text-gray-900" data-counter="groups" data-target="47">47</div>
+      <div class="text-[11px] font-mono uppercase tracking-widest text-gray-500 mt-1">groups offered this month</div>
+    </div>
+    <div class="bg-white border border-gray-200 rounded-xl p-4">
+      <div class="text-3xl md:text-4xl font-black tabular-nums text-[#8A1558]" data-counter="seats" data-target="150">150</div>
+      <div class="text-[11px] font-mono uppercase tracking-widest text-gray-500 mt-1">seats per Wednesday</div>
+    </div>
+    <div class="bg-white border border-gray-200 rounded-xl p-4">
+      <div class="text-3xl md:text-4xl font-black tabular-nums text-gray-900" data-counter="left" data-target="23">23</div>
+      <div class="text-[11px] font-mono uppercase tracking-widest text-gray-500 mt-1">spots open this Wed</div>
+    </div>
+  </div>
+</section>
+
+<main class="max-w-5xl mx-auto px-4 py-6">
+
+  <!-- RSVP FORM -->
+  <section class="mb-12">
+    <div class="ed-rule mb-8"></div>
+    <div class="mono-eyebrow mb-4">RSVP &middot; Wednesday next</div>
+    <h2 class="section-h2 text-4xl md:text-6xl mb-5">Tell us who's coming.</h2>
+    <p class="text-base md:text-lg text-gray-700 max-w-2xl mb-10">Strong groups get the offer. Solo guests get the wait.</p>
+
+    <form id="attendForm" class="space-y-10" novalidate>
+
+      <!-- Q1: Group size -->
+      <fieldset>
+        <legend class="text-xl md:text-2xl font-black tracking-tight text-gray-900 mb-4">1. How many tickets?</legend>
+        <select name="groupSize" id="attendGroupSize" required class="onboarding-input max-w-xs">
+          <option value="">Select group size</option>
+          <option value="1">1 ticket</option>
+          <option value="2">2 tickets</option>
+          <option value="3">3 tickets</option>
+          <option value="4">4 tickets</option>
+          <option value="5+">5+ tickets</option>
+        </select>
+      </fieldset>
+
+      <!-- Q2: Who you are -->
+      <fieldset>
+        <legend class="text-xl md:text-2xl font-black tracking-tight text-gray-900 mb-4">2. Main contact</legend>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label class="onboarding-label">Your name *</label>
+            <input class="onboarding-input" name="name" placeholder="Full name" required>
+          </div>
+          <div>
+            <label class="onboarding-label">Email *</label>
+            <input class="onboarding-input" name="email" type="email" placeholder="you@email.com" required>
+          </div>
+          <div>
+            <label class="onboarding-label">Mobile *</label>
+            <input class="onboarding-input" name="phone" type="tel" placeholder="(555) 000-0000" required>
+          </div>
+          <div>
+            <label class="onboarding-label">Instagram</label>
+            <input class="onboarding-input" name="instagram" placeholder="@yourhandle">
+          </div>
         </div>
-    </header>
+      </fieldset>
 
-    <!-- Live Demand Stats -->
-    <section class="py-14 px-6 md:px-12 bg-sxsw-teal border-b-8 border-sxsw-pink">
-        <div class="w-full">
-            <p class="font-bold text-xs tracking-widest text-black mb-6 uppercase">[ Live demand &middot; this week ]</p>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-                <div class="bg-white border-4 border-black rounded-[24px] p-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
-                    <div class="text-4xl md:text-5xl font-black tabular-nums text-black" data-counter="requests" data-target="1284">1,284</div>
-                    <div class="text-[11px] font-bold uppercase tracking-widest text-gray-600 mt-2">Requests in queue</div>
-                </div>
-                <div class="bg-white border-4 border-black rounded-[24px] p-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
-                    <div class="text-4xl md:text-5xl font-black tabular-nums text-black" data-counter="groups" data-target="47">47</div>
-                    <div class="text-[11px] font-bold uppercase tracking-widest text-gray-600 mt-2">Groups offered this month</div>
-                </div>
-                <div class="bg-sxsw-pink border-4 border-black rounded-[24px] p-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
-                    <div class="text-4xl md:text-5xl font-black tabular-nums text-white" data-counter="seats" data-target="150">150</div>
-                    <div class="text-[11px] font-bold uppercase tracking-widest text-white mt-2">Seats per Wednesday</div>
-                </div>
-                <div class="bg-sxsw-green border-4 border-black rounded-[24px] p-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
-                    <div class="text-4xl md:text-5xl font-black tabular-nums text-black" data-counter="left" data-target="23">23</div>
-                    <div class="text-[11px] font-bold uppercase tracking-widest text-black mt-2">Spots open this Wed</div>
-                </div>
-            </div>
+      <!-- Q3: open text -->
+      <fieldset>
+        <legend class="text-xl md:text-2xl font-black tracking-tight text-gray-900 mb-4">3. One line on the room.</legend>
+        <input class="onboarding-input w-full" name="why" placeholder="An artist you're coming for, a record you want to hear, etc.">
+      </fieldset>
+
+      <div class="pt-2">
+        <button id="attendSubmitBtn" type="submit" class="inline-flex items-center gap-2 bg-[#8A1558] text-white font-black uppercase tracking-widest text-sm px-7 py-4 rounded-md hover:bg-[#680D3E] transition-colors disabled:opacity-40 disabled:cursor-not-allowed" disabled>
+          <i data-lucide="send" class="w-4 h-4"></i> Submit RSVP
+        </button>
+        <span id="attendValidationHint" class="ml-3 text-xs text-gray-500 align-middle">Pick a group size + fill the required fields.</span>
+      </div>
+    </form>
+
+    <!-- Success state -->
+    <div id="attendSuccess" class="hidden mt-12">
+      <div class="ed-rule mb-10"></div>
+      <div class="mono-eyebrow mb-4">RSVP received</div>
+      <h3 class="section-h2 text-4xl md:text-6xl mb-4">You're in the bid pool.</h3>
+      <p class="text-base md:text-lg text-gray-700 max-w-2xl mb-8">If the room picks your group this week, you'll get a private link by email to claim your tickets.</p>
+      <div class="grid sm:grid-cols-3 gap-x-12 gap-y-6 max-w-3xl">
+        <div>
+          <div class="mono-eyebrow mb-1">Your position</div>
+          <div class="display display-tight text-4xl md:text-6xl text-[#8A1558]" id="attendQueuePosition">#1,285</div>
         </div>
-    </section>
-
-    <!-- RSVP Form Section -->
-    <section id="rsvp" class="py-16 px-6 md:px-12">
-        <div class="w-full max-w-4xl mx-auto">
-            <div class="mb-10">
-                <p class="font-bold text-sm tracking-widest text-gray-500 mb-2 uppercase">[ RSVP &middot; Wednesday next ]</p>
-                <h2 class="text-5xl md:text-7xl text-black mb-4">TELL US WHO'S COMING.</h2>
-                <p class="text-lg md:text-xl text-gray-700 font-medium max-w-2xl">Strong groups get the offer. Solo guests get the wait.</p>
-            </div>
-
-            <div class="bg-white border-4 border-black rounded-[40px] p-8 md:p-12 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
-                <form id="attendForm" class="space-y-10" novalidate>
-
-                    <!-- Q1 -->
-                    <fieldset>
-                        <legend class="text-2xl md:text-3xl font-black uppercase tracking-tight text-black mb-4">1. How many tickets?</legend>
-                        <select name="groupSize" id="attendGroupSize" required class="nmw-input max-w-xs">
-                            <option value="">Select group size</option>
-                            <option value="1">1 ticket</option>
-                            <option value="2">2 tickets</option>
-                            <option value="3">3 tickets</option>
-                            <option value="4">4 tickets</option>
-                            <option value="5+">5+ tickets</option>
-                        </select>
-                    </fieldset>
-
-                    <!-- Q2 -->
-                    <fieldset>
-                        <legend class="text-2xl md:text-3xl font-black uppercase tracking-tight text-black mb-4">2. Main contact</legend>
-                        <div class="grid sm:grid-cols-2 gap-5">
-                            <div>
-                                <label class="nmw-label">Your name *</label>
-                                <input class="nmw-input" name="name" placeholder="Full name" required>
-                            </div>
-                            <div>
-                                <label class="nmw-label">Email *</label>
-                                <input class="nmw-input" name="email" type="email" placeholder="you@email.com" required>
-                            </div>
-                            <div>
-                                <label class="nmw-label">Mobile *</label>
-                                <input class="nmw-input" name="phone" type="tel" placeholder="(555) 000-0000" required>
-                            </div>
-                            <div>
-                                <label class="nmw-label">Instagram</label>
-                                <input class="nmw-input" name="instagram" placeholder="@yourhandle">
-                            </div>
-                        </div>
-                    </fieldset>
-
-                    <!-- Q3 -->
-                    <fieldset>
-                        <legend class="text-2xl md:text-3xl font-black uppercase tracking-tight text-black mb-4">3. One line on the room.</legend>
-                        <input class="nmw-input" name="why" placeholder="An artist you're coming for, a record you want to hear, etc.">
-                    </fieldset>
-
-                    <div class="pt-2 flex flex-col sm:flex-row sm:items-center gap-4">
-                        <button id="attendSubmitBtn" type="submit" class="inline-flex items-center gap-2 bg-sxsw-pink text-white font-black uppercase tracking-widest text-sm px-7 py-4 rounded-full hover:bg-sxsw-deeppink transition-colors disabled:opacity-40 disabled:cursor-not-allowed shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] border-2 border-black" disabled>
-                            <i data-lucide="send" class="w-4 h-4"></i> Submit RSVP
-                        </button>
-                        <span id="attendValidationHint" class="text-xs font-bold uppercase tracking-widest text-gray-500">Pick a group size + fill the required fields.</span>
-                    </div>
-                </form>
-
-                <!-- Success state -->
-                <div id="attendSuccess" class="hidden mt-12 pt-12 border-t-4 border-black">
-                    <p class="font-bold text-sm tracking-widest text-sxsw-pink mb-2 uppercase">[ RSVP received ]</p>
-                    <h3 class="text-4xl md:text-6xl text-black mb-4">YOU'RE IN THE BID POOL.</h3>
-                    <p class="text-base md:text-lg text-gray-700 font-medium max-w-2xl mb-8">If the room picks your group this week, you'll get a private link by email to claim your tickets.</p>
-                    <div class="grid sm:grid-cols-3 gap-6">
-                        <div class="bg-sxsw-teal border-4 border-black rounded-[24px] p-6">
-                            <div class="text-[11px] font-bold uppercase tracking-widest text-black mb-2">Your position</div>
-                            <div class="text-4xl md:text-5xl font-black text-sxsw-pink tracking-tight" id="attendQueuePosition">#1,285</div>
-                        </div>
-                        <div class="bg-sxsw-green border-4 border-black rounded-[24px] p-6">
-                            <div class="text-[11px] font-bold uppercase tracking-widest text-black mb-2">Group size</div>
-                            <div class="text-4xl md:text-5xl font-black text-black tracking-tight" id="attendGroupSizeOut">&mdash;</div>
-                        </div>
-                        <div class="bg-sxsw-dark border-4 border-black rounded-[24px] p-6">
-                            <div class="text-[11px] font-bold uppercase tracking-widest text-brand-gold mb-2">Request ID</div>
-                            <div class="font-mono text-base md:text-lg text-white tracking-tight break-all" id="attendRequestId">NMW-REQ-&mdash;</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div>
+          <div class="mono-eyebrow mb-1">Group size</div>
+          <div class="display display-tight text-4xl md:text-6xl text-ink" id="attendGroupSizeOut">&mdash;</div>
         </div>
-    </section>
-
-    <!-- Where to find us -->
-    <section id="where" class="py-16 px-6 md:px-12 bg-brand-blush50 border-t-8 border-sxsw-pink">
-        <div class="w-full">
-            <div class="mb-10">
-                <p class="font-bold text-sm tracking-widest text-gray-500 mb-2 uppercase">[ The Room ]</p>
-                <h2 class="text-5xl md:text-7xl text-black">WHERE TO FIND US.</h2>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Info card -->
-                <div class="bg-white border-4 border-black rounded-[30px] p-8 md:p-10 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
-                    <p class="text-xs font-bold tracking-widest text-sxsw-pink mb-3 uppercase">The Venue</p>
-                    <h3 class="text-3xl md:text-4xl mb-4 text-black">THE PENTHOUSE NYC</h3>
-                    <p class="text-gray-700 font-medium mb-2">Manhattan, NY</p>
-                    <p class="text-gray-700 font-medium mb-6">Wednesdays &middot; Doors 3 PM &middot; Live 7-9:30 PM</p>
-
-                    <div class="border-t-2 border-black/10 pt-6">
-                        <p class="text-xs font-bold tracking-widest text-gray-500 mb-3 uppercase">Find us on</p>
-                        <div class="flex flex-wrap gap-x-5 gap-y-2 text-sm font-bold">
-                            <a href="https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z" target="_blank" rel="noopener noreferrer" class="text-black hover:text-sxsw-pink uppercase tracking-widest">Google Maps</a>
-                            <a href="https://www.tripadvisor.com/Search?q=The+Penthouse+NYC" target="_blank" rel="noopener noreferrer" class="text-black hover:text-sxsw-pink uppercase tracking-widest">TripAdvisor</a>
-                            <a href="https://www.digiwaxx.com" target="_blank" rel="noopener noreferrer" class="text-black hover:text-sxsw-pink uppercase tracking-widest">Digiwaxx</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Map -->
-                <div>
-                    <div class="rounded-[30px] overflow-hidden border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.370721274705!2d-73.9493586!3d40.75387029999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259d05c173b8d%3A0x7d35ee407fd7eebf!2sThe%20Penthouse!5e0!3m2!1sen!2sus!4v1778362039916!5m2!1sen!2sus"
-                            width="100%" height="340" style="border:0;" allowfullscreen=""
-                            loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-                            title="The Penthouse NYC on Google Maps"></iframe>
-                    </div>
-                    <a href="https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-sm font-bold uppercase tracking-widest text-sxsw-pink hover:text-sxsw-deeppink mt-4">
-                        View larger map <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-                    </a>
-                </div>
-            </div>
+        <div>
+          <div class="mono-eyebrow mb-1">Request ID</div>
+          <div class="font-mono text-base md:text-lg text-ink tracking-tight break-all" id="attendRequestId">NMW-REQ-&mdash;</div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Partners -->
-    <section class="py-14 px-6 md:px-12 bg-sxsw-dark text-white border-y-8 border-sxsw-pink">
-        <div class="w-full">
-            <p class="text-xs font-bold uppercase tracking-widest text-sxsw-teal mb-6">[ Distribution &amp; Discovery Partners ]</p>
-            <div class="flex flex-wrap gap-x-8 gap-y-4 text-sm md:text-base font-black tracking-widest text-white uppercase">
-                <a href="https://www.digiwaxx.com" target="_blank" rel="noopener noreferrer" class="hover:text-brand-gold transition-colors">Digiwaxx</a>
-                <span class="text-white/30">&middot;</span>
-                <a href="https://dice.fm" target="_blank" rel="noopener noreferrer" class="hover:text-brand-gold transition-colors">DICE</a>
-                <span class="text-white/30">&middot;</span>
-                <a href="https://www.bandsintown.com" target="_blank" rel="noopener noreferrer" class="hover:text-brand-gold transition-colors">Bandsintown</a>
-                <span class="text-white/30">&middot;</span>
-                <a href="https://www.songkick.com" target="_blank" rel="noopener noreferrer" class="hover:text-brand-gold transition-colors">Songkick</a>
-                <span class="text-white/30">&middot;</span>
-                <a href="https://www.eventbrite.com" target="_blank" rel="noopener noreferrer" class="hover:text-brand-gold transition-colors">Eventbrite</a>
-                <span class="text-white/30">&middot;</span>
-                <a href="https://lu.ma" target="_blank" rel="noopener noreferrer" class="hover:text-brand-gold transition-colors">Luma</a>
-                <span class="text-white/30">&middot;</span>
-                <a href="https://www.tripadvisor.com/Search?q=The+Penthouse+NYC" target="_blank" rel="noopener noreferrer" class="hover:text-brand-gold transition-colors">TripAdvisor</a>
-                <span class="text-white/30">&middot;</span>
-                <a href="https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z" target="_blank" rel="noopener noreferrer" class="hover:text-brand-gold transition-colors">Google Maps</a>
-            </div>
+  <!-- Where to find us -->
+  <section class="mb-5 md:mb-12 border-t border-gray-200 pt-5 md:pt-12">
+    <div class="grid md:grid-cols-2 gap-4 md:gap-8">
+      <div>
+        <h2 class="text-2xl font-black tracking-tight text-gray-900 mb-2">Where to find us</h2>
+        <p class="text-base font-bold text-gray-900">The Penthouse NYC</p>
+        <p class="text-sm text-gray-600 mt-1">Manhattan, NY, Wednesdays, Doors 3 PM, Live 7-9:30 PM</p>
+
+        <div class="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm font-bold">
+          <a href="https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-[#8A1558]">Google Maps</a>
+          <a href="https://www.tripadvisor.com/Search?q=The+Penthouse+NYC" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-[#8A1558]">TripAdvisor</a>
+          <a href="https://www.digiwaxx.com" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-[#8A1558]">Digiwaxx</a>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-sxsw-dark text-white py-14 px-6 md:px-12 border-t-8 border-sxsw-green">
-        <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
-            <div class="lg:col-span-2">
-                <img src="images/nmw-logo-light.png" alt="New Music Wednesdays" class="h-24 w-auto mb-6" />
-                <p class="text-white font-medium max-w-sm mb-6">
-                    Live performance and rollout infrastructure for rising artists. Every Wednesday at The Penthouse NYC.
-                </p>
-                <p class="text-xs uppercase tracking-widest font-bold text-white">Presented by Digiwaxx</p>
-            </div>
-
-            <div>
-                <h4 class="font-bold uppercase tracking-widest text-white mb-4 text-sm">Funnel</h4>
-                <ul class="flex flex-col gap-2 font-medium text-white">
-                    <li><a href="index.html" class="hover:text-sxsw-pink transition-colors">Home</a></li>
-                    <li><a href="mission.html" class="hover:text-sxsw-pink transition-colors">Mission</a></li>
-                    <li><a href="attend.html" class="hover:text-sxsw-pink transition-colors">Events</a></li>
-                    <li><a href="#rsvp" class="hover:text-sxsw-pink transition-colors">RSVP</a></li>
-                    <li><a href="dj-call.html" class="hover:text-sxsw-pink transition-colors">DJ Call</a></li>
-                    <li><a href="podcast.html" class="hover:text-sxsw-pink transition-colors">Podcast</a></li>
-                    <li><a href="apply.html" class="hover:text-sxsw-pink transition-colors">Artist Access</a></li>
-                    <li><a href="faq.html" class="hover:text-sxsw-pink transition-colors">FAQ</a></li>
-                    <li><a href="alerts.html" class="hover:text-sxsw-pink transition-colors">Subscribe Now</a></li>
-                    <li><a href="sponsor.html" class="hover:text-sxsw-pink transition-colors">Campaign Store</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="font-bold uppercase tracking-widest text-white mb-4 text-sm">Distribution</h4>
-                <ul class="flex flex-col gap-2 font-medium text-white">
-                    <li><a href="https://www.digiwaxx.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Digiwaxx</a></li>
-                    <li><a href="https://www.newmusicwednesdayslive.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">NewMusicWednesdaysLive</a></li>
-                    <li><a href="https://dice.fm" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">DICE</a></li>
-                    <li><a href="https://www.bandsintown.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Bandsintown</a></li>
-                    <li><a href="https://www.songkick.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Songkick</a></li>
-                    <li><a href="https://www.eventbrite.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Eventbrite</a></li>
-                    <li><a href="https://lu.ma" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Luma</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="font-bold uppercase tracking-widest text-white mb-4 text-sm">Listings</h4>
-                <ul class="flex flex-col gap-2 font-medium text-white mb-8">
-                    <li><a href="https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Google Maps</a></li>
-                    <li><a href="https://www.tripadvisor.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">TripAdvisor</a></li>
-                </ul>
-                <h4 class="font-bold uppercase tracking-widest text-white mb-4 text-sm">Socials</h4>
-                <ul class="flex flex-col gap-2 font-medium text-white">
-                    <li><a href="https://www.instagram.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">Instagram</a></li>
-                    <li><a href="https://www.youtube.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">YouTube</a></li>
-                    <li><a href="https://www.tiktok.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">TikTok</a></li>
-                    <li><a href="https://x.com" target="_blank" rel="noopener" class="hover:text-sxsw-pink transition-colors">X / Twitter</a></li>
-                </ul>
-            </div>
+      </div>
+      <div>
+        <div class="rounded-lg overflow-hidden border border-gray-200">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.370721274705!2d-73.9493586!3d40.75387029999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259d05c173b8d%3A0x7d35ee407fd7eebf!2sThe%20Penthouse!5e0!3m2!1sen!2sus!4v1778362039916!5m2!1sen!2sus"
+            width="100%" height="320" style="border:0;" allowfullscreen=""
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            title="The Penthouse NYC on Google Maps"></iframe>
         </div>
+        <a href="https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-sm font-bold text-[#8A1558] hover:underline mt-3">
+          View larger map <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+        </a>
+      </div>
+    </div>
+  </section>
 
-        <div class="w-full mt-16 pt-8 border-t border-white/20 flex flex-col md:flex-row justify-between items-center text-sm text-white font-medium">
-            <p>&copy; 2026 New Music Wednesdays. By Digiwaxx. All rights reserved.</p>
-            <div class="flex gap-4 mt-4 md:mt-0">
-                <a href="privacy.html" class="hover:text-sxsw-pink">Privacy Policy</a>
-                <a href="terms.html" class="hover:text-sxsw-pink">Terms &amp; Conditions</a>
-            </div>
-        </div>
-    </footer>
+  <!-- Partners row -->
+  <section class="border-t border-gray-200 pt-10">
+    <div class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3">Distribution &amp; Discovery Partners</div>
+    <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm font-bold tracking-widest text-gray-600">
+      <a href="https://www.digiwaxx.com" target="_blank" rel="noopener noreferrer" class="hover:text-[#8A1558]">DIGIWAXX</a>
+      <a href="https://dice.fm" target="_blank" rel="noopener noreferrer" class="hover:text-[#8A1558]">DICE</a>
+      <a href="https://www.bandsintown.com" target="_blank" rel="noopener noreferrer" class="hover:text-[#8A1558]">BANDSINTOWN</a>
+      <a href="https://www.songkick.com" target="_blank" rel="noopener noreferrer" class="hover:text-[#8A1558]">SONGKICK</a>
+      <a href="https://www.eventbrite.com" target="_blank" rel="noopener noreferrer" class="hover:text-[#8A1558]">EVENTBRITE</a>
+      <a href="https://lu.ma" target="_blank" rel="noopener noreferrer" class="hover:text-[#8A1558]">LUMA</a>
+      <a href="https://www.tripadvisor.com/Search?q=The+Penthouse+NYC" target="_blank" rel="noopener noreferrer" class="hover:text-[#8A1558]">TRIPADVISOR</a>
+      <a href="https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z" target="_blank" rel="noopener noreferrer" class="hover:text-[#8A1558]">GOOGLE MAPS</a>
+    </div>
+  </section>
 
-    <script>
-        if (window.lucide) { lucide.createIcons(); }
-    </script>
-    <script>
-    // Live demand counters
-    (function animateCounters(){
-        document.querySelectorAll("[data-counter][data-target]").forEach(el => {
-            const target = parseInt(el.dataset.target,10);
-            if(!Number.isFinite(target)) return;
-            const start = performance.now();
-            const dur = 1100 + Math.random()*400;
-            function tick(now){
-                const t = Math.min(1, (now-start)/dur);
-                const eased = 1 - Math.pow(1-t, 3);
-                el.textContent = Math.round(target*eased).toLocaleString();
-                if(t<1) requestAnimationFrame(tick); else el.textContent = target.toLocaleString();
-            }
-            requestAnimationFrame(tick);
-        });
-    })();
+</main>
 
-    // RSVP form
-    (function attendForm(){
-        const form = document.getElementById("attendForm");
-        const submitBtn = document.getElementById("attendSubmitBtn");
-        const hint = document.getElementById("attendValidationHint");
-        const sizeInput = document.getElementById("attendGroupSize");
-        const successEl = document.getElementById("attendSuccess");
-        const queuePosEl = document.getElementById("attendQueuePosition");
-        const groupSizeOutEl = document.getElementById("attendGroupSizeOut");
-        const requestIdEl = document.getElementById("attendRequestId");
-        if(!form || !submitBtn) return;
+<footer class="nmw-footer">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-8 py-2">
+      <div class="col-span-2 md:col-span-2">
+        <img src="images/nmw-logo-light.png" alt="New Music Wednesdays, Digiwaxx" class="footer-logo mb-4" />
+        <p class="text-sm leading-relaxed">Live performance and rollout infrastructure for rising artists. Every Wednesday at The Penthouse NYC, presented by <a href="https://www.digiwaxx.com" target="_blank" rel="noopener noreferrer" class="text-[#8A1558] hover:underline">Digiwaxx</a>.</p>
+      </div>
+      <div>
+        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Funnel</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="mission.html">Mission</a></li>
+          <li><a href="attend.html">Events</a></li>
+          <li><a href="https://www.newmusicwednesdayslive.com/rsvp" target="_blank" rel="noopener">RSVP</a></li>
+          <li><a href="dj-call.html">DJ Call</a></li>
+          <li><a href="podcast.html">Podcast</a></li>
+          <li><a href="apply.html">Artist Access</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="alerts.html">Subscribe Now</a></li>
+          <li><a href="sponsor.html">Campaign Store</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Distribution</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="https://www.digiwaxx.com" target="_blank" rel="noopener">Digiwaxx</a></li>
+          <li><a href="https://www.newmusicwednesdayslive.com" target="_blank" rel="noopener">NewMusicWednesdaysLive</a></li>
+          <li><a href="https://dice.fm" target="_blank" rel="noopener">DICE</a></li>
+          <li><a href="https://www.bandsintown.com" target="_blank" rel="noopener">Bandsintown</a></li>
+          <li><a href="https://www.songkick.com" target="_blank" rel="noopener">Songkick</a></li>
+          <li><a href="https://www.eventbrite.com" target="_blank" rel="noopener">Eventbrite</a></li>
+          <li><a href="https://lu.ma" target="_blank" rel="noopener">Luma</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Listings</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z" target="_blank" rel="noopener">Google Maps</a></li>
+          <li><a href="https://www.tripadvisor.com" target="_blank" rel="noopener">TripAdvisor</a></li>
+          <li><a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.youtube.com" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://www.tiktok.com" target="_blank" rel="noopener">TikTok</a></li>
+          <li><a href="https://x.com" target="_blank" rel="noopener">X / Twitter</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-white/10 pt-6 mt-6 flex flex-col sm:flex-row gap-3 sm:gap-0 sm:justify-between items-center text-xs">
+      <div>&copy; 2026 New Music Wednesdays. By Digiwaxx. All rights reserved.</div>
+      <div class="flex gap-5">
+        <a href="privacy.html" class="hover:text-white">Privacy Policy</a>
+        <a href="terms.html" class="hover:text-white">Terms &amp; Conditions</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
-        function isValid(){
-            if(!sizeInput.value) return false;
-            return Array.from(form.querySelectorAll("input[required]")).every(f => f.checkValidity());
-        }
-        function refreshSubmit(){
-            const valid = isValid();
-            submitBtn.disabled = !valid;
-            if(hint) hint.textContent = valid ? "Ready to submit." : "Pick a group size + fill the required fields.";
-        }
-        form.addEventListener("input", refreshSubmit);
-        form.addEventListener("change", refreshSubmit);
+<script src="assets/nmw.js"></script>
+<script>
+<script>
+// Live demand counters
+(function animateCounters(){
+  document.querySelectorAll("[data-counter][data-target]").forEach(el => {
+    const target = parseInt(el.dataset.target,10);
+    if(!Number.isFinite(target)) return;
+    const start = performance.now();
+    const dur = 1100 + Math.random()*400;
+    function tick(now){
+      const t = Math.min(1, (now-start)/dur);
+      const eased = 1 - Math.pow(1-t, 3);
+      el.textContent = Math.round(target*eased).toLocaleString();
+      if(t<1) requestAnimationFrame(tick); else el.textContent = target.toLocaleString();
+    }
+    requestAnimationFrame(tick);
+  });
+})();
 
-        function projectedPosition(){
-            const base = parseInt(document.querySelector("[data-counter=\"requests\"]")?.textContent.replace(/,/g,"") || "1284", 10);
-            return base + 1;
-        }
+// RSVP single-step form with tile selectors
+(function attendForm(){
+  const form = document.getElementById("attendForm");
+  const submitBtn = document.getElementById("attendSubmitBtn");
+  const hint = document.getElementById("attendValidationHint");
+  const sizeInput = document.getElementById("attendGroupSize");
+  const successEl = document.getElementById("attendSuccess");
+  const queuePosEl = document.getElementById("attendQueuePosition");
+  const groupSizeOutEl = document.getElementById("attendGroupSizeOut");
+  const requestIdEl = document.getElementById("attendRequestId");
+  if(!form || !submitBtn) return;
 
-        form.addEventListener("submit", e => {
-            e.preventDefault();
-            if(!isValid()){ form.reportValidity(); return; }
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = `<i data-lucide="loader" class="w-4 h-4 animate-spin"></i> Submitting…`;
-            if(typeof lucide !== "undefined") lucide.createIcons();
+  function isValid(){
+    if(!sizeInput.value) return false;
+    return Array.from(form.querySelectorAll("input[required]")).every(f => f.checkValidity());
+  }
+  function refreshSubmit(){
+    const valid = isValid();
+    submitBtn.disabled = !valid;
+    if(hint) hint.textContent = valid ? "Ready to submit." : "Pick a group size + fill the required fields.";
+  }
+  form.addEventListener("input", refreshSubmit);
+  form.addEventListener("change", refreshSubmit);
 
-            setTimeout(() => {
-                const data = Object.fromEntries(new FormData(form).entries());
-                data.at = new Date().toISOString();
-                data.id = "NMW-REQ-" + Date.now().toString(36).toUpperCase().slice(-6);
-                try {
-                    const reqs = JSON.parse(localStorage.getItem("nmw.attendRequests") || "[]");
-                    reqs.push(data);
-                    localStorage.setItem("nmw.attendRequests", JSON.stringify(reqs));
-                } catch(_){}
+  function projectedPosition(){
+    const base = parseInt(document.querySelector("[data-counter=\"requests\"]")?.textContent.replace(/,/g,"") || "1284", 10);
+    return base + 1;
+  }
 
-                if(queuePosEl) queuePosEl.textContent = "#" + projectedPosition().toLocaleString();
-                if(groupSizeOutEl) groupSizeOutEl.textContent = data.groupSize || "—";
-                if(requestIdEl) requestIdEl.textContent = data.id;
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    if(!isValid()){ form.reportValidity(); return; }
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = `<i data-lucide="loader" class="w-4 h-4 animate-spin"></i> Submitting…`;
+    if(typeof lucide !== "undefined") lucide.createIcons();
 
-                form.classList.add("hidden");
-                successEl.classList.remove("hidden");
-                successEl.scrollIntoView({behavior: "smooth", block: "start"});
-                if(typeof lucide !== "undefined") lucide.createIcons();
+    setTimeout(() => {
+      const data = Object.fromEntries(new FormData(form).entries());
+      data.at = new Date().toISOString();
+      data.id = "NMW-REQ-" + Date.now().toString(36).toUpperCase().slice(-6);
+      try {
+        const reqs = JSON.parse(localStorage.getItem("nmw.attendRequests") || "[]");
+        reqs.push(data);
+        localStorage.setItem("nmw.attendRequests", JSON.stringify(reqs));
+      } catch(_){}
 
-                const liveEl = document.querySelector("[data-counter=\"requests\"]");
-                if(liveEl){
-                    const cur = parseInt(liveEl.textContent.replace(/,/g,""),10) || 1284;
-                    liveEl.textContent = (cur + 1).toLocaleString();
-                }
-            }, 600);
-        });
+      if(queuePosEl) queuePosEl.textContent = "#" + projectedPosition().toLocaleString();
+      if(groupSizeOutEl) groupSizeOutEl.textContent = data.groupSize || "—";
+      if(requestIdEl) requestIdEl.textContent = data.id;
 
-        refreshSubmit();
-    })();
-    </script>
+      form.classList.add("hidden");
+      successEl.classList.remove("hidden");
+      successEl.scrollIntoView({behavior: "smooth", block: "start"});
+      if(typeof lucide !== "undefined") lucide.createIcons();
+
+      // Bump the live "requests in queue" counter so the next visitor sees it tick.
+      const liveEl = document.querySelector("[data-counter=\"requests\"]");
+      if(liveEl){
+        const cur = parseInt(liveEl.textContent.replace(/,/g,""),10) || 1284;
+        liveEl.textContent = (cur + 1).toLocaleString();
+      }
+    }, 600);
+  });
+
+  refreshSubmit();
+})();
+</script>
 </body>
 </html>
