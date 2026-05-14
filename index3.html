@@ -10,8 +10,8 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8f9fa; /* Very light grey */
-            color: #111;
+            background-color: #FAFAF7; /* NMW cream */
+            color: #1A0418;
         }
         
         /* Typography overrides for that chunky SXSW feel */
@@ -21,15 +21,26 @@
             text-transform: uppercase;
         }
 
-        /* Custom Colors */
-        .bg-sxsw-pink { background-color: #f25774; }
-        .bg-sxsw-deeppink { background-color: #8A1558; }
-        .bg-sxsw-teal { background-color: #61c7cc; }
-        .bg-sxsw-green { background-color: #a7e2a4; }
-        .bg-sxsw-dark { background-color: #222222; }
-        .text-sxsw-pink { color: #f25774; }
-        .text-sxsw-deeppink { color: #8A1558; }
-        .border-sxsw-deeppink { border-color: #8A1558; }
+        /* NMW Brand Color Scale (derived from logo magenta) */
+        /* brand-50  #FDF2F8 — palest blush
+           brand-100 #FBCFE8 — soft pink
+           brand-300 #F472B6 — rose
+           brand-500 #8A1558 — primary magenta (logo)
+           brand-700 #680D3E — deep magenta
+           brand-900 #3D0A2C — wine
+           brand-950 #1A0418 — plum-black
+           accent    #FACC15 — gold pop
+           cream     #FAFAF7 — off-white surface */
+        .bg-sxsw-pink     { background-color: #8A1558; } /* primary brand magenta */
+        .bg-sxsw-deeppink { background-color: #680D3E; } /* deeper magenta */
+        .bg-sxsw-teal     { background-color: #FBCFE8; } /* soft blush */
+        .bg-sxsw-green    { background-color: #FACC15; } /* gold accent */
+        .bg-sxsw-dark     { background-color: #1A0418; } /* plum-black */
+        .bg-brand-cream   { background-color: #FAFAF7; }
+        .text-sxsw-pink     { color: #8A1558; }
+        .text-sxsw-deeppink { color: #680D3E; }
+        .text-brand-gold    { color: #FACC15; }
+        .border-sxsw-deeppink { border-color: #680D3E; }
 
         /* Marquee Animation */
         @keyframes scroll {
@@ -89,7 +100,7 @@
         <div class="hidden md:block absolute top-14 right-10 rotate-[6deg] bg-white text-black font-black uppercase text-xs tracking-widest px-4 py-2 rounded-full border-4 border-black shadow-[4px_4px_0_0_rgba(0,0,0,1)] z-10">
             Every Wed · 7-11 PM
         </div>
-        <div class="hidden md:block absolute bottom-10 left-14 rotate-[5deg] bg-sxsw-deeppink text-white font-black uppercase text-xs tracking-widest px-4 py-2 rounded-full border-4 border-black shadow-[4px_4px_0_0_rgba(0,0,0,1)] z-10">
+        <div class="hidden md:block absolute bottom-10 left-14 rotate-[5deg] bg-sxsw-green text-black font-black uppercase text-xs tracking-widest px-4 py-2 rounded-full border-4 border-black shadow-[4px_4px_0_0_rgba(0,0,0,1)] z-10">
             The Penthouse
         </div>
 
