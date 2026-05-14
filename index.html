@@ -63,20 +63,20 @@
     </div>
 
     <!-- Navigation -->
-    <nav class="w-full bg-sxsw-pink text-white border-b-4 border-black py-3 px-6 md:px-12 flex justify-between items-center sticky top-0 z-40">
+    <nav class="w-full bg-white border-b-4 border-black py-3 px-6 md:px-12 flex justify-between items-center sticky top-0 z-40">
         <a href="index.html" class="flex items-center gap-2">
-            <img src="images/nmw-logo-light.png" alt="New Music Wednesdays" class="h-20 md:h-24 w-auto" />
+            <img src="images/nmw-logo.png" alt="New Music Wednesdays" class="h-20 md:h-24 w-auto" />
         </a>
         <div class="hidden lg:flex gap-6 font-bold text-sm tracking-wide">
-            <a href="#" class="hover:text-black transition-colors">HOME</a>
-            <a href="#" class="hover:text-black transition-colors">MISSION</a>
-            <a href="#" class="hover:text-black transition-colors">ARTIST ACCESS</a>
-            <a href="#" class="hover:text-black transition-colors">LISTEN</a>
-            <a href="#" class="hover:text-black transition-colors">THE DROP</a>
-            <a href="#" class="hover:text-black transition-colors">CAMPAIGN STORE</a>
+            <a href="#" class="hover:text-sxsw-pink transition-colors">HOME</a>
+            <a href="#" class="hover:text-sxsw-pink transition-colors">MISSION</a>
+            <a href="#" class="hover:text-sxsw-pink transition-colors">ARTIST ACCESS</a>
+            <a href="#" class="hover:text-sxsw-pink transition-colors">LISTEN</a>
+            <a href="#" class="hover:text-sxsw-pink transition-colors">THE DROP</a>
+            <a href="#" class="hover:text-sxsw-pink transition-colors">CAMPAIGN STORE</a>
         </div>
         <div>
-            <a href="#rsvp" class="inline-flex items-center gap-2 bg-black text-white font-bold uppercase text-sm px-6 py-3 rounded-full hover:bg-white hover:text-black transition-colors shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]">
+            <a href="#rsvp" class="inline-flex items-center gap-2 bg-sxsw-pink text-white font-bold uppercase text-sm px-6 py-3 rounded-full hover:bg-black transition-colors shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                 <i data-lucide="ticket" class="w-4 h-4"></i>
                 ATTEND
             </a>
@@ -84,49 +84,28 @@
     </nav>
 
     <!-- Hero Section -->
-    <header class="relative overflow-hidden border-b-4 border-black bg-sxsw-pink">
-        <!-- Bold black halftone dots -->
-        <div class="absolute inset-0 opacity-100 pointer-events-none" style="background-image: radial-gradient(rgba(0,0,0,0.85) 2px, transparent 2.5px); background-size: 26px 26px;"></div>
-        <!-- White diagonal stripes for chunky contrast -->
-        <div class="absolute inset-0 opacity-40 pointer-events-none" style="background-image: repeating-linear-gradient(-45deg, rgba(255,255,255,0.85) 0, rgba(255,255,255,0.85) 3px, transparent 3px, transparent 28px);"></div>
-        <!-- Color block accents -->
-        <div class="absolute -top-10 -right-10 w-64 h-64 bg-sxsw-teal border-4 border-black rotate-12 hidden md:block"></div>
-        <div class="absolute -bottom-12 -left-12 w-56 h-56 bg-sxsw-green border-4 border-black -rotate-12 hidden md:block"></div>
+    <header class="pt-20 pb-16 px-4 text-center max-w-6xl mx-auto">
+        <p class="font-bold text-sm tracking-widest text-sxsw-pink mb-6 uppercase">[ Every Wednesday in NYC ]</p>
+        <h1 class="text-6xl md:text-8xl lg:text-[7rem] leading-[0.9] mb-8">
+            WHERE MUSIC,<br>
+            CONVERSATION &<br>
+            ATTENTION MEET<br>
+            EVERY WEDNESDAY.
+        </h1>
+        <p class="text-xl md:text-3xl font-semibold max-w-3xl mx-auto mb-12 text-gray-700">
+            A live NYC music ecosystem.
+        </p>
 
-        <!-- Sticker badges -->
-        <div class="hidden md:block absolute top-8 left-8 rotate-[-8deg] bg-black text-white font-black uppercase text-xs tracking-widest px-4 py-2 rounded-full border-4 border-white shadow-[4px_4px_0_0_rgba(0,0,0,1)] z-10">
-            Live · NYC
-        </div>
-        <div class="hidden md:block absolute top-14 right-10 rotate-[6deg] bg-white text-black font-black uppercase text-xs tracking-widest px-4 py-2 rounded-full border-4 border-black shadow-[4px_4px_0_0_rgba(0,0,0,1)] z-10">
-            Every Wed · 7-11 PM
-        </div>
-        <div class="hidden md:block absolute bottom-10 left-14 rotate-[5deg] bg-sxsw-green text-black font-black uppercase text-xs tracking-widest px-4 py-2 rounded-full border-4 border-black shadow-[4px_4px_0_0_rgba(0,0,0,1)] z-10">
-            The Penthouse
-        </div>
-
-        <div class="relative pt-16 pb-20 px-4 text-center max-w-6xl mx-auto z-10">
-            <p class="inline-block font-bold text-xs md:text-sm tracking-widest text-white mb-6 uppercase bg-black px-4 py-2 rounded-full border-4 border-white">[ Every Wednesday in NYC ]</p>
-            <h1 class="text-5xl md:text-7xl lg:text-[6.5rem] leading-[0.9] mb-6 text-black drop-shadow-[4px_4px_0_rgba(255,255,255,1)]">
-                WHERE MUSIC,<br>
-                CONVERSATION &<br>
-                ATTENTION MEET<br>
-                <span class="text-white drop-shadow-[4px_4px_0_rgba(0,0,0,1)]">EVERY WEDNESDAY.</span>
-            </h1>
-            <p class="inline-block text-lg md:text-2xl font-bold max-w-3xl mx-auto mb-10 text-black bg-white/95 px-5 py-2 rounded-full border-4 border-black">
-                A live NYC music ecosystem.
-            </p>
-
-            <div class="flex flex-col md:flex-row justify-center items-center gap-4">
-                <a href="#rsvp" class="w-full md:w-auto inline-block bg-black text-white font-black uppercase text-base md:text-lg px-8 py-4 rounded-full hover:scale-105 transition-transform shadow-[6px_6px_0px_0px_rgba(255,255,255,1)] border-4 border-white">
-                    Join The Guest Waitlist
-                </a>
-                <a href="#submit" class="w-full md:w-auto inline-block bg-sxsw-teal text-black font-black uppercase text-base md:text-lg px-8 py-4 rounded-full hover:scale-105 transition-transform shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] border-4 border-black">
-                    Submit Music
-                </a>
-                <a href="#sponsor" class="w-full md:w-auto inline-block bg-white text-black font-black uppercase text-base md:text-lg px-8 py-4 rounded-full hover:bg-sxsw-green transition-colors border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
-                    Become A Sponsor
-                </a>
-            </div>
+        <div class="flex flex-col md:flex-row justify-center items-center gap-4">
+            <a href="#rsvp" class="w-full md:w-auto inline-block bg-black text-white font-black uppercase text-base md:text-lg px-8 py-4 rounded-full hover:scale-105 transition-transform shadow-[6px_6px_0px_0px_rgba(138,21,88,1)]">
+                Join The Guest Waitlist
+            </a>
+            <a href="#submit" class="w-full md:w-auto inline-block bg-sxsw-pink text-white font-black uppercase text-base md:text-lg px-8 py-4 rounded-full hover:scale-105 transition-transform shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+                Submit Music
+            </a>
+            <a href="#sponsor" class="w-full md:w-auto inline-block bg-white border-2 border-black text-black font-black uppercase text-base md:text-lg px-8 py-4 rounded-full hover:bg-gray-100 transition-colors">
+                Become A Sponsor
+            </a>
         </div>
     </header>
 
@@ -218,8 +197,8 @@
             <div class="mb-16">
                 <div class="bg-sxsw-pink p-8 md:p-12 lg:p-16 rounded-[40px] shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] border-4 border-black flex flex-col md:flex-row-reverse items-center gap-10">
                     <div class="flex-1 w-full order-2 md:order-1 text-white">
-                        <p class="text-sm font-bold tracking-widest mb-4 uppercase text-black">02 · The Happy Hour Experience</p>
-                        <h3 class="text-4xl md:text-5xl mb-6 text-black">CURATED COCKTAILS. REAL NETWORKING.</h3>
+                        <p class="text-sm font-bold tracking-widest mb-4 uppercase text-white">02 · The Happy Hour Experience</p>
+                        <h3 class="text-4xl md:text-5xl mb-6 text-white">CURATED COCKTAILS. REAL NETWORKING.</h3>
                         <p class="text-white text-lg font-medium">Meet artists, DJs, influencers, producers, media personalities, and creatives inside an exclusive NYC environment built for conversation and collaboration.</p>
                     </div>
                     <div class="flex-1 w-full order-1 md:order-2">
@@ -296,8 +275,8 @@
                 <div class="group block rounded-[30px] overflow-hidden bg-white border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 transition-transform duration-300">
                     <img src="images/audience.avif" alt="The Penthouse Room" class="w-full h-56 object-cover border-b-4 border-black">
                     <div class="bg-sxsw-pink p-6 border-b-4 border-black">
-                        <p class="text-xs font-bold tracking-widest text-black mb-2 uppercase">01 / Wed NMW</p>
-                        <h4 class="text-3xl text-black">THE ROOM</h4>
+                        <p class="text-xs font-bold tracking-widest text-white mb-2 uppercase">01 / Wed NMW</p>
+                        <h4 class="text-3xl text-white">THE ROOM</h4>
                     </div>
                     <div class="p-8">
                         <p class="font-bold text-gray-500 uppercase text-sm mb-2">Attend · The Penthouse</p>
@@ -335,9 +314,9 @@
     </section>
 
     <!-- The Schedule Section (SXSW Lineup Style) -->
-    <section class="py-16 px-6 md:px-12 bg-white border-t-8 border-sxsw-teal">
+    <section class="py-24 px-6 md:px-12 bg-white border-t-8 border-sxsw-teal">
         <div class="max-w-5xl mx-auto">
-            <div class="mb-10">
+            <div class="mb-16">
                 <p class="font-bold text-sm tracking-widest text-gray-500 mb-2 uppercase">[ The Schedule ]</p>
                 <h2 class="text-5xl md:text-7xl text-black">HERE'S THE SCHEDULE.</h2>
             </div>
@@ -419,7 +398,7 @@
     </section>
 
     <!-- Bottom Promo -->
-    <section class="py-16 px-6 md:px-12 bg-sxsw-pink text-center">
+    <section class="py-24 px-6 md:px-12 bg-sxsw-pink text-center">
         <div class="max-w-4xl mx-auto">
             <h2 class="text-5xl md:text-7xl mb-8 text-black">NEW MUSIC WEDNESDAYS ISN'T JUST ABOUT PERFORMING.</h2>
             <p class="text-2xl font-medium text-white mb-6">It's about creating the conversations, visibility, relationships, and moments that help music travel further.</p>
