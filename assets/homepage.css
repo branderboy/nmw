@@ -44,9 +44,6 @@ h1, h2, h3, .heading-font, .section-h2, .display, .display-tight {
 /* Smooth scroll */
 html { scroll-behavior: smooth; }
 
-/* Kill the thin gray line under the sticky nav */
-nav.sticky { border-bottom: 0 !important; }
-
 /* Homepage card system applied to all white blocks on light bg
    Matches the For Artists / Wed Cards / RSVP form treatment on index.html:
    thick black border + hard offset black shadow + large radius. */
