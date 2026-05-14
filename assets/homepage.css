@@ -43,3 +43,12 @@ h1, h2, h3, .heading-font, .section-h2, .display, .display-tight {
 
 /* Smooth scroll */
 html { scroll-behavior: smooth; }
+
+/* Raised / outlined treatment for white blocks sitting on the cream body bg */
+.section-card,
+.bg-white.rounded-2xl,
+.bg-white.rounded-xl,
+.bg-white.rounded-\[30px\] {
+    border: 2px solid #1A0418 !important;
+    box-shadow: 6px 6px 0 0 rgba(26, 4, 24, 0.85) !important;
+}
