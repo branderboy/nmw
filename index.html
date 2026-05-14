@@ -1,521 +1,467 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/png" href="images/nmw-logo.png" />
-<link rel="apple-touch-icon" href="images/nmw-logo.png" />
-<title>New Music Wednesdays | Live Showcase, Press &amp; Distribution for Rising Urban Artists</title>
-<meta name="description" content="Live performance, press capture, and DJ distribution for rising hip hop, R&B, soul, reggae, dancehall, afrobeat, gospel and Latin urban artists. Every Wednesday at The Penthouse NYC.">
-<link rel="canonical" href="https://www.newmusicwednesdayslive.com/index.html">
-<meta property="og:type" content="website">
-<meta property="og:title" content="New Music Wednesdays | Live Showcase, Press &amp; Distribution for Rising Urban Artists">
-<meta property="og:description" content="Live performance, press capture, and DJ distribution for rising hip hop, R&B, soul, reggae, dancehall, afrobeat, gospel and Latin urban artists. Every Wednesday at The Penthouse NYC.">
-<meta property="og:url" content="https://www.newmusicwednesdayslive.com/index.html">
-<meta property="og:image" content="https://www.newmusicwednesdayslive.com/images/nmw-logo.png">
-<meta property="og:site_name" content="New Music Wednesdays">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="New Music Wednesdays | Live Showcase, Press &amp; Distribution for Rising Urban Artists">
-<meta name="twitter:description" content="Live performance, press capture, and DJ distribution for rising hip hop, R&B, soul, reggae, dancehall, afrobeat, gospel and Latin urban artists. Every Wednesday at The Penthouse NYC.">
-<meta name="twitter:image" content="https://www.newmusicwednesdayslive.com/images/nmw-logo.png">
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;600;800;900&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/lucide@0.474.0"></script>
-<!-- PWA -->
-<link rel="manifest" href="/manifest.webmanifest">
-<meta name="theme-color" content="#8A1558">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="NMW">
-<script src="/assets/pwa.js" defer></script>
-<link rel="stylesheet" href="assets/nmw.css">
-<script>
-  if (typeof tailwind !== "undefined") tailwind.config = {
-    theme: { extend: {
-      fontFamily: { sans: ['Inter','sans-serif'], serif: ['Merriweather','serif'] },
-      colors: { brand: { 500: '#8A1558', 600: '#680D3E' } }
-    }}
-  }
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://www.newmusicwednesdayslive.com/#org",
-      "name": "New Music Wednesdays",
-      "alternateName": "NMW",
-      "url": "https://www.newmusicwednesdayslive.com/",
-      "logo": "https://www.newmusicwednesdayslive.com/images/nmw-logo.png",
-      "parentOrganization": {
-        "@type": "Organization",
-        "name": "Digiwaxx",
-        "url": "https://www.digiwaxx.com"
-      },
-      "sameAs": [
-        "https://www.digiwaxx.com",
-        "https://www.newmusicwednesdayslive.com",
-        "https://dice.fm",
-        "https://www.bandsintown.com",
-        "https://www.songkick.com",
-        "https://www.eventbrite.com",
-        "https://lu.ma",
-        "https://www.tripadvisor.com/Search?q=The+Penthouse+NYC",
-        "https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z"
-      ]
-    },
-    {
-      "@type": "MusicVenue",
-      "@id": "https://www.newmusicwednesdayslive.com/#venue",
-      "name": "The Penthouse NYC",
-      "addressLocality": "Manhattan",
-      "addressRegion": "NY",
-      "addressCountry": "US",
-      "geo": { "@type": "GeoCoordinates", "latitude": 40.7538703, "longitude": -73.9493586 },
-      "sameAs": [
-        "https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z",
-        "https://www.tripadvisor.com/Search?q=The+Penthouse+NYC"
-      ]
-    },
-    {
-      "@type": "Event",
-      "name": "New Music Wednesdays",
-      "eventSchedule": {
-        "@type": "Schedule",
-        "byDay": "Wednesday",
-        "startTime": "19:00",
-        "endTime": "21:30",
-        "scheduleTimezone": "America/New_York",
-        "repeatFrequency": "P1W"
-      },
-      "location": { "@id": "https://www.newmusicwednesdayslive.com/#venue" },
-      "organizer": { "@id": "https://www.newmusicwednesdayslive.com/#org" },
-      "url": "https://www.newmusicwednesdayslive.com/"
-    }
-  ]
-}
-</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Music Wednesdays | The Scene</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa; /* Very light grey */
+            color: #111;
+        }
+        
+        /* Typography overrides for that chunky SXSW feel */
+        h1, h2, h3, .heading-font {
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+        }
+
+        /* Custom Colors */
+        .bg-sxsw-pink { background-color: #f25774; }
+        .bg-sxsw-teal { background-color: #61c7cc; }
+        .bg-sxsw-green { background-color: #a7e2a4; }
+        .bg-sxsw-dark { background-color: #222222; }
+        .text-sxsw-pink { color: #f25774; }
+
+        /* Marquee Animation */
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-scroll {
+            animation: scroll 20s linear infinite;
+        }
+
+        /* Smooth scroll */
+        html { scroll-behavior: smooth; }
+    </style>
 </head>
-<body class="text-gray-900 selection:bg-[#8A1558] selection:text-white bg-white">
+<body class="antialiased selection:bg-sxsw-pink selection:text-white">
 
-<!-- Urgency Bar (scrolling) -->
-<div class="urgency-bar" aria-label="Announcement">
-  <div class="urgency-bar__track">
-    <span><span class="urgency-pulse"></span><span data-cms="urgencyBar">Attention Artists: Only 5 Event &amp; Press Packages Left For Next Wednesday!</span></span>
-  </div>
-</div>
-
-<!-- Penthouse strip -->
-<div class="sxsw-header__top-bar">EVERY WED &middot; THE PENTHOUSE NYC &middot; MIDTOWN, MANHATTAN</div>
-
-<!-- Navigation -->
-<nav class="nmw-nav">
-  <div class="nmw-nav__inner">
-  <a href="index.html" class="nmw-logo-block">
-    <img src="images/nmw-logo.png" alt="New Music Wednesday" class="nmw-logo-img" />
-  </a>
-  <div class="hidden md:flex nmw-nav__menu">
-    <a href="index.html" class="is-active">HOME</a>
-    <div class="nav-dropdown">
-      <button type="button" class="nav-dropdown__trigger">MISSION</button>
-      <div class="nav-dropdown__panel">
-        <a href="mission.html">Mission</a>
-        <a href="faq.html">FAQ</a>
-      </div>
-    </div>
-    <a href="attend.html">ATTEND</a>
-    <a href="apply.html">ARTIST ACCESS</a>
-    <div class="nav-dropdown">
-      <button type="button" class="nav-dropdown__trigger">LISTEN</button>
-      <div class="nav-dropdown__panel">
-        <a href="dj-call.html">DJ Call</a>
-        <a href="podcast.html">Podcast</a>
-      </div>
-    </div>
-    <a href="blog.html">THE DROP</a>
-    <a href="sponsor.html">CAMPAIGN STORE</a>
-  </div>
-  <a href="attend.html" class="inline-flex items-center gap-2 bg-[#8A1558] text-white font-black uppercase tracking-widest text-xs px-4 py-2.5 rounded-full hover:bg-[#680D3E] transition-colors flex-shrink-0">
-    <i data-lucide="ticket" class="w-4 h-4"></i> ATTEND
-  </a>
-  </div>
-</nav>
-
-<!-- HERO -->
-<header class="relative bg-white pt-10 md:pt-16 pb-12 md:pb-16 border-b border-gray-900">
-  <div class="max-w-6xl mx-auto px-4 relative z-10 text-center">
-    <div class="mono-eyebrow mb-4 text-center">[ Every Wednesday in NYC ]</div>
-    <h1 class="display display-tight text-6xl sm:text-7xl md:text-[7.5rem] leading-[0.85] text-ink mb-6 max-w-5xl mx-auto text-center">Where Music, Conversation &amp; Attention Meet Every Wednesday</h1>
-    <p class="text-lg md:text-2xl text-gray-700 max-w-3xl mx-auto mb-8 text-center">A live NYC music ecosystem.</p>
-    <div class="flex flex-col sm:flex-row gap-x-8 gap-y-3 text-sm font-black uppercase tracking-widest justify-center">
-      <a href="attend.html" class="group inline-flex items-center gap-2 text-[#8A1558] hover:text-[#680D3E]">
-        <i data-lucide="ticket" class="w-4 h-4"></i> Join The Guest Waitlist
-        <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
-      </a>
-      <a href="apply.html" class="group inline-flex items-center gap-2 text-[#8A1558] hover:text-[#680D3E]">
-        <i data-lucide="mic" class="w-4 h-4"></i> Submit Music
-        <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
-      </a>
-      <a href="sponsor.html" class="group inline-flex items-center gap-2 text-[#8A1558] hover:text-[#680D3E]">
-        <i data-lucide="handshake" class="w-4 h-4"></i> Become A Sponsor
-        <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
-      </a>
+    <!-- Top Location Banner -->
+    <div class="bg-black text-white text-xs md:text-sm font-bold tracking-widest uppercase py-2 text-center w-full z-50 relative">
+        EVERY WED · THE PENTHOUSE NYC · MIDTOWN, MANHATTAN
     </div>
 
-    <div class="mt-10 flex justify-center">
-      <a href="attend.html" class="inline-flex items-center gap-2 bg-[#8A1558] text-white font-black uppercase tracking-widest text-sm md:text-base px-8 py-4 rounded-full hover:bg-[#680D3E] transition-colors shadow-sm">
-        <i data-lucide="ticket" class="w-5 h-5"></i> ATTEND
-      </a>
-    </div>
-  </div>
-</header>
-
-<!-- PARTNER LOGOS -->
-<div class="bg-white border-y border-gray-200 py-8 md:py-10">
-  <div class="max-w-6xl mx-auto px-4">
-    <div class="font-mono text-[11px] uppercase tracking-[0.2em] text-gray-500 mb-6 text-center">Distribution &amp; Media Partners</div>
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-x-6 gap-y-6 items-center text-center">
-      <a href="https://www.digiwaxx.com" target="_blank" rel="noopener" class="partner-logo">DIGIWAXX</a>
-      <a href="https://dice.fm" target="_blank" rel="noopener" class="partner-logo">DICE</a>
-      <a href="https://www.bandsintown.com" target="_blank" rel="noopener" class="partner-logo">BANDSINTOWN</a>
-      <a href="https://www.songkick.com" target="_blank" rel="noopener" class="partner-logo">SONGKICK</a>
-      <a href="https://www.eventbrite.com" target="_blank" rel="noopener" class="partner-logo">EVENTBRITE</a>
-      <a href="https://lu.ma" target="_blank" rel="noopener" class="partner-logo">LUMA</a>
-      <span class="partner-logo">DSN NETWORK</span>
-      <span class="partner-logo">FUBU RADIO</span>
-      <span class="partner-logo">QUEUEVISION</span>
-      <span class="partner-logo">HLM MEDIA</span>
-    </div>
-  </div>
-</div>
-
-<!-- DARK INFO STRIP -->
-<section class="bg-[#1F1F23] text-white/90 py-16 px-6 md:px-12">
-  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-0 md:divide-x md:divide-white/15">
-    <div class="md:pr-12">
-      <p class="font-mono text-[11px] font-medium tracking-[0.22em] text-white/70 mb-4 uppercase">The Foundation</p>
-      <h3 class="section-h2 text-2xl md:text-3xl !text-white mb-4 leading-tight font-normal">A live music &amp; media scene.</h3>
-      <p class="text-white/75 font-normal leading-relaxed">Part showcase, part networking, part content hub. This is where the industry congregates mid-week.</p>
-    </div>
-    <div class="md:px-12">
-      <p class="font-mono text-[11px] font-medium tracking-[0.22em] text-white/70 mb-4 uppercase">The Atmosphere</p>
-      <h3 class="section-h2 text-2xl md:text-3xl !text-white mb-4 leading-tight font-normal">Different energy.<br>Different room.</h3>
-      <div class="grid grid-cols-2 gap-4 text-xs text-white/70 font-medium mt-6">
-        <div><span class="text-white text-xl block mb-1 font-semibold">50+</span> Artists featured</div>
-        <div><span class="text-white text-xl block mb-1 font-semibold">10k</span> Media impressions</div>
-        <div><span class="text-white text-xl block mb-1 font-semibold">Weekly</span> Curated crowd</div>
-        <div><span class="text-white text-xl block mb-1 font-semibold">1</span> Major opportunity</div>
-      </div>
-    </div>
-    <div class="md:pl-12">
-      <p class="font-mono text-[11px] font-medium tracking-[0.22em] text-white/70 mb-4 uppercase">The Reality</p>
-      <h3 class="section-h2 text-2xl md:text-3xl !text-white mb-4 leading-tight font-normal">120,000 songs hit streaming every day.</h3>
-      <p class="text-white/85 font-medium mb-4 leading-relaxed">Most will never reach their intended audience. We change the narrative.</p>
-      <p class="text-white/65 text-sm leading-relaxed">We provide the stage, the audience, and the media capture to ensure your moment extends far beyond the room.</p>
-    </div>
-  </div>
-</section>
-
-<!-- SXSW-style 3-up colored card row -->
-<section class="bg-white pt-8 md:pt-12 pb-8 md:pb-12">
-  <div class="max-w-6xl mx-auto px-4">
-    <div class="grid md:grid-cols-3 gap-4 md:gap-6">
-
-      <!-- 01 · The Room (light pink) -->
-      <a href="attend.html" class="group block rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all relative">
-        <div class="relative aspect-[4/3] bg-cover bg-center" style="background-image:url('images/audience.avif');">
-          <span class="absolute top-3 left-3 font-mono text-[10px] tracking-[0.2em] uppercase bg-white/90 text-[#680D3E] px-2 py-1 rounded">01 / Wed</span>
-          <span class="absolute top-3 right-3 inline-flex items-center justify-center w-9 h-9 rounded-full bg-white/90 text-[#680D3E] font-mono text-[10px] tracking-widest uppercase rotate-3">NMW</span>
+    <!-- Navigation -->
+    <nav class="w-full bg-white border-b-4 border-black py-4 px-6 md:px-12 flex justify-between items-center sticky top-0 z-40">
+        <a href="index.html" class="flex items-center gap-2">
+            <img src="images/nmw-logo.png" alt="New Music Wednesdays" class="h-14 md:h-16 w-auto" />
+        </a>
+        <div class="hidden lg:flex gap-6 font-bold text-sm tracking-wide">
+            <a href="#" class="hover:text-sxsw-pink transition-colors">HOME</a>
+            <a href="#" class="hover:text-sxsw-pink transition-colors">MISSION</a>
+            <a href="#" class="hover:text-sxsw-pink transition-colors">ARTIST ACCESS</a>
+            <a href="#" class="hover:text-sxsw-pink transition-colors">LISTEN</a>
+            <a href="#" class="hover:text-sxsw-pink transition-colors">THE DROP</a>
+            <a href="#" class="hover:text-sxsw-pink transition-colors">CAMPAIGN STORE</a>
         </div>
-        <div class="bg-[#FBCFE8] p-5 md:p-6 flex flex-col">
-          <div class="font-mono text-[11px] uppercase tracking-[0.18em] text-[#680D3E] mb-2">Attend &middot; The Penthouse</div>
-          <div class="flex items-end justify-between gap-4">
-            <h3 class="section-h2 text-2xl md:text-3xl !text-[#680D3E]">The Room</h3>
-            <i data-lucide="arrow-right" class="w-6 h-6 text-[#680D3E] group-hover:translate-x-1 transition-transform"></i>
-          </div>
+        <div>
+            <a href="#rsvp" class="inline-block bg-sxsw-pink text-white font-bold uppercase text-sm px-6 py-3 rounded-full hover:bg-black transition-colors shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                ATTEND
+            </a>
         </div>
-      </a>
+    </nav>
 
-      <!-- 02 · Artist Access (full-image with overlay) -->
-      <a href="apply.html" class="group block rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all relative aspect-[3/4] sm:aspect-auto">
-        <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('images/performance.avif');"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-[#680D3E]/95 via-[#680D3E]/40 to-transparent"></div>
-        <span class="absolute top-3 left-3 font-mono text-[10px] tracking-[0.2em] uppercase bg-[#8A1558] text-white px-2 py-1 rounded">02 / Wed</span>
-        <span class="absolute top-3 right-3 inline-flex items-center justify-center w-9 h-9 rounded-full bg-[#8A1558] text-white font-mono text-[10px] tracking-widest uppercase rotate-3">NMW</span>
-        <div class="absolute inset-x-0 bottom-0 p-5 md:p-6 text-white">
-          <div class="font-mono text-[11px] uppercase tracking-[0.18em] text-[#FBCFE8] mb-2">Submit &middot; 9-11 PM</div>
-          <div class="flex items-end justify-between gap-4">
-            <h3 class="section-h2 text-3xl md:text-4xl !text-white">Artist Access</h3>
-            <i data-lucide="arrow-right" class="w-6 h-6 text-white group-hover:translate-x-1 transition-transform"></i>
-          </div>
+    <!-- Hero Section -->
+    <header class="pt-20 pb-16 px-4 text-center max-w-6xl mx-auto">
+        <p class="font-bold text-sm tracking-widest text-sxsw-teal mb-6 uppercase">[ Every Wednesday in NYC ]</p>
+        <h1 class="text-6xl md:text-8xl lg:text-[7rem] leading-[0.9] mb-8">
+            WHERE MUSIC,<br>
+            CONVERSATION &<br>
+            ATTENTION MEET<br>
+            EVERY WEDNESDAY.
+        </h1>
+        <p class="text-xl md:text-3xl font-semibold max-w-3xl mx-auto mb-12 text-gray-700">
+            A live NYC music ecosystem.
+        </p>
+        
+        <div class="flex flex-col md:flex-row justify-center items-center gap-4">
+            <a href="#rsvp" class="w-full md:w-auto inline-block bg-black text-white font-black uppercase text-base md:text-lg px-8 py-4 rounded-full hover:scale-105 transition-transform shadow-[6px_6px_0px_0px_rgba(242,87,116,1)]">
+                Join The Guest Waitlist
+            </a>
+            <a href="#submit" class="w-full md:w-auto inline-block bg-sxsw-teal text-black font-black uppercase text-base md:text-lg px-8 py-4 rounded-full hover:scale-105 transition-transform shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+                Submit Music
+            </a>
+            <a href="#sponsor" class="w-full md:w-auto inline-block bg-white border-2 border-black text-black font-black uppercase text-base md:text-lg px-8 py-4 rounded-full hover:bg-gray-100 transition-colors">
+                Become A Sponsor
+            </a>
         </div>
-      </a>
+    </header>
 
-      <!-- 03 · DJ Call (darkest magenta) -->
-      <a href="dj-call.html" class="group block rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all relative">
-        <div class="relative aspect-[4/3] bg-cover bg-center" style="background-image:url('images/djs2.png');">
-          <span class="absolute top-3 left-3 font-mono text-[10px] tracking-[0.2em] uppercase bg-[#680D3E] text-white px-2 py-1 rounded">03 / Wed</span>
-          <span class="absolute top-3 right-3 inline-flex items-center justify-center w-9 h-9 rounded-full bg-[#680D3E] text-white font-mono text-[10px] tracking-widest uppercase rotate-3">NMW</span>
-        </div>
-        <div class="bg-[#680D3E] p-5 md:p-6 flex flex-col">
-          <div class="font-mono text-[11px] uppercase tracking-[0.18em] text-[#FBCFE8] mb-2">Listen &middot; 4-6 PM Zoom</div>
-          <div class="flex items-end justify-between gap-4">
-            <h3 class="section-h2 text-2xl md:text-3xl !text-white">DJ Call</h3>
-            <i data-lucide="arrow-right" class="w-6 h-6 text-white group-hover:translate-x-1 transition-transform"></i>
-          </div>
-        </div>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-<!-- INTRO -->
-<section class="bg-white pt-8 md:pt-12 pb-4">
-  <div class="max-w-6xl mx-auto px-4">
-    <div class="nmw-separator mb-10"><span class="nmw-separator__mark">NMW <div class="ed-rule mb-8"></div>middot; Every Wed</span></div>
-    <div class="mono-eyebrow mb-4">More than an event</div>
-    <h2 class="display display-tight text-4xl md:text-6xl text-ink mb-6 max-w-4xl">A live music &amp; media scene.</h2>
-    <p class="text-base md:text-lg text-gray-700 max-w-3xl mb-8">Built to help records gain attention in the real world. Not random networking.</p>
-    <div class="mono-eyebrow mb-3">Inside the room</div>
-    <p class="text-lg md:text-2xl font-semibold text-ink leading-tight">
-      DJs &middot; Artists &middot; Influencers &middot; Media Personalities &middot; Producers &middot; Videographers &middot; Managers &middot; Tastemakers &middot; Content Creators &middot; Industry Professionals
-    </p>
-  </div>
-</section>
-
-<!-- THIS WEDNESDAY (intro + two big audience cards) -->
-<section class="bg-white pt-8 md:pt-12 pb-10 md:pb-14">
-  <div class="max-w-6xl mx-auto px-4">
-    <div class="nmw-separator mb-10"><span class="nmw-separator__mark">NMW <div class="ed-rule mb-8"></div>middot; Every Wed</span></div>
-    <div class="mono-eyebrow mb-4">This Wednesday</div>
-    <h2 class="display display-tight text-4xl md:text-6xl text-ink mb-8 max-w-4xl">Different energy. Different room. Different opportunity.</h2>
-
-    <!-- Two big cards: For Artists + Guest Access -->
-    <div class="grid md:grid-cols-2 gap-4 md:gap-6">
-
-      <div class="rounded-2xl bg-[#8A1558] p-6 md:p-10 relative overflow-hidden flex flex-col">
-        <div class="font-mono text-[11px] uppercase tracking-[0.18em] text-[#FBCFE8] mb-4">For Artists</div>
-        <h3 class="section-h2 text-3xl md:text-5xl !text-white mb-6 max-w-xs">A release is only the beginning.</h3>
-        <p class="text-sm md:text-base text-white/80 mb-8 max-w-sm">Performances, interviews, DJ exposure, media coverage, content, networking, rollout visibility, and live audience reactions.</p>
-        <div class="mt-auto">
-          <a href="apply.html" class="inline-flex items-center gap-2 bg-white text-[#680D3E] font-black uppercase tracking-widest text-xs md:text-sm px-5 py-3 rounded-full hover:bg-[#FDF2F8] transition-colors">
-            <i data-lucide="mic" class="w-4 h-4"></i> Submit Music
-          </a>
-        </div>
-        <img src="images/press2.png" alt="" class="hidden md:block absolute -right-6 -bottom-6 w-44 h-44 object-cover rounded-2xl rotate-3 ring-4 ring-[#8A1558]" aria-hidden="true" />
-      </div>
-
-      <div class="rounded-2xl bg-[#FBCFE8] p-6 md:p-10 relative overflow-hidden flex flex-col">
-        <div class="font-mono text-[11px] uppercase tracking-[0.18em] text-[#8A1558] mb-4">Guest Access</div>
-        <h3 class="section-h2 text-3xl md:text-5xl !text-[#680D3E] mb-6 max-w-xs">Attendance is limited weekly.</h3>
-        <p class="text-sm md:text-base text-[#680D3E]/80 mb-8 max-w-sm">Live performances, interviews, networking, media, podcast production, happy hour, content moments, surprise guests.</p>
-        <div class="mt-auto">
-          <a href="attend.html" class="inline-flex items-center gap-2 bg-[#8A1558] text-white font-black uppercase tracking-widest text-xs md:text-sm px-5 py-3 rounded-full hover:bg-[#680D3E] transition-colors">
-            <i data-lucide="ticket" class="w-4 h-4"></i> Request Access
-          </a>
-        </div>
-        <img src="images/djs1.png" alt="" class="hidden md:block absolute -right-6 -bottom-6 w-44 h-44 object-cover rounded-2xl -rotate-3 ring-4 ring-[#FBCFE8]" aria-hidden="true" />
-      </div>
-
-    </div>
-
-
-  </div>
-</section>
-
-<!-- THE INDUSTRY CHANGED -->
-<section class="bg-white pt-8 md:pt-12 pb-2">
-  <div class="max-w-6xl mx-auto px-4">
-    <div class="nmw-separator mb-10"><span class="nmw-separator__mark">NMW <div class="ed-rule mb-8"></div>middot; Every Wed</span></div>
-    <div class="mono-eyebrow mb-4">The Industry Changed</div>
-    <h2 class="display display-tight text-4xl md:text-6xl text-ink mb-4 max-w-4xl">120,000 songs hit streaming every day.</h2>
-    <p class="text-lg md:text-xl text-[#8A1558] font-bold mb-8">Most artists struggle to create real attention around their releases.</p>
-    <p class="text-base md:text-lg text-gray-700 max-w-3xl mb-6">Music moves faster than ever &mdash; but real visibility still comes from conversations, relationships, media moments, content, community, and people sharing records in real scenes.</p>
-    <p class="text-base md:text-lg text-ink font-semibold max-w-3xl mb-12">New Music Wednesdays was built to create those moments consistently.</p>
-  </div>
-</section>
-
-<!-- HOW IT WORKS -->
-<section id="how-it-works" class="bg-[#FAFAFA] pt-12 md:pt-20 pb-10 md:pb-16">
-  <div class="max-w-6xl mx-auto px-4">
-    <div class="nmw-separator mb-10"><span class="nmw-separator__mark">NMW &middot; Every Wed</span></div>
-    <div class="font-mono text-sm md:text-base uppercase tracking-[0.2em] text-gray-500 mb-4 text-center">[ How It Works ]</div>
-    <h2 class="section-h2 text-4xl md:text-6xl mb-16 max-w-4xl mx-auto text-center">Three moves every Wednesday.</h2>
-
-    <div class="space-y-20 md:space-y-28">
-      <!-- 01: DJ Call -->
-      <article class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-        <div class="w-full md:w-1/2 md:pr-6">
-          <div class="mono-eyebrow mb-3">01 &middot; The Digiwaxx DJ Call</div>
-          <h3 class="section-h2 text-3xl md:text-5xl mb-4">Legendary Zoom call.</h3>
-          <p class="text-base md:text-lg text-gray-700">DJs, tastemakers, artists, and industry conversations centered around new music and what's gaining attention.</p>
-        </div>
-        <div class="w-full md:w-1/2">
-          <div class="image-card-rotate"><img src="images/djs1.png" alt="The Digiwaxx DJ Call" /></div>
-        </div>
-      </article>
-
-      <!-- 02: Happy Hour (reversed) -->
-      <article class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-        <div class="w-full md:w-1/2 md:order-2 md:pl-6">
-          <div class="mono-eyebrow mb-3">02 &middot; The Happy Hour Experience</div>
-          <h3 class="section-h2 text-3xl md:text-5xl mb-4">Curated cocktails. Real networking.</h3>
-          <p class="text-base md:text-lg text-gray-700">Meet artists, DJs, influencers, producers, media personalities, and creatives inside an exclusive NYC environment built for conversation and collaboration.</p>
-        </div>
-        <div class="w-full md:w-1/2 md:order-1">
-          <div class="image-card-rotate rotate-neg"><img src="images/djs2.png" alt="The Happy Hour Experience" /></div>
-        </div>
-      </article>
-
-    </div>
-
-    <div class="nmw-separator mt-16"><span class="nmw-separator__mark">NMW &middot; Every Wed</span></div>
-  </div>
-</section>
-<!-- WEDNESDAY SCHEDULE (dark grid moved here) -->
-<section class="bg-white pt-8 md:pt-12 pb-2">
-  <div class="max-w-6xl mx-auto px-4">
-    <div class="font-mono text-sm md:text-base uppercase tracking-[0.2em] text-gray-500 mb-4 text-center">[ The Schedule ]</div>
-    <h2 class="section-h2 text-4xl md:text-6xl mb-10 max-w-4xl mx-auto text-center">Here's the schedule.</h2>
-
-        <!-- Schedule grid: transparent bg, inset dividers -->
-        <div class="rounded-2xl p-2 md:p-3">
-          <div class="grid sm:grid-cols-2 lg:grid-cols-4">
-            <div class="relative px-4 md:px-6 py-6 after:content-[''] after:absolute after:right-0 after:top-[18%] after:bottom-[18%] after:w-px after:bg-black/15 sm:[&:nth-child(2n)]:after:hidden lg:[&:nth-child(2n)]:after:block lg:[&:nth-child(4n)]:after:hidden">
-              <div class="font-mono text-[11px] uppercase tracking-[0.18em] text-gray-600 mb-3">4-6 PM</div>
-              <div class="section-h2 text-2xl md:text-3xl !text-gray-600 mb-3 leading-tight">Digiwaxx DJ Call on Zoom</div>
-              <div class="font-mono text-[10px] uppercase tracking-widest text-gray-600">DJs &amp; tastemakers</div>
+    <!-- Partners Marquee -->
+    <div class="w-full bg-sxsw-green py-4 border-y-4 border-black overflow-hidden flex items-center">
+        <div class="font-bold text-sm tracking-widest uppercase mr-8 pl-6 whitespace-nowrap hidden md:block">Distribution & Media Partners:</div>
+        <div class="flex whitespace-nowrap animate-scroll">
+            <div class="flex items-center gap-12 text-2xl font-black uppercase tracking-tighter mix-blend-color-burn">
+                <span>DIGIWAXX</span> <span>·</span>
+                <span>DICE</span> <span>·</span>
+                <span>BANDSINTOWN</span> <span>·</span>
+                <span>SONGKICK</span> <span>·</span>
+                <span>EVENTBRITE</span> <span>·</span>
+                <span>LUMA</span> <span>·</span>
+                <span>DSN NETWORK</span> <span>·</span>
+                <span>FUBU RADIO</span> <span>·</span>
+                <span>QUEUEVISION</span> <span>·</span>
+                <span>HLM MEDIA</span> <span>·</span>
             </div>
-            <div class="relative px-4 md:px-6 py-6 after:content-[''] after:absolute after:right-0 after:top-[18%] after:bottom-[18%] after:w-px after:bg-black/15 sm:[&:nth-child(2n)]:after:hidden lg:[&:nth-child(2n)]:after:block lg:[&:nth-child(4n)]:after:hidden">
-              <div class="font-mono text-[11px] uppercase tracking-[0.18em] text-gray-600 mb-3">7-9 PM</div>
-              <div class="section-h2 text-2xl md:text-3xl !text-gray-600 mb-3 leading-tight">Media interviews</div>
-              <div class="font-mono text-[10px] uppercase tracking-widest text-gray-600">Press &amp; media</div>
+            <!-- Duplicate for seamless scroll -->
+            <div class="flex items-center gap-12 text-2xl font-black uppercase tracking-tighter mix-blend-color-burn ml-12">
+                <span>DIGIWAXX</span> <span>·</span>
+                <span>DICE</span> <span>·</span>
+                <span>BANDSINTOWN</span> <span>·</span>
+                <span>SONGKICK</span> <span>·</span>
+                <span>EVENTBRITE</span> <span>·</span>
+                <span>LUMA</span> <span>·</span>
+                <span>DSN NETWORK</span> <span>·</span>
+                <span>FUBU RADIO</span> <span>·</span>
+                <span>QUEUEVISION</span> <span>·</span>
+                <span>HLM MEDIA</span> <span>·</span>
             </div>
-            <div class="relative px-4 md:px-6 py-6 after:content-[''] after:absolute after:right-0 after:top-[18%] after:bottom-[18%] after:w-px after:bg-black/15 sm:[&:nth-child(2n)]:after:hidden lg:[&:nth-child(2n)]:after:block lg:[&:nth-child(4n)]:after:hidden">
-              <div class="font-mono text-[11px] uppercase tracking-[0.18em] text-gray-600 mb-3">7-9 PM</div>
-              <div class="section-h2 text-2xl md:text-3xl !text-gray-600 mb-3 leading-tight">Penthouse happy hour networking</div>
-              <div class="font-mono text-[10px] uppercase tracking-widest text-gray-600">Industry mix</div>
-            </div>
-            <div class="relative px-4 md:px-6 py-6 after:content-[''] after:absolute after:right-0 after:top-[18%] after:bottom-[18%] after:w-px after:bg-black/15 sm:[&:nth-child(2n)]:after:hidden lg:[&:nth-child(2n)]:after:block lg:[&:nth-child(4n)]:after:hidden">
-              <div class="font-mono text-[11px] uppercase tracking-[0.18em] text-gray-600 mb-3">9-11 PM</div>
-              <div class="section-h2 text-2xl md:text-3xl !text-gray-600 mb-3 leading-tight">Live artist performances</div>
-              <div class="font-mono text-[10px] uppercase tracking-widest text-gray-600">Artists &amp; managers</div>
-            </div>
-            <div class="relative px-4 md:px-6 py-6 after:content-[''] after:absolute after:right-0 after:top-[18%] after:bottom-[18%] after:w-px after:bg-black/15 sm:[&:nth-child(2n)]:after:hidden lg:[&:nth-child(2n)]:after:block lg:[&:nth-child(4n)]:after:hidden">
-              <div class="font-mono text-[11px] uppercase tracking-[0.18em] text-gray-600 mb-3">9-11 PM</div>
-              <div class="section-h2 text-2xl md:text-3xl !text-gray-600 mb-3 leading-tight">DJ &amp; tastemaker conversations</div>
-              <div class="font-mono text-[10px] uppercase tracking-widest text-gray-600">DJs &amp; influencers</div>
-            </div>
-            <div class="relative px-4 md:px-6 py-6 after:content-[''] after:absolute after:right-0 after:top-[18%] after:bottom-[18%] after:w-px after:bg-black/15 sm:[&:nth-child(2n)]:after:hidden lg:[&:nth-child(2n)]:after:block lg:[&:nth-child(4n)]:after:hidden">
-              <div class="font-mono text-[11px] uppercase tracking-[0.18em] text-gray-600 mb-3">All Night</div>
-              <div class="section-h2 text-2xl md:text-3xl !text-gray-600 mb-3 leading-tight">Live podcast production</div>
-              <div class="font-mono text-[10px] uppercase tracking-widest text-gray-600">Hosts &amp; guests</div>
-            </div>
-            <div class="relative px-4 md:px-6 py-6 after:content-[''] after:absolute after:right-0 after:top-[18%] after:bottom-[18%] after:w-px after:bg-black/15 sm:[&:nth-child(2n)]:after:hidden lg:[&:nth-child(2n)]:after:block lg:[&:nth-child(4n)]:after:hidden">
-              <div class="font-mono text-[11px] uppercase tracking-[0.18em] text-gray-600 mb-3">Rolling</div>
-              <div class="section-h2 text-2xl md:text-3xl !text-gray-600 mb-3 leading-tight">Content creation &amp; videography</div>
-              <div class="font-mono text-[10px] uppercase tracking-widest text-gray-600">Creators &amp; videographers</div>
-            </div>
-            <div class="relative px-4 md:px-6 py-6 after:content-[''] after:absolute after:right-0 after:top-[18%] after:bottom-[18%] after:w-px after:bg-black/15 sm:[&:nth-child(2n)]:after:hidden lg:[&:nth-child(2n)]:after:block lg:[&:nth-child(4n)]:after:hidden">
-              <div class="font-mono text-[11px] uppercase tracking-[0.18em] text-gray-600 mb-3">TBA</div>
-              <div class="section-h2 text-2xl md:text-3xl !text-gray-600 mb-3 leading-tight">Surprise pull-ups &amp; guest appearances</div>
-              <div class="font-mono text-[10px] uppercase tracking-widest text-gray-600">Special guests</div>
-            </div>
-          </div>
         </div>
-  </div>
-</section>
-
-<!-- CLOSING -->
-<section class="pt-0 pb-12 md:pb-16">
-  <div class="max-w-7xl mx-auto px-4">
-    <div class="w-full bg-black text-white rounded-[40px] p-8 md:p-16 text-center flex flex-col items-center">
-      <h3 class="section-h2 text-4xl md:text-5xl mb-6 !text-white max-w-3xl">New Music Wednesdays isn't just about performing.</h3>
-      <p class="text-lg md:text-xl font-medium text-white mb-4 max-w-3xl">It's about creating the conversations, visibility, relationships, and moments that help music travel further.</p>
-      <p class="text-base md:text-lg text-white mb-8 max-w-3xl">Every Wednesday brings together the people, media, energy, and culture that help records gain real-world attention.</p>
-      <a href="attend.html" class="inline-block bg-white text-black font-black uppercase text-sm px-8 py-3 rounded-full hover:bg-[#FBCFE8] transition-colors">
-        RSVP For Access
-      </a>
     </div>
-  </div>
-</section>
 
-<!-- Footer -->
-<footer class="nmw-footer">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-8 py-2">
-      <div class="col-span-2 md:col-span-2">
-        <img src="images/nmw-logo-light.png" alt="New Music Wednesdays, Digiwaxx" class="footer-logo mb-4" />
-        <p class="text-sm leading-relaxed">Live performance and rollout infrastructure for rising artists. Every Wednesday at The Penthouse NYC, presented by <a href="https://www.digiwaxx.com" target="_blank" rel="noopener noreferrer" class="text-[#8A1558] hover:underline">Digiwaxx</a>.</p>
-      </div>
-      <div>
-        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Funnel</h4>
-        <ul class="space-y-2 text-sm">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="mission.html">Mission</a></li>
-          <li><a href="events.html">Events</a></li>
-          <li><a href="https://www.newmusicwednesdayslive.com/rsvp" target="_blank" rel="noopener">RSVP</a></li>
-          <li><a href="dj-call.html">DJ Call</a></li>
-          <li><a href="podcast.html">Podcast</a></li>
-          <li><a href="apply.html">Artist Access</a></li>
-          <li><a href="faq.html">FAQ</a></li>
-          <li><a href="alerts.html">Subscribe Now</a></li>
-          <li><a href="sponsor.html">Campaign Store</a></li>
-          <li><a href="index2.html">Preview Redesign</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Distribution</h4>
-        <ul class="space-y-2 text-sm">
-          <li><a href="https://www.digiwaxx.com" target="_blank" rel="noopener">Digiwaxx</a></li>
-          <li><a href="https://www.newmusicwednesdayslive.com" target="_blank" rel="noopener">NewMusicWednesdaysLive</a></li>
-          <li><a href="https://dice.fm" target="_blank" rel="noopener">DICE</a></li>
-          <li><a href="https://www.bandsintown.com" target="_blank" rel="noopener">Bandsintown</a></li>
-          <li><a href="https://www.songkick.com" target="_blank" rel="noopener">Songkick</a></li>
-          <li><a href="https://www.eventbrite.com" target="_blank" rel="noopener">Eventbrite</a></li>
-          <li><a href="https://lu.ma" target="_blank" rel="noopener">Luma</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="text-xs font-black uppercase tracking-widest mb-4">Listings</h4>
-        <ul class="space-y-2 text-sm">
-          <li><a href="https://www.google.com/maps/place/The+Penthouse/@40.7538703,-73.9493586,17z" target="_blank" rel="noopener">Google Maps</a></li>
-          <li><a href="https://www.tripadvisor.com" target="_blank" rel="noopener">TripAdvisor</a></li>
-          <li><a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="https://www.youtube.com" target="_blank" rel="noopener">YouTube</a></li>
-          <li><a href="https://www.tiktok.com" target="_blank" rel="noopener">TikTok</a></li>
-          <li><a href="https://x.com" target="_blank" rel="noopener">X / Twitter</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="border-t border-white/10 pt-6 mt-6 flex flex-col sm:flex-row gap-3 sm:gap-0 sm:justify-between items-center text-xs">
-      <div>&copy; 2026 New Music Wednesdays. By Digiwaxx. All rights reserved.</div>
-      <div class="flex gap-5">
-        <a href="privacy.html" class="hover:text-white">Privacy Policy</a>
-        <a href="terms.html" class="hover:text-white">Terms &amp; Conditions</a>
-      </div>
-    </div>
-  </div>
-</footer>
+    <!-- Dark Info Strip -->
+    <section class="bg-sxsw-dark text-white py-16 px-6 md:px-12 border-b-8 border-sxsw-pink">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-0 md:divide-x md:divide-gray-600">
+            <!-- Block 1 -->
+            <div class="md:pr-12">
+                <p class="text-xs font-bold tracking-widest text-sxsw-teal mb-4 uppercase">The Foundation</p>
+                <h3 class="text-3xl mb-4">A LIVE MUSIC & MEDIA SCENE.</h3>
+                <p class="text-gray-300 font-medium">Part showcase, part networking, part content hub. This is where the industry congregates mid-week.</p>
+            </div>
+            <!-- Block 2 -->
+            <div class="md:px-12">
+                <p class="text-xs font-bold tracking-widest text-sxsw-pink mb-4 uppercase">The Atmosphere</p>
+                <h3 class="text-3xl mb-4">DIFFERENT ENERGY.<br>DIFFERENT ROOM.</h3>
+                <div class="grid grid-cols-2 gap-4 text-sm text-gray-300 font-bold mt-6">
+                    <div><span class="text-white text-2xl block mb-1">50+</span> Artists featured</div>
+                    <div><span class="text-white text-2xl block mb-1">10k</span> Media impressions</div>
+                    <div><span class="text-white text-2xl block mb-1">Weekly</span> Curated crowd</div>
+                    <div><span class="text-white text-2xl block mb-1">1</span> Major opportunity</div>
+                </div>
+            </div>
+            <!-- Block 3 -->
+            <div class="md:pl-12">
+                <p class="text-xs font-bold tracking-widest text-sxsw-green mb-4 uppercase">The Reality</p>
+                <h3 class="text-3xl mb-4">120,000 SONGS HIT STREAMING EVERY DAY.</h3>
+                <p class="text-sxsw-pink font-bold mb-4">Most will never reach their intended audience. We change the narrative.</p>
+                <p class="text-gray-300 text-sm">We provide the stage, the audience, and the media capture to ensure your moment extends far beyond the room.</p>
+            </div>
+        </div>
+    </section>
 
-<script src="assets/nmw.js"></script>
-<script>
-  (typeof lucide !== "undefined" && lucide.createIcons());
+    <!-- Features / Split Content Section -->
+    <section class="py-24 px-6 md:px-12 overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <p class="font-bold text-sm tracking-widest text-gray-500 mb-2 uppercase">[ How It Works ]</p>
+                <h2 class="text-5xl md:text-7xl text-black drop-shadow-sm">THREE MOVES EVERY WEDNESDAY.</h2>
+            </div>
 
-  // Capture referral code from URL if present
-  const params = new URLSearchParams(location.search);
-  const ref = params.get('ref');
-  if (ref) {
-    sessionStorage.setItem('nmw.referrer', ref);
-    const all = NMW.getArtists();
-    const ow = all.find(a => a.referral?.code === ref);
-    if (ow) {
-      ow.referral.invites = (ow.referral.invites || 0) + 1;
-      NMW.saveArtist(ow);
-    }
-  }
-</script>
+            <!-- Move 1 -->
+            <div class="mb-12">
+                <div class="bg-sxsw-teal p-8 md:p-12 lg:p-16 rounded-[40px] shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] border-4 border-black flex flex-col md:flex-row items-center gap-10">
+                    <div class="flex-1 w-full order-2 md:order-1">
+                        <p class="text-sm font-bold tracking-widest mb-4 uppercase text-black/60">01 · The Digiwaxx DJ Call</p>
+                        <h3 class="text-4xl md:text-5xl text-black mb-6">LEGENDARY ZOOM CALL.</h3>
+                        <p class="text-black/80 text-lg font-medium">DJs, tastemakers, artists, and industry conversations centered around new music and what's gaining attention.</p>
+                    </div>
+                    <div class="flex-1 w-full order-1 md:order-2">
+                        <img src="images/djs1.png" alt="Digiwaxx DJ Zoom Call" class="w-full h-[300px] md:h-[400px] object-cover rounded-3xl border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Move 2 -->
+            <div class="mb-24">
+                <div class="bg-sxsw-pink p-8 md:p-12 lg:p-16 rounded-[40px] shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] border-4 border-black flex flex-col md:flex-row-reverse items-center gap-10">
+                    <div class="flex-1 w-full order-2 md:order-1 text-white">
+                        <p class="text-sm font-bold tracking-widest mb-4 uppercase text-black">02 · The Happy Hour Experience</p>
+                        <h3 class="text-4xl md:text-5xl mb-6 text-black">CURATED COCKTAILS. REAL NETWORKING.</h3>
+                        <p class="text-white text-lg font-medium">Meet artists, DJs, influencers, producers, media personalities, and creatives inside an exclusive NYC environment built for conversation and collaboration.</p>
+                    </div>
+                    <div class="flex-1 w-full order-1 md:order-2">
+                        <img src="images/performance.avif" alt="Happy Hour Networking & Live Performance" class="w-full h-[300px] md:h-[400px] object-cover rounded-3xl border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section Headline + Separator -->
+            <div class="text-center mt-4 mb-12">
+                <p class="font-bold text-sm tracking-widest text-gray-500 mb-2 uppercase">[ Pick Your Lane ]</p>
+                <h2 class="text-4xl md:text-6xl text-black mb-6">CHOOSE YOUR WEDNESDAY.</h2>
+                <div class="w-32 h-1 bg-black mx-auto"></div>
+            </div>
+
+            <!-- Move 3 (Artists vs Guests Split Banner) -->
+            <div class="flex flex-col md:flex-row gap-8">
+                <!-- For Artists -->
+                <div class="flex-1 bg-white border-4 border-black p-10 rounded-[40px] shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+                    <p class="text-sm font-bold tracking-widest mb-4 uppercase text-sxsw-pink">For Artists</p>
+                    <h3 class="text-3xl md:text-4xl mb-6 text-black">A RELEASE IS ONLY THE BEGINNING.</h3>
+                    <p class="text-gray-700 text-lg font-medium mb-8">Performances, interviews, DJ exposure, media coverage, content, networking, rollout visibility, and live audience reactions.</p>
+                    <a href="#submit" class="inline-flex items-center justify-center w-full bg-black text-white font-bold uppercase py-4 rounded-full hover:bg-sxsw-pink transition-colors">
+                        Submit Music
+                    </a>
+                </div>
+
+                <!-- For Guests -->
+                <div class="flex-1 bg-sxsw-dark text-white border-4 border-black p-10 rounded-[40px] shadow-[8px_8px_0px_0px_rgba(167,226,164,1)]">
+                    <p class="text-sm font-bold tracking-widest mb-4 uppercase text-sxsw-green">Guest Access</p>
+                    <h3 class="text-3xl md:text-4xl mb-6">ATTENDANCE IS LIMITED WEEKLY.</h3>
+                    <p class="text-gray-300 text-lg font-medium mb-8">Live performances, interviews, networking, media, podcast production, happy hour, content moments, surprise guests.</p>
+                    <a href="#rsvp" class="inline-flex items-center justify-center w-full bg-white text-black font-bold uppercase py-4 rounded-full hover:bg-sxsw-teal transition-colors">
+                        Request Access
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Middle Banner (Industry Changed) -->
+    <section class="bg-black text-white py-20 px-6 md:px-12 text-center border-y-8 border-sxsw-pink">
+        <div class="max-w-4xl mx-auto">
+            <p class="text-sxsw-pink font-bold tracking-widest uppercase mb-4">The Industry Changed</p>
+            <h2 class="text-4xl md:text-6xl mb-8 leading-tight">120,000 SONGS HIT STREAMING EVERY DAY.</h2>
+            <p class="text-xl md:text-2xl font-medium text-gray-300 mb-6">
+                Most artists struggle to create real attention around their releases.
+            </p>
+            <p class="text-lg text-gray-400 mb-10">
+                Music moves faster than ever — but real visibility still comes from conversations, relationships, media moments, content, community, and people sharing records in real scenes. New Music Wednesdays was built to create those moments consistently.
+            </p>
+            
+            <div class="flex flex-wrap justify-center gap-3">
+                <span class="border border-white/20 rounded-full px-5 py-2 font-bold uppercase text-xs">DJs</span>
+                <span class="border border-white/20 rounded-full px-5 py-2 font-bold uppercase text-xs text-sxsw-teal border-sxsw-teal">Artists</span>
+                <span class="border border-white/20 rounded-full px-5 py-2 font-bold uppercase text-xs">Influencers</span>
+                <span class="border border-white/20 rounded-full px-5 py-2 font-bold uppercase text-xs text-sxsw-pink border-sxsw-pink">Media Personalities</span>
+                <span class="border border-white/20 rounded-full px-5 py-2 font-bold uppercase text-xs">Producers</span>
+                <span class="border border-white/20 rounded-full px-5 py-2 font-bold uppercase text-xs text-sxsw-green border-sxsw-green">Videographers</span>
+                <span class="border border-white/20 rounded-full px-5 py-2 font-bold uppercase text-xs">Managers</span>
+                <span class="border border-white/20 rounded-full px-5 py-2 font-bold uppercase text-xs">Tastemakers</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Grid Section: The Wed Cards -->
+    <section class="py-24 bg-gray-100 px-6 md:px-12 border-t border-gray-300">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl md:text-6xl text-black mb-12">NMW · EVERY WED</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="group block rounded-[30px] overflow-hidden bg-white border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 transition-transform duration-300">
+                    <img src="images/audience.avif" alt="The Penthouse Room" class="w-full h-56 object-cover border-b-4 border-black">
+                    <div class="bg-sxsw-pink p-6 border-b-4 border-black">
+                        <p class="text-xs font-bold tracking-widest text-black mb-2 uppercase">01 / Wed NMW</p>
+                        <h4 class="text-3xl text-black">THE ROOM</h4>
+                    </div>
+                    <div class="p-8">
+                        <p class="font-bold text-gray-500 uppercase text-sm mb-2">Attend · The Penthouse</p>
+                        <p class="text-gray-800">More than an event. A live music & media scene built to help records gain attention in the real world. Not random networking.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="group block rounded-[30px] overflow-hidden bg-white border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 transition-transform duration-300">
+                    <img src="images/performance.avif" alt="Artist Performance" class="w-full h-56 object-cover border-b-4 border-black">
+                    <div class="bg-sxsw-teal p-6 border-b-4 border-black">
+                        <p class="text-xs font-bold tracking-widest text-black mb-2 uppercase">02 / Wed NMW</p>
+                        <h4 class="text-3xl text-black">ARTIST ACCESS</h4>
+                    </div>
+                    <div class="p-8">
+                        <p class="font-bold text-gray-500 uppercase text-sm mb-2">Submit · 9-11 PM</p>
+                        <p class="text-gray-800">This Wednesday. Different energy. Different room. Different opportunity to break your release beyond the stream.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="group block rounded-[30px] overflow-hidden bg-white border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 transition-transform duration-300">
+                    <img src="images/djs2.png" alt="DJ Call & Tastemakers" class="w-full h-56 object-cover border-b-4 border-black">
+                    <div class="bg-sxsw-green p-6 border-b-4 border-black">
+                        <p class="text-xs font-bold tracking-widest text-black mb-2 uppercase">03 / Wed NMW</p>
+                        <h4 class="text-3xl text-black">DJ CALL</h4>
+                    </div>
+                    <div class="p-8">
+                        <p class="font-bold text-gray-500 uppercase text-sm mb-2">Listen · 4-6 PM Zoom</p>
+                        <p class="text-gray-800">Get your records in front of the tastemakers who move the needle. A direct line to DJs across the ecosystem.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Schedule Section (SXSW Lineup Style) -->
+    <section class="py-24 px-6 md:px-12 bg-white border-t-8 border-sxsw-teal">
+        <div class="max-w-5xl mx-auto">
+            <div class="mb-16">
+                <p class="font-bold text-sm tracking-widest text-gray-500 mb-2 uppercase">[ The Schedule ]</p>
+                <h2 class="text-5xl md:text-7xl text-black">HERE'S THE SCHEDULE.</h2>
+            </div>
+
+            <div class="flex flex-col border-t-4 border-black">
+                <!-- Item -->
+                <div class="flex flex-col md:flex-row py-6 border-b border-black/20 gap-4 md:gap-8 items-start md:items-center hover:bg-gray-50 transition-colors px-4">
+                    <div class="w-32 font-black text-xl text-sxsw-pink">4-6 PM</div>
+                    <div class="flex-1">
+                        <h4 class="text-2xl font-bold uppercase">Digiwaxx DJ Call on Zoom</h4>
+                    </div>
+                    <div class="w-full md:w-48 font-bold text-gray-500 text-sm uppercase text-left md:text-right">DJs & Tastemakers</div>
+                </div>
+                
+                <!-- Item -->
+                <div class="flex flex-col md:flex-row py-6 border-b border-black/20 gap-4 md:gap-8 items-start md:items-center hover:bg-gray-50 transition-colors px-4">
+                    <div class="w-32 font-black text-xl text-sxsw-teal">7-9 PM</div>
+                    <div class="flex-1">
+                        <h4 class="text-2xl font-bold uppercase">Media Interviews</h4>
+                    </div>
+                    <div class="w-full md:w-48 font-bold text-gray-500 text-sm uppercase text-left md:text-right">Press & Media</div>
+                </div>
+
+                <!-- Item -->
+                <div class="flex flex-col md:flex-row py-6 border-b border-black/20 gap-4 md:gap-8 items-start md:items-center hover:bg-gray-50 transition-colors px-4">
+                    <div class="w-32 font-black text-xl text-sxsw-teal">7-9 PM</div>
+                    <div class="flex-1">
+                        <h4 class="text-2xl font-bold uppercase">Penthouse Happy Hour Networking</h4>
+                    </div>
+                    <div class="w-full md:w-48 font-bold text-gray-500 text-sm uppercase text-left md:text-right">Industry Mix</div>
+                </div>
+
+                <!-- Item -->
+                <div class="flex flex-col md:flex-row py-6 border-b border-black/20 gap-4 md:gap-8 items-start md:items-center hover:bg-gray-50 transition-colors px-4">
+                    <div class="w-32 font-black text-xl text-sxsw-green">9-11 PM</div>
+                    <div class="flex-1">
+                        <h4 class="text-2xl font-bold uppercase">Live Artist Performances</h4>
+                    </div>
+                    <div class="w-full md:w-48 font-bold text-gray-500 text-sm uppercase text-left md:text-right">Artists & Managers</div>
+                </div>
+
+                <!-- Item -->
+                <div class="flex flex-col md:flex-row py-6 border-b border-black/20 gap-4 md:gap-8 items-start md:items-center hover:bg-gray-50 transition-colors px-4">
+                    <div class="w-32 font-black text-xl text-sxsw-green">9-11 PM</div>
+                    <div class="flex-1">
+                        <h4 class="text-2xl font-bold uppercase">DJ & Tastemaker Conversations</h4>
+                    </div>
+                    <div class="w-full md:w-48 font-bold text-gray-500 text-sm uppercase text-left md:text-right">DJs & Influencers</div>
+                </div>
+
+                <!-- Item -->
+                <div class="flex flex-col md:flex-row py-6 border-b border-black/20 gap-4 md:gap-8 items-start md:items-center hover:bg-gray-50 transition-colors px-4 bg-gray-100">
+                    <div class="w-32 font-black text-xl">All Night</div>
+                    <div class="flex-1">
+                        <h4 class="text-2xl font-bold uppercase">Live Podcast Production</h4>
+                    </div>
+                    <div class="w-full md:w-48 font-bold text-gray-500 text-sm uppercase text-left md:text-right">Hosts & Guests</div>
+                </div>
+
+                <!-- Item -->
+                <div class="flex flex-col md:flex-row py-6 border-b border-black/20 gap-4 md:gap-8 items-start md:items-center hover:bg-gray-50 transition-colors px-4">
+                    <div class="w-32 font-black text-xl">Rolling</div>
+                    <div class="flex-1">
+                        <h4 class="text-2xl font-bold uppercase">Content Creation & Videography</h4>
+                    </div>
+                    <div class="w-full md:w-48 font-bold text-gray-500 text-sm uppercase text-left md:text-right">Creators & Video</div>
+                </div>
+
+                <!-- Item -->
+                <div class="flex flex-col md:flex-row py-6 border-b-4 border-black gap-4 md:gap-8 items-start md:items-center hover:bg-gray-50 transition-colors px-4">
+                    <div class="w-32 font-black text-xl text-black">TBA</div>
+                    <div class="flex-1">
+                        <h4 class="text-2xl font-bold uppercase">Surprise Pull-Ups & Appearances</h4>
+                    </div>
+                    <div class="w-full md:w-48 font-bold text-gray-500 text-sm uppercase text-left md:text-right">Special Guests</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom Promo -->
+    <section class="py-24 px-6 md:px-12 bg-sxsw-pink text-center">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-5xl md:text-7xl mb-8 text-black">NEW MUSIC WEDNESDAYS ISN'T JUST ABOUT PERFORMING.</h2>
+            <p class="text-2xl font-medium text-white mb-6">It's about creating the conversations, visibility, relationships, and moments that help music travel further.</p>
+            <p class="text-xl text-black/80 font-bold mb-10">Every Wednesday brings together the people, media, energy, and culture that help records gain real-world attention.</p>
+            <div id="rsvp" class="bg-white p-8 rounded-[30px] max-w-md mx-auto border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] text-left">
+                <h3 class="text-2xl mb-4 font-black uppercase">RSVP For Access</h3>
+                <form class="flex flex-col gap-4">
+                    <input type="email" placeholder="Enter your email" class="p-4 border-2 border-black rounded-xl focus:border-sxsw-pink focus:outline-none font-medium">
+                    <button type="button" class="bg-black text-white font-black uppercase py-4 rounded-xl hover:bg-sxsw-teal hover:text-black transition-colors border-2 border-black">Secure Spot</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-20 px-6 md:px-12 border-t-8 border-sxsw-green">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
+            <div class="lg:col-span-2">
+                <img src="images/nmw-logo-light.png" alt="New Music Wednesdays" class="h-24 w-auto mb-6" />
+                <p class="text-gray-400 font-medium max-w-sm mb-6">
+                    Live performance and rollout infrastructure for rising artists. Every Wednesday at The Penthouse NYC.
+                </p>
+                <p class="text-xs uppercase tracking-widest font-bold text-white/50">Presented by Digiwaxx</p>
+            </div>
+            
+            <div>
+                <h4 class="font-bold uppercase tracking-widest text-sxsw-pink mb-4 text-sm">Funnel</h4>
+                <ul class="flex flex-col gap-2 font-medium text-gray-400">
+                    <li><a href="#" class="hover:text-white transition-colors">Home</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Mission</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Events</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">RSVP</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">DJ Call</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Podcast</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Artist Access</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">FAQ</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Subscribe Now</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Campaign Store</a></li>
+                    <li><a href="#" class="hover:text-sxsw-teal transition-colors">Preview Redesign</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="font-bold uppercase tracking-widest text-sxsw-teal mb-4 text-sm">Distribution</h4>
+                <ul class="flex flex-col gap-2 font-medium text-gray-400">
+                    <li><a href="#" class="hover:text-white transition-colors">Digiwaxx</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">NewMusicWednesdaysLive</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">DICE</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Bandsintown</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Songkick</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Eventbrite</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Luma</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold uppercase tracking-widest text-sxsw-green mb-4 text-sm">Listings</h4>
+                <ul class="flex flex-col gap-2 font-medium text-gray-400 mb-8">
+                    <li><a href="#" class="hover:text-white transition-colors">Google Maps</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">TripAdvisor</a></li>
+                </ul>
+                <h4 class="font-bold uppercase tracking-widest text-sxsw-pink mb-4 text-sm">Socials</h4>
+                <ul class="flex flex-col gap-2 font-medium text-gray-400">
+                    <li><a href="#" class="hover:text-white transition-colors">Instagram</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">YouTube</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">TikTok</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">X / Twitter</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto mt-16 pt-8 border-t border-white/20 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500 font-medium">
+            <p>&copy; 2026 New Music Wednesdays. All rights reserved.</p>
+            <div class="flex gap-4 mt-4 md:mt-0">
+                <a href="#" class="hover:text-white">Privacy Policy</a>
+                <a href="#" class="hover:text-white">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
 </body>
 </html>
