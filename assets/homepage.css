@@ -3,7 +3,7 @@
 
 body {
     font-family: 'Inter', sans-serif !important;
-    background-color: #ffffff !important;
+    background-color: #FAFAF7 !important;
     color: #1A0418 !important;
 }
 
@@ -44,8 +44,8 @@ h1, h2, h3, .heading-font, .section-h2, .display, .display-tight {
 /* Smooth scroll */
 html { scroll-behavior: smooth; }
 
-/* Sticky nav: no bottom border line, blend into white body */
-nav.sticky { border-bottom: 0 !important; background-color: #ffffff !important; }
+/* Sticky nav: kill the bottom border line */
+nav.sticky { border-bottom: 0 !important; }
 
 /* Homepage card system applied to all white blocks on light bg
    Matches the For Artists / Wed Cards / RSVP form treatment on index.html:
