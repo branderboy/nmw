@@ -39,7 +39,7 @@
         .bg-sxsw-deeppink { background-color: #680D3E; } /* deeper magenta */
         .bg-sxsw-teal     { background-color: #FBCFE8; } /* soft blush */
         .bg-sxsw-green    { background-color: #FACC15; } /* gold accent */
-        .bg-sxsw-dark     { background-color: #1A0418; } /* plum-black */
+        .bg-sxsw-dark     { background-color: #222222; } /* charcoal — blackish, not absolute black */
         .bg-brand-cream   { background-color: #FAFAF7; }
         .bg-brand-blush50 { background-color: #FDF2F8; } /* palest brand blush */
         .bg-brand-soft    { background-color: #D14785; } /* lighter brand pink */
@@ -69,7 +69,7 @@
 <body class="antialiased selection:bg-sxsw-pink selection:text-white">
 
     <!-- Top Location Banner -->
-    <div class="bg-black text-white text-xs md:text-sm font-bold tracking-widest uppercase py-2 text-center w-full z-50 relative">
+    <div class="bg-sxsw-dark text-white text-xs md:text-sm font-bold tracking-widest uppercase py-2 text-center w-full z-50 relative">
         EVERY WED · THE PENTHOUSE NYC · MIDTOWN, MANHATTAN
     </div>
 
@@ -99,7 +99,7 @@
         <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('images/hero_22.png');"></div>
         <div class="relative pt-16 pb-14 px-6 md:px-12 text-left w-full max-w-2xl lg:max-w-3xl">
             <p class="font-bold text-sm tracking-widest text-brand-gold mb-4 uppercase">[ Every Wednesday in NYC ]</p>
-            <h1 class="text-5xl md:text-6xl lg:text-7xl leading-[0.95] mb-6 text-white">
+            <h1 class="text-3xl md:text-4xl lg:text-5xl leading-[0.95] mb-6 text-white">
                 WHERE MUSIC,<br>
                 CONVERSATION &<br>
                 ATTENTION MEET<br>
@@ -110,14 +110,13 @@
             </p>
 
             <div class="flex flex-col sm:flex-row items-start gap-3">
-                <a href="#rsvp" class="inline-block bg-black text-white font-black uppercase text-sm md:text-base px-6 py-3 rounded-full hover:scale-105 transition-transform shadow-[6px_6px_0px_0px_rgba(138,21,88,1)]">
+                <a href="#rsvp" class="inline-flex items-center gap-2 bg-black text-white font-black uppercase text-sm md:text-base px-6 py-3 rounded-full hover:scale-105 transition-transform shadow-[6px_6px_0px_0px_rgba(138,21,88,1)]">
                     Join The Guest Waitlist
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
                 </a>
-                <a href="#submit" class="inline-block bg-sxsw-pink text-white font-black uppercase text-sm md:text-base px-6 py-3 rounded-full hover:scale-105 transition-transform shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+                <a href="#submit" class="inline-flex items-center gap-2 bg-sxsw-pink text-white font-black uppercase text-sm md:text-base px-6 py-3 rounded-full hover:scale-105 transition-transform shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
                     Submit Music
-                </a>
-                <a href="#sponsor" class="inline-block bg-white border-2 border-black text-black font-black uppercase text-sm md:text-base px-6 py-3 rounded-full hover:bg-gray-100 transition-colors">
-                    Become A Sponsor
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
                 </a>
             </div>
         </div>
@@ -221,6 +220,15 @@
                 </div>
             </div>
 
+            <!-- Brand separator before Pick Your Lane -->
+            <div class="my-10 flex items-center justify-center gap-2 select-none" aria-hidden="true">
+                <span class="w-2.5 h-2.5 rounded-full bg-sxsw-pink"></span>
+                <span class="h-[3px] w-16 bg-sxsw-pink"></span>
+                <span class="w-3 h-3 rotate-45 bg-sxsw-pink"></span>
+                <span class="h-[3px] w-16 bg-sxsw-pink"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-sxsw-pink"></span>
+            </div>
+
             <!-- Section Headline + Separator -->
             <div class="text-center mt-2 mb-8">
                 <p class="font-bold text-sm tracking-widest text-gray-500 mb-2 uppercase">[ Pick Your Lane ]</p>
@@ -255,7 +263,7 @@
     </section>
 
     <!-- Middle Banner (Industry Changed) -->
-    <section class="bg-black text-white py-14 px-6 md:px-12 text-center border-y-8 border-sxsw-pink">
+    <section class="bg-sxsw-dark text-white py-14 px-6 md:px-12 text-center border-y-8 border-sxsw-pink">
         <div class="w-full">
             <p class="text-white font-bold tracking-widest uppercase mb-4">The Industry Changed</p>
             <h2 class="text-4xl md:text-6xl mb-8 leading-tight">120,000 SONGS HIT STREAMING EVERY DAY.</h2>
@@ -330,12 +338,20 @@
     <!-- The Schedule Section (SXSW Lineup Style) -->
     <section class="py-14 px-6 md:px-12 bg-gray-100 border-t-8 border-sxsw-teal">
         <div class="w-full">
+            <!-- Brand separator before the section -->
+            <div class="mb-10 flex items-center justify-center gap-2 select-none" aria-hidden="true">
+                <span class="w-2.5 h-2.5 rounded-full bg-sxsw-pink"></span>
+                <span class="h-[3px] w-16 bg-sxsw-pink"></span>
+                <span class="w-3 h-3 rotate-45 bg-sxsw-pink"></span>
+                <span class="h-[3px] w-16 bg-sxsw-pink"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-sxsw-pink"></span>
+            </div>
             <div class="mb-10">
                 <p class="font-bold text-sm tracking-widest text-gray-500 mb-2 uppercase">[ The Schedule ]</p>
                 <h2 class="text-5xl md:text-7xl text-black">HERE'S THE SCHEDULE.</h2>
             </div>
 
-            <div class="flex flex-col border-t-4 border-black">
+            <div class="flex flex-col">
                 <!-- Item -->
                 <div class="flex flex-col md:flex-row py-6 border-b border-black/20 gap-4 md:gap-8 items-start md:items-center hover:bg-gray-50 transition-colors px-4">
                     <div class="w-32 font-black text-xl text-sxsw-pink">4-6 PM</div>
@@ -428,7 +444,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-black text-white py-14 px-6 md:px-12 border-t-8 border-sxsw-green">
+    <footer class="bg-sxsw-dark text-white py-14 px-6 md:px-12 border-t-8 border-sxsw-green">
         <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
             <div class="lg:col-span-2">
                 <img src="images/nmw-logo-light.png" alt="New Music Wednesdays" class="h-24 w-auto mb-6" />
