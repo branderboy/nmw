@@ -210,11 +210,8 @@
                         </div>
                     </label>
                     <label class="cursor-pointer relative block">
-                        <input type="radio" name="package" class="package-radio absolute opacity-0 w-0 h-0" data-name="Performance Ready" data-price="395" data-press="true" checked>
-                        <div class="border-4 border-gray-300 rounded-[20px] p-4 transition-all h-full flex flex-col items-center justify-center text-center relative pt-8 hover:border-black">
-                            <div class="absolute top-0 inset-x-0 flex justify-center -mt-3">
-                                <span class="bg-brand-primary text-white border-2 border-brand-primary text-[10px] font-black uppercase px-3 py-1 rounded-full tracking-wider shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">Most Popular</span>
-                            </div>
+                        <input type="radio" name="package" class="package-radio absolute opacity-0 w-0 h-0" data-name="Performance Ready" data-price="395" data-press="true">
+                        <div class="border-4 border-gray-300 rounded-[20px] p-4 transition-all h-full flex flex-col items-center justify-center text-center hover:border-black">
                             <h4 class="text-sm font-bold text-black mb-1 leading-tight">Performance Ready</h4>
                             <p class="text-brand-primary text-2xl font-black">$395</p>
                         </div>
@@ -223,7 +220,7 @@
                         <input type="radio" name="package" class="package-radio absolute opacity-0 w-0 h-0" data-name="Full Experience" data-price="650" data-press="true">
                         <div class="border-4 border-gray-300 rounded-[20px] p-4 transition-all h-full flex flex-col items-center justify-center text-center relative pt-8 hover:border-black">
                             <div class="absolute top-0 inset-x-0 flex justify-center -mt-3">
-                                <span class="bg-brand-secondary text-brand-primary border-2 border-brand-primary text-[10px] font-black uppercase px-3 py-1 rounded-full tracking-wider shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">Recommended</span>
+                                <span class="bg-brand-primary text-white border-2 border-brand-primary text-[10px] font-black uppercase px-3 py-1 rounded-full tracking-wider shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">Most Popular</span>
                             </div>
                             <h4 class="text-sm font-bold text-black mb-1 leading-tight">Full Experience</h4>
                             <p class="text-brand-primary text-2xl font-black">$650</p>
@@ -383,10 +380,6 @@
                     <div class="flex items-center gap-3">
                         <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
                         Stripe-powered
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
-                        Refundable until verification
                     </div>
                 </div>
             </div>
@@ -1150,7 +1143,7 @@ showStep(currentStep);
 <script>document.addEventListener("DOMContentLoaded",()=>{if(typeof lucide!=="undefined")lucide.createIcons();});</script>
 <script>
 // Wire package radios → Order Summary
-(function orderSummary(){
+document.addEventListener('DOMContentLoaded', function orderSummary(){
   const radios = document.querySelectorAll('.package-radio');
   const empty  = document.getElementById('orderSummaryEmpty');
   const filled = document.getElementById('orderSummaryFilled');
@@ -1178,8 +1171,11 @@ showStep(currentStep);
     radios.forEach(r => { r.checked = false; });
     render();
   });
+  // Ensure the radio with the checked HTML attribute is actually checked, then render
+  const initial = Array.from(radios).find(r => r.defaultChecked);
+  if (initial) initial.checked = true;
   render();
-})();
+});
 </script>
 </body>
 </html>
