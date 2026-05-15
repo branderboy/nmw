@@ -199,7 +199,7 @@
           <option value="2">2 tickets</option>
           <option value="3">3 tickets</option>
           <option value="4">4 tickets</option>
-          <option value="5+">5+ tickets</option>
+          <option value="5">5 tickets</option>
         </select>
       </fieldset>
 
@@ -260,32 +260,34 @@
         <input class="onboarding-input w-full" name="why" placeholder="An artist you're coming for, a record you want to hear, etc.">
       </fieldset>
 
-      <div class="pt-2">
+      <!-- SKIP THE LINE / CART: paid instant confirmation, inline with the form -->
+      <fieldset class="bg-white border-4 border-[#8A1558] rounded-[30px] shadow-[6px_6px_0px_0px_rgba(138,21,88,1)] p-6 md:p-8">
+        <legend class="text-xs font-black tracking-widest uppercase text-[#8A1558] px-2">[ Skip the Line ]</legend>
+        <h3 class="text-xl md:text-2xl font-black text-gray-900 mb-1">Pay $25, get an instant confirmation.</h3>
+        <p class="text-sm text-gray-600 mb-5">No queue, no waitlist, your seat is locked the moment you pay. <span class="text-[#8A1558] font-bold">$25 per ticket, up to 5.</span></p>
+
+        <div class="bg-gray-50 border-2 border-dashed border-gray-300 rounded-xl p-4 flex items-center justify-between gap-4 mb-5">
+          <div>
+            <div class="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-1">Your cart</div>
+            <div id="attendCartLine" class="text-sm font-bold text-gray-900">Pick a group size to see your total.</div>
+          </div>
+          <div class="text-right">
+            <div class="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-1">Total</div>
+            <div id="attendCartTotal" class="text-2xl md:text-3xl font-black text-[#8A1558]">$0</div>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="pt-2 flex flex-wrap items-center gap-3">
         <button id="attendSubmitBtn" type="submit" class="inline-flex items-center gap-2 bg-[#8A1558] text-white font-black uppercase tracking-widest text-sm px-7 py-4 rounded-md hover:bg-[#680D3E] transition-colors disabled:opacity-40 disabled:cursor-not-allowed" disabled>
-          <i data-lucide="send" class="w-4 h-4"></i> Submit RSVP
+          <i data-lucide="send" class="w-4 h-4"></i> Submit RSVP (Free)
         </button>
-        <span id="attendValidationHint" class="ml-3 text-xs text-gray-500 align-middle">Pick a group size + fill the required fields.</span>
+        <button id="skipTheLineBtn" type="button" class="inline-flex items-center gap-2 bg-black text-white font-black uppercase tracking-widest text-sm px-7 py-4 rounded-md hover:bg-gray-900 transition-colors border-2 border-[#8A1558] disabled:opacity-40 disabled:cursor-not-allowed">
+          <i data-lucide="zap" class="w-4 h-4"></i> <span class="skip-label">Pay &amp; Skip</span>
+        </button>
+        <span id="attendValidationHint" class="text-xs text-gray-500">Pick a group size + fill the required fields.</span>
       </div>
     </form>
-
-    <!-- SKIP THE LINE: paid instant confirmation -->
-    <div class="mt-12 md:mt-16 max-w-3xl">
-      <div class="flex items-center gap-4 mb-6">
-        <div class="h-px flex-1 bg-gray-300"></div>
-        <span class="text-xs font-black tracking-widest uppercase text-gray-500">Or</span>
-        <div class="h-px flex-1 bg-gray-300"></div>
-      </div>
-      <div class="bg-black border-4 border-[#8A1558] rounded-[30px] shadow-[8px_8px_0px_0px_rgba(138,21,88,1)] p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center gap-5 justify-between">
-        <div class="text-white">
-          <p class="text-xs font-black tracking-widest uppercase mb-1 text-[#FACC15]">[ Skip the Line ]</p>
-          <h3 class="text-xl md:text-2xl font-black text-white mb-1">Pay $25, get an instant confirmation.</h3>
-          <p class="text-sm text-white/70">No queue, no waitlist, your seat is locked the moment you pay. <span class="text-[#FACC15] font-bold">Per ticket.</span></p>
-        </div>
-        <a id="skipTheLineBtn" href="#skip-the-line" class="inline-flex items-center gap-2 bg-[#FACC15] text-black px-6 py-4 rounded-full text-sm font-black uppercase tracking-widest hover:bg-white transition-colors shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] border-2 border-black flex-shrink-0">
-          <i data-lucide="zap" class="w-4 h-4"></i> Pay &amp; Skip
-        </a>
-      </div>
-    </div>
 
     <!-- Success state -->
     <div id="attendSuccess" class="hidden mt-12">
@@ -447,35 +449,35 @@
   }
 })();
 
-// Skip the line: price scales with group size, route to checkout
+// Skip the line cart: price scales with group size, route to checkout
 (function skipTheLine(){
   const PRICE_PER_TICKET = 25;
   const btn = document.getElementById('skipTheLineBtn');
   const sizeSel = document.getElementById('attendGroupSize');
-  if (!btn) return;
+  const cartLine = document.getElementById('attendCartLine');
+  const cartTotal = document.getElementById('attendCartTotal');
+  if (!btn || !sizeSel) return;
 
-  const tickets = () => {
-    const v = sizeSel && sizeSel.value;
-    if (!v) return 1;
-    return v === '5+' ? 5 : (parseInt(v, 10) || 1);
-  };
-  const updateLabel = () => {
+  const tickets = () => parseInt(sizeSel.value, 10) || 0;
+  const update = () => {
     const t = tickets();
     const total = t * PRICE_PER_TICKET;
-    btn.querySelector('span.skip-amount')?.remove();
-    const lbl = document.createElement('span');
-    lbl.className = 'skip-amount ml-1 text-xs font-bold opacity-80';
-    lbl.textContent = ` · $${total}`;
-    btn.appendChild(lbl);
+    const label = btn.querySelector('.skip-label');
+    if (label) label.textContent = t ? `Pay & Skip · $${total}` : 'Pay & Skip';
+    if (cartLine) cartLine.textContent = t
+      ? `${t} ticket${t>1?'s':''} × $${PRICE_PER_TICKET}`
+      : 'Pick a group size to see your total.';
+    if (cartTotal) cartTotal.textContent = `$${total}`;
+    btn.disabled = t === 0;
   };
-  if (sizeSel) sizeSel.addEventListener('change', updateLabel);
-  updateLabel();
+  sizeSel.addEventListener('change', update);
+  update();
 
   btn.addEventListener('click', (e) => {
     e.preventDefault();
     const t = tickets();
+    if (!t) return;
     const total = t * PRICE_PER_TICKET;
-    // Placeholder: hook to Stripe / checkout when ready
     alert(`Skip the line: ${t} ticket${t>1?'s':''} × $${PRICE_PER_TICKET} = $${total}. Checkout coming soon.`);
   });
 })();
