@@ -254,22 +254,28 @@
         </div>
       </fieldset>
 
-      <!-- Q4: open text -->
-      <fieldset>
-        <legend class="text-xl md:text-2xl font-black tracking-tight text-gray-900 mb-4">4. One line on the room.</legend>
-        <input class="onboarding-input w-full" name="why" placeholder="An artist you're coming for, a record you want to hear, etc.">
-      </fieldset>
-
       <!-- SKIP THE LINE / CART: paid instant confirmation, inline with the form -->
       <fieldset class="bg-white border-4 border-[#8A1558] rounded-[30px] shadow-[6px_6px_0px_0px_rgba(138,21,88,1)] p-6 md:p-8">
-        <legend class="text-xs font-black tracking-widest uppercase text-[#8A1558] px-2">[ Skip the Line ]</legend>
-        <h3 class="text-xl md:text-2xl font-black text-gray-900 mb-1">Pay $25, get an instant confirmation.</h3>
-        <p class="text-sm text-gray-600 mb-5">No queue, no waitlist, your seat is locked the moment you pay. <span class="text-[#8A1558] font-bold">$25 per ticket, up to 5.</span></p>
+        <legend class="text-xl md:text-2xl font-black tracking-tight text-gray-900 px-2">4. Don't want to wait? Buy tickets now!</legend>
+        <p class="text-sm text-gray-600 mb-5 mt-2">No queue, no waitlist, your seat is locked the moment you pay. <span class="text-[#8A1558] font-bold">$25 per ticket, up to 5.</span></p>
+
+        <!-- Ticket quantity picker -->
+        <div class="flex items-center justify-between gap-4 mb-4">
+          <div>
+            <div class="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-1">Tickets</div>
+            <div class="text-sm text-gray-600">How many would you like to buy?</div>
+          </div>
+          <div class="inline-flex items-center gap-3 border-2 border-black rounded-full px-2 py-1">
+            <button type="button" id="attendCartMinus" class="w-9 h-9 rounded-full bg-white border-2 border-black text-black font-black text-xl leading-none hover:bg-gray-100 disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Decrease tickets">−</button>
+            <input id="attendCartQty" type="number" min="0" max="5" value="0" class="w-12 text-center text-2xl font-black bg-transparent border-0 focus:outline-none" aria-label="Number of tickets">
+            <button type="button" id="attendCartPlus" class="w-9 h-9 rounded-full bg-[#8A1558] border-2 border-black text-white font-black text-xl leading-none hover:bg-black disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Increase tickets">+</button>
+          </div>
+        </div>
 
         <div class="bg-gray-50 border-2 border-dashed border-gray-300 rounded-xl p-4 flex items-center justify-between gap-4 mb-5">
           <div>
             <div class="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-1">Your cart</div>
-            <div id="attendCartLine" class="text-sm font-bold text-gray-900">Pick a group size to see your total.</div>
+            <div id="attendCartLine" class="text-sm font-bold text-gray-900">Add a ticket to see your total.</div>
           </div>
           <div class="text-right">
             <div class="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-1">Total</div>
@@ -449,28 +455,36 @@
   }
 })();
 
-// Skip the line cart: price scales with group size, route to checkout
+// Skip the line cart: independent ticket quantity (0-5) with - / + picker
 (function skipTheLine(){
   const PRICE_PER_TICKET = 25;
+  const MAX = 5;
   const btn = document.getElementById('skipTheLineBtn');
-  const sizeSel = document.getElementById('attendGroupSize');
   const cartLine = document.getElementById('attendCartLine');
   const cartTotal = document.getElementById('attendCartTotal');
-  if (!btn || !sizeSel) return;
+  const qtyInput = document.getElementById('attendCartQty');
+  const minusBtn = document.getElementById('attendCartMinus');
+  const plusBtn = document.getElementById('attendCartPlus');
+  if (!btn || !qtyInput) return;
 
-  const tickets = () => parseInt(sizeSel.value, 10) || 0;
+  const tickets = () => Math.max(0, Math.min(MAX, parseInt(qtyInput.value, 10) || 0));
   const update = () => {
     const t = tickets();
+    qtyInput.value = String(t);
     const total = t * PRICE_PER_TICKET;
     const label = btn.querySelector('.skip-label');
     if (label) label.textContent = t ? `Pay & Skip · $${total}` : 'Pay & Skip';
     if (cartLine) cartLine.textContent = t
       ? `${t} ticket${t>1?'s':''} × $${PRICE_PER_TICKET}`
-      : 'Pick a group size to see your total.';
+      : 'Add a ticket to see your total.';
     if (cartTotal) cartTotal.textContent = `$${total}`;
     btn.disabled = t === 0;
+    if (minusBtn) minusBtn.disabled = t === 0;
+    if (plusBtn) plusBtn.disabled = t >= MAX;
   };
-  sizeSel.addEventListener('change', update);
+  if (minusBtn) minusBtn.addEventListener('click', () => { qtyInput.value = String(tickets() - 1); update(); });
+  if (plusBtn) plusBtn.addEventListener('click', () => { qtyInput.value = String(tickets() + 1); update(); });
+  qtyInput.addEventListener('input', update);
   update();
 
   btn.addEventListener('click', (e) => {
