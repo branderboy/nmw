@@ -196,7 +196,7 @@
 
                 <div class="grid grid-cols-2 lg:grid-cols-5 gap-4">
                     <label class="cursor-pointer relative block">
-                        <input type="radio" name="package" class="package-radio absolute opacity-0 w-0 h-0" data-name="Media Ready" data-price="200">
+                        <input type="radio" name="package" class="package-radio absolute opacity-0 w-0 h-0" data-name="Media Ready" data-price="200" data-press="true">
                         <div class="border-4 border-gray-300 rounded-[20px] p-4 transition-all h-full flex flex-col items-center justify-center text-center hover:border-black">
                             <h4 class="text-sm font-bold text-black mb-1 leading-tight">Media Ready</h4>
                             <p class="text-brand-primary text-2xl font-black">$200</p>
@@ -210,7 +210,7 @@
                         </div>
                     </label>
                     <label class="cursor-pointer relative block">
-                        <input type="radio" name="package" class="package-radio absolute opacity-0 w-0 h-0" data-name="Performance Ready" data-price="395" checked>
+                        <input type="radio" name="package" class="package-radio absolute opacity-0 w-0 h-0" data-name="Performance Ready" data-price="395" data-press="true" checked>
                         <div class="border-4 border-gray-300 rounded-[20px] p-4 transition-all h-full flex flex-col items-center justify-center text-center relative pt-8 hover:border-black">
                             <div class="absolute top-0 inset-x-0 flex justify-center -mt-3">
                                 <span class="bg-brand-primary text-white border-2 border-brand-primary text-[10px] font-black uppercase px-3 py-1 rounded-full tracking-wider shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">Most Popular</span>
@@ -220,7 +220,7 @@
                         </div>
                     </label>
                     <label class="cursor-pointer relative block">
-                        <input type="radio" name="package" class="package-radio absolute opacity-0 w-0 h-0" data-name="Full Experience" data-price="650">
+                        <input type="radio" name="package" class="package-radio absolute opacity-0 w-0 h-0" data-name="Full Experience" data-price="650" data-press="true">
                         <div class="border-4 border-gray-300 rounded-[20px] p-4 transition-all h-full flex flex-col items-center justify-center text-center relative pt-8 hover:border-black">
                             <div class="absolute top-0 inset-x-0 flex justify-center -mt-3">
                                 <span class="bg-brand-secondary text-brand-primary border-2 border-brand-primary text-[10px] font-black uppercase px-3 py-1 rounded-full tracking-wider shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">Recommended</span>
@@ -230,7 +230,7 @@
                         </div>
                     </label>
                     <label class="cursor-pointer relative block col-span-2 lg:col-span-1">
-                        <input type="radio" name="package" class="package-radio absolute opacity-0 w-0 h-0" data-name="The Premiere Package" data-price="899">
+                        <input type="radio" name="package" class="package-radio absolute opacity-0 w-0 h-0" data-name="The Premiere Package" data-price="899" data-press="true">
                         <div class="border-4 border-gray-300 rounded-[20px] p-4 transition-all h-full flex flex-col items-center justify-center text-center relative pt-8 hover:border-black">
                             <div class="absolute top-0 inset-x-0 flex justify-center -mt-3">
                                 <span class="bg-brand-accent text-black border-2 border-black text-[10px] font-black uppercase px-3 py-1 rounded-full tracking-wider shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">Premium</span>
@@ -243,7 +243,7 @@
             </div>
 
             <!-- SECTION: PRESS & MEDIA NETWORK -->
-            <div class="mb-16">
+            <div id="pressSection" class="mb-16 hidden">
                 <div class="bg-gray-50 border-4 border-black rounded-[30px] p-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] relative overflow-hidden">
                     <div class="relative z-10 flex flex-col h-full">
                         <div class="flex items-center gap-3 mb-4">
@@ -1151,17 +1151,20 @@ showStep(currentStep);
   const totalEl = document.getElementById('orderSummaryTotal');
   const clearBtn = document.getElementById('orderSummaryClear');
   if (!radios.length || !empty || !filled) return;
+  const pressSection = document.getElementById('pressSection');
   function render() {
     const sel = Array.from(radios).find(r => r.checked);
     if (!sel) {
       filled.classList.add('hidden');
       empty.classList.remove('hidden');
+      if (pressSection) pressSection.classList.add('hidden');
       return;
     }
     nameEl.textContent = sel.dataset.name || '';
     totalEl.textContent = '$' + Number(sel.dataset.price || 0).toLocaleString();
     empty.classList.add('hidden');
     filled.classList.remove('hidden');
+    if (pressSection) pressSection.classList.toggle('hidden', sel.dataset.press !== 'true');
   }
   radios.forEach(r => r.addEventListener('change', render));
   if (clearBtn) clearBtn.addEventListener('click', () => {
