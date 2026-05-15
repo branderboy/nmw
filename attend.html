@@ -127,6 +127,7 @@
             </div>
         </div>
         <a href="sponsor.html" class="text-gray-700 hover:text-[#8A1558] transition-colors">CAMPAIGN STORE</a>
+            <a href="funnel.html" class="nav-funnel text-gray-700 hover:text-[#8A1558] transition-colors flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-[#8A1558] inline-block"></span>FUNNEL</a>
     </div>
     <a href="attend.html" class="inline-block bg-[#8A1558] text-white font-bold uppercase text-sm px-6 py-3 rounded-full hover:bg-black transition-colors shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
         ATTEND
@@ -135,6 +136,22 @@
 
 <!-- Space after nav -->
 <div class="h-8 md:h-12"></div>
+
+
+<!-- VIRAL LOOP: share + calendar -->
+<section class="px-4 mb-8 md:mb-12">
+  <div class="max-w-5xl mx-auto bg-[#8A1558] border-4 border-black rounded-[30px] shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center gap-5 justify-between">
+    <div class="text-white">
+      <p class="text-xs font-black tracking-widest uppercase mb-1 text-white/80">[ Don't keep it to yourself ]</p>
+      <h3 class="text-xl md:text-2xl font-black text-white">Share with your team & save the date.</h3>
+    </div>
+    <div class="flex flex-wrap items-center gap-3">
+      <a id="attendCalBtn" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-white text-black px-5 py-3 rounded-full text-sm font-bold uppercase tracking-wide hover:bg-gray-100 transition-colors shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] border-2 border-black"><i data-lucide="calendar-plus" class="w-4 h-4"></i> Add to Calendar</a>
+      <button id="attendShareBtn" type="button" class="inline-flex items-center gap-2 bg-black text-white px-5 py-3 rounded-full text-sm font-bold uppercase tracking-wide hover:bg-gray-900 transition-colors shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] border-2 border-black"><i data-lucide="share-2" class="w-4 h-4"></i> Share with your team</button>
+      <span id="attendShareToast" class="hidden text-xs font-bold text-white">Link copied</span>
+    </div>
+  </div>
+</section>
 
 
 <!-- LIVE DEMAND -->
@@ -219,6 +236,25 @@
         <span id="attendValidationHint" class="ml-3 text-xs text-gray-500 align-middle">Pick a group size + fill the required fields.</span>
       </div>
     </form>
+
+    <!-- SKIP THE LINE: paid instant confirmation -->
+    <div class="mt-12 md:mt-16 max-w-3xl">
+      <div class="flex items-center gap-4 mb-6">
+        <div class="h-px flex-1 bg-gray-300"></div>
+        <span class="text-xs font-black tracking-widest uppercase text-gray-500">Or</span>
+        <div class="h-px flex-1 bg-gray-300"></div>
+      </div>
+      <div class="bg-black border-4 border-[#8A1558] rounded-[30px] shadow-[8px_8px_0px_0px_rgba(138,21,88,1)] p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center gap-5 justify-between">
+        <div class="text-white">
+          <p class="text-xs font-black tracking-widest uppercase mb-1 text-[#FACC15]">[ Skip the Line ]</p>
+          <h3 class="text-xl md:text-2xl font-black text-white mb-1">Pay $25, get an instant confirmation.</h3>
+          <p class="text-sm text-white/70">No queue, no waitlist, your seat is locked the moment you pay. <span class="text-[#FACC15] font-bold">Per ticket.</span></p>
+        </div>
+        <a id="skipTheLineBtn" href="#skip-the-line" class="inline-flex items-center gap-2 bg-[#FACC15] text-black px-6 py-4 rounded-full text-sm font-black uppercase tracking-widest hover:bg-white transition-colors shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] border-2 border-black flex-shrink-0">
+          <i data-lucide="zap" class="w-4 h-4"></i> Pay &amp; Skip
+        </a>
+      </div>
+    </div>
 
     <!-- Success state -->
     <div id="attendSuccess" class="hidden mt-12">
@@ -354,6 +390,64 @@
 
 <script src="assets/nmw.js"></script>
 <script>
+// Viral loop: calendar + share
+(function attendViral(){
+  try {
+    const cal = NMW.googleCalendarLink && NMW.googleCalendarLink('');
+    const calBtn = document.getElementById('attendCalBtn');
+    if (calBtn && cal) calBtn.href = cal;
+  } catch {}
+  const shareBtn = document.getElementById('attendShareBtn');
+  const toast = document.getElementById('attendShareToast');
+  if (shareBtn) {
+    shareBtn.addEventListener('click', async () => {
+      const base = location.href.split('?')[0];
+      const payload = {
+        title: 'New Music Wednesdays',
+        text: 'Pull up to New Music Wednesdays at The Penthouse NYC.',
+        url: base,
+      };
+      try {
+        if (navigator.share) { await navigator.share(payload); return; }
+        await navigator.clipboard.writeText(`${payload.text} ${payload.url}`);
+        if (toast) { toast.classList.remove('hidden'); setTimeout(() => toast.classList.add('hidden'), 1800); }
+      } catch {}
+    });
+  }
+})();
+
+// Skip the line: price scales with group size, route to checkout
+(function skipTheLine(){
+  const PRICE_PER_TICKET = 25;
+  const btn = document.getElementById('skipTheLineBtn');
+  const sizeSel = document.getElementById('attendGroupSize');
+  if (!btn) return;
+
+  const tickets = () => {
+    const v = sizeSel && sizeSel.value;
+    if (!v) return 1;
+    return v === '5+' ? 5 : (parseInt(v, 10) || 1);
+  };
+  const updateLabel = () => {
+    const t = tickets();
+    const total = t * PRICE_PER_TICKET;
+    btn.querySelector('span.skip-amount')?.remove();
+    const lbl = document.createElement('span');
+    lbl.className = 'skip-amount ml-1 text-xs font-bold opacity-80';
+    lbl.textContent = ` · $${total}`;
+    btn.appendChild(lbl);
+  };
+  if (sizeSel) sizeSel.addEventListener('change', updateLabel);
+  updateLabel();
+
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const t = tickets();
+    const total = t * PRICE_PER_TICKET;
+    // Placeholder: hook to Stripe / checkout when ready
+    alert(`Skip the line: ${t} ticket${t>1?'s':''} × $${PRICE_PER_TICKET} = $${total}. Checkout coming soon.`);
+  });
+})();
 <script>
 // Live demand counters
 (function animateCounters(){
