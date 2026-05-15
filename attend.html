@@ -140,14 +140,14 @@
 
 <!-- VIRAL LOOP: share + calendar -->
 <section class="px-4 mb-8 md:mb-12">
-  <div class="max-w-5xl mx-auto bg-[#8A1558] border-4 border-black rounded-[30px] shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center gap-5 justify-between">
-    <div class="text-white">
-      <p class="text-xs font-black tracking-widest uppercase mb-1 text-white/80">[ Don't keep it to yourself ]</p>
-      <h3 class="text-xl md:text-2xl font-black text-white">Share with your team & save the date.</h3>
+  <div class="max-w-5xl mx-auto bg-[#8A1558] border-4 border-black rounded-[30px] shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-4 md:p-6 flex flex-row items-center gap-4 md:gap-6 justify-between flex-nowrap">
+    <div class="text-white min-w-0">
+      <p class="text-[10px] md:text-xs font-black tracking-widest uppercase mb-0.5 text-white/80 whitespace-nowrap">[ Don't keep it to yourself ]</p>
+      <h3 class="text-sm md:text-xl font-black text-white leading-tight">Share with your team &amp; save the date.</h3>
     </div>
-    <div class="flex flex-wrap items-center gap-3">
-      <a id="attendCalBtn" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-white text-black px-5 py-3 rounded-full text-sm font-bold uppercase tracking-wide hover:bg-gray-100 transition-colors shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] border-2 border-black"><i data-lucide="calendar-plus" class="w-4 h-4"></i> Add to Calendar</a>
-      <button id="attendShareBtn" type="button" class="inline-flex items-center gap-2 bg-black text-white px-5 py-3 rounded-full text-sm font-bold uppercase tracking-wide hover:bg-gray-900 transition-colors shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] border-2 border-black"><i data-lucide="share-2" class="w-4 h-4"></i> Share with your team</button>
+    <div class="flex flex-row items-center gap-2 md:gap-3 flex-shrink-0">
+      <a id="attendCalBtn" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 md:gap-2 bg-white text-black px-3 md:px-5 py-2 md:py-3 rounded-full text-[11px] md:text-sm font-bold uppercase tracking-wide hover:bg-gray-100 transition-colors shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] border-2 border-black whitespace-nowrap"><i data-lucide="calendar-plus" class="w-3.5 h-3.5 md:w-4 md:h-4"></i> Add to Calendar</a>
+      <button id="attendShareBtn" type="button" class="inline-flex items-center gap-1.5 md:gap-2 bg-black text-white px-3 md:px-5 py-2 md:py-3 rounded-full text-[11px] md:text-sm font-bold uppercase tracking-wide hover:bg-gray-900 transition-colors shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] border-2 border-black whitespace-nowrap"><i data-lucide="share-2" class="w-3.5 h-3.5 md:w-4 md:h-4"></i> Share with your team</button>
       <span id="attendShareToast" class="hidden text-xs font-bold text-white">Link copied</span>
     </div>
   </div>
