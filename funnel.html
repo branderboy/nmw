@@ -148,10 +148,10 @@
 <div class="h-8 md:h-12"></div>
 
 <!-- Funnel Layout Container -->
-<div class="max-w-[1400px] mx-auto px-4 md:px-8 py-12 lg:py-16 flex flex-col lg:flex-row gap-12">
+<div class="max-w-[1400px] mx-auto px-4 md:px-8 py-12 lg:py-16 flex flex-col gap-12">
 
-    <!-- Left Column (Main Steps) -->
-    <div class="w-full lg:w-[70%]">
+    <!-- Main Steps -->
+    <div class="w-full">
 
         <!-- Page Header -->
         <div class="mb-10">
@@ -201,21 +201,21 @@
 
                 <div class="grid grid-cols-2 lg:grid-cols-5 gap-4">
                     <label class="cursor-pointer relative block">
-                        <input type="radio" name="package" class="package-radio absolute opacity-0 w-0 h-0">
+                        <input type="radio" name="package" class="package-radio absolute opacity-0 w-0 h-0" data-name="Media Ready" data-price="200">
                         <div class="border-4 border-gray-300 rounded-[20px] p-4 transition-all h-full flex flex-col items-center justify-center text-center hover:border-black">
                             <h4 class="text-sm font-bold text-black mb-1 leading-tight">Media Ready</h4>
                             <p class="text-brand-primary text-2xl font-black">$200</p>
                         </div>
                     </label>
                     <label class="cursor-pointer relative block">
-                        <input type="radio" name="package" class="package-radio absolute opacity-0 w-0 h-0">
+                        <input type="radio" name="package" class="package-radio absolute opacity-0 w-0 h-0" data-name="One Mic Visual Session" data-price="250">
                         <div class="border-4 border-gray-300 rounded-[20px] p-4 transition-all h-full flex flex-col items-center justify-center text-center hover:border-black">
                             <h4 class="text-sm font-bold text-black mb-1 leading-tight">One Mic Visual Session</h4>
                             <p class="text-brand-primary text-2xl font-black">$250</p>
                         </div>
                     </label>
                     <label class="cursor-pointer relative block">
-                        <input type="radio" name="package" class="package-radio absolute opacity-0 w-0 h-0" checked>
+                        <input type="radio" name="package" class="package-radio absolute opacity-0 w-0 h-0" data-name="Performance Ready" data-price="395" checked>
                         <div class="border-4 border-gray-300 rounded-[20px] p-4 transition-all h-full flex flex-col items-center justify-center text-center relative pt-8 hover:border-black">
                             <div class="absolute top-0 inset-x-0 flex justify-center -mt-3">
                                 <span class="bg-brand-primary text-white border-2 border-brand-primary text-[10px] font-black uppercase px-3 py-1 rounded-full tracking-wider shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">Most Popular</span>
@@ -225,7 +225,7 @@
                         </div>
                     </label>
                     <label class="cursor-pointer relative block">
-                        <input type="radio" name="package" class="package-radio absolute opacity-0 w-0 h-0">
+                        <input type="radio" name="package" class="package-radio absolute opacity-0 w-0 h-0" data-name="Full Experience" data-price="650">
                         <div class="border-4 border-gray-300 rounded-[20px] p-4 transition-all h-full flex flex-col items-center justify-center text-center relative pt-8 hover:border-black">
                             <div class="absolute top-0 inset-x-0 flex justify-center -mt-3">
                                 <span class="bg-brand-secondary text-brand-primary border-2 border-brand-primary text-[10px] font-black uppercase px-3 py-1 rounded-full tracking-wider shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">Recommended</span>
@@ -235,7 +235,7 @@
                         </div>
                     </label>
                     <label class="cursor-pointer relative block col-span-2 lg:col-span-1">
-                        <input type="radio" name="package" class="package-radio absolute opacity-0 w-0 h-0">
+                        <input type="radio" name="package" class="package-radio absolute opacity-0 w-0 h-0" data-name="The Premiere Package" data-price="899">
                         <div class="border-4 border-gray-300 rounded-[20px] p-4 transition-all h-full flex flex-col items-center justify-center text-center relative pt-8 hover:border-black">
                             <div class="absolute top-0 inset-x-0 flex justify-center -mt-3">
                                 <span class="bg-brand-accent text-black border-2 border-black text-[10px] font-black uppercase px-3 py-1 rounded-full tracking-wider shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">Premium</span>
@@ -354,9 +354,9 @@
         </form>
     </div>
 
-    <!-- Right Column (Sidebar Order Summary) -->
-    <div class="w-full lg:w-[30%]">
-        <div class="sticky top-28">
+    <!-- Order Summary (same level as the form) -->
+    <div class="w-full">
+        <div>
             <div class="bg-white border-4 border-black p-8 rounded-[30px] shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
                 <div class="flex justify-between items-center mb-6 border-b-4 border-black pb-4">
                     <h3 class="text-xl font-black uppercase text-black">Order Summary</h3>
@@ -364,8 +364,21 @@
                         <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                     </div>
                 </div>
-                <div class="bg-gray-100 py-12 border-2 border-dashed border-gray-300 rounded-xl text-center mb-8">
-                    <p class="text-gray-500 font-bold uppercase tracking-widest text-xs">Pick a package to see your total.</p>
+                <div id="orderSummaryBody" class="mb-8">
+                    <div id="orderSummaryEmpty" class="bg-gray-100 py-12 border-2 border-dashed border-gray-300 rounded-xl text-center">
+                        <p class="text-gray-500 font-bold uppercase tracking-widest text-xs">Pick a package to see your total.</p>
+                    </div>
+                    <div id="orderSummaryFilled" class="hidden bg-brand-secondary border-2 border-brand-primary rounded-xl p-6">
+                        <div class="flex justify-between items-baseline mb-2">
+                            <span class="text-xs font-black uppercase tracking-widest text-brand-primary">Selected Package</span>
+                            <button type="button" id="orderSummaryClear" class="text-[10px] font-bold uppercase tracking-widest text-brand-primary hover:text-black">Change</button>
+                        </div>
+                        <div id="orderSummaryName" class="text-xl font-black text-black mb-4">—</div>
+                        <div class="flex justify-between items-baseline border-t-2 border-brand-primary pt-3">
+                            <span class="text-xs font-black uppercase tracking-widest text-brand-primary">Total</span>
+                            <span id="orderSummaryTotal" class="text-3xl font-black text-brand-primary">$0</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="border-t-2 border-black pt-6 flex flex-col gap-4 text-xs font-bold uppercase tracking-widest text-gray-500">
                     <div class="flex items-center gap-3">
@@ -1132,5 +1145,35 @@ showStep(currentStep);
 
 
 <script>document.addEventListener("DOMContentLoaded",()=>{if(typeof lucide!=="undefined")lucide.createIcons();});</script>
+<script>
+// Wire package radios → Order Summary
+(function orderSummary(){
+  const radios = document.querySelectorAll('.package-radio');
+  const empty  = document.getElementById('orderSummaryEmpty');
+  const filled = document.getElementById('orderSummaryFilled');
+  const nameEl = document.getElementById('orderSummaryName');
+  const totalEl = document.getElementById('orderSummaryTotal');
+  const clearBtn = document.getElementById('orderSummaryClear');
+  if (!radios.length || !empty || !filled) return;
+  function render() {
+    const sel = Array.from(radios).find(r => r.checked);
+    if (!sel) {
+      filled.classList.add('hidden');
+      empty.classList.remove('hidden');
+      return;
+    }
+    nameEl.textContent = sel.dataset.name || '';
+    totalEl.textContent = '$' + Number(sel.dataset.price || 0).toLocaleString();
+    empty.classList.add('hidden');
+    filled.classList.remove('hidden');
+  }
+  radios.forEach(r => r.addEventListener('change', render));
+  if (clearBtn) clearBtn.addEventListener('click', () => {
+    radios.forEach(r => { r.checked = false; });
+    render();
+  });
+  render();
+})();
+</script>
 </body>
 </html>
