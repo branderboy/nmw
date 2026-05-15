@@ -20,23 +20,39 @@ if (typeof tailwind !== "undefined") tailwind.config = { theme: { extend: {
 </head>
 <body class="font-sans antialiased bg-gray-50 min-h-screen">
 
-<nav class="nmw-nav">
-  <div class="nmw-nav__inner">
-  <a href="index.html" class="nmw-logo-block">
-    <img src="images/nmw-logo.png" alt="New Music Wednesday" class="nmw-logo-img" />
-  </a>
-  <div class="hidden md:flex space-x-6 items-center text-sm font-bold tracking-wide text-gray-600">
-    <a href="index.html" class="text-black">HOME</a>
-    <a href="mission.html" class="hover:text-black">MISSION</a>
-    <a href="attend.html" class="hover:text-black">ATTEND</a>
-    <a href="dj-call.html" class="hover:text-black">DJ CALL</a>
-    <a href="podcast.html" class="hover:text-black">PODCAST</a>
-    <a href="apply.html" class="hover:text-black">ARTIST ACCESS</a>
-    <a href="faq.html" class="hover:text-black">FAQ</a>
-    <a href="alerts.html" class="hover:text-black">SUBSCRIBE NOW</a>
-    <a href="sponsor.html" class="hover:text-black">CAMPAIGN STORE</a>
-  </div>
-  </div>
+<!-- Top Location Banner -->
+<div class="bg-black text-white text-xs md:text-sm font-bold tracking-widest uppercase py-2 text-center w-full z-50 relative">
+    EVERY WED · THE PENTHOUSE NYC · MIDTOWN, MANHATTAN
+</div>
+
+<!-- Navigation -->
+<nav class="w-full bg-white border-b-4 border-black py-4 px-6 md:px-12 flex justify-between items-center sticky top-0 z-40">
+    <a href="index.html" class="flex items-center gap-2">
+        <img src="images/nmw-logo.png" alt="New Music Wednesdays" class="h-20 md:h-24 w-auto" style="filter: brightness(0.55) saturate(1.4) hue-rotate(-10deg);" />
+    </a>
+    <div class="hidden lg:flex gap-6 font-bold text-sm tracking-wide items-center">
+        <a href="index.html" class="text-gray-700 hover:text-[#8A1558] transition-colors">HOME</a>
+        <div class="relative group">
+            <button type="button" class="text-gray-700 hover:text-[#8A1558] flex items-center gap-1 py-2 transition-colors">MISSION <i data-lucide="chevron-down" class="w-3 h-3"></i></button>
+            <div class="absolute top-full left-0 bg-white border-2 border-black rounded-md shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] py-2 min-w-[160px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                <a href="mission.html" class="block px-4 py-2 text-sm hover:bg-[#FDF2F8] hover:text-[#8A1558]">Mission</a>
+                <a href="faq.html" class="block px-4 py-2 text-sm hover:bg-[#FDF2F8] hover:text-[#8A1558]">FAQ</a>
+            </div>
+        </div>
+        <a href="apply.html" class="text-gray-700 hover:text-[#8A1558] transition-colors">ARTIST ACCESS</a>
+        <div class="relative group">
+            <button type="button" class="text-gray-700 hover:text-[#8A1558] flex items-center gap-1 py-2 transition-colors">LISTEN <i data-lucide="chevron-down" class="w-3 h-3"></i></button>
+            <div class="absolute top-full left-0 bg-white border-2 border-black rounded-md shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] py-2 min-w-[160px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                <a href="dj-call.html" class="block px-4 py-2 text-sm hover:bg-[#FDF2F8] hover:text-[#8A1558]">DJ Call</a>
+                <a href="podcast.html" class="block px-4 py-2 text-sm hover:bg-[#FDF2F8] hover:text-[#8A1558]">Podcast</a>
+            </div>
+        </div>
+        <a href="sponsor.html" class="text-gray-700 hover:text-[#8A1558] transition-colors">CAMPAIGN STORE</a>
+        <a href="funnel.html" class="nav-funnel text-gray-700 hover:text-[#8A1558] transition-colors flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-[#8A1558] inline-block"></span>FUNNEL</a>
+    </div>
+    <a href="attend.html" class="inline-block bg-[#8A1558] text-white font-bold uppercase text-sm px-6 py-3 rounded-full hover:bg-black transition-colors shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+        ATTEND
+    </a>
 </nav>
 
 <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
