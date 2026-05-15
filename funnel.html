@@ -148,40 +148,43 @@
 <div class="h-8 md:h-12"></div>
 
 <!-- Funnel Layout Container -->
-<div class="max-w-[1400px] mx-auto px-4 md:px-8 py-12 lg:py-16 flex flex-col lg:flex-row gap-12 items-start">
+<div class="max-w-[1400px] mx-auto px-4 md:px-8 py-12 lg:py-16">
+
+    <!-- Page Header (full width above the columns) -->
+    <div class="mb-10">
+        <p class="font-bold text-sm tracking-widest text-gray-500 mb-2 uppercase">[ Artist Rollout, NMW ]</p>
+        <h1 class="text-5xl md:text-7xl mb-4 text-black">PICK YOUR PACKAGE.</h1>
+        <p class="text-xl font-medium text-gray-700">Approved. Now choose the rollout that fits the record.</p>
+    </div>
+
+    <!-- Progress Bar (full width above the columns) -->
+    <div class="relative flex items-center justify-between mb-16 mt-6 max-w-3xl">
+        <div class="absolute left-0 top-1/2 -translate-y-1/2 w-full h-[4px] bg-gray-300 -z-10"></div>
+        <div class="absolute left-0 top-1/2 -translate-y-1/2 w-[25%] h-[4px] bg-brand-primary -z-10"></div>
+
+        <div class="flex flex-col items-center bg-[#f8f9fa] px-2">
+            <div class="w-10 h-10 rounded-full bg-brand-primary text-white border-4 border-brand-primary flex items-center justify-center font-black text-sm mb-2 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">1</div>
+            <span class="text-xs font-bold uppercase tracking-widest text-black">Package</span>
+        </div>
+        <div class="flex flex-col items-center bg-[#f8f9fa] px-2">
+            <div class="w-10 h-10 rounded-full bg-white border-4 border-gray-300 text-gray-400 flex items-center justify-center font-black text-sm mb-2">2</div>
+            <span class="text-xs font-bold uppercase tracking-widest text-gray-400">Enhance</span>
+        </div>
+        <div class="flex flex-col items-center bg-[#f8f9fa] px-2">
+            <div class="w-10 h-10 rounded-full bg-white border-4 border-gray-300 text-gray-400 flex items-center justify-center font-black text-sm mb-2">3</div>
+            <span class="text-xs font-bold uppercase tracking-widest text-gray-400">Next Steps</span>
+        </div>
+        <div class="flex flex-col items-center bg-[#f8f9fa] px-2">
+            <div class="w-10 h-10 rounded-full bg-white border-4 border-gray-300 text-gray-400 flex items-center justify-center font-black text-sm mb-2">4</div>
+            <span class="text-xs font-bold uppercase tracking-widest text-gray-400">Payment</span>
+        </div>
+    </div>
+
+    <!-- Form + Summary side-by-side, both starting at the same Y -->
+    <div class="flex flex-col lg:flex-row gap-12 items-start">
 
     <!-- Left Column (Main Steps) -->
     <div class="w-full lg:w-[70%]">
-
-        <!-- Page Header -->
-        <div class="mb-10">
-            <p class="font-bold text-sm tracking-widest text-gray-500 mb-2 uppercase">[ Artist Rollout, NMW ]</p>
-            <h1 class="text-5xl md:text-7xl mb-4 text-black">PICK YOUR PACKAGE.</h1>
-            <p class="text-xl font-medium text-gray-700">Approved. Now choose the rollout that fits the record.</p>
-        </div>
-
-        <!-- Progress Bar -->
-        <div class="relative flex items-center justify-between mb-16 mt-6 max-w-3xl">
-            <div class="absolute left-0 top-1/2 -translate-y-1/2 w-full h-[4px] bg-gray-300 -z-10"></div>
-            <div class="absolute left-0 top-1/2 -translate-y-1/2 w-[25%] h-[4px] bg-brand-primary -z-10"></div>
-
-            <div class="flex flex-col items-center bg-[#f8f9fa] px-2">
-                <div class="w-10 h-10 rounded-full bg-brand-primary text-white border-4 border-brand-primary flex items-center justify-center font-black text-sm mb-2 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">1</div>
-                <span class="text-xs font-bold uppercase tracking-widest text-black">Package</span>
-            </div>
-            <div class="flex flex-col items-center bg-[#f8f9fa] px-2">
-                <div class="w-10 h-10 rounded-full bg-white border-4 border-gray-300 text-gray-400 flex items-center justify-center font-black text-sm mb-2">2</div>
-                <span class="text-xs font-bold uppercase tracking-widest text-gray-400">Enhance</span>
-            </div>
-            <div class="flex flex-col items-center bg-[#f8f9fa] px-2">
-                <div class="w-10 h-10 rounded-full bg-white border-4 border-gray-300 text-gray-400 flex items-center justify-center font-black text-sm mb-2">3</div>
-                <span class="text-xs font-bold uppercase tracking-widest text-gray-400">Next Steps</span>
-            </div>
-            <div class="flex flex-col items-center bg-[#f8f9fa] px-2">
-                <div class="w-10 h-10 rounded-full bg-white border-4 border-gray-300 text-gray-400 flex items-center justify-center font-black text-sm mb-2">4</div>
-                <span class="text-xs font-bold uppercase tracking-widest text-gray-400">Payment</span>
-            </div>
-        </div>
 
         <!-- THE UNIFIED FORM CONTAINER -->
         <form class="bg-white border-4 border-black rounded-[40px] p-8 md:p-12 shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] mb-20">
@@ -396,6 +399,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </div>
 
