@@ -19,7 +19,7 @@
 <meta name="twitter:description" content="Artists compete for visibility. Fans compete for access. Submit your music, get reviewed, get the rollout.">
 <meta name="twitter:image" content="https://www.newmusicwednesdayslive.com/images/nmw-logo.png">
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@0.474.0"></script>
 <!-- PWA -->
 <link rel="manifest" href="/manifest.webmanifest">
@@ -31,7 +31,7 @@
 <link rel="stylesheet" href="assets/nmw.css">
 <script>
   if (typeof tailwind !== "undefined") tailwind.config = { theme: { extend: {
-    fontFamily: { sans: ['Inter','sans-serif'], serif: ['Merriweather','serif'] },
+    fontFamily: { sans: ['Inter','sans-serif'] },
     colors: { brand: { 50:'#FDF2F8', 200:'#FBCFE8', 500:'#8A1558', 600:'#680D3E' } }
   }}}
 </script>
@@ -367,7 +367,7 @@
               <div class="w-9 h-9 rounded-full bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center flex-shrink-0"><i data-lucide="ticket" class="w-5 h-5"></i></div>
               <div class="min-w-0">
                 <h3 class="font-black tracking-tight mb-1">Want to come see it live?</h3>
-                <p class="text-sm text-gray-600 font-serif">RSVP for a Wednesday at The Penthouse before you commit to a slot. See the room, feel the energy, hear the artists.</p>
+                <p class="text-sm text-gray-600">RSVP for a Wednesday at The Penthouse before you commit to a slot. See the room, feel the energy, hear the artists.</p>
                 <a href="https://www.newmusicwednesdayslive.com/rsvp" target="_blank" rel="noopener noreferrer" class="text-xs font-black uppercase tracking-widest text-[#8A1558] hover:text-[#680D3E] mt-3 inline-flex items-center gap-1">RSVP for a Wednesday <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a>
               </div>
             </div>
@@ -377,7 +377,7 @@
               <div class="w-9 h-9 rounded-full bg-[#FDF2F8] text-[#8A1558] flex items-center justify-center flex-shrink-0"><i data-lucide="newspaper" class="w-5 h-5"></i></div>
               <div class="min-w-0">
                 <h3 class="font-black tracking-tight mb-1">Press &amp; Media Network</h3>
-                <p class="text-sm text-gray-600 font-serif">Media isn't on the sidelines here, it's at the center of the culture. The media pit is where interviews come to life and moments get documented during a live taping.</p>
+                <p class="text-sm text-gray-600">Media isn't on the sidelines here, it's at the center of the culture. The media pit is where interviews come to life and moments get documented during a live taping.</p>
                 <p class="text-xs text-gray-500 mt-2">Partners include Digiwaxx, DSN Network, QueueVision, FUBU Radio, HLM Media, and a rotating roster of personalities and producers.</p>
                 <div class="flex flex-wrap gap-x-4 gap-y-2 mt-3">
                   <button type="button" class="text-xs font-black uppercase tracking-widest text-[#8A1558] hover:text-[#680D3E] inline-flex items-center gap-1" data-info="press">View full media team <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></button>
@@ -1424,9 +1424,9 @@ showStep(currentStep);
     </div>
     <div class="px-6 py-6 md:px-8 md:py-8">
       <h2 class="text-3xl md:text-4xl font-black tracking-tighter mb-3">Join The Media Team</h2>
-      <p class="text-gray-700 font-serif mb-3">Media isn't on the sidelines here, it's at the center of the culture. Every week, the media pit is where conversations spark, relationships are built, and moments get documented as they happen, all during a live taping and streamed production. Interviews come to life. Real reactions. You never know who might pop up.</p>
-      <p class="text-gray-700 font-serif mb-3">It's about bringing back that real in-the-room energy, the kind you can feel. Building relationships. Capturing authentic stories. Connecting the culture to the world through media, streaming, and in-person coverage.</p>
-      <p class="text-gray-700 font-serif mb-6">From celebrity guests to next-up talent, the room stays alive, and our media partners keep that energy moving far beyond the walls.</p>
+      <p class="text-gray-700 mb-3">Media isn't on the sidelines here, it's at the center of the culture. Every week, the media pit is where conversations spark, relationships are built, and moments get documented as they happen, all during a live taping and streamed production. Interviews come to life. Real reactions. You never know who might pop up.</p>
+      <p class="text-gray-700 mb-3">It's about bringing back that real in-the-room energy, the kind you can feel. Building relationships. Capturing authentic stories. Connecting the culture to the world through media, streaming, and in-person coverage.</p>
+      <p class="text-gray-700 mb-6">From celebrity guests to next-up talent, the room stays alive, and our media partners keep that energy moving far beyond the walls.</p>
 
       <h3 class="text-xs font-black uppercase tracking-widest text-gray-500 mb-3">Press &amp; Media Partners</h3>
       <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-2 mb-6 text-sm">
@@ -1465,7 +1465,7 @@ showStep(currentStep);
 
       <div class="rounded-xl p-5" style="background:linear-gradient(135deg,#FDF2F8 0%,#FCE7F3 100%);">
         <h4 class="font-black tracking-tight mb-1">Want to join the media team?</h4>
-        <p class="text-sm text-gray-700 font-serif mb-3">If you're ready to lock in, build real connections, and capture the culture from inside the room, this is your entry point. We're curating a select rotation of media partners who bring perspective, professionalism, and presence to the space.</p>
+        <p class="text-sm text-gray-700 mb-3">If you're ready to lock in, build real connections, and capture the culture from inside the room, this is your entry point. We're curating a select rotation of media partners who bring perspective, professionalism, and presence to the space.</p>
         <div class="flex flex-wrap gap-3">
           <a href="https://www.newmusicwednesdayslive.com/mediaaccess" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-[#8A1558] text-white px-5 py-2.5 rounded-md text-xs font-black tracking-widest uppercase hover:bg-[#680D3E] transition-colors">Request Media Access <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
           <button type="button" data-info-close class="inline-flex items-center gap-2 bg-white border border-gray-300 text-gray-700 px-5 py-2.5 rounded-md text-xs font-black tracking-widest uppercase hover:border-[#8A1558] hover:text-[#8A1558] transition-colors">Close</button>
