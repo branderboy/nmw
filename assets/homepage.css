@@ -5,6 +5,19 @@
 html, body { overflow-x: hidden; }
 img, video, iframe, canvas, svg { max-width: 100%; height: auto; }
 
+/* Stabilize layout on mobile while Tailwind CDN + fonts settle */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body { min-height: 100vh; }
+@media (prefers-reduced-motion: reduce), (max-width: 768px) {
+  /* Kill infinite/bounce animations on phones so the page doesn't "move like crazy" */
+  .animate-bounce-x, .animate-pulse, .animate-scroll, .animate-bounce { animation: none !important; }
+  /* Smooth transitions only, no transform-driven hover wiggles on touch */
+  [class*="hover:-translate-y-"]:hover,
+  [class*="hover:scale-"]:hover { transform: none !important; }
+}
+/* Lucide icons take fixed dimensions even before they hydrate */
+[data-lucide] { display: inline-block; width: 1em; height: 1em; vertical-align: middle; }
+
 body {
     font-family: 'Inter', sans-serif !important;
     background-color: #FAFAF7 !important;
