@@ -1,6 +1,10 @@
 /* NMW Homepage Design Tokens — single source of truth for fonts/colors/bg
    Inherited by every page that links this file. */
 
+/* Stop horizontal wobble on mobile: nothing scrolls sideways */
+html, body { overflow-x: hidden; }
+img, video, iframe, canvas, svg { max-width: 100%; height: auto; }
+
 body {
     font-family: 'Inter', sans-serif !important;
     background-color: #FAFAF7 !important;
