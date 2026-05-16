@@ -60,7 +60,7 @@
 <!-- Navigation -->
 <nav class="w-full bg-white border-b-4 border-black py-4 px-6 md:px-12 flex justify-between items-center sticky top-0 z-40">
     <a href="index.html" class="flex items-center gap-2">
-        <img src="images/nmw-logo.png" alt="New Music Wednesdays" class="h-20 md:h-24 w-auto" style="filter: brightness(0.55) saturate(1.4) hue-rotate(-10deg);" />
+        <img src="images/nmw-logo.png" alt="New Music Wednesdays" class="h-14 sm:h-16 md:h-20 lg:h-24 w-auto" style="filter: brightness(0.55) saturate(1.4) hue-rotate(-10deg);" />
     </a>
     <div class="hidden lg:flex gap-6 font-bold text-sm tracking-wide items-center">
         <a href="index.html" class="text-gray-700 hover:text-[#8A1558] transition-colors">HOME</a>
@@ -82,10 +82,39 @@
         <a href="sponsor.html" class="text-gray-700 hover:text-[#8A1558] transition-colors">CAMPAIGN STORE</a>
         <a href="funnel.html" class="nav-funnel text-gray-700 hover:text-[#8A1558] transition-colors flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-[#8A1558] inline-block"></span>FUNNEL</a>
     </div>
-    <a href="attend.html" class="inline-block bg-[#8A1558] text-white font-bold uppercase text-sm px-6 py-3 rounded-full hover:bg-black transition-colors shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-        ATTEND
-    </a>
+    <div class="flex items-center gap-2">
+        <a href="attend.html" class="inline-block bg-[#8A1558] text-white font-bold uppercase text-xs sm:text-sm px-4 sm:px-6 py-2.5 sm:py-3 rounded-full hover:bg-black transition-colors shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">ATTEND</a>
+        <button id="nmwMobileToggle" type="button" aria-expanded="false" aria-controls="nmwMobileMenu" class="lg:hidden inline-flex items-center justify-center w-11 h-11 border-2 border-black rounded-md text-black hover:bg-gray-100"><i data-lucide="menu" class="w-5 h-5"></i></button>
+    </div>
 </nav>
+
+<!-- Mobile menu panel -->
+<div id="nmwMobileMenu" class="lg:hidden hidden sticky top-[88px] z-30 bg-white border-b-4 border-black px-6 py-4">
+    <div class="flex flex-col gap-1 font-bold text-sm tracking-wide">
+        <a href="index.html" class="py-3 border-b border-gray-200 text-gray-800 hover:text-[#8A1558]">HOME</a>
+        <a href="mission.html" class="py-3 border-b border-gray-200 text-gray-800 hover:text-[#8A1558]">MISSION</a>
+        <a href="faq.html" class="py-3 pl-4 border-b border-gray-200 text-gray-600 hover:text-[#8A1558]">FAQ</a>
+        <a href="apply.html" class="py-3 border-b border-gray-200 text-gray-800 hover:text-[#8A1558]">ARTIST ACCESS</a>
+        <a href="dj-call.html" class="py-3 border-b border-gray-200 text-gray-800 hover:text-[#8A1558]">DJ CALL</a>
+        <a href="podcast.html" class="py-3 pl-4 border-b border-gray-200 text-gray-600 hover:text-[#8A1558]">PODCAST</a>
+        <a href="sponsor.html" class="py-3 border-b border-gray-200 text-gray-800 hover:text-[#8A1558]">CAMPAIGN STORE</a>
+        <a href="funnel.html" class="py-3 text-gray-800 hover:text-[#8A1558] flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[#8A1558] inline-block"></span>FUNNEL</a>
+    </div>
+</div>
+<script>
+(function nmwMobileNav(){
+  const t = document.getElementById('nmwMobileToggle');
+  const m = document.getElementById('nmwMobileMenu');
+  if (!t || !m) return;
+  t.addEventListener('click', () => {
+    const open = m.classList.toggle('hidden') === false;
+    t.setAttribute('aria-expanded', open ? 'true' : 'false');
+    const icon = t.querySelector('i');
+    if (icon) icon.setAttribute('data-lucide', open ? 'x' : 'menu');
+    if (window.lucide && lucide.createIcons) lucide.createIcons();
+  });
+})();
+</script>
 
 
 
