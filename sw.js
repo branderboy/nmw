@@ -1,6 +1,6 @@
 // New Music Wednesdays — Progressive Web App service worker
 // Cache-first for static assets, network-first with offline fallback for HTML.
-const CACHE = 'nmw-v2';
+const CACHE = 'nmw-v3';
 const CORE = [
   '/',
   '/index.html',

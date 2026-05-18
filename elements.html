@@ -112,7 +112,26 @@
         </div>
     </div>
 </div>
-<script src="assets/event-countdown.js?v=2" defer></script>
+<script>
+(function(){
+  var target=new Date('2026-05-20T20:00:00-04:00').getTime();
+  function pad(n){return String(n).padStart(2,'0');}
+  function tick(){
+    var d=document.querySelector('[data-nmw-cd-d]');
+    var h=document.querySelector('[data-nmw-cd-h]');
+    var m=document.querySelector('[data-nmw-cd-m]');
+    var s=document.querySelector('[data-nmw-cd-s]');
+    if(!d||!h||!m||!s)return;
+    var diff=target-Date.now();
+    if(diff<=0){d.textContent='00';h.textContent='00';m.textContent='00';s.textContent='00';return;}
+    d.textContent=Math.floor(diff/86400000);
+    h.textContent=pad(Math.floor((diff%86400000)/3600000));
+    m.textContent=pad(Math.floor((diff%3600000)/60000));
+    s.textContent=pad(Math.floor((diff%60000)/1000));
+  }
+  tick();setInterval(tick,1000);
+})();
+</script>
 
 <!-- Navigation -->
 <nav class="w-full bg-white border-b-4 border-black py-4 px-6 md:px-12 flex justify-between items-center sticky top-0 z-40">
